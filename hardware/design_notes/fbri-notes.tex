@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{fixltx2e}
+\usepackage{datatool}
+\usepackage{float}
+%\usepackage[showframe=true]{geometry}
+\addtolength{\textwidth}{1in}
+\addtolength{\textheight}{1in}
+\addtolength{\evensidemargin}{0.5in}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\topmargin}{-0.5in}
+\setlength{\parindent}{0cm}
+
+\begin{document}
+
+
+
+
+
+
+\section{Hardware}
+
+The hardware exists in two versions: a minaturised version intended
+for flight and a development version intended for firmware
+developement and debugging etc. The two verisons share the same
+circuit diagram, and hence firmware should be generally interoperable
+between the two.
+
+However to allow detection of the hardware version PA02 is shorted to
+ground on the developement version while is will be pulled high
+internally on the flight version.
+
+\subsection{Dimensions}
+
+The flight hardware has a total size of 50 x 12 mm.
+
+Components are positioned on a 1/16 (0.0625) mm grid, with major
+components on a 1/4 mm grid.
+
+\subsection{Routing}
+
+The board is routed with 6 mil traces for data and 6 / 16 mil traces
+for power. Where nessesary the traces  All via are 0.3mm (12mil) drill.
+
+\section{Design}
+
+\subsection{HF Clock}
+
+This is synthesised in the SAM D20E and used to drive the XIN input of
+the SI4060. The design frequency for the XIN input is 25 - 32MHz
+(30MHz by default) but UPU reports success with 16.369MHz. The maximum
+output clock frequency from the SAM D20E is 48MHz so this would be a
+useful design limit.
+
+No input capacitance value is given for the XIN pin but 2pF typical is
+given for out pins and this is probably about the same.
+
+The maximum rise/fall time for 48MHz is 10ns, around 5ns would be
+good, giving a knee = 100MHz.
+
+Path inductance is maybe 10nH total (1+1+1 x 2 for pad/gnd-pad/via, 4
+for trace)
+
+Maximum output current from the SAM D20E is 1mA (with DRVSTR=0, 1.8V),
+so output impedance = 1800Ω
+
+Worst case Q
+\begin{equation}
+  Q = {\sqrt{10nH/2pF} \over 100} = 0.22 (good)
+\end{equation}
+
+Time constant
+\begin{equation}
+  tc = RC = 1800*2pF = 3.6ns (good)
+\end{equation}
+
+In any case the SI4060 tune API allows ramping up the internal
+capacitance to 11pF, which will drop Q at the expense of the time
+constant.
+
+
+\end{document}
