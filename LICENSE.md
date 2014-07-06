@@ -1,0 +1,1 @@
+LICENSE-nrf51-gcc-blackmagic.md
