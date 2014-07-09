@@ -76,6 +76,22 @@ outside of RAM and ROM.
 
 These commands can be automated by placing them in a `gdbscript-custom` file.
 
+### Semihosting ###
+
+You can build for semihosting by defining the `SEMIHOSTING` variable
+in make. Like this:
+
+```
+make -kB SEMIHOSTING=1
+```
+
+This build will be significantly larger (in terms of RAM and ROM).
+
+For this build, when a debugger is present at startup the
+`semihost_printf`, `semihost_puts` and `semihost_putchar` functions
+will print to stdio on the host. The Blackmagic Debug Probe supports
+this.
+
 ## Emacs ##
 
 The command `make emacs` can be used to quickly launch an instance of

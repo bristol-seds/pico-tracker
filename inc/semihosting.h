@@ -1,5 +1,5 @@
 /*
- * Sample application for the SAM D20
+ * Wrapper functions for semihosting
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,32 +22,35 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "samd20.h"
-#include "pindefs.h"
+#ifndef SEMIHOSTING_H
+#define SEMIHOSTING_H
 
-#include <stdio.h>
-#include "semihosting.h"
+/**
+ * Please use the semihost_*() wrappers so that semihosting functions
+ * can be disables from the makefile!
+ */
 
-int main(void)
-{
-  SystemInit();
+#ifndef __SEMIHOSTING__
 
-  /* Update the value of SystemCoreClock */
-  SystemCoreClockUpdate();
+/* Dummy function handlers */
+#define semihost_putchar(c)
+#define semihost_puts(s)
+#define semihost_printf(...)
 
-  /* Set LED0 as output */
-  PORTA.DIRSET.reg = (1 << LED0_PIN);
+#else
 
-  /* Configure the SysTick for 50ms interrupts */
-  SysTick_Config(SystemCoreClock / 20);
+/* We would get a SVC exception if we called stdio without a debug probe */
+void set_semihosting(void);
 
-  semihost_printf("Hello World\n");
+/* Real function handlers */
+#define semihost_putchar(c)	__putchar(c)
+#define semihost_puts(s)	__puts(s)
+#define semihost_printf(...)	__printf(__VA_ARGS__)
 
-  while (1);
-}
+void __putchar(char c);
+void __puts(const char* s);
+void __printf(const char *format, ...);
 
-void SysTick_Handler(void)
-{
-  /* Toggle LED0 */
-  PORTA.OUTTGL.reg = (1 << LED0_PIN);
-}
+#endif /* __SEMIHOSTING__ */
+
+#endif /* SEMIHOSTING_H */

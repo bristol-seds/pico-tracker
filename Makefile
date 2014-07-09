@@ -72,10 +72,19 @@ OBJCOPY		:= $(TOOLCHAIN)-objcopy
 OBJDUMP		:= $(TOOLCHAIN)-objdump
 SIZE		:= $(TOOLCHAIN)-size
 
-# The SAM D20 series is based on an ARM Cortex M0 core
+# The SAM D20 series is based on an ARM Cortex M0+ core
 #
 #
 ARCH_FLAGS 	:= -mcpu=cortex-m0plus -mthumb
+
+# Flags to be used when semihosting
+#
+#
+ifdef SEMIHOSTING
+LDFLAGS	+= --specs=rdimon.specs -lc -lrdimon
+else
+LDFLAGS += --specs=nano.specs -lc
+endif
 
 # Compilation Flags
 #
@@ -83,10 +92,10 @@ ARCH_FLAGS 	:= -mcpu=cortex-m0plus -mthumb
 # they can be discarded if unused.  The linker performs garbage collection of
 # unused input sections.
 #
-CFLAGS		= $(COMPILATION_FLAGS) -Wall -Wextra $(ACCEPT_WARN) -std=gnu99 \
+CFLAGS		+= $(COMPILATION_FLAGS) -Wall -Wextra $(ACCEPT_WARN) -std=gnu99 \
 			-ffunction-sections -fdata-sections $(ARCH_FLAGS)
-ASFLAGS		= -Wall $(ARCH_FLAGS) -a=/dev/null
-LDFLAGS		= $(COMPILATION_FLAGS) $(LINKER_FLAGS) -Wextra $(ARCH_FLAGS)
+ASFLAGS		+= -Wall $(ARCH_FLAGS) -a=/dev/null
+LDFLAGS		+= $(COMPILATION_FLAGS) -lm $(LINKER_FLAGS) -lm -Wextra $(ARCH_FLAGS)
 
 # Compilation Defines
 #
@@ -94,6 +103,9 @@ LDFLAGS		= $(COMPILATION_FLAGS) $(LINKER_FLAGS) -Wextra $(ARCH_FLAGS)
 #
 ifdef TARGET_CHIP
 CFLAGS		+= -D$(TARGET_CHIP) -D__$(TARGET_CHIP)__
+endif
+ifdef SEMIHOSTING
+CFLAGS		+= -D__SEMIHOSTING__
 endif
 
 # Startup and system code
@@ -226,7 +238,7 @@ etags: $(TAGFILES)
 #
 .PHONY: emacs
 emacs:
-	@emacs $(TAGFILES) Makefile config.mk
+	@emacs $(TAGFILES) Makefile config.mk README.md
 
 # Removes everything in the output directory
 #

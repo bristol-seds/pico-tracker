@@ -45,6 +45,8 @@
  *   __data_end
  *   __bss_start
  *   __bss_end
+ *   __end__
+ *   end
  *   __heap_start
  *   __heap_end
  *   __stack_end
@@ -139,6 +141,7 @@ SECTIONS
 	.heap (COPY):
 	{
 		__end__ = .;
+		end = __end__;
 		__heap_start = __end__;
 		*(.heap*)
 		__HeapLimit = .;

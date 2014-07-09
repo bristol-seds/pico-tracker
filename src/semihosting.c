@@ -1,5 +1,5 @@
 /*
- * Sample application for the SAM D20
+ * Wrapper functions for semihosting
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,32 +22,32 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "samd20.h"
-#include "pindefs.h"
-
 #include <stdio.h>
-#include "semihosting.h"
+#include <stdarg.h>
 
-int main(void)
-{
-  SystemInit();
+#include "samd20.h"
 
-  /* Update the value of SystemCoreClock */
-  SystemCoreClockUpdate();
+uint8_t semihosting_en = 0;
 
-  /* Set LED0 as output */
-  PORTA.DIRSET.reg = (1 << LED0_PIN);
-
-  /* Configure the SysTick for 50ms interrupts */
-  SysTick_Config(SystemCoreClock / 20);
-
-  semihost_printf("Hello World\n");
-
-  while (1);
+void set_semihosting(void) {
+  semihosting_en = 1;
 }
 
-void SysTick_Handler(void)
-{
-  /* Toggle LED0 */
-  PORTA.OUTTGL.reg = (1 << LED0_PIN);
+void __putchar(char c) {
+  if (semihosting_en) {
+    putchar(c);
+  }
+}
+void __puts(const char* s) {
+  if (semihosting_en) {
+    puts(s);
+  }
+}
+void __printf(const char *format, ...) {
+  if (semihosting_en) {
+    va_list args;
+
+    va_start(args, format);
+    vprintf(format, args);
+  }
 }

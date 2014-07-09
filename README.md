@@ -1,1 +1,1 @@
-README-nrf51-gcc-blackmagic.md
+README-samd20-gcc-blackmagic.md

@@ -42,6 +42,7 @@
  */
 
 #include "samd20.h"
+#include "semihosting.h"
 
 /* Initialize segments */
 extern uint32_t __fixed_start;
@@ -59,6 +60,7 @@ int main(void);
 /** \endcond */
 
 void __libc_init_array(void);
+extern void initialise_monitor_handles(void);
 
 /* Default empty handler */
 void Dummy_Handler(void);
@@ -173,6 +175,18 @@ void Reset_Handler(void)
 
         /* Initialize the C library */
         __libc_init_array();
+
+#ifdef __SEMIHOSTING__
+	/* If there's a debugger attached */
+	if (DSU->STATUSB.reg & DSU_STATUSB_DBGPRES) {
+
+		/* Initialise handles for semihosting */
+		initialise_monitor_handles();
+
+		/* Set semihosting functions */
+		set_semihosting();
+	}
+#endif /* __SEMIHOSTING__ */
 
         /* Branch to main function */
         main();
