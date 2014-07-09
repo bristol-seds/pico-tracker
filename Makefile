@@ -81,9 +81,9 @@ ARCH_FLAGS 	:= -mcpu=cortex-m0plus -mthumb
 #
 #
 ifdef SEMIHOSTING
-LDFLAGS	+= --specs=rdimon.specs -lc -lrdimon
+LDFLAGS	+= --specs=rdimon.specs -lrdimon
 else
-LDFLAGS += --specs=nano.specs -lc
+LDFLAGS += --specs=nano.specs
 endif
 
 # Compilation Flags
