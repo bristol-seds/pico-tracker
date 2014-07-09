@@ -54,6 +54,8 @@
  */
 ENTRY(Reset_Handler)
 
+GROUP(libgcc.a libc.a libm.a)
+
 SECTIONS
 {
 	.text :

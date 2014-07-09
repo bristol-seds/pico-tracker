@@ -26,6 +26,7 @@
 #include "pindefs.h"
 
 #include <stdio.h>
+#include <math.h>
 #include "semihosting.h"
 
 int main(void)
@@ -41,7 +42,12 @@ int main(void)
   /* Configure the SysTick for 50ms interrupts */
   SysTick_Config(SystemCoreClock / 20);
 
-  semihost_printf("Hello World\n");
+  volatile double d, dd;
+
+  d = 2;
+  dd = sqrt(d);
+
+  semihost_printf("Hello World %f\n", dd);
 
   while (1);
 }

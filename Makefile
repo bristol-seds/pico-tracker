@@ -95,7 +95,7 @@ endif
 CFLAGS		+= $(COMPILATION_FLAGS) -Wall -Wextra $(ACCEPT_WARN) -std=gnu99 \
 			-ffunction-sections -fdata-sections $(ARCH_FLAGS)
 ASFLAGS		+= -Wall $(ARCH_FLAGS) -a=/dev/null
-LDFLAGS		+= $(COMPILATION_FLAGS) -lm $(LINKER_FLAGS) -lm -Wextra $(ARCH_FLAGS)
+LDFLAGS		+= $(COMPILATION_FLAGS) $(LINKER_FLAGS) -Wextra $(ARCH_FLAGS)
 
 # Compilation Defines
 #
