@@ -54,7 +54,7 @@
  */
 ENTRY(Reset_Handler)
 
-GROUP(libgcc.a libc.a libm.a)
+GROUP(libgcc.a libc.a libm.a libnosys.a)
 
 SECTIONS
 {
