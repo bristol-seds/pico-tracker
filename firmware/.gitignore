@@ -1,0 +1,16 @@
+# Backup files
+*~
+#*#
+
+# gdbscript
+gdbscript
+gdbscript-custom
+
+# The output directory
+out/
+
+# Atmel Developement Kit
+xdk*
+
+# ETAGS file
+TAGS
