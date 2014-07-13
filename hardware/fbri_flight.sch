@@ -4177,7 +4177,7 @@ Source: www.kingbright.com</description>
 <part name="U4" library="fbri" deviceset="ANTENOVA_GPS_M10382" device=""/>
 <part name="U$4" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$5" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="C1" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
+<part name="C1" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="15pF"/>
 <part name="U$7" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="C2" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="C3" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
@@ -4217,13 +4217,13 @@ Source: www.kingbright.com</description>
 <part name="U$35" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$37" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
+<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100Ω"/>
 <part name="U5" library="fbri" deviceset="S25FS-S" device=""/>
 <part name="U$39" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$40" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="JTAG2" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
-<part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
-<part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
+<part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
+<part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100Ω"/>
+<part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100Ω"/>
 <part name="U$41" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="L2" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="220nH"/>
 <part name="FB1" library="microbuilder_v3" deviceset="FERRITE" device="_0402"/>
@@ -4241,11 +4241,11 @@ Source: www.kingbright.com</description>
 <part name="U$49" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C11" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$50" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C12" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
+<part name="C14" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$51" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C13" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C14" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
+<part name="C12" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="C15" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="C16" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$53" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -4258,7 +4258,7 @@ Source: www.kingbright.com</description>
 <part name="U$57" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C18" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="15pF"/>
 <part name="U$58" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$45" library="fbri" deviceset="AAA_HOLDER" device=""/>
+<part name="J1" library="fbri" deviceset="AAA_HOLDER" device=""/>
 <part name="U$46" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$47" library="microbuilder_v3" deviceset="1.2V" device=""/>
 </parts>
@@ -4295,6 +4295,10 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <text x="297.18" y="132.588" size="1.27" layer="97" font="vector" ratio="11" distance="100">Tuned for 434MHz</text>
 <text x="10.16" y="91.44" size="6.4516" layer="97" font="vector" ratio="11">CPU + Mem + Power</text>
 <text x="266.7" y="149.86" size="6.4516" layer="97" font="vector" ratio="11">Comms</text>
+<text x="403.86" y="25.4" size="6.4516" layer="94" font="vector" ratio="11">Flight</text>
+<text x="149.86" y="25.4" size="6.4516" layer="94" font="vector" ratio="11">Flight</text>
+<text x="281.94" y="58.928" size="1.27" layer="97" font="vector" ratio="11" distance="100">Datasheet suggests
+both 18pF and 22pF</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -4342,15 +4346,15 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <instance part="L1" gate="G$1" x="93.98" y="45.72" rot="R90"/>
 <instance part="U$32" gate="G$1" x="104.14" y="66.04"/>
 <instance part="U$33" gate="G$1" x="30.48" y="66.04"/>
-<instance part="U$34" gate="G$1" x="332.74" y="81.28" rot="MR0"/>
-<instance part="U$35" gate="G$1" x="335.28" y="81.28" rot="MR0"/>
+<instance part="U$34" gate="G$1" x="332.74" y="86.36" rot="MR0"/>
+<instance part="U$35" gate="G$1" x="335.28" y="86.36" rot="MR0"/>
 <instance part="U$36" gate="G$1" x="340.36" y="78.74"/>
-<instance part="U$37" gate="G$1" x="345.44" y="81.28" rot="MR0"/>
+<instance part="U$37" gate="G$1" x="345.44" y="86.36" rot="MR0"/>
 <instance part="R2" gate="G$1" x="314.96" y="43.18"/>
 <instance part="U5" gate="G$1" x="198.12" y="58.42"/>
 <instance part="U$39" gate="G$1" x="170.18" y="45.72"/>
 <instance part="U$40" gate="G$1" x="170.18" y="71.12" rot="MR0"/>
-<instance part="JTAG2" gate="G$1" x="48.26" y="149.86"/>
+<instance part="JTAG1" gate="G$1" x="48.26" y="149.86"/>
 <instance part="R3" gate="G$1" x="375.92" y="63.5"/>
 <instance part="R4" gate="G$1" x="381" y="60.96"/>
 <instance part="U$41" gate="G$1" x="373.38" y="175.26" rot="MR0"/>
@@ -4370,11 +4374,11 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <instance part="U$49" gate="G$1" x="350.52" y="147.32"/>
 <instance part="C11" gate="G$1" x="340.36" y="152.4"/>
 <instance part="U$50" gate="G$1" x="340.36" y="147.32"/>
-<instance part="C12" gate="G$1" x="114.3" y="38.1"/>
+<instance part="C14" gate="G$1" x="114.3" y="38.1"/>
 <instance part="U$51" gate="G$1" x="114.3" y="30.48"/>
 <instance part="C13" gate="G$1" x="307.34" y="35.56"/>
 <instance part="U$52" gate="G$1" x="307.34" y="27.94"/>
-<instance part="C14" gate="G$1" x="170.18" y="58.42"/>
+<instance part="C12" gate="G$1" x="170.18" y="58.42"/>
 <instance part="C15" gate="G$1" x="373.38" y="53.34"/>
 <instance part="C16" gate="G$1" x="398.78" y="53.34"/>
 <instance part="U$53" gate="G$1" x="373.38" y="45.72"/>
@@ -4387,7 +4391,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <instance part="U$57" gate="G$1" x="330.2" y="147.32"/>
 <instance part="C18" gate="G$1" x="320.04" y="152.4"/>
 <instance part="U$58" gate="G$1" x="320.04" y="147.32"/>
-<instance part="U$45" gate="G$1" x="17.78" y="45.72" rot="R270"/>
+<instance part="J1" gate="G$1" x="17.78" y="45.72" rot="R270"/>
 <instance part="U$46" gate="G$1" x="17.78" y="30.48"/>
 <instance part="U$47" gate="G$1" x="17.78" y="66.04"/>
 </instances>
@@ -4402,8 +4406,8 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="35.56" y1="154.94" x2="35.56" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="U$6" gate="G$1" pin="GND"/>
 <junction x="35.56" y="154.94"/>
-<pinref part="JTAG2" gate="G$1" pin="3"/>
-<pinref part="JTAG2" gate="G$1" pin="5"/>
+<pinref part="JTAG1" gate="G$1" pin="3"/>
+<pinref part="JTAG1" gate="G$1" pin="5"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="P$2"/>
@@ -4531,7 +4535,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="170.18" y1="50.8" x2="170.18" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="50.8" x2="170.18" y2="50.8" width="0.1524" layer="91"/>
 <junction x="170.18" y="50.8"/>
-<pinref part="C14" gate="G$1" pin="P$2"/>
+<pinref part="C12" gate="G$1" pin="P$2"/>
 <wire x1="170.18" y1="53.34" x2="170.18" y2="55.88" width="0.1524" layer="91"/>
 <junction x="170.18" y="53.34"/>
 </segment>
@@ -4559,7 +4563,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <pinref part="U$50" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C12" gate="G$1" pin="P$2"/>
+<pinref part="C14" gate="G$1" pin="P$2"/>
 <pinref part="U$51" gate="G$1" pin="GND"/>
 <wire x1="114.3" y1="33.02" x2="114.3" y2="35.56" width="0.1524" layer="91"/>
 </segment>
@@ -4588,7 +4592,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 </segment>
 <segment>
 <pinref part="U$46" gate="G$1" pin="GND"/>
-<pinref part="U$45" gate="G$1" pin="-"/>
+<pinref part="J1" gate="G$1" pin="-"/>
 <wire x1="17.78" y1="33.02" x2="17.78" y2="41.91" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -4599,7 +4603,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="101.6" y1="160.02" x2="101.6" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="PA31/SWDIO"/>
 <wire x1="101.6" y1="137.16" x2="111.76" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="JTAG2" gate="G$1" pin="2"/>
+<pinref part="JTAG1" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="SWDCLK" class="0">
@@ -4609,7 +4613,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <pinref part="U1" gate="G$1" pin="PA30/SWCLK"/>
 <wire x1="111.76" y1="139.7" x2="104.14" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="139.7" x2="104.14" y2="157.48" width="0.1524" layer="91"/>
-<pinref part="JTAG2" gate="G$1" pin="4"/>
+<pinref part="JTAG1" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="RESETN" class="0">
@@ -4617,7 +4621,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="111.76" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
 <label x="78.74" y="149.86" size="1.778" layer="95" rot="MR0"/>
 <pinref part="U1" gate="G$1" pin="RESETN"/>
-<pinref part="JTAG2" gate="G$1" pin="10"/>
+<pinref part="JTAG1" gate="G$1" pin="10"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="NRST"/>
@@ -4640,7 +4644,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="35.56" y1="167.64" x2="35.56" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="160.02" x2="38.1" y2="160.02" width="0.1524" layer="91"/>
 <pinref part="U$4" gate="G$1" pin="1.8V"/>
-<pinref part="JTAG2" gate="G$1" pin="1"/>
+<pinref part="JTAG1" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="U$5" gate="G$1" pin="1.8V"/>
@@ -4669,24 +4673,24 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <segment>
 <pinref part="U4" gate="G$1" pin="VCC"/>
 <pinref part="U$34" gate="G$1" pin="1.8V"/>
-<wire x1="332.74" y1="81.28" x2="332.74" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="332.74" y1="81.28" x2="332.74" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U4" gate="G$1" pin="VIO"/>
 <pinref part="U$35" gate="G$1" pin="1.8V"/>
-<wire x1="335.28" y1="81.28" x2="335.28" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="335.28" y1="81.28" x2="335.28" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U4" gate="G$1" pin="VDD_RF"/>
 <pinref part="U$37" gate="G$1" pin="1.8V"/>
-<wire x1="345.44" y1="81.28" x2="345.44" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="81.28" x2="345.44" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U5" gate="G$1" pin="VDD"/>
 <pinref part="U$40" gate="G$1" pin="1.8V"/>
 <wire x1="177.8" y1="66.04" x2="170.18" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="170.18" y1="66.04" x2="170.18" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="C14" gate="G$1" pin="P$1"/>
+<pinref part="C12" gate="G$1" pin="P$1"/>
 <wire x1="170.18" y1="63.5" x2="170.18" y2="66.04" width="0.1524" layer="91"/>
 <junction x="170.18" y="66.04"/>
 </segment>
@@ -4783,7 +4787,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="83.82" y1="55.88" x2="104.14" y2="55.88" width="0.1524" layer="91"/>
 <junction x="104.14" y="55.88"/>
 <junction x="104.14" y="45.72"/>
-<pinref part="C12" gate="G$1" pin="P$1"/>
+<pinref part="C14" gate="G$1" pin="P$1"/>
 <wire x1="104.14" y1="45.72" x2="114.3" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="45.72" x2="114.3" y2="43.18" width="0.1524" layer="91"/>
 </segment>
@@ -4801,7 +4805,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <label x="154.94" y="144.78" size="1.778" layer="95" ratio="11"/>
 </segment>
 <segment>
-<pinref part="U$45" gate="G$1" pin="+"/>
+<pinref part="J1" gate="G$1" pin="+"/>
 <pinref part="U$47" gate="G$1" pin="1.2V"/>
 <wire x1="17.78" y1="49.53" x2="17.78" y2="63.5" width="0.1524" layer="91"/>
 </segment>
@@ -5036,6 +5040,8 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="320.04" y1="160.02" x2="320.04" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="C17" gate="G$1" pin="P$1"/>
 <wire x1="330.2" y1="160.02" x2="330.2" y2="157.48" width="0.1524" layer="91"/>
+<junction x="330.2" y="160.02"/>
+<junction x="340.36" y="160.02"/>
 </segment>
 </net>
 <net name="RF_OUT" class="0">

@@ -1,1 +1,5 @@
 datasheets
+
+*.s#*
+*.b#*
+*.l#*
