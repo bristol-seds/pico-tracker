@@ -1,1 +1,1 @@
-LICENSE-nrf51-gcc-blackmagic.md
+LICENSE-samd20-gcc-blackmagic.md
