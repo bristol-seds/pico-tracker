@@ -28,7 +28,7 @@ circuit diagram, and hence firmware should be generally interoperable
 between the two.
 
 However to allow detection of the hardware version PA02 is shorted to
-ground on the developement version while is will be pulled high
+ground on the development version while is will be pulled high
 internally on the flight version.
 
 \subsection{Dimensions}
@@ -42,6 +42,12 @@ components on a 1/4 mm grid.
 
 The board is routed with 6 mil traces for data and 6 / 16 mil traces
 for power. Where nessesary the traces  All via are 0.3mm (12mil) drill.
+
+\section{Components}
+
+\subsection{Development}
+
+The
 
 \section{Design}
 
@@ -79,5 +85,10 @@ In any case the SI4060 tune API allows ramping up the internal
 capacitance to 11pF, which will drop Q at the expense of the time
 constant.
 
+\subsection {Firmware}
+
+Check flight WG2 on habhub for gps string formatting gone wrong
+
+Get so much test data.
 
 \end{document}

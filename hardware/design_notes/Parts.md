@@ -2,7 +2,7 @@
 
 | ID | Part Number | Description | Supplier | Order Code | Quantity | Notes
 | --- | --- | --- | --- | --- | --- | ---
-| U1 | ATSAMD20E17A-MU | Microcontroller Atmel SAM D20, 128kB Flash, 16kB SRAM, -40 to 85°C, QFN-32 | Farnell | [2361006](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2361006*) | Derate Flash / RAM as to minimum for firmware
+| U1 | ATSAMD20E17A-MU | Microcontroller Atmel SAM D20, 128kB Flash, 16kB SRAM, -40 to 85°C, QFN-32 | Farnell | [2361006](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2361006*) | 1 | Derate Flash / RAM
 | JTAG1 | 20021121-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | Farnell | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) |
 | U2 | SI4060-B1B-FM | RF Tx SPI 142MHZ-1.05GHZ, QFN-20 | Farnell | [2414373](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2414373*) |
 | U3 | MAX1947ETA18+T | DC-DC Step-Up Converter, 18V, QFN-8 | Farnell | [1609613](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1609613*) | 1
