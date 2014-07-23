@@ -34,6 +34,8 @@
 | Q1 | IRLML5103PBF | MOSFET, P, -30V, -0.61A, SOT-23 | Farnell | [8660085](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*8660085*) | 1
 | IC2 | TXS0108EPWR | Bidirectional Voltage Translator, 8-bit, 20TSSOP | Farnell | [1702548](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1702548*) | 1
 | IC3 | TLV70033DCKT | LDO Regulator, 3.3V 200mA, 5SC70 | Farnell | [1815750](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1815750*) | 1
+| ICxxx | LD1117S12TR | LDO Regulator, 1.2V 800mA, SOT-223 | Farnell | [1467778] | 1
+| ICxxx | LP38501TS-ADJ | Adj. LDO Regulator, 3A, 5-TO263 | Farnell | [2102669] | 1
 | Y1 | ABMM2-8.000MHZ-E2-T | Crystal, 8MHz, 18pF, 6x3.6mm | Farnell | [1611803](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1611803*) | 1
 | R1, R2 | MC0063W0603122R | Resistor 22Ω, 0.063W, 1%, 0603 [1608 Metric] | Farnell | [9330844](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330844*) | 2
 | R3 | MC0063W060311K5 | Resistor 1.5KΩ, 0.063W, 1%, 0603 [1608 Metric] | Farnell | [9330607](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330607*) | 1
