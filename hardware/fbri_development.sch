@@ -3686,10 +3686,6 @@ chip</description>
 <description>&lt;b&gt; 0402&lt;/b&gt;</description>
 <wire x1="-0.245" y1="0.174" x2="0.245" y2="0.174" width="0.1016" layer="51"/>
 <wire x1="0.245" y1="-0.174" x2="-0.245" y2="-0.174" width="0.1016" layer="51"/>
-<wire x1="-1.0573" y1="0.5557" x2="1.0573" y2="0.5557" width="0.2032" layer="21"/>
-<wire x1="1.0573" y1="0.5557" x2="1.0573" y2="-0.5556" width="0.2032" layer="21"/>
-<wire x1="1.0573" y1="-0.5556" x2="-1.0573" y2="-0.5557" width="0.2032" layer="21"/>
-<wire x1="-1.0573" y1="-0.5557" x2="-1.0573" y2="0.5557" width="0.2032" layer="21"/>
 <smd name="1" x="-0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
 <smd name="2" x="0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
 <text x="-0.9525" y="0.7939" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
@@ -3984,9 +3980,9 @@ chip</description>
 <smd name="D+" x="0" y="4.064" dx="0.5" dy="2.308" layer="1" rot="R180"/>
 <smd name="ID" x="0.8" y="4.064" dx="0.5" dy="2.308" layer="1" rot="R180"/>
 <smd name="GND" x="1.6" y="4.064" dx="0.5" dy="2.308" layer="1" rot="R180"/>
-<smd name="GND1" x="-4.4" y="-2" dx="2" dy="2.4" layer="1"/>
+<smd name="GND1" x="-4.4" y="-1.9" dx="2" dy="2.2" layer="1"/>
 <smd name="GND3" x="4.4" y="3.5" dx="2" dy="2.4" layer="1"/>
-<smd name="GND4" x="4.4" y="-2" dx="2" dy="2.4" layer="1"/>
+<smd name="GND4" x="4.4" y="-1.9" dx="2" dy="2.2" layer="1"/>
 <text x="-3.31" y="-5.699" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
 <text x="-3.31" y="-6.35" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
 <hole x="-2.2" y="1" drill="1"/>
@@ -5240,15 +5236,15 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <rectangle x1="-2.1" y1="-11.9" x2="-1.1" y2="-10.9" layer="31"/>
 </package>
 <package name="TDFN8">
-<smd name="6" x="1.175" y="-0.3" dx="0.3" dy="0.3" layer="1"/>
-<smd name="3" x="-1.125" y="-0.3" dx="0.3" dy="0.3" layer="1"/>
-<smd name="4" x="-1.125" y="-0.95" dx="0.3" dy="0.3" layer="1"/>
-<smd name="1" x="-1.125" y="1" dx="0.3" dy="0.3" layer="1"/>
-<smd name="5" x="1.175" y="-0.95" dx="0.3" dy="0.3" layer="1"/>
-<smd name="PAD" x="0.025" y="0.025" dx="1.5" dy="2.3" layer="1"/>
-<smd name="2" x="-1.125" y="0.35" dx="0.3" dy="0.3" layer="1"/>
-<smd name="8" x="1.175" y="1" dx="0.3" dy="0.3" layer="1"/>
-<smd name="7" x="1.175" y="0.35" dx="0.3" dy="0.3" layer="1"/>
+<smd name="6" x="1.15" y="-0.325" dx="0.3" dy="0.3" layer="1"/>
+<smd name="3" x="-1.15" y="-0.325" dx="0.3" dy="0.3" layer="1"/>
+<smd name="4" x="-1.15" y="-0.975" dx="0.3" dy="0.3" layer="1"/>
+<smd name="1" x="-1.15" y="0.975" dx="0.3" dy="0.3" layer="1"/>
+<smd name="5" x="1.15" y="-0.975" dx="0.3" dy="0.3" layer="1"/>
+<smd name="PAD" x="0" y="0" dx="1.5" dy="2.3" layer="1" cream="no"/>
+<smd name="2" x="-1.15" y="0.325" dx="0.3" dy="0.3" layer="1"/>
+<smd name="8" x="1.15" y="0.975" dx="0.3" dy="0.3" layer="1"/>
+<smd name="7" x="1.15" y="0.325" dx="0.3" dy="0.3" layer="1"/>
 <wire x1="-1.5" y1="1.25" x2="-1.5" y2="-1.325" width="0.127" layer="51"/>
 <wire x1="-1.5" y1="-1.325" x2="1.5" y2="-1.325" width="0.127" layer="51"/>
 <wire x1="1.5" y1="-1.325" x2="1.5" y2="1.35" width="0.127" layer="51"/>
@@ -5256,9 +5252,13 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <wire x1="-1.4" y1="1.35" x2="-1.5" y2="1.25" width="0.127" layer="51"/>
 <text x="-1.5" y="1.5" size="0.3048" layer="25">&gt;NAME</text>
 <text x="-1.5" y="-1.75" size="0.3048" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.7" y1="0.1" x2="-0.1" y2="1.1" layer="31"/>
+<rectangle x1="0.1" y1="0.1" x2="0.7" y2="1.1" layer="31"/>
+<rectangle x1="0.1" y1="-1.1" x2="0.7" y2="-0.1" layer="31"/>
+<rectangle x1="-0.7" y1="-1.1" x2="-0.1" y2="-0.1" layer="31"/>
 </package>
 <package name="WSON8">
-<smd name="PAD" x="0" y="0" dx="3.4" dy="4" layer="1"/>
+<smd name="PAD" x="0" y="0" dx="3.4" dy="4" layer="1" cream="no"/>
 <smd name="2" x="-2.9" y="0.635" dx="1" dy="0.5" layer="1"/>
 <smd name="6" x="2.9" y="-0.635" dx="1" dy="0.5" layer="1"/>
 <smd name="1" x="-2.9" y="1.905" dx="1" dy="0.5" layer="1"/>
@@ -5281,6 +5281,10 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <wire x1="3" y1="2.5" x2="3" y2="2.32" width="0.127" layer="21"/>
 <text x="-3" y="2.75" size="0.5" layer="25" font="vector" ratio="14">&gt;NAME</text>
 <text x="-3" y="-3.25" size="0.5" layer="27" font="vector" ratio="14">&gt;VALUE</text>
+<rectangle x1="-1.6" y1="0.3" x2="-0.3" y2="1.9" layer="31"/>
+<rectangle x1="0.3" y1="0.3" x2="1.6" y2="1.9" layer="31"/>
+<rectangle x1="-1.6" y1="-1.9" x2="-0.3" y2="-0.3" layer="31"/>
+<rectangle x1="0.3" y1="-1.9" x2="1.6" y2="-0.3" layer="31"/>
 </package>
 <package name="WCSP-4">
 <smd name="B2" x="0.2" y="0.2" dx="0.24" dy="0.24" layer="1" roundness="100" rot="R90"/>
@@ -5595,15 +5599,15 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <devices>
 <device name="" package="TDFN8">
 <connects>
-<connect gate="G$1" pin="BATT" pad="5"/>
+<connect gate="G$1" pin="BATT" pad="8"/>
 <connect gate="G$1" pin="GNDA" pad="2"/>
 <connect gate="G$1" pin="GNDB" pad="3"/>
 <connect gate="G$1" pin="GND_PAD" pad="PAD"/>
-<connect gate="G$1" pin="LX" pad="7"/>
+<connect gate="G$1" pin="LX" pad="6"/>
 <connect gate="G$1" pin="NRST" pad="1"/>
 <connect gate="G$1" pin="NSHDN" pad="4"/>
-<connect gate="G$1" pin="OUT" pad="6"/>
-<connect gate="G$1" pin="PGND" pad="8"/>
+<connect gate="G$1" pin="OUT" pad="7"/>
+<connect gate="G$1" pin="PGND" pad="5"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -7375,18 +7379,16 @@ chip</description>
 <wire x1="1.346" y1="0.583" x2="1.346" y2="-0.583" width="0.0508" layer="39"/>
 <wire x1="1.346" y1="-0.583" x2="-1.346" y2="-0.583" width="0.0508" layer="39"/>
 <wire x1="-1.346" y1="-0.583" x2="-1.346" y2="0.583" width="0.0508" layer="39"/>
-<wire x1="-1.37" y1="-0.635" x2="-1.37" y2="0.635" width="0.127" layer="21"/>
-<wire x1="-1.37" y1="0.635" x2="1.37" y2="0.635" width="0.127" layer="21"/>
-<wire x1="1.37" y1="0.635" x2="1.37" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="1.37" y1="-0.635" x2="-1.37" y2="-0.635" width="0.127" layer="21"/>
 <wire x1="-0.356" y1="0.432" x2="0.356" y2="0.432" width="0.1016" layer="51"/>
 <wire x1="-0.356" y1="-0.419" x2="0.356" y2="-0.419" width="0.1016" layer="51"/>
-<smd name="1" x="-0.75" y="0" dx="0.9" dy="0.9" layer="1"/>
-<smd name="2" x="0.75" y="0" dx="0.9" dy="0.9" layer="1"/>
+<smd name="1" x="-0.75" y="0" dx="0.9" dy="0.9" layer="1" cream="no"/>
+<smd name="2" x="0.75" y="0" dx="0.9" dy="0.9" layer="1" cream="no"/>
 <text x="1.397" y="0.1905" size="0.4064" layer="25">&gt;NAME</text>
 <text x="1.397" y="-0.254" size="0.4064" layer="27">&gt;VALUE</text>
 <rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
 <rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
+<rectangle x1="-1.125" y1="-0.375" x2="-0.5" y2="0.375" layer="31"/>
+<rectangle x1="0.5" y1="-0.375" x2="1.125" y2="0.375" layer="31"/>
 </package>
 <package name="2012">
 <wire x1="-1.662" y1="1.245" x2="1.662" y2="1.245" width="0.1524" layer="51"/>
@@ -10194,7 +10196,7 @@ package type OT</description>
 <smd name="3" x="0" y="-8.2804" dx="1.016" dy="2.6924" layer="1"/>
 <smd name="4" x="1.7018" y="-8.2804" dx="1.016" dy="2.6924" layer="1"/>
 <smd name="5" x="3.4036" y="-8.2804" dx="1.016" dy="2.6924" layer="1"/>
-<smd name="6" x="0" y="0.1524" dx="10.414" dy="10.4648" layer="1"/>
+<smd name="6" x="0" y="0.1524" dx="10.414" dy="10.4648" layer="1" cream="no"/>
 <wire x1="-2.921" y1="-5.08" x2="-3.8862" y2="-5.08" width="0.1524" layer="51"/>
 <wire x1="-3.8862" y1="-5.08" x2="-3.8862" y2="-9.271" width="0.1524" layer="51"/>
 <wire x1="-3.8862" y1="-9.271" x2="-2.921" y2="-9.271" width="0.1524" layer="51"/>
@@ -10220,23 +10222,16 @@ package type OT</description>
 <wire x1="5.207" y1="5.08" x2="-5.207" y2="5.08" width="0.1524" layer="51"/>
 <wire x1="-5.207" y1="5.08" x2="-5.207" y2="-5.08" width="0.1524" layer="51"/>
 <text x="-5.461" y="-8.9154" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
-<wire x1="-3.8862" y1="-5.6896" x2="-3.8862" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="-2.1844" y1="-5.6896" x2="-2.1844" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="-0.4826" y1="-5.6896" x2="-0.4826" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="1.2192" y1="-5.6896" x2="1.2192" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="2.921" y1="-5.6896" x2="2.921" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="-2.921" y1="-5.6896" x2="-2.921" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="-1.2192" y1="-5.6896" x2="-1.2192" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="0.4826" y1="-5.6896" x2="0.4826" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="2.1844" y1="-5.6896" x2="2.1844" y2="-6.5786" width="0.1524" layer="21"/>
-<wire x1="3.8862" y1="-5.6896" x2="3.8862" y2="-6.5786" width="0.1524" layer="21"/>
-<text x="-5.461" y="-8.9154" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <wire x1="5.461" y1="-9.8806" x2="-5.461" y2="-9.8806" width="0.1524" layer="39"/>
 <wire x1="-5.461" y1="-9.8806" x2="-5.461" y2="5.6388" width="0.1524" layer="39"/>
 <wire x1="-5.461" y1="5.6388" x2="5.461" y2="5.6388" width="0.1524" layer="39"/>
 <wire x1="5.461" y1="5.6388" x2="5.461" y2="-9.8806" width="0.1524" layer="39"/>
 <text x="-4.8768" y="6.2738" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
 <text x="-5.4102" y="-12.3952" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
+<rectangle x1="-4.5" y1="0.5" x2="-0.5" y2="4.5" layer="31"/>
+<rectangle x1="0.5" y1="0.5" x2="4.5" y2="4.5" layer="31"/>
+<rectangle x1="0.5" y1="-4.5" x2="4.5" y2="-0.5" layer="31"/>
+<rectangle x1="-4.5" y1="-4.5" x2="-0.5" y2="-0.5" layer="31"/>
 </package>
 </packages>
 <symbols>
@@ -12388,9 +12383,9 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <label x="208.28" y="254" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PA2"/>
-<wire x1="335.28" y1="353.06" x2="358.14" y2="353.06" width="0.1524" layer="91"/>
-<label x="337.82" y="353.06" size="1.778" layer="95"/>
+<pinref part="U6" gate="G$1" pin="PA3"/>
+<wire x1="335.28" y1="350.52" x2="358.14" y2="350.52" width="0.1524" layer="91"/>
+<label x="337.82" y="350.52" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="I_VDD_RADIO" class="0">
@@ -12455,17 +12450,17 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <wire x1="294.64" y1="215.9" x2="274.32" y2="215.9" width="0.1524" layer="91"/>
 <label x="274.32" y="215.9" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U6" gate="G$1" pin="PA3"/>
-<wire x1="335.28" y1="350.52" x2="358.14" y2="350.52" width="0.1524" layer="91"/>
-<label x="337.82" y="350.52" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="I_PA" class="0">
 <segment>
 <pinref part="U$99" gate="G$1" pin="OUT"/>
 <wire x1="124.46" y1="215.9" x2="139.7" y2="215.9" width="0.1524" layer="91"/>
 <label x="127" y="215.9" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA2"/>
+<wire x1="335.28" y1="353.06" x2="358.14" y2="353.06" width="0.1524" layer="91"/>
+<label x="337.82" y="353.06" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="VDD_PA" class="0">
