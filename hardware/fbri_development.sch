@@ -10515,7 +10515,7 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <text x="170.18" y="151.384" size="1.27" layer="97" font="vector" ratio="11">(SERCOM0)</text>
 <wire x1="169.164" y1="153.924" x2="169.164" y2="149.352" width="0.1524" layer="97"/>
 <text x="93.98" y="114.554" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(DO: PAD2, SCK: PAD3, DOPO: 0x1)</text>
-<text x="170.18" y="135.128" size="1.27" layer="97" font="vector" ratio="11">(GCLK_IO[2])</text>
+<text x="170.18" y="132.588" size="1.27" layer="97" font="vector" ratio="11">(GCLK_IO[3])</text>
 <text x="96.52" y="132.334" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM1)</text>
 <wire x1="97.536" y1="133.604" x2="97.536" y2="129.032" width="0.1524" layer="97"/>
 <text x="96.52" y="129.794" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(TX: PAD0, TXPO: 0x0)</text>
@@ -11628,22 +11628,17 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <label x="340.36" y="137.16" size="1.778" layer="95" ratio="11"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PA16"/>
-<wire x1="152.4" y1="134.62" x2="167.64" y2="134.62" width="0.1524" layer="91"/>
-<label x="154.94" y="134.62" size="1.778" layer="95" ratio="11"/>
-</segment>
-<segment>
 <wire x1="17.78" y1="256.54" x2="33.02" y2="256.54" width="0.1524" layer="91"/>
 <label x="20.32" y="256.54" size="1.778" layer="95"/>
 <pinref part="JP10" gate="G$1" pin="2"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA17"/>
+<wire x1="152.4" y1="132.08" x2="167.64" y2="132.08" width="0.1524" layer="91"/>
+<label x="154.94" y="132.08" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SI_SDN" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA15"/>
-<wire x1="152.4" y1="137.16" x2="167.64" y2="137.16" width="0.1524" layer="91"/>
-<label x="154.94" y="137.16" size="1.778" layer="95" ratio="11"/>
-</segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="SDN"/>
 <wire x1="401.32" y1="134.62" x2="419.1" y2="134.62" width="0.1524" layer="91"/>
@@ -11653,6 +11648,11 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <pinref part="JP9" gate="G$1" pin="5"/>
 <wire x1="17.78" y1="281.94" x2="33.02" y2="281.94" width="0.1524" layer="91"/>
 <label x="20.32" y="281.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA16"/>
+<wire x1="152.4" y1="134.62" x2="167.64" y2="134.62" width="0.1524" layer="91"/>
+<label x="154.94" y="134.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SI_GPIO0" class="0">
