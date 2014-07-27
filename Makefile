@@ -214,7 +214,7 @@ gdbscript: Makefile config.mk
 	@$(ECHO) "file $(TARGET).elf" >> gdbscript
 ifdef BLACKMAGIC_PATH
 	@$(ECHO) "# Connect to a specified blackmagic" >> gdbscript
-	@$(ECHO) "target external-remote $(BLACKMAGIC_PATH)" >> gdbscript
+	@$(ECHO) "target extended-remote $(BLACKMAGIC_PATH)" >> gdbscript
 endif
 
 # Prints a list of symlinks to a device
