@@ -111,8 +111,13 @@ endif
 # Startup and system code
 #
 #
-SYSTEM		?= chip/startup_samd20.c chip/system_samd20.c
+SYSTEM		?= chip/system_samd20.c chip/startup_samd20.c
 INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/
+
+# Verification suite code
+#
+#
+SYSTEM		+= tools/verification/verification_tc.c
 
 # Linker Scripts
 #
@@ -214,7 +219,7 @@ gdbscript: Makefile config.mk
 	@$(ECHO) "file $(TARGET).elf" >> gdbscript
 ifdef BLACKMAGIC_PATH
 	@$(ECHO) "# Connect to a specified blackmagic" >> gdbscript
-	@$(ECHO) "target external-remote $(BLACKMAGIC_PATH)" >> gdbscript
+	@$(ECHO) "target extended-remote $(BLACKMAGIC_PATH)" >> gdbscript
 endif
 
 # Prints a list of symlinks to a device

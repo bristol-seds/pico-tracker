@@ -68,6 +68,11 @@ SECTIONS
 		*(.rodata .rodata* .gnu.linkonce.r.*)
 		*(.ARM.extab* .gnu.linkonce.armextab.*)
 
+		/* Verification functions are protected from optimisation and
+		by being placed in their own section */
+
+		KEEP(*(.text.verif .text.verif.*))
+
 		/* Support C constructors, and C destructors in both user code
 		and the C library. This also provides support for C++ code. */
 
