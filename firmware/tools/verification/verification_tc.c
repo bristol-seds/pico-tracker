@@ -69,12 +69,16 @@ __verification__ void times_two_tc(void) {
 
 /*******************************//* tc_main *//********************************/
 
+typedef void (*tc_ptr_type)(void);
+volatile tc_ptr_type tc_ptr;
+
 /**
  * Called at the start of the test case run
  */
 __verification__ void tc_main(void) {
-  /* Test enviroment initialisation */
 
   /* Wait forever while test cases execute */
-  while (1);
+  while (1) {
+    (*tc_ptr)();
+  }
 }

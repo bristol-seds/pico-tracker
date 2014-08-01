@@ -28,29 +28,53 @@ import sys
 from time import *
 from colorama import *
 
+LINE_LENGTH = 80
+
+##### Public Print utilities
 
 def printf(string):
+        """All writes go to stderr"""
         print (string, file=sys.stderr)
 
-LINE_LENGTH = 80
+def print_info(string):
+        """Prints an info line"""
+        printf("")
+        printf(Fore.CYAN + "INFO    " + Fore.RESET + string)
+
+##### Tester
 
 class samd20_test:
 
-        # Prints something in the centre of the line
         def print_centre(self, string):
+                """Prints something in the centre of the line"""
                 count = (LINE_LENGTH - len(string)) / 2
                 printf ((" " * count) + string)
 
-        # Prints a pretty header
-        def print_header(self, string):
-                printf (Fore.YELLOW)
-                printf (("*" * LINE_LENGTH) + Fore.RESET)
-                self.print_centre(string)
+        def print_header_line(self):
+                """Prints a yellow line. Yo"""
                 printf (Fore.YELLOW + ("*" * LINE_LENGTH) + Fore.RESET)
 
-        def print_info(self, string):
-                """Prints an info line"""
-                printf(Fore.CYAN + "\nINFO    " + Fore.RESET + string + "\n\n")
+        def print_header(self, string):
+                """Prints a pretty header"""
+                printf ("")
+                self.print_header_line()
+                self.print_centre(string)
+                self.print_header_line()
+
+        def print_pass(self, tc_name, time):
+                """Nice green pass notice"""
+                offset = (LINE_LENGTH / 2) - len(tc_name)
+
+                printf("")
+                printf(Fore.GREEN + "    " + tc_name + " - PASS" \
+                       + (" " * offset) + str(time) + Fore.RESET)
+
+        def print_fail(self, tc_name, time):
+                """Evil red pass notice"""
+
+                printf("")
+                printf(Fore.RED + "    " + tc_name + "- FAIL" \
+                       + str(time) + Fore.RESET)
 
         #### GDB
 
@@ -69,19 +93,19 @@ class samd20_test:
                 gdb.execute("c")
 
         def __del__(self):
-                self.print_info("quit")
+                print_info("quit")
                 gdb.execute("quit")
 
 
-        def run_tc(self, tc_name, parameters):
-                """Runs a test case"""
+        def hw_run_tc(self, tc_name, parameters):
+                """Runs a test case on hardware"""
 
                 # Write the parameters
                 self.write_varible(tc_name+"_params", parameters)
 
                 # Presuming there"s a breakpoint at the top of tc_main
-                gdb.execute("set $lr=$pc")
-                gdb.execute("set $pc="+tc_name)
+                #gdb.execute("set $lr=tc_main")
+                gdb.execute("set tc_ptr="+tc_name+"+1")
                 gdb.execute("c")
 
                 # Test case done. Return results
@@ -96,3 +120,24 @@ class samd20_test:
         def write_varible(self, name, value):
                 pvar = self.read_variable(name)
                 self.inferior.write_memory(pvar.address, value)
+
+        #### Test Case
+
+        def run_test_case(self, test_case):
+                tc_name = test_case.__class__.__name__
+                self.print_header(tc_name)
+                fail = False
+
+                if test_case.iterations:
+                        for i in range(test_case.iterations):
+                                params = test_case.get_test()
+                                result = self.hw_run_tc(tc_name, params)
+
+                                if not test_case.is_correct(params, result):
+                                        fail = True
+                                        break
+
+                if not fail:
+                        self.print_pass(tc_name, 0)
+                else:
+                        self.print_fail(tc_name, 0)
