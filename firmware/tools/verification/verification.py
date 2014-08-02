@@ -76,6 +76,24 @@ class samd20_test:
                 printf(Fore.RED + "    " + tc_name + "- FAIL" \
                        + str(time) + Fore.RESET)
 
+        def print_summary(self, results):
+                passes = 0
+                for result in results:
+                        (passed) = result
+                        if passed:
+                                passes += 1
+
+
+                self.print_header("SUMMARY - %d%% PASS"%(100*passes/len(results)))
+
+                for result in results:
+                        (passed, name, time) = result
+                        if passed:
+                                self.print_pass(name, time)
+                        else:
+                                self.print_fail(name, time)
+
+                self.print_header("")
         #### GDB
 
         def __init__(self):
@@ -141,3 +159,6 @@ class samd20_test:
                         self.print_pass(tc_name, 0)
                 else:
                         self.print_fail(tc_name, 0)
+
+                # Return data tuple
+                return (not fail, tc_name, 0)

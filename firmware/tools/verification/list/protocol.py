@@ -11,8 +11,6 @@ sys.path.append("./tools/verification")
 from verification import *
 import verification_tc
 
-from random import randint
-
 # ------------------------------------------------------------------------------
 # Test Script
 # ------------------------------------------------------------------------------
@@ -44,7 +42,18 @@ class times_two_tc:
 # Run test
 # ------------------------------------------------------------------------------
 
-if __name__ == "__main__":
-    tester = samd20_test()
-    tester.run_test_case(times_two_tc())
-    del tester
+sys.path.append("./tools/verification/tc")
+
+tester = samd20_test()
+results = []
+
+
+# Times Two
+import times_two
+results.append(tester.run_test_case(times_two.times_two_tc()))
+
+
+# Summary
+tester.print_summary(results)
+# Clean Up
+del tester
