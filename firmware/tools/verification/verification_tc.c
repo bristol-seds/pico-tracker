@@ -36,18 +36,36 @@
 
 /****************************//* nmea_decode_tc *//****************************/
 
-/* Parameters in */
-struct nmea_decode_tc_params {
-  int in;
-} nmea_decode_tc_params;
-/* Results out */
-struct nmea_decode_tc_results {
-  int result;
-} nmea_decode_tc_results;
-/* Function */
-__verification__ void nmea_decode_tc(void) {
+/* Includes */
+#include <nmea/nmea.h>
+#include <string.h>
 
-  nmea_decode_tc_results.result = 2 * nmea_decode_tc_params.in;
+/* Parameters in */
+struct nmea_tc_params {
+  char buff[2048];
+} nmea_tc_params;
+
+/* Results out */
+nmeaINFO nmea_tc_results;
+
+/* Function */
+__verification__ void nmea_tc(void) {
+
+  nmeaPARSER parser;
+  int size;
+
+  /* Get input buffer size */
+  size = strlen(nmea_tc_params.buff);
+
+  /* Init nmea */
+  nmea_zero_INFO(&nmea_tc_results);
+  nmea_parser_init(&parser);
+
+  /* Parse */
+  nmea_parse(&parser, nmea_tc_params.buff, size, &nmea_tc_results);
+
+  /* Cleanup */
+  nmea_parser_destroy(&parser);
 }
 
 /****************************//* times_two_tc *//****************************/
@@ -73,7 +91,11 @@ typedef void (*tc_ptr_type)(void);
 volatile tc_ptr_type tc_ptr;
 
 /**
- * Called at the start of the test case run
+ *
+ */
+
+/**
+ * Called to trigger the test case run
  */
 __verification__ void tc_main(void) {
 

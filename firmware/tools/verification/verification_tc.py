@@ -1,7 +1,7 @@
 '''Wrapper for verification_tc.c
 
 Generated with:
-ctypes/ctypesgen.py -o verification_tc.py --cpp=gcc -E -DCTYPESGEN verification_tc.c
+tools/verification/ctypesgen/ctypesgen.py -o tools/verification/verification_tc.py --cpp=arm-none-eabi-gcc -E -DCTYPESGEN  -g3 -ggdb -Wall -Wextra  -std=gnu99 -ffunction-sections -fdata-sections -mcpu=cortex-m0plus -mthumb -DSAMD20J18 -D__SAMD20J18__ -Iinc/ -Ichip/ -Ichip/cmsis/ -Isamd20/ -Isamd20/component/ tools/verification/verification_tc.c
 
 Do not modify this file.
 '''
@@ -606,45 +606,173 @@ add_library_search_dirs([])
 
 # No modules
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 42
-class struct_nmea_decode_tc_params(Structure):
+# inc/nmea/./time.h: 32
+class struct__nmeaTIME(Structure):
     pass
 
-struct_nmea_decode_tc_params.__slots__ = [
-    '_in',
+struct__nmeaTIME.__slots__ = [
+    'year',
+    'mon',
+    'day',
+    'hour',
+    'min',
+    'sec',
+    'hsec',
 ]
-struct_nmea_decode_tc_params._fields_ = [
-    ('_in', c_int),
+struct__nmeaTIME._fields_ = [
+    ('year', c_int),
+    ('mon', c_int),
+    ('day', c_int),
+    ('hour', c_int),
+    ('min', c_int),
+    ('sec', c_int),
+    ('hsec', c_int),
 ]
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 42
+nmeaTIME = struct__nmeaTIME # inc/nmea/./time.h: 32
+
+# inc/nmea/./info.h: 58
+class struct__nmeaSATELLITE(Structure):
+    pass
+
+struct__nmeaSATELLITE.__slots__ = [
+    'id',
+    'in_use',
+    'elv',
+    'azimuth',
+    'sig',
+]
+struct__nmeaSATELLITE._fields_ = [
+    ('id', c_int),
+    ('in_use', c_int),
+    ('elv', c_int),
+    ('azimuth', c_int),
+    ('sig', c_int),
+]
+
+nmeaSATELLITE = struct__nmeaSATELLITE # inc/nmea/./info.h: 58
+
+# inc/nmea/./info.h: 71
+class struct__nmeaSATINFO(Structure):
+    pass
+
+struct__nmeaSATINFO.__slots__ = [
+    'inuse',
+    'inview',
+    'sat',
+]
+struct__nmeaSATINFO._fields_ = [
+    ('inuse', c_int),
+    ('inview', c_int),
+    ('sat', nmeaSATELLITE * 12),
+]
+
+nmeaSATINFO = struct__nmeaSATINFO # inc/nmea/./info.h: 71
+
+# inc/nmea/./info.h: 101
+class struct__nmeaINFO(Structure):
+    pass
+
+struct__nmeaINFO.__slots__ = [
+    'smask',
+    'utc',
+    'sig',
+    'fix',
+    'PDOP',
+    'HDOP',
+    'VDOP',
+    'lat',
+    'lon',
+    'elv',
+    'speed',
+    'direction',
+    'declination',
+    'satinfo',
+]
+struct__nmeaINFO._fields_ = [
+    ('smask', c_int),
+    ('utc', nmeaTIME),
+    ('sig', c_int),
+    ('fix', c_int),
+    ('PDOP', c_double),
+    ('HDOP', c_double),
+    ('VDOP', c_double),
+    ('lat', c_double),
+    ('lon', c_double),
+    ('elv', c_double),
+    ('speed', c_double),
+    ('direction', c_double),
+    ('declination', c_double),
+    ('satinfo', nmeaSATINFO),
+]
+
+nmeaINFO = struct__nmeaINFO # inc/nmea/./info.h: 101
+
+# inc/nmea/./parser.h: 32
+class struct__nmeaPARSER(Structure):
+    pass
+
+struct__nmeaPARSER.__slots__ = [
+    'top_node',
+    'end_node',
+    'buffer',
+    'buff_size',
+    'buff_use',
+]
+struct__nmeaPARSER._fields_ = [
+    ('top_node', POINTER(None)),
+    ('end_node', POINTER(None)),
+    ('buffer', c_ubyte * 1024),
+    ('buff_size', c_int),
+    ('buff_use', c_int),
+]
+
+nmeaPARSER = struct__nmeaPARSER # inc/nmea/./parser.h: 32
+
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
+class struct_nmea_tc_params(Structure):
+    pass
+
+struct_nmea_tc_params.__slots__ = [
+    'buff',
+]
+struct_nmea_tc_params._fields_ = [
+    ('buff', c_char * 2048),
+]
+
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
 for _lib in _libs.values():
     try:
-        nmea_decode_tc_params = (struct_nmea_decode_tc_params).in_dll(_lib, 'nmea_decode_tc_params')
+        nmea_tc_params = (struct_nmea_tc_params).in_dll(_lib, 'nmea_tc_params')
         break
     except:
         pass
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
-class struct_nmea_decode_tc_results(Structure):
-    pass
-
-struct_nmea_decode_tc_results.__slots__ = [
-    'result',
-]
-struct_nmea_decode_tc_results._fields_ = [
-    ('result', c_int),
-]
-
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 49
 for _lib in _libs.values():
     try:
-        nmea_decode_tc_results = (struct_nmea_decode_tc_results).in_dll(_lib, 'nmea_decode_tc_results')
+        nmea_tc_results = (nmeaINFO).in_dll(_lib, 'nmea_tc_results')
         break
     except:
         pass
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 59
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 54
+for _lib in _libs.values():
+    try:
+        parser = (nmeaPARSER).in_dll(_lib, 'parser')
+        break
+    except:
+        pass
+
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 55
+for _lib in _libs.values():
+    try:
+        size = (c_int).in_dll(_lib, 'size')
+        break
+    except:
+        pass
+
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 77
 class struct_times_two_tc_params(Structure):
     pass
 
@@ -655,7 +783,7 @@ struct_times_two_tc_params._fields_ = [
     ('input', c_int),
 ]
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 59
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 77
 for _lib in _libs.values():
     try:
         times_two_tc_params = (struct_times_two_tc_params).in_dll(_lib, 'times_two_tc_params')
@@ -663,7 +791,7 @@ for _lib in _libs.values():
     except:
         pass
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 63
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 81
 class struct_times_two_tc_results(Structure):
     pass
 
@@ -674,7 +802,7 @@ struct_times_two_tc_results._fields_ = [
     ('result', c_int),
 ]
 
-# /richard/_longshot/firmware/tools/verification/verification_tc.c: 63
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 81
 for _lib in _libs.values():
     try:
         times_two_tc_results = (struct_times_two_tc_results).in_dll(_lib, 'times_two_tc_results')
@@ -682,13 +810,21 @@ for _lib in _libs.values():
     except:
         pass
 
-nmea_decode_tc_params = struct_nmea_decode_tc_params # /richard/_longshot/firmware/tools/verification/verification_tc.c: 42
+tc_ptr_type = CFUNCTYPE(UNCHECKED(None), ) # /richard/_longshot/firmware/tools/verification/verification_tc.c: 90
 
-nmea_decode_tc_results = struct_nmea_decode_tc_results # /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
+# /richard/_longshot/firmware/tools/verification/verification_tc.c: 91
+for _lib in _libs.values():
+    try:
+        tc_ptr = (tc_ptr_type).in_dll(_lib, 'tc_ptr')
+        break
+    except:
+        pass
 
-times_two_tc_params = struct_times_two_tc_params # /richard/_longshot/firmware/tools/verification/verification_tc.c: 59
+nmea_tc_params = struct_nmea_tc_params # /richard/_longshot/firmware/tools/verification/verification_tc.c: 46
 
-times_two_tc_results = struct_times_two_tc_results # /richard/_longshot/firmware/tools/verification/verification_tc.c: 63
+times_two_tc_params = struct_times_two_tc_params # /richard/_longshot/firmware/tools/verification/verification_tc.c: 77
+
+times_two_tc_results = struct_times_two_tc_results # /richard/_longshot/firmware/tools/verification/verification_tc.c: 81
 
 # No inserted files
 

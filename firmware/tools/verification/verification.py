@@ -41,6 +41,14 @@ def print_info(string):
         printf("")
         printf(Fore.CYAN + "INFO    " + Fore.RESET + string)
 
+def print_good(string):
+        """Prints an good line"""
+        printf(Fore.GREEN + "GOOD    " + Fore.RESET + string)
+
+def print_error(string):
+        """Prints an error line"""
+        printf(Fore.RED + "ERROR    " + Fore.RESET + string)
+
 ##### Tester
 
 class samd20_test:
@@ -67,14 +75,15 @@ class samd20_test:
 
                 printf("")
                 printf(Fore.GREEN + "    " + tc_name + " - PASS" \
-                       + (" " * offset) + str(time) + Fore.RESET)
+                       + (" " * offset) + "CLOCKS = " + str(time) + Fore.RESET)
 
         def print_fail(self, tc_name, time):
                 """Evil red pass notice"""
+                offset = (LINE_LENGTH / 2) - len(tc_name)
 
                 printf("")
-                printf(Fore.RED + "    " + tc_name + "- FAIL" \
-                       + str(time) + Fore.RESET)
+                printf(Fore.RED + "  p  " + tc_name + "- FAIL" \
+                       + (" " * offset) + "CLOCKS = " + str(time) + Fore.RESET)
 
         def print_summary(self, results):
                 passes = 0
@@ -99,6 +108,9 @@ class samd20_test:
         def __init__(self):
                 self.inferior = gdb.selected_inferior()
 
+                # Pagination is not helpful here
+                gdb.execute("set pagination off")
+
                 # Load everything into gdb and run
                 gdb.execute("load")
                 gdb.execute("b main")
@@ -118,16 +130,25 @@ class samd20_test:
         def hw_run_tc(self, tc_name, parameters):
                 """Runs a test case on hardware"""
 
-                # Write the parameters
-                self.write_varible(tc_name+"_params", parameters)
+                # If we're stopped where we'd expect
+                if self.read_variable("($pc == tc_main + 4)"):
 
-                # Presuming there"s a breakpoint at the top of tc_main
-                #gdb.execute("set $lr=tc_main")
-                gdb.execute("set tc_ptr="+tc_name+"+1")
-                gdb.execute("c")
+                        # Write the parameters
+                        self.write_varible(tc_name+"_params", parameters)
 
-                # Test case done. Return results
-                return self.read_variable(tc_name+"_results")
+                        # Presuming there"s a breakpoint at the top of tc_main
+                        gdb.execute("set tc_ptr="+tc_name+"+1")
+                        gdb.execute("c")
+
+                        # Test case done. Return results
+                        return self.read_variable(tc_name+"_results")
+                else:
+                        return None
+
+        def hw_get_last_time(self):
+                """Returns the number of clocks the last test case took"""
+                return 1
+
 
         #### Read / Write
 
@@ -141,24 +162,45 @@ class samd20_test:
 
         #### Test Case
 
+
         def run_test_case(self, test_case):
                 tc_name = test_case.__class__.__name__
                 self.print_header(tc_name)
                 fail = False
+                ttime = 0
 
-                if test_case.iterations:
+                if hasattr(test_case, 'iterations'):
                         for i in range(test_case.iterations):
                                 params = test_case.get_test()
                                 result = self.hw_run_tc(tc_name, params)
+                                ttime += self.hw_get_last_time()
 
-                                if not test_case.is_correct(params, result):
+                                if result:
+                                        if not test_case.is_correct(params, result):
+                                                fail = True
+                                                break
+                                else: # No result, Failure
                                         fail = True
-                                        break
+                else:
+                        params = test_case.get_test()
+
+                        while (params):
+                                result = self.hw_run_tc(tc_name, params)
+                                ttime += self.hw_get_last_time()
+
+                                if result:
+                                        if not test_case.is_correct(params, result):
+                                                fail = True
+                                                break
+                                else: # No result, Failure
+                                        fail = True
+
+                                params = test_case.get_test()
 
                 if not fail:
-                        self.print_pass(tc_name, 0)
+                        self.print_pass(tc_name, ttime)
                 else:
-                        self.print_fail(tc_name, 0)
+                        self.print_fail(tc_name, ttime)
 
                 # Return data tuple
-                return (not fail, tc_name, 0)
+                return (not fail, tc_name, ttime)
