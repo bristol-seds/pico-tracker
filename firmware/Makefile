@@ -27,6 +27,7 @@
 # print-symlinks DEVICE=<dev>	Prints any symlinks to a given device
 # etags				Generates an ETAGS file for the project
 # emacs				Launches emacs for this project
+# verification			Runs the ctypesgen needs for verif. scripts
 # clean				Removes generated files
 #
 # This makefile is intended to be run from the root of the project.
@@ -154,7 +155,7 @@ TAGFILES	= $(SOURCES) $(shell $(CAT) $(OBJECTS:.o=.d) \
 # Default target
 #
 #
-all: $(TARGET).elf etags
+all: $(TARGET).elf etags verification
 
 # Rule for generating object and dependancy files from source files.
 #
@@ -244,6 +245,19 @@ etags: $(TAGFILES)
 .PHONY: emacs
 emacs:
 	@emacs $(TAGFILES) Makefile config.mk README.md
+
+# Makes the verification tool
+#
+verification: tools/verification/verification_tc.py
+
+# Ctypesgen for verification tool
+#
+%.py: %.c
+	@echo "Generating Python Wrappers...."
+	@echo
+	tools/verification/ctypesgen/ctypesgen.py -o $@ \
+	--cpp="$(CC) -E -DCTYPESGEN $(CPPFLAGS) $(CFLAGS) \
+	$(addprefix -I,$(INCLUDE_PATH))" $<
 
 # Removes everything in the output directory
 #
