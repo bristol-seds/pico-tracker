@@ -51,3 +51,6 @@ void __printf(const char *format, ...) {
     vprintf(format, args);
   }
 }
+void __dummy_printf(const char* format, ...) {
+  (void)format;
+}

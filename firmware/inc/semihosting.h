@@ -33,9 +33,11 @@
 #ifndef __SEMIHOSTING__
 
 /* Dummy function handlers */
-#define semihost_putchar(c)
-#define semihost_puts(s)
-#define semihost_printf(...)
+#define semihost_putchar(c)	(void)(c)
+#define semihost_puts(s)	(void)(s)
+#define semihost_printf(...)    __dummy_printf(__VA_ARGS__)
+
+void __dummy_printf(const char *format, ...);
 
 #else
 
@@ -50,6 +52,8 @@ void set_semihosting(void);
 void __putchar(char c);
 void __puts(const char* s);
 void __printf(const char *format, ...);
+
+
 
 #endif /* __SEMIHOSTING__ */
 
