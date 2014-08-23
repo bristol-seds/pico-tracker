@@ -1,0 +1,57 @@
+from __future__ import division
+from scipy import signal
+
+fig, axs = subplots(2,1,sharex=True)
+subplots_adjust( hspace = .2 )
+fig.set_size_inches((5,5))
+
+t_fir_coeff = [0.01665389596732681,
+  0.07353658710395161,
+  0.10040345335534452,
+  0.04751332314075821,
+  -0.06317967799551721,
+  -0.09143711477971043,
+  0.06319322564548596,
+  0.31257963657965065,
+  0.43524399610103215,
+  0.31257963657965065,
+  0.06319322564548596,
+  -0.09143711477971043,
+  -0.06317967799551721,
+  0.04751332314075821,
+  0.10040345335534452,
+  0.07353658710395161,
+  0.01665389596732681]
+
+# Default si coefficients
+si_default_fir_coeff = [0x1, 0x3, 0x8, 0x11, 0x21, 0x36, 0x4d, 0x60, 0x67]
+
+# Reflects an array of coefficients about the last element
+def sym_fir_coeff(coeff):
+    for i in range(len(coeff)-2, -1, -1):
+        coeff.append(coeff[i])
+
+    return coeff
+# Normalises the si's 8-bit coefficients to 0 - 1
+def si_normalise_coeff(coeff):
+    return [x / 0x300 for x in coeff]
+
+si_default = si_normalise_coeff(sym_fir_coeff(si_default_fir_coeff))
+
+print si_default
+print len(si_default)
+
+fir_coeff = si_default
+
+ax=axs[0]
+w,h=signal.freqz(fir_coeff,1) # Compute impulse response
+ax.plot(w,20*log10(abs(h)))
+ax.set_ylabel(r"$20 \log_{10} |H(\omega)| $",fontsize=18)
+ax.grid()
+
+ax=axs[1]
+ax.plot(w,angle(h)/pi*180)
+ax.set_xlabel(r'$\omega$ (radians/s)',fontsize=18)
+ax.set_ylabel(r"$\phi $ (deg)",fontsize=18)
+ax.set_xlim(xmax = pi)
+ax.grid()

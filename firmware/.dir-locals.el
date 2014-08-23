@@ -27,6 +27,6 @@
 ;; Keep this directory as the default directory when navigating subdirectoies
 
 ((nil
-  (gud-gdb-command-name . "arm-none-eabi-gdb -i=mi")
+  (gud-gdb-command-name . "arm-none-eabi-gdb --annotate=3")
   (eval setq default-directory
 	(locate-dominating-file buffer-file-name ".dir-locals.el"))))

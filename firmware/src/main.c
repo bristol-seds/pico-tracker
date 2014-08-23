@@ -1,5 +1,5 @@
 /*
- * Sample application for the SAM D20
+ * Bristol Longshot
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -23,24 +23,36 @@
  */
 
 #include "samd20.h"
-#include "pindefs.h"
 
 #include <stdio.h>
 #include <math.h>
 #include "semihosting.h"
+#include "hw_config.h"
+#include "system/system.h"
+#include "sercom/usart.h"
+#include "gps.h"
 
 int main(void)
 {
   SystemInit();
 
+  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_1, /* Prescaler */
+				       false,		   /* Run in Standby */
+				       false);		   /* Run on Demand */
+
   /* Update the value of SystemCoreClock */
   SystemCoreClockUpdate();
+
 
   /* Set LED0 as output */
   PORTA.DIRSET.reg = (1 << LED0_PIN);
 
   /* Configure the SysTick for 50ms interrupts */
   SysTick_Config(SystemCoreClock / 20);
+
+  /* Configure Sleep Mode */
+  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0);
+  //TODO: system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
 
   volatile double d, dd;
 
@@ -49,7 +61,14 @@ int main(void)
 
   semihost_printf("Hello World %f\n", dd);
 
-  while (1);
+  gps_init();
+
+  while (1) {
+    //system_sleep();
+
+    for (int i = 0; i < 1000*1000; i++);
+    gps_check_lock();
+  }
 }
 
 void SysTick_Handler(void)

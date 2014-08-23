@@ -91,8 +91,13 @@ typedef void (*tc_ptr_type)(void);
 volatile tc_ptr_type tc_ptr;
 
 /**
- *
+ * Runs a test case
  */
+__verification__ void tc_run() {
+
+
+   (*tc_ptr)();
+}
 
 /**
  * Called to trigger the test case run
@@ -101,6 +106,6 @@ __verification__ void tc_main(void) {
 
   /* Wait forever while test cases execute */
   while (1) {
-    (*tc_ptr)();
+    tc_run();
   }
 }

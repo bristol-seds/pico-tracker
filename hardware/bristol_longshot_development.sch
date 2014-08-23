@@ -10494,6 +10494,7 @@ package type OT</description>
 <part name="U$100" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R22" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1Ω"/>
 <part name="R23" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1Ω"/>
+<part name="FRAME5" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10538,6 +10539,70 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <text x="381" y="284.48" size="1.778" layer="97" font="vector" ratio="12">TLV70033</text>
 <text x="10.16" y="345.44" size="2.54" layer="97" font="vector" ratio="11">Busses</text>
 <text x="391.16" y="360.68" size="2.54" layer="97" font="vector" ratio="11">USB Interface</text>
+<wire x1="12.7" y1="542.29" x2="60.96" y2="542.29" width="0.6096" layer="97"/>
+<wire x1="60.96" y1="542.29" x2="60.96" y2="533.4" width="0.6096" layer="97"/>
+<wire x1="60.96" y1="533.4" x2="60.96" y2="523.24" width="0.6096" layer="97"/>
+<wire x1="60.96" y1="523.24" x2="12.7" y2="523.24" width="0.6096" layer="97"/>
+<wire x1="12.7" y1="523.24" x2="12.7" y2="542.29" width="0.6096" layer="97"/>
+<text x="20.32" y="530.86" size="5.08" layer="97" font="vector" ratio="11">USB 5.0V</text>
+<wire x1="81.28" y1="511.81" x2="111.76" y2="511.81" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="511.81" x2="111.76" y2="502.92" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="502.92" x2="111.76" y2="492.76" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="492.76" x2="81.28" y2="492.76" width="0.6096" layer="97"/>
+<wire x1="81.28" y1="492.76" x2="81.28" y2="502.92" width="0.6096" layer="97"/>
+<text x="88.9" y="500.38" size="5.08" layer="97" font="vector" ratio="11">1.2V</text>
+<wire x1="81.28" y1="502.92" x2="81.28" y2="511.81" width="0.6096" layer="97"/>
+<wire x1="60.96" y1="533.4" x2="71.12" y2="533.4" width="0.6096" layer="97"/>
+<wire x1="71.12" y1="533.4" x2="71.12" y2="502.92" width="0.6096" layer="97"/>
+<wire x1="71.12" y1="502.92" x2="81.28" y2="502.92" width="0.6096" layer="97"/>
+<wire x1="81.28" y1="481.33" x2="111.76" y2="481.33" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="481.33" x2="111.76" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="472.44" x2="111.76" y2="462.28" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="462.28" x2="81.28" y2="462.28" width="0.6096" layer="97"/>
+<wire x1="81.28" y1="462.28" x2="81.28" y2="472.44" width="0.6096" layer="97"/>
+<text x="88.9" y="469.9" size="5.08" layer="97" font="vector" ratio="11">ADJ</text>
+<wire x1="81.28" y1="472.44" x2="81.28" y2="481.33" width="0.6096" layer="97"/>
+<wire x1="71.12" y1="502.92" x2="71.12" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="71.12" y1="472.44" x2="81.28" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="81.28" y1="542.29" x2="111.76" y2="542.29" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="542.29" x2="111.76" y2="533.4" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="533.4" x2="111.76" y2="523.24" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="523.24" x2="81.28" y2="523.24" width="0.6096" layer="97"/>
+<wire x1="81.28" y1="523.24" x2="81.28" y2="533.4" width="0.6096" layer="97"/>
+<text x="88.9" y="530.86" size="5.08" layer="97" font="vector" ratio="11">3.3V</text>
+<wire x1="81.28" y1="533.4" x2="81.28" y2="542.29" width="0.6096" layer="97"/>
+<wire x1="71.12" y1="533.4" x2="81.28" y2="533.4" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="533.4" x2="124.46" y2="533.4" width="0.6096" layer="97"/>
+<text x="149.86" y="530.86" size="5.08" layer="97" font="vector" ratio="11">STM</text>
+<wire x1="124.46" y1="533.4" x2="147.32" y2="533.4" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="472.44" x2="129.54" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="134.62" y1="472.44" x2="149.86" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="129.54" y1="472.44" x2="132.08" y2="474.98" width="0.6096" layer="97"/>
+<wire x1="111.76" y1="502.92" x2="119.38" y2="502.92" width="0.6096" layer="97"/>
+<wire x1="119.38" y1="502.92" x2="119.38" y2="482.6" width="0.6096" layer="97"/>
+<wire x1="119.38" y1="482.6" x2="129.54" y2="482.6" width="0.6096" layer="97"/>
+<wire x1="129.54" y1="482.6" x2="132.08" y2="485.14" width="0.6096" layer="97"/>
+<wire x1="124.46" y1="533.4" x2="124.46" y2="492.76" width="0.6096" layer="97"/>
+<wire x1="124.46" y1="492.76" x2="129.54" y2="492.76" width="0.6096" layer="97"/>
+<wire x1="129.54" y1="492.76" x2="132.08" y2="495.3" width="0.6096" layer="97"/>
+<wire x1="134.62" y1="492.76" x2="149.86" y2="492.76" width="0.6096" layer="97"/>
+<wire x1="134.62" y1="482.6" x2="149.86" y2="482.6" width="0.6096" layer="97"/>
+<wire x1="149.86" y1="492.76" x2="149.86" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="162.56" y1="481.33" x2="193.04" y2="481.33" width="0.6096" layer="97"/>
+<wire x1="193.04" y1="481.33" x2="193.04" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="193.04" y1="472.44" x2="193.04" y2="462.28" width="0.6096" layer="97"/>
+<wire x1="193.04" y1="462.28" x2="162.56" y2="462.28" width="0.6096" layer="97"/>
+<wire x1="162.56" y1="462.28" x2="162.56" y2="472.44" width="0.6096" layer="97"/>
+<text x="170.18" y="469.9" size="5.08" layer="97" font="vector" ratio="11">1.8V</text>
+<wire x1="162.56" y1="472.44" x2="162.56" y2="481.33" width="0.6096" layer="97"/>
+<wire x1="149.86" y1="472.44" x2="157.48" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="157.48" y1="472.44" x2="162.56" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="193.04" y1="472.44" x2="200.66" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="200.66" y1="472.44" x2="210.82" y2="472.44" width="0.6096" layer="97"/>
+<wire x1="157.48" y1="472.44" x2="154.94" y2="474.98" width="0.6096" layer="97"/>
+<wire x1="157.48" y1="472.44" x2="154.94" y2="469.9" width="0.6096" layer="97"/>
+<wire x1="200.66" y1="472.44" x2="198.12" y2="474.98" width="0.6096" layer="97"/>
+<wire x1="200.66" y1="472.44" x2="198.12" y2="469.9" width="0.6096" layer="97"/>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -10748,6 +10813,8 @@ a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <instance part="U$100" gate="G$1" x="111.76" y="203.2"/>
 <instance part="R22" gate="G$1" x="91.44" y="215.9" rot="R90"/>
 <instance part="R23" gate="G$1" x="83.82" y="215.9" rot="R90"/>
+<instance part="FRAME5" gate="G$1" x="0" y="375.92"/>
+<instance part="FRAME5" gate="G$2" x="147.32" y="375.92"/>
 </instances>
 <busses>
 </busses>

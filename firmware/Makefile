@@ -244,7 +244,7 @@ etags: $(TAGFILES)
 #
 .PHONY: emacs
 emacs:
-	@emacs $(TAGFILES) Makefile config.mk README.md
+	@emacs23 $(TAGFILES) Makefile config.mk README.md
 
 # Makes the verification tool
 #

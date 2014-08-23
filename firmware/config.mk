@@ -24,11 +24,11 @@
 #
 # This is used to define the name of the build artifact
 #
-PROJECT_NAME		:= blinky
+PROJECT_NAME		:= longshot
 
 # The exact chip being built for.
 #
-TARGET_CHIP		:= SAMD20J18
+TARGET_CHIP		:= SAMD20E17
 
 # Compiliation Flags
 #
@@ -51,4 +51,4 @@ LINKER_FLAGS		:= -Wl,--gc-sections
 # port. When this field is specified GDB will attempt to connect to
 # this debugger on startup.
 #
-BLACKMAGIC_PATH		:=
+BLACKMAGIC_PATH		:= /dev/serial/by-id/usb-Black_Sphere_Technologies_Black_Magic_Probe_E1D399E0-if00
