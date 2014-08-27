@@ -379,6 +379,7 @@ void system_clock_source_dfll_set_config(
   rev &= DSU_DID_REVISION_Msk;
   rev = rev >> DSU_DID_REVISION_Pos;
 
+  /* Calculate the Value register */
   if (rev < _SYSTEM_MCU_REVISION_D) {
     val =
       _SYSTEM_OLD_DFLLVAL_COARSE(coarse_value) |
@@ -389,6 +390,7 @@ void system_clock_source_dfll_set_config(
       _SYSTEM_NEW_DFLLVAL_FINE(fine_value);
   }
 
+  /* Calculate the Control register */
   control =
     (uint32_t)wakeup_lock     |
     (uint32_t)stable_tracking |
@@ -396,8 +398,8 @@ void system_clock_source_dfll_set_config(
     (uint32_t)chill_cycle     |
     ((uint32_t)on_demand << SYSCTRL_DFLLCTRL_ONDEMAND_Pos);
 
+  /* Set the Multiplication register for closed loop mode */
   if (loop_mode == SYSTEM_CLOCK_DFLL_LOOP_MODE_CLOSED) {
-
     if(rev < _SYSTEM_MCU_REVISION_D) {
       mul =
   	_SYSTEM_OLD_DFLLMUL_CSTEP(coarse_max_step) |

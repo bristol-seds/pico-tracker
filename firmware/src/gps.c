@@ -67,8 +67,10 @@ enum {
  */
 enum {
   UBX_CFG_PRT	= (UBX_CFG | (0x00 << 8)),
+  UBX_CFG_TP	= (UBX_CFG | (0x07 << 8)),
   UBX_CFG_ANT	= (UBX_CFG | (0x13 << 8)),
   UBX_CFG_NAV5	= (UBX_CFG | (0x24 << 8)),
+  UBX_CFG_TP5	= (UBX_CFG | (0x31 << 8)),
 };
 /**
  * UBX ACK Message Types
@@ -76,19 +78,6 @@ enum {
 enum {
   UBX_ACK_NACK	= (UBX_ACK | (0x00 << 8)),
   UBX_ACK_ACK	= (UBX_ACK | (0x01 << 8)),
-};
-/**
- * UBX Dynamic Platform Model
- */
-enum {
-  UBX_PLATFORM_MODEL_PORTABLE		= 0,
-  UBX_PLATFORM_MODEL_STATIONARY		= 2,
-  UBX_PLATFORM_MODEL_PEDESTRIAN		= 3,
-  UBX_PLATFORM_MODEL_AUTOMOTIVE		= 4,
-  UBX_PLATFORM_MODEL_SEA		= 5,
-  UBX_PLATFORM_MODEL_AIRBORNE_1G	= 6,
-  UBX_PLATFORM_MODEL_AIRBORNE_2G	= 7,
-  UBX_PLATFORM_MODEL_AIRBORNE_4G	= 8,
 };
 
 #define UBX_BUFFER_LEN	0x80
@@ -110,7 +99,33 @@ uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
 #define _get_buffer(rx_data, length)			\
   usart_read_buffer_wait(GPS_SERCOM, rx_data, length)
 
+/**
+ * Flags for pending ubx pakcets
+ */
+enum ubx_packet_state {
+  UBX_PACKET_WAITING,
+  UBX_PACKET_ACK,
+  UBX_PACKET_NACK,
+};
+enum ubx_packet_state _ubx_cfg_tp_state;
+enum ubx_packet_state _ubx_cfg_tp5_state;
 
+/**
+ * Processes UBX ack/nack packets
+ */
+void ubx_process_ack(uint16_t message, enum ubx_packet_state state)
+{
+  switch (message) {
+    case UBX_CFG_TP:
+      _ubx_cfg_tp_state = state;
+      break;
+    case UBX_CFG_TP5:
+      _ubx_cfg_tp5_state = state;
+      break;
+    default:
+      break;
+  }
+}
 /**
  * Macro for the function below
  */
@@ -118,7 +133,6 @@ uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
   if (payload_length == sizeof(ubx_type)) {				\
     memcpy((void*)&ubx_type, frame + 4, payload_length);		\
   }
-
 /**
  * Process a single ubx frame. Runs in the IRQ so should be short and sweet.
  */
@@ -150,14 +164,25 @@ void ubx_process_frame(uint8_t* frame)
 	  break;
 	case UBX_CFG_ANT: /* Antenna Control Settings */
 	  UBX_POPULATE_STRUCT(ubx_cfg_ant);
+	  break;
+	case UBX_CFG_TP: /* TimePulse Parameters */
+	  UBX_POPULATE_STRUCT(ubx_cfg_tp);
+	  break;
+	case UBX_CFG_TP5: /* TimePulse Parameters */
+	  UBX_POPULATE_STRUCT(ubx_cfg_tp5);
+	  break;
       }
       break;
     case UBX_ACK:
-      switch (frame16[0]) {
-	case UBX_ACK_ACK:
-	  break;
-	case UBX_ACK_NACK:
-	  break;
+      if (payload_length == 2) { /* All ACK packets should have a payload len of 2 */
+	switch (frame16[0]) {
+	  case UBX_ACK_ACK:
+	    ubx_process_ack(frame16[2], UBX_PACKET_ACK);
+	    break;
+	  case UBX_ACK_NACK:
+	    ubx_process_ack(frame16[2], UBX_PACKET_NACK);
+	    break;
+	}
       }
       break;
     default:
@@ -294,6 +319,67 @@ void gps_check_nav(void)
 }
 
 /**
+ * Set the GPS timepulse settings using the CFG_TP message
+ */
+void gps_set_timepulse(void)
+{
+  /* Clear the packet state */
+  _ubx_cfg_tp_state = UBX_PACKET_WAITING;
+
+  /* Send the Request */
+  _ubx_poll(UBX_CFG_TP);
+
+  /* Define the settings we want */
+  struct ubx_cfg_tp timepulse;
+  memset(&timepulse, 0, sizeof(ubx_cfg_tp));
+  timepulse.interval = 2;	/* 2µS		*/
+  timepulse.length = 1;		/* 1µS		*/
+  timepulse.status = 1;		/* On, Positive	*/
+  timepulse.timeRef = 1;	/* Align GPS time */
+  timepulse.flags = 0x1;	/* Run outside lock */
+  timepulse.antennaCableDelay = 50; /* 50 nS	*/
+
+  /* Wait for acknoledge */
+  while (_ubx_cfg_tp_state == UBX_PACKET_WAITING);
+
+  /* Compare with current settings */
+  if (memcmp((void*)&ubx_cfg_tp, &timepulse, sizeof(ubx_cfg_tp)) != 0) {
+    /* Write the new settings */
+    _ubx_send_message(UBX_CFG_TP, (uint8_t*)&timepulse, sizeof(ubx_cfg_tp));
+  }
+}
+/**
+ * Set the GPS timepulse settings using the CFG_TP5 message
+ */
+void gps_set_timepulse_five(uint32_t frequency)
+{
+  /* Clear the packet state */
+  _ubx_cfg_tp5_state = UBX_PACKET_WAITING;
+
+  /* Send the Request */
+  _ubx_poll(UBX_CFG_TP5);
+
+  /* Define the settings we want */
+  struct ubx_cfg_tp5 timepulse5;
+  memset(&timepulse5, 0, sizeof(ubx_cfg_tp5));
+  timepulse5.tpIdx = 0;
+  timepulse5.antCableDelay = 50; /* 50 nS	*/
+  /* GPS time, duty cyle, frequency, lock to GPS, active */
+  timepulse5.flags = 0x80 | 0x8 | 0x3;
+  timepulse5.freqPeriod = frequency;
+  timepulse5.pulseLenRatio = 0x80000000; /* 50 % duty cycle*/
+
+  /* Wait for acknoledge */
+  while (_ubx_cfg_tp5_state == UBX_PACKET_WAITING);
+
+  /* Compare with current settings */
+  if (memcmp((void*)&ubx_cfg_tp5, &timepulse5, sizeof(ubx_cfg_tp5)) != 0) {
+    /* Write the new settings */
+    _ubx_send_message(UBX_CFG_TP5, (uint8_t*)&timepulse5, sizeof(ubx_cfg_tp5));
+  }
+}
+
+/**
  * Init
  */
 void gps_init(void)
@@ -334,9 +420,16 @@ void gps_init(void)
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, 0);
 
-  gps_check_nav();
+  /* Fill some configuration structures */
+
   gps_check_lock();
   _ubx_poll(UBX_CFG_ANT);
+
+  /* */
+  gps_check_nav();
+
+  /* Set the timepulse */
+  gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);
 }
 
 

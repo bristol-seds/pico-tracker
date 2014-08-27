@@ -272,10 +272,6 @@
  * device is two when running in 32-bit mode and four in 8-, and 16-bit modes.
  */
 
-//#include <clock.h>
-//#include <gclk.h>
-//#include <pinmux.h>
-
 #include "samd20.h"
 #include "tc.h"
 #include <stdbool.h>
@@ -522,15 +518,15 @@ struct tc_pwm_channel {
 };
 
 
-static inline void tc_enable(Tc* const hw);
-static inline void tc_disable(Tc* const hw);
+void tc_enable(Tc* const hw);
+void tc_disable(Tc* const hw);
 
-static inline void tc_start_counter(Tc* const hw);
-static inline void tc_stop_counter(Tc* const hw);
+void tc_start_counter(Tc* const hw);
+void tc_stop_counter(Tc* const hw);
 
-static inline uint32_t tc_get_status(Tc* const hw);
-static inline void tc_clear_status(Tc* const hw,
-				   const uint32_t status_flags);
+uint32_t tc_get_status(Tc* const hw);
+void tc_clear_status(Tc* const hw,
+		     const uint32_t status_flags);
 
 void tc_set_count_value(Tc* const hw, const uint32_t count);
 uint32_t tc_get_count_value(Tc* const hw);
@@ -546,9 +542,9 @@ void tc_reset(Tc* const hw);
 void tc_set_top_value (Tc* const hw,
 		       const uint32_t top_value);
 
-static inline void tc_enable_events(Tc* const hw,
+void tc_enable_events(Tc* const hw,
 				    struct tc_events *const events);
-static inline void tc_disable_events(Tc* const hw,
+void tc_disable_events(Tc* const hw,
 				     struct tc_events *const events);
 
 enum tc_status_t tc_init(Tc* const hw,

@@ -71,7 +71,7 @@
  * \note When the counter is configured to re-trigger on an event, the counter
  *       will not start until the start function is used.
  */
-static inline void tc_enable(Tc* const hw)
+void tc_enable(Tc* const hw)
 {
   assert(hw);
 
@@ -83,7 +83,7 @@ static inline void tc_enable(Tc* const hw)
 /**
  * Disables a TC module and stops the counter.
  */
-static inline void tc_disable(Tc* const hw)
+void tc_disable(Tc* const hw)
 {
   assert(hw);
 
@@ -96,7 +96,7 @@ static inline void tc_disable(Tc* const hw)
 /**
  * Starts or restarts an initialized TC module's counter.
  */
-static inline void tc_start_counter(Tc* const hw)
+void tc_start_counter(Tc* const hw)
 {
   assert(hw);
 
@@ -114,7 +114,7 @@ static inline void tc_start_counter(Tc* const hw)
  * counting up, or max or the top value if the counter was counting
  * down when stopped.
  */
-static inline void tc_stop_counter(Tc* const hw)
+void tc_stop_counter(Tc* const hw)
 {
   assert(hw);
 
@@ -135,7 +135,7 @@ static inline void tc_stop_counter(Tc* const hw)
  * \retval TC_STATUS_CAPTURE_OVERFLOW  Timer capture data has overflowed
  * \retval TC_STATUS_COUNT_OVERFLOW    Timer count value has overflowed
  */
-static inline uint32_t tc_get_status(Tc* const hw)
+uint32_t tc_get_status(Tc* const hw)
 {
   assert(hw);
 
@@ -174,8 +174,8 @@ static inline uint32_t tc_get_status(Tc* const hw)
  *
  * \param[in] status_flags  Bitmask of \c TC_STATUS_* flags to clear
  */
-static inline void tc_clear_status(Tc* const hw,
-				   const uint32_t status_flags)
+void tc_clear_status(Tc* const hw,
+		     const uint32_t status_flags)
 {
   assert(hw);
 
@@ -336,7 +336,6 @@ void tc_set_compare_value(Tc* const hw,
 			  const uint32_t compare)
 {
   assert(hw);
-  assert(compare);
 
   WAIT_FOR_SYNC(hw);
 
@@ -506,7 +505,7 @@ void tc_set_top_value(Tc* const hw,
  *
  * \param[in]  events       Struct containing flags of events to enable
  */
-static inline void tc_enable_events(Tc* const hw,
+void tc_enable_events(Tc* const hw,
 				    struct tc_events *const events)
 {
   /* Sanity check arguments */
@@ -545,7 +544,7 @@ static inline void tc_enable_events(Tc* const hw,
  *
  * \param[in]  events       Struct containing flags of events to disable
  */
-static inline void tc_disable_events(Tc* const hw,
+void tc_disable_events(Tc* const hw,
 				     struct tc_events *const events)
 {
   assert(hw);

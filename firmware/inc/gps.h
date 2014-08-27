@@ -57,6 +57,36 @@ volatile struct ubx_cfg_nav5 {
   uint32_t res4;
 } __PACKED__ ubx_cfg_nav5;
 /**
+ * UBX CFG TP TimePulse Parameters
+ */
+volatile struct ubx_cfg_tp {
+  uint32_t interval;
+  uint32_t length;
+  int8_t status;
+  uint8_t timeRef;
+  uint8_t flags;
+  uint8_t res;
+  int16_t antennaCableDelay;
+  int16_t rfGroupDelay;
+  int32_t userDelay;
+} __PACKED__ ubx_cfg_tp;
+/**
+ * UBX CFG TP5 TimePulse Parameters
+ */
+volatile struct ubx_cfg_tp5 {
+  uint8_t tpIdx;
+  uint8_t res0;
+  uint16_t res1;
+  int16_t antCableDelay;
+  int16_t rfGroupDelay;
+  uint32_t freqPeriod;
+  uint32_t freqPeriodLoc;
+  uint32_t pulseLenRatio;
+  uint32_t pulseLenRatioLock;
+  int32_t userConfigDelay;
+  uint32_t flags;
+} __PACKED__ ubx_cfg_tp5;
+/**
  * UBX NAV POSLLH Geodetic Position Solution
  */
 volatile struct ubx_nav_posllh {
@@ -106,6 +136,19 @@ volatile struct ubx_nav_sol {
   uint32_t res2;
 } __PACKED__ ubx_nav_sol;
 
+/**
+ * UBX Dynamic Platform Model
+ */
+enum {
+  UBX_PLATFORM_MODEL_PORTABLE		= 0,
+  UBX_PLATFORM_MODEL_STATIONARY		= 2,
+  UBX_PLATFORM_MODEL_PEDESTRIAN		= 3,
+  UBX_PLATFORM_MODEL_AUTOMOTIVE		= 4,
+  UBX_PLATFORM_MODEL_SEA		= 5,
+  UBX_PLATFORM_MODEL_AIRBORNE_1G	= 6,
+  UBX_PLATFORM_MODEL_AIRBORNE_2G	= 7,
+  UBX_PLATFORM_MODEL_AIRBORNE_4G	= 8,
+};
 
 
 void usart_loopback_test(void);
