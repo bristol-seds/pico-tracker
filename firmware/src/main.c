@@ -108,8 +108,8 @@ int main(void)
 
   /* For the moment output GCLK_MAIN / 2 on HF CLK */
   switch_gclk_main_to_timepulse();
-  //half_glck_main_on_hf_clk();
-  /* Wait for HF CLK to stabilise */
+  half_glck_main_on_hf_clk();
+ /* Wait for HF CLK to stabilise */
   for (int i = 0; i < 1000*100; i++);
 
   semihost_printf("GCLK_MAIN = %d\n", gclk_main_frequency());
