@@ -108,14 +108,18 @@ int main(void)
 
   /* For the moment output GCLK_MAIN / 2 on HF CLK */
   switch_gclk_main_to_timepulse();
-  half_glck_main_on_hf_clk();
- /* Wait for HF CLK to stabilise */
+  /* Wait for GCLK to stabilise */
+  for (int i = 0; i < 1000*100; i++);
+
+  //half_glck_main_on_hf_clk();
+  timepulse_init();
+  /* Wait for HF CLK to stabilise */
   for (int i = 0; i < 1000*100; i++);
 
   semihost_printf("GCLK_MAIN = %d\n", gclk_main_frequency());
 
   /* Drop the CPU clock to 1.5Mhz */
-  system_cpu_clock_set_divider(SYSTEM_MAIN_CLOCK_DIV_16);
+  //system_cpu_clock_set_divider(SYSTEM_MAIN_CLOCK_DIV_16);
 
   /* Initialise Si4060 */
   si4060_hw_init();

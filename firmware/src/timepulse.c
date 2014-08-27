@@ -32,9 +32,9 @@
 #define DFLL48_MUL	(DFLL48M_CLK / GPS_TIMEPULSE_FREQ)
 
 /* Check that DFLL48_MUL is an integer */
-//#if ((DFLL48M_CLK * 100000000) / GPS_TIMEPULSE_FREQ != (DFLL48_MUL * 100000000))
-//#error DFLL48M_CLK must be a integer multiple of GPS_TIMEPULSE_FREQ!
-//#endif
+#if ((DFLL48M_CLK * 100000000) / GPS_TIMEPULSE_FREQ != (DFLL48_MUL * 100000000))
+#error DFLL48M_CLK must be a integer multiple of GPS_TIMEPULSE_FREQ!
+#endif
 
 void timepulse_init(void)
 {
@@ -74,7 +74,7 @@ void timepulse_init(void)
   system_gclk_gen_set_config(SI406X_HF_GCLK,
 			     GCLK_SOURCE_DFLL48M, /* Source 		*/
 			     false,		/* High When Disabled	*/
-			     48,		/* Division Factor	*/
+			     3,			/* Division Factor = 16MHz*/
 			     false,		/* Run in standby	*/
 			     true);		/* Output Pin Enable	*/
 

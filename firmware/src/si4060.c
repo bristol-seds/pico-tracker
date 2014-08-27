@@ -421,7 +421,7 @@ void si4060_setup(uint8_t mod_type) {
   /* setup divider to 8 (for 70cm ISM band */
   si4060_set_property_8(PROP_MODEM,
 			MODEM_CLKGEN_BAND,
-			SY_SEL_1 | FVCO_DIV_4);
+			SY_SEL_1 | FVCO_DIV_8);
   /* set up the PA power level */
   si4060_set_property_8(PROP_PA,
 			PA_PWR_LVL,

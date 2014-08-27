@@ -33,11 +33,11 @@
 void si4060_shutdown(void);
 
 
-#define XO_FREQ 12000000UL
+#define XO_FREQ 16000000UL
 #define RF_FREQ_HZ 434600000.0f
 #define RF_DEV_HZ 100.0f
 
-#define F_INT (2 * XO_FREQ / 4)
+#define F_INT (2 * XO_FREQ / 8)
 #define FDIV_INTE ( (RF_FREQ_HZ / F_INT) - 1)
 #define FDIV_FRAC ( (RF_FREQ_HZ - F_INT*(int)FDIV_INTE) * ((uint32_t)1 << 19)  ) / F_INT
 #define FDEV ( ( ( (uint32_t)1 << 19) * 8 * RF_DEV_HZ)/ (2*XO_FREQ))
