@@ -88,7 +88,7 @@ void si4060_power_up(void) {
   spi_select();
   spi_write(CMD_POWER_UP);
   spi_write(FUNC);
-  spi_write(0x01);/* TCXO used */
+  spi_write(0x00);/* TCXO not used */
   spi_write((uint8_t) (XO_FREQ >> 24));
   spi_write((uint8_t) (XO_FREQ >> 16));
   spi_write((uint8_t) (XO_FREQ >> 8));
@@ -393,8 +393,8 @@ void si4060_setup(uint8_t mod_type) {
 			GLOBAL_CONFIG,
 			GLOBAL_RESERVED | POWER_MODE_HIGH_PERF | SEQUENCER_MODE_FAST);
   /* set up GPIOs */
-  si4060_gpio_pin_cfg(GPIO_MODE_DONOTHING,
-		      GPIO_MODE_DONOTHING,
+  si4060_gpio_pin_cfg(GPIO_MODE_INPUT,
+		      PULL_CTL + GPIO_MODE_INPUT,
 		      GPIO_MODE_DONOTHING,
 		      PULL_CTL + GPIO_MODE_INPUT,
 		      DRV_STRENGTH_HIGH);
@@ -409,7 +409,7 @@ void si4060_setup(uint8_t mod_type) {
   /* use 2FSK from async GPIO0 */
   si4060_set_property_8(PROP_MODEM,
 			MODEM_MOD_TYPE,
-			(mod_type & 0x07) | MOD_SOURCE_DIRECT | MOD_GPIO_0 | MOD_DIRECT_MODE_ASYNC);
+			(mod_type & 0x07) | MOD_SOURCE_DIRECT | MOD_GPIO_1 | MOD_DIRECT_MODE_ASYNC);
   /* setup frequency deviation */
   si4060_set_property_24(PROP_MODEM,
 			 MODEM_FREQ_DEV,

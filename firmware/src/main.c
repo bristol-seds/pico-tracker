@@ -31,11 +31,14 @@
 #include "system/system.h"
 #include "sercom/usart.h"
 #include "system/port.h"
+#include "tc/tc_driver.h"
 #include "gps.h"
 #include "timepulse.h"
 //#include "si406x.h"
 #include "si4060.h"
 #include "spi_bitbang.h"
+#include "rtty.h"
+#include "system/interrupt.h"
 
 void si4060_hw_init(void)
 {
@@ -58,23 +61,65 @@ void si4060_hw_init(void)
   /* Put the SEL pin in reset */
   _si406x_cs_disable();
 
+  /* Configure the serial port */
+  spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
+		   SI406X_SERCOM_MISO_PIN,
+		   SI406X_SERCOM_SCK_PIN);
+}
+void si4060_gpio_init()
+{
   /* Configure the GPIO and IRQ pins */
   port_pin_set_config(SI406X_GPIO0_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
   port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-
-  /* Configure the serial port */
-  spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
-		   SI406X_SERCOM_MISO_PIN,
-		   SI406X_SERCOM_SCK_PIN);
+  /* Configure the GPIO and IRQ pins */
+  port_pin_set_config(SI406X_GPIO1_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
 }
+void set_timer(uint32_t time)
+{
+  bool capture_channel_enables[]    = {false, false};
+  uint32_t compare_channel_values[] = {time, 0x0000};
+
+  tc_init(TC2,
+	  GCLK_GENERATOR_0,
+	  TC_COUNTER_SIZE_32BIT,
+	  TC_CLOCK_PRESCALER_DIV1,
+	  TC_WAVE_GENERATION_NORMAL_FREQ,
+	  TC_RELOAD_ACTION_GCLK,
+	  TC_COUNT_DIRECTION_UP,
+	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
+	  false,			/* Oneshot = false */
+	  false,			/* Run in standby = false */
+	  0x0000,			/* Initial value */
+	  time+1,			/* Top value */
+	  capture_channel_enables,	/* Capture Channel Enables */
+	  compare_channel_values);	/* Compare Channels Values */
+
+  struct tc_events ev;
+  memset(&ev, 0, sizeof(ev));
+  ev.generate_event_on_compare_channel[0] = true;
+  ev.event_action = TC_EVENT_ACTION_RETRIGGER;
+
+  tc_enable_events(TC2, &ev);
+
+  irq_register_handler(TC2_IRQn, 3);
+
+  tc_enable(TC2);
+  tc_start_counter(TC2);
+}
+
+
 
 int main(void)
 {
-  /* Clock up to 28MHz with 1 wait state */
-  system_flash_set_waitstates(1);
+  /* Clock up to 14MHz with 0 wait states */
+  system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
 
   /* Up the clock rate to 4MHz */
   system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_2, /* Prescaler */
@@ -87,39 +132,19 @@ int main(void)
   /* Get the current CPU Clock */
   SystemCoreClock = system_cpu_clock_get_hz();
 
-  /* Set LED0 as output */
-  //PORTA.DIRSET.reg = (1 << SI406X_HF_CLK_PIN);
-
-  /* Configure the SysTick for cpu/1000 output*//*for 50ms interrupts */
-  //SysTick_Config(500); //SystemCoreClock / 20);
-
   /* Configure Sleep Mode */
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0);
   //TODO: system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
 
   semihost_printf("Hello World %fHz\n", RF_FREQ_HZ);
 
-
   /* Initialise GPS */
   gps_init();
   /* Wait for GPS timepulse to stabilise */
   for (int i = 0; i < 1000*100; i++);
 
-
-  /* For the moment output GCLK_MAIN / 2 on HF CLK */
-  switch_gclk_main_to_timepulse();
-  /* Wait for GCLK to stabilise */
-  for (int i = 0; i < 1000*100; i++);
-
-  //half_glck_main_on_hf_clk();
-  timepulse_init();
-  /* Wait for HF CLK to stabilise */
-  for (int i = 0; i < 1000*100; i++);
-
-  semihost_printf("GCLK_MAIN = %d\n", gclk_main_frequency());
-
-  /* Drop the CPU clock to 1.5Mhz */
-  //system_cpu_clock_set_divider(SYSTEM_MAIN_CLOCK_DIV_16);
+  /* Configure the SysTick for 50Hz triggering */
+  SysTick_Config(SystemCoreClock / 50);
 
   /* Initialise Si4060 */
   si4060_hw_init();
@@ -133,30 +158,42 @@ int main(void)
     while(1);
   }
 
-  si4060_power_up();
-  si4060_setup(MOD_TYPE_CW);
-  si4060_start_tx(0);
+  /* si4060_power_up(); */
+  /* si4060_setup(MOD_TYPE_2FSK); */
 
-  uint32_t ll = 0;
+  /* si4060_gpio_init(); */
+  /* si4060_start_tx(0); */
+
+  /* Set the watchdog timer. On 32kHz ULP internal clock  */
+  /* wdt_set_config(true,			/\* Lock WDT		*\/ */
+  /* 		 true,			/\* Enable WDT		*\/ */
+  /* 		 GCLK_GENERATOR_4,	/\* Clock Source		*\/ */
+  /* 		 WDT_PERIOD_16384CLK,	/\* Timeout Period	*\/ */
+  /* 		 WDT_PERIOD_NONE,	/\* Window Period	*\/ */
+  /* 		 WDT_PERIOD_NONE);	/\* Early Warning Period	*\/ */
 
   while (1) {
-    semihost_printf("State is %d    %d\n", si4060_get_state(), ll++);
-    si4060_get_freq();
-    for (int i = 0; i < 1000*10; i++);
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-    //si4060_start_tx(0);
-    for (int i = 0; i < 1000*10; i++);
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
+    /* Send the last packet */
+    while (rtty_active());
 
+    /* Send requests to the gps */
+    gps_update();
 
+    /* Wait between frames */
+    for (int i = 0; i < 100*1000; i++);
 
+    /* Set the next packet */
+    set_telemetry_string();
 
     //system_sleep();
   }
 }
 
+/**
+ * Called at 50Hz
+ */
 void SysTick_Handler(void)
 {
-  /* Toggle LED0 */
-  //PORTA.OUTTGL.reg = (1 << SI406X_HF_CLK_PIN);
+  /* Output RTTY */
+  rtty_tick();
 }

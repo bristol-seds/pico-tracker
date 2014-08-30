@@ -394,6 +394,19 @@ enum system_clock_apb_bus {
   SYSTEM_CLOCK_APB_APBC,
 };
 
+/**
+ * Possible NVM flash wait state settings
+ */
+enum system_wait_states {
+  /** Wait state maximum frequencies at 1.8V */
+  SYSTEM_WAIT_STATE_1_8V_14MHZ	= 0,
+  SYSTEM_WAIT_STATE_1_8V_28MHZ	= 1,
+  SYSTEM_WAIT_STATE_1_8V_42MHZ	= 2,
+  SYSTEM_WAIT_STATE_1_8V_48MHZ	= 3,
+  /** Wait state maximum frequencies at 3.3V */
+  SYSTEM_WAIT_STATE_3_3V_24MHZ	= 0,
+  SYSTEM_WAIT_STATE_3_3V_48MHZ	= 1,
+};
 
 void system_clock_source_osc8m_set_config(enum system_osc8m_div prescaler,
 					  bool run_in_standby,
@@ -819,7 +832,7 @@ void system_clock_init(void);
  *
  * \param[in] wait_states Number of wait states to use for internal flash
  */
-static inline void system_flash_set_waitstates(uint8_t wait_states)
+static inline void system_flash_set_waitstates(const enum system_wait_states wait_states)
 {
   assert(NVMCTRL_CTRLB_RWS((uint32_t)wait_states) ==
 	 ((uint32_t)wait_states << NVMCTRL_CTRLB_RWS_Pos));

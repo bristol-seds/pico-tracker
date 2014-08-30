@@ -506,7 +506,7 @@ void tc_set_top_value(Tc* const hw,
  * \param[in]  events       Struct containing flags of events to enable
  */
 void tc_enable_events(Tc* const hw,
-				    struct tc_events *const events)
+		      struct tc_events *const events)
 {
   /* Sanity check arguments */
   assert(hw);
@@ -679,7 +679,7 @@ enum tc_status_t tc_init(Tc* const hw,
   /* Write Start Value */
   tc_set_count_value(hw, value);
 
-  /* Write Top Value - Only cool for 8 bit!*/
+  /* Write Top Value */
   tc_set_top_value(hw, top_value);
 
   /* Write Compare Values */

@@ -543,9 +543,9 @@ void tc_set_top_value (Tc* const hw,
 		       const uint32_t top_value);
 
 void tc_enable_events(Tc* const hw,
-				    struct tc_events *const events);
+		      struct tc_events *const events);
 void tc_disable_events(Tc* const hw,
-				     struct tc_events *const events);
+		       struct tc_events *const events);
 
 enum tc_status_t tc_init(Tc* const hw,
 			 enum gclk_generator source_clock,

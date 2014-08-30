@@ -1,5 +1,5 @@
 /*
- * Functions for the UBLOX 6 GPS
+ * Bit-bangs RTTY
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,16 +22,11 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GPS_H
-#define GPS_H
+#ifndef RTTY_H
+#define RTTY_H
 
-void gps_update();
+int rtty_active(void);
+int rtty_set_string(char* string, uint32_t length);
+void rtty_tick(void);
 
-struct ubx_nav_posllh gps_get_nav_posllh();
-struct ubx_nav_sol gps_get_nav_sol();
-struct ubx_nav_timeutc gps_get_nav_timeutc();
-
-void gps_init(void);
-void usart_loopback_test(void);
-
-#endif /* GPS_H */
+#endif /* RTTY_H */

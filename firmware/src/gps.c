@@ -33,45 +33,14 @@
 #include "sercom/sercom.h"
 #include "sercom/usart.h"
 #include "util/dbuffer.h"
+#include "ubx_messages.h"
 #include "gps.h"
 
 /**
  * UBX Constants
  */
 const uint16_t ubx_header = (0xB5 | (0x62 << 8));
-/**
- * UBX Class Types
- */
-enum {
-  UBX_NAV	= 0x01,
-  UBX_RXM	= 0x02,
-  UBX_INF	= 0x04,
-  UBX_ACK	= 0x05,
-  UBX_CFG	= 0x06,
-  UBX_MON	= 0x0A,
-  UBX_AID	= 0x0B,
-  UBX_TIM	= 0x0D,
-  UBX_ESF	= 0x10,
-};
-/**
- * UBX NAV Message Types
- */
-enum {
-  UBX_NAV_POSLLH	= (UBX_NAV | (0x02 << 8)),
-  UBX_NAV_SOL		= (UBX_NAV | (0x06 << 8)),
-  UBX_NAV_TIMEGPS	= (UBX_NAV | (0x20 << 8)),
-  UBX_NAV_TIMEUTC	= (UBX_NAV | (0x21 << 8)),
-};
-/**
- * UBX CFG Message Types
- */
-enum {
-  UBX_CFG_PRT	= (UBX_CFG | (0x00 << 8)),
-  UBX_CFG_TP	= (UBX_CFG | (0x07 << 8)),
-  UBX_CFG_ANT	= (UBX_CFG | (0x13 << 8)),
-  UBX_CFG_NAV5	= (UBX_CFG | (0x24 << 8)),
-  UBX_CFG_TP5	= (UBX_CFG | (0x31 << 8)),
-};
+
 /**
  * UBX ACK Message Types
  */
@@ -80,8 +49,10 @@ enum {
   UBX_ACK_ACK	= (UBX_ACK | (0x01 << 8)),
 };
 
+/**
+ * Internal buffers and things
+ */
 #define UBX_BUFFER_LEN	0x80
-
 #define SFD1	0xB5
 #define SFD2	0x62
 
@@ -94,104 +65,102 @@ int32_t ubx_index = SFD_WAITING;
 uint16_t ubx_payload_length = 0;
 uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
 
-#define _send_buffer(tx_data, length)			\
-  usart_write_buffer_wait(GPS_SERCOM, tx_data, length)
-#define _get_buffer(rx_data, length)			\
-  usart_read_buffer_wait(GPS_SERCOM, rx_data, length)
+/**
+ * UBX Messages
+ */
+volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x07 << 8)) };
+volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
+volatile struct ubx_cfg_tp ubx_cfg_tp		= { .id = (UBX_CFG | (0x07 << 8)) };
+volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
+volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
+volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
+volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
+volatile struct ubx_nav_sol ubx_nav_sol		= { .id = (UBX_NAV | (0x06 << 8)) };
+/**
+ * UBX Message Type List
+ */
+volatile ubx_message_t* const ubx_messages[] = {
+  (ubx_message_t*)&ubx_cfg_ant,
+  (ubx_message_t*)&ubx_cfg_nav5,
+  (ubx_message_t*)&ubx_cfg_tp,
+  (ubx_message_t*)&ubx_cfg_tp5,
+  (ubx_message_t*)&ubx_cfg_prt,
+  (ubx_message_t*)&ubx_nav_posllh,
+  (ubx_message_t*)&ubx_nav_timeutc,
+  (ubx_message_t*)&ubx_nav_sol};
+
+
 
 /**
- * Flags for pending ubx pakcets
+ * Platform specific handlers
  */
-enum ubx_packet_state {
-  UBX_PACKET_WAITING,
-  UBX_PACKET_ACK,
-  UBX_PACKET_NACK,
-};
-enum ubx_packet_state _ubx_cfg_tp_state;
-enum ubx_packet_state _ubx_cfg_tp5_state;
+#define _send_buffer(tx_data, length)			\
+  usart_write_buffer_wait(GPS_SERCOM, tx_data, length)
+#define _error_handler(error_type)			\
+  /* TODO */
+
+
+
+
+
+
+
 
 /**
  * Processes UBX ack/nack packets
  */
-void ubx_process_ack(uint16_t message, enum ubx_packet_state state)
+void ubx_process_ack(ubx_message_id_t message_id, enum ubx_packet_state state)
 {
-  switch (message) {
-    case UBX_CFG_TP:
-      _ubx_cfg_tp_state = state;
-      break;
-    case UBX_CFG_TP5:
-      _ubx_cfg_tp5_state = state;
-      break;
-    default:
-      break;
+  for (uint32_t i = 0; i < sizeof(ubx_messages)/sizeof(ubx_message_t*); i++) {
+    if (message_id == ubx_messages[i]->id) { /* Match! */
+      /* Set the message state */
+      ubx_messages[i]->state = state;
+    }
   }
 }
 /**
  * Macro for the function below
  */
 #define UBX_POPULATE_STRUCT(ubx_type)					\
-  if (payload_length == sizeof(ubx_type)) {				\
-    memcpy((void*)&ubx_type, frame + 4, payload_length);		\
-  }
+
 /**
  * Process a single ubx frame. Runs in the IRQ so should be short and sweet.
  */
 void ubx_process_frame(uint8_t* frame)
 {
   uint16_t* frame16 = (uint16_t*)frame;
+  uint16_t message_id = frame16[0];
   uint16_t payload_length = frame16[1];
 
   /* Checksum.. */
 
-  switch (frame[0]) { /* Switch by Class */
-    case UBX_NAV:
-      switch (frame16[0]) {
-	case UBX_NAV_SOL: /* Navigation Solution Information */
-	  UBX_POPULATE_STRUCT(ubx_nav_sol);
-	  break;
-	case UBX_NAV_TIMEUTC: /* UTC Time Solution */
-	  UBX_POPULATE_STRUCT(ubx_nav_timeutc);
-	  break;
-	case UBX_NAV_POSLLH: /* Geodetic Position Solution */
-	  UBX_POPULATE_STRUCT(ubx_nav_posllh);
-	  break;
+  /** Parse the message ID */
+  if (message_id == UBX_ACK_ACK) {
+    /* Ack */
+    ubx_process_ack(frame16[2], UBX_PACKET_ACK);
+
+  } else if (message_id == UBX_ACK_NACK) {
+    /* Nack */
+    ubx_process_ack(frame16[2], UBX_PACKET_NACK);
+
+  } else {
+    /** Otherwise it could be a message frame, search for a type */
+    for (uint32_t i = 0; i < sizeof(ubx_messages)/sizeof(ubx_message_t*); i++) {
+      if (message_id == ubx_messages[i]->id) { // Match!
+	/* Populate struct */
+	memcpy((void*)(ubx_messages[i]+1), frame + 4, payload_length);
+
+	return;
       }
-      break;
-    case UBX_CFG:
-      switch (frame16[0]) {
-	case UBX_CFG_NAV5: /* Navigation Engine Settings */
-	  UBX_POPULATE_STRUCT(ubx_cfg_nav5);
-	  break;
-	case UBX_CFG_ANT: /* Antenna Control Settings */
-	  UBX_POPULATE_STRUCT(ubx_cfg_ant);
-	  break;
-	case UBX_CFG_TP: /* TimePulse Parameters */
-	  UBX_POPULATE_STRUCT(ubx_cfg_tp);
-	  break;
-	case UBX_CFG_TP5: /* TimePulse Parameters */
-	  UBX_POPULATE_STRUCT(ubx_cfg_tp5);
-	  break;
-      }
-      break;
-    case UBX_ACK:
-      if (payload_length == 2) { /* All ACK packets should have a payload len of 2 */
-	switch (frame16[0]) {
-	  case UBX_ACK_ACK:
-	    ubx_process_ack(frame16[2], UBX_PACKET_ACK);
-	    break;
-	  case UBX_ACK_NACK:
-	    ubx_process_ack(frame16[2], UBX_PACKET_NACK);
-	    break;
-	}
-      }
-      break;
-    default:
-      break;
+    }
   }
+
+  /* Unknown frame */
+
 }
 
 /**
- * Rx Callback. Processes a stream of
+ * Rx Callback. Processes a stream of usart bytes
  */
 void gps_rx_callback(SercomUsart* const hw, uint16_t data)
 {
@@ -259,26 +228,32 @@ uint16_t _ubx_checksum(uint8_t* data, uint8_t len)
 /**
  * Sends a standard UBX message
  */
-void _ubx_send_message(uint16_t message, uint8_t* payload, uint16_t length)
+void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length)
 {
   uint8_t ubx[UBX_BUFFER_LEN];
   uint8_t* ubx_buffer = ubx;
 
   /* Copy little endian */
   memcpy(ubx_buffer, &ubx_header, 2); ubx_buffer += 2; 	/* Header	*/
-  memcpy(ubx_buffer, &message, 2); ubx_buffer += 2;	/* Message Type	*/
+  memcpy(ubx_buffer, &message->id, 2); ubx_buffer += 2;	/* Message Type	*/
   memcpy(ubx_buffer, &length, 2); ubx_buffer += 2;	/* Length	*/
-  memcpy(ubx_buffer, payload, length); ubx_buffer += length; /* Payload*/
+  memcpy(ubx_buffer, payload, length); ubx_buffer += length; /* Payload */
   uint16_t checksum = _ubx_checksum(ubx + 2, length + 4);
   memcpy(ubx_buffer, &checksum, 2); ubx_buffer += 2;	/* Checksum	*/
 
   _send_buffer(ubx, length + 8);
 }
 /**
- * Sends a UBX Poll Request
+ * Polls the GPS for packets
  */
-void _ubx_poll(uint16_t message) {
+void _ubx_poll(ubx_message_t* message) {
+  /* Clear the packet state */
+  message->state = UBX_PACKET_WAITING;
+
   _ubx_send_message(message, NULL, 0);
+
+  /* Wait for acknoledge */
+  while (message->state == UBX_PACKET_WAITING);
 }
 
 /**
@@ -286,36 +261,65 @@ void _ubx_poll(uint16_t message) {
  */
 void gps_disable_nmea(void)
 {
-  for (int i = 0; i < 1000*100; i++);
+  ubx_cfg_prt.payload.portID = 1;
+  ubx_cfg_prt.payload.res0 = 0;
+  ubx_cfg_prt.payload.txReady = 0;
+  ubx_cfg_prt.payload.mode = 0x08D0; /* 8 bit, No Parity */
+  ubx_cfg_prt.payload.baudRate = 9600;
+  ubx_cfg_prt.payload.inProtoMask = 0x7; /* UBX */
+  ubx_cfg_prt.payload.outProtoMask = 0x1; /* UBX */
+  ubx_cfg_prt.payload.flags = 0;
 
-  uint8_t setNMEAoff[] = {
-    0x01, 0x00, 0x00, 0x00, 0xD0, 0x08, 0x00, 0x00, 0x80, 0x25,
-    0x00, 0x00, 0x07, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00
-  };
-
-  _ubx_send_message(UBX_CFG_PRT, setNMEAoff, sizeof(setNMEAoff)/sizeof(uint8_t));
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_prt,
+		    (uint8_t*)&ubx_cfg_prt.payload,
+		    sizeof(ubx_cfg_prt.payload));
 
   for (int i = 0; i < 1000*100; i++);
 }
 
 /**
- * Check the navigation status to determine the quality of the
- * fix currently held by the receiver with a NAV-STATUS message.
+ * Sends messages to the GPS to update the messages we want
  */
-void gps_check_lock()
+void gps_update()
 {
-  /* Send the poll request */
-  _ubx_poll(UBX_NAV_SOL);
+  _ubx_send_message((ubx_message_t*)&ubx_nav_posllh, NULL, 0);
+  _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
+  _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
+}
+/**
+ * Return the latest received messages
+ */
+struct ubx_nav_posllh gps_get_nav_posllh()
+{
+  return ubx_nav_posllh;
+}
+struct ubx_nav_sol gps_get_nav_sol()
+{
+  return ubx_nav_sol;
+}
+struct ubx_nav_timeutc gps_get_nav_timeutc()
+{
+  return ubx_nav_timeutc;
 }
 
 /**
  * Verify that the uBlox 6 GPS receiver is set to the <1g airborne
  * navigaion mode.
  */
-void gps_check_nav(void)
+void gps_set_platform_model(void)
 {
   /* Send the poll request */
-  _ubx_poll(UBX_CFG_NAV5);
+  _ubx_poll((ubx_message_t*)&ubx_cfg_nav5);
+
+  /* If we need to update */
+  if (ubx_cfg_nav5.payload.dynModel != GPS_PLATFORM_MODEL) {
+    /* Update */
+    ubx_cfg_nav5.payload.dynModel = GPS_PLATFORM_MODEL;
+    /* Send */
+    _ubx_send_message((ubx_message_t*)&ubx_cfg_nav5,
+		      (uint8_t*)&ubx_cfg_nav5.payload,
+		      sizeof(ubx_cfg_nav5.payload));
+  }
 }
 
 /**
@@ -323,60 +327,42 @@ void gps_check_nav(void)
  */
 void gps_set_timepulse(void)
 {
-  /* Clear the packet state */
-  _ubx_cfg_tp_state = UBX_PACKET_WAITING;
-
   /* Send the Request */
-  _ubx_poll(UBX_CFG_TP);
+  _ubx_poll((ubx_message_t*)&ubx_cfg_tp);
 
   /* Define the settings we want */
-  struct ubx_cfg_tp timepulse;
-  memset(&timepulse, 0, sizeof(ubx_cfg_tp));
-  timepulse.interval = 2;	/* 2µS		*/
-  timepulse.length = 1;		/* 1µS		*/
-  timepulse.status = 1;		/* On, Positive	*/
-  timepulse.timeRef = 1;	/* Align GPS time */
-  timepulse.flags = 0x1;	/* Run outside lock */
-  timepulse.antennaCableDelay = 50; /* 50 nS	*/
+  ubx_cfg_tp.payload.interval = 2;	/* 2µS		*/
+  ubx_cfg_tp.payload.length = 1;	/* 1µS		*/
+  ubx_cfg_tp.payload.status = 1;	/* On, Positive	*/
+  ubx_cfg_tp.payload.timeRef = 1;	/* Align GPS time */
+  ubx_cfg_tp.payload.flags = 0x1;	/* Run outside lock */
+  ubx_cfg_tp.payload.antennaCableDelay = 50; /* 50 nS	*/
 
-  /* Wait for acknoledge */
-  while (_ubx_cfg_tp_state == UBX_PACKET_WAITING);
-
-  /* Compare with current settings */
-  if (memcmp((void*)&ubx_cfg_tp, &timepulse, sizeof(ubx_cfg_tp)) != 0) {
-    /* Write the new settings */
-    _ubx_send_message(UBX_CFG_TP, (uint8_t*)&timepulse, sizeof(ubx_cfg_tp));
-  }
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_tp,
+		    (uint8_t*)&ubx_cfg_tp.payload,
+		    sizeof(ubx_cfg_tp.payload));
 }
 /**
  * Set the GPS timepulse settings using the CFG_TP5 message
  */
 void gps_set_timepulse_five(uint32_t frequency)
 {
-  /* Clear the packet state */
-  _ubx_cfg_tp5_state = UBX_PACKET_WAITING;
-
   /* Send the Request */
-  _ubx_poll(UBX_CFG_TP5);
+  _ubx_poll((ubx_message_t*)&ubx_cfg_tp5);
 
   /* Define the settings we want */
-  struct ubx_cfg_tp5 timepulse5;
-  memset(&timepulse5, 0, sizeof(ubx_cfg_tp5));
-  timepulse5.tpIdx = 0;
-  timepulse5.antCableDelay = 50; /* 50 nS	*/
+  ubx_cfg_tp5.payload.tpIdx = 0;
+  ubx_cfg_tp5.payload.antCableDelay = 50; /* 50 nS	*/
   /* GPS time, duty cyle, frequency, lock to GPS, active */
-  timepulse5.flags = 0x80 | 0x8 | 0x3;
-  timepulse5.freqPeriod = frequency;
-  timepulse5.pulseLenRatio = 0x80000000; /* 50 % duty cycle*/
+  ubx_cfg_tp5.payload.flags = 0x80 | 0x8 | 0x3;
+  ubx_cfg_tp5.payload.freqPeriod = frequency;
+  ubx_cfg_tp5.payload.pulseLenRatio = 0x80000000; /* 50 % duty cycle*/
 
-  /* Wait for acknoledge */
-  while (_ubx_cfg_tp5_state == UBX_PACKET_WAITING);
-
-  /* Compare with current settings */
-  if (memcmp((void*)&ubx_cfg_tp5, &timepulse5, sizeof(ubx_cfg_tp5)) != 0) {
-    /* Write the new settings */
-    _ubx_send_message(UBX_CFG_TP5, (uint8_t*)&timepulse5, sizeof(ubx_cfg_tp5));
-  }
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_tp5,
+		    (uint8_t*)&ubx_cfg_tp5.payload,
+		    sizeof(ubx_cfg_tp5.payload));
 }
 
 /**
@@ -420,13 +406,8 @@ void gps_init(void)
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, 0);
 
-  /* Fill some configuration structures */
-
-  gps_check_lock();
-  _ubx_poll(UBX_CFG_ANT);
-
-  /* */
-  gps_check_nav();
+  /* Set the platform model */
+  gps_set_platform_model();
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);
@@ -473,4 +454,3 @@ void usart_loopback_test(void)
 
   semihost_printf("Rx'ed: 0x%02x\n", data);
 }
-
