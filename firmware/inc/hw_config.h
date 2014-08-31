@@ -133,6 +133,11 @@
 #define SI406X_GPIO1_PIN	PIN_PA25 /* Shared with LED */
 
 /**
+ * Watchdog Timer
+ */
+#define WDT_GCLK		GCLK_GENERATOR_4
+
+/**
  * SWD
  */
 #define SWD_SWDCLK_PIN		PIN_PA30
