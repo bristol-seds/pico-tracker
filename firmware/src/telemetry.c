@@ -36,22 +36,32 @@ char telemetry_string[0x200];
  */
 void set_telemetry_string(void)
 {
+  double lat_fmt = 0.0;
+  double lon_fmt = 0.0;
+  uint32_t altitude = 0;
+
   /* Time */
   struct ubx_nav_timeutc time = gps_get_nav_timeutc();
   uint8_t hours = time.payload.hour;
   uint8_t minutes = time.payload.min;
   uint8_t seconds = time.payload.sec;
 
-  /* GPS Position */
-  struct ubx_nav_posllh pos = gps_get_nav_posllh();
-  double lat_fmt = (double)pos.payload.lat / 10000000.0;
-  double lon_fmt = (double)pos.payload.lon / 10000000.0;
-  uint32_t altitude = pos.payload.height / 1000;
-
   /* GPS Status */
   struct ubx_nav_sol sol = gps_get_nav_sol();
-  uint8_t fix_type = sol.payload.gpsFix;
+  uint8_t lock = sol.payload.gpsFix;
   uint8_t satillite_count = sol.payload.numSV;
+
+  /* GPS Position */
+  if (lock == 0x2 || lock == 0x3 || lock == 0x4) {
+    struct ubx_nav_posllh pos = gps_get_nav_posllh();
+    lat_fmt = (double)pos.payload.lat / 10000000.0;
+    lon_fmt = (double)pos.payload.lon / 10000000.0;
+    altitude = pos.payload.height / 1000;
+  } else {
+
+  }
+
+
 
   /* Analogue */
 
@@ -59,7 +69,7 @@ void set_telemetry_string(void)
 #ifdef SEMIHOST_LOG
 
   semihost_printf("%02.7f,%03.7f,%ld", lat_fmt, lon_fmt, altitude);
-  semihost_printf("Fix: %d Sats: %d\n", fix_type, satillite_count);
+  semihost_printf("Lock: %d Sats: %d\n", lock, satillite_count);
   semihost_printf("%02u:%02u:%02u\n", hours, minutes, seconds);
 
 

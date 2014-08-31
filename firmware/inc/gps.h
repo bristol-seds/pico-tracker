@@ -25,6 +25,14 @@
 #ifndef GPS_H
 #define GPS_H
 
+/**
+ * GPS Error types
+ */
+enum gps_error_t {
+  GPS_ERROR_BAD_CHECKSUM,
+  GPS_ERROR_INVALID_FRAME,
+};
+
 void gps_update();
 
 struct ubx_nav_posllh gps_get_nav_posllh();

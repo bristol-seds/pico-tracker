@@ -89,8 +89,6 @@ volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_nav_timeutc,
   (ubx_message_t*)&ubx_nav_sol};
 
-
-
 /**
  * Platform specific handlers
  */
@@ -101,10 +99,22 @@ volatile ubx_message_t* const ubx_messages[] = {
 
 
 
+/**
+ * Calculate a UBX checksum using 8-bit Fletcher (RFC1145)
+ */
+uint16_t _ubx_checksum(uint8_t* data, uint8_t len)
+{
+  uint16_t ck = 0;
+  uint8_t* cka = (uint8_t*)&ck;
+  uint8_t* ckb = (cka + 1);
+  for(uint8_t i = 0; i < len; i++) {
+    *cka += *data;
+    *ckb += *cka;
+    data++;
+  }
 
-
-
-
+  return ck;
+}
 
 /**
  * Processes UBX ack/nack packets
@@ -119,11 +129,6 @@ void ubx_process_ack(ubx_message_id_t message_id, enum ubx_packet_state state)
   }
 }
 /**
- * Macro for the function below
- */
-#define UBX_POPULATE_STRUCT(ubx_type)					\
-
-/**
  * Process a single ubx frame. Runs in the IRQ so should be short and sweet.
  */
 void ubx_process_frame(uint8_t* frame)
@@ -131,17 +136,25 @@ void ubx_process_frame(uint8_t* frame)
   uint16_t* frame16 = (uint16_t*)frame;
   uint16_t message_id = frame16[0];
   uint16_t payload_length = frame16[1];
+  uint16_t checksum = ((uint16_t*)(frame + payload_length + 4))[0];
+  uint16_t calculated_checksum = _ubx_checksum(frame, payload_length + 4);
 
   /* Checksum.. */
+  if (calculated_checksum != checksum) {
+    _error_handler(GPS_ERROR_BAD_CHECKSUM);
+    return;
+  }
 
   /** Parse the message ID */
   if (message_id == UBX_ACK_ACK) {
     /* Ack */
     ubx_process_ack(frame16[2], UBX_PACKET_ACK);
+    return;
 
   } else if (message_id == UBX_ACK_NACK) {
     /* Nack */
     ubx_process_ack(frame16[2], UBX_PACKET_NACK);
+    return;
 
   } else {
     /** Otherwise it could be a message frame, search for a type */
@@ -156,7 +169,7 @@ void ubx_process_frame(uint8_t* frame)
   }
 
   /* Unknown frame */
-
+  _error_handler(GPS_ERROR_INVALID_FRAME);
 }
 
 /**
@@ -209,22 +222,6 @@ void gps_rx_callback(SercomUsart* const hw, uint16_t data)
   }
 }
 
-/**
- * Calculate a UBX checksum using 8-bit Fletcher (RFC1145)
- */
-uint16_t _ubx_checksum(uint8_t* data, uint8_t len)
-{
-  uint16_t ck = 0;
-  uint8_t* cka = (uint8_t*)&ck;
-  uint8_t* ckb = (cka + 1);
-  for(uint8_t i = 0; i < len; i++) {
-    *cka += *data;
-    *ckb += *cka;
-    data++;
-  }
-
-  return ck;
-}
 /**
  * Sends a standard UBX message
  */
