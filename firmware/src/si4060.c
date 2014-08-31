@@ -351,6 +351,41 @@ void si4060_get_freq(void)
 }
 
 /*
+ * si4060_get_temperature
+ *
+ * gets the temperature
+ */
+float si4060_get_temperature(void)
+{
+  uint16_t temp, result;
+
+  spi_select();
+  spi_write(CMD_GET_ADC_READING);
+  spi_write(0x10); /* Temperature */
+  spi_write((0xC << 4) | 0); /* UDTIME = 0xC, Att = 0 */
+  spi_deselect();
+
+  /* do not deselect after reading CTS */
+  while (temp != 0xff) {
+    temp = si4060_read_cmd_buf(0);
+    if (temp != 0xff) {
+      spi_deselect();
+    }
+  }
+
+  /* GPIO */
+  spi_read(); spi_read();
+
+  /* Battery */
+  result = (spi_read() & 0x7) << 8;
+  result |= spi_read() & 0xFF;
+
+  spi_deselect();
+
+  return ((((float)result) * 568.0) / 2560.0) - 297.0;
+}
+
+/*
  * si4060_start_tx
  *
  * starts transmission by the Si4060.

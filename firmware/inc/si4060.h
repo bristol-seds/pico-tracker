@@ -50,6 +50,7 @@ void si4060_power_up (void);
 void si4060_nop (void);
 uint8_t si4060_get_state(void);
 void si4060_get_freq(void);
+float si4060_get_temperature(void);
 
 void si4060_start_tx (uint8_t channel);
 void si4060_stop_tx (void);
@@ -68,6 +69,7 @@ uint16_t si4060_part_info (void);
 #define CMD_REQUEST_STATE	0x33
 #define CMD_CHANGE_STATE	0x34
 #define CMD_READ_CMD_BUF	0x44
+#define CMD_GET_ADC_READING	0x14
 
 /* ===== device states ===== */
 #define STATE_NOCHANGE	0x00

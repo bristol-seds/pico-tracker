@@ -33,7 +33,9 @@
 #include "system/port.h"
 #include "tc/tc_driver.h"
 #include "gps.h"
+#include "system/wdt.h"
 #include "timepulse.h"
+#include "telemetry.h"
 //#include "si406x.h"
 #include "si4060.h"
 #include "spi_bitbang.h"
@@ -114,7 +116,15 @@ void set_timer(uint32_t time)
   tc_start_counter(TC2);
 }
 
-
+void config_wdt() {
+  /* Set the watchdog timer. On 32kHz ULP internal clock  */
+  wdt_set_config(true,			/* Lock WDT		*/
+  		 true,			/* Enable WDT		*/
+  		 GCLK_GENERATOR_4,	/* Clock Source		*/
+  		 WDT_PERIOD_16384CLK,	/* Timeout Period	*/
+  		 WDT_PERIOD_NONE,	/* Window Period	*/
+  		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
+}
 
 int main(void)
 {
@@ -158,23 +168,20 @@ int main(void)
     while(1);
   }
 
-  /* si4060_power_up(); */
-  /* si4060_setup(MOD_TYPE_2FSK); */
+  si4060_power_up();
+  si4060_setup(MOD_TYPE_2FSK);
 
-  /* si4060_gpio_init(); */
-  /* si4060_start_tx(0); */
+  si4060_gpio_init();
+  si4060_start_tx(0);
 
-  /* Set the watchdog timer. On 32kHz ULP internal clock  */
-  /* wdt_set_config(true,			/\* Lock WDT		*\/ */
-  /* 		 true,			/\* Enable WDT		*\/ */
-  /* 		 GCLK_GENERATOR_4,	/\* Clock Source		*\/ */
-  /* 		 WDT_PERIOD_16384CLK,	/\* Timeout Period	*\/ */
-  /* 		 WDT_PERIOD_NONE,	/\* Window Period	*\/ */
-  /* 		 WDT_PERIOD_NONE);	/\* Early Warning Period	*\/ */
+
 
   while (1) {
     /* Send the last packet */
     while (rtty_active());
+
+    /* Watchdog */
+    wdt_reset_count();
 
     /* Send requests to the gps */
     gps_update();

@@ -1,7 +1,7 @@
 '''Wrapper for verification_tc.c
 
 Generated with:
-tools/verification/ctypesgen/ctypesgen.py -o tools/verification/verification_tc.py --cpp=arm-none-eabi-gcc -E -DCTYPESGEN  -g3 -ggdb -Wall -Wextra  -std=gnu99 -ffunction-sections -fdata-sections -mcpu=cortex-m0plus -mthumb -DSAMD20E17 -D__SAMD20E17__ -D__SEMIHOSTING__ -Iinc/ -Ichip/ -Ichip/cmsis/ -Isamd20/ -Isamd20/component/ tools/verification/verification_tc.c
+tools/verification/ctypesgen/ctypesgen.py -o tools/verification/verification_tc.py --cpp=arm-none-eabi-gcc -E -DCTYPESGEN  -g3 -ggdb -Wall -Wextra  -std=gnu99 -ffunction-sections -fdata-sections -mcpu=cortex-m0plus -mthumb -DSAMD20E17 -D__SAMD20E17__ -Iinc/ -Ichip/ -Ichip/cmsis/ -Isamd20/ -Isamd20/component/ tools/verification/verification_tc.c
 
 Do not modify this file.
 '''

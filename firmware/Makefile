@@ -78,14 +78,10 @@ SIZE		:= $(TOOLCHAIN)-size
 #
 ARCH_FLAGS 	:= -mcpu=cortex-m0plus -mthumb
 
-# Flags to be used when semihosting
+# Flags for float printing
 #
 #
-ifdef SEMIHOSTING
 LDFLAGS	+= --specs=rdimon.specs -lrdimon
-else
-LDFLAGS += --specs=nano.specs
-endif
 
 # Compilation Flags
 #

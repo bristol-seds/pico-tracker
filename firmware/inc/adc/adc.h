@@ -1,5 +1,7 @@
 /**
- * SAM D20/D21/R21 Peripheral Analog-to-Digital Converter Driver
+ * \file
+ *
+ * \brief SAM D20/D21/R21 Peripheral Analog-to-Digital Converter Driver
  *
  * Copyright (C) 2012-2014 Atmel Corporation. All rights reserved.
  *
@@ -43,23 +45,36 @@
 #define ADC_H_INCLUDED
 
 /**
- * SAM D20/D21/R21 Analog to Digital Converter Driver (ADC)
+ * \defgroup asfdoc_sam0_adc_group SAM D20/D21/R21 Analog to Digital Converter Driver (ADC)
  *
- * This driver for SAM D20/D21/R21 devices provides an interface for
- * the configuration and management of the device's Analog to Digital
- * Converter functionality, for the conversion of analog voltages into
- * a corresponding digital form.
- *
+ * This driver for SAM D20/D21/R21 devices provides an interface for the configuration
+ * and management of the device's Analog to Digital Converter functionality, for
+ * the conversion of analog voltages into a corresponding digital form.
  * The following driver API modes are covered by this manual:
- *
  * - Polled APIs
+ * \if ADC_CALLBACK_MODE
+ * - Callback APIs
+ * \endif
  *
  * The following peripherals are used by this module:
  *
  *  - ADC (Analog to Digital Converter)
  *
+ * The outline of this documentation is as follows:
+ *  - \ref asfdoc_sam0_adc_prerequisites
+ *  - \ref asfdoc_sam0_adc_module_overview
+ *  - \ref asfdoc_sam0_adc_special_considerations
+ *  - \ref asfdoc_sam0_adc_extra_info
+ *  - \ref asfdoc_sam0_adc_examples
+ *  - \ref asfdoc_sam0_adc_api_overview
  *
- * Module Overview
+ *
+ * \section asfdoc_sam0_adc_prerequisites Prerequisites
+ *
+ * There are no prerequisites for this module.
+ *
+ *
+ * \section asfdoc_sam0_adc_module_overview Module Overview
  *
  * This driver provides an interface for the Analog-to-Digital conversion
  * functions on the device, to convert analog voltages to a corresponding
@@ -377,19 +392,22 @@
  * @{
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <compiler.h>
-#include <system.h>
-
-#if ADC_CALLBACK_MODE == true
-#  include <system_interrupt.h>
+#include "samd20.h"
+#include "system/system.h"
+#include "system/pinmux.h"
+#define Assert assert
 
 #if !defined(__DOXYGEN__)
 extern struct adc_module *_adc_instances[ADC_INST_NUM];
 #endif
+
+enum status_code {
+  STATUS_OK,
+  STATUS_BUSY,
+  STATUS_ERR_INVALID_ARG,
+  STATUS_ERR_OVERFLOW,
+  STATUS_ERR_DENIED
+};
 
 /** Forward definition of the device instance */
 struct adc_module;
@@ -1636,16 +1654,6 @@ static inline void adc_disable_interrupt(struct adc_module *const module_inst,
 	/* Enable interrupt */
 	adc_module->INTENCLR.reg = interrupt;
 }
-
-/** @} */
-#endif /* ADC_CALLBACK_MODE == true */
-
-#ifdef __cplusplus
-}
-#endif
-
-/** @} */
-
 
 /**
  * \page asfdoc_sam0_adc_extra Extra Information for ADC Driver
