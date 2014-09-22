@@ -47,9 +47,30 @@ for power. Where nessesary the traces  All via are 0.3mm (12mil) drill.
 
 \subsection{Development}
 
-The
+
 
 \section{Design}
+
+\subsection{GPS}
+
+
+\subsection{ESD Proctection}
+
+The GPS Antenna input is particularly sensitive to ESD damage. Options
+for protecting against this are outlines in the uBlox hardware
+intergration manual \bibitem{ublox8hw}
+
+ One
+option to protect against this is to use an LNA with integrated ESD
+protection, such as.
+
+\subsection{TCXO}
+
+Flight UBSEDS2 clocked the Si4060 directly from a 16 MHz crystal
+osciallator. This was with about 6.5pF of internal capactance from the
+Si4060.
+
+
 
 \subsection{HF Clock}
 
@@ -90,5 +111,13 @@ constant.
 Check flight WG2 on habhub for gps string formatting gone wrong
 
 Get so much test data.
+
+\begin{thebibliography}{9}
+
+\bibitem{ublox8hw}
+  uBlox 8 Hardware integration manual,
+  http://www.u-blox.com/images/downloads/Product_Docs/MAX-M8_HardwareIntegrationManual_(UBX-13004876).pdf
+
+\end{thebibliography}
 
 \end{document}
