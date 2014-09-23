@@ -5,7 +5,7 @@
 
 | ID Number  | Part Number | Description | Farnell # | Mouser # | Quantity
 | --- | --- | --- | --- | --- | --- | ---
-| U1 | ATSAMD20E17A-MU | Microcontroller Atmel SAM D20, 128kB Flash, 16kB SRAM, -40 to 85°C, QFN-32 | [2361006](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2361006*) | | 1
+| U1 | ATSAMD20E17A-MU | Microcontroller Atmel SAM D20, 128kB Flash, 16kB SRAM, -40 to 85°C, QFN-32 | [2361006](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2361006*) | 556-ATSAMD20E17A-MU | 1
 | U2 | Si4060-B1B-FM | RF Tx SPI 142MHZ-1.05GHZ, QFN-20 | [2414373](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2414373*) | 634-SI4060-B1B-FM | 1
 | U2 | Si4063-B1B-FM | RF Tx SPI 142MHZ-1.05GHZ, QFN-20 | [2414373](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2414373*) | 634-SI4063-B1B-FM | 1
 | U3 | UBLOX MAX-8C | GPS |||1
@@ -24,6 +24,7 @@
 | L2 | 0402AF-221XJLU | Inductor 220nH, 0.53Ω DCR Max, 380mA, 0402 [1005 Metric] | [2285640](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2285640*) || 1
 | L3 | LQG15HN56NJ02D | Inductor 56nH, 1.2Ω DCR Max, 200mA, 0402 [1005 Metric] | [1343091](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1343091*) || 1
 | L4, L5 | L-07C18NJV6T | Inductor RF 18nH, 0.65Ω DCR Max, 200mA, 0402 [1005 Metric] | [1865775](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865775*) || 1
+| L6 | DNP
 | R1 | CRG0402F100K | Resistor 100kΩ, 1%, 63mW, 0402 [1005 Metric] | [2331442](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2331442*) || 1
 | R2 | CRG0402F240K | Resitor 240kΩ, 1%, 63mW, 0402 [1005 Metric] | [2331491](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2331491*) || 1
 | C1, C3 | GRM1555C1H8R2CA01D | Capacitor 8.2pF, C0G/NP0, 50V, 0402 [1005 Metric] | [1828874](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1828874*) || 2
@@ -41,7 +42,8 @@
 | ID Number | Part Number | Description | Farnell # | Mouser # | Quantity
 | --- | --- | --- | --- | --- | --- | ---
 | JTAG1 | 20021121-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 649-202112100010C4LF | 1
-| FB1, FB2 | BLM15BB100SN1D | FERRITE BEAD, 0.1Ω, 300mA, 0402 1005 Metric | [1515765](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1515765*) || 2
+| FB1, FB2 | BLM15BB100SN1D | FERRITE BEAD, 0.1Ω, 300mA, 0402 [1005 Metric] | [1515765](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1515765*) || 2
+| ESD1, ESD2 | CG0603MLC-05LE | ESD SUPPRESSOR, 0603 [1608 Metric], 5V, 0.5PF | [1828732](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1828732*) || 2
 | J1, J1 | Battery Clip AAA | Battery Clip AAA | [1702644](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1702644*) || 2
 
 ----
