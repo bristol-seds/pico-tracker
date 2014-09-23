@@ -11,7 +11,7 @@
 | U3 | UBLOX MAX-8C | GPS |||1
 | U4 | ADP1607ACPZN-R7 | BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP, 1A | [2254940](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2254940*) || 1
 | U5 | S25FS128SAGNFI101 | NAND Flash SPI, 128Mbit, 8-WSON | [2367709](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2367709*) ||
-| U6 | X1G[0041310](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*0041310*)008 | CRYSTAL, TCXO, 16.369MHZ, SMD, ± 0.5ppm, 1.7V - 3.3V, -30°C - 85°C | [2405790](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2405790*) || 1
+| U6 | X1G0041310008 | CRYSTAL, TCXO, 16.369MHZ, SMD, ± 0.5ppm, 1.7V - 3.3V, -30°C - 85°C | [2405790](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2405790*) || 1
 | U7 | TPS3123J18DBVT | IC, 1.62V SUPPLY MONITOR SOT-23-5, 22µA, Manual Reset, Watchdog Input | [1755607](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1755607*) || 1
 
 ----
@@ -40,7 +40,7 @@
 
 | ID Number | Part Number | Description | Farnell # | Mouser # | Quantity
 | --- | --- | --- | --- | --- | --- | ---
-| JTAG1 | [2002112](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2002112*)1-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 649-[2021121](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2021121*)00010C4LF | 1
+| JTAG1 | 20021121-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 649-202112100010C4LF | 1
 | FB1, FB2 | BLM15BB100SN1D | FERRITE BEAD, 0.1Ω, 300mA, 0402 1005 Metric | [1515765](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1515765*) || 2
 | J1, J1 | Battery Clip AAA | Battery Clip AAA | [1702644](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1702644*) || 2
 
@@ -50,7 +50,7 @@
 | ID | Part Number | Description | Supplier | Order Code | Quantity | Notes
 | --- | --- | --- | --- | --- | --- | ---
 | U6 | STM32F103CBT6 | Microcontroller, 128Kb Flash, 20Kb SRAM, -40 to 85°C | [1606327](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1606327*) | 1
-| JTAG2 | [2002112](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2002112*)1-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 1
+| JTAG2 | 20021121-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 1
 | CN1 | 67503-1230 | USB Mini B Receptacle, SMT | [2313554](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2313554*) | 1
 | BTN1 | B3U-1000P-B | SPST-NO Switch, SMD | [1333654](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1333654*) | 1
 | ICxx | INA216A4YFFT | Amplifier, Current Sense, 2.5kHz, DSBGA4 | [2382813](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2382813*) | 7
@@ -59,11 +59,11 @@
 | ICxxx | LP38501TS-ADJ | Adj. LDO Regulator, 3A, 5-TO263 | [2102669](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2102669*) | 1
 | Y1 | ABMM2-8.000MHZ-E2-T | Crystal, 8MHz, 18pF, 6x3.6mm | [1611803](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1611803*) | 1
 | Rxx |  MCMR04W1R00FTL | Resistor 1Ω, 0.0625W, 1%, 0402 1005 Metric | [2072500](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2072500*) | 14
-| R1, R2 | MC0063W[0603122](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*0603122*)R | Resistor 22Ω, 0.063W, 1%, 0603 1608 Metric | [9330844](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330844*) | 2
+| R1, R2 | MC0063W0603122R | Resistor 22Ω, 0.063W, 1%, 0603 1608 Metric | [9330844](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330844*) | 2
 | R3 | MC0063W060311K5 | Resistor 1.5KΩ, 0.063W, 1%, 0603 1608 Metric | [9330607](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330607*) | 1
-| R4, R5, R6, R13 | MC0063W[0603110](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*0603110*)K | Resistor 10KΩ, 0.063W, 1%, 0603 1608 Metric | [9330399](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330399*) | 4
+| R4, R5, R6, R13 | MC0063W0603110K | Resistor 10KΩ, 0.063W, 1%, 0603 1608 Metric | [9330399](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330399*) | 4
 | R7, R8 | MC0063W060314K7 | Resistor 4.7KΩ, 0.063W, 1%, 0603 1608 Metric | [9331247](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9331247*) | 2
-| R9, R10, R11, R12 | MC0063W[0603139](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*0603139*)0R | Resistor 390Ω, 0.063W, 1%, 0603 1608 Metric | [9331131](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9331131*) | 4
+| R9, R10, R11, R12 | MC0063W06031390R | Resistor 390Ω, 0.063W, 1%, 0603 1608 Metric | [9331131](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9331131*) | 4
 | D1 | KPT-1608SGC | LED, Green 568nm, 0603 1608 Metric | [2099223](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099223*) | 1
 | D2 | KPT-1608EC | LED, Red 625nm, 0603 1608 Metric | [2099221](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099221*) | 1
 | D3, D4 | KPT-1608YC | LED, Yellow 588nm, 0603 1608 Metric | [2099227](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099227*) | 2
