@@ -24,7 +24,7 @@
 #
 # This is used to define the name of the build artifact
 #
-PROJECT_NAME		:= longshot
+PROJECT_NAME		:= pico
 
 # The exact chip being built for.
 #

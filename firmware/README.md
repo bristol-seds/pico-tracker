@@ -1,6 +1,6 @@
-## Bristol Longshot ##
+## Bristol Pico Tracker ##
 
-Firmware for the Bristol Longshot tracker. Gets its GPS position home
+Firmware for the Bristol Pico Tracker. Gets its GPS position home
 by whatever means possible, come hell or high water.
 
 (Actually, come low temperatures, long paths, geopolitical
@@ -23,7 +23,8 @@ step-up input.
 
 This is part of the development framework.
 
-The other part of the framework is several 'development scripts' that allow
+The other part of the framework is several 'development scripts' that
+are still TODO
 
 ## Verification Framework ##
 
@@ -56,7 +57,7 @@ acceptable, as long as a constant seed is used.
 If this flag is set, then the test case may make as many iterations it
 feels it needs for a full and thorough test.
 
-Otherwise test cases must take less than 1 second of real world runtime
+Otherwise test cases must take less than 1 second of real world runtime.
 
 ## Sources & Licensing ##
 
