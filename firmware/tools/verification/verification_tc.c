@@ -34,40 +34,6 @@
 
 #endif
 
-/****************************//* nmea_decode_tc *//****************************/
-
-/* Includes */
-#include <nmea/nmea.h>
-#include <string.h>
-
-/* Parameters in */
-struct nmea_tc_params {
-  char buff[2048];
-} nmea_tc_params;
-
-/* Results out */
-nmeaINFO nmea_tc_results;
-
-/* Function */
-__verification__ void nmea_tc(void) {
-
-  nmeaPARSER parser;
-  int size;
-
-  /* Get input buffer size */
-  size = strlen(nmea_tc_params.buff);
-
-  /* Init nmea */
-  nmea_zero_INFO(&nmea_tc_results);
-  nmea_parser_init(&parser);
-
-  /* Parse */
-  nmea_parse(&parser, nmea_tc_params.buff, size, &nmea_tc_results);
-
-  /* Cleanup */
-  nmea_parser_destroy(&parser);
-}
-
 /****************************//* times_two_tc *//****************************/
 /* The simplest test case. ever.   Used to check for sanity                 */
 
