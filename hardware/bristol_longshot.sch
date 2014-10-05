@@ -7625,9 +7625,6 @@ Metric Code Size 5664</description>
 <wire x1="169.164" y1="131.064" x2="169.164" y2="118.872" width="0.1524" layer="97"/>
 <text x="99.06" y="138.684" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SWD)</text>
 <wire x1="100.076" y1="141.224" x2="100.076" y2="136.652" width="0.1524" layer="97"/>
-<text x="43.18" y="18.288" size="1.27" layer="97" font="vector" ratio="11" distance="100">Using datasheet recomended values for 1-cell input, &lt;2.7V output, &lt;50% loading 
-(ie. less than 400mA) Variant is MAX1947ETA18+T for 1.8V output. The inductor is 
-a bourns CVH252009-3R3M with 0.1Ω ESR max in a 1008 package</text>
 <text x="93.98" y="117.094" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM0)</text>
 <wire x1="94.996" y1="118.364" x2="94.996" y2="113.792" width="0.1524" layer="97"/>
 <text x="170.18" y="117.348" size="1.27" layer="97" font="vector" ratio="11">(EXTINT[12])</text>
