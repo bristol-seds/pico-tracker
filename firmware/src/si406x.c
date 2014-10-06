@@ -32,7 +32,7 @@
 #define RADIO_FREQ	434600000
 // Quite low power
 #define RADIO_PWR	0x7f
-#define VCXO_FREQ	SI406X_HF_FREQUENCY
+#define VCXO_FREQ	SI406X_TCXO_FREQUENCY
 
 uint32_t active_freq       = RADIO_FREQ;
 uint8_t active_pwr         = RADIO_PWR;

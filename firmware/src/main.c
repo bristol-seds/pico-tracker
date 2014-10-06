@@ -1,5 +1,5 @@
 /*
- * Bristol Longshot
+ * Bristol SEDS pico-tracker
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -84,6 +84,37 @@ void si4060_gpio_init()
 		      false);			/* Powersave */
   port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
 }
+
+
+
+/**
+ * Initialises the status LED
+ */
+static inline void led_init(void)
+{
+  port_pin_set_config(LED0_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
+}
+/**
+ * Turns the status LED on
+ */
+static inline void led_on(void)
+{
+  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
+}
+/**
+ * Turns the status lED off
+ */
+static inline void led_off(void)
+{
+  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
+}
+
+
+
 void set_timer(uint32_t time)
 {
   bool capture_channel_enables[]    = {false, false};
@@ -117,27 +148,32 @@ void set_timer(uint32_t time)
   tc_start_counter(TC2);
 }
 
-void wdt_init() {
-  /* 64 seconds timeout. So 2^(15+6) cycles of the wdt clock */
-  system_gclk_gen_set_config(WDT_GCLK,
-			     GCLK_SOURCE_OSCULP32K, /* Source 		*/
-			     false,		/* High When Disabled	*/
-			     128,		/* Division Factor	*/
-			     false,		/* Run in standby	*/
-			     true);		/* Output Pin Enable	*/
-  system_gclk_gen_enable(WDT_GCLK);
+/* void wdt_init() { */
+/*   /\* 64 seconds timeout. So 2^(15+6) cycles of the wdt clock *\/ */
+/*   system_gclk_gen_set_config(WDT_GCLK, */
+/* 			     GCLK_SOURCE_OSCULP32K, /\* Source 		*\/ */
+/* 			     false,		/\* High When Disabled	*\/ */
+/* 			     128,		/\* Division Factor	*\/ */
+/* 			     false,		/\* Run in standby	*\/ */
+/* 			     true);		/\* Output Pin Enable	*\/ */
+/*   system_gclk_gen_enable(WDT_GCLK); */
 
-  /* Set the watchdog timer. On 256Hz gclk 4  */
-  wdt_set_config(true,			/* Lock WDT		*/
-  		 true,			/* Enable WDT		*/
-  		 GCLK_GENERATOR_4,	/* Clock Source		*/
-  		 WDT_PERIOD_16384CLK,	/* Timeout Period	*/
-  		 WDT_PERIOD_NONE,	/* Window Period	*/
-  		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
-}
+/*   /\* Set the watchdog timer. On 256Hz gclk 4  *\/ */
+/*   wdt_set_config(true,			/\* Lock WDT		*\/ */
+/*   		 true,			/\* Enable WDT		*\/ */
+/*   		 GCLK_GENERATOR_4,	/\* Clock Source		*\/ */
+/*   		 WDT_PERIOD_16384CLK,	/\* Timeout Period	*\/ */
+/*   		 WDT_PERIOD_NONE,	/\* Window Period	*\/ */
+/*   		 WDT_PERIOD_NONE);	/\* Early Warning Period	*\/ */
+/* } */
 
 int main(void)
 {
+  /**
+   * Internal initialisation
+   * ---------------------------------------------------------------------------
+   */
+
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
 
@@ -156,24 +192,20 @@ int main(void)
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0);
   //TODO: system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
 
-  semihost_printf("Hello World %fHz\n", RF_FREQ_HZ);
-
-  /* Set the wdt here. We should get to the first reset in one min */
-  wdt_init();
-  wdt_reset_count();
-
-  /* Initialise GPS */
-  gps_init();
-  /* Wait for GPS timepulse to stabilise */
-  for (int i = 0; i < 1000*100; i++);
-
   /* Configure the SysTick for 50Hz triggering */
   SysTick_Config(SystemCoreClock / 50);
 
+
+  /**
+   * System initialisation
+   * ---------------------------------------------------------------------------
+   */
+
+  led_init();
+  gps_init();
+
   /* Initialise Si4060 */
   si4060_hw_init();
-
-  /* reset the radio chip from shutdown */
   si4060_reset();
 
   /* check radio communication */
@@ -182,32 +214,31 @@ int main(void)
     while(1);
   }
 
-  si4060_power_up();
-  si4060_setup(MOD_TYPE_2FSK);
+  /* si4060_power_up(); */
+  /* si4060_setup(MOD_TYPE_2FSK); */
 
-  si4060_gpio_init();
-  si4060_start_tx(0);
+  /* si4060_gpio_init(); */
+  /* si4060_start_tx(0); */
 
   while (1) {
     /* Send the last packet */
-    while (rtty_active());
+    //while (rtty_active());
 
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-
-    /* Watchdog */
-    wdt_reset_count();
+    //port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
 
     /* Send requests to the gps */
     gps_update();
 
     /* Wait between frames */
+    led_on();
+    for (int i = 0; i < 100*1000; i++);
+    led_off();
     for (int i = 0; i < 100*1000; i++);
 
     /* Set the next packet */
-    set_telemetry_string();
+    //set_telemetry_string();
 
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
-
+    // port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
 
     //system_sleep();
   }
