@@ -99,24 +99,6 @@ __PACKED__ struct ubx_cfg_nav5 {
   } payload;
 };
 /**
- * UBX CFG TP TimePulse Parameters
- */
-__PACKED__ struct ubx_cfg_tp {
-  ubx_message_id_t id;
-  enum ubx_packet_state state;
-  struct {
-    uint32_t interval;
-    uint32_t length;
-    int8_t status;
-    uint8_t timeRef;
-    uint8_t flags;
-    uint8_t res;
-    int16_t antennaCableDelay;
-    int16_t rfGroupDelay;
-    int32_t userDelay;
-  } payload;
-};
-/**
  * UBX CFG TP5 TimePulse Parameters
  */
 __PACKED__ struct ubx_cfg_tp5 {
@@ -234,6 +216,22 @@ __PACKED__ struct ubx_nav_sol {
     uint8_t res1;
     uint8_t numSV;
     uint32_t res2;
+  } payload;
+};
+/**
+ * UBX NAV STATUS Receiver Navigation Status
+ */
+__PACKED__ struct ubx_nav_status {
+  ubx_message_id_t id;
+  enum ubx_packet_state state;
+  struct {
+    uint32_t iTOW;
+    uint8_t gpsFix;
+    int8_t flags;
+    int8_t fixStat;
+    int8_t flags2;
+    uint32_t ttff;
+    uint32_t msss;
   } payload;
 };
 

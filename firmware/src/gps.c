@@ -68,26 +68,26 @@ uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
 /**
  * UBX Messages
  */
-volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x07 << 8)) };
+volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x13 << 8)) };
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
-volatile struct ubx_cfg_tp ubx_cfg_tp		= { .id = (UBX_CFG | (0x07 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
 volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
 volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
 volatile struct ubx_nav_sol ubx_nav_sol		= { .id = (UBX_NAV | (0x06 << 8)) };
+volatile struct ubx_nav_status ubx_nav_status	= { .id = (UBX_NAV | (0x03 << 8)) };
 /**
  * UBX Message Type List
  */
 volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_ant,
   (ubx_message_t*)&ubx_cfg_nav5,
-  (ubx_message_t*)&ubx_cfg_tp,
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
   (ubx_message_t*)&ubx_nav_posllh,
   (ubx_message_t*)&ubx_nav_timeutc,
-  (ubx_message_t*)&ubx_nav_sol};
+  (ubx_message_t*)&ubx_nav_sol,
+  (ubx_message_t*)&ubx_nav_status};
 
 /**
  * Platform specific handlers
@@ -282,6 +282,7 @@ void gps_update()
   _ubx_send_message((ubx_message_t*)&ubx_nav_posllh, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
+  _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
 }
 /**
  * Return the latest received messages
@@ -319,27 +320,6 @@ void gps_set_platform_model(void)
   }
 }
 
-/**
- * Set the GPS timepulse settings using the CFG_TP message
- */
-void gps_set_timepulse(void)
-{
-  /* Send the Request */
-  _ubx_poll((ubx_message_t*)&ubx_cfg_tp);
-
-  /* Define the settings we want */
-  ubx_cfg_tp.payload.interval = 2;	/* 2µS		*/
-  ubx_cfg_tp.payload.length = 1;	/* 1µS		*/
-  ubx_cfg_tp.payload.status = 1;	/* On, Positive	*/
-  ubx_cfg_tp.payload.timeRef = 1;	/* Align GPS time */
-  ubx_cfg_tp.payload.flags = 0x1;	/* Run outside lock */
-  ubx_cfg_tp.payload.antennaCableDelay = 50; /* 50 nS	*/
-
-  /* Write the new settings */
-  _ubx_send_message((ubx_message_t*)&ubx_cfg_tp,
-		    (uint8_t*)&ubx_cfg_tp.payload,
-		    sizeof(ubx_cfg_tp.payload));
-}
 /**
  * Set the GPS timepulse settings using the CFG_TP5 message
  */
