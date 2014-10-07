@@ -51,4 +51,4 @@ LINKER_FLAGS		:= -Wl,--gc-sections
 # port. When this field is specified GDB will attempt to connect to
 # this debugger on startup.
 #
-BLACKMAGIC_PATH		:= /dev/serial/by-id/usb-Black_Sphere_Technologies_Black_Magic_Probe_E1D399E0-if00
+BLACKMAGIC_PATH		:=
