@@ -44,7 +44,9 @@
  *   __data_start
  *   __data_end
  *   __bss_start
+ *   __bss_start__
  *   __bss_end
+ *   __bss_end__
  *   __end__
  *   end
  *   __heap_start
@@ -139,10 +141,12 @@ SECTIONS
 	{
 		. = ALIGN(4);
 		__bss_start = .;
+		__bss_start__ = __bss_start;
 		*(.bss .bss.*)
 		*(COMMON)
 		. = ALIGN(4);
 		__bss_end = .;
+		__bss_end__ = __bss_end;
 	} > RAM
 
 	.heap (COPY):
