@@ -1,4 +1,4 @@
-# Compiles firmware written in C and assembler for the nRF51
+# Compiles firmware written in C and assembler for the Atmel SAM D20
 # Copyright (C) 2014
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -214,7 +214,7 @@ gdbscript: Makefile config.mk
 	@$(ECHO) "file $(TARGET).elf" >> gdbscript
 ifdef BLACKMAGIC_PATH
 	@$(ECHO) "# Connect to a specified blackmagic" >> gdbscript
-	@$(ECHO) "target external-remote $(BLACKMAGIC_PATH)" >> gdbscript
+	@$(ECHO) "target extended-remote $(BLACKMAGIC_PATH)" >> gdbscript
 endif
 
 # Prints a list of symlinks to a device

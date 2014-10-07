@@ -1,5 +1,5 @@
 Much of the source code in this project is licensed by ARM or Atmel
-wuth a modified 3-clause BSD license. See file headers for more details.
+with a modified 3-clause BSD license. See file headers for more details.
 
 Everything else is under a
 [MIT License](http://opensource.org/licenses/MIT) as follows:
