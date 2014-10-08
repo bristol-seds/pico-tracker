@@ -33,7 +33,7 @@
 void si4060_shutdown(void);
 
 
-#define XO_FREQ 16000000UL
+#define XO_FREQ 16369000UL
 #define RF_FREQ_HZ 434600000.0f
 #define RF_DEV_HZ 200.0f
 

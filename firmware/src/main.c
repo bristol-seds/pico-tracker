@@ -206,6 +206,7 @@ int main(void)
 
   /* Initialise Si4060 */
   si4060_hw_init();
+  si4060_gpio_init();
   si4060_reset();
 
   /* check radio communication */
@@ -214,17 +215,17 @@ int main(void)
     while(1);
   }
 
-  /* si4060_power_up(); */
-  /* si4060_setup(MOD_TYPE_2FSK); */
+  si4060_power_up();
+  si4060_setup(MOD_TYPE_2FSK);
 
-  /* si4060_gpio_init(); */
-  /* si4060_start_tx(0); */
+  si4060_gpio_init();
+  si4060_start_tx(0);
 
   while (1) {
     /* Send the last packet */
-    //while (rtty_active());
+    while (rtty_active());
 
-    //port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
+    port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
 
     /* Send requests to the gps */
     gps_update();
@@ -236,9 +237,9 @@ int main(void)
     for (int i = 0; i < 100*1000; i++);
 
     /* Set the next packet */
-    //set_telemetry_string();
+    set_telemetry_string();
 
-    // port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
+    port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
 
     //system_sleep();
   }
