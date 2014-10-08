@@ -88,7 +88,7 @@ void si4060_power_up(void) {
   spi_select();
   spi_write(CMD_POWER_UP);
   spi_write(FUNC);
-  spi_write(0x00);/* TCXO not used */
+  spi_write(0x01);/* TCXO used */
   spi_write((uint8_t) (XO_FREQ >> 24));
   spi_write((uint8_t) (XO_FREQ >> 16));
   spi_write((uint8_t) (XO_FREQ >> 8));
