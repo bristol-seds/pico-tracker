@@ -1,5 +1,5 @@
 /*
- * <one line to give the program's name and a brief idea of what it does.>
+ * Functions for controlling Si Labs Transceivers
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,10 +22,12 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SI406X_H
-#define SI406X_H
+#ifndef SI_TRX_H
+#define SI_TRX_H
 
-void si406x_init(void);
+void si_trx_reset(void);
+void si_trx_init(void);
+
 void spi_loopback_test(void);
 
-#endif /* SI406X_H */
+#endif /* SI_TRX_H */

@@ -37,7 +37,7 @@
 #include "system/wdt.h"
 #include "timepulse.h"
 #include "telemetry.h"
-//#include "si406x.h"
+#include "si_trx.h"
 #include "si4060.h"
 #include "spi_bitbang.h"
 #include "rtty.h"
@@ -205,6 +205,8 @@ int main(void)
   gps_init();
 
   /* Initialise Si4060 */
+//  si_trx_init();
+
   si4060_hw_init();
   si4060_gpio_init();
   si4060_reset();
@@ -215,17 +217,19 @@ int main(void)
     while(1);
   }
 
+//  si_trx_ptt_on();
+
   si4060_power_up();
   si4060_setup(MOD_TYPE_2FSK);
 
   si4060_gpio_init();
   si4060_start_tx(0);
 
+  //si_trx_state_tx();
+
   while (1) {
     /* Send the last packet */
     while (rtty_active());
-
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
 
     /* Send requests to the gps */
     gps_update();
@@ -238,8 +242,6 @@ int main(void)
 
     /* Set the next packet */
     set_telemetry_string();
-
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
 
     //system_sleep();
   }
