@@ -118,7 +118,7 @@ void set_telemetry_string(void)
 
   /* sprintf */
   uint16_t len = sprintf(telemetry_string,
-			 "$$UBSEDS2,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f",
+			 "$$UBSEDSx,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f",
 			 hours, minutes, seconds, lat_fmt, lon_fmt, altitude,
 			 satillite_count, battery);
 
