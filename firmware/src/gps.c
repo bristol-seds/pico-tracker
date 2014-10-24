@@ -315,6 +315,15 @@ struct ubx_nav_timeutc gps_get_nav_timeutc()
 {
   return ubx_nav_timeutc;
 }
+/**
+ * Returns if the GPS has a position lock
+ */
+uint8_t gps_is_locked(void)
+{
+  return (ubx_nav_sol.payload.gpsFix == 0x2) ||
+    (ubx_nav_sol.payload.gpsFix == 0x3) ||
+    (ubx_nav_sol.payload.gpsFix == 0x4);
+}
 
 /**
  * Verify that the uBlox 6 GPS receiver is set to the <1g airborne

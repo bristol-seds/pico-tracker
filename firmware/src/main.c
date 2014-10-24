@@ -236,11 +236,19 @@ int main(void)
 
     gps_update();		/* Request updates from the gps */
 
-    led_on();
+    if (gps_is_locked()) {
+      led_on();
+    } else {
+      led_off();
+    }
 
     gps_update_wait();		/* Wait for the gps update */
 
-    led_off();
+    if (gps_is_locked()) {
+      led_off();
+    } else {
+      led_on();
+    }
 
     /* Set the next packet */
     set_telemetry_string();

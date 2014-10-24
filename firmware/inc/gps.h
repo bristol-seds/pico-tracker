@@ -40,6 +40,8 @@ struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();
 struct ubx_nav_timeutc gps_get_nav_timeutc();
 
+uint8_t gps_is_locked(void);
+
 void gps_init(void);
 void usart_loopback_test(void);
 
