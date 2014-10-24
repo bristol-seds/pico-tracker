@@ -362,7 +362,7 @@ float si4060_get_temperature(void)
   spi_select();
   spi_write(CMD_GET_ADC_READING);
   spi_write(0x10); /* Temperature */
-  spi_write((0xC << 4) | 0); /* UDTIME = 0xC, Att = 0 */
+  spi_write(0); /* ADC_CFG = 0 */
   spi_deselect();
 
   /* do not deselect after reading CTS */
@@ -377,12 +377,15 @@ float si4060_get_temperature(void)
   spi_read(); spi_read();
 
   /* Battery */
-  result = (spi_read() & 0x7) << 8;
-  result |= spi_read() & 0xFF;
+  spi_read(); spi_read();
+
+  /* Temperature */
+  result =  (spi_read() & 0xFF) << 8;
+  result |= (spi_read() & 0xFF);
 
   spi_deselect();
 
-  return ((((float)result) * 568.0) / 2560.0) - 297.0;
+  return (((float)result * 568.0) / 2560.0) - 297.0;
 }
 
 /*

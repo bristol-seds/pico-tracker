@@ -88,6 +88,7 @@ void set_telemetry_string(void)
 
   /* Analogue */
   float battery = get_battery();
+  float temperature = si4060_get_temperature();
 
   /* Time */
   struct ubx_nav_timeutc time = gps_get_nav_timeutc();
@@ -118,9 +119,9 @@ void set_telemetry_string(void)
 
   /* sprintf */
   uint16_t len = sprintf(telemetry_string,
-			 "$$UBSEDSx,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f",
+			 "$$UBSEDSx,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
 			 hours, minutes, seconds, lat_fmt, lon_fmt, altitude,
-			 satillite_count, battery);
+			 satillite_count, battery, temperature);
 
   sprintf(telemetry_string + len, "*%04X\n", crc_checksum(telemetry_string));
 
