@@ -165,6 +165,9 @@ void ubx_process_frame(uint8_t* frame)
 	/* Populate struct */
 	memcpy((void*)(ubx_messages[i]+1), frame + 4, payload_length);
 
+	/* Set the message state */
+	ubx_messages[i]->state = UBX_PACKET_UPDATED;
+
 	return;
       }
     }
@@ -232,6 +235,9 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
   uint8_t ubx[UBX_BUFFER_LEN];
   uint8_t* ubx_buffer = ubx;
 
+  /* Clear the message state */
+  message->state = UBX_PACKET_WAITING;
+
   /* Copy little endian */
   memcpy(ubx_buffer, &ubx_header, 2); ubx_buffer += 2; 	/* Header	*/
   memcpy(ubx_buffer, &message->id, 2); ubx_buffer += 2;	/* Message Type	*/
@@ -246,9 +252,7 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
  * Polls the GPS for packets
  */
 void _ubx_poll(ubx_message_t* message) {
-  /* Clear the packet state */
-  message->state = UBX_PACKET_WAITING;
-
+  /* Send the message */
   _ubx_send_message(message, NULL, 0);
 
   /* Wait for acknoledge */
@@ -277,15 +281,24 @@ void gps_disable_nmea(void)
 }
 
 /**
- * Sends messages to the GPS to update the messages we want
+ * Sends messages to the GPS to update the fields we want
  */
-void gps_update()
+void gps_update(void)
 {
   _ubx_send_message((ubx_message_t*)&ubx_nav_posllh, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
-  _ubx_send_message((ubx_message_t*)&ubx_cfg_gnss, NULL, 0);
+}
+/**
+ * Waits for any pending updates from the GPS
+ */
+void gps_update_wait(void)
+{
+  while (ubx_nav_posllh.state == UBX_PACKET_WAITING);
+  while (ubx_nav_sol.state == UBX_PACKET_WAITING);
+  while (ubx_nav_timeutc.state == UBX_PACKET_WAITING);
+  while (ubx_nav_status.state == UBX_PACKET_WAITING);
 }
 /**
  * Return the latest received messages

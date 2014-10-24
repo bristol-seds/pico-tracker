@@ -33,7 +33,8 @@ enum gps_error_t {
   GPS_ERROR_INVALID_FRAME,
 };
 
-void gps_update();
+void gps_update(void);
+void gps_update_wait(void);
 
 struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();

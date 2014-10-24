@@ -36,6 +36,7 @@ enum ubx_packet_state {
   UBX_PACKET_WAITING,
   UBX_PACKET_ACK,
   UBX_PACKET_NACK,
+  UBX_PACKET_UPDATED,
 };
 /** Generic UBX Message Type. Each message type extended is from this */
 typedef struct {

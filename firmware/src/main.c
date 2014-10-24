@@ -227,14 +227,13 @@ int main(void)
 
     port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
 
-    /* Send requests to the gps */
-    gps_update();
+    gps_update();		/* Request updates from the gps */
 
-    /* Wait between frames */
     led_on();
-    for (int i = 0; i < 100*1000; i++);
+
+    gps_update_wait();		/* Wait for the gps update */
+
     led_off();
-    for (int i = 0; i < 100*1000; i++);
 
     /* Set the next packet */
     set_telemetry_string();
