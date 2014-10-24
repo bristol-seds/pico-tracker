@@ -1,5 +1,5 @@
 /*
- * Functions for the UBLOX 6 GPS
+ * Functions for the UBLOX 8 GPS
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -69,6 +69,7 @@ uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
  * UBX Messages
  */
 volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x13 << 8)) };
+volatile struct ubx_cfg_gnss ubx_cfg_gnss       = { .id = (UBX_CFG | (0x3E << 8)) };
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
@@ -81,6 +82,7 @@ volatile struct ubx_nav_status ubx_nav_status	= { .id = (UBX_NAV | (0x03 << 8)) 
  */
 volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_ant,
+  (ubx_message_t*)&ubx_cfg_gnss,
   (ubx_message_t*)&ubx_cfg_nav5,
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
@@ -283,6 +285,7 @@ void gps_update()
   _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_gnss, NULL, 0);
 }
 /**
  * Return the latest received messages
@@ -341,6 +344,36 @@ void gps_set_timepulse_five(uint32_t frequency)
 		    (uint8_t*)&ubx_cfg_tp5.payload,
 		    sizeof(ubx_cfg_tp5.payload));
 }
+/**
+ * Set which GNSS constellations to use
+ */
+void gps_set_gnss(void)
+{
+  /* Read the current settings */
+  _ubx_poll((ubx_message_t*)&ubx_cfg_gnss);
+
+  switch (ubx_cfg_gnss.payload.msgVer) {
+    case 0:
+      /* For each configuration block */
+      for (uint8_t i = 0; i < ubx_cfg_gnss.payload.numConfigBlocks; i++) {
+
+	/* If it's the configuration for something other than GPS */
+	if (ubx_cfg_gnss.payload.block[i].gnssID != UBX_GNSS_GPS) {
+
+	  /* Disable this GNSS system */
+	  ubx_cfg_gnss.payload.block[i].flags &= ~0x1;
+	}
+      }
+      break;
+    default:
+      break;
+  }
+
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_gnss,
+		    (uint8_t*)&ubx_cfg_gnss.payload,
+		    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
+}
 
 /**
  * Init
@@ -385,6 +418,9 @@ void gps_init(void)
 
   /* Set the platform model */
   gps_set_platform_model();
+
+  /* Set which GNSS constellation we'd like to use */
+  gps_set_gnss();
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);

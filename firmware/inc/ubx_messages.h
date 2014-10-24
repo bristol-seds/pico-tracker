@@ -74,6 +74,26 @@ __PACKED__ struct ubx_cfg_ant {
   } payload;
 };
 /**
+ * UBX CFG GNSS
+ */
+__PACKED__ struct ubx_cfg_gnss {
+  ubx_message_id_t id;
+  enum ubx_packet_state state;
+  struct {
+    uint8_t msgVer;
+    uint8_t numTrkChHw;
+    uint8_t numTrkChUse;
+    uint8_t numConfigBlocks;
+    struct {
+      uint8_t gnssID;
+      uint8_t resTrkCh;
+      uint8_t maxTrkCh;
+      uint8_t reserved1;
+      int32_t flags;
+    } block[8];
+  } payload;
+};
+/**
  * UBX CFG NAV5 Navigation Engine Settings
  */
 __PACKED__ struct ubx_cfg_nav5 {
@@ -149,6 +169,17 @@ enum {
   UBX_PLATFORM_MODEL_AIRBORNE_1G	= 6,
   UBX_PLATFORM_MODEL_AIRBORNE_2G	= 7,
   UBX_PLATFORM_MODEL_AIRBORNE_4G	= 8,
+};
+/**
+ * UBX GNSS Systems
+ */
+enum {
+  UBX_GNSS_GPS		= 0,
+  UBX_GNSS_SBAS		= 1,
+  UBX_GNSS_GALILEO	= 2,
+  UBX_GNSS_BEIDOU	= 3,
+  UBX_GNSS_QZSS		= 5,
+  UBX_GNSS_GLONASS	= 6,
 };
 
 /**
