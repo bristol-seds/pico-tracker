@@ -121,6 +121,11 @@
 #define SI406X_TCXO_FREQUENCY	16369000
 
 /**
+ * Watchdog Timer
+ */
+#define WDT_GCLK		GCLK_GENERATOR_4
+
+/**
  * External Watchdog Timer
  */
 #define WDT_WDI_PIN		PIN_PA28

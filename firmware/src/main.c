@@ -148,24 +148,24 @@ void set_timer(uint32_t time)
   tc_start_counter(TC2);
 }
 
-/* void wdt_init() { */
-/*   /\* 64 seconds timeout. So 2^(15+6) cycles of the wdt clock *\/ */
-/*   system_gclk_gen_set_config(WDT_GCLK, */
-/* 			     GCLK_SOURCE_OSCULP32K, /\* Source 		*\/ */
-/* 			     false,		/\* High When Disabled	*\/ */
-/* 			     128,		/\* Division Factor	*\/ */
-/* 			     false,		/\* Run in standby	*\/ */
-/* 			     true);		/\* Output Pin Enable	*\/ */
-/*   system_gclk_gen_enable(WDT_GCLK); */
+void wdt_init() {
+  /* 64 seconds timeout. So 2^(15+6) cycles of the wdt clock */
+  system_gclk_gen_set_config(WDT_GCLK,
+			     GCLK_SOURCE_OSCULP32K, /* Source 		*/
+			     false,		/* High When Disabled	*/
+			     128,		/* Division Factor	*/
+			     false,		/* Run in standby	*/
+			     true);		/* Output Pin Enable	*/
+  system_gclk_gen_enable(WDT_GCLK);
 
-/*   /\* Set the watchdog timer. On 256Hz gclk 4  *\/ */
-/*   wdt_set_config(true,			/\* Lock WDT		*\/ */
-/*   		 true,			/\* Enable WDT		*\/ */
-/*   		 GCLK_GENERATOR_4,	/\* Clock Source		*\/ */
-/*   		 WDT_PERIOD_16384CLK,	/\* Timeout Period	*\/ */
-/*   		 WDT_PERIOD_NONE,	/\* Window Period	*\/ */
-/*   		 WDT_PERIOD_NONE);	/\* Early Warning Period	*\/ */
-/* } */
+  /* Set the watchdog timer. On 256Hz gclk 4  */
+  wdt_set_config(true,			/* Lock WDT		*/
+  		 true,			/* Enable WDT		*/
+  		 GCLK_GENERATOR_4,	/* Clock Source		*/
+  		 WDT_PERIOD_16384CLK,	/* Timeout Period	*/
+  		 WDT_PERIOD_NONE,	/* Window Period	*/
+  		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
+}
 
 int main(void)
 {
@@ -201,6 +201,10 @@ int main(void)
    * ---------------------------------------------------------------------------
    */
 
+  /* Set the wdt here. We should get to the first reset in one min */
+  wdt_init();
+  wdt_reset_count();
+
   led_init();
   gps_init();
 
@@ -226,6 +230,9 @@ int main(void)
     while (rtty_active());
 
     port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
+
+    /* Watchdog */
+    wdt_reset_count();
 
     gps_update();		/* Request updates from the gps */
 
