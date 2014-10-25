@@ -167,6 +167,16 @@ void wdt_init() {
   		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
 }
 
+/**
+ * Power Management
+ */
+void powermananger_init(void)
+{
+  system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
+			      PM_APBAMASK_EIC | /* EIC is unused */
+			      PM_APBAMASK_RTC); /* RTC is unused */
+}
+
 int main(void)
 {
   /**
@@ -191,6 +201,9 @@ int main(void)
   /* Configure Sleep Mode */
   system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_1); /* Disable CPU, AHB. APB still runs */
+
+  /* Configure the Power Manager */
+  powermananger_init();
 
   /* Configure the SysTick for 50Hz triggering */
   SysTick_Config(SystemCoreClock / 50);
