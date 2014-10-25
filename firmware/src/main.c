@@ -190,7 +190,7 @@ int main(void)
 
   /* Configure Sleep Mode */
   system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
-  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0);
+  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_1); /* Disable CPU, AHB. APB still runs */
 
   /* Configure the SysTick for 50Hz triggering */
   SysTick_Config(SystemCoreClock / 50);
