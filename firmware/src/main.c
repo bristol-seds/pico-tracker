@@ -217,8 +217,8 @@ void output_telemetry_string(void)
 
   /* sprintf - initial string */
   uint16_t len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
-			 "$$UBSEDSx,%02u:%02u:%02u,",
-			 hours, minutes, seconds);
+			 "$$%s,%02u:%02u:%02u,",
+			 CALLSIGN, hours, minutes, seconds);
 
   /* swap buffers */
   ARRAY_DBUFFER_SWAP(&rtty_dbuffer_string);
@@ -274,9 +274,9 @@ void output_telemetry_string(void)
 
   /* sprintf - full string */
   len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
-		 "$$UBSEDSx,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
-		 hours, minutes, seconds, lat_fmt, lon_fmt, altitude,
-		 satillite_count, battery, temperature);
+		"$$%s,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
+		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
+		altitude, satillite_count, battery, temperature);
 
   /* sprintf - checksum */
   len += sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string) + len,
