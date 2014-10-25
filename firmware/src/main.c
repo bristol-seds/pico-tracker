@@ -326,15 +326,14 @@ int main(void)
   SystemCoreClock = system_cpu_clock_get_hz();
 
   /* Configure Sleep Mode */
-  system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
-  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0); /* Disable CPU, AHB. APB still runs */
+  //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
+  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Disable CPU, AHB and APB */
 
   /* Configure the Power Manager */
   powermananger_init();
 
-  /* Configure the SysTick for 50Hz triggering */
-  SysTick_Config(SystemCoreClock / 50);
-
+  /* Timer 0 for 50Hz triggering */
+  timer0_tick_init(50);
 
   /**
    * System initialisation
@@ -365,11 +364,13 @@ int main(void)
   si4060_gpio_init();
   si4060_start_tx(0);
 
+  led_on();
+
   while (1) {
     /* Watchdog */
     wdt_reset_count();
 
-    /* Set the next packet */
+    /* Send the next packet */
     output_telemetry_string();
   }
 }
@@ -377,8 +378,11 @@ int main(void)
 /**
  * Called at 50Hz
  */
-void SysTick_Handler(void)
+void TC0_Handler(void)
 {
-  /* Output RTTY */
-  rtty_tick();
+  if (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
+    tc_clear_status(TC0, TC_STATUS_CHANNEL_0_MATCH);
+
+    rtty_tick();
+  }
 }
