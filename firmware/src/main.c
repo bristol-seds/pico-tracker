@@ -189,8 +189,8 @@ int main(void)
   SystemCoreClock = system_cpu_clock_get_hz();
 
   /* Configure Sleep Mode */
+  system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0);
-  //TODO: system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
 
   /* Configure the SysTick for 50Hz triggering */
   SysTick_Config(SystemCoreClock / 50);
@@ -255,7 +255,7 @@ int main(void)
 
     port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
 
-    //system_sleep();
+    system_sleep();
   }
 }
 
