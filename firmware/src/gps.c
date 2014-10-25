@@ -72,7 +72,9 @@ volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x13 << 8)) };
 volatile struct ubx_cfg_gnss ubx_cfg_gnss       = { .id = (UBX_CFG | (0x3E << 8)) };
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
+volatile struct ubx_cfg_pm2 ubx_cfg_pm2		= { .id = (UBX_CFG | (0x3B << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
+volatile struct ubx_cfg_rxm ubx_cfg_rxm		= { .id = (UBX_CFG | (0x11 << 8)) };
 volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
 volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
 volatile struct ubx_nav_sol ubx_nav_sol		= { .id = (UBX_NAV | (0x06 << 8)) };
@@ -85,7 +87,9 @@ volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_gnss,
   (ubx_message_t*)&ubx_cfg_nav5,
   (ubx_message_t*)&ubx_cfg_tp5,
+  (ubx_message_t*)&ubx_cfg_pm2,
   (ubx_message_t*)&ubx_cfg_prt,
+  (ubx_message_t*)&ubx_cfg_rxm,
   (ubx_message_t*)&ubx_nav_posllh,
   (ubx_message_t*)&ubx_nav_timeutc,
   (ubx_message_t*)&ubx_nav_sol,
@@ -409,7 +413,32 @@ void gps_set_gnss(void)
 		    (uint8_t*)&ubx_cfg_gnss.payload,
 		    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
 }
+/**
+ * Sets the power saving mode
+ */
+void gps_set_powermanagement(void)
+{
+  /* Read the current settings */
+  _ubx_poll((ubx_message_t*)&ubx_cfg_pm2);
 
+  /* Update for cyclic powersave mode */
+  ubx_cfg_pm2.payload.flags = UBX_PM_MODE_CYCLIC | UBX_PM_DO_NOT_ENTER_OFF;
+  ubx_cfg_pm2.payload.onTime = 30; /* 30 seconds of on time after aquisition */
+  ubx_cfg_pm2.payload.updatePeriod = 2*1000; /* Calcuate fixes every 2 seconds */
+
+  /* Enable powersave mode */
+  ubx_cfg_rxm.payload.reserved1 = 8;
+  ubx_cfg_rxm.payload.lpMode = UBX_LPMODE_POWERSAVE;
+
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_pm2,
+		    (uint8_t*)&ubx_cfg_pm2.payload,
+		    sizeof(ubx_cfg_pm2.payload));
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_rxm,
+		    (uint8_t*)&ubx_cfg_rxm.payload,
+		    sizeof(ubx_cfg_rxm.payload));
+
+}
 /**
  * Init
  */
@@ -456,6 +485,9 @@ void gps_init(void)
 
   /* Set which GNSS constellation we'd like to use */
   gps_set_gnss();
+
+  /* Set the power management settings */
+  gps_set_powermanagement();
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);
