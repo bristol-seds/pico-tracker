@@ -140,33 +140,6 @@ __PACKED__ struct ubx_cfg_tp5 {
   } payload;
 };
 /**
- * UBX CFG PM2 Extended Power Management Configuration
- */
-__PACKED__ struct ubx_cfg_pm2 {
-  ubx_message_id_t id;
-  enum ubx_packet_state state;
-  struct {
-    uint8_t version;
-    uint8_t reserved1;
-    uint8_t reserved2;
-    uint8_t reserved3;
-    uint32_t flags;
-    uint32_t updatePeriod;
-    uint32_t searchPeriod;
-    uint32_t gridOffset;
-    uint16_t onTime;
-    uint16_t minAcqTime;
-    uint16_t reserved4;
-    uint16_t reserved5;
-    uint32_t reserved6;
-    uint32_t reserved7;
-    uint8_t reserved8;
-    uint8_t reserved9;
-    uint16_t reserved10;
-    uint32_t reserved11;
-  } payload;
-};
-/**
  * UBX CFG PRT Polls the configuration for one I/O Port
  */
 __PACKED__ struct ubx_cfg_prt {
@@ -182,17 +155,6 @@ __PACKED__ struct ubx_cfg_prt {
     uint16_t outProtoMask;
     uint16_t flags;
     uint16_t res3;
-  } payload;
-};
-/**
- * UBX CFG RXM Power Managerment
- */
-__PACKED__ struct ubx_cfg_rxm {
-  ubx_message_id_t id;
-  enum ubx_packet_state state;
-  struct {
-    uint8_t reserved1;
-    uint8_t lpMode;
   } payload;
 };
 
@@ -219,30 +181,6 @@ enum {
   UBX_GNSS_BEIDOU	= 3,
   UBX_GNSS_QZSS		= 5,
   UBX_GNSS_GLONASS	= 6,
-};
-/**
- * UBX PM2 Power Management Flags
- */
-enum {
-  UBX_PM_EXTINT_EXTINT0		= (0 << 4),
-  UBX_PM_EXTINT_EXTINT1		= (1 << 4),
-  UBX_PM_EXTINT_WAKE		= (1 << 5),
-  UBX_PM_EXTINT_BACKUP		= (1 << 6),
-  UBX_PM_LIMIT_PEAK_CURRENT	= (1 << 8),
-  UBX_PM_ONLY_WAIT_FOR_TIMEFIX	= (1 << 10),
-  UBX_PM_WAKE_FOR_RTC		= (1 << 11),
-  UBX_PM_WAKE_FOR_EPHERMERIS	= (1 << 12),
-  UBX_PM_DO_NOT_ENTER_OFF	= (1 << 16),
-  UBX_PM_MODE_ON_OFF		= (0 << 17),
-  UBX_PM_MODE_CYCLIC		= (1 << 17)
-};
-/**
- * UBX RXM Power Modes
- */
-enum {
-  UBX_LPMODE_CONTINOUS	= 0,
-  UBX_LPMODE_POWERSAVE	= 1,
-  UBX_LPMODE_CONTINOUS2	= 4,
 };
 
 /**
