@@ -34,7 +34,7 @@
  */
 #define RTTY_ACTIVATE()
 #define RTTY_DEACTIVATE()
-#define RTTY_SET(b)	    port_pin_set_output_level(SI406X_GPIO1_PIN, b);
+#define RTTY_SET(b)	    port_pin_set_output_level(SI406X_GPIO1_PIN, !b);
 #define RTTY_NEXT()
 
 /**
@@ -111,21 +111,17 @@ void rtty_tick(void) {
 
     if (rtty_phase == 0) { // Start
       // Low
-      //RTTY_SET(0);
-      port_pin_set_output_level(SI406X_GPIO1_PIN, 1);
+      RTTY_SET(0);
     } else if (rtty_phase < ASCII_BITS + 1) {
       // Data
       if ((ARRAY_DBUFFER_READ_PTR(&rtty_dbuffer_string)[rtty_index] >> (rtty_phase - 1)) & 1) {
-	//RTTY_SET(1);
-	port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
+	RTTY_SET(1);
       } else {
-	//RTTY_SET(0);
-	port_pin_set_output_level(SI406X_GPIO1_PIN, 1);
+	RTTY_SET(0);
       }
     } else if (rtty_phase < BITS_PER_CHAR) { // Stop
       // High
-      //RTTY_SET(1);
-      port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
+      RTTY_SET(1);
     }
 
     rtty_phase++;
@@ -138,7 +134,7 @@ void rtty_tick(void) {
       }
     }
   } else {
-//    RTTY_DEACTIVATE();
+    RTTY_DEACTIVATE();
   }
 }
 
