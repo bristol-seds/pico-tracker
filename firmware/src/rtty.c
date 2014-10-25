@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include "samd20.h"
+#include "rtty.h"
 #include "hw_config.h"
 #include "system/port.h"
 
@@ -43,11 +44,6 @@
 #define BITS_PER_CHAR	11
 
 /**
- * Output String
- */
-#define RTTY_STRING_MAX	0x200
-
-/**
  * Where we currently are in the rtty output byte
  *
  * 0 = Start Bit
@@ -59,13 +55,12 @@ uint8_t rtty_phase;
 /**
  * Where we are in the current output string
  */
-uint32_t rtty_index;
+int32_t rtty_index;
 
 /**
  * Details of the string that is currently being output
  */
-char rtty_string[RTTY_STRING_MAX];
-uint32_t rtty_string_length = 0;
+int32_t rtty_string_length = 0;
 
 /**
  * Returns 1 if we're currently outputting.
@@ -75,25 +70,35 @@ int rtty_active(void) {
 }
 
 /**
- * Sets an output string.
+ * Starts RTTY output
  *
- * Returns 0 on success, 1 if a string is already active or 2 if the
- * specified string was too long.
+ * Returns 0 on success, 1 if already active
  */
-int rtty_set_string(char* string, uint32_t length) {
-  if (length > RTTY_STRING_MAX) return 2; // To long
-
+int rtty_start(void) {
   if (!rtty_active()) {
-    // Copy
-    memcpy(rtty_string, string, length);
-    rtty_string_length = length;
-    // Initialise
+
+    /* Initialise */
+    rtty_string_length = RTTY_STRING_MAX;
     rtty_index = 0;
     rtty_phase = 0;
 
-    return 0; // Success
+    return 0; /* Success */
   } else {
-    return 1; // Already active
+    return 1; /* Already active */
+  }
+}
+/**
+ * Returns the index of the current byte being outputted from the buffer
+ */
+int32_t rtty_get_index(void) {
+  return rtty_index;
+}
+/**
+ * Sets the final length of the RTTY string
+ */
+void rtty_set_length(int32_t length) {
+  if (length <= RTTY_STRING_MAX) {
+    rtty_string_length = length;
   }
 }
 
@@ -110,7 +115,7 @@ void rtty_tick(void) {
       port_pin_set_output_level(SI406X_GPIO1_PIN, 1);
     } else if (rtty_phase < ASCII_BITS + 1) {
       // Data
-      if ((rtty_string[rtty_index] >> (rtty_phase - 1)) & 1) {
+      if ((ARRAY_DBUFFER_READ_PTR(&rtty_dbuffer_string)[rtty_index] >> (rtty_phase - 1)) & 1) {
 	//RTTY_SET(1);
 	port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
       } else {

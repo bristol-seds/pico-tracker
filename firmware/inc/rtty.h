@@ -25,8 +25,21 @@
 #ifndef RTTY_H
 #define RTTY_H
 
+#include "util/dbuffer.h"
+
+/**
+ * Output String
+ */
+#define RTTY_STRING_MAX	0x200
+/**
+ * It's actually a double buffer which we swap for mid-string updates
+ */
+ARRAY_DBUFFER_T(char, RTTY_STRING_MAX) rtty_dbuffer_string;
+
 int rtty_active(void);
-int rtty_set_string(char* string, uint32_t length);
+int rtty_start(void);
+int32_t rtty_get_index(void);
+void rtty_set_length(int32_t length);
 void rtty_tick(void);
 
 #endif /* RTTY_H */

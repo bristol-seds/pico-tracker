@@ -281,24 +281,37 @@ void gps_disable_nmea(void)
 }
 
 /**
- * Sends messages to the GPS to update the fields we want
+ * Sends messages to the GPS to update the time
  */
-void gps_update(void)
+void gps_update_time(void)
+{
+  _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
+};
+/**
+ * Sends messages to the GPS to update the position
+ */
+void gps_update_position(void)
 {
   _ubx_send_message((ubx_message_t*)&ubx_nav_posllh, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
-  _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
-  _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
+
+  // _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
 }
 /**
- * Waits for any pending updates from the GPS
+ * Indicates a pending time update from the GPS
  */
-void gps_update_wait(void)
+int gps_update_time_pending(void)
 {
-  while (ubx_nav_posllh.state == UBX_PACKET_WAITING);
-  while (ubx_nav_sol.state == UBX_PACKET_WAITING);
-  while (ubx_nav_timeutc.state == UBX_PACKET_WAITING);
-  while (ubx_nav_status.state == UBX_PACKET_WAITING);
+  return (ubx_nav_timeutc.state == UBX_PACKET_WAITING);
+}
+/**
+ * Indicates a pending position update from the GPS
+ */
+int gps_update_position_pending(void)
+{
+  return (ubx_nav_posllh.state == UBX_PACKET_WAITING) ||
+    (ubx_nav_sol.state == UBX_PACKET_WAITING);
+  //(ubx_nav_status.state == UBX_PACKET_WAITING);
 }
 /**
  * Return the latest received messages

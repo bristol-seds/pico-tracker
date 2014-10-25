@@ -34,14 +34,18 @@
 #include "system/port.h"
 #include "tc/tc_driver.h"
 #include "gps.h"
+#include "ubx_messages.h"
 #include "system/wdt.h"
 #include "timepulse.h"
 #include "telemetry.h"
 //#include "si406x.h"
+#include "analogue.h"
 #include "si4060.h"
 #include "spi_bitbang.h"
 #include "rtty.h"
 #include "system/interrupt.h"
+
+#define CALLSIGN	"UBSEDSx"
 
 void si4060_hw_init(void)
 {
@@ -177,6 +181,129 @@ void powermananger_init(void)
 			      PM_APBAMASK_RTC); /* RTC is unused */
 }
 
+
+/**
+ * Telemetry String
+ * =============================================================================
+ */
+void output_telemetry_string(void)
+{
+  double lat_fmt = 0.0;
+  double lon_fmt = 0.0;
+  uint32_t altitude = 0;
+
+  /**
+   * Callsign, Time
+   * ---------------------------------------------------------------------------
+   */
+
+  /* GPS Time */
+  gps_update_time();
+
+  /* Sleep Wait */
+  while (gps_update_time_pending()) {
+    system_sleep();
+  }
+  for (int i = 0; i < 100*1000; i++);
+
+  /* Time */
+  struct ubx_nav_timeutc time = gps_get_nav_timeutc();
+  uint8_t hours = time.payload.hour;
+  uint8_t minutes = time.payload.min;
+  uint8_t seconds = time.payload.sec;
+
+  /* init double buffers */
+  ARRAY_DBUFFER_INIT(&rtty_dbuffer_string);
+
+  /* sprintf - initial string */
+  uint16_t len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
+			 "$$UBSEDSx,%02u:%02u:%02u,",
+			 hours, minutes, seconds);
+
+  /* swap buffers */
+  ARRAY_DBUFFER_SWAP(&rtty_dbuffer_string);
+
+  /* start */
+  rtty_start();
+
+  /**
+   * Position, Status, Analogue, Checksum
+   * ---------------------------------------------------------------------------
+   */
+
+  /* Analogue */
+  float battery = get_battery();
+  float temperature = si4060_get_temperature();
+
+  /* Sleep Wait */
+  while (rtty_get_index() < (len - 4)) {
+    system_sleep();
+  }
+
+  /* Request updates from the gps */
+  gps_update_position();
+  if (gps_is_locked()) {
+    led_on();
+  } else {
+    led_off();
+  }
+
+  /* Wait for the gps update. Move on if it's urgent */
+  while (gps_update_position_pending() && rtty_get_index() < (len - 1)) {
+    system_sleep();
+  }
+
+  if (gps_is_locked()) {
+    led_off();
+  } else {
+    led_on();
+  }
+
+  /* GPS Status */
+  struct ubx_nav_sol sol = gps_get_nav_sol();
+  uint8_t lock = sol.payload.gpsFix;
+  uint8_t satillite_count = sol.payload.numSV;
+
+  /* GPS Position */
+  if (lock == 0x2 || lock == 0x3 || lock == 0x4) {
+    struct ubx_nav_posllh pos = gps_get_nav_posllh();
+    lat_fmt = (double)pos.payload.lat / 10000000.0;
+    lon_fmt = (double)pos.payload.lon / 10000000.0;
+    altitude = pos.payload.height / 1000;
+  }
+
+  /* sprintf - full string */
+  len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
+		 "$$UBSEDSx,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
+		 hours, minutes, seconds, lat_fmt, lon_fmt, altitude,
+		 satillite_count, battery, temperature);
+
+  /* sprintf - checksum */
+  len += sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string) + len,
+		 "*%04X\n",
+		 crc_checksum(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string)));
+
+  /* swap buffers */
+  ARRAY_DBUFFER_SWAP(&rtty_dbuffer_string);
+
+  /**
+   * End
+   * ---------------------------------------------------------------------------
+   */
+
+  /* Set the final length */
+  rtty_set_length(len);
+
+  /* Sleep Wait */
+  while (rtty_active()) {
+    system_sleep();
+  }
+}
+
+/**
+ * MAIN
+ * =============================================================================
+ */
 int main(void)
 {
   /**
@@ -200,7 +327,7 @@ int main(void)
 
   /* Configure Sleep Mode */
   system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
-  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_1); /* Disable CPU, AHB. APB still runs */
+  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_0); /* Disable CPU, AHB. APB still runs */
 
   /* Configure the Power Manager */
   powermananger_init();
@@ -239,36 +366,11 @@ int main(void)
   si4060_start_tx(0);
 
   while (1) {
-    /* Send the last packet */
-    while (rtty_active());
-
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-
     /* Watchdog */
     wdt_reset_count();
 
-    gps_update();		/* Request updates from the gps */
-
-    if (gps_is_locked()) {
-      led_on();
-    } else {
-      led_off();
-    }
-
-    gps_update_wait();		/* Wait for the gps update */
-
-    if (gps_is_locked()) {
-      led_off();
-    } else {
-      led_on();
-    }
-
     /* Set the next packet */
-    set_telemetry_string();
-
-    port_pin_set_output_level(SI406X_GPIO0_PIN, 1);
-
-    system_sleep();
+    output_telemetry_string();
   }
 }
 
