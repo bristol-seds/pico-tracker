@@ -87,7 +87,7 @@ void main(void)
   int8_t tones[64];
 
 
-  olivia_mfsk_encode_block(buffer, tones);
+  olivia_mfsk_encode_block(test_string, tones);
 
 
   /* Debug printout */
