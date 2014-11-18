@@ -25,7 +25,9 @@
 #ifndef SI_TRX_H
 #define SI_TRX_H
 
-void si_trx_reset(void);
+void si_trx_on(void);
+void si_trx_off(void);
+
 void si_trx_init(void);
 
 void spi_loopback_test(void);

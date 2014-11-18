@@ -62,10 +62,10 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data)
    * procedure.
    */
 
-  for (int i = 0; i < 20000; i++); // 20µS
-  _si_trx_cs_enable();
-
   do {
+    for (int i = 0; i < 200; i++); /* Approx. 20µS */
+    _si_trx_cs_enable();
+
     /* Issue READ_CMD_BUFF */
     spi_bitbang_transfer(SI_CMD_READ_CMD_BUFF);
     response = spi_bitbang_transfer(0xFF);
@@ -75,8 +75,6 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data)
 
     /* Otherwise repeat the procedure */
     _si_trx_cs_disable();
-    for (int i = 0; i < 200; i++); // 20µS
-    _si_trx_cs_enable();
 
   } while (1); /* TODO: Timeout? */
 
@@ -112,7 +110,7 @@ static void si_trx_power_up(uint8_t clock_source, uint32_t xo_freq)
   buffer[5] = (xo_freq >> 8);
   buffer[6] = (xo_freq);
 
-  _si_trx_transfer(7, 0, buffer + 1);
+  _si_trx_transfer(7, 0, buffer);
 }
 /**
  * Gets the 16 bit part number
@@ -128,11 +126,29 @@ static uint16_t si_trx_get_part_info(void)
   return (buffer[1] << 8) | buffer[2];
 }
 /**
+ * Clears pending interrupts. Set the corresponding bit low to clear
+ * the interrupt.
+ */
+static void si_trx_clear_pending_interrupts(uint8_t packet_handler_clear_pending,
+                                            uint8_t chip_clear_pending)
+{
+  uint8_t buffer[4];
+
+  buffer[0] = SI_CMD_GET_INT_STATUS;
+  buffer[1] = packet_handler_clear_pending & ((1<<5)|(1<<1)); /* Mask used bits */
+  buffer[2] = 0;
+  buffer[3] = chip_clear_pending;
+
+  _si_trx_transfer(4, 0, buffer);
+
+  /* This command returns the interrupts status, but we don't use it */
+}
+/**
  * Sets the GPIO configuration for each pin
  */
 static void si_trx_gpio_configuration(si_gpio_t gpio0, si_gpio_t gpio1,
-			       si_gpio_t gpio2, si_gpio_t gpio3,
-			       uint8_t drive_strength)
+                                      si_gpio_t gpio2, si_gpio_t gpio3,
+                                      uint8_t drive_strength)
 {
   uint8_t buffer[8];
   buffer[0] = SI_CMD_GPIO_PIN_CFG;
@@ -157,6 +173,16 @@ static void si_trx_frequency_control_set_divider(uint8_t integer_divider,
   _si_trx_set_property_32(SI_PROPERTY_GROUP_FREQ_CONTROL,
 			  SI_FREQ_CONTROL_INTE,
 			  divider);
+}
+/**
+ * Sets the step size between adjacent channels, in units of the
+ * resolution of the frac-n pll synthesiser.
+ */
+static void si_trx_frequency_control_set_channel_step_size(uint16_t step_size)
+{
+  _si_trx_set_property_16(SI_PROPERTY_GROUP_FREQ_CONTROL,
+                          SI_FREQ_CONTROL_CHANNEL_STEP_SIZE,
+                          step_size);
 }
 /**
  * Sets the output divider of the frac-n pll synthesiser
@@ -260,58 +286,31 @@ static void si_trx_set_frequency(uint32_t frequency)
  */
 void si_trx_reset(void)
 {
-  _si_trx_sdn_enable();  // active high shutdown = reset
+  _si_trx_sdn_enable();  /* active high shutdown = reset */
 
-  for (int i = 0; i < 15*10000; i++); // 15ms
-  _si_trx_sdn_disable();   // booting
-  for (int i = 0; i < 15*10000; i++); // 15ms
+  for (int i = 0; i < 15*10000; i++); /* Approx. 15ms */
+  _si_trx_sdn_disable();   /* booting */
+  for (int i = 0; i < 15*10000; i++); /* Approx. 15ms */
 
 
-  //const uint8_t PART_INFO_command[] = {0x01}; // Part Info
-  //_si_trx_transfer(1, 9, PART_INFO_command);
   uint16_t part_number = si_trx_get_part_info();
 
-
-
+  /* Power Up */
   si_trx_power_up(SI_POWER_UP_TCXO, VCXO_FREQUENCY);
-  /* no patch, boot main app. img, FREQ_VCXO, return 1 byte */
-  //const uint8_t init_command[] = {0x02, 0x01, 0x01, x3, x2, x1, x0};
-  //_si_trx_transfer(7, 1 , init_command);
 
+  /* Clear pending interrupts */
+  si_trx_clear_pending_interrupts(0, 0);
 
-
-
-
-  //  Clear all pending interrupts and get the interrupt status back
-  const uint8_t get_int_status_command[] = {0x20, 0x00, 0x00, 0x00};
-  _si_trx_transfer(4, 9, get_int_status_command);
-  // cliPrint("Radio ready\n");
-
-  const uint8_t set_int_ctrl_enable[] = {0x11, 0x01, 0x01, 0x00, 0x00};
-  _si_trx_transfer(5, 1, set_int_ctrl_enable);
-  // cliPrint("Setting no Interrupts (see WDS)\n");
-
-
+  /* Disable all interrupts */
+  _si_trx_set_property_8(SI_PROPERTY_GROUP_INT_CTL, SI_INT_CTL_ENABLE, 0);
 
   // TODO Lower drive dtrength
+  /* Configure GPIOs */
   si_trx_gpio_configuration(SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
 			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
 			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
 			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
 			    SI_GPIO_PIN_CFG_DRV_STRENGTH_HIGH);
-
-
-
-
-  //const uint8_t set_global_config1[] = {0x11, 0x00, 0x01, 0x03, 0x60};
-  //_si_trx_transfer(5, 1, set_global_config1);
-  // Sequencer Mode = Fast, Fifo = Half Duplex
-  // cliPrint("Setting special global Config 1 changes (see WDS)\n");
-
-  // const uint8_t set_global_xo_tune_command[] = {0x11, 0x00, 0x01, 0x00, 0x00};
-  //_si_trx_transfer(5, 1, set_global_xo_tune_command);
-  // cliPrint("Setting no additional capacitance on VXCO\n");
-
 
   si_trx_set_frequency(RADIO_FREQUENCY);
   si_trx_set_tx_power(RADIO_POWER);
@@ -325,20 +324,25 @@ void si_trx_reset(void)
   si_trx_state_tx_tune();
 }
 
-void si_trx_ptt_on(void)
+/**
+ * Enables the radio and starts transmitting
+ */
+void si_trx_on(void)
 {
   si_trx_reset();
   si_trx_state_tx();
 }
-
-void si_trx_ptt_off(void)
+/**
+ * Disables the radio and places it in shutdown
+ */
+void si_trx_off(void)
 {
   si_trx_state_ready();
   _si_trx_sdn_enable();
 }
 
 /**
- * Initialises the radio hardware
+ * Initialises the radio interface to the radio
  */
 void si_trx_init(void)
 {
@@ -379,14 +383,6 @@ void si_trx_init(void)
   spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
 		   SI406X_SERCOM_MISO_PIN,
 		   SI406X_SERCOM_SCK_PIN);
-
-  /* Boot */
-  for (int i = 0; i < 15*10000; i++); // 15ms
-  _si_trx_sdn_disable();
-  for (int i = 0; i < 15*10000; i++); // 15ms
-
-  const uint8_t PART_INFO_command[] = {0x01}; // Part Info
-  _si_trx_transfer(1, 9, PART_INFO_command);
 }
 
 

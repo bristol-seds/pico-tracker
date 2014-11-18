@@ -171,6 +171,14 @@ enum {
   SI_PROPERTY_GROUP_FREQ_CONTROL	= 0x40,
 };
 /**
+ * Si Interrupt Control Properties
+ */
+enum {
+  SI_INT_CTL_ENABLE			= 0x00,
+  SI_INT_CTL_PH_ENABLE			= 0x01,
+  SI_INT_CTL_CHIP_ENABLE		= 0x02,
+};
+/**
  * Si Global Properties
  */
 enum {

@@ -38,11 +38,9 @@
 #include "system/wdt.h"
 #include "timepulse.h"
 #include "telemetry.h"
-
 #include "si_trx.h"
-
+#include "si_trx_defs.h"
 #include "analogue.h"
-#include "si4060.h"
 #include "spi_bitbang.h"
 #include "rtty.h"
 #include "system/interrupt.h"
@@ -332,7 +330,7 @@ int main(void)
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Disable CPU, AHB and APB */
 
   /* Configure the Power Manager */
-  powermananger_init();
+  //powermananger_init();
 
   /* Timer 0 for 50Hz triggering */
   timer0_tick_init(50);
@@ -343,40 +341,23 @@ int main(void)
    */
 
   /* Set the wdt here. We should get to the first reset in one min */
-  wdt_init();
-  wdt_reset_count();
+  //wdt_init();
+  //wdt_reset_count();
 
   led_init();
   gps_init();
 
   /* Initialise Si4060 */
-//  si_trx_init();
+  si_trx_init();
 
-  si4060_hw_init();
-  si4060_gpio_init();
-  si4060_reset();
-
-  /* check radio communication */
-  int i = si4060_part_info();
-  if (i != 0x4063) {
-    while(1);
-  }
-
-//  si_trx_ptt_on();
-
-  si4060_power_up();
-  si4060_setup(MOD_TYPE_2FSK);
-
-  si4060_gpio_init();
-  si4060_start_tx(0);
-
-  //si_trx_state_tx();
+  /* Start transmitting */
+  si_trx_on();
 
   led_on();
 
   while (1) {
     /* Watchdog */
-    wdt_reset_count();
+    //wdt_reset_count();
 
     /* Send the next packet */
     output_telemetry_string();
