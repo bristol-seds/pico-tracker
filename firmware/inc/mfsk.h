@@ -27,6 +27,6 @@
 
 #include "samd20.h"
 
-void olivia_mfsk_encode_block(char* buffer, int8_t* tones);
+void olivia_mfsk_encode_block(char* buffer, uint8_t* tones);
 
 #endif /* MFSK_H */
