@@ -146,9 +146,9 @@ static void si_trx_clear_pending_interrupts(uint8_t packet_handler_clear_pending
 /**
  * Sets the GPIO configuration for each pin
  */
-static void si_trx_gpio_configuration(si_gpio_t gpio0, si_gpio_t gpio1,
-                                      si_gpio_t gpio2, si_gpio_t gpio3,
-                                      uint8_t drive_strength)
+static void si_trx_set_gpio_configuration(si_gpio_t gpio0, si_gpio_t gpio1,
+                                          si_gpio_t gpio2, si_gpio_t gpio3,
+                                          uint8_t drive_strength)
 {
   uint8_t buffer[8];
   buffer[0] = SI_CMD_GPIO_PIN_CFG;
@@ -306,11 +306,11 @@ void si_trx_reset(void)
 
   // TODO Lower drive dtrength
   /* Configure GPIOs */
-  si_trx_gpio_configuration(SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
-			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
-			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
-			    SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
-			    SI_GPIO_PIN_CFG_DRV_STRENGTH_HIGH);
+  si_trx_set_gpio_configuration(SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
+                                SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
+                                SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
+                                SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
+                                SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
   si_trx_set_frequency(RADIO_FREQUENCY);
   si_trx_set_tx_power(RADIO_POWER);
