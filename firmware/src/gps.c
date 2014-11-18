@@ -1,5 +1,5 @@
 /*
- * Functions for the UBLOX 6 GPS
+ * Functions for the UBLOX 8 GPS
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -69,6 +69,7 @@ uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
  * UBX Messages
  */
 volatile struct ubx_cfg_ant ubx_cfg_ant		= { .id = (UBX_CFG | (0x13 << 8)) };
+volatile struct ubx_cfg_gnss ubx_cfg_gnss       = { .id = (UBX_CFG | (0x3E << 8)) };
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
@@ -81,6 +82,7 @@ volatile struct ubx_nav_status ubx_nav_status	= { .id = (UBX_NAV | (0x03 << 8)) 
  */
 volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_ant,
+  (ubx_message_t*)&ubx_cfg_gnss,
   (ubx_message_t*)&ubx_cfg_nav5,
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
@@ -163,6 +165,9 @@ void ubx_process_frame(uint8_t* frame)
 	/* Populate struct */
 	memcpy((void*)(ubx_messages[i]+1), frame + 4, payload_length);
 
+	/* Set the message state */
+	ubx_messages[i]->state = UBX_PACKET_UPDATED;
+
 	return;
       }
     }
@@ -230,6 +235,9 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
   uint8_t ubx[UBX_BUFFER_LEN];
   uint8_t* ubx_buffer = ubx;
 
+  /* Clear the message state */
+  message->state = UBX_PACKET_WAITING;
+
   /* Copy little endian */
   memcpy(ubx_buffer, &ubx_header, 2); ubx_buffer += 2; 	/* Header	*/
   memcpy(ubx_buffer, &message->id, 2); ubx_buffer += 2;	/* Message Type	*/
@@ -244,9 +252,7 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
  * Polls the GPS for packets
  */
 void _ubx_poll(ubx_message_t* message) {
-  /* Clear the packet state */
-  message->state = UBX_PACKET_WAITING;
-
+  /* Send the message */
   _ubx_send_message(message, NULL, 0);
 
   /* Wait for acknoledge */
@@ -275,14 +281,37 @@ void gps_disable_nmea(void)
 }
 
 /**
- * Sends messages to the GPS to update the messages we want
+ * Sends messages to the GPS to update the time
  */
-void gps_update()
+void gps_update_time(void)
+{
+  _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
+};
+/**
+ * Sends messages to the GPS to update the position
+ */
+void gps_update_position(void)
 {
   _ubx_send_message((ubx_message_t*)&ubx_nav_posllh, NULL, 0);
   _ubx_send_message((ubx_message_t*)&ubx_nav_sol, NULL, 0);
-  _ubx_send_message((ubx_message_t*)&ubx_nav_timeutc, NULL, 0);
-  _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
+
+  // _ubx_send_message((ubx_message_t*)&ubx_nav_status, NULL, 0);
+}
+/**
+ * Indicates a pending time update from the GPS
+ */
+int gps_update_time_pending(void)
+{
+  return (ubx_nav_timeutc.state == UBX_PACKET_WAITING);
+}
+/**
+ * Indicates a pending position update from the GPS
+ */
+int gps_update_position_pending(void)
+{
+  return (ubx_nav_posllh.state == UBX_PACKET_WAITING) ||
+    (ubx_nav_sol.state == UBX_PACKET_WAITING);
+  //(ubx_nav_status.state == UBX_PACKET_WAITING);
 }
 /**
  * Return the latest received messages
@@ -298,6 +327,15 @@ struct ubx_nav_sol gps_get_nav_sol()
 struct ubx_nav_timeutc gps_get_nav_timeutc()
 {
   return ubx_nav_timeutc;
+}
+/**
+ * Returns if the GPS has a position lock
+ */
+uint8_t gps_is_locked(void)
+{
+  return (ubx_nav_sol.payload.gpsFix == 0x2) ||
+    (ubx_nav_sol.payload.gpsFix == 0x3) ||
+    (ubx_nav_sol.payload.gpsFix == 0x4);
 }
 
 /**
@@ -340,6 +378,36 @@ void gps_set_timepulse_five(uint32_t frequency)
   _ubx_send_message((ubx_message_t*)&ubx_cfg_tp5,
 		    (uint8_t*)&ubx_cfg_tp5.payload,
 		    sizeof(ubx_cfg_tp5.payload));
+}
+/**
+ * Set which GNSS constellations to use
+ */
+void gps_set_gnss(void)
+{
+  /* Read the current settings */
+  _ubx_poll((ubx_message_t*)&ubx_cfg_gnss);
+
+  switch (ubx_cfg_gnss.payload.msgVer) {
+    case 0:
+      /* For each configuration block */
+      for (uint8_t i = 0; i < ubx_cfg_gnss.payload.numConfigBlocks; i++) {
+
+	/* If it's the configuration for something other than GPS */
+	if (ubx_cfg_gnss.payload.block[i].gnssID != UBX_GNSS_GPS) {
+
+	  /* Disable this GNSS system */
+	  ubx_cfg_gnss.payload.block[i].flags &= ~0x1;
+	}
+      }
+      break;
+    default:
+      break;
+  }
+
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_gnss,
+		    (uint8_t*)&ubx_cfg_gnss.payload,
+		    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
 }
 
 /**
@@ -385,6 +453,9 @@ void gps_init(void)
 
   /* Set the platform model */
   gps_set_platform_model();
+
+  /* Set which GNSS constellation we'd like to use */
+  gps_set_gnss();
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);

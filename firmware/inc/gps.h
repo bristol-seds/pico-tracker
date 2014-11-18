@@ -33,11 +33,16 @@ enum gps_error_t {
   GPS_ERROR_INVALID_FRAME,
 };
 
-void gps_update();
+void gps_update_time(void);
+void gps_update_position(void);
+int gps_update_time_pending(void);
+int gps_update_position_pending(void);
 
 struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();
 struct ubx_nav_timeutc gps_get_nav_timeutc();
+
+uint8_t gps_is_locked(void);
 
 void gps_init(void);
 void usart_loopback_test(void);

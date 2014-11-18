@@ -25,6 +25,7 @@
 #ifndef TELEMETRY_H
 #define TELEMETRY_H
 
-void set_telemetry_string(void);
+uint16_t crc_checksum(char *string);
+void timer0_tick_init(uint32_t frequency);
 
 #endif /* TELEMETRY_H */

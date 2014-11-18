@@ -165,6 +165,6 @@ void wdt_reset_count(void)
 
   WDT_WAIT_FOR_SYNC(hw);
 
-  /* Disable the Watchdog module */
+  /* Reset the Watchdog module */
   hw->CLEAR.reg = WDT_CLEAR_CLEAR_KEY;
 }

@@ -26,16 +26,10 @@
 #include <string.h>
 
 #include "samd20.h"
-#include "semihosting.h"
-#include "analogue.h"
-#include "gps.h"
-#include "rtty.h"
-#include "ubx_messages.h"
-#include "si4060.h"
+#include "system/gclk.h"
+#include "system/interrupt.h"
+#include "tc/tc_driver.h"
 
-//#define SEMIHOST_LOG
-
-char telemetry_string[0x200];
 
 /**
  * CRC Function for the XMODEM protocol.
@@ -77,52 +71,46 @@ uint16_t crc_checksum(char *string)
 
   return crc;
 }
+
 /**
- * Sets output telemetry
+ * Initialises a timer interupt at the given frequency
  */
-void set_telemetry_string(void)
+void timer0_tick_init(uint32_t frequency)
 {
-  double lat_fmt = 0.0;
-  double lon_fmt = 0.0;
-  uint32_t altitude = 0;
+  /* Calculate the wrap value for the given frequency */
+  uint32_t gclk0_frequency = system_gclk_chan_get_hz(0);
+  uint32_t count = gclk0_frequency / frequency;
 
-  /* Analogue */
-  float battery = get_battery();
+  /* Configure Timer 0 */
+  bool t0_capture_channel_enables[]    = {false, false};
+  uint32_t t0_compare_channel_values[] = {count, 0x0000};
+  tc_init(TC0,
+	  GCLK_GENERATOR_0,
+	  TC_COUNTER_SIZE_32BIT,
+	  TC_CLOCK_PRESCALER_DIV1,
+	  TC_WAVE_GENERATION_MATCH_FREQ,
+	  TC_RELOAD_ACTION_GCLK,
+	  TC_COUNT_DIRECTION_UP,
+	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
+	  false,			/* Oneshot  */
+	  true,				/* Run in standby */
+	  0x0000,			/* Initial value */
+	  count,			/* Top value */
+	  t0_capture_channel_enables,	/* Capture Channel Enables */
+	  t0_compare_channel_values);	/* Compare Channels Values */
 
-  /* Time */
-  struct ubx_nav_timeutc time = gps_get_nav_timeutc();
-  uint8_t hours = time.payload.hour;
-  uint8_t minutes = time.payload.min;
-  uint8_t seconds = time.payload.sec;
+  /* Enable Events */
+  struct tc_events event;
+  memset(&event, 0, sizeof(struct tc_events));
+  event.generate_event_on_compare_channel[0] = true;
+  event.event_action = TC_EVENT_ACTION_RETRIGGER;
+  tc_enable_events(TC0, &event);
 
-  /* GPS Status */
-  struct ubx_nav_sol sol = gps_get_nav_sol();
-  uint8_t lock = sol.payload.gpsFix;
-  uint8_t satillite_count = sol.payload.numSV;
+  /* Enable Interrupt */
+  TC0->COUNT32.INTENSET.reg = (1 << 4);
+  irq_register_handler(TC0_IRQn, 0); /* Highest Priority */
 
-  /* GPS Position */
-  if (lock == 0x2 || lock == 0x3 || lock == 0x4) {
-    struct ubx_nav_posllh pos = gps_get_nav_posllh();
-    lat_fmt = (double)pos.payload.lat / 10000000.0;
-    lon_fmt = (double)pos.payload.lon / 10000000.0;
-    altitude = pos.payload.height / 1000;
-  }
-
-
-//#ifdef SEMIHOST_LOG
-//  semihost_printf("Batt %f, Temp %f\n", battery, temperature);
-//  semihost_printf("%02.7f,%03.7f,%ld\n", lat_fmt, lon_fmt, altitude);
-//  semihost_printf("Lock: %d Sats: %d\n", lock, satillite_count);
-//  semihost_printf("%02u:%02u:%02u\n", hours, minutes, seconds);
-//#endif
-
-  /* sprintf */
-  uint16_t len = sprintf(telemetry_string,
-			 "$$UBSEDS2,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f",
-			 hours, minutes, seconds, lat_fmt, lon_fmt, altitude,
-			 satillite_count, battery);
-
-  sprintf(telemetry_string + len, "*%04X\n", crc_checksum(telemetry_string));
-
-  rtty_set_string(telemetry_string, strlen(telemetry_string));
+  /* Enable Timer */
+  tc_enable(TC0);
+  tc_start_counter(TC0);
 }
