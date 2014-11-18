@@ -25,6 +25,8 @@
 #ifndef SI_TRX_H
 #define SI_TRX_H
 
+float si_trx_get_temperature(void);
+
 void si_trx_on(void);
 void si_trx_off(void);
 

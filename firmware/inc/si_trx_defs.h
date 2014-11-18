@@ -150,6 +150,24 @@ enum {
 };
 
 /**
+ * Si Get ADC reading
+ */
+enum {
+  SI_GET_ADC_READING_TEMPERATURE	= (1 << 4),
+  SI_GET_ADC_READING_BATTERY		= (1 << 3),
+  SI_GET_ADC_READING_GPIO		= (1 << 2),
+  SI_GET_ADC_READING_GPIO_PIN_GPIO3	= 3,
+  SI_GET_ADC_READING_GPIO_PIN_GPIO2	= 2,
+  SI_GET_ADC_READING_GPIO_PIN_GPIO1	= 1,
+  SI_GET_ADC_READING_GPIO_PIN_GPIO0	= 0,
+  SI_GET_ADC_READING_RANGE_0V8		= 0,
+  SI_GET_ADC_READING_RANGE_1V6		= 4,
+  SI_GET_ADC_READING_RANGE_3V2		= 5,
+  SI_GET_ADC_READING_RANGE_2V4		= 8,
+  SI_GET_ADC_READING_RANGE_3V6		= 9
+};
+
+/**
  * =============================================================================
  *                         PROPERTY DEFINITIONS
  * =============================================================================

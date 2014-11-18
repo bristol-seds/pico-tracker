@@ -163,6 +163,40 @@ static void si_trx_set_gpio_configuration(si_gpio_t gpio0, si_gpio_t gpio1,
   _si_trx_transfer(8, 0, buffer);
 }
 /**
+ * Gets readings from the auxillary ADC
+ */
+static void si_trx_get_adc_reading(uint8_t enable, uint8_t configuration,
+                                   uint16_t* gpio_value,
+                                   uint16_t* battery_value,
+                                   uint16_t* temperature_value)
+{
+  uint8_t buffer[6];
+  buffer[0] = SI_CMD_GET_ADC_READING;
+  buffer[1] = enable;
+  buffer[2] = configuration;
+
+  _si_trx_transfer(3, 6, buffer);
+
+  *gpio_value = ((buffer[0] & 0x7) << 8) | buffer[1];
+  *battery_value = ((buffer[2] & 0x7) << 8) | buffer[3];
+  *temperature_value = ((buffer[4] & 0x7) << 8) | buffer[5];
+}
+/**
+ * Returns the measured internal die temperature of the radio
+ */
+float si_trx_get_temperature(void)
+{
+  uint16_t raw_gpio, raw_battery, raw_temperature;
+
+  /* Get the reading from the adc */
+  si_trx_get_adc_reading(SI_GET_ADC_READING_TEMPERATURE, 0,
+                         &raw_gpio, &raw_battery, &raw_temperature);
+
+  return (((float)raw_temperature * 568.0) / 2560.0) - 297.0;
+}
+
+
+/**
  * Sets the internal frac-n pll synthesiser divisiors
  */
 static void si_trx_frequency_control_set_divider(uint8_t integer_divider,
@@ -304,7 +338,6 @@ void si_trx_reset(void)
   /* Disable all interrupts */
   _si_trx_set_property_8(SI_PROPERTY_GROUP_INT_CTL, SI_INT_CTL_ENABLE, 0);
 
-  // TODO Lower drive dtrength
   /* Configure GPIOs */
   si_trx_set_gpio_configuration(SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,

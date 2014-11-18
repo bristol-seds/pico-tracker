@@ -47,49 +47,6 @@
 
 #define CALLSIGN	"UBSEDSx"
 
-void si4060_hw_init(void)
-{
-  /* Configure the SDN pin */
-  port_pin_set_config(SI406X_SDN_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-
-  /* Put the SI406x in shutdown */
-  //_si406x_sdn_enable();
-  si4060_shutdown();
-
-  /* Configure the SDN pin */
-  port_pin_set_config(SI406X_SEL_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-
-  /* Put the SEL pin in reset */
-  _si406x_cs_disable();
-
-  /* Configure the serial port */
-  spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
-		   SI406X_SERCOM_MISO_PIN,
-		   SI406X_SERCOM_SCK_PIN);
-}
-void si4060_gpio_init()
-{
-  /* Configure the GPIO and IRQ pins */
-  port_pin_set_config(SI406X_GPIO0_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-  port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-  /* Configure the GPIO and IRQ pins */
-  port_pin_set_config(SI406X_GPIO1_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-  port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
-}
-
-
 
 /**
  * Initialises the status LED
@@ -233,7 +190,7 @@ void output_telemetry_string(void)
 
   /* Analogue */
   float battery = get_battery();
-  float temperature = si4060_get_temperature();
+  float temperature = si_trx_get_temperature();
 
   /* Sleep Wait */
   while (rtty_get_index() < (len - 4)) {
