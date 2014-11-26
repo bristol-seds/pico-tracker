@@ -367,7 +367,7 @@ uint8_t binary_code;
 uint8_t grey_code;
 
 /**
- * Called at 50Hz
+ * Called at the symbol rate
  */
 void TC0_Handler(void)
 {
