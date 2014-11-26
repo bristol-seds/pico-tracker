@@ -75,11 +75,11 @@ uint16_t crc_checksum(char *string)
 /**
  * Initialises a timer interupt at the given frequency
  */
-void timer0_tick_init(uint32_t frequency)
+void timer0_tick_init(float frequency)
 {
   /* Calculate the wrap value for the given frequency */
-  uint32_t gclk0_frequency = system_gclk_chan_get_hz(0);
-  uint32_t count = gclk0_frequency / frequency;
+  float gclk0_frequency = (float)system_gclk_chan_get_hz(0);
+  uint32_t count = (uint32_t)(gclk0_frequency / frequency);
 
   /* Configure Timer 0 */
   bool t0_capture_channel_enables[]    = {false, false};

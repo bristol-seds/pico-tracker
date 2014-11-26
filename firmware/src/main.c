@@ -34,6 +34,7 @@
 #include "system/port.h"
 #include "tc/tc_driver.h"
 #include "gps.h"
+#include "mfsk.h"
 #include "ubx_messages.h"
 #include "system/wdt.h"
 #include "timepulse.h"
@@ -46,6 +47,10 @@
 #include "system/interrupt.h"
 
 #define CALLSIGN	"UBSEDSx"
+
+/* Set the modulation mode */
+//#define RTTY
+#define CONTESTIA
 
 
 /**
@@ -257,6 +262,19 @@ void output_telemetry_string(void)
   }
 }
 
+uint8_t started = 0;
+/* We transmit 64 tones */
+int8_t tones[] = {
+  0x1a, 0x0c, 0x07, 0x1b, 0x00, 0x13, 0x12, 0x0d,
+  0x12, 0x0d, 0x1f, 0x11, 0x1c, 0x1b, 0x18, 0x1e,
+  0x0e, 0x02, 0x0e, 0x0a, 0x05, 0x08, 0x13, 0x13,
+  0x1f, 0x10, 0x09, 0x0d, 0x07, 0x10, 0x1a, 0x1c,
+  0x0b, 0x10, 0x01, 0x0e, 0x0f, 0x19, 0x0a, 0x1d,
+  0x06, 0x1b, 0x0c, 0x13, 0x02, 0x0f, 0x06, 0x0c,
+  0x1d, 0x15, 0x17, 0x09, 0x15, 0x14, 0x1f, 0x00,
+  0x08, 0x06, 0x05, 0x09, 0x12, 0x13, 0x1e, 0x0a
+};
+
 /**
  * MAIN
  * =============================================================================
@@ -289,8 +307,13 @@ int main(void)
   /* Configure the Power Manager */
   //powermananger_init();
 
-  /* Timer 0 for 50Hz triggering */
+  /* Timer 0 clocks out data */
+#ifdef RTTY
   timer0_tick_init(50);
+#endif
+#ifdef CONTESTIA
+  timer0_tick_init(31.25);
+#endif
 
   /**
    * System initialisation
@@ -304,11 +327,29 @@ int main(void)
   led_init();
   gps_init();
 
-  /* Initialise Si4060 */
+  /* Initialise Si4060 interface */
   si_trx_init();
 
   /* Start transmitting */
-  si_trx_on();
+#ifdef RTTY
+  /* RTTY Mode: We modulate using the external pin */
+  si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 0);
+#endif
+#ifdef CONTESTIA
+  /* Contestia: We switch channel to modulate */
+  si_trx_on(SI_MODEM_MOD_TYPE_CW, 31.25);
+#endif
+
+
+
+
+  /* Prepare a tone sequence */
+  char hello[] = "HELLO";
+//  olivia_mfsk_encode_block(hello, tones);
+  contestia_mfsk_encode_block(hello, tones);
+
+
+  started = 1;
 
   led_on();
 
@@ -321,6 +362,10 @@ int main(void)
   }
 }
 
+uint32_t tone_index = 0;
+uint8_t binary_code;
+uint8_t grey_code;
+
 /**
  * Called at 50Hz
  */
@@ -329,6 +374,26 @@ void TC0_Handler(void)
   if (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC0, TC_STATUS_CHANNEL_0_MATCH);
 
+#ifdef RTTY
     rtty_tick();
+#endif
+#ifdef CONTESTIA
+    if (started) {
+      if (tone_index < 32) {
+
+        binary_code = tones[tone_index];
+        grey_code = (binary_code >> 1) ^ binary_code;
+
+        si_trx_switch_channel(grey_code);
+        tone_index++;
+      } else if (tone_index > 96) {
+
+        tone_index = 0;
+      } else {
+        si_trx_state_ready();
+        tone_index++;
+      }
+    }
+#endif
   }
 }

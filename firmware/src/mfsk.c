@@ -34,8 +34,8 @@
 #endif
 
 
-static const uint64_t ScramblingCodeOlivia	= 0xE257E6D0291574ECLL;
-static const uint64_t ScramblingCodeContestia	= 0xEDB88320LL;
+static const uint64_t scrambler_olivia		= 0xE257E6D0291574ECLL;
+static const uint64_t scrambler_contestia	= 0xEDB88320LL;
 
 /**
  * USEFUL RESOURES =============================================================
@@ -54,102 +54,57 @@ static const uint64_t ScramblingCodeContestia	= 0xEDB88320LL;
  * https://github.com/jamescoxon/dl-fldigi/blob/master/src/include/jalocha/pj_mfsk.h
  */
 
+void mfsk_encode_block(char* block, int8_t* tones,
+                       uint8_t symbols_per_block,	/* The number of on-the-air symbols to transmit for each block */
+                       uint8_t bits_per_symbol,		/* The number of bits encoded in each on-the-air symbol */
+                       uint64_t scrambler,		/* Scrambler sequence */
+                       uint8_t scrambling_shift)	/* Scrambler shift */
+{
+  int8_t fwht_vector[symbols_per_block];
+  memset(tones, 0, symbols_per_block * sizeof(int8_t));
 
+  /**
+   * There is one bit in the symbol for each character in the
+   * block. Iterate over each character.
+   */
+  for (uint8_t character = 0; character < bits_per_symbol; character++) {
 
+    /* Mask off unuseds bits in the character */
+    block[character] &= ((symbols_per_block * 2) - 1);
 
+    /* Set a deviation in the input vector */
+    memset(fwht_vector, 0, symbols_per_block * sizeof(int8_t));
+    if (block[character] < symbols_per_block) {
+      fwht_vector[block[character] - 0]                  = 1;	/* +ve */
+    } else {
+      fwht_vector[block[character] - symbols_per_block] = -1;	/* -ve */
+    }
 
-size_t BitsPerSymbol = 5;
-size_t Symbols = 32;
+    /* Perform an in-place Inverse Fast Walsh-Hadamard Transform */
+    ifwht(fwht_vector, symbols_per_block);
 
-size_t BitsPerCharacter = 7;
-size_t SymbolsPerBlock = 64;
+    /* Iterate over each symbol in the output block */
+    for (uint32_t symbol = 0, mask_index = character * scrambling_shift;
+         symbol < symbols_per_block;
+         symbol++, mask_index++) {
 
-uint8_t bContestia = 0;
+      mask_index %= symbols_per_block;
 
-int8_t FHT_Buffer[64]; /* SymbolsPerBlock */
-uint8_t OutputBlock[64]; /* SymbolsPerBlock */
+      /* If this bit the FWHT is significant */
+      if ((scrambler & (1LL << mask_index)) ?
+          (fwht_vector[symbol] > 0) :	/* Scrambled:     +ve is significant */
+          (fwht_vector[symbol] < 0)) {	/* Not Scrambled: -ve is significant */
 
-static const uint64_t ScramblingCode = 0xE257E6D0291574ECLL;
+        /* Find the bit index to set */
+        uint8_t rotation = symbol % bits_per_symbol;
+        uint8_t bit_index = (character + rotation) % bits_per_symbol;
 
-void EncodeCharacter(uint8_t Char) {
-  size_t TimeBit;
-  uint8_t Mask = (SymbolsPerBlock << 1) - 1;
-
-  if (bContestia) {
-    if (Char >= 'a' && Char <= 'z')
-      Char += 'A' - 'a';
-    if (Char == ' ')
-      Char = 59;
-    else if (Char == '\r')
-      Char = 60;
-    else if (Char == '\n')
-      Char = 0;
-    else if (Char >= 33 && Char <= 90)
-      Char -= 32;
-    else if (Char == 8)
-      Char = 61;
-    else if (Char == 0)
-      Char = 0;
-    else
-      Char = '?' - 32;
-//} else if (bRTTYM) {
-  } else {
-    Char &= Mask;
-  }
-
-  for (TimeBit = 0; TimeBit < SymbolsPerBlock; TimeBit++)
-    FHT_Buffer[TimeBit] = 0;
-  if (Char<SymbolsPerBlock)
-    FHT_Buffer[Char] = 1;
-  else
-    FHT_Buffer[Char-SymbolsPerBlock] = (-1);
-  ifwht(FHT_Buffer, SymbolsPerBlock);
-}
-
-void ScrambleFHT(size_t CodeOffset)
-{ size_t TimeBit;
-  size_t CodeWrap=(SymbolsPerBlock-1);
-  size_t CodeBit=CodeOffset&CodeWrap;
-  for (TimeBit=0; TimeBit<SymbolsPerBlock; TimeBit++)
-  { uint64_t CodeMask=1; CodeMask<<=CodeBit;
-    if (ScramblingCode&CodeMask)
-      FHT_Buffer[TimeBit] = (-FHT_Buffer[TimeBit]);
-    CodeBit+=1; CodeBit&=CodeWrap; }
-}
-
-void EncodeBlock(uint8_t *InputBlock) {
-  size_t FreqBit;
-  size_t TimeBit;
-  size_t nShift;
-
-  nShift = (bContestia) ? 5 : 13; // Contestia/RTTYM or Olivia
-
-  for (TimeBit = 0; TimeBit < SymbolsPerBlock; TimeBit ++)
-    OutputBlock[TimeBit] = 0;
-
-  for (FreqBit = 0; FreqBit < BitsPerSymbol; FreqBit++) {
-    EncodeCharacter(InputBlock[FreqBit]);
-    ScrambleFHT(FreqBit * nShift);
-    size_t Rotate = 0;
-    for (TimeBit = 0; TimeBit < SymbolsPerBlock; TimeBit++) {
-      if (FHT_Buffer[TimeBit] < 0) {
-        size_t Bit = FreqBit+Rotate;
-        if (Bit >= BitsPerSymbol) Bit -= BitsPerSymbol;
-        uint8_t Mask = 1;
-        Mask <<= Bit;
-        OutputBlock[TimeBit] |= Mask;
+        /* Set this bit */
+        tones[symbol] |= (1 << bit_index);
       }
-      Rotate += 1;
-      if (Rotate >= BitsPerSymbol)
-        Rotate -= BitsPerSymbol;
     }
   }
 }
-
-
-
-
-
 
 
 /**
@@ -158,17 +113,54 @@ void EncodeBlock(uint8_t *InputBlock) {
  * It takes a buffer of ASCII-encoded text and returns an array of
  * tones to transmit.
  */
-void olivia_mfsk_encode_block(char* buffer, uint8_t* tones)
+void olivia_mfsk_encode_block(char* block, int8_t* tones)
 {
-  size_t bits_per_character = 7;
-
   size_t bits_per_symbol = 5; /* That is, there are 2^5=32 tones */
-  size_t symbols_per_block = 64;
 
-  /* For the moment do this */
-  EncodeBlock((uint8_t*)buffer);
-  memcpy(tones, OutputBlock, symbols_per_block);
+  mfsk_encode_block(block, tones, 64, bits_per_symbol, scrambler_olivia, 13);
 }
+/**
+ * This function encodes a single block of Contestia MFSK
+ *
+ * It takes a buffer of ASCII-encoded text and returns an array of
+ * tones to transmit.
+ */
+void contestia_mfsk_encode_block(char* block, int8_t* tones)
+{
+  size_t bits_per_symbol = 5; /* That is, there are 2^5=32 tones */
+
+  for (uint8_t c_index; c_index < bits_per_symbol; c_index++) {
+    char character = block[c_index];
+
+    /* lowercase => UPPERCASE */
+    if (character >= 'a' && character <= 'z') {
+      character += 'A' - 'a';
+    }
+
+    /* Convert to contestia character set */
+    if (character >= '!' && character <= 'Z') {	/* Printables...   */
+      character -= 32;
+    } else if (character == ' ') {		/* Space           */
+      character = 59;
+    } else if (character == '\r') {		/* Carriage Return */
+      character = 60;
+    } else if (character == '\n') {		/* Line Feed       */
+      character = 0;
+    } else if (character == 8) {		/* Backspace       */
+      character = 61;
+    } else if (character == 0) {		/* Null            */
+      character = 0;
+    } else {					/* ????????????    */
+      character = '?' - 32;
+    }
+
+    block[c_index] = character;
+  }
+
+
+  mfsk_encode_block(block, tones, 32, bits_per_symbol, scrambler_contestia, 5);
+}
+
 
 #ifdef OLIVIA_MFSK_ENCODE_TEST
 void main(void)

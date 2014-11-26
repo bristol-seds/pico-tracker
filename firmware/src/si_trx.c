@@ -163,6 +163,20 @@ static void si_trx_set_gpio_configuration(si_gpio_t gpio0, si_gpio_t gpio1,
   _si_trx_transfer(8, 0, buffer);
 }
 /**
+ * Starts transmitting
+ */
+static void si_trx_start_tx(uint8_t channel)
+{
+  uint8_t buffer[5];
+  buffer[0] = SI_CMD_START_TX;
+  buffer[1] = channel;
+  buffer[2] = (1 << 4);
+  buffer[3] = 0;
+  buffer[4] = 0;
+
+  _si_trx_transfer(5, 0, buffer);
+}
+/**
  * Gets readings from the auxillary ADC
  */
 static void si_trx_get_adc_reading(uint8_t enable, uint8_t configuration,
@@ -271,7 +285,7 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 /**
  * Set the synthesiser to the given frequency
  */
-static void si_trx_set_frequency(uint32_t frequency)
+static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
 {
   uint8_t outdiv, band;
 
@@ -300,8 +314,13 @@ static void si_trx_set_frequency(uint32_t frequency)
 
   uint32_t m = (uint32_t)(rest * (float)(1 << 19));
 
+  /* Set the modem deviation, in units of the VCO resolution */
   float dev_ratio = (float)RF_DEVIATION / (float)f_pfd;
   uint32_t dev = (uint32_t)(dev_ratio * (float)(1 << 19));
+
+  /* Set the channel spacing, in units of the VCO resolution */
+  float channel_spacing_ratio = channel_spacing / (float)f_pfd;
+  uint32_t channel_step = (uint32_t)(channel_spacing_ratio * (float)(1 << 19));
 
   /* Set the frac-n PLL output divider */
   si_trx_frequency_control_set_band(band);
@@ -309,8 +328,12 @@ static void si_trx_set_frequency(uint32_t frequency)
   /* Set the frac-n PLL divisior */
   si_trx_frequency_control_set_divider(n, m);
 
+  /* Set the channel step in the PLL */
+  si_trx_frequency_control_set_channel_step_size(channel_step);
+
   /* Set the frequency deviation in the modem */
   si_trx_modem_set_deviation(dev);
+
 
   //const uint8_t set_frequency_control_inte[] = {0x11, 0x40, 0x08, 0x00, n, m2, m1, m0, 0x0B, 0x61, 0x20, 0xFA};
 }
@@ -318,7 +341,7 @@ static void si_trx_set_frequency(uint32_t frequency)
 /**
  * Resets the transceiver
  */
-void si_trx_reset(void)
+void si_trx_reset(uint8_t modulation_type, float channel_spacing)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -345,14 +368,14 @@ void si_trx_reset(void)
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
-  si_trx_set_frequency(RADIO_FREQUENCY);
+  si_trx_set_frequency(RADIO_FREQUENCY, channel_spacing);
   si_trx_set_tx_power(RADIO_POWER);
 
   /* RTTY from GPIO1 */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_ASYNC,
 			      SI_MODEM_MOD_GPIO_1,
 			      SI_MODEM_MOD_SOURCE_DIRECT,
-			      SI_MODEM_MOD_TYPE_2FSK);
+			      modulation_type);
 
   si_trx_state_tx_tune();
 }
@@ -360,10 +383,10 @@ void si_trx_reset(void)
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(void)
+void si_trx_on(uint8_t modulation_type, float channel_spacing)
 {
-  si_trx_reset();
-  si_trx_state_tx();
+  si_trx_reset(modulation_type, channel_spacing);
+  si_trx_start_tx(1);
 }
 /**
  * Disables the radio and places it in shutdown
@@ -372,6 +395,14 @@ void si_trx_off(void)
 {
   si_trx_state_ready();
   _si_trx_sdn_enable();
+}
+/**
+ * Switches the transmittion to the specified channel
+ */
+void si_trx_switch_channel(uint8_t channel)
+{
+  si_trx_state_ready();
+  si_trx_start_tx(channel);
 }
 
 /**

@@ -35,56 +35,89 @@
 
 /**
  * Resources:
+ * http://en.wikipedia.org/wiki/Fast_Walsh%E2%80%93Hadamard_transform
  *
- *
+ * The Fast Walsh-Hadamard Transform is a divide and conquer algorithm
+ * with a complexity of NlogN.
  */
-
-/**
- * We might want to use this with different types in the future.
- */
-#define T int8_t
 
 /**
  * Fast Walsh-Hadamard Transform
  *
- * `data` an array that is the input vector. Modifed in-place
- * `len` is the number of elements in `data`
+ * `data` an array that is the input vector. It is modifed in-place to
+ * become the output vector.
+ * `length` is the number of elements in `data`. This must be a power of two
  *
  * The result is returned in "hadamard" order
  */
-void fwht(T *Data, size_t Len)
+void fwht(int8_t *data, size_t length)
 {
-  size_t Step, Ptr, Ptr2; T Bit1, Bit2, NewBit1, NewBit2;
-  for(Step=1; Step<Len; Step*=2)
-  { for(Ptr=0; Ptr<Len; Ptr+=2*Step)
-    { for(Ptr2=Ptr; (Ptr2-Ptr)<Step; Ptr2+=1)
-      { Bit1=Data[Ptr2];  Bit2=Data[Ptr2+Step];
-        NewBit1=Bit2; NewBit1+=Bit1;
-        NewBit2=Bit2; NewBit2-=Bit1;
-        Data[Ptr2]=NewBit1; Data[Ptr2+Step]=NewBit2;
+  size_t step, decomp_index, index;
+  int8_t lvalue, rvalue;
+
+  /**
+   * The transform is decomposed into smaller WHTs.
+   * We ignore the normalisation factors.
+   */
+
+  /* Iterate through the decompositions of size length --> 8, 4, 2 */
+  for (step = length / 2; step; step /= 2) {
+
+    /* Iterate through each decomposition for this step size */
+    for(decomp_index = 0; decomp_index < length; decomp_index += (step*2)) {
+
+      /* Interate through each DFT in the decomposition */
+      for(index = 0; index < step; index++) {
+
+        /* Compute a two-point Discrete Fourier Transform (DFT) */
+        lvalue = data[decomp_index + index];
+        rvalue = data[decomp_index + index + step];
+
+        /* Sum */
+        data[decomp_index + index]        = lvalue + rvalue;
+        /* Difference */
+        data[decomp_index + index + step] = lvalue - rvalue;
       }
     }
   }
 }
 
 /**
- * Inverse Fast Hadamard Transform
+ * Inverse Fast Walsh-Hadamard Transform
  *
- * `data` an array that is the input vector. Modifed in-place
- * `len` is the number of elements in `data`
+ * `data` an array that is the input vector. It is modifed in-place to
+ * become the output vector.
+ * `len` is the number of elements in `data`.
  *
  * The result is returned in "hadamard" order
  */
-void ifwht(T *Data, size_t len)
+void ifwht(int8_t *data, size_t length)
 {
-  size_t step, Ptr, Ptr2; T Bit1, Bit2, NewBit1, NewBit2;
-  for(step=len/2; step; step/=2)
-  { for(Ptr=0; Ptr<len; Ptr+=2*step)
-    { for(Ptr2=Ptr; (Ptr2-Ptr)<step; Ptr2+=1)
-      { Bit1=Data[Ptr2];  Bit2=Data[Ptr2+step];
-        NewBit1=Bit1; NewBit1-=Bit2;
-        NewBit2=Bit1; NewBit2+=Bit2;
-        Data[Ptr2]=NewBit1; Data[Ptr2+step]=NewBit2;
+  size_t step, decomp_index, index;
+  int8_t lvalue, rvalue;
+
+  /**
+   * The transform is decomposed into smaller WHTs.
+   * We ignore the normalisation factors.
+   */
+
+  /* Iterate through the decompositions of size length --> 8, 4, 2 */
+  for (step = length / 2; step; step /= 2) {
+
+    /* Iterate through each decomposition for this step size */
+    for(decomp_index = 0; decomp_index < length; decomp_index += (step*2)) {
+
+      /* Interate through each IDFT in the decomposition */
+      for(index = 0; index < step; index++) {
+
+        /* Compute a two-point Inverse Discrete Fourier Transform (IDFT) */
+        lvalue = data[decomp_index + index];
+        rvalue = data[decomp_index + index + step];
+
+        /* Difference */
+        data[decomp_index + index]        = lvalue - rvalue;
+        /* Sum */
+        data[decomp_index + index + step] = lvalue + rvalue;
       }
     }
   }
@@ -96,7 +129,7 @@ void ifwht(T *Data, size_t len)
 
 int main(void)
 {
-  T fwht_test[] = {1,0,1,0,0,1,1,0};
+  int8_t fwht_test[] = {1,0,1,0,0,1,1,0};
   const int fwht_test_len = 8;
 
   fwht(fwht_test, fwht_test_len);
@@ -107,7 +140,7 @@ int main(void)
 
 
 
-  T ifwht_test[] = {1,0,1,0,0,1,1,0};
+  int8_t ifwht_test[] = {1,0,1,0,0,1,1,0};
   const int ifwht_test_len = 8;
 
   ifwht(ifwht_test, ifwht_test_len);
