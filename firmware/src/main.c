@@ -307,13 +307,7 @@ int main(void)
   /* Configure the Power Manager */
   //powermananger_init();
 
-  /* Timer 0 clocks out data */
-#ifdef RTTY
-  timer0_tick_init(50);
-#endif
-#ifdef CONTESTIA
-  timer0_tick_init(31.25);
-#endif
+
 
   /**
    * System initialisation
@@ -351,6 +345,15 @@ int main(void)
 
   started = 1;
 
+
+  /* Timer 0 clocks out data */
+#ifdef RTTY
+  timer0_tick_init(50);
+#endif
+#ifdef CONTESTIA
+  timer0_tick_init(31.25);
+#endif
+
   led_on();
 
   while (1) {
@@ -385,13 +388,21 @@ void TC0_Handler(void)
         grey_code = (binary_code >> 1) ^ binary_code;
 
         si_trx_switch_channel(grey_code);
-        tone_index++;
-      } else if (tone_index > 96) {
 
-        tone_index = 0;
-      } else {
+      } else if (tone_index < 64) {
+
         si_trx_state_ready();
-        tone_index++;
+
+      /* } else if (tone_index < 96) { */
+
+      /*   si_trx_switch_channel((tone_index & 1) ? 0 : 31); */
+
+      }
+
+      tone_index++;
+      if (tone_index >= 64)
+      {
+        tone_index = 0;
       }
     }
 #endif

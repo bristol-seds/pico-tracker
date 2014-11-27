@@ -28,7 +28,9 @@
 #include "samd20.h"
 #include "system/gclk.h"
 #include "system/interrupt.h"
+#include "system/pinmux.h"
 #include "tc/tc_driver.h"
+#include "hw_config.h"
 
 
 /**
@@ -72,20 +74,53 @@ uint16_t crc_checksum(char *string)
   return crc;
 }
 
+
+
+
+
+
+
+
+
+void si_gclk_setup(void)
+{
+  system_pinmux_pin_set_config(SI406X_TCXO_PINMUX >> 16,	/* GPIO Pin	*/
+			       SI406X_TCXO_PINMUX & 0xFFFF,	/* Mux Position	*/
+			       SYSTEM_PINMUX_PIN_DIR_INPUT,	/* Direction	*/
+			       SYSTEM_PINMUX_PIN_PULL_NONE,	/* Pull		*/
+			       false);    			/* Powersave	*/
+
+  system_gclk_gen_set_config(SI406X_TCXO_GCLK,
+			     GCLK_SOURCE_GCLKIN, /* Source 		*/
+			     false,		/* High When Disabled	*/
+			     1,			/* Division Factor	*/
+			     false,		/* Run in standby	*/
+			     false);		/* Output Pin Enable	*/
+  system_gclk_gen_enable(SI406X_TCXO_GCLK);
+}
+
+
+
+
+
 /**
  * Initialises a timer interupt at the given frequency
  */
 void timer0_tick_init(float frequency)
 {
+  //si_gclk_setup();
+
   /* Calculate the wrap value for the given frequency */
-  float gclk0_frequency = (float)system_gclk_chan_get_hz(0);
-  uint32_t count = (uint32_t)(gclk0_frequency / frequency);
+  //float gclk_frequency = SI406X_TCXO_FREQUENCY;
+  float gclk_frequency = (float)system_gclk_chan_get_hz(0);
+  uint32_t count = (uint32_t)(gclk_frequency / frequency);
 
   /* Configure Timer 0 */
   bool t0_capture_channel_enables[]    = {false, false};
   uint32_t t0_compare_channel_values[] = {count, 0x0000};
   tc_init(TC0,
-	  GCLK_GENERATOR_0,
+//	  GCLK_GENERATOR_3,
+          GCLK_GENERATOR_0,
 	  TC_COUNTER_SIZE_32BIT,
 	  TC_CLOCK_PRESCALER_DIV1,
 	  TC_WAVE_GENERATION_MATCH_FREQ,
