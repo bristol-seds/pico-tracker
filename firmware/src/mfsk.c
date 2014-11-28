@@ -96,8 +96,7 @@ void mfsk_encode_block(char* block, int8_t* tones,
           (fwht_vector[symbol] < 0)) {	/* Not Scrambled: -ve is significant */
 
         /* Find the bit index to set */
-        uint8_t rotation = symbol % bits_per_symbol;
-        uint8_t bit_index = (character + rotation) % bits_per_symbol;
+        uint8_t bit_index = (character + symbol) % bits_per_symbol;
 
         /* Set this bit */
         tones[symbol] |= (1 << bit_index);
