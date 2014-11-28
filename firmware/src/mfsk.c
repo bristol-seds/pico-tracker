@@ -90,7 +90,7 @@ void mfsk_encode_block(char* block, int8_t* tones,
 
       mask_index %= symbols_per_block;
 
-      /* If this bit the FWHT is significant */
+      /* If this bit in the FWHT is significant */
       if ((scrambler & (1LL << mask_index)) ?
           (fwht_vector[symbol] > 0) :	/* Scrambled:     +ve is significant */
           (fwht_vector[symbol] < 0)) {	/* Not Scrambled: -ve is significant */
