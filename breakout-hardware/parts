@@ -1,0 +1,29 @@
+# Parts List
+
+---
+
+## Actives
+
+| Part | Description | Farnell # | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+511-SPV1040T 2 MPPT
+511-L6924D013TR 1 Lipo Charge Controller
+2400648 2 Buck Converter DRVT = SON-6 TPS62243
+595-TPS3808G25DRVR 1 Vth = 2.33, DRVR = SON-6
+1631683 1 Inverter
+
+## Passives
+
+| Part | Description | Farnell # | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+1463485 0 Lx for MPPT. 0.133Ω esr
+2428203 2 Indutcutor for Buck
+2309027 4 Solar input cap
+
+## Items used in breakout verision ONLY
+
+| Part | Description | Farnell # | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+2293786 10 Test Point
+3882615 3 Terminal Block 2 Wire
+3882627 0 Terminal Block 3 Wire
