@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.6.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -7597,7 +7597,6 @@ Metric Code Size 5664</description>
 <part name="U$19" library="TPS3125" deviceset="TPS3123" device=""/>
 <part name="U$20" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$21" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$22" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$23" library="fbri" deviceset="TG-5006CJ" device=""/>
 <part name="U$24" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$25" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -7731,10 +7730,9 @@ holder</text>
 <instance part="C14" gate="G$1" x="381" y="63.5"/>
 <instance part="U$18" gate="G$1" x="381" y="53.34"/>
 <instance part="C10" gate="G$1" x="165.1" y="58.42"/>
-<instance part="U$19" gate="A" x="63.5" y="144.78" rot="MR0"/>
-<instance part="U$20" gate="G$1" x="45.72" y="152.4" rot="MR0"/>
-<instance part="U$21" gate="G$1" x="83.82" y="137.16"/>
-<instance part="U$22" gate="G$1" x="81.28" y="152.4" rot="MR0"/>
+<instance part="U$19" gate="A" x="40.64" y="129.54" rot="MR0"/>
+<instance part="U$20" gate="G$1" x="22.86" y="137.16" rot="MR0"/>
+<instance part="U$21" gate="G$1" x="60.96" y="121.92"/>
 <instance part="U$23" gate="A" x="304.8" y="139.7"/>
 <instance part="U$24" gate="G$1" x="287.02" y="160.02" rot="MR0"/>
 <instance part="U$25" gate="G$1" x="287.02" y="127"/>
@@ -7891,9 +7889,9 @@ holder</text>
 </segment>
 <segment>
 <pinref part="U$21" gate="G$1" pin="GND"/>
-<wire x1="83.82" y1="144.78" x2="83.82" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="129.54" x2="60.96" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="U$19" gate="A" pin="GND"/>
-<wire x1="78.74" y1="144.78" x2="83.82" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="129.54" x2="60.96" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$23" gate="A" pin="GND"/>
@@ -8022,15 +8020,9 @@ holder</text>
 </segment>
 <segment>
 <pinref part="U$20" gate="G$1" pin="1.8V"/>
-<wire x1="45.72" y1="147.32" x2="45.72" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="132.08" x2="22.86" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="U$19" gate="A" pin="VDD"/>
-<wire x1="48.26" y1="147.32" x2="45.72" y2="147.32" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$19" gate="A" pin="!MR"/>
-<pinref part="U$22" gate="G$1" pin="1.8V"/>
-<wire x1="78.74" y1="142.24" x2="81.28" y2="142.24" width="0.1524" layer="91"/>
-<wire x1="81.28" y1="142.24" x2="81.28" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="132.08" x2="22.86" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
@@ -8443,19 +8435,19 @@ holder</text>
 </net>
 <net name="!RESET" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="RESETN"/>
 <pinref part="U$19" gate="A" pin="!RESET"/>
-<wire x1="111.76" y1="149.86" x2="106.68" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="149.86" x2="106.68" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="147.32" x2="78.74" y2="147.32" width="0.1524" layer="91"/>
-<label x="83.82" y="147.32" size="1.778" layer="95"/>
+<wire x1="76.2" y1="132.08" x2="55.88" y2="132.08" width="0.1524" layer="91"/>
+<label x="60.96" y="132.08" size="1.778" layer="95"/>
+<wire x1="76.2" y1="132.08" x2="76.2" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="RESETN"/>
+<wire x1="76.2" y1="149.86" x2="111.76" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="WDI" class="0">
 <segment>
 <pinref part="U$19" gate="A" pin="WDI"/>
-<wire x1="48.26" y1="142.24" x2="35.56" y2="142.24" width="0.1524" layer="91"/>
-<label x="38.1" y="142.24" size="1.778" layer="95"/>
+<wire x1="25.4" y1="127" x2="12.7" y2="127" width="0.1524" layer="91"/>
+<label x="15.24" y="127" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA28"/>
@@ -8498,6 +8490,16 @@ holder</text>
 <pinref part="C12" gate="G$1" pin="P$1"/>
 <junction x="287.02" y="144.78"/>
 <pinref part="FB2" gate="G$1" pin="P$1"/>
+</segment>
+</net>
+<net name="!MR" class="0">
+<segment>
+<pinref part="U$19" gate="A" pin="!MR"/>
+<wire x1="55.88" y1="127" x2="58.42" y2="127" width="0.1524" layer="91"/>
+<pinref part="JTAG1" gate="G$1" pin="10"/>
+<wire x1="35.56" y1="149.86" x2="58.42" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="149.86" x2="58.42" y2="127" width="0.1524" layer="91"/>
+<label x="38.1" y="149.86" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
