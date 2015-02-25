@@ -5270,8 +5270,8 @@ Covered vias can be set in Masks (Limit).
 <wire x1="10.875" y1="21" x2="10" y2="21.875" width="0.1524" layer="16"/>
 <wire x1="10" y1="21.875" x2="10" y2="22.375" width="0.1524" layer="16"/>
 <wire x1="10" y1="22.375" x2="11" y2="23.375" width="0.1524" layer="16"/>
-<wire x1="11" y1="23.375" x2="10.875" y2="27.25" width="0.1524" layer="16"/>
-<wire x1="10.875" y1="27.25" x2="10.125" y2="28" width="0.1524" layer="16"/>
+<wire x1="11" y1="23.375" x2="11" y2="27.125" width="0.1524" layer="16"/>
+<wire x1="11" y1="27.125" x2="10.125" y2="28" width="0.1524" layer="16"/>
 <wire x1="10.125" y1="28" x2="6.25" y2="28" width="0.1524" layer="16"/>
 </signal>
 </signals>
@@ -5397,6 +5397,7 @@ Covered vias can be set in Masks (Limit).
 <approved hash="18,29,7328ae7bb07f6d2c"/>
 <approved hash="18,29,007de58aaf884a7f"/>
 <approved hash="18,29,c50d2a3ff43d1b0f"/>
+<approved hash="18,29,1c6c828d1c898268"/>
 <approved hash="18,29,042b8f98a49b2f28"/>
 <approved hash="18,29,503dcf495a4ac53e"/>
 <approved hash="18,29,bb1a1f2639dab583"/>
@@ -5441,6 +5442,9 @@ Covered vias can be set in Masks (Limit).
 <approved hash="18,29,09a05852f703da55"/>
 <approved hash="18,29,aa2e9ec7aa607980"/>
 <approved hash="18,29,3361d33adf5468ac"/>
+<approved hash="18,29,b26ccdf43bfd4465"/>
+<approved hash="18,29,1c2f48d876e52212"/>
+<approved hash="18,29,8e7a2fc051f9f043"/>
 <approved hash="18,29,f429aabca8b0f625"/>
 <approved hash="18,29,8593da96ec9ab39f"/>
 <approved hash="18,29,aaeef347514b08e2"/>
@@ -5520,6 +5524,7 @@ Covered vias can be set in Masks (Limit).
 <approved hash="18,29,5fd02ce9f2f581cc"/>
 <approved hash="18,29,2e11531d2d1f5013"/>
 <approved hash="18,29,9d7d787a4e7bab7c"/>
+<approved hash="18,29,e72948defdc45233"/>
 <approved hash="18,29,920bcd622f66700f"/>
 <approved hash="18,29,46ce27bac5bba4cf"/>
 <approved hash="18,29,675b19c42fc5515a"/>
