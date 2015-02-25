@@ -8044,6 +8044,8 @@ Metric Code Size 5664</description>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C15" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$37" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="C16" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
+<part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8072,6 +8074,8 @@ to 3h for Rprg = 47kΩ</text>
 <text x="365.76" y="86.36" size="1.778" layer="97">Voprg = GND, so Vout = 4.2V</text>
 <text x="426.72" y="73.66" size="1.778" layer="97">End of charge current = 52.5 / Rend
 10kΩ ==&gt; 5mA</text>
+<text x="510.54" y="68.58" size="1.778" layer="97">Leaving Ct open sets the reset time
+(transition battery-&gt;solar) to 20ms</text>
 </plain>
 <instances>
 <instance part="FRAME3" gate="G$1" x="0" y="0"/>
@@ -8186,6 +8190,8 @@ to 3h for Rprg = 47kΩ</text>
 <instance part="U$36" gate="G$1" x="670.56" y="40.64"/>
 <instance part="C15" gate="G$1" x="728.98" y="88.9"/>
 <instance part="U$37" gate="G$1" x="728.98" y="78.74"/>
+<instance part="C16" gate="G$1" x="518.16" y="83.82"/>
+<instance part="U$52" gate="G$1" x="518.16" y="78.74"/>
 </instances>
 <busses>
 </busses>
@@ -8418,6 +8424,10 @@ to 3h for Rprg = 47kΩ</text>
 <pinref part="C15" gate="G$1" pin="2"/>
 <pinref part="U$37" gate="G$1" pin="GND"/>
 <wire x1="728.98" y1="83.82" x2="728.98" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C16" gate="G$1" pin="P$2"/>
+<pinref part="U$52" gate="G$1" pin="GND"/>
 </segment>
 </net>
 <net name="SPV_VCTRL2" class="0">
@@ -8902,6 +8912,14 @@ to 3h for Rprg = 47kΩ</text>
 <pinref part="U$51" gate="G$1" pin="ST2"/>
 <wire x1="350.52" y1="114.3" x2="345.44" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="114.3" x2="345.44" y2="132.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="U$63" gate="G$1" pin="CT"/>
+<pinref part="C16" gate="G$1" pin="P$1"/>
+<wire x1="523.24" y1="93.98" x2="518.16" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="518.16" y1="93.98" x2="518.16" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
