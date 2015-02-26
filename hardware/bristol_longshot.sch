@@ -8966,7 +8966,7 @@ Metric Code Size 5664</description>
 <part name="U$26" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="R1" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$32" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="240kΩ"/>
+<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$35" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C18" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
@@ -9026,6 +9026,8 @@ holder</text>
 <wire x1="94.996" y1="123.444" x2="94.996" y2="118.872" width="0.1524" layer="97"/>
 <text x="93.98" y="122.174" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM0)</text>
 <text x="93.98" y="119.634" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(TX: PAD0, TXPO: 0x0)</text>
+<text x="43.18" y="20.828" size="1.27" layer="97" font="vector" ratio="11" distance="100">R1 = R2 = 100kΩ sets the
+output voltage to 2.5V</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>

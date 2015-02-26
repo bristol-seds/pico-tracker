@@ -25,8 +25,8 @@
 |LQG15HN56NJ02D|MURATA - INDUCTOR, 0402 CASE, 56NHÂ±5%|[1343091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1343091)|1|L3
 |L-07C18NJV6T|JOHANSON TECHNOLOGY - INDUCTOR RF, 0402, 18NH, 5%|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5
 | L6 | DNP
-|CRG0402F100K|TE CONNECTIVITY - RESISTOR, PRECISION, 100K, 1%, 0402|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|1|R1
-|CRG0402F240K|TE CONNECTIVITY - RESISTOR, FIXED, 240K, 1%, 0402|[2331491](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331491)|1|R2
+|CRG0402F100K|TE CONNECTIVITY - RESISTOR, PRECISION, 100K, 1%, 0402|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R1, R2
+|CRG0402F10K|TE CONNECTIVITY - RESISTOR, PRECISION, 10K, 1%, 0402|[2331444](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331444)|2|R3, R4
 |GRM1555C1H8R2CA01D|MURATA - CAP, MLCC, C0G/NP0, 8.2PF, 50V, 0402|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3
 |MC0402N150J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 15PF, 50V, 0402|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7
 | C5, C6 | DNP
