@@ -12,3 +12,4 @@ restrictions, low power etc.)
 
 On 31st August 2014.
 
+## [Parts List](hardware/Parts.md)
