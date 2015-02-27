@@ -1,6 +1,6 @@
 /*
- * Functions for controlling Si Labs Transceivers
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Outputs contestia to the si_trx
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,19 +22,51 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SI_TRX_H
-#define SI_TRX_H
+#include "si_trx.h"
+#include "contestia.h"
 
-#include "samd20.h"
 
-float si_trx_get_temperature(void);
+/**
+ * Current output tones
+ */
+int8_t contestia_tones[CONTESTIA_NUMBER_OF_TONES];
+/**
+ * Where we are in the current output tones
+ */
+uint32_t contestia_tone_index = 0xFFFFFFFE;
 
-void si_trx_on(uint8_t modulation_type, float channel_spacing);
-void si_trx_off(void);
-void si_trx_switch_channel(uint8_t channel);
+/**
+ * Starts the transmission of a contestia block
+ */
+void contestia_start(char* block) {
+  /* Start transmission */
+  contestia_mfsk_encode_block(block, contestia_tones);
+  contestia_tone_index = 0;
+}
 
-void si_trx_init(void);
+/**
+ * Called at the baud rate, outputs tones
+ */
+uint8_t contestia_tick(void) {
 
-void spi_loopback_test(void);
+  if (contestia_tone_index < CONTESTIA_NUMBER_OF_TONES) {
+    uint8_t binary_code;
+    uint8_t grey_code;
 
-#endif /* SI_TRX_H */
+    /* Output grey code */
+    binary_code = contestia_tones[contestia_tone_index];
+    grey_code = (binary_code >> 1) ^ binary_code;
+    si_trx_switch_channel(grey_code);
+
+  } else {
+    return 0;
+  }
+
+  contestia_tone_index++;
+
+  if (contestia_tone_index < CONTESTIA_NUMBER_OF_TONES) {
+    return 1;
+  }
+
+  return 0;
+}

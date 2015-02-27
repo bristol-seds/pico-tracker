@@ -43,7 +43,6 @@
 #include "si_trx_defs.h"
 #include "analogue.h"
 #include "spi_bitbang.h"
-#include "rtty.h"
 #include "system/interrupt.h"
 
 #define CALLSIGN	"UBSEDSx"
@@ -155,9 +154,13 @@ void output_telemetry_string(void)
   uint32_t altitude = 0;
 
   /**
-   * Callsign, Time
+   * Analogue, Callsign, Time
    * ---------------------------------------------------------------------------
    */
+
+  /* Analogue */
+  float battery = get_battery();
+  float temperature = si_trx_get_temperature(); // REENTRANCY!!!!!!
 
   /* GPS Time */
   gps_update_time();
@@ -166,7 +169,7 @@ void output_telemetry_string(void)
   while (gps_update_time_pending()) {
     system_sleep();
   }
-  for (int i = 0; i < 100*1000; i++);
+//  for (int i = 0; i < 100*1000; i++);
 
   /* Time */
   struct ubx_nav_timeutc time = gps_get_nav_timeutc();
@@ -175,30 +178,31 @@ void output_telemetry_string(void)
   uint8_t seconds = time.payload.sec;
 
   /* init double buffers */
-  ARRAY_DBUFFER_INIT(&rtty_dbuffer_string);
+  ARRAY_DBUFFER_INIT(&telemetry_dbuffer_string);
 
   /* sprintf - initial string */
-  uint16_t len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
+  uint16_t len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string),
 			 "$$%s,%02u:%02u:%02u,",
 			 CALLSIGN, hours, minutes, seconds);
 
   /* swap buffers */
-  ARRAY_DBUFFER_SWAP(&rtty_dbuffer_string);
+  ARRAY_DBUFFER_SWAP(&telemetry_dbuffer_string);
 
-  /* start */
-  rtty_start();
+  /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
+#ifdef RTTY
+  telemetry_start(TELEMETRY_RTTY);
+#endif
+#ifdef CONTESTIA
+  telemetry_start(TELEMETRY_CONTESTIA);
+#endif
 
   /**
-   * Position, Status, Analogue, Checksum
+   * Position, Status, Checksum
    * ---------------------------------------------------------------------------
    */
 
-  /* Analogue */
-  float battery = get_battery();
-  float temperature = si_trx_get_temperature();
-
   /* Sleep Wait */
-  while (rtty_get_index() < (len - 4)) {
+  while (telemetry_get_index() < (len - 9)) {
     system_sleep();
   }
 
@@ -211,7 +215,7 @@ void output_telemetry_string(void)
   }
 
   /* Wait for the gps update. Move on if it's urgent */
-  while (gps_update_position_pending() && rtty_get_index() < (len - 1)) {
+  while (gps_update_position_pending() && telemetry_get_index() < (len - 6)) {
     system_sleep();
   }
 
@@ -235,18 +239,18 @@ void output_telemetry_string(void)
   }
 
   /* sprintf - full string */
-  len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string),
+  len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string),
 		"$$%s,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
 		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
 		altitude, satillite_count, battery, temperature);
 
   /* sprintf - checksum */
-  len += sprintf(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string) + len,
-		 "*%04X\n",
-		 crc_checksum(ARRAY_DBUFFER_WRITE_PTR(&rtty_dbuffer_string)));
+  len += sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string) + len,
+		 "*%04X\r",
+		 crc_checksum(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string)));
 
   /* swap buffers */
-  ARRAY_DBUFFER_SWAP(&rtty_dbuffer_string);
+  ARRAY_DBUFFER_SWAP(&telemetry_dbuffer_string);
 
   /**
    * End
@@ -254,26 +258,13 @@ void output_telemetry_string(void)
    */
 
   /* Set the final length */
-  rtty_set_length(len);
+  telemetry_set_length(len);
 
   /* Sleep Wait */
-  while (rtty_active()) {
+  while (telemetry_active()) {
     system_sleep();
   }
 }
-
-uint8_t started = 0;
-/* We transmit 64 tones */
-int8_t tones[] = {
-  0x1a, 0x0c, 0x07, 0x1b, 0x00, 0x13, 0x12, 0x0d,
-  0x12, 0x0d, 0x1f, 0x11, 0x1c, 0x1b, 0x18, 0x1e,
-  0x0e, 0x02, 0x0e, 0x0a, 0x05, 0x08, 0x13, 0x13,
-  0x1f, 0x10, 0x09, 0x0d, 0x07, 0x10, 0x1a, 0x1c,
-  0x0b, 0x10, 0x01, 0x0e, 0x0f, 0x19, 0x0a, 0x1d,
-  0x06, 0x1b, 0x0c, 0x13, 0x02, 0x0f, 0x06, 0x0c,
-  0x1d, 0x15, 0x17, 0x09, 0x15, 0x14, 0x1f, 0x00,
-  0x08, 0x06, 0x05, 0x09, 0x12, 0x13, 0x1e, 0x0a
-};
 
 /**
  * MAIN
@@ -324,27 +315,6 @@ int main(void)
   /* Initialise Si4060 interface */
   si_trx_init();
 
-  /* Start transmitting */
-#ifdef RTTY
-  /* RTTY Mode: We modulate using the external pin */
-  si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 0);
-#endif
-#ifdef CONTESTIA
-  /* Contestia: We switch channel to modulate */
-  si_trx_on(SI_MODEM_MOD_TYPE_CW, 31.25);
-#endif
-
-
-
-
-  /* Prepare a tone sequence */
-  char hello[] = "HELLO";
-//  olivia_mfsk_encode_block(hello, tones);
-  contestia_mfsk_encode_block(hello, tones);
-
-
-  started = 1;
-
 
   /* Timer 0 clocks out data */
 #ifdef RTTY
@@ -362,49 +332,5 @@ int main(void)
 
     /* Send the next packet */
     output_telemetry_string();
-  }
-}
-
-uint32_t tone_index = 0;
-uint8_t binary_code;
-uint8_t grey_code;
-
-/**
- * Called at the symbol rate
- */
-void TC0_Handler(void)
-{
-  if (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
-    tc_clear_status(TC0, TC_STATUS_CHANNEL_0_MATCH);
-
-#ifdef RTTY
-    rtty_tick();
-#endif
-#ifdef CONTESTIA
-    if (started) {
-      if (tone_index < 32) {
-
-        binary_code = tones[tone_index];
-        grey_code = (binary_code >> 1) ^ binary_code;
-
-        si_trx_switch_channel(grey_code);
-
-      } else if (tone_index < 64) {
-
-        si_trx_state_ready();
-
-      /* } else if (tone_index < 96) { */
-
-      /*   si_trx_switch_channel((tone_index & 1) ? 0 : 31); */
-
-      }
-
-      tone_index++;
-      if (tone_index >= 64)
-      {
-        tone_index = 0;
-      }
-    }
-#endif
   }
 }

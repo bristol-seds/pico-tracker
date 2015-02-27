@@ -44,6 +44,10 @@
 #define BITS_PER_CHAR	11
 
 /**
+ * Current output data
+ */
+uint8_t rtty_data;
+/**
  * Where we currently are in the rtty output byte
  *
  * 0 = Start Bit
@@ -51,90 +55,49 @@
  * 10 = Stop Bit
  * 11 = Stop Bit
  */
-uint8_t rtty_phase;
-/**
- * Where we are in the current output string
- */
-int32_t rtty_index;
+uint8_t rtty_phase = 0xFE;
 
-/**
- * Details of the string that is currently being output
- */
-int32_t rtty_string_length = 0;
-
-/**
- * Returns 1 if we're currently outputting.
- */
-int rtty_active(void) {
-  return (rtty_string_length > 0);
-}
-
-/**
- * Starts RTTY output
- *
- * Returns 0 on success, 1 if already active
- */
-int rtty_start(void) {
-  if (!rtty_active()) {
-
-    /* Initialise */
-    rtty_string_length = RTTY_STRING_MAX;
-    rtty_index = 0;
-    rtty_phase = 0;
-
-    return 0; /* Success */
-  } else {
-    return 1; /* Already active */
-  }
-}
-/**
- * Returns the index of the current byte being outputted from the buffer
- */
-int32_t rtty_get_index(void) {
-  return rtty_index;
-}
-/**
- * Sets the final length of the RTTY string
- */
-void rtty_set_length(int32_t length) {
-  if (length <= RTTY_STRING_MAX) {
-    rtty_string_length = length;
-  }
+void rtty_start(uint8_t data) {
+  /* Start transmission */
+  rtty_phase = 0;
+  rtty_data = data;
 }
 
 /**
  * Called at the baud rate, outputs bits of rtty
  */
-void rtty_tick(void) {
-  if (rtty_active()) {
-    RTTY_ACTIVATE();
+uint8_t rtty_tick(void) {
 
-    if (rtty_phase == 0) { // Start
-      // Low
-      RTTY_SET(0);
-    } else if (rtty_phase < ASCII_BITS + 1) {
-      // Data
-      if ((ARRAY_DBUFFER_READ_PTR(&rtty_dbuffer_string)[rtty_index] >> (rtty_phase - 1)) & 1) {
-	RTTY_SET(1);
-      } else {
-	RTTY_SET(0);
-      }
-    } else if (rtty_phase < BITS_PER_CHAR) { // Stop
-      // High
+  if (rtty_phase == 0) {			/* *** Start *** */
+    RTTY_SET(0);
+
+  } else if (rtty_phase < ASCII_BITS + 1) {	/* *** Data *** */
+    if ((rtty_data >> (rtty_phase - 1)) & 1) {
       RTTY_SET(1);
+    } else {
+      RTTY_SET(0);
     }
 
-    rtty_phase++;
+  } else if (rtty_phase < BITS_PER_CHAR) {	/* *** Stop *** */
+    RTTY_SET(1);
 
-    if (rtty_phase >= BITS_PER_CHAR) { // Next character
-      rtty_phase = 0; rtty_index++; RTTY_NEXT();
-
-      if (rtty_index >= rtty_string_length) { // All done, deactivate
-	rtty_string_length = 0; // Deactivate
-      }
-    }
-  } else {
-    RTTY_DEACTIVATE();
+  } else {					/* *** Not running *** */
+    return 0;
   }
-}
 
+  rtty_phase++;
+
+  if (rtty_phase < BITS_PER_CHAR) {
+    return 1;
+  }
+
+  /* if (rtty_phase >= BITS_PER_CHAR) { // Next character */
+  /*   rtty_phase = 0; rtty_index++; RTTY_NEXT(); */
+
+  /*   if (rtty_index >= rtty_string_length) { // All done, deactivate */
+  /*     rtty_string_length = 0; // Deactivate */
+  /*   } */
+  /* } */
+
+  return 0;
+}

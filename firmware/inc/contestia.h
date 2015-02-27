@@ -1,6 +1,6 @@
 /*
- * Functions for controlling Si Labs Transceivers
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Outputs contestia to the si_trx
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,19 +22,17 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SI_TRX_H
-#define SI_TRX_H
+#ifndef CONTESTIA_H
+#define CONTESTIA_H
 
-#include "samd20.h"
+/**
+ * Contestia 32/1000
+ */
+#define CONTESTIA_NUMBER_OF_TONES 32
+#define CONTESTIA_CHARACTERS_PER_BLOCK 5
 
-float si_trx_get_temperature(void);
 
-void si_trx_on(uint8_t modulation_type, float channel_spacing);
-void si_trx_off(void);
-void si_trx_switch_channel(uint8_t channel);
+void contestia_start(char* data);
+uint8_t contestia_tick(void);
 
-void si_trx_init(void);
-
-void spi_loopback_test(void);
-
-#endif /* SI_TRX_H */
+#endif /* CONTESTIA_H */

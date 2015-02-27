@@ -26,6 +26,29 @@
 #define TELEMETRY_H
 
 uint16_t crc_checksum(char *string);
+
+#include "util/dbuffer.h"
+
+enum telemetry_t {
+  TELEMETRY_RTTY,
+  TELEMETRY_CONTESTIA
+};
+
+/**
+ * Output String
+ */
+#define TELEMETRY_STRING_MAX	0x1F0
+#define TELEMETRY_LARGEST_BLOCK	0x10
+/**
+ * It's actually a double buffer which we swap for mid-string updates
+ */
+ARRAY_DBUFFER_T(char, TELEMETRY_STRING_MAX+TELEMETRY_LARGEST_BLOCK) telemetry_dbuffer_string;
+
+int telemetry_active(void);
+int telemetry_start(enum telemetry_t type);
+int32_t telemetry_get_index(void);
+void telemetry_set_length(int32_t length);
+
 void timer0_tick_init(float frequency);
 
 #endif /* TELEMETRY_H */

@@ -128,7 +128,7 @@ void contestia_mfsk_encode_block(char* block, int8_t* tones)
 {
   size_t bits_per_symbol = 5; /* That is, there are 2^5=32 tones */
 
-  for (uint8_t c_index; c_index < bits_per_symbol; c_index++) {
+  for (uint8_t c_index = 0; c_index < bits_per_symbol; c_index++) {
     char character = block[c_index];
 
     /* lowercase => UPPERCASE */
