@@ -127,11 +127,17 @@ int telemetry_start(enum telemetry_t type) {
     telemetry_index = 0;
 
     /* Initialise first block / character */
-
-
-
     telemetry_string_length = TELEMETRY_STRING_MAX;
 
+    /* Setup timer tick */
+    switch(telemetry_type) {
+    case TELEMETRY_CONTESTIA:
+      timer0_tick_init(31.25);
+      break;
+    case TELEMETRY_RTTY:
+      timer0_tick_init(50);
+      break;
+    }
 
     return 0; /* Success */
   } else {
@@ -160,6 +166,9 @@ uint8_t is_telemetry_finished(void) {
 
     /* Turn radio off */
     si_trx_off(); radio_on = 0;
+
+    /* De-init timer */
+    timer0_tick_deinit();
 
     return 1;
   }
@@ -285,6 +294,15 @@ void timer0_tick_init(float frequency)
   tc_enable(TC0);
   tc_start_counter(TC0);
 }
+/**
+ * Disables the timer
+ */
+void timer0_tick_deinit()
+{
+  tc_stop_counter(TC0);
+  tc_disable(TC0);
+}
+
 
 /**
  * Called at the symbol rate

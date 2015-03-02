@@ -315,15 +315,6 @@ int main(void)
   /* Initialise Si4060 interface */
   si_trx_init();
 
-
-  /* Timer 0 clocks out data */
-#ifdef RTTY
-  timer0_tick_init(50);
-#endif
-#ifdef CONTESTIA
-  timer0_tick_init(31.25);
-#endif
-
   led_on();
 
   while (1) {
