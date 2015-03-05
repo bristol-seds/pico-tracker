@@ -23,6 +23,7 @@
  */
 
 #include "samd20.h"
+#include "si_trx.h"
 #include "semihosting.h"
 #include "system/port.h"
 #include "spi_bitbang.h"
@@ -235,12 +236,11 @@ static void si_trx_frequency_control_set_channel_step_size(uint16_t step_size)
 /**
  * Sets the output divider of the frac-n pll synthesiser
  */
-static void si_trx_frequency_control_set_band(uint8_t band)
+static void si_trx_frequency_control_set_band(uint8_t band, uint8_t sy_sel)
 {
-  /* Force SY_SEL = 1, operation when SY_SEL = 0 is currently undefined */
   _si_trx_set_property_8(SI_PROPERTY_GROUP_MODEM,
 			 SI_MODEM_CLKGEN_BAND,
-			 SI_MODEM_CLKGEN_SY_SEL_1 | (band & 0x7));
+			 sy_sel | (band & 0x7));
 }
 /**
  * Sets the frequency deviation in the modem
@@ -287,7 +287,11 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
  */
 static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
 {
-  uint8_t outdiv, band;
+  uint8_t outdiv, band, nprescaler;
+
+  /* Higher frequency resolution, but also higher power (~+200µA) */
+  nprescaler = 2;
+
 
   if (frequency < 705000000UL) {
     outdiv = 6;  band = SI_MODEM_CLKGEN_FVCO_DIV_6;
@@ -305,7 +309,7 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
     outdiv = 24; band = SI_MODEM_CLKGEN_FVCO_DIV_24;
   }
 
-  uint32_t f_pfd = 2 * VCXO_FREQUENCY / outdiv;
+  uint32_t f_pfd = nprescaler * VCXO_FREQUENCY / outdiv;
 
   uint16_t n = ((uint16_t)(frequency / f_pfd)) - 1;
 
@@ -313,6 +317,9 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
   float rest  = ratio - (float)n;
 
   uint32_t m = (uint32_t)(rest * (float)(1 << 19));
+
+  /* Check n and m are in valid ranges, halt otherwise */
+  if (n > 0x7f || m > 0xfffff) while (1);
 
   /* Set the modem deviation, in units of the VCO resolution */
   float dev_ratio = (float)RF_DEVIATION / (float)f_pfd;
@@ -323,7 +330,11 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
   uint32_t channel_step = (uint32_t)(channel_spacing_ratio * (float)(1 << 19));
 
   /* Set the frac-n PLL output divider */
-  si_trx_frequency_control_set_band(band);
+  if (nprescaler == 4) { /* Prescaler */
+    si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_0);
+  } else { /* Default Mode */
+    si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_1);
+  }
 
   /* Set the frac-n PLL divisior */
   si_trx_frequency_control_set_divider(n, m);
@@ -333,9 +344,6 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
 
   /* Set the frequency deviation in the modem */
   si_trx_modem_set_deviation(dev);
-
-
-  //const uint8_t set_frequency_control_inte[] = {0x11, 0x40, 0x08, 0x00, n, m2, m1, m0, 0x0B, 0x61, 0x20, 0xFA};
 }
 
 /**
