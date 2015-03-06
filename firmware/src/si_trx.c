@@ -364,9 +364,9 @@ void si_trx_reset(uint8_t modulation_type)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
-  for (int i = 0; i < 15*10000; i++); /* Approx. 15ms */
+  for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
   _si_trx_sdn_disable();   /* booting */
-  for (int i = 0; i < 15*10000; i++); /* Approx. 15ms */
+  for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
 
 
   uint16_t part_number = si_trx_get_part_info();

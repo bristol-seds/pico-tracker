@@ -34,11 +34,8 @@
  * Interface to the physical world.
  */
 #define RTTY_CHANNEL_DEVIATION	(RTTY_CHANNEL_SPACING / 2)
-#define RTTY_CHANNEL(b)		(b ? RTTY_CHANNEL_DEVIATION : -RTTY_CHANNEL_DEVIATION)
+#define RTTY_CHANNEL(b)		(b ? -RTTY_CHANNEL_DEVIATION : RTTY_CHANNEL_DEVIATION)
 #define RTTY_SET(b)		si_trx_switch_channel(RTTY_CHANNEL(b))
-
-//port_pin_set_output_level(SI406X_GPIO1_PIN, !b);
-
 
 
 /**
@@ -94,14 +91,6 @@ uint8_t rtty_tick(void) {
   if (rtty_phase < BITS_PER_CHAR) {
     return 1;
   }
-
-  /* if (rtty_phase >= BITS_PER_CHAR) { // Next character */
-  /*   rtty_phase = 0; rtty_index++; RTTY_NEXT(); */
-
-  /*   if (rtty_index >= rtty_string_length) { // All done, deactivate */
-  /*     rtty_string_length = 0; // Deactivate */
-  /*   } */
-  /* } */
 
   return 0;
 }

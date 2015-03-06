@@ -148,7 +148,7 @@ void powermananger_init(void)
  * Telemetry String
  * =============================================================================
  */
-void output_telemetry_string(void)
+void output_telemetry_string(enum telemetry_t type)
 {
   double lat_fmt = 0.0;
   double lon_fmt = 0.0;
@@ -190,22 +190,25 @@ void output_telemetry_string(void)
 
 
 
+/**
+ * Starting up the radio blocks on high-prio interrupt for ~100ms: todo fixme
+ *
+ * Therefore don't touch gps until it's done
+ */
+
   /* RSID */
-/* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
-#ifdef CONTESTIA
-  telemetry_start_rsid(RSID_CONTESTIA_32_1000);
-#endif
+  /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
+  if (type == TELEMETRY_CONTESTIA) {
+    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+  }
 
   /* Sleep Wait for RSID to be done */
   while (telemetry_active()) {
     system_sleep();
   }
-#ifdef RTTY
-  telemetry_start(TELEMETRY_RTTY);
-#endif
-#ifdef CONTESTIA
-  telemetry_start(TELEMETRY_CONTESTIA);
-#endif
+
+  /* Main telemetry */
+  telemetry_start(type);
 
   /**
    * Position, Status, Checksum
@@ -334,7 +337,7 @@ int main(void)
     //wdt_reset_count();
 
     /* Send the next packet */
-    output_telemetry_string();
+    output_telemetry_string(TELEMETRY_RTTY);
 
     telemetry_start(TELEMETRY_PIPS);
     telemetry_set_length(5);

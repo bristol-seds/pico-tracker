@@ -28,6 +28,7 @@
 uint16_t crc_checksum(char *string);
 
 #include "util/dbuffer.h"
+#include "rsid.h"
 
 enum telemetry_t {
   TELEMETRY_RTTY,
@@ -49,6 +50,7 @@ ARRAY_DBUFFER_T(char, TELEMETRY_STRING_MAX+TELEMETRY_LARGEST_BLOCK) telemetry_db
 
 int telemetry_active(void);
 int telemetry_start(enum telemetry_t type);
+int telemetry_start_rsid(rsid_code_t rsid);
 int32_t telemetry_get_index(void);
 void telemetry_set_length(int32_t length);
 
