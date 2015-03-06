@@ -1,6 +1,6 @@
 /*
- * Telemetry strings and formatting
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Definitions for telemetry pips
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,42 +22,17 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef TELEMETRY_H
-#define TELEMETRY_H
-
-uint16_t crc_checksum(char *string);
-
-#include "util/dbuffer.h"
-
-enum telemetry_t {
-  TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA,
-  TELEMETRY_RSID,
-  TELEMETRY_APRS,
-  TELEMETRY_PIPS,
-};
+#ifndef PIPS_H
+#define PIPS_H
 
 /**
- * Output String
+ * 10ms pips, once per second
  */
-#define TELEMETRY_STRING_MAX	0x1F0
-#define TELEMETRY_LARGEST_BLOCK	0x10
-/**
- * It's actually a double buffer which we swap for mid-string updates
- */
-ARRAY_DBUFFER_T(char, TELEMETRY_STRING_MAX+TELEMETRY_LARGEST_BLOCK) telemetry_dbuffer_string;
 
-int telemetry_active(void);
-int telemetry_start(enum telemetry_t type);
-int32_t telemetry_get_index(void);
-void telemetry_set_length(int32_t length);
+#define PIPS_RATE	1
+#define PIPS_LENGTH_MS	50
 
+#define PIPS_ON_FREQUENCY	(1000 / PIPS_LENGTH_MS)
+#define PIPS_OFF_FREQUENCY	PIPS_RATE
 
-float timer0_tick_init(float frequency);
-void timer0_tick_frequency(float frequency);
-void timer0_tick_deinit();
-void telemetry_gpio1_pwm_init(void);
-void telemetry_gpio1_pwm_duty(float duty_cycle);
-void telemetry_gpio1_pwm_deinit(void);
-
-#endif /* TELEMETRY_H */
+#endif /* PIPS_H */

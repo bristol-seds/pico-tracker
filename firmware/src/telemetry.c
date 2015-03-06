@@ -30,6 +30,7 @@
 #include "rtty.h"
 #include "contestia.h"
 #include "rsid.h"
+#include "pips.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "system/gclk.h"
@@ -37,6 +38,25 @@
 #include "system/pinmux.h"
 #include "tc/tc_driver.h"
 #include "hw_config.h"
+
+
+#include "system/port.h"
+/**
+ * Turns the status LED on
+ */
+static inline void led_on(void)
+{
+  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
+}
+/**
+ * Turns the status lED off
+ */
+static inline void led_off(void)
+{
+  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
+}
+
+
 
 /**
  * CYCLIC REDUNDANCY CHECK (CRC)
@@ -136,8 +156,13 @@ int telemetry_start(enum telemetry_t type) {
     case TELEMETRY_RTTY:
       timer0_tick_init(RTTY_BITRATE);
       break;
+    case TELEMETRY_PIPS:
+      timer0_tick_init(PIPS_OFF_FREQUENCY);
+      break;
+    case TELEMETRY_APRS:
+    case TELEMETRY_RSID: /* Not used - see function below */
+      break;
     }
-
     return 0; /* Success */
   } else {
     return 1; /* Already active */
@@ -167,7 +192,6 @@ int telemetry_start_rsid(rsid_code_t rsid) {
     return 1; /* Already active */
   }
 }
-
 
 /**
  * Returns the index of the current byte being outputted from the buffer
@@ -272,6 +296,22 @@ void telemetry_tick(void) {
         telemetry_gpio1_pwm_deinit();
         return;
       }
+      break;
+
+    case TELEMETRY_PIPS: /* ---- ---- A pips mode! */
+
+      if (!radio_on) { /* Turn on */
+        /* Pips: Cw */
+        si_trx_on(SI_MODEM_MOD_TYPE_CW); radio_on = 1;
+        timer0_tick_frequency(PIPS_ON_FREQUENCY);
+
+      } else { /* Turn off */
+        si_trx_off(); radio_on = 0;
+        timer0_tick_frequency(PIPS_OFF_FREQUENCY);
+
+        telemetry_index++;
+        if (is_telemetry_finished()) return;
+      }
     }
   }
 }
@@ -308,6 +348,8 @@ float timer0_tick_init(float frequency)
 {
   //si_gclk_setup();
 
+  led_on();
+
   /* Calculate the wrap value for the given frequency */
   //float gclk_frequency = SI406X_TCXO_FREQUENCY;
   float gclk_frequency = (float)system_gclk_chan_get_hz(0);
@@ -328,7 +370,7 @@ float timer0_tick_init(float frequency)
 	  false,			/* Oneshot  */
 	  true,				/* Run in standby */
 	  0x0000,			/* Initial value */
-	  count,			/* Top value */
+	  0x0000,			/* Top value */
 	  t0_capture_channel_enables,	/* Capture Channel Enables */
 	  t0_compare_channel_values);	/* Compare Channels Values */
 
@@ -351,6 +393,19 @@ float timer0_tick_init(float frequency)
   return gclk_frequency / (float)count;
 }
 /**
+ * Changes the timer0 frequency
+ */
+void timer0_tick_frequency(float frequency)
+{
+  float gclk_frequency = (float)system_gclk_chan_get_hz(0);
+  uint32_t count = (uint32_t)(gclk_frequency / frequency);
+
+  tc_set_compare_value(TC0,
+                       TC_COMPARE_CAPTURE_CHANNEL_0,
+                       count);
+  tc_set_count_value(TC0, 0);
+}
+/**
  * Disables the timer
  */
 void timer0_tick_deinit()
@@ -358,8 +413,6 @@ void timer0_tick_deinit()
   tc_stop_counter(TC0);
   tc_disable(TC0);
 }
-
-
 /**
  * Called at the symbol rate
  */

@@ -170,7 +170,6 @@ void output_telemetry_string(void)
   while (gps_update_time_pending()) {
     system_sleep();
   }
-//  for (int i = 0; i < 100*1000; i++);
 
   /* Time */
   struct ubx_nav_timeutc time = gps_get_nav_timeutc();
@@ -189,7 +188,18 @@ void output_telemetry_string(void)
   /* swap buffers */
   ARRAY_DBUFFER_SWAP(&telemetry_dbuffer_string);
 
-  /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
+
+
+  /* RSID */
+/* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
+#ifdef CONTESTIA
+  telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+#endif
+
+  /* Sleep Wait for RSID to be done */
+  while (telemetry_active()) {
+    system_sleep();
+  }
 #ifdef RTTY
   telemetry_start(TELEMETRY_RTTY);
 #endif
@@ -210,9 +220,9 @@ void output_telemetry_string(void)
   /* Request updates from the gps */
   gps_update_position();
   if (gps_is_locked()) {
-    led_on();
+//    led_on();
   } else {
-    led_off();
+//    led_off();
   }
 
   /* Wait for the gps update. Move on if it's urgent */
@@ -221,9 +231,9 @@ void output_telemetry_string(void)
   }
 
   if (gps_is_locked()) {
-    led_off();
+//    led_off();
   } else {
-    led_on();
+//    led_on();
   }
 
   /* GPS Status */
@@ -316,7 +326,7 @@ int main(void)
   /* Initialise Si4060 interface */
   si_trx_init();
 
-  led_on();
+//  led_on();
 
 
   while (1) {
@@ -324,9 +334,10 @@ int main(void)
     //wdt_reset_count();
 
     /* Send the next packet */
-    //output_telemetry_string();
+    output_telemetry_string();
 
-    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+    telemetry_start(TELEMETRY_PIPS);
+    telemetry_set_length(5);
 
     /* Sleep Wait */
     while (telemetry_active()) {
