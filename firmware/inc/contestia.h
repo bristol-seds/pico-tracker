@@ -30,6 +30,8 @@
  */
 #define CONTESTIA_NUMBER_OF_TONES 32
 #define CONTESTIA_CHARACTERS_PER_BLOCK 5
+#define CONTESTIA_CHANNEL_SPACING 4 // Corresponds to 31.22 Hz
+#define CONTESTIA_SYMBOL_RATE 31.25
 
 
 void contestia_start(char* data);

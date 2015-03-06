@@ -39,6 +39,7 @@
 #include "system/wdt.h"
 #include "timepulse.h"
 #include "telemetry.h"
+#include "rsid.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "analogue.h"
@@ -317,11 +318,19 @@ int main(void)
 
   led_on();
 
+
   while (1) {
     /* Watchdog */
     //wdt_reset_count();
 
     /* Send the next packet */
-    output_telemetry_string();
+    //output_telemetry_string();
+
+    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+
+    /* Sleep Wait */
+    while (telemetry_active()) {
+      system_sleep();
+    }
   }
 }

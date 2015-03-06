@@ -27,15 +27,19 @@
 #include "samd20.h"
 #include "rtty.h"
 #include "hw_config.h"
-#include "system/port.h"
+#include "si_trx.h"
+
 
 /**
  * Interface to the physical world.
  */
-#define RTTY_ACTIVATE()
-#define RTTY_DEACTIVATE()
-#define RTTY_SET(b)	    port_pin_set_output_level(SI406X_GPIO1_PIN, !b);
-#define RTTY_NEXT()
+#define RTTY_CHANNEL_DEVIATION	(RTTY_CHANNEL_SPACING / 2)
+#define RTTY_CHANNEL(b)		(b ? RTTY_CHANNEL_DEVIATION : -RTTY_CHANNEL_DEVIATION)
+#define RTTY_SET(b)		si_trx_switch_channel(RTTY_CHANNEL(b))
+
+//port_pin_set_output_level(SI406X_GPIO1_PIN, !b);
+
+
 
 /**
  * Formatting 8N2

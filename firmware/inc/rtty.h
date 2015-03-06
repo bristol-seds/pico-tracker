@@ -25,6 +25,13 @@
 #ifndef RTTY_H
 #define RTTY_H
 
+/**
+ * 50 baud RTTY
+ */
+#define RTTY_BITRATE		50
+#define RTTY_CHANNEL_SPACING	52 // Corresponds to 405.9Hz spacing
+
+
 void rtty_start(uint8_t data);
 uint8_t rtty_tick(void);
 

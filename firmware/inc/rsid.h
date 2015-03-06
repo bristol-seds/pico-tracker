@@ -1,0 +1,184 @@
+/*
+ * Reed-Solomon Identification (RSID) functions
+ * Copyright (C) 2014  Richard Meadows <richardeoin>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#ifndef RSID_H
+#define RSID_H
+
+#define RSID_NSYMBOLS		15
+#define RSID_SYMBOL_RATE	(11025.0 / 1024.0)
+
+/**
+ * The RSID codes for all supported modes.
+ *
+ * From http://www.w1hkj.com/RSID_description.html
+ */
+typedef enum rsid_code_t {
+  RSID_BPSK31			= 1,
+  RSID_QPSK31			= 110,
+  RSID_BPSK63			= 2,
+  RSID_QPSK63			= 3,
+  RSID_BPSK125			= 4,
+  RSID_QPSK125			= 5,
+  RSID_BPSK250			= 126,
+  RSID_QPSK250			= 127,
+  RSID_BPSK500			= 173,
+  RSID_PSK125R			= 183,
+  RSID_PSK250R			= 186,
+  RSID_PSK500R			= 187,
+  RSID_PSKFEC31			= 7,
+  RSID_PSK10			= 8,
+  RSID_MT63_500_LG		= 9,
+  RSID_MT63_500_ST		= 10,
+  RSID_MT63_500_VST		= 11,
+  RSID_MT63_1000_LG		= 12,
+  RSID_MT63_1000_ST		= 13,
+  RSID_MT63_1000_VST		= 14,
+  RSID_MT63_2000_LG		= 15,
+  RSID_MT63_2000_ST		= 17,
+  RSID_MT63_2000_VST		= 18,
+  RSID_PSKAM10			= 19,
+  RSID_PSKAM31			= 20,
+  RSID_PSKAM50			= 21,
+  RSID_PSK63F			= 22,
+  RSID_PSK220F			= 23,
+  RSID_CHIP64			= 24,
+  RSID_CHIP128			= 25,
+  RSID_CW			= 26,
+  RSID_CCW_OOK_12		= 27,
+  RSID_CCW_OOK_24		= 28,
+  RSID_CCW_OOK_48		= 29,
+  RSID_CCW_FSK_12		= 30,
+  RSID_CCW_FSK_24		= 31,
+  RSID_CCW_FSK_48		= 33,
+  RSID_PACTOR1_FEC		= 34,
+  RSID_PACKET_110		= 113,
+  RSID_PACKET_300		= 35,
+  RSID_PACKET_1200		= 36,
+  RSID_RTTY_ASCII_7		= 37,
+  RSID_RTTY_ASCII_8		= 38,
+  RSID_RTTY_45			= 39,
+  RSID_RTTY_50			= 40,
+  RSID_RTTY_75			= 41,
+  RSID_AMTOR_FEC		= 42,
+  RSID_THROB_1			= 43,
+  RSID_THROB_2			= 44,
+  RSID_THROB_4			= 45,
+  RSID_THROBX_1			= 46,
+  RSID_THROBX_2			= 47,
+  RSID_THROBX_4			= 146,
+  RSID_CONTESTIA_4_125		= 204,
+  RSID_CONTESTIA_4_250		= 55,
+  RSID_CONTESTIA_4_500		= 54,
+  RSID_CONTESTIA_4_1000		= 255,
+  RSID_CONTESTIA_4_2000		= 254,
+  RSID_CONTESTIA_8_125		= 169,
+  RSID_CONTESTIA_8_250		= 49,
+  RSID_CONTESTIA_8_500		= 52,
+  RSID_CONTESTIA_8_1000		= 117,
+  RSID_CONTESTIA_8_2000		= 247,
+  RSID_CONTESTIA_16_500		= 50,
+  RSID_CONTESTIA_16_1000	= 53,
+  RSID_CONTESTIA_16_2000	= 259,
+  RSID_CONTESTIA_32_1000	= 51,
+  RSID_CONTESTIA_32_2000	= 201,
+  RSID_CONTESTIA_64_500		= 194,
+  RSID_CONTESTIA_64_1000	= 193,
+  RSID_CONTESTIA_64_2000	= 191,
+  RSID_VOICE			= 56,
+  RSID_MFSK8			= 60,
+  RSID_MFSK16			= 57,
+  RSID_MFSK32			= 147,
+  RSID_MFSK11			= 148,
+  RSID_MFSK22			= 152,
+  RSID_RTTYM_8_250		= 61,
+  RSID_RTTYM_16_500		= 62,
+  RSID_RTTYM_32_1000		= 63,
+  RSID_RTTYM_8_500		= 65,
+  RSID_RTTYM_16_1000		= 66,
+  RSID_RTTYM_4_500		= 67,
+  RSID_RTTYM_4_250		= 68,
+  RSID_RTTYM_8_1000		= 119,
+  RSID_RTTYM_8_125		= 170,
+  RSID_OLIVIA_4_125		= 203,
+  RSID_OLIVIA_4_250		= 75,
+  RSID_OLIVIA_4_500		= 74,
+  RSID_OLIVIA_4_1000		= 229,
+  RSID_OLIVIA_4_2000		= 238,
+  RSID_OLIVIA_8_125		= 163,
+  RSID_OLIVIA_8_250		= 69,
+  RSID_OLIVIA_8_500		= 72,
+  RSID_OLIVIA_8_1000		= 116,
+  RSID_OLIVIA_8_2000		= 214,
+  RSID_OLIVIA_16_500		= 70,
+  RSID_OLIVIA_16_1000		= 73,
+  RSID_OLIVIA_16_2000		= 234,
+  RSID_OLIVIA_32_1000		= 71,
+  RSID_OLIVIA_32_2000		= 221,
+  RSID_OLIVIA_64_2000		= 211,
+  RSID_PAX			= 76,
+  RSID_PAX2			= 77,
+  RSID_DOMINOF			= 78,
+  RSID_FAX			= 79,
+  RSID_SSTV			= 81,
+  RSID_DOMINOEX_4		= 84,
+  RSID_DOMINOEX_5		= 85,
+  RSID_DOMINOEX_8		= 86,
+  RSID_DOMINOEX_11		= 87,
+  RSID_DOMINOEX_16		= 88,
+  RSID_DOMINOEX_22		= 90,
+  RSID_DOMINOEX_4_FEC		= 92,
+  RSID_DOMINOEX_5_FEC		= 93,
+  RSID_DOMINOEX_8_FEC		= 97,
+  RSID_DOMINOEX_11_FEC		= 98,
+  RSID_DOMINOEX_16_FEC		= 99,
+  RSID_DOMINOEX_22_FEC		= 101,
+  RSID_FELD_HELL		= 104,
+  RSID_PSK_HELL			= 105,
+  RSID_HELL_80			= 106,
+  RSID_FM_HELL_105		= 107,
+  RSID_FM_HELL_245		= 108,
+  RSID_MODE_141A		= 114,
+  RSID_DTMF			= 123,
+  RSID_ALE400			= 125,
+  RSID_FDMDV			= 131,
+  RSID_JT65_A			= 132,
+  RSID_JT65_B			= 134,
+  RSID_JT65_C			= 135,
+  RSID_THOR_4			= 136,
+  RSID_THOR_8			= 137,
+  RSID_THOR_16			= 138,
+  RSID_THOR_5			= 139,
+  RSID_THOR_11			= 143,
+  RSID_THOR_22			= 145,
+  RSID_CALL_ID			= 153,
+  RSID_PACKET_PSK1200		= 155,
+  RSID_PACKET_PSK250		= 156,
+  RSID_PACKET_PSK63		= 159,
+  RSID_MODE_188_110A_8N1        = 172,
+} rsid_code_t;
+
+void rsid_start(rsid_code_t rsid_code);
+uint8_t rsid_tick(void);
+
+#endif

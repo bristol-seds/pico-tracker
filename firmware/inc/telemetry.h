@@ -31,7 +31,10 @@ uint16_t crc_checksum(char *string);
 
 enum telemetry_t {
   TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA
+  TELEMETRY_CONTESTIA,
+  TELEMETRY_RSID,
+  TELEMETRY_APRS,
+  TELEMETRY_PIPS,
 };
 
 /**
@@ -49,6 +52,11 @@ int telemetry_start(enum telemetry_t type);
 int32_t telemetry_get_index(void);
 void telemetry_set_length(int32_t length);
 
-void timer0_tick_init(float frequency);
+
+float timer0_tick_init(float frequency);
+void timer0_tick_deinit();
+void telemetry_gpio1_pwm_init(void);
+void telemetry_gpio1_pwm_duty(float duty_cycle);
+void telemetry_gpio1_pwm_deinit(void);
 
 #endif /* TELEMETRY_H */

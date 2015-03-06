@@ -22,9 +22,11 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "si_trx.h"
+#include "samd20.h"
 #include "contestia.h"
-
+#include "telemetry.h"
+#include "si_trx.h"
+#include "mfsk.h"
 
 /**
  * Current output tones
@@ -52,11 +54,15 @@ uint8_t contestia_tick(void) {
   if (contestia_tone_index < CONTESTIA_NUMBER_OF_TONES) {
     uint8_t binary_code;
     uint8_t grey_code;
+    int16_t channel;
 
     /* Output grey code */
     binary_code = contestia_tones[contestia_tone_index];
     grey_code = (binary_code >> 1) ^ binary_code;
-    si_trx_switch_channel(grey_code);
+
+    /* Align this to a channel */
+    channel = grey_code - (CONTESTIA_NUMBER_OF_TONES / 2);
+    si_trx_switch_channel(channel * CONTESTIA_CHANNEL_SPACING);
 
   } else {
     return 0;

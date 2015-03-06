@@ -36,6 +36,13 @@
 #define RF_DEVIATION	200
 
 /**
+ * The LSB tuning resolution of the frac-n pll as currently
+ * configured.
+ */
+float lsb_tuning_resolution = 0;
+
+
+/**
  * Generic SPI Send / Receive
  */
 void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data)
@@ -224,16 +231,6 @@ static void si_trx_frequency_control_set_divider(uint8_t integer_divider,
 			  divider);
 }
 /**
- * Sets the step size between adjacent channels, in units of the
- * resolution of the frac-n pll synthesiser.
- */
-static void si_trx_frequency_control_set_channel_step_size(uint16_t step_size)
-{
-  _si_trx_set_property_16(SI_PROPERTY_GROUP_FREQ_CONTROL,
-                          SI_FREQ_CONTROL_CHANNEL_STEP_SIZE,
-                          step_size);
-}
-/**
  * Sets the output divider of the frac-n pll synthesiser
  */
 static void si_trx_frequency_control_set_band(uint8_t band, uint8_t sy_sel)
@@ -243,7 +240,11 @@ static void si_trx_frequency_control_set_band(uint8_t band, uint8_t sy_sel)
 			 sy_sel | (band & 0x7));
 }
 /**
- * Sets the frequency deviation in the modem
+ * Sets the modem frequency deviation. This is how much the external
+ * pin deviates the synthesiser from the centre frequency. In units of
+ * the resolution of the frac-n pll synthsiser.
+ *
+ * This is an unsigned 17-bit value.
  */
 static void si_trx_modem_set_deviation(uint32_t deviation)
 {
@@ -251,6 +252,19 @@ static void si_trx_modem_set_deviation(uint32_t deviation)
 			  SI_MODEM_FREQ_DEV,
 			  deviation);
 }
+/**
+ * Sets the modem frequency offset manually. In units of the
+ * resolution of the frac-n pll synthsiser.
+ *
+ * This is a signed 16-bit value.
+ */
+static void si_trx_modem_set_offset(int16_t offset)
+{
+  _si_trx_set_property_16(SI_PROPERTY_GROUP_MODEM,
+                          SI_MODEM_FREQ_OFFSET,
+                          offset);
+}
+
 /**
  * Sets the modulation mode
  */
@@ -283,9 +297,11 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 
 
 /**
- * Set the synthesiser to the given frequency
+ * Set the synthesiser to the given frequency.
+ *
+ * Returns the LSB tuning resolution of the frac-n pll synthesiser.
  */
-static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
+static float si_trx_set_frequency(uint32_t frequency)
 {
   uint8_t outdiv, band, nprescaler;
 
@@ -309,25 +325,19 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
     outdiv = 24; band = SI_MODEM_CLKGEN_FVCO_DIV_24;
   }
 
-  uint32_t f_pfd = nprescaler * VCXO_FREQUENCY / outdiv;
+  float f_pfd = nprescaler * VCXO_FREQUENCY / outdiv;
 
   uint16_t n = ((uint16_t)(frequency / f_pfd)) - 1;
 
-  float ratio = (float)frequency / (float)f_pfd;
+  float ratio = (float)frequency / f_pfd;
   float rest  = ratio - (float)n;
 
   uint32_t m = (uint32_t)(rest * (float)(1 << 19));
 
+
   /* Check n and m are in valid ranges, halt otherwise */
   if (n > 0x7f || m > 0xfffff) while (1);
 
-  /* Set the modem deviation, in units of the VCO resolution */
-  float dev_ratio = (float)RF_DEVIATION / (float)f_pfd;
-  uint32_t dev = (uint32_t)(dev_ratio * (float)(1 << 19));
-
-  /* Set the channel spacing, in units of the VCO resolution */
-  float channel_spacing_ratio = channel_spacing / (float)f_pfd;
-  uint32_t channel_step = (uint32_t)(channel_spacing_ratio * (float)(1 << 19));
 
   /* Set the frac-n PLL output divider */
   if (nprescaler == 4) { /* Prescaler */
@@ -336,20 +346,21 @@ static void si_trx_set_frequency(uint32_t frequency, float channel_spacing)
     si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_1);
   }
 
+
   /* Set the frac-n PLL divisior */
   si_trx_frequency_control_set_divider(n, m);
 
-  /* Set the channel step in the PLL */
-  si_trx_frequency_control_set_channel_step_size(channel_step);
+  /* Set the external pin frequency deviation to the LSB tuning resoultion */
+  si_trx_modem_set_deviation(1);
 
-  /* Set the frequency deviation in the modem */
-  si_trx_modem_set_deviation(dev);
+  /* Return the LSB tuning resolution of the frac-n pll synthesiser. */
+  return f_pfd / (float)(1 << 19);
 }
 
 /**
  * Resets the transceiver
  */
-void si_trx_reset(uint8_t modulation_type, float channel_spacing)
+void si_trx_reset(uint8_t modulation_type)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -376,7 +387,7 @@ void si_trx_reset(uint8_t modulation_type, float channel_spacing)
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
-  si_trx_set_frequency(RADIO_FREQUENCY, channel_spacing);
+  si_trx_set_frequency(RADIO_FREQUENCY);
   si_trx_set_tx_power(RADIO_POWER);
 
   /* RTTY from GPIO1 */
@@ -391,10 +402,10 @@ void si_trx_reset(uint8_t modulation_type, float channel_spacing)
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(uint8_t modulation_type, float channel_spacing)
+void si_trx_on(uint8_t modulation_type)
 {
-  si_trx_reset(modulation_type, channel_spacing);
-  si_trx_start_tx(1);
+  si_trx_reset(modulation_type);
+  si_trx_start_tx(0);
 }
 /**
  * Disables the radio and places it in shutdown
@@ -404,13 +415,13 @@ void si_trx_off(void)
   si_trx_state_ready();
   _si_trx_sdn_enable();
 }
+
 /**
- * Switches the transmittion to the specified channel
+ * Switches the transmission to the specified channel. Signed 16-bit int
  */
-void si_trx_switch_channel(uint8_t channel)
+void si_trx_switch_channel(int16_t channel)
 {
-  si_trx_state_ready();
-  si_trx_start_tx(channel);
+  si_trx_modem_set_offset(channel);
 }
 
 /**

@@ -3,7 +3,7 @@
 | Type | Peripheral | Function | Notes
 | --- | --- | --- | ---
 |*GLCK*|
-||gclk0|main|
+||gclk0|main|2MHz??
 |*TC*||
 ||tc0|
 ||tc1|

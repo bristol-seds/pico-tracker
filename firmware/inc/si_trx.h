@@ -29,9 +29,9 @@
 
 float si_trx_get_temperature(void);
 
-void si_trx_on(uint8_t modulation_type, float channel_spacing);
+void si_trx_on(uint8_t modulation_type);
 void si_trx_off(void);
-void si_trx_switch_channel(uint8_t channel);
+void si_trx_switch_channel(int16_t channel);
 
 void si_trx_init(void);
 

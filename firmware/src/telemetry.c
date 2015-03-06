@@ -29,6 +29,7 @@
 #include "telemetry.h"
 #include "rtty.h"
 #include "contestia.h"
+#include "rsid.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "system/gclk.h"
@@ -125,17 +126,15 @@ int telemetry_start(enum telemetry_t type) {
     /* Initialise */
     telemetry_type = type;
     telemetry_index = 0;
-
-    /* Initialise first block / character */
     telemetry_string_length = TELEMETRY_STRING_MAX;
 
     /* Setup timer tick */
     switch(telemetry_type) {
     case TELEMETRY_CONTESTIA:
-      timer0_tick_init(31.25);
+      timer0_tick_init(CONTESTIA_SYMBOL_RATE);
       break;
     case TELEMETRY_RTTY:
-      timer0_tick_init(50);
+      timer0_tick_init(RTTY_BITRATE);
       break;
     }
 
@@ -144,6 +143,32 @@ int telemetry_start(enum telemetry_t type) {
     return 1; /* Already active */
   }
 }
+/**
+ * Start RSID output. Argument: RSID Data
+ *
+ * Returns 0 on success, 1 if already active
+ */
+int telemetry_start_rsid(rsid_code_t rsid) {
+  if (!telemetry_active()) {
+
+    /* Initialise */
+    telemetry_type = TELEMETRY_RSID;
+    telemetry_index = 0;
+    telemetry_string_length = 6;
+
+    /* Start RSID */
+    rsid_start(rsid);
+
+    /* Setup timer tick */
+    timer0_tick_init(RSID_SYMBOL_RATE);
+
+    return 0; /* Success */
+  } else {
+    return 1; /* Already active */
+  }
+}
+
+
 /**
  * Returns the index of the current byte being outputted from the buffer
  */
@@ -185,8 +210,8 @@ void telemetry_tick(void) {
     case TELEMETRY_CONTESTIA: /* ---- ---- A block mode */
 
       if (!radio_on) {
-        /* Contestia: We switch channel to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, 31.25);
+        /* Contestia: We use the modem offset to modulate */
+        si_trx_on(SI_MODEM_MOD_TYPE_CW);
         radio_on = 1;
       }
 
@@ -205,8 +230,8 @@ void telemetry_tick(void) {
     case TELEMETRY_RTTY: /* ---- ---- A character mode */
 
       if (!radio_on) {
-        /* RTTY Mode: We modulate using the external pin */
-        si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 0);
+        /* RTTY: We use the modem offset to modulate */
+        si_trx_on(SI_MODEM_MOD_TYPE_CW);
         radio_on = 1;
       }
 
@@ -222,9 +247,35 @@ void telemetry_tick(void) {
       }
 
       break;
+
+    case TELEMETRY_RSID: /* ---- ---- A block mode */
+
+      /* Wait for 5 bit times of silence */
+      if (telemetry_index < 5) {
+        telemetry_index++;
+        return;
+      }
+
+      if (!radio_on) {
+        /* RSID: We PWM frequencies with the external pin */
+        si_trx_on(SI_MODEM_MOD_TYPE_2FSK);
+        telemetry_gpio1_pwm_init();
+
+        radio_on = 1;
+      }
+
+      /* Do Tx */
+      if (!rsid_tick()) {
+        /* Force transmission finished */
+        telemetry_index++;
+        is_telemetry_finished(); // Returns true
+        telemetry_gpio1_pwm_deinit();
+        return;
+      }
     }
   }
 }
+
 
 /**
  * CLOCKING
@@ -250,8 +301,10 @@ void si_gclk_setup(void)
 
 /**
  * Initialises a timer interupt at the given frequency
+ *
+ * Returns the frequency we actually initialised.
  */
-void timer0_tick_init(float frequency)
+float timer0_tick_init(float frequency)
 {
   //si_gclk_setup();
 
@@ -293,6 +346,9 @@ void timer0_tick_init(float frequency)
   /* Enable Timer */
   tc_enable(TC0);
   tc_start_counter(TC0);
+
+  /* Return the frequency we actually initialised */
+  return gclk_frequency / (float)count;
 }
 /**
  * Disables the timer
@@ -314,4 +370,65 @@ void TC0_Handler(void)
 
     telemetry_tick();
   }
+}
+
+
+
+#define GPIO1_PWM_STEPS 200 // ~ 20kHz on a 4 MHz clock
+
+/**
+ * Initialised PWM at the given duty cycle on the GPIO1 pin of the radio
+ */
+void telemetry_gpio1_pwm_init(void)
+{
+  bool capture_channel_enables[]    = {false, true};
+  uint32_t compare_channel_values[] = {0x0000, 0x0000}; // Set duty cycle at 0% by default
+
+  //float gclk_frequency = (float)system_gclk_chan_get_hz(0);
+
+  tc_init(TC5,
+	  GCLK_GENERATOR_0,
+	  TC_COUNTER_SIZE_8BIT,
+	  TC_CLOCK_PRESCALER_DIV1,
+	  TC_WAVE_GENERATION_NORMAL_PWM,
+	  TC_RELOAD_ACTION_GCLK,
+	  TC_COUNT_DIRECTION_UP,
+	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
+	  false,			/* Oneshot = false */
+	  false,			/* Run in standby = false */
+	  0x0000,			/* Initial value */
+	  GPIO1_PWM_STEPS,		/* Top value */
+	  capture_channel_enables,	/* Capture Channel Enables */
+	  compare_channel_values);	/* Compare Channels Values */
+
+
+  /* Enable the output pin */
+  system_pinmux_pin_set_config(SI406X_GPIO1_PINMUX >> 16,	/* GPIO Pin	*/
+ 			       SI406X_GPIO1_PINMUX & 0xFFFF,	/* Mux Position */
+ 			       SYSTEM_PINMUX_PIN_DIR_INPUT,	/* Direction	*/
+ 			       SYSTEM_PINMUX_PIN_PULL_NONE,	/* Pull		*/
+ 			       false);    			/* Powersave	*/
+
+  tc_enable(TC5);
+  tc_start_counter(TC5);
+
+}
+/**
+ * Sets duty cycle on PWM pin
+ */
+void telemetry_gpio1_pwm_duty(float duty_cycle)
+{
+  uint32_t compare_value = (float)GPIO1_PWM_STEPS * duty_cycle;
+
+  tc_set_compare_value(TC5,
+                       TC_COMPARE_CAPTURE_CHANNEL_1,
+                       compare_value);
+}
+/**
+ * Turn the pwm off again
+ */
+void telemetry_gpio1_pwm_deinit(void)
+{
+  tc_stop_counter(TC5);
+  tc_enable(TC5);
 }
