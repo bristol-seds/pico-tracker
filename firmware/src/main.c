@@ -73,7 +73,7 @@ static inline void led_on(void)
   port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
 }
 /**
- * Turns the status lED off
+ * Turns the status LED off
  */
 static inline void led_off(void)
 {
@@ -229,7 +229,7 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* sprintf - full string */
   len += sprintf(telemetry_string + len,
-		"%s,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
+		"%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.1f",
 		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
 		altitude, satillite_count, battery, temperature);
 
@@ -330,9 +330,6 @@ int main(void)
     while (telemetry_active()) {
       system_sleep();
     }
-
-
-
 
     /* Send the next packet */
     output_telemetry_string(TELEMETRY_CONTESTIA);
