@@ -39,6 +39,7 @@
 #include "system/wdt.h"
 #include "timepulse.h"
 #include "telemetry.h"
+#include "contestia.h"
 #include "rsid.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
@@ -46,7 +47,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDSX"
+#define CALLSIGN	"UBSEDSx"
 
 /* Set the modulation mode */
 //#define RTTY
@@ -154,10 +155,10 @@ void output_telemetry_string(enum telemetry_t type)
   double lon_fmt = 0.0;
   uint32_t altitude = 0;
   uint16_t len;
-  uint8_t dollars = 5;
+  uint8_t dollars = 2;
 
   /**
-   * Analogue, Callsign, Time
+   * Collect Data
    * ---------------------------------------------------------------------------
    */
 
@@ -211,6 +212,17 @@ void output_telemetry_string(enum telemetry_t type)
     altitude = pos.payload.height / 1000;
   }
 
+
+
+  /**
+   * Format
+   * ---------------------------------------------------------------------------
+   */
+
+  if (type == TELEMETRY_RTTY) {
+    dollars = 5; // Extra dollars for RTTY
+  }
+
   /* sprintf - preamble */
   memset(telemetry_string, '$', dollars);
   len = dollars;
@@ -221,10 +233,12 @@ void output_telemetry_string(enum telemetry_t type)
 		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
 		altitude, satillite_count, battery, temperature);
 
+  if (type == TELEMETRY_CONTESTIA) { contestiaize(telemetry_string + dollars); }
+
   /* sprintf - checksum. don't include dollars */
   len += sprintf(telemetry_string + len,
 		 "*%04X\r",
-		 crc_checksum(telemetry_string + 5));
+		 crc_checksum(telemetry_string + dollars));
 
 
 

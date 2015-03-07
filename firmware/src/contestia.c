@@ -22,6 +22,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <string.h>
+
 #include "samd20.h"
 #include "contestia.h"
 #include "telemetry.h"
@@ -98,4 +100,28 @@ uint8_t contestia_tick(void) {
   }
 
   return 0;
+}
+
+
+
+/**
+ * Only certain strings are possible in contestia (no lowercase
+ * etc.). This function prases a string and fixed anything that would
+ * be converted by contestia transmission.
+ */
+void contestiaize(char* string) {
+  for (size_t i = 0; i < strlen(string); i++) {
+
+    /* lowercase => UPPERCASE */
+    if (string[i] >= 'a' && string[i] <= 'z') {
+      string[i] += 'A' - 'a';
+    }
+
+    if ((string[i] < '!' || string[i] > 'Z') && /* Not Printable */
+        (string[i] != ' ')  && (string[i] != '\r') &&
+        (string[i] != '\n') && (string[i] != 8) &&
+        (string[i] != 0)) {
+      string[i] = '?'; /* Comes out as question mark */
+    }
+  }
 }

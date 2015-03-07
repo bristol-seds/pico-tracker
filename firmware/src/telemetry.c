@@ -160,7 +160,7 @@ int telemetry_start_rsid(rsid_code_t rsid) {
     /* Initialise */
     telemetry_type = TELEMETRY_RSID;
     telemetry_index = 0;
-    telemetry_string_length = 6;
+    telemetry_string_length = 5+1+5;
 
     /* Start RSID */
     rsid_start(rsid);
@@ -183,7 +183,9 @@ uint8_t is_telemetry_finished(void) {
     telemetry_string_length = 0;
 
     /* Turn radio off */
-    si_trx_off(); radio_on = 0;
+    if (radio_on) {
+      si_trx_off(); radio_on = 0;
+    }
 
     /* De-init timer */
     timer0_tick_deinit();
@@ -243,8 +245,9 @@ void telemetry_tick(void) {
 
     case TELEMETRY_RSID: /* ---- ---- A block mode */
 
-      /* Wait for 5 bit times of silence */
-      if (telemetry_index < 5) {
+      /* Wait for 5 bit times of silence before and after */
+      if (telemetry_index != 5) {
+        is_telemetry_finished();
         telemetry_index++;
         return;
       }
@@ -261,7 +264,7 @@ void telemetry_tick(void) {
       if (!rsid_tick()) {
         /* Force transmission finished */
         telemetry_index++;
-        is_telemetry_finished(); // Returns true
+        si_trx_off(); radio_on = 0;
         telemetry_gpio1_pwm_deinit();
         return;
       }

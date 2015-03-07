@@ -38,4 +38,6 @@ void contestia_start(char* data);
 void contestia_preamble(void);
 uint8_t contestia_tick(void);
 
+void contestiaize(char* string);
+
 #endif /* CONTESTIA_H */
