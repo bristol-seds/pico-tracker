@@ -41,18 +41,12 @@ enum telemetry_t {
 /**
  * Output String
  */
-#define TELEMETRY_STRING_MAX	0x1F0
-#define TELEMETRY_LARGEST_BLOCK	0x10
-/**
- * It's actually a double buffer which we swap for mid-string updates
- */
-ARRAY_DBUFFER_T(char, TELEMETRY_STRING_MAX+TELEMETRY_LARGEST_BLOCK) telemetry_dbuffer_string;
+#define TELEMETRY_STRING_MAX	0x200
+char telemetry_string[TELEMETRY_STRING_MAX];
 
 int telemetry_active(void);
-int telemetry_start(enum telemetry_t type);
+int telemetry_start(enum telemetry_t type, int32_t length);
 int telemetry_start_rsid(rsid_code_t rsid);
-int32_t telemetry_get_index(void);
-void telemetry_set_length(int32_t length);
 
 
 float timer0_tick_init(float frequency);

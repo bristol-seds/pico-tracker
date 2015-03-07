@@ -35,11 +35,6 @@
 #define VCXO_FREQUENCY	SI406X_TCXO_FREQUENCY
 #define RF_DEVIATION	200
 
-/**
- * The LSB tuning resolution of the frac-n pll as currently
- * configured.
- */
-float lsb_tuning_resolution = 0;
 
 
 /**
@@ -299,9 +294,12 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 /**
  * Set the synthesiser to the given frequency.
  *
+ * frequency: Floating-point value for the frequency
+ * deviation: FSK-mode deviation, in channels. Usually 1
+ *
  * Returns the LSB tuning resolution of the frac-n pll synthesiser.
  */
-static float si_trx_set_frequency(uint32_t frequency)
+static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
 {
   uint8_t outdiv, band, nprescaler;
 
@@ -351,7 +349,7 @@ static float si_trx_set_frequency(uint32_t frequency)
   si_trx_frequency_control_set_divider(n, m);
 
   /* Set the external pin frequency deviation to the LSB tuning resoultion */
-  si_trx_modem_set_deviation(1);
+  si_trx_modem_set_deviation(deviation);
 
   /* Return the LSB tuning resolution of the frac-n pll synthesiser. */
   return f_pfd / (float)(1 << 19);
@@ -360,7 +358,7 @@ static float si_trx_set_frequency(uint32_t frequency)
 /**
  * Resets the transceiver
  */
-void si_trx_reset(uint8_t modulation_type)
+void si_trx_reset(uint8_t modulation_type, uint16_t deviation)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -387,7 +385,7 @@ void si_trx_reset(uint8_t modulation_type)
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
-  si_trx_set_frequency(RADIO_FREQUENCY);
+  si_trx_set_frequency(RADIO_FREQUENCY, deviation);
   si_trx_set_tx_power(RADIO_POWER);
 
   /* RTTY from GPIO1 */
@@ -402,9 +400,9 @@ void si_trx_reset(uint8_t modulation_type)
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(uint8_t modulation_type)
+void si_trx_on(uint8_t modulation_type, uint16_t deviation)
 {
-  si_trx_reset(modulation_type);
+  si_trx_reset(modulation_type, deviation);
   si_trx_start_tx(0);
 }
 /**
@@ -413,6 +411,8 @@ void si_trx_on(uint8_t modulation_type)
 void si_trx_off(void)
 {
   si_trx_state_ready();
+
+  /* Physical shutdown */
   _si_trx_sdn_enable();
 }
 

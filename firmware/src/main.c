@@ -46,7 +46,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDSx"
+#define CALLSIGN	"UBSEDSX"
 
 /* Set the modulation mode */
 //#define RTTY
@@ -153,6 +153,8 @@ void output_telemetry_string(enum telemetry_t type)
   double lat_fmt = 0.0;
   double lon_fmt = 0.0;
   uint32_t altitude = 0;
+  uint16_t len;
+  uint8_t dollars = 5;
 
   /**
    * Analogue, Callsign, Time
@@ -161,7 +163,7 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* Analogue */
   float battery = get_battery();
-  float temperature = si_trx_get_temperature(); // REENTRANCY!!!!!!
+  float temperature = si_trx_get_temperature(); // Requires control of the radio - radio on also??
 
   /* GPS Time */
   gps_update_time();
@@ -177,66 +179,23 @@ void output_telemetry_string(enum telemetry_t type)
   uint8_t minutes = time.payload.min;
   uint8_t seconds = time.payload.sec;
 
-  /* init double buffers */
-  ARRAY_DBUFFER_INIT(&telemetry_dbuffer_string);
-
-  /* sprintf - initial string */
-  uint16_t len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string),
-			 "$$%s,%02u:%02u:%02u,",
-			 CALLSIGN, hours, minutes, seconds);
-
-  /* swap buffers */
-  ARRAY_DBUFFER_SWAP(&telemetry_dbuffer_string);
-
-
-
-/**
- * Starting up the radio blocks on high-prio interrupt for ~100ms: todo fixme
- *
- * Therefore don't touch gps until it's done
- */
-
-  /* RSID */
-  /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
-  if (type == TELEMETRY_CONTESTIA) {
-    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
-  }
-
-  /* Sleep Wait for RSID to be done */
-  while (telemetry_active()) {
-    system_sleep();
-  }
-
-  /* Main telemetry */
-  telemetry_start(type);
-
-  /**
-   * Position, Status, Checksum
-   * ---------------------------------------------------------------------------
-   */
-
-  /* Sleep Wait */
-  while (telemetry_get_index() < (len - 9)) {
-    system_sleep();
-  }
-
   /* Request updates from the gps */
   gps_update_position();
   if (gps_is_locked()) {
-//    led_on();
+    led_on();
   } else {
-//    led_off();
+    led_off();
   }
 
-  /* Wait for the gps update. Move on if it's urgent */
-  while (gps_update_position_pending() && telemetry_get_index() < (len - 6)) {
+  /* Wait for the gps update */
+  while (gps_update_position_pending()) {
     system_sleep();
   }
 
   if (gps_is_locked()) {
-//    led_off();
+    led_off();
   } else {
-//    led_on();
+    led_on();
   }
 
   /* GPS Status */
@@ -252,27 +211,40 @@ void output_telemetry_string(enum telemetry_t type)
     altitude = pos.payload.height / 1000;
   }
 
+  /* sprintf - preamble */
+  memset(telemetry_string, '$', dollars);
+  len = dollars;
+
   /* sprintf - full string */
-  len = sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string),
-		"$$%s,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
+  len += sprintf(telemetry_string + len,
+		"%s,%02u:%02u:%02u,%02.6f,%03.6f,%ld,%u,%.2f,%.1f",
 		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
 		altitude, satillite_count, battery, temperature);
 
-  /* sprintf - checksum */
-  len += sprintf(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string) + len,
+  /* sprintf - checksum. don't include dollars */
+  len += sprintf(telemetry_string + len,
 		 "*%04X\r",
-		 crc_checksum(ARRAY_DBUFFER_WRITE_PTR(&telemetry_dbuffer_string)));
+		 crc_checksum(telemetry_string + 5));
 
-  /* swap buffers */
-  ARRAY_DBUFFER_SWAP(&telemetry_dbuffer_string);
 
-  /**
-   * End
-   * ---------------------------------------------------------------------------
-   */
 
-  /* Set the final length */
-  telemetry_set_length(len);
+/**
+ * Starting up the radio blocks on high-prio interrupt for ~100ms: todo fixme
+ */
+
+  /* RSID */
+  /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
+  if (type == TELEMETRY_CONTESTIA) {
+    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+  }
+
+  /* Sleep Wait for RSID to be done */
+  while (telemetry_active()) {
+    system_sleep();
+  }
+
+  /* Main telemetry */
+  telemetry_start(type, len);
 
   /* Sleep Wait */
   while (telemetry_active()) {
@@ -329,8 +301,7 @@ int main(void)
   /* Initialise Si4060 interface */
   si_trx_init();
 
-//  led_on();
-
+  led_on();
 
   while (1) {
     /* Watchdog */
@@ -339,8 +310,20 @@ int main(void)
     /* Send the next packet */
     output_telemetry_string(TELEMETRY_RTTY);
 
-    telemetry_start(TELEMETRY_PIPS);
-    telemetry_set_length(5);
+    telemetry_start(TELEMETRY_PIPS, 5);
+
+    /* Sleep Wait */
+    while (telemetry_active()) {
+      system_sleep();
+    }
+
+
+
+
+    /* Send the next packet */
+    output_telemetry_string(TELEMETRY_CONTESTIA);
+
+    telemetry_start(TELEMETRY_PIPS, 5);
 
     /* Sleep Wait */
     while (telemetry_active()) {

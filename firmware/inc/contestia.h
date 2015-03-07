@@ -35,6 +35,7 @@
 
 
 void contestia_start(char* data);
+void contestia_preamble(void);
 uint8_t contestia_tick(void);
 
 #endif /* CONTESTIA_H */

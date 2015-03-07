@@ -28,21 +28,25 @@
 #include "rtty.h"
 #include "hw_config.h"
 #include "si_trx.h"
+#include "system/port.h"
 
 
 /**
  * Interface to the physical world.
  */
 #define RTTY_CHANNEL_DEVIATION	(RTTY_CHANNEL_SPACING / 2)
-#define RTTY_CHANNEL(b)		(b ? -RTTY_CHANNEL_DEVIATION : RTTY_CHANNEL_DEVIATION)
+#define RTTY_CHANNEL(b)		(b ? RTTY_CHANNEL_DEVIATION : -RTTY_CHANNEL_DEVIATION)
 #define RTTY_SET(b)		si_trx_switch_channel(RTTY_CHANNEL(b))
 
+//#define RTTY_SET(b)		port_pin_set_output_level(SI406X_GPIO1_PIN, b);
 
 /**
  * Formatting 8N2
  */
 #define ASCII_BITS	8
 #define BITS_PER_CHAR	11
+
+#define PREAMBLE_LENGTH  50
 
 /**
  * Current output data
@@ -57,17 +61,27 @@ uint8_t rtty_data;
  * 11 = Stop Bit
  */
 uint8_t rtty_phase = 0xFE;
+uint8_t rtty_preamble_count = 0;
 
 void rtty_start(uint8_t data) {
   /* Start transmission */
   rtty_phase = 0;
   rtty_data = data;
 }
+void rtty_preamble(void) {
+  rtty_preamble_count = PREAMBLE_LENGTH;
+}
 
 /**
  * Called at the baud rate, outputs bits of rtty
  */
 uint8_t rtty_tick(void) {
+
+  if (rtty_preamble_count) { /* Do preamble */
+    rtty_preamble_count--;
+    RTTY_SET(1);
+    return 1;
+  }
 
   if (rtty_phase == 0) {			/* *** Start *** */
     RTTY_SET(0);

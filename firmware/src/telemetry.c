@@ -40,24 +40,6 @@
 #include "hw_config.h"
 
 
-#include "system/port.h"
-/**
- * Turns the status LED on
- */
-static inline void led_on(void)
-{
-  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
-}
-/**
- * Turns the status lED off
- */
-static inline void led_off(void)
-{
-  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
-}
-
-
-
 /**
  * CYCLIC REDUNDANCY CHECK (CRC)
  * =============================================================================
@@ -95,8 +77,7 @@ uint16_t crc_checksum(char *string)
 
   crc = 0xFFFF;
 
-  // Calculate checksum ignoring the first two $s
-  for (i = 2; i < strlen(string); i++) {
+  for (i = 0; i < strlen(string); i++) {
     c = string[i];
     crc = crc_xmodem_update(crc, c);
   }
@@ -140,13 +121,13 @@ int telemetry_active(void) {
  *
  * Returns 0 on success, 1 if already active
  */
-int telemetry_start(enum telemetry_t type) {
+int telemetry_start(enum telemetry_t type, int32_t length) {
   if (!telemetry_active()) {
 
     /* Initialise */
     telemetry_type = type;
     telemetry_index = 0;
-    telemetry_string_length = TELEMETRY_STRING_MAX;
+    telemetry_string_length = length;
 
     /* Setup timer tick */
     switch(telemetry_type) {
@@ -193,23 +174,11 @@ int telemetry_start_rsid(rsid_code_t rsid) {
   }
 }
 
-/**
- * Returns the index of the current byte being outputted from the buffer
- */
-int32_t telemetry_get_index(void) {
-  return telemetry_index;
-}
-/**
- * Sets the final length of the TELEMETRY string
- */
-void telemetry_set_length(int32_t length) {
-  if (length <= TELEMETRY_STRING_MAX) {
-    telemetry_string_length = length;
-  }
-}
+
+
 
 uint8_t is_telemetry_finished(void) {
-  if (telemetry_index > telemetry_string_length) {
+  if (telemetry_index >= telemetry_string_length) {
     /* All done, deactivate */
     telemetry_string_length = 0;
 
@@ -223,8 +192,6 @@ uint8_t is_telemetry_finished(void) {
   }
   return 0;
 }
-
-
 /**
  * Called at the telemetry mode's baud rate
  */
@@ -235,8 +202,9 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* Contestia: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1);
         radio_on = 1;
+        contestia_preamble();
       }
 
       if (!contestia_tick()) {
@@ -244,7 +212,7 @@ void telemetry_tick(void) {
         if (is_telemetry_finished()) return;
 
         /* Let's start again */
-        char* block = &ARRAY_DBUFFER_READ_PTR(&telemetry_dbuffer_string)[telemetry_index];
+        char* block = &telemetry_string[telemetry_index];
         telemetry_index += CONTESTIA_CHARACTERS_PER_BLOCK;
 
         contestia_start(block);
@@ -255,8 +223,9 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RTTY: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1);
         radio_on = 1;
+        rtty_preamble();
       }
 
       if (!rtty_tick()) {
@@ -264,7 +233,7 @@ void telemetry_tick(void) {
         if (is_telemetry_finished()) return;
 
         /* Let's start again */
-        uint8_t data = ARRAY_DBUFFER_READ_PTR(&telemetry_dbuffer_string)[telemetry_index];
+        uint8_t data = telemetry_string[telemetry_index];
         telemetry_index++;
 
         rtty_start(data);
@@ -282,7 +251,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RSID: We PWM frequencies with the external pin */
-        si_trx_on(SI_MODEM_MOD_TYPE_2FSK);
+        si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 1);
         telemetry_gpio1_pwm_init();
 
         radio_on = 1;
@@ -302,7 +271,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) { /* Turn on */
         /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW); radio_on = 1;
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1); radio_on = 1;
         timer0_tick_frequency(PIPS_ON_FREQUENCY);
 
       } else { /* Turn off */
@@ -347,8 +316,6 @@ void si_gclk_setup(void)
 float timer0_tick_init(float frequency)
 {
   //si_gclk_setup();
-
-  led_on();
 
   /* Calculate the wrap value for the given frequency */
   //float gclk_frequency = SI406X_TCXO_FREQUENCY;

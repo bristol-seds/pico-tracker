@@ -33,6 +33,7 @@
 
 
 void rtty_start(uint8_t data);
+void rtty_preamble(void);
 uint8_t rtty_tick(void);
 
 #endif /* RTTY_H */
