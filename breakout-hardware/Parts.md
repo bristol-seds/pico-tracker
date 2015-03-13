@@ -8,10 +8,10 @@
 | ---  | ---         | ---       | ---               | ---
 |SPV1040T|Voltage Regulators - Switching Regulators Hi efficiency solar battery charger|[511-SPV1040T](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=511-SPV1040T)|2|MPPT U1, U2
 |L6924D013TR|Battery Management Battery Charger Sys Li-Ion/Li-Poly|[511-L6924D013TR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=511-L6924D013TR)|1|Lipo Charge Controller U3
-|TPS62243DRVT|TEXAS INSTRUMENTS - DC-DC CONV, BUCK, 0.3A, 2.25MHZ, SON-6|[2400648](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2400648)|2|Buck Converter DRVT = SON-6 TPS62243 U4, U5
+|TPS62243DRVT|TEXAS INSTRUMENTS - DC-DC CONV, BUCK, 0.3A, 2.25MHZ, SON-6|[2400648](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2400648) [595-TPS62243DRVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS62243DRVT)|2|Buck Converter DRVT = SON-6 TPS62243 U4, U5
 |TPS3808G25DRVR|Supervisory Circuits Lo Quies Current Pro Delay Sup Circuit|[595-TPS3808G25DRVR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3808G25DRVR)|1|Vth = 2.33, DRVR = SON-6 U6
-|74LVC1G04GW,125|NXP - IC, LOGIC, INVERTER, SOT-353|[1631683](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1631683)|1|Inverter U7
-|BAT760|NXP - DIODE, SCHOTTKY, SOD-323|[8734593](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=8734593)|2|D3, D4
+|74LVC1G04GW,125|NXP - IC, LOGIC, INVERTER, SOT-353|[1631683](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1631683) [771-74LVC1G04GW-G](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=771-74LVC1G04GW-G)|1|Inverter U7
+|BAT760|NXP - DIODE, SCHOTTKY, SOD-323|[8734593](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=8734593) [771-BAT760-T/R](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=771-BAT760-T/R)|2|D3, D4
 
 
 ## Passives
