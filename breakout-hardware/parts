@@ -8,10 +8,10 @@
 | ---  | ---         | ---       | ---               | ---
 511-SPV1040T 2 MPPT U1, U2
 511-L6924D013TR 1 Lipo Charge Controller U3
-2400648 2 Buck Converter DRVT = SON-6 TPS62243 U4, U5
+2400648 595-TPS62243DRVT 2 Buck Converter DRVT = SON-6 TPS62243 U4, U5
 595-TPS3808G25DRVR 1 Vth = 2.33, DRVR = SON-6 U6
-1631683 1 Inverter U7
-8734593 2 D3, D4
+1631683 771-74LVC1G04GW-G 1 Inverter U7
+8734593 771-BAT760-T/R 2 D3, D4
 
 
 ## Passives
