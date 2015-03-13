@@ -193,6 +193,9 @@ class Tests():
 
 if __name__ == '__main__':
     t = Tests()
-    #t.print_testcases()
-    t.run_test_case(t.get_testcase_from_name('times_two')())
+
+    # Run all testcases
+    for tc_name in tc.__all__:
+        t.run_test_case(t.get_testcase_from_name(tc_name)())
+
     del t
