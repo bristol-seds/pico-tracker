@@ -45,6 +45,8 @@
 |BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
 |CG0603MLC-05LE|BOURNS - ESD SUPPRESSOR, 0603, 5V, 0.5PF|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|2|ESD1, ESD2
 |55|KEYSTONE - BATTERY CLIP AAA|[1702644](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1702644)|2|J1, J1
+|4276101511|VARTA - BATTERY, BUTTON CELL, 1.5V LR 44|[3055917](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=3055917)|1|Battery
+|2997|KEYSTONE - BATTERY HOLDER, 11.6MM COIN CELL, THT|[2293265](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2293265) [534-2997](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=534-2997)|1|Single-piece battery holder
 
 ----
 ## Extras for Development Version TODO
