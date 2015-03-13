@@ -1,4 +1,6 @@
 datasheets
+firmware/test/ctypesgen/.svn
+firmware/test/main.py*
 
 *.s#*
 *.b#*

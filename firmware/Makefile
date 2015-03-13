@@ -68,6 +68,7 @@ TR		:= tr
 TOOLCHAIN  	:= arm-none-eabi
 AS		:= $(TOOLCHAIN)-as
 CC		:= $(TOOLCHAIN)-gcc
+DB		:= $(TOOLCHAIN)-gdb
 CXX		:= $(TOOLCHAIN)-g++
 OBJCOPY		:= $(TOOLCHAIN)-objcopy
 OBJDUMP		:= $(TOOLCHAIN)-objdump
@@ -109,12 +110,12 @@ endif
 #
 #
 SYSTEM		?= chip/system_samd20.c chip/startup_samd20.c
-INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/
+INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/ test/tc/
 
 # Verification suite code
 #
 #
-SYSTEM		+= tools/verification/verification_tc.c
+SYSTEM		+= test/main.c
 
 # Linker Scripts
 #
@@ -151,7 +152,7 @@ TAGFILES	= $(SOURCES) $(shell $(CAT) $(OBJECTS:.o=.d) \
 # Default target
 #
 #
-all: $(TARGET).elf etags verification
+all: $(TARGET).elf etags
 
 # Rule for generating object and dependancy files from source files.
 #
@@ -242,18 +243,22 @@ etags: $(TAGFILES)
 emacs:
 	@emacs23 $(TAGFILES) Makefile config.mk README.md
 
-# Makes the verification tool
+# Test
 #
-verification: tools/verification/verification_tc.py
+TESTCASES	:= $(shell $(FIND) test/tc -name '*.[h]')
 
-# Ctypesgen for verification tool
-#
-%.py: %.c
+.PHONY: test
+test: test/main.py
+	@echo "Running tests..."
+	>/dev/null $(DB) -q -x test/tests.py
+
+# Ctypesgen for test
+test/main.py: test/main.c $(TESTCASES)
 	@echo "Generating Python Wrappers...."
 	@echo
-	tools/verification/ctypesgen/ctypesgen.py -o $@ \
+	test/ctypesgen/ctypesgen.py -o $@ \
 	--cpp="$(CC) -E -DCTYPESGEN $(CPPFLAGS) $(CFLAGS) \
-	$(addprefix -I,$(INCLUDE_PATH))" $<
+	$(addprefix -I,$(INCLUDE_PATH))" $^
 
 # Removes everything in the output directory
 #
@@ -264,3 +269,4 @@ clean:
 	$(RM) $(OUTPUT_PATH)*
 	$(RM) gdbscript
 	$(RM) TAGS
+	$(RM) test/main.py*

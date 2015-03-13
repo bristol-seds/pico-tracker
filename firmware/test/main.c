@@ -34,24 +34,11 @@
 
 #endif
 
-/****************************//* times_two_tc *//****************************/
-/* The simplest test case. ever.   Used to check for sanity                 */
+/***************************** test cases *******************************/
 
-/* Parameters in */
-struct times_two_tc_params {
-  int input;
-} times_two_tc_params;
-/* Results out */
-struct times_two_tc_results {
-  int result;
-} times_two_tc_results;
-/* Function */
-__verification__ void times_two_tc(void) {
+#include "times_two.h"
 
-  times_two_tc_results.result = 2 * times_two_tc_params.input;
-}
-
-/*******************************//* tc_main *//********************************/
+/******************************* tc_main ********************************/
 
 typedef void (*tc_ptr_type)(void);
 volatile tc_ptr_type tc_ptr;
@@ -60,8 +47,6 @@ volatile tc_ptr_type tc_ptr;
  * Runs a test case
  */
 __verification__ void tc_run() {
-
-
    (*tc_ptr)();
 }
 
