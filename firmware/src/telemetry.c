@@ -294,23 +294,6 @@ void telemetry_tick(void) {
  * =============================================================================
  */
 
-void si_gclk_setup(void)
-{
-  system_pinmux_pin_set_config(SI406X_TCXO_PINMUX >> 16,	/* GPIO Pin	*/
-			       SI406X_TCXO_PINMUX & 0xFFFF,	/* Mux Position	*/
-			       SYSTEM_PINMUX_PIN_DIR_INPUT,	/* Direction	*/
-			       SYSTEM_PINMUX_PIN_PULL_NONE,	/* Pull		*/
-			       false);    			/* Powersave	*/
-
-  system_gclk_gen_set_config(SI406X_TCXO_GCLK,
-			     GCLK_SOURCE_GCLKIN, /* Source 		*/
-			     false,		/* High When Disabled	*/
-			     1,			/* Division Factor	*/
-			     false,		/* Run in standby	*/
-			     false);		/* Output Pin Enable	*/
-  system_gclk_gen_enable(SI406X_TCXO_GCLK);
-}
-
 /**
  * Initialises a timer interupt at the given frequency
  *
@@ -318,10 +301,7 @@ void si_gclk_setup(void)
  */
 float timer0_tick_init(float frequency)
 {
-  //si_gclk_setup();
-
   /* Calculate the wrap value for the given frequency */
-  //float gclk_frequency = SI406X_TCXO_FREQUENCY;
   float gclk_frequency = (float)system_gclk_chan_get_hz(0);
   uint32_t count = (uint32_t)(gclk_frequency / frequency);
 

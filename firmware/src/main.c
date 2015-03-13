@@ -32,12 +32,14 @@
 #include "system/system.h"
 #include "sercom/usart.h"
 #include "system/port.h"
+#include "system/events.h"
+#include "system/extint.h"
 #include "tc/tc_driver.h"
 #include "gps.h"
 #include "mfsk.h"
 #include "ubx_messages.h"
 #include "system/wdt.h"
-#include "timepulse.h"
+#include "xosc.h"
 #include "telemetry.h"
 #include "contestia.h"
 #include "rsid.h"
@@ -49,21 +51,16 @@
 
 #define CALLSIGN	"UBSEDSx"
 
-/* Set the modulation mode */
-//#define RTTY
-#define CONTESTIA
-
-
 /**
  * Initialises the status LED
  */
 static inline void led_init(void)
 {
   port_pin_set_config(LED0_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_DIR_INPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
-  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
+//  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
 }
 /**
  * Turns the status LED on
@@ -287,6 +284,8 @@ int main(void)
 
   /* Restart the GCLK Module */
   system_gclk_init();
+  system_events_init();
+  system_extint_init();
 
   /* Get the current CPU Clock */
   SystemCoreClock = system_cpu_clock_get_hz();
@@ -297,8 +296,6 @@ int main(void)
 
   /* Configure the Power Manager */
   //powermananger_init();
-
-
 
   /**
    * System initialisation
@@ -314,6 +311,20 @@ int main(void)
 
   /* Initialise Si4060 interface */
   si_trx_init();
+
+
+  xosc_init();
+  measure_xosc(XOSC_MEASURE_TIMEPULSE);
+
+
+
+
+
+
+  while (1) {
+      system_sleep();
+  }
+
 
   led_on();
 
