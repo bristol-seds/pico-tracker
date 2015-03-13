@@ -37,6 +37,7 @@
 /***************************** test cases *******************************/
 
 #include "times_two.h"
+#include "osc8m_calib.h"
 
 /******************************* tc_main ********************************/
 
@@ -59,4 +60,19 @@ __verification__ void tc_main(void) {
   while (1) {
     tc_run();
   }
+}
+
+/* This is in the real main.c */
+void init(void);
+
+/**
+ * Prelude to main loop
+ */
+__verification__ void tc_prelude(void) {
+
+  /* Initialise the board */
+  init();
+
+  /* Proceed to main loop */
+  tc_main();
 }

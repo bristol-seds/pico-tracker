@@ -86,7 +86,8 @@ class Tests():
                 self.print_fail(name, time)
 
         self.print_header("")
-        #### GDB
+
+    #### GDB
 
     def __init__(self):
         self.inferior = gdb.selected_inferior()
@@ -99,10 +100,10 @@ class Tests():
         gdb.execute("load")
         gdb.execute("b main")
         gdb.execute("run")
-        # Stopped at the top of main. Go to tc_main
+        # Stopped at the top of main. Go to tc_main via tc_prelude
         gdb.execute("del 1")
         gdb.execute("b tc_main")
-        gdb.execute("set $pc=tc_main")
+        gdb.execute("set $pc=tc_prelude")
         gdb.execute("c")
 
     def __del__(self):

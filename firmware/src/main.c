@@ -264,10 +264,10 @@ void output_telemetry_string(enum telemetry_t type)
 }
 
 /**
- * MAIN
+ * Internal initialisation
  * =============================================================================
  */
-int main(void)
+void init(void)
 {
   /**
    * Internal initialisation
@@ -306,20 +306,25 @@ int main(void)
   //wdt_init();
   //wdt_reset_count();
 
+  xosc_init();
+
   led_init();
   gps_init();
 
   /* Initialise Si4060 interface */
   si_trx_init();
+}
 
 
-  xosc_init();
+/**
+ * MAIN
+ * =============================================================================
+ */
+int main(void)
+{
+  init();
+
   measure_xosc(XOSC_MEASURE_TIMEPULSE);
-
-
-
-
-
 
   while (1) {
       system_sleep();
