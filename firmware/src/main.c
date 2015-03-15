@@ -41,6 +41,7 @@
 #include "system/wdt.h"
 #include "xosc.h"
 #include "telemetry.h"
+#include "timer.h"
 #include "contestia.h"
 #include "rsid.h"
 #include "si_trx.h"
@@ -50,6 +51,9 @@
 #include "system/interrupt.h"
 
 #define CALLSIGN	"UBSEDSx"
+
+void xosc_measure_callback(uint32_t result);
+void timepulse_callback(uint32_t sequence);
 
 /**
  * Initialises the status LED
@@ -225,11 +229,6 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* Main telemetry */
   telemetry_start(type, len);
-
-  /* Sleep Wait */
-  while (telemetry_active()) {
-    system_sleep();
-  }
 }
 
 /**
@@ -275,10 +274,15 @@ void init(void)
   //wdt_init();
   //wdt_reset_count();
 
+  /* Enables the xosc on gclk1 */
   xosc_init();
 
   led_init();
   gps_init();
+
+  /* Enable timer interrupt and event channel */
+  timepulse_extint_init();
+  timepulse_set_callback(timepulse_callback);
 
   /* Initialise Si4060 interface */
   si_trx_init();
@@ -287,7 +291,13 @@ void init(void)
 
 void xosc_measure_callback(uint32_t result)
 {
+  result++;
+}
 
+uint8_t telemetry_trigger_flag = 0;
+void timepulse_callback(uint32_t sequence)
+{
+  telemetry_trigger_flag = 1;
 }
 
 /**
@@ -300,35 +310,21 @@ int main(void)
 
   measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
 
-  while (1) {
-      system_sleep();
-  }
-
-
   led_on();
 
   while (1) {
+    /* Sleep wait for next telemetry */
+    while (telemetry_trigger_flag == 0 || telemetry_active()) {
+      system_sleep();
+    }
+    telemetry_trigger_flag = 0;
+
     /* Watchdog */
     //wdt_reset_count();
 
     /* Send the next packet */
-    output_telemetry_string(TELEMETRY_RTTY);
-
-    telemetry_start(TELEMETRY_PIPS, 5);
-
-    /* Sleep Wait */
-    while (telemetry_active()) {
-      system_sleep();
-    }
-
-    /* Send the next packet */
     output_telemetry_string(TELEMETRY_CONTESTIA);
 
-    telemetry_start(TELEMETRY_PIPS, 5);
-
-    /* Sleep Wait */
-    while (telemetry_active()) {
-      system_sleep();
-    }
+    //telemetry_start(TELEMETRY_PIPS, 5);
   }
 }

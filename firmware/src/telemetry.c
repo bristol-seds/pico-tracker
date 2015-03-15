@@ -332,7 +332,7 @@ float timer0_tick_init(float frequency)
 
   /* Enable Interrupt */
   TC0->COUNT32.INTENSET.reg = (1 << 4);
-  irq_register_handler(TC0_IRQn, 0); /* Highest Priority */
+  irq_register_handler(TC0_IRQn, TC0_INT_PRIO); /* Highest Priority */
 
   /* Enable Timer */
   tc_enable(TC0);

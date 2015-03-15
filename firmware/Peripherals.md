@@ -15,8 +15,8 @@
 ||tc4|osc8m event source
 ||tc5|telemetry pwm 8-bit
 
-|*RTC*|
-||rtc|telemetry timings
+|*EXTINT*|
+||extint[5]|gps timepulse
 
 |*event channels*|
 ||0|event source for timer 2 xosc measurement
@@ -32,6 +32,7 @@
 
 | Name | Function | Priority H(0-3)L | Notes
 | --- | --- | --- | ---
-|TC0_IRQn||0
+|TC0_IRQn|telemetry tick timer|0
 |TC2_IRQn|xosc measurement done|2
 |[GPS_SERCOM]_IRQn|gps usart rx|0
+|EIC_IRQn|timer|1

@@ -125,6 +125,11 @@
 #define XOSC_COUNT_RESOLUTION	4
 
 /**
+ * Timings
+ */
+#define TELEMETRY_INTERVAL	30
+
+/**
  * Watchdog Timer
  */
 #define WDT_GCLK		GCLK_GENERATOR_4
@@ -148,6 +153,18 @@
 #define NC2_PIN			PIN_PA03
 #define NC3_PIN			PIN_PA04
 #define NC4_PIN			PIN_PA14
+
+/**
+ * Interrupt Priority
+ */
+/* Telemetry Tick Timer */
+#define TC0_INT_PRIO		0
+/* XOSC Measure Timer */
+#define TC2_INT_PRIO		2
+/* GPS USART Rx */
+#define GPS_SERCOM_INT_PRIO	0
+/* Timepulse, telemetry */
+#define EIC_INT_PRIO		0
 
 
 #endif /* HW_CONFIG_H */

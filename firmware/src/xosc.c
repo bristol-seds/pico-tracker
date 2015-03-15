@@ -44,7 +44,8 @@ enum xosc_measurement_t _measurement_t;
 measurement_result_t _callback;
 
 /**
- * Configures external oscillator, waits for it to stabilise
+ * Configures external oscillator, waits for it to stabilise, and
+ * connects it to GLCK1.
  */
 void xosc_init(void) {
   system_clock_source_xosc_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
@@ -56,6 +57,18 @@ void xosc_init(void) {
   system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC);
 
   while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC));
+
+  /* Configure GCLK1 to XOSC */
+  system_gclk_gen_set_config(GCLK_GENERATOR_1,
+        		     GCLK_SOURCE_XOSC, /* Source 		*/
+        		     false,		/* High When Disabled	*/
+        		     XOSC_COUNT_RESOLUTION,/* Division Factor	*/
+        		     false,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
+
+
+  /* Enable GCLK1 */
+  system_gclk_gen_enable(GCLK_GENERATOR_1);
 }
 
 struct osc8m_calibration_t osc8m_get_calibration(void) {
@@ -136,34 +149,10 @@ void osc8m_event_source_disable(void) {
  * Configure the timepulse extint to generate events
  */
 void timepulse_extint_event_source(void) {
-
-  /* Enable extint events for gps timepulse */
-  struct extint_events events;
-  memset(&events, 0, sizeof(struct extint_events));
-  events.generate_event_on_detect[GPS_TIMEPULSE_EXTINT] = true;
-  extint_enable_events(&events);
-
-  /* Configure extinit channel */
-  struct extint_chan_conf config;
-  config.gpio_pin = GPS_TIMEPULSE_PIN;
-  config.gpio_pin_mux = GPS_TIMEPULSE_PINMUX;
-  config.gpio_pin_pull = EXTINT_PULL_NONE; // ???
-  config.wake_if_sleeping = false; // ???
-  config.filter_input_signal = false;
-  config.detection_criteria = EXTINT_DETECT_RISING;
-  extint_chan_set_config(GPS_TIMEPULSE_EXTINT, &config);
-
-  /* We route this event to event channel 0 */
-  events_allocate(0,
-                  EVENTS_EDGE_DETECT_NONE,
-                  EVENTS_PATH_ASYNCHRONOUS,
-                  0x11, /* External Interrupt 5 */
-                  0);
-
-  extint_enable();
+  /* Nothing to do: event should be already in place */
 }
 void timepulse_extint_event_source_disable(void) {
-  // Oh I don't know
+  /* Nothing to do here */
 }
 
 /**
@@ -178,19 +167,7 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
   _measurement_t = measurement_t;
   _callback = callback;
 
-  /* Configure GCLK1 to XOSC */
-  system_gclk_gen_set_config(GCLK_GENERATOR_1,
-        		     GCLK_SOURCE_XOSC, /* Source 		*/
-        		     false,		/* High When Disabled	*/
-        		     XOSC_COUNT_RESOLUTION,/* Division Factor	*/
-        		     false,		/* Run in standby	*/
-        		     false);		/* Output Pin Enable	*/
-
-
-  /* Enable GCLK1 */
-  system_gclk_gen_enable(GCLK_GENERATOR_1);
-
-  /* Timer 2 runs on GLCK1 */
+  /* Timer 2 runs on GLCK1: XOSC */
   bool t2_capture_channel_enables[]    = {true, true};
   uint32_t t2_compare_channel_values[] = {0x0000, 0x0000};
 
@@ -221,7 +198,7 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
 
   /* Enable Interrupt */
   TC2->COUNT32.INTENSET.reg = (1 << 4); // MC0
-  irq_register_handler(TC2_IRQn, 2); /* Lowish Priority */
+  irq_register_handler(TC2_IRQn, TC2_INT_PRIO); /* Lowish Priority */
 
   /* Timer 2 is event user on channel 0 */
   events_attach_user(0, 2);

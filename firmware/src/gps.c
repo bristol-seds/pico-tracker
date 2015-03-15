@@ -449,7 +449,7 @@ void gps_init(void)
   gps_disable_nmea();
 
   /* Incoming ubx messages are handled in an irq */
-  usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, 0);
+  usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
 
   /* Set the platform model */
   gps_set_platform_model();
