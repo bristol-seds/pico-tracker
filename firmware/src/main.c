@@ -291,7 +291,9 @@ void init(void)
 
 void xosc_measure_callback(uint32_t result)
 {
-  result++;
+  int32_t error = result - XOSC_FREQUENCY;
+
+  error++;
 }
 
 uint8_t telemetry_trigger_flag = 0;

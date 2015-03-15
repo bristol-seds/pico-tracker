@@ -235,6 +235,7 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
  */
 void TC2_Handler(void) {
   uint32_t capture_value;
+  uint32_t source_freq;
 
   if (tc_get_status(TC2) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC2, TC_STATUS_CHANNEL_0_MATCH);
@@ -247,9 +248,19 @@ void TC2_Handler(void) {
       /* Measurement done. Read off data */
       capture_value = tc_get_capture_value(TC2, 0);
 
+      /* Calcuate the frequency of XOSC relative to this source */
+      switch (_measurement_t) {
+      case XOSC_MEASURE_OSC8M:
+        source_freq = capture_value * XOSC_COUNT_RESOLUTION;
+        break;
+      case XOSC_MEASURE_TIMEPULSE:
+        source_freq = capture_value * XOSC_COUNT_RESOLUTION * GPS_TIMEPULSE_FREQ;
+        break;
+      }
+
       /* Callback if we have one */
       if (_callback) {
-        _callback(capture_value * XOSC_COUNT_RESOLUTION);
+        _callback(source_freq);
       }
 
       /* Disable measurement system */
