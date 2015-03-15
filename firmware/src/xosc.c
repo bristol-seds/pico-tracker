@@ -41,6 +41,7 @@ enum measure_state_t {
   MEASURE_MEASUREMENT,
 } measure_state = MEASURE_WAIT_FOR_FIRST_EVENT;
 enum xosc_measurement_t _measurement_t;
+measurement_result_t _callback;
 
 /**
  * Configures external oscillator, waits for it to stabilise
@@ -55,6 +56,21 @@ void xosc_init(void) {
   system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC);
 
   while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC));
+}
+
+struct osc8m_calibration_t osc8m_get_calibration(void) {
+  uint16_t calib_word = SYSCTRL->OSC8M.bit.CALIB;
+  struct osc8m_calibration_t calib;
+
+  calib.temperature	= (calib_word >> 6) & 0x3F;
+  calib.process		= (calib_word >> 0) & 0x3F;
+
+  return calib;
+}
+void osc8m_set_calibration(struct osc8m_calibration_t calib) {
+  uint16_t calib_word = ((calib.temperature & 0x3F) << 6) | (calib.process & 0x3F);
+
+  system_clock_source_write_calibration(SYSTEM_CLOCK_SOURCE_OSC8M, calib_word, 0x1);
 }
 
 
@@ -150,19 +166,17 @@ void timepulse_extint_event_source_disable(void) {
   // Oh I don't know
 }
 
-void EIC_Handler(void) {
-
-
-
-}
-
 /**
  * Triggers a measurements the number of cycles on XOSC
+ *
+ * A callback from the timer interrupt is available. Obviously don't dwell here too long.
  */
-void measure_xosc(enum xosc_measurement_t measurement_t) {
+void measure_xosc(enum xosc_measurement_t measurement_t,
+                  measurement_result_t callback) {
 
   measure_state = MEASURE_WAIT_FOR_FIRST_EVENT;
   _measurement_t = measurement_t;
+  _callback = callback;
 
   /* Configure GCLK1 to XOSC */
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
@@ -244,7 +258,6 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
  */
 void TC2_Handler(void) {
   uint32_t capture_value;
-  float frequency;
 
   if (tc_get_status(TC2) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC2, TC_STATUS_CHANNEL_0_MATCH);
@@ -257,7 +270,10 @@ void TC2_Handler(void) {
       /* Measurement done. Read off data */
       capture_value = tc_get_capture_value(TC2, 0);
 
-      frequency = capture_value * XOSC_COUNT_RESOLUTION;
+      /* Callback if we have one */
+      if (_callback) {
+        _callback(capture_value * XOSC_COUNT_RESOLUTION);
+      }
 
       /* Disable measurement system */
       measure_xosc_disable(_measurement_t);

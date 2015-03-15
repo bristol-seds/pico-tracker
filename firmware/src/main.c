@@ -316,6 +316,11 @@ void init(void)
 }
 
 
+void xosc_measure_callback(uint32_t result)
+{
+
+}
+
 /**
  * MAIN
  * =============================================================================
@@ -324,7 +329,7 @@ int main(void)
 {
   init();
 
-  measure_xosc(XOSC_MEASURE_TIMEPULSE);
+  measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
 
   while (1) {
       system_sleep();

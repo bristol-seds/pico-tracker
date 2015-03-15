@@ -25,13 +25,22 @@
 #ifndef XOSC_H
 #define XOSC_H
 
+#include "samd20.h"
+
 enum xosc_measurement_t {
   XOSC_MEASURE_OSC8M,
   XOSC_MEASURE_TIMEPULSE,
 };
+struct osc8m_calibration_t {
+  uint8_t temperature;
+  uint8_t process;
+};
+
+typedef void (*measurement_result_t)(uint32_t result);
 
 void xosc_init(void);
-
-void measure_xosc(enum xosc_measurement_t measurement_t);
+struct osc8m_calibration_t osc8m_get_calibration(void);
+void osc8m_set_calibration(struct osc8m_calibration_t calib);
+void measure_xosc(enum xosc_measurement_t measurement_t, measurement_result_t callback);
 
 #endif /* XOSC_H */
