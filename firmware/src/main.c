@@ -105,8 +105,9 @@ void wdt_init() {
 void powermananger_init(void)
 {
   system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
-			      PM_APBAMASK_EIC | /* EIC is unused */
-			      PM_APBAMASK_RTC); /* RTC is unused */
+//			      PM_APBAMASK_EIC | /* EIC is used now */
+//			      PM_APBAMASK_RTC | /* RTC is used now */
+    0);
 }
 
 

@@ -5,14 +5,18 @@
 |*GLCK*|
 ||gclk0|main clock, internal osc8m|4 MHz
 ||gclk1|tcxo clock, fed from xosc
+||gclk2|rtc feed, fed from gclk1. divide by 4096
 
 |*TC*||
-||tc0|telemetry tick timer (has timepulse input)
+||tc0|telemetry tick timer. 32-bit
 ||tc1|^^^^^
 ||tc2|counts cycles of tcxo. 32-bit
 ||tc3|^^^^^
 ||tc4|osc8m event source
-||tc5|pwm 8-bit
+||tc5|telemetry pwm 8-bit
+
+|*RTC*|
+||rtc|telemetry timings
 
 |*event channels*|
 ||0|event source for timer 2 xosc measurement
@@ -26,7 +30,8 @@
 
 ## SAM D20 Interrupts usage
 
-| Name | Function | Notes
+| Name | Function | Priority H(0-3)L | Notes
 | --- | --- | --- | ---
-|TC0_IRQn|
-|TC2_IRQn|xosc measurement done|
+|TC0_IRQn||0
+|TC2_IRQn|xosc measurement done|2
+|[GPS_SERCOM]_IRQn|gps usart rx|0

@@ -309,7 +309,6 @@ float timer0_tick_init(float frequency)
   bool t0_capture_channel_enables[]    = {false, false};
   uint32_t t0_compare_channel_values[] = {count, 0x0000};
   tc_init(TC0,
-//	  GCLK_GENERATOR_3,
           GCLK_GENERATOR_0,
 	  TC_COUNTER_SIZE_32BIT,
 	  TC_CLOCK_PRESCALER_DIV1,
