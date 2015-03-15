@@ -9,10 +9,10 @@
 |SI4060-B1B-FM|SILICON LABORATORIES - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4060-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4060-B1B-FM)|1|U2
 |SI4060-B1B-FM|SILICON LABORATORIES - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4063-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4063-B1B-FM)|1|U2
 | UBLOX MAX-8C | GPS | | 1 | U3
-|ADP1607ACPZN-R7|ANALOG DEVICES - BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U4
-|S25FS128SAGNFI101|SPANSION - IC, MEMORY, FLASH, 128MBIT, 1.8V, 8WSON|[2367709](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2367709)|0|U5
+|ADP1607ACPZN-R7|ANALOG DEVICES - BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940) [584-ADP1607ACPZN-R7](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=584-ADP1607ACPZN-R7)|1|U4
+|S25FS128SAGNFI101|SPANSION - IC, MEMORY, FLASH, 128MBIT, 1.8V, 8WSON|[2367709](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2367709) [797-25FS128SAGNFI101](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=797-25FS128SAGNFI101)|0|U5
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U6
-|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607)|1|U7
+|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7
 
 ----
 
