@@ -56,6 +56,9 @@
  */
 static inline void led_init(void)
 {
+/**
+ * This pin is shared with the XOSC line on the current hardware bodge
+ */
   port_pin_set_config(LED0_PIN,
 		      PORT_PIN_DIR_INPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
@@ -67,49 +70,14 @@ static inline void led_init(void)
  */
 static inline void led_on(void)
 {
-  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
+  //port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
 }
 /**
  * Turns the status LED off
  */
 static inline void led_off(void)
 {
-  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
-}
-
-
-
-void set_timer(uint32_t time)
-{
-  bool capture_channel_enables[]    = {false, false};
-  uint32_t compare_channel_values[] = {time, 0x0000};
-
-  tc_init(TC2,
-	  GCLK_GENERATOR_0,
-	  TC_COUNTER_SIZE_32BIT,
-	  TC_CLOCK_PRESCALER_DIV1,
-	  TC_WAVE_GENERATION_NORMAL_FREQ,
-	  TC_RELOAD_ACTION_GCLK,
-	  TC_COUNT_DIRECTION_UP,
-	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
-	  false,			/* Oneshot = false */
-	  false,			/* Run in standby = false */
-	  0x0000,			/* Initial value */
-	  time+1,			/* Top value */
-	  capture_channel_enables,	/* Capture Channel Enables */
-	  compare_channel_values);	/* Compare Channels Values */
-
-  struct tc_events ev;
-  memset(&ev, 0, sizeof(ev));
-  ev.generate_event_on_compare_channel[0] = true;
-  ev.event_action = TC_EVENT_ACTION_RETRIGGER;
-
-  tc_enable_events(TC2, &ev);
-
-  irq_register_handler(TC2_IRQn, 3);
-
-  tc_enable(TC2);
-  tc_start_counter(TC2);
+  //port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
 }
 
 void wdt_init() {
