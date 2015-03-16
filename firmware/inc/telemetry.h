@@ -47,7 +47,7 @@ char telemetry_string[TELEMETRY_STRING_MAX];
 int telemetry_active(void);
 int telemetry_start(enum telemetry_t type, int32_t length);
 int telemetry_start_rsid(rsid_code_t rsid);
-
+void telemetry_stop(void);
 
 float timer0_tick_init(float frequency);
 void timer0_tick_frequency(float frequency);

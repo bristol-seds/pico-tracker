@@ -222,13 +222,21 @@ void output_telemetry_string(enum telemetry_t type)
     telemetry_start_rsid(RSID_CONTESTIA_32_1000);
   }
 
-  /* Sleep Wait for RSID to be done */
+  /* Sleep Wait for RSID */
   while (telemetry_active()) {
     system_sleep();
   }
 
   /* Main telemetry */
   telemetry_start(type, len);
+
+  /* Sleep Wait for main telemetry */
+  while (telemetry_active()) {
+    system_sleep();
+  }
+
+  /* Pips */
+  telemetry_start(TELEMETRY_PIPS, 0xFFFF);
 }
 
 /**
@@ -308,6 +316,8 @@ void timepulse_callback(uint32_t sequence)
  */
 int main(void)
 {
+  uint32_t telemetry_alternate = 0;
+
   init();
 
   measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
@@ -316,17 +326,23 @@ int main(void)
 
   while (1) {
     /* Sleep wait for next telemetry */
-    while (telemetry_trigger_flag == 0 || telemetry_active()) {
+    while (telemetry_trigger_flag == 0) {
       system_sleep();
     }
     telemetry_trigger_flag = 0;
+
+    /* End pips */
+    telemetry_stop();
+    while (telemetry_active()) {
+      system_sleep();
+    }
 
     /* Watchdog */
     //wdt_reset_count();
 
     /* Send the next packet */
-    output_telemetry_string(TELEMETRY_CONTESTIA);
-
-    //telemetry_start(TELEMETRY_PIPS, 5);
+    output_telemetry_string((telemetry_alternate++ & 1) ?
+                            TELEMETRY_CONTESTIA :
+                            TELEMETRY_RTTY);
   }
 }

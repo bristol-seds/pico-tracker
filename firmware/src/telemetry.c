@@ -104,6 +104,10 @@ int32_t telemetry_string_length = 0;
  */
 int32_t telemetry_index;
 /**
+ * Should we stop?
+ */
+uint8_t telemetry_stop_flag = 0;
+/**
  * Is the radio currently on?
  */
 uint8_t radio_on = 0;
@@ -128,6 +132,7 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
     telemetry_type = type;
     telemetry_index = 0;
     telemetry_string_length = length;
+    telemetry_stop_flag = 0;
 
     /* Setup timer tick */
     switch(telemetry_type) {
@@ -173,14 +178,22 @@ int telemetry_start_rsid(rsid_code_t rsid) {
     return 1; /* Already active */
   }
 }
-
-
+/**
+ * Stops the ongoing telemetry at the earliest possible moment (end of
+ * symbol / block).
+ */
+void telemetry_stop(void) {
+  if (telemetry_active()) {
+    telemetry_stop_flag = 1;
+  }
+}
 
 
 uint8_t is_telemetry_finished(void) {
-  if (telemetry_index >= telemetry_string_length) {
+  if (telemetry_index >= telemetry_string_length || telemetry_stop_flag) {
     /* All done, deactivate */
     telemetry_string_length = 0;
+    telemetry_stop_flag = 0;
 
     /* Turn radio off */
     if (radio_on) {
