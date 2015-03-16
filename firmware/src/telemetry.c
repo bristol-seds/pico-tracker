@@ -254,15 +254,17 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RSID: We PWM frequencies with the external pin */
-        si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 1);
         telemetry_gpio1_pwm_init();
 
+        si_trx_on(SI_MODEM_MOD_TYPE_2FSK, 1);
         radio_on = 1;
+
+        return;
       }
 
       /* Do Tx */
       if (!rsid_tick()) {
-        /* Force transmission finished */
+        /* Transmission finished */
         telemetry_index++;
         si_trx_off(); radio_on = 0;
         telemetry_gpio1_pwm_deinit();
@@ -302,14 +304,14 @@ void telemetry_tick(void) {
 float timer0_tick_init(float frequency)
 {
   /* Calculate the wrap value for the given frequency */
-  float gclk_frequency = (float)system_gclk_chan_get_hz(0);
+  float gclk_frequency = (float)system_gclk_gen_get_hz(1);
   uint32_t count = (uint32_t)(gclk_frequency / frequency);
 
   /* Configure Timer 0 */
   bool t0_capture_channel_enables[]    = {false, false};
   uint32_t t0_compare_channel_values[] = {count, 0x0000};
   tc_init(TC0,
-          GCLK_GENERATOR_0,
+          GCLK_GENERATOR_1,
 	  TC_COUNTER_SIZE_32BIT,
 	  TC_CLOCK_PRESCALER_DIV1,
 	  TC_WAVE_GENERATION_MATCH_FREQ,

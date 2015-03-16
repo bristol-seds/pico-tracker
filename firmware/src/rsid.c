@@ -165,9 +165,7 @@ uint8_t rsid_tick(void)
     rsid_tone(rsid[rsid_index]);
 
     rsid_index++;
-    if (rsid_index < RSID_NSYMBOLS) {
-      return 1;
-    }
+    return 1;
   }
 
   return 0;
