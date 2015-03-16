@@ -111,6 +111,10 @@ uint8_t telemetry_stop_flag = 0;
  * Is the radio currently on?
  */
 uint8_t radio_on = 0;
+/**
+ * Temperature
+ */
+float _si_temperature = 128.0;
 
 
 /**
@@ -187,6 +191,12 @@ void telemetry_stop(void) {
     telemetry_stop_flag = 1;
   }
 }
+/**
+ * Get the SI radio temperature at the end of the last transmission.
+ */
+float telemetry_si_temperature(void) {
+  return _si_temperature;
+}
 
 
 uint8_t is_telemetry_finished(void) {
@@ -197,7 +207,11 @@ uint8_t is_telemetry_finished(void) {
 
     /* Turn radio off */
     if (radio_on) {
-      si_trx_off(); radio_on = 0;
+      si_trx_state_ready(); /* Stop RF */
+      _si_temperature = si_trx_get_temperature();
+      si_trx_off(); /* Shutdown */
+
+      radio_on = 0;
     }
 
     /* De-init timer */

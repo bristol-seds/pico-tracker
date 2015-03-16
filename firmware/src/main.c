@@ -134,7 +134,7 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* Analogue */
   float battery = get_battery();
-  float temperature = si_trx_get_temperature(); // Requires control of the radio - radio on also??
+  float temperature = telemetry_si_temperature();
 
   /* GPS Time */
   gps_update_time();
