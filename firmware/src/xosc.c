@@ -62,7 +62,7 @@ void xosc_init(void) {
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
         		     GCLK_SOURCE_XOSC, /* Source 		*/
         		     false,		/* High When Disabled	*/
-        		     XOSC_COUNT_RESOLUTION,/* Division Factor	*/
+        		     XOSC_GCLK1_DIVIDE,/* Division Factor	*/
         		     false,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
 
@@ -251,10 +251,10 @@ void TC2_Handler(void) {
       /* Calcuate the frequency of XOSC relative to this source */
       switch (_measurement_t) {
       case XOSC_MEASURE_OSC8M:
-        source_freq = capture_value * XOSC_COUNT_RESOLUTION;
+        source_freq = capture_value * XOSC_GCLK1_DIVIDE;
         break;
       case XOSC_MEASURE_TIMEPULSE:
-        source_freq = capture_value * XOSC_COUNT_RESOLUTION * GPS_TIMEPULSE_FREQ;
+        source_freq = capture_value * XOSC_GCLK1_DIVIDE * GPS_TIMEPULSE_FREQ;
         break;
       }
 

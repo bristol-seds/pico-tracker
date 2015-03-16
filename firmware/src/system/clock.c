@@ -42,6 +42,7 @@
 #include "system/conf_clocks.h"
 #include "system/system.h"
 #include "samd20.h"
+#include "hw_config.h"
 
 /* Syncronisation Macros */
 #define DFLL_WAIT_FOR_SYNC()		\
@@ -60,7 +61,7 @@ uint32_t system_clock_source_get_hz(const enum system_clock_source clock_source)
 {
   switch (clock_source) {
     case SYSTEM_CLOCK_SOURCE_XOSC:
-      return 0;//TODO _system_clock_inst.xosc.frequency;
+      return XOSC_FREQUENCY;
 
     case SYSTEM_CLOCK_SOURCE_OSC8M:
       return 8000000UL >> SYSCTRL->OSC8M.bit.PRESC;
