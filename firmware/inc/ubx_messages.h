@@ -157,6 +157,17 @@ __PACKED__ struct ubx_cfg_prt {
     uint16_t res3;
   } payload;
 };
+/**
+ * UBX CFG RXM Set powersave mode
+ */
+__PACKED__ struct ubx_cfg_rxm {
+  ubx_message_id_t id;
+  enum ubx_packet_state state;
+  struct {
+    uint8_t reserved1;
+    uint8_t lpMode;
+  } payload;
+};
 
 /**
  * UBX Dynamic Platform Model
@@ -181,6 +192,13 @@ enum {
   UBX_GNSS_BEIDOU	= 3,
   UBX_GNSS_QZSS		= 5,
   UBX_GNSS_GLONASS	= 6,
+};
+/**
+ * UBX Powersave Modes
+ */
+enum {
+  UBX_POWERSAVE_OFF	= 0,
+  UBX_POWERSAVE_ON	= 1,
 };
 
 /**

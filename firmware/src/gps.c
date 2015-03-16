@@ -73,6 +73,7 @@ volatile struct ubx_cfg_gnss ubx_cfg_gnss       = { .id = (UBX_CFG | (0x3E << 8)
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
+volatile struct ubx_cfg_rxm ubx_cfg_rxm		= { .id = (UBX_CFG | (0x11 << 8)) };
 volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
 volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
 volatile struct ubx_nav_sol ubx_nav_sol		= { .id = (UBX_NAV | (0x06 << 8)) };
@@ -86,6 +87,7 @@ volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_nav5,
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
+  (ubx_message_t*)&ubx_cfg_rxm,
   (ubx_message_t*)&ubx_nav_posllh,
   (ubx_message_t*)&ubx_nav_timeutc,
   (ubx_message_t*)&ubx_nav_sol,
@@ -409,6 +411,39 @@ void gps_set_gnss(void)
 		    (uint8_t*)&ubx_cfg_gnss.payload,
 		    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
 }
+/**
+ * Sets the powersave mode
+ */
+void gps_set_powersave(bool powersave_on)
+{
+  ubx_cfg_rxm.payload.lpMode = (powersave_on ? UBX_POWERSAVE_ON : UBX_POWERSAVE_OFF);
+
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_rxm,
+		    (uint8_t*)&ubx_cfg_rxm.payload,
+		    sizeof(ubx_cfg_rxm.payload));
+}
+/**
+ * Sets the powersave mode automatically based on if we're locked.
+ *
+ * Only call after we've updated our position
+ */
+bool _last_gps_is_locked = false;
+void gps_set_powersave_auto(void)
+{
+  bool is_locked = gps_is_locked();
+
+  if (is_locked != _last_gps_is_locked) {
+    if (is_locked) { /* Just locked */
+      gps_set_powersave(true);
+
+    } else { /* Just unlocked */
+      gps_set_powersave(false);
+    }
+
+    _last_gps_is_locked = is_locked;
+  }
+}
 
 /**
  * Init
@@ -456,6 +491,9 @@ void gps_init(void)
 
   /* Set which GNSS constellation we'd like to use */
   gps_set_gnss();
+
+  /* Exit powersave mode to start */
+  gps_set_powersave(false);
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);

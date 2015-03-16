@@ -55,6 +55,8 @@
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
 
+int32_t _xosc_error = 0;
+
 /**
  * Initialises the status LED
  */
@@ -171,18 +173,18 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* GPS Status */
   struct ubx_nav_sol sol = gps_get_nav_sol();
-  uint8_t lock = sol.payload.gpsFix;
   uint8_t satillite_count = sol.payload.numSV;
 
   /* GPS Position */
-  if (lock == 0x2 || lock == 0x3 || lock == 0x4) {
+  if (gps_is_locked()) {
     struct ubx_nav_posllh pos = gps_get_nav_posllh();
     lat_fmt = (double)pos.payload.lat / 10000000.0;
     lon_fmt = (double)pos.payload.lon / 10000000.0;
     altitude = pos.payload.height / 1000;
   }
 
-
+  /* GPS Powersave */
+  gps_set_powersave_auto();
 
   /**
    * Format
@@ -199,9 +201,9 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* sprintf - full string */
   len += sprintf(telemetry_string + len,
-		"%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.1f",
+		"%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.1f,%ld",
 		CALLSIGN, hours, minutes, seconds, lat_fmt, lon_fmt,
-		altitude, satillite_count, battery, temperature);
+                 altitude, satillite_count, battery, temperature, _xosc_error);
 
   if (type == TELEMETRY_CONTESTIA) { contestiaize(telemetry_string + dollars); }
 
@@ -299,9 +301,7 @@ void init(void)
 
 void xosc_measure_callback(uint32_t result)
 {
-  int32_t error = result - XOSC_FREQUENCY;
-
-  error++;
+  _xosc_error = result - XOSC_FREQUENCY;
 }
 
 uint8_t telemetry_trigger_flag = 0;
@@ -319,8 +319,6 @@ int main(void)
   uint32_t telemetry_alternate = 0;
 
   init();
-
-  measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
 
   led_on();
 
@@ -344,5 +342,8 @@ int main(void)
     output_telemetry_string((telemetry_alternate++ & 1) ?
                             TELEMETRY_CONTESTIA :
                             TELEMETRY_RTTY);
+
+    /* Measure XOSC against gps timepulse */
+    measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
   }
 }
