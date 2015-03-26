@@ -30,8 +30,8 @@
 1833804 3 Buck Out 10µF 0603 C17, C18, C19
 2331474 2 Mpp-set R1, R2
 2331444 2 en-pull-up R3, R4
-2141479 2 Vctrl-up R5, R6
-2331567 2 Vctrl-down R7, R8
+2331487 2 Vctrl-up R5, R6
+2331569 2 Vctrl-down R7, R8
 2331502 1 Rprog R9
 2331511 1 led R10
 1829262 2 TVS diodes D5, D6

@@ -30,8 +30,8 @@
 |06036D106MAT2A|AVX - CAP, MLCC, X5R, 10UF, 6.3V, 0603|[1833804](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1833804)|3|Buck Out 10µF 0603 C17, C18, C19
 |CRG0402F1K0|TE CONNECTIVITY - RESISTOR, FIXED, 1K0, 1%, 0402|[2331474](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331474)|2|Mpp-set R1, R2
 |CRG0402F10K|TE CONNECTIVITY - RESISTOR, PRECISION, 10K, 1%, 0402|[2331444](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331444)|2|en-pull-up R3, R4
-|MC00625W040212M20|MULTICOMP - RESISTOR, 2M2, 0.063W, 1%, 0402|[2141479](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2141479)|2|Vctrl-up R5, R6
-|CRG0402F820K|TE CONNECTIVITY - RESISTOR, FIXED, 820K, 1%, 0402|[2331567](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331567)|2|Vctrl-down R7, R8
+|CRG0402F220K|TE CONNECTIVITY - RESISTOR, FIXED, 220K, 1%, 0402|[2331487](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331487)|2|Vctrl-up R5, R6
+|CRG0402F82K|TE CONNECTIVITY - RESISTOR, FIXED, 82K, 1%, 0402|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|2|Vctrl-down R7, R8
 |CRG0402F2K2|TE CONNECTIVITY - RESISTOR, FIXED, 2K2, 1%, 0402|[2331502](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331502)|1|Rprog R9
 |CRG0402F330R|TE CONNECTIVITY - RESISTOR, FIXED, 330R, 1%, 0402|[2331511](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331511)|1|led R10
 |PTVS5V0S1UR|NXP - DIODE, TVS, UNI, 5V, 400W, SOD123W|[1829262](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1829262)|2|TVS diodes D5, D6
