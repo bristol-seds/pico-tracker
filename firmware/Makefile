@@ -154,6 +154,11 @@ TAGFILES	= $(SOURCES) $(shell $(CAT) $(OBJECTS:.o=.d) \
 #
 all: $(TARGET).elf etags
 
+# Rule for generating sintable
+sintable:
+	@$(ECHO) 'Generating ax25 lookup table...'
+	python tools/ax25_lookup/ax25_lookup.py > inc/ax25_sintable.h
+
 # Rule for generating object and dependancy files from source files.
 #
 # Creates a directory in the output tree if nessesary. File is only
