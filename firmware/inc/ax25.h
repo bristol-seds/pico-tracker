@@ -1,6 +1,6 @@
 /*
- * Telemetry strings and formatting
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Outputs ax25 to the si_trx
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,39 +22,56 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef TELEMETRY_H
-#define TELEMETRY_H
+#ifndef AX25_H
+#define AX25_H
 
-uint16_t crc_checksum(char *string);
-
-#include "util/dbuffer.h"
-#include "rsid.h"
-
-enum telemetry_t {
-  TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA,
-  TELEMETRY_RSID,
-  TELEMETRY_APRS,
-  TELEMETRY_PIPS,
-};
+#include "ax25_sintable.h"
 
 /**
- * Output String
+ * Parameters based on the size of the sintable
  */
-#define TELEMETRY_STRING_MAX	0x200
-char telemetry_string[TELEMETRY_STRING_MAX];
+#define AX25_SINTABLE_SIZE	(AX25_SINTABLE_LENGTH*4)
+#define AX25_SINTABLE_LUMASK	(AX25_SINTABLE_LENGTH-1)
+#define AX25_SINTABLE_MASK	(AX25_SINTABLE_SIZE-1)
+#define AX25_SINTABLE_PART(phase)	((phase >> AX25_SINTABLE_ORDER) & 3)
 
-int telemetry_active(void);
-int telemetry_start(enum telemetry_t type, int32_t length);
-int telemetry_start_rsid(rsid_code_t rsid);
-void telemetry_stop(void);
-float telemetry_si_temperature(void);
+/**
+ * Bell-202
+ */
+#define AX25_BAUD		2200
+#define AX25_MARKFREQ		1
+#define AX25_SPACEFREQ		2
 
-float timer0_tick_init(float frequency);
-uint32_t timer0_tick_frequency(float frequency);
-void timer0_tick_deinit();
-void telemetry_gpio1_pwm_init(void);
-void telemetry_gpio1_pwm_duty(float duty_cycle);
-void telemetry_gpio1_pwm_deinit(void);
+#define AX25_BITSTUFFINGCOUNT	5
 
-#endif /* TELEMETRY_H */
+
+
+/**
+ * How many points we output in a single symbol-time
+ */
+#define AX25_OVERSAMPLING	2
+#define AX25_TICK_RATE		(AX25_BAUD * AX25_OVERSAMPLING)
+
+/**
+ * Define the phase velocities for mark and space
+ *
+ * This is how many entries in the sin table we step by
+ */
+#define AX25_MARKPHASEVELOCITY	(AX25_SINTABLE_SIZE/AX25_OVERSAMPLING)
+#define AX25_SPACEPHASEVELOCITY	(AX25_MARKPHASEVELOCITY*(2.2f/1.2f))
+// TODO ^^
+
+
+
+
+
+enum ax25_symbol_t {
+  AX25_MARK,
+  AX25_SPACE,
+};
+
+
+void ax25_start();
+uint8_t ax25_tick(void);
+
+#endif /* AX25_H */

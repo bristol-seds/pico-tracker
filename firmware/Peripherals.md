@@ -5,7 +5,6 @@
 |*GLCK*|
 ||gclk0|main clock, internal osc8m|4 MHz
 ||gclk1|tcxo clock, fed from xosc
-||gclk2|rtc feed, fed from gclk1. divide by 4096
 
 |*TC*||
 ||tc0|telemetry tick timer. 32-bit
@@ -13,7 +12,7 @@
 ||tc2|counts cycles of tcxo. 32-bit
 ||tc3|^^^^^
 ||tc4|osc8m event source
-||tc5|telemetry pwm 8-bit
+||tc5|telemetry pwm 16-bit
 
 |*EXTINT*|
 ||extint[5]|gps timepulse

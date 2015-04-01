@@ -285,7 +285,9 @@ void init(void)
   //wdt_reset_count();
 
   /* Enables the xosc on gclk1 */
+#ifdef USE_XOSC
   xosc_init();
+#endif
 
   led_init();
   gps_init();
@@ -321,6 +323,17 @@ int main(void)
   init();
 
   led_on();
+
+
+  telemetry_start(TELEMETRY_APRS, 0xFFFF);
+
+  while (1) {
+    system_sleep();
+  }
+
+
+
+
 
   while (1) {
     /* Sleep wait for next telemetry */

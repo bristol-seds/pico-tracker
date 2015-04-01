@@ -1,6 +1,6 @@
 /*
- * Telemetry strings and formatting
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Outputs aprs to the si_trx
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,39 +22,9 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef TELEMETRY_H
-#define TELEMETRY_H
+#ifndef APRS_H
+#define APRS_H
 
-uint16_t crc_checksum(char *string);
 
-#include "util/dbuffer.h"
-#include "rsid.h"
 
-enum telemetry_t {
-  TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA,
-  TELEMETRY_RSID,
-  TELEMETRY_APRS,
-  TELEMETRY_PIPS,
-};
-
-/**
- * Output String
- */
-#define TELEMETRY_STRING_MAX	0x200
-char telemetry_string[TELEMETRY_STRING_MAX];
-
-int telemetry_active(void);
-int telemetry_start(enum telemetry_t type, int32_t length);
-int telemetry_start_rsid(rsid_code_t rsid);
-void telemetry_stop(void);
-float telemetry_si_temperature(void);
-
-float timer0_tick_init(float frequency);
-uint32_t timer0_tick_frequency(float frequency);
-void timer0_tick_deinit();
-void telemetry_gpio1_pwm_init(void);
-void telemetry_gpio1_pwm_duty(float duty_cycle);
-void telemetry_gpio1_pwm_deinit(void);
-
-#endif /* TELEMETRY_H */
+#endif /* APRS_H */

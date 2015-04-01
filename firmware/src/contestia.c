@@ -63,6 +63,8 @@ void contestia_set_tone(uint8_t tone) {
 
 /**
  * Called at the baud rate, outputs tones
+ *
+ * Returns 1 when more work todo, 0 when finished
  */
 uint8_t contestia_tick(void) {
 
