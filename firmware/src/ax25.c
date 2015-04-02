@@ -22,6 +22,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <string.h>
+
 #include "samd20.h"
 #include "system/gclk.h"
 #include "system/pinmux.h"
@@ -39,13 +41,8 @@ uint8_t one_count;
 uint32_t byte_index;
 
 enum ax25_state_t ax25_state;
-//uint8_t ax25_frame[AX25_MAX_FRAME_LEN];
+uint8_t ax25_frame[AX25_MAX_FRAME_LEN];
 uint32_t ax25_index, ax25_frame_length;
-
-
-uint8_t ax25_frame[29] = {0x86,   0xA2,  0x40,  0x40,  0x40,  0x40,  0x60,  0xAE,  0x64,  0x8C,  0xA6,
-                          0x40,   0x40,   0x68, 0xA4, 0x8A,  0x98,  0x82,   0xB2,  0x40,   0x61,  0x03,
-                          0xF0,   0x54,   0x65,  0x73, 0x74, 0x00, 0x00 };
 
 void ax25_gpio1_pwm_init(void);
 
@@ -55,34 +52,10 @@ void ax25_gpio1_pwm_init(void);
  */
 
 /**
- * CRC Function for the XMODEM protocol.
- * http://www.nongnu.org/avr-libc/user-manual/group__util__crc.html#gaca726c22a1900f9bad52594c8846115f
+ * CRC Function for CCITT-16. Poly = 0x8408
+ * http://www.nongnu.org/avr-libc/user-manual/group__util__crc.html#ga1c1d3ad875310cbc58000e24d981ad20
  */
-uint16_t crc_update(uint16_t crc, uint8_t data)
-{
-  int i;
-
-//  crc = crc ^ ((uint16_t)data << 8);
-
-
-  for (i = 0; i < 8; i++) {
-
-    if ((crc & 1) != (data & 1)) {
-
-      crc = (crc >> 1) ^ 0x8408;
-      data = data >> 1;
-
-    } else {
-      crc = crc >> 1;
-      data = data >> 1;
-    }
-  }
-
-  return crc;
-}
-
-uint16_t
-crc_ccitt_update (uint16_t crc, uint8_t data)
+uint16_t crc_ccitt_update (uint16_t crc, uint8_t data)
 {
   data ^= (crc & 0xff);
   data ^= data << 4;
@@ -110,9 +83,6 @@ uint16_t crc_fcs(uint8_t *string, uint32_t length)
 }
 
 
-
-
-
 /**
  * Starts the transmission of an ax25 frame
  */
@@ -122,34 +92,31 @@ void ax25_start(char* addresses, uint32_t addresses_len,
   uint32_t i, j;
   uint16_t fcs;
 
-  /* /\* Process addresses *\/ */
-  /* for (i = 0; i < addresses_len; i++) { */
+  /* Process addresses */
+  for (i = 0; i < addresses_len; i++) {
 
-  /*   if ((i % 7) == 6) {         /\* Secondary Station ID *\/ */
-  /*     ax25_frame[i] = ((addresses[i] << 1) & 0x1F) | 0x60; */
-  /*   } else { */
-  /*     ax25_frame[i] = (addresses[i] << 1); */
-  /*   } */
-  /* } */
-  /* ax25_frame[i-1] |= 0x1;     /\* Set HLDC bit *\/ */
+    if ((i % 7) == 6) {         /* Secondary Station ID */
+      ax25_frame[i] = ((addresses[i] << 1) & 0x1F) | 0x60;
+    } else {
+      ax25_frame[i] = (addresses[i] << 1);
+    }
+  }
+  ax25_frame[i-1] |= 0x1;     /* Set HLDC bit */
 
-  /* ax25_frame[i++] = AX25_CONTROL_WORD; */
-  /* ax25_frame[i++] = AX25_PROTOCOL_ID; */
+  ax25_frame[i++] = AX25_CONTROL_WORD;
+  ax25_frame[i++] = AX25_PROTOCOL_ID;
 
-  /* /\* Process information *\/ */
-  /* for (j = 0; j < information_len; j++) { */
-  /*   ax25_frame[i++] = information[j]; */
-  /* } */
+  /* Process information */
+  memcpy(ax25_frame+i, information, information_len);
+  i += information_len;
 
   /* Frame Check Sequence (FCS) */
-  fcs = crc_fcs(ax25_frame, 27);
-  ax25_frame[27] = (fcs >> 0) & 0xFF;
-  ax25_frame[28] = (fcs >> 8) & 0xFF;
-
-  fcs = crc_fcs("data", 4);
+  fcs = crc_fcs(ax25_frame, i);
+  ax25_frame[i++] = (fcs >> 0) & 0xFF;
+  ax25_frame[i++] = (fcs >> 8) & 0xFF;
 
   /* Length */
-  ax25_frame_length = 29;
+  ax25_frame_length = i;
 
   /* Init */
   next_symbol = AX25_MARK;
@@ -163,12 +130,6 @@ void ax25_start(char* addresses, uint32_t addresses_len,
   /* Hardware init */
   ax25_gpio1_pwm_init();
 }
-
-
-
-
-
-
 
 
 
@@ -226,16 +187,16 @@ void ax25_gpio1_pwm_init(void)
 
 
 /**
- * Returns the packet to transmit
+ * Returns the next byte to transmit
  */
 struct ax25_byte_t ax25_get_next_byte(void) {
 
-  struct ax25_byte_t next = { .stuff = 0 };
+  /* Return HLDC flag by default */
+  struct ax25_byte_t next = { .val = 0x7E, .stuff = 0 };
 
   switch (ax25_state) {
   case AX25_PREAMBLE:           /* Preamble */
-    /* Return flag */
-    next.val = 0x7E;
+    /* Return flag by default*/
 
     /* Check for next state */
     ax25_index++;
@@ -263,8 +224,7 @@ struct ax25_byte_t ax25_get_next_byte(void) {
 
 
   case AX25_POSTAMBLE:          /* Postamble */
-    /* Return flag */
-    next.val = 0x7E;
+    /* Return flag by default */
 
     /* Check for next state */
     ax25_index++;
@@ -283,8 +243,6 @@ struct ax25_byte_t ax25_get_next_byte(void) {
   return next;
 }
 
-
-//uint32_t toggle = 0;
 
 /**
  * Returns the next symbol to transmit
@@ -325,9 +283,6 @@ enum ax25_symbol_t ax25_get_next_symbol(void) {
   }
 
   return current_bit;
-
-
-//  return (toggle++ & 1) ? AX25_MARK : AX25_SPACE;
 }
 
 

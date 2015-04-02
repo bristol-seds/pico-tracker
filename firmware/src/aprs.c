@@ -37,7 +37,7 @@ void aprs_start(void)
           "M0SBU", 0,
           "WIDE1", 1);
 
-  ax25_start(addresses, 21, 0, 0);
+  ax25_start(addresses, 21, "testtest", 8);
 }
 
 void aprs_tick(void)
