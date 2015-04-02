@@ -310,10 +310,15 @@ void telemetry_tick(void) {
         /* APRS: We use pwm to control gpio1 */
         aprs_start();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 200);
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 400);
         radio_on = 1;
       }
-      aprs_tick();
+
+      if (!aprs_tick()) {
+        /* Transmission Finished */
+        telemetry_stop();
+        if (is_telemetry_finished()) return;
+      }
 
       break;
 

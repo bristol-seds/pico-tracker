@@ -34,6 +34,12 @@
 #define AX25_SPACE_FREQ		2200
 
 /**
+ * GCLK division factors
+ */
+#define AX25_DIVISION_MARK	11
+#define AX25_DIVISION_SPACE	6
+
+/**
  * How often our handler gets called
  */
 #define AX25_TICK_RATE		AX25_BAUD
@@ -51,11 +57,12 @@
  */
 #define AX25_CONTROL_WORD	0x03 /* Use Unnumbered Information (UI) frames */
 #define AX25_PROTOCOL_ID	0xF0 /* No third level protocol */
-
+#define AX25_HDLC_FLAG		0x7E
 
 enum ax25_symbol_t {
   AX25_MARK,
   AX25_SPACE,
+  AX25_NONE,
 };
 struct ax25_byte_t {
   uint8_t val;

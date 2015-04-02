@@ -23,6 +23,7 @@
  */
 
 #include <string.h>
+#include <math.h>
 
 #include "samd20.h"
 #include "system/gclk.h"
@@ -45,6 +46,19 @@ uint8_t ax25_frame[AX25_MAX_FRAME_LEN];
 uint32_t ax25_index, ax25_frame_length;
 
 void ax25_gpio1_pwm_init(void);
+
+
+/**
+ * USEFUL RESOURCES
+ * =============================================================================
+ *
+ * http://en.wikipedia.org/wiki/AX.25
+ * https://www.tapr.org/pub_ax25.html#2.4.1.2
+ * http://owenduffy.net/blog/?p=2101
+ * http://n1vg.net/packet/
+ */
+
+
 
 /**
  * Frame Check Sequence (FCS)
@@ -89,7 +103,7 @@ uint16_t crc_fcs(uint8_t *string, uint32_t length)
 void ax25_start(char* addresses, uint32_t addresses_len,
                 char* information, uint32_t information_len)
 {
-  uint32_t i, j;
+  uint32_t i;
   uint16_t fcs;
 
   /* Process addresses */
@@ -140,7 +154,9 @@ void ax25_gpio1_pwm_init(void)
 {
   float gclk1_frequency = (float)system_gclk_gen_get_hz(1);
 
-  uint32_t top = 38;//(uint32_t)(gclk1_frequency / 13200.0*4);// & ~0x1;
+  float divide_needed = round(gclk1_frequency / (13200*4));
+
+  uint32_t top = (uint32_t)divide_needed & ~0x1;
   uint32_t capture = top >> 1;  /* 50% duty cycle */
 
   if (top > 0xFF) while (1); // It's only an 8-bit counter
@@ -149,7 +165,7 @@ void ax25_gpio1_pwm_init(void)
   system_gclk_gen_set_config(GCLK_GENERATOR_7,
                              GCLK_SOURCE_GCLKGEN1,	/* Source	*/
         		     false,		/* High When Disabled	*/
-        		     11, /* Division Factor	*/// TODO
+        		     AX25_DIVISION_MARK,/* Division Factor	*/
         		     false,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
   system_gclk_gen_enable(GCLK_GENERATOR_7);
@@ -189,14 +205,13 @@ void ax25_gpio1_pwm_init(void)
 /**
  * Returns the next byte to transmit
  */
-struct ax25_byte_t ax25_get_next_byte(void) {
-
-  /* Return HLDC flag by default */
-  struct ax25_byte_t next = { .val = 0x7E, .stuff = 0 };
+uint8_t ax25_get_next_byte(struct ax25_byte_t* next) {
 
   switch (ax25_state) {
   case AX25_PREAMBLE:           /* Preamble */
-    /* Return flag by default*/
+    /* Return flag */
+    next->val = AX25_HDLC_FLAG;
+    next->stuff = 0;
 
     /* Check for next state */
     ax25_index++;
@@ -210,8 +225,8 @@ struct ax25_byte_t ax25_get_next_byte(void) {
 
   case AX25_FRAME:              /* Frame */
     /* Return data */
-    next.val = ax25_frame[ax25_index];
-    next.stuff = 1;
+    next->val = ax25_frame[ax25_index];
+    next->stuff = 1;
 
     /* Check for next state */
     ax25_index++;
@@ -224,7 +239,9 @@ struct ax25_byte_t ax25_get_next_byte(void) {
 
 
   case AX25_POSTAMBLE:          /* Postamble */
-    /* Return flag by default */
+    /* Return flag */
+    next->val = AX25_HDLC_FLAG;
+    next->stuff = 0;
 
     /* Check for next state */
     ax25_index++;
@@ -237,29 +254,31 @@ struct ax25_byte_t ax25_get_next_byte(void) {
 
 
   default:
-    break;
+    return 0;
   }
 
-  return next;
+  return 1;
 }
 
 
 /**
  * Returns the next symbol to transmit
  */
-enum ax25_symbol_t ax25_get_next_symbol(void) {
-
-  uint8_t bit;
-
+enum ax25_symbol_t ax25_get_next_symbol(void)
+{
+  /* Get next byte if we need to */
   if (bit_index >= 8) {
-    current_byte = ax25_get_next_byte();
+
+    /* Attempt to get the next byte */
+    if (!ax25_get_next_byte(&current_byte)) {
+      return AX25_NONE;         /* We're done */
+    }
     bit_index = 0;
+
   }
 
   /* transmit bits lsb first */
-  bit = current_byte.val & 0x01;
-
-  if (bit) {                    /* One */
+  if (current_byte.val & 0x01) {                    /* One */
 
     one_count++;
 
@@ -293,30 +312,28 @@ enum ax25_symbol_t ax25_get_next_symbol(void) {
  */
 uint8_t ax25_tick(void)
 {
+  if (next_symbol == AX25_NONE) {
+    return 0;                   /* We're done */
+  }
 
   if (next_symbol == AX25_SPACE) {
-
-
+    /* Space */
     system_gclk_gen_set_config(GCLK_GENERATOR_7,
                                GCLK_SOURCE_GCLKGEN1,	/* Source	*/
                                false,		/* High When Disabled	*/
-                               6, /* Division Factor	*/// TODO
+                               AX25_DIVISION_SPACE, /* Division Factor	*/
                                false,		/* Run in standby	*/
                                false);		/* Output Pin Enable	*/
-
   } else {
-
-
+    /* Mark */
     system_gclk_gen_set_config(GCLK_GENERATOR_7,
                                GCLK_SOURCE_GCLKGEN1,	/* Source	*/
                                false,		/* High When Disabled	*/
-                               11, /* Division Factor	*/// TODO
+                               AX25_DIVISION_MARK, /* Division Factor	*/
                                false,		/* Run in standby	*/
                                false);		/* Output Pin Enable	*/
-
   }
 
   next_symbol = ax25_get_next_symbol();
-
   return 1;
 }

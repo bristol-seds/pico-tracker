@@ -26,6 +26,6 @@
 #define APRS_H
 
 void aprs_init(void);
-void aprs_tick(void);
+uint8_t aprs_tick(void);
 
 #endif /* APRS_H */

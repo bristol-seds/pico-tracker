@@ -28,6 +28,14 @@
 #include "samd20.h"
 #include "ax25.h"
 
+/**
+ * USEFUL RESOURCES
+ * =============================================================================
+ *
+ * http://www.aprs.org/doc/APRS101.PDF
+ * http://k9dci.home.comcast.net/~k9dci/APRS%20Beginner%20Guide%20-%20K9DCI%20Ver%205-1.pdf
+ */
+
 char addresses[50];
 
 void aprs_start(void)
@@ -40,7 +48,7 @@ void aprs_start(void)
   ax25_start(addresses, 21, "testtest", 8);
 }
 
-void aprs_tick(void)
+uint8_t aprs_tick(void)
 {
-  ax25_tick();
+  return ax25_tick();
 }

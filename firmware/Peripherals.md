@@ -5,7 +5,6 @@
 |*GLCK*|
 ||gclk0|main clock, internal osc8m|4 MHz
 ||gclk1|tcxo clock, fed from xosc OR osc8m
-|
 ||gclk7|aprs clock, fed from gclk1, div 6 / 11
 
 |*TC*||
