@@ -430,7 +430,7 @@ void si_trx_reset(uint8_t modulation_type, uint16_t deviation)
   si_trx_set_frequency(RADIO_FREQUENCY, deviation);
   si_trx_set_tx_power(RADIO_POWER);
 
-  si_trx_modem_set_tx_datarate(2200);
+  si_trx_modem_set_tx_datarate(3000);
 
   /* RTTY from GPIO1 */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC

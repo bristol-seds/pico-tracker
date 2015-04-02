@@ -30,6 +30,7 @@
 #include "rtty.h"
 #include "contestia.h"
 #include "rsid.h"
+#include "aprs.h"
 #include "ax25.h"
 #include "pips.h"
 #include "si_trx.h"
@@ -37,6 +38,7 @@
 #include "system/gclk.h"
 #include "system/interrupt.h"
 #include "system/pinmux.h"
+#include "system/port.h"
 #include "tc/tc_driver.h"
 #include "hw_config.h"
 
@@ -305,17 +307,13 @@ void telemetry_tick(void) {
     case TELEMETRY_APRS: /* ---- ---- APRS */
 
       if (!radio_on) {
-        /* ARPS: We use the modem offset to modulate */
+        /* APRS: We use pwm to control gpio1 */
+        aprs_start();
 
-        telemetry_gpio1_pwm_init();
-        //telemetry_gpio1_pwm_duty(0.5);
-
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 400);
-
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 200);
         radio_on = 1;
-        ax25_start();
       }
-      ax25_tick();
+      aprs_tick();
 
       break;
 
@@ -351,13 +349,8 @@ void telemetry_tick(void) {
  */
 float timer0_tick_init(float frequency)
 {
-#ifdef USE_XOSC
   const enum gclk_generator tick_gclk_gen = GCLK_GENERATOR_1;
   const uint8_t tick_gclk_gen_num = 1;
-#else
-  const enum gclk_generator tick_gclk_gen = GCLK_GENERATOR_0;
-  const uint8_t tick_gclk_gen_num = 0;
-#endif
 
   /* Calculate the wrap value for the given frequency */
   float gclk_frequency = (float)system_gclk_gen_get_hz(tick_gclk_gen_num);
@@ -439,22 +432,37 @@ void TC0_Handler(void)
 
 
 
-#define GPIO1_PWM_STEPS 208 // // ~ 2kHz on a 4 MHz clock
+#define GPIO1_PWM_STEPS 200 // ~ 2kHz on a 4 MHz clock
 
 /**
  * Initialised PWM at the given duty cycle on the GPIO1 pin of the radio
  */
 void telemetry_gpio1_pwm_init(void)
 {
-  bool capture_channel_enables[]    = {false, true};
-  uint32_t compare_channel_values[] = {0x0000, 0x0000}; // Set duty cycle at 0% by default
+  float gclk1_frequency = (float)system_gclk_gen_get_hz(1);
 
-  //float gclk_frequency = (float)system_gclk_gen_get_hz(0);
+  uint32_t top = 38;//(uint32_t)(gclk1_frequency / 13200.0*4);// & ~0x1;
+  uint32_t capture = top >> 1;  /* 50% duty cycle */
+
+  if (top > 0xFF) while (1); // It's only an 8-bit counter
+
+  /* Setup GCLK genertor 7 */
+  system_gclk_gen_set_config(GCLK_GENERATOR_7,
+                             GCLK_SOURCE_GCLKGEN1,	/* Source	*/
+        		     false,		/* High When Disabled	*/
+        		     11, /* Division Factor	*/// TODO
+        		     false,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
+  system_gclk_gen_enable(GCLK_GENERATOR_7);
+
+  /* Configure timer */
+  bool capture_channel_enables[]    = {false, true};
+  uint32_t compare_channel_values[] = {0x0000, capture};
 
   tc_init(TC5,
-	  GCLK_GENERATOR_0,
+	  GCLK_GENERATOR_7,
 	  TC_COUNTER_SIZE_8BIT,
-	  TC_CLOCK_PRESCALER_DIV16,
+	  TC_CLOCK_PRESCALER_DIV4,
 	  TC_WAVE_GENERATION_NORMAL_PWM,
 	  TC_RELOAD_ACTION_GCLK,
 	  TC_COUNT_DIRECTION_UP,
@@ -462,7 +470,7 @@ void telemetry_gpio1_pwm_init(void)
 	  false,			/* Oneshot = false */
 	  false,			/* Run in standby = false */
 	  0x0000,			/* Initial value */
-	  GPIO1_PWM_STEPS,		/* Top value */
+	  top,				/* Top value */
 	  capture_channel_enables,	/* Capture Channel Enables */
 	  compare_channel_values);	/* Compare Channels Values */
 
@@ -476,7 +484,6 @@ void telemetry_gpio1_pwm_init(void)
 
   tc_enable(TC5);
   tc_start_counter(TC5);
-
 }
 /**
  * Sets duty cycle on PWM pin

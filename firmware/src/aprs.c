@@ -22,10 +22,25 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef APRS_H
-#define APRS_H
+#include <stdio.h>
+#include <string.h>
 
-void aprs_init(void);
-void aprs_tick(void);
+#include "samd20.h"
+#include "ax25.h"
 
-#endif /* APRS_H */
+char addresses[50];
+
+void aprs_start(void)
+{
+  sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
+          "APRS", 0,
+          "M0SBU", 0,
+          "WIDE1", 1);
+
+  ax25_start(addresses, 21, 0, 0);
+}
+
+void aprs_tick(void)
+{
+  ax25_tick();
+}

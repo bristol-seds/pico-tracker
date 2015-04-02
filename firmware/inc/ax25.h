@@ -25,53 +25,56 @@
 #ifndef AX25_H
 #define AX25_H
 
-#include "ax25_sintable.h"
-
-/**
- * Parameters based on the size of the sintable
- */
-#define AX25_SINTABLE_SIZE	(AX25_SINTABLE_LENGTH*4)
-#define AX25_SINTABLE_LUMASK	(AX25_SINTABLE_LENGTH-1)
-#define AX25_SINTABLE_MASK	(AX25_SINTABLE_SIZE-1)
-#define AX25_SINTABLE_PART(phase)	((phase >> AX25_SINTABLE_ORDER) & 3)
 
 /**
  * Bell-202
  */
-#define AX25_BAUD		2200
-#define AX25_MARKFREQ		1
-#define AX25_SPACEFREQ		2
+#define AX25_BAUD		1200
+#define AX25_MARK_FREQ		1200
+#define AX25_SPACE_FREQ		2200
 
+/**
+ * How often our handler gets called
+ */
+#define AX25_TICK_RATE		AX25_BAUD
+
+/**
+ * AX25 packet parameters
+ */
 #define AX25_BITSTUFFINGCOUNT	5
-
-
-
-/**
- * How many points we output in a single symbol-time
- */
-#define AX25_OVERSAMPLING	2
-#define AX25_TICK_RATE		(AX25_BAUD * AX25_OVERSAMPLING)
+#define AX25_PREAMBLE_FLAGS	15 /* 100 ms of flags */
+#define AX25_POSTAMBLE_FLAGS	1
+#define AX25_MAX_FRAME_LEN	0x100
 
 /**
- * Define the phase velocities for mark and space
- *
- * This is how many entries in the sin table we step by
+ * Hard-coded AX25 words
  */
-#define AX25_MARKPHASEVELOCITY	(AX25_SINTABLE_SIZE/AX25_OVERSAMPLING)
-#define AX25_SPACEPHASEVELOCITY	(AX25_MARKPHASEVELOCITY*(2.2f/1.2f))
-// TODO ^^
-
-
-
+#define AX25_CONTROL_WORD	0x03 /* Use Unnumbered Information (UI) frames */
+#define AX25_PROTOCOL_ID	0xF0 /* No third level protocol */
 
 
 enum ax25_symbol_t {
   AX25_MARK,
   AX25_SPACE,
 };
+struct ax25_byte_t {
+  uint8_t val;
+  uint8_t stuff;
+};
+
+/**
+ * State machine
+ */
+enum ax25_state_t {
+  AX25_PREAMBLE,
+  AX25_FRAME,
+  AX25_POSTAMBLE,
+  AX25_IDLE,
+};
 
 
-void ax25_start();
+void ax25_start(char* addresses, uint32_t addresses_len,
+                char* information, uint32_t information_len);
 uint8_t ax25_tick(void);
 
 #endif /* AX25_H */

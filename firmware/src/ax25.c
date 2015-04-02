@@ -23,89 +23,345 @@
  */
 
 #include "samd20.h"
+#include "system/gclk.h"
+#include "system/pinmux.h"
+#include "tc/tc_driver.h"
+#include "hw_config.h"
 #include "ax25.h"
-#include "ax25_sintable.h"
+#include "telemetry.h"
 #include "si_trx.h"
 
-#define AX25_MARKSINTABLE	sintable_512_1500hz
-#define AX25_SPACESINTABLE	sintable_512_2500hz
+enum ax25_symbol_t next_symbol;
+uint8_t bit_index;
+struct ax25_byte_t current_byte;
+uint8_t current_bit;
+uint8_t one_count;
+uint32_t byte_index;
+
+enum ax25_state_t ax25_state;
+//uint8_t ax25_frame[AX25_MAX_FRAME_LEN];
+uint32_t ax25_index, ax25_frame_length;
 
 
-uint32_t ax25_phase;
-uint32_t ax25_phasevelocity;
-uint32_t ax25_oversampling_count;
+uint8_t ax25_frame[29] = {0x86,   0xA2,  0x40,  0x40,  0x40,  0x40,  0x60,  0xAE,  0x64,  0x8C,  0xA6,
+                          0x40,   0x40,   0x68, 0xA4, 0x8A,  0x98,  0x82,   0xB2,  0x40,   0x61,  0x03,
+                          0xF0,   0x54,   0x65,  0x73, 0x74, 0x00, 0x00 };
 
-uint16_t* ax25_sintable;
-
-void ax25_start()
-{
-  /* Init */
-  ax25_phase = 0;
-  ax25_phasevelocity = AX25_MARKPHASEVELOCITY;
-  ax25_sintable = AX25_MARKSINTABLE;
-  ax25_oversampling_count = -1LL;
-}
-
-
-uint32_t toggle = 0;
-enum ax25_symbol_t ax25_get_next_symbol(void) {
-  return (toggle++ & 1) ? AX25_MARK : AX25_SPACE;
-}
-
-
-void telemetry_gpio1_pwm_duty(float duty_cycle);
+void ax25_gpio1_pwm_init(void);
 
 /**
- * Called at our tick rate, outputs tones
+ * Frame Check Sequence (FCS)
+ * =============================================================================
+ */
+
+/**
+ * CRC Function for the XMODEM protocol.
+ * http://www.nongnu.org/avr-libc/user-manual/group__util__crc.html#gaca726c22a1900f9bad52594c8846115f
+ */
+uint16_t crc_update(uint16_t crc, uint8_t data)
+{
+  int i;
+
+//  crc = crc ^ ((uint16_t)data << 8);
+
+
+  for (i = 0; i < 8; i++) {
+
+    if ((crc & 1) != (data & 1)) {
+
+      crc = (crc >> 1) ^ 0x8408;
+      data = data >> 1;
+
+    } else {
+      crc = crc >> 1;
+      data = data >> 1;
+    }
+  }
+
+  return crc;
+}
+
+uint16_t
+crc_ccitt_update (uint16_t crc, uint8_t data)
+{
+  data ^= (crc & 0xff);
+  data ^= data << 4;
+  return ((((uint16_t)data << 8) | ((crc >> 8) & 0xff)) ^ (uint8_t)(data >> 4)
+          ^ ((uint16_t)data << 3));
+}
+
+/**
+ * Calculates the Frame Check Sequence (FCS) using the CRC algorithm
+ */
+uint16_t crc_fcs(uint8_t *string, uint32_t length)
+{
+  size_t i;
+  uint16_t crc;
+  uint8_t c;
+
+  crc = 0xFFFF;
+
+  for (i = 0; i < length; i++) {
+    c = string[i];
+    crc = crc_ccitt_update(crc, c);
+  }
+
+  return crc ^ 0xFFFF;
+}
+
+
+
+
+
+/**
+ * Starts the transmission of an ax25 frame
+ */
+void ax25_start(char* addresses, uint32_t addresses_len,
+                char* information, uint32_t information_len)
+{
+  uint32_t i, j;
+  uint16_t fcs;
+
+  /* /\* Process addresses *\/ */
+  /* for (i = 0; i < addresses_len; i++) { */
+
+  /*   if ((i % 7) == 6) {         /\* Secondary Station ID *\/ */
+  /*     ax25_frame[i] = ((addresses[i] << 1) & 0x1F) | 0x60; */
+  /*   } else { */
+  /*     ax25_frame[i] = (addresses[i] << 1); */
+  /*   } */
+  /* } */
+  /* ax25_frame[i-1] |= 0x1;     /\* Set HLDC bit *\/ */
+
+  /* ax25_frame[i++] = AX25_CONTROL_WORD; */
+  /* ax25_frame[i++] = AX25_PROTOCOL_ID; */
+
+  /* /\* Process information *\/ */
+  /* for (j = 0; j < information_len; j++) { */
+  /*   ax25_frame[i++] = information[j]; */
+  /* } */
+
+  /* Frame Check Sequence (FCS) */
+  fcs = crc_fcs(ax25_frame, 27);
+  ax25_frame[27] = (fcs >> 0) & 0xFF;
+  ax25_frame[28] = (fcs >> 8) & 0xFF;
+
+  fcs = crc_fcs("data", 4);
+
+  /* Length */
+  ax25_frame_length = 29;
+
+  /* Init */
+  next_symbol = AX25_MARK;
+  bit_index = 8;
+  current_bit = 1;
+  one_count = 0;
+
+  ax25_state = AX25_PREAMBLE;
+  ax25_index = 0;
+
+  /* Hardware init */
+  ax25_gpio1_pwm_init();
+}
+
+
+
+
+
+
+
+
+
+/**
+ * Sets up gpio1 for the afsk pwm output. Uses gclk 7
+ */
+void ax25_gpio1_pwm_init(void)
+{
+  float gclk1_frequency = (float)system_gclk_gen_get_hz(1);
+
+  uint32_t top = 38;//(uint32_t)(gclk1_frequency / 13200.0*4);// & ~0x1;
+  uint32_t capture = top >> 1;  /* 50% duty cycle */
+
+  if (top > 0xFF) while (1); // It's only an 8-bit counter
+
+  /* Setup GCLK genertor 7 */
+  system_gclk_gen_set_config(GCLK_GENERATOR_7,
+                             GCLK_SOURCE_GCLKGEN1,	/* Source	*/
+        		     false,		/* High When Disabled	*/
+        		     11, /* Division Factor	*/// TODO
+        		     false,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
+  system_gclk_gen_enable(GCLK_GENERATOR_7);
+
+  /* Configure timer */
+  bool capture_channel_enables[]    = {false, true};
+  uint32_t compare_channel_values[] = {0x0000, capture};
+
+  tc_init(TC5,
+	  GCLK_GENERATOR_7,
+	  TC_COUNTER_SIZE_8BIT,
+	  TC_CLOCK_PRESCALER_DIV4,
+	  TC_WAVE_GENERATION_NORMAL_PWM,
+	  TC_RELOAD_ACTION_GCLK,
+	  TC_COUNT_DIRECTION_UP,
+	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
+	  false,			/* Oneshot = false */
+	  false,			/* Run in standby = false */
+	  0x0000,			/* Initial value */
+	  top,				/* Top value */
+	  capture_channel_enables,	/* Capture Channel Enables */
+	  compare_channel_values);	/* Compare Channels Values */
+
+
+  /* Enable the output pin */
+  system_pinmux_pin_set_config(SI406X_GPIO1_PINMUX >> 16,	/* GPIO Pin	*/
+ 			       SI406X_GPIO1_PINMUX & 0xFFFF,	/* Mux Position */
+ 			       SYSTEM_PINMUX_PIN_DIR_INPUT,	/* Direction	*/
+ 			       SYSTEM_PINMUX_PIN_PULL_NONE,	/* Pull		*/
+ 			       false);    			/* Powersave	*/
+
+  tc_enable(TC5);
+  tc_start_counter(TC5);
+}
+
+
+/**
+ * Returns the packet to transmit
+ */
+struct ax25_byte_t ax25_get_next_byte(void) {
+
+  struct ax25_byte_t next = { .stuff = 0 };
+
+  switch (ax25_state) {
+  case AX25_PREAMBLE:           /* Preamble */
+    /* Return flag */
+    next.val = 0x7E;
+
+    /* Check for next state */
+    ax25_index++;
+    if (ax25_index >= AX25_PREAMBLE_FLAGS) {
+      /* Next state */
+      ax25_state = AX25_FRAME;
+      ax25_index = 0;
+    }
+    break;
+
+
+  case AX25_FRAME:              /* Frame */
+    /* Return data */
+    next.val = ax25_frame[ax25_index];
+    next.stuff = 1;
+
+    /* Check for next state */
+    ax25_index++;
+    if (ax25_index >= ax25_frame_length) {
+      /* Next state */
+      ax25_state = AX25_POSTAMBLE;
+      ax25_index = 0;
+    }
+    break;
+
+
+  case AX25_POSTAMBLE:          /* Postamble */
+    /* Return flag */
+    next.val = 0x7E;
+
+    /* Check for next state */
+    ax25_index++;
+    if (ax25_index >= AX25_POSTAMBLE_FLAGS) {
+      /* Next state */
+      ax25_state = AX25_PREAMBLE;
+      ax25_index = 0;
+    }
+    break;
+
+
+  default:
+    break;
+  }
+
+  return next;
+}
+
+
+//uint32_t toggle = 0;
+
+/**
+ * Returns the next symbol to transmit
+ */
+enum ax25_symbol_t ax25_get_next_symbol(void) {
+
+  uint8_t bit;
+
+  if (bit_index >= 8) {
+    current_byte = ax25_get_next_byte();
+    bit_index = 0;
+  }
+
+  /* transmit bits lsb first */
+  bit = current_byte.val & 0x01;
+
+  if (bit) {                    /* One */
+
+    one_count++;
+
+    /* Check if we need to stuff this bit */
+    if (one_count >= AX25_BITSTUFFINGCOUNT && current_byte.stuff) {
+      current_byte.val &= ~0x01;/* Next bit is zero */
+      one_count = 0;
+
+    } else {
+      current_byte.val >>= 1;   /* Move along one bit */
+      bit_index++;
+    }
+  } else {                      /* Zero */
+
+    one_count = 0;              /* Clear concecutive ones */
+    current_byte.val >>= 1;     /* Move along one bit */
+    bit_index++;
+
+    /* NRZI encoding */
+    current_bit ^= 0x01;
+  }
+
+  return current_bit;
+
+
+//  return (toggle++ & 1) ? AX25_MARK : AX25_SPACE;
+}
+
+
+/**
+ * Called at our tick rate, controls the pwm gclk
  *
  * Returns 1 when more work todo, 0 when finished
  */
 uint8_t ax25_tick(void)
 {
-  int16_t deviation;
-  uint32_t sintable_phase = ax25_phase & AX25_SINTABLE_LUMASK;
 
-  /* Set the instantaneous fm deviation based on the current phase */
-  switch (AX25_SINTABLE_PART(ax25_phase)) {
-  case 0: 				/* 0° - 90° */
-    deviation = ax25_sintable[sintable_phase];
-    break;
-  case 1:				/* 90° - 180° */
-    deviation = ax25_sintable[AX25_SINTABLE_LUMASK - sintable_phase];
-    break;
-  case 2:				/* 180° - 270° */
-    deviation = -ax25_sintable[sintable_phase];
-    break;
-  case 3:				/* 270° - 360° */
-    deviation = -ax25_sintable[AX25_SINTABLE_LUMASK - sintable_phase];
-    break;
-  default:
-    deviation = 0;
+  if (next_symbol == AX25_SPACE) {
+
+
+    system_gclk_gen_set_config(GCLK_GENERATOR_7,
+                               GCLK_SOURCE_GCLKGEN1,	/* Source	*/
+                               false,		/* High When Disabled	*/
+                               6, /* Division Factor	*/// TODO
+                               false,		/* Run in standby	*/
+                               false);		/* Output Pin Enable	*/
+
+  } else {
+
+
+    system_gclk_gen_set_config(GCLK_GENERATOR_7,
+                               GCLK_SOURCE_GCLKGEN1,	/* Source	*/
+                               false,		/* High When Disabled	*/
+                               11, /* Division Factor	*/// TODO
+                               false,		/* Run in standby	*/
+                               false);		/* Output Pin Enable	*/
+
   }
 
-//  si_trx_switch_channel(deviation);
-
-//  float duty = 0.5 + ((float)deviation/192.0) / 2.0;
-  float duty = (ax25_get_next_symbol() == AX25_SPACE) ? 1.0 : 0.0;
-
-  telemetry_gpio1_pwm_duty(duty);
-
-  /* Update with next bit */
-  if (ax25_oversampling_count++ >= AX25_OVERSAMPLING) {
-    ax25_oversampling_count = 0;
-
-    /* Set phase velocity for next symbol */
-    if (0) {//ax25_get_next_symbol() == AX25_SPACE) {
-      ax25_phasevelocity = AX25_SPACEPHASEVELOCITY;
-      ax25_sintable = AX25_SPACESINTABLE;
-    } else {
-      ax25_phasevelocity = AX25_MARKPHASEVELOCITY;
-      ax25_sintable = AX25_MARKSINTABLE;
-    }
-  }
-  /* Update phase */
-  ax25_phase += ax25_phasevelocity;
-
+  next_symbol = ax25_get_next_symbol();
 
   return 1;
 }
