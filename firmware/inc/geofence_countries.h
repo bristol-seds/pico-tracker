@@ -6,6 +6,8 @@
 #define GEOFENCE_COUNTRIES_H
 
 
+#include <stdbool.h>
+
 #include "samd20.h"
 
 
@@ -13,8 +15,9 @@
  * struct representing all we need to know about a country
  */
 struct country_t {
-  int32_t* outline;
-  char* name, isocode;
+  int32_t** outlines;
+  char* name;
+  char* isocode;
   bool data_tx, aprs_tx;
 };
 

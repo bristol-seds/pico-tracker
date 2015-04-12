@@ -6,6 +6,8 @@
 #define GEOFENCE_APRS_H
 
 
+#include <stdbool.h>
+
 #include "samd20.h"
 
 
@@ -13,8 +15,9 @@
  * struct representing all we need to know about a aprs zone
  */
 struct aprs_zone_t {
-  int32_t* outline;
+  int32_t** outlines;
   int32_t frequency, deviation;
+  char* name;
 };
 
 
