@@ -22,6 +22,6 @@ struct country_t {
 };
 
 
-struct country_t countries[];
+struct country_t countries[233];
 
 #endif /* GEOFENCE_COUNTRIES_H */
