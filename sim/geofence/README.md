@@ -6,8 +6,9 @@ this. This notebook is also used to calculate the deviation values.
 ## Prerequisites
 
 ```
-sudo apt-get install ipython libblas-dev liblapack-dev gfortran
+sudo apt-get install ipython libblas-dev liblapack-dev gfortran python-pyproj
 sudo pip install scipy matplotlib
+sudo pip install --pre pyclipper
 ```
 
 We use basemap for map plotting. This was a fun install
