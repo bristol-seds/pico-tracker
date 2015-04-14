@@ -126,8 +126,9 @@
 #define XOSC_GCLK1_DIVIDE	4
 
 /**
- * Timings
+ * Telemetry
  */
+#define TELEMETRY_FREQUENCY	434600000
 #define TELEMETRY_INTERVAL	30
 
 /**

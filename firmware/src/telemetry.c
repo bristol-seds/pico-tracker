@@ -236,7 +236,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* Contestia: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1);
         radio_on = 1;
         contestia_preamble();
       }
@@ -257,7 +257,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RTTY: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1);
         radio_on = 1;
         rtty_preamble();
       }
@@ -288,7 +288,7 @@ void telemetry_tick(void) {
         /* RSID: We PWM frequencies with the external pin */
         telemetry_gpio1_pwm_init();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, TELEMETRY_FREQUENCY, 1);
         radio_on = 1;
 
         return;
@@ -308,9 +308,9 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* APRS: We use pwm to control gpio1 */
-        aprs_start(51.47, -2.58, 10);
+        aprs_start();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 400);
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 144888000, 400);
         radio_on = 1;
       }
 
@@ -326,7 +326,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) { /* Turn on */
         /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, 1); radio_on = 1;
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1); radio_on = 1;
         timer0_tick_frequency(PIPS_ON_FREQUENCY);
 
       } else { /* Turn off */

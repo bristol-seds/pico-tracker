@@ -55,14 +55,35 @@ void base91_encode(char *str, uint8_t n, uint32_t value)
 
 
 /**
+ * SET VALUES
+ * =============================================================================
+ */
+
+float _lat = 0, _lon = 0, _altitude;
+void aprs_set_location(float lat, float lon, float altitude) {
+  _lat = lat; _lon = lon; _altitude = altitude;
+}
+
+
+
+
+/**
+ * START / TICK
+ * =============================================================================
+ */
+
+/**
  * Start the transmission of an aprs frame
  */
-void aprs_start(float lat, float lon, float altitude)
+void aprs_start(void)
 {
   char addresses[50];
   char information[50];
   char compressed_lat[5];
   char compressed_lon[5];
+
+  /* Don't run without a valid position */
+  if (_lat == 0 && _lon == 0) return;
 
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
@@ -71,11 +92,11 @@ void aprs_start(float lat, float lon, float altitude)
                                    "WIDE2", 1);
 
   /* Prepare the aprs position report */
-  uint32_t compressed_lat_value = (uint32_t)round(380926 * ( 90 - lat));
-  uint32_t compressed_lon_value = (uint32_t)round(190463 * (180 + lon));
+  uint32_t compressed_lat_value = (uint32_t)round(380926 * ( 90 - _lat));
+  uint32_t compressed_lon_value = (uint32_t)round(190463 * (180 + _lon));
   base91_encode(compressed_lat, 4, compressed_lat_value);
   base91_encode(compressed_lon, 4, compressed_lon_value);
-  uint32_t altitude_feet = altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
+  uint32_t altitude_feet = _altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
 
   /* Encode the information field */
   /* Compressed Lat/Long position report, no timestamp */

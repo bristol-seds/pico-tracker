@@ -42,8 +42,9 @@
  */
 #define APRS_SYMBOL	"/O"    /* Balloon */
 
-void aprs_init(void);
-void aprs_start(float lat, float lon, float altitude);
+void aprs_set_location(float lat, float lon, float altitude);
+
+void aprs_start(void);
 uint8_t aprs_tick(void);
 
 #endif /* APRS_H */
