@@ -1,6 +1,9 @@
 ---
 title: ARM Cortex M0+
 tagline: Low power and things
+linkname: armcortex
+x: 51%
+y: 33%
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it

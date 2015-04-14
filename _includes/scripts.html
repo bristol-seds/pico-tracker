@@ -22,19 +22,24 @@
   ga('send', 'pageview');
 </script>
 
-<!-- Google Maps -->
 {% if page.maps %}
+<!-- Google Maps -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 {% for map in page.maps %}
 <script src="{{ map.url | prepend: page.asset_path }}"></script>
 {% endfor %}
 {% endif %}
 
-<!-- nvd3 Graphs -->
 {% if page.graphs %}
+<!-- nvd3 Graphs -->
 <script src="/lib/nvd3/d3.min.js"></script>
 <script src="/lib/nvd3/nv.d3.min.js"></script>
 {% for graph in page.graphs %}
 <script src="{{ graph.url | prepend: page.asset_path }}"></script>
 {% endfor %}
+{% endif %}
+
+<!-- scroll thing -->
+{% if page.scroll %}
+<script src="scroll.js"></script>
 {% endif %}

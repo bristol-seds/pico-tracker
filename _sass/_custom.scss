@@ -92,15 +92,6 @@ pre {
 }
 
 
-.fill-page > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border: 0px none;
-
-}
-
-
 /**
  * Old Notice
  */
@@ -109,4 +100,47 @@ pre {
   color: #f77;
   padding-right: 10px;
   float: right
+}
+
+
+
+
+.fill-page > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 0px none;
+}
+
+
+/**
+ * A grid of interactive circles for the top image
+ */
+.ch-grid {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position:absolute;
+}
+.ch-grid li {
+  position: absolute;
+  width: 4%;
+  display: block;
+}
+.ch-pad {
+        height: 0;
+padding-bottom: 100%;
+}
+.ch-item {
+  margin: 10%;
+  overflow: hidden;
+  position: relative;
+  background-image: url(assets/circles.svg);
+  background-size: 100%;
+
+  transition: all 0.2s ease-out;
+}
+.ch-item:hover {
+  margin: 0px;
 }

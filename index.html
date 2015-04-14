@@ -1,9 +1,23 @@
 ---
 layout: default
 asset_path: assets/
+scroll: true
 ---
 
-<div id="image-cover" class="fill-page">
+<div id="image-highlight" class="fill-page">
+  <!-- A grid of interactive circles for the top image -->
+  <ul class="ch-grid">
+    {% for post in site.posts %}
+
+    <li style="top: {{ post.y }}; left: {{ post.x }}">
+      <a href="#{{ post.linkname }}">
+        <div class="ch-item"><div class="ch-pad"></div></div>
+      </a>
+ </li>
+
+    {% endfor %}
+  </ul>
+
   <img src="{{ "pico-tracker-apr-2015.jpg" | prepend: page.asset_path }}">
 </div>
 
@@ -19,8 +33,8 @@ asset_path: assets/
 
     <hr/>
 
-    <h2>{{ post.title }} <small>{{post.tagline}}</small></h2>
-    <p class="">{{ post.excerpt }}</p>
+    <h2 id="{{ post.linkname }}">{{ post.title }} <small>{{post.tagline}}</small></h2>
+    <p class="">{{ post.content }}</p>
 
 
     {% endfor %}
