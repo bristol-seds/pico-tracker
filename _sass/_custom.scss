@@ -103,7 +103,10 @@ pre {
 }
 
 
-
+.fill-page {
+width:100%; height:100%;
+    position:relative;
+}
 
 .fill-page > img {
   display: block;

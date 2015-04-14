@@ -3,7 +3,7 @@ title: Global Positioning System Receiver
 tagline: from ublox ag.
 linkname: gps
 x: 20%
-y: 42%
+y: 65%
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it
