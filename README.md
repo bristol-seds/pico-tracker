@@ -1,6 +1,6 @@
-bristol-seds.github.io
+bristol-seds.github.io/pico-tracker
 ======================
-Available at http://bristol-seds.github.io/.
+Available at http://bristol-seds.github.io/pico-tracker.
 
 ## Running the server for local testing
 
@@ -13,6 +13,9 @@ Start Jekyll:
     $ jekyll serve --watch
 
 Note that changes to `_config.yml` may require restarting the server.
+
+#Items from the main site, may not work here:
+
 
 ## Adding photo carousels
 
