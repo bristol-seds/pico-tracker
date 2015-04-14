@@ -323,18 +323,15 @@ int main(void)
   led_on();
 
 
-  while (1) {
-    telemetry_start(TELEMETRY_APRS, 0xFFFF);
+  /* while (1) { */
+  /*   telemetry_start(TELEMETRY_APRS, 0xFFFF); */
 
-    while (telemetry_active()) {
-      system_sleep();
-    }
+  /*   while (telemetry_active()) { */
+  /*     system_sleep(); */
+  /*   } */
 
-    for (int i = 0; i < 1000*1000; i++);
-  }
-
-
-
+  /*   for (int i = 0; i < 1000*1000; i++); */
+  /* } */
 
 
   while (1) {
