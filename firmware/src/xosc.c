@@ -63,12 +63,18 @@ void xosc_init(void) {
   /* Configure GCLK1 to XOSC */
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
 #ifdef USE_XOSC
+<<<<<<< HEAD
         		     GCLK_SOURCE_XOSC, /* Source 		*/
 #else
                              GCLK_SOURCE_OSC8M, /* Source 		*/
+=======
+        		     GCLK_SOURCE_XOSC,	/* Source 		*/
+#else
+                             GCLK_SOURCE_OSC8M,	/* Source 		*/
+>>>>>>> aprs_dev
 #endif
         		     false,		/* High When Disabled	*/
-        		     XOSC_GCLK1_DIVIDE,/* Division Factor	*/
+        		     XOSC_GCLK1_DIVIDE, /* Division Factor	*/
         		     false,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
 

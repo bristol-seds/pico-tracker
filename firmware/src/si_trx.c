@@ -30,12 +30,21 @@
 #include "si_trx_defs.h"
 #include "hw_config.h"
 
-#define RADIO_FREQUENCY	434600000
 #define RADIO_POWER	0x3f
 #define VCXO_FREQUENCY	SI406X_TCXO_FREQUENCY
-#define RF_DEVIATION	200
 
 
+void _si_trx_transfer_nocts(int tx_count, int rx_count, uint8_t *data)
+{
+  /* Send command */
+  _si_trx_cs_enable();
+
+  for (int i = 0; i < tx_count; i++) {
+    spi_bitbang_transfer(data[i]);
+  }
+
+  _si_trx_cs_disable();
+}
 
 /**
  * Generic SPI Send / Receive
@@ -247,6 +256,25 @@ static void si_trx_modem_set_deviation(uint32_t deviation)
 			  SI_MODEM_FREQ_DEV,
 			  deviation);
 }
+
+
+static void si_trx_modem_set_tx_datarate(uint32_t rate)
+{
+  uint32_t nco_max_count = ((float)SI406X_TCXO_FREQUENCY / 10);
+
+  /* Set TX_NCO_MODE */
+  _si_trx_set_property_32(SI_PROPERTY_GROUP_MODEM,
+                          SI_MODEM_TX_NCO_MODE,
+                          (SI_MODEM_TX_NCO_TXOSR_10X |
+                           (nco_max_count & 0x03FFFFFF)));
+
+  /* Set DATA_RATE */
+  _si_trx_set_property_24(SI_PROPERTY_GROUP_MODEM,
+                          SI_MODEM_DATA_RATE,
+                          rate & 0xFFFFFF);
+}
+
+
 /**
  * Sets the modem frequency offset manually. In units of the
  * resolution of the frac-n pll synthsiser.
@@ -255,9 +283,20 @@ static void si_trx_modem_set_deviation(uint32_t deviation)
  */
 static void si_trx_modem_set_offset(int16_t offset)
 {
-  _si_trx_set_property_16(SI_PROPERTY_GROUP_MODEM,
-                          SI_MODEM_FREQ_OFFSET,
-                          offset);
+  /* _si_trx_set_property_16(SI_PROPERTY_GROUP_MODEM, */
+  /*                         SI_MODEM_FREQ_OFFSET, */
+  /*                         offset); */
+
+  uint8_t buffer[6];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = SI_PROPERTY_GROUP_MODEM; // group
+  buffer[2] = 2;
+  buffer[3] = SI_MODEM_FREQ_OFFSET; // prop
+  buffer[4] = (offset >> 8);
+  buffer[5] = (offset);
+
+  _si_trx_transfer_nocts(6, 0, buffer);
 }
 
 /**
@@ -358,7 +397,7 @@ static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
 /**
  * Resets the transceiver
  */
-void si_trx_reset(uint8_t modulation_type, uint16_t deviation)
+void si_trx_reset(uint8_t modulation_type, uint32_t frequency, uint16_t deviation)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -385,11 +424,13 @@ void si_trx_reset(uint8_t modulation_type, uint16_t deviation)
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
-  si_trx_set_frequency(RADIO_FREQUENCY, deviation);
+  si_trx_set_frequency(frequency, deviation);
   si_trx_set_tx_power(RADIO_POWER);
 
+  si_trx_modem_set_tx_datarate(3000);
+
   /* RTTY from GPIO1 */
-  si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_ASYNC,
+  si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC
 			      SI_MODEM_MOD_GPIO_1,
 			      SI_MODEM_MOD_SOURCE_DIRECT,
 			      modulation_type);
@@ -400,9 +441,9 @@ void si_trx_reset(uint8_t modulation_type, uint16_t deviation)
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(uint8_t modulation_type, uint16_t deviation)
+void si_trx_on(uint8_t modulation_type, uint32_t frequency, uint16_t deviation)
 {
-  si_trx_reset(modulation_type, deviation);
+  si_trx_reset(modulation_type, frequency, deviation);
   si_trx_start_tx(0);
 }
 /**

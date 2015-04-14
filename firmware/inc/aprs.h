@@ -1,6 +1,6 @@
 /*
- * Functions for controlling Si Labs Transceivers
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Outputs aprs uisng ax25
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,19 +22,29 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SI_TRX_H
-#define SI_TRX_H
+#ifndef APRS_H
+#define APRS_H
 
-#include "samd20.h"
+/**
+ * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
+ */
 
-float si_trx_get_temperature(void);
+/**
+ * This should be a full licensed callsign you own. Not mine plz k thx bai
+ *
+ * Max. 6 characters
+ */
+#define APRS_CALLSIGN	"M0SBU"
+#define APRS_SSID	11
 
-void si_trx_on(uint8_t modulation_type, uint32_t frequency, uint16_t deviation);
-void si_trx_off(void);
-void si_trx_switch_channel(int16_t channel);
+/**
+ * APRS Map Symbol.  See Appendix 2: APRS Symbol Tables
+ */
+#define APRS_SYMBOL	"/O"    /* Balloon */
 
-void si_trx_init(void);
+void aprs_set_location(float lat, float lon, float altitude);
 
-void spi_loopback_test(void);
+void aprs_start(void);
+uint8_t aprs_tick(void);
 
-#endif /* SI_TRX_H */
+#endif /* APRS_H */

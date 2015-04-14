@@ -121,13 +121,18 @@
 /**
  * XOSC
  */
+<<<<<<< HEAD
 //define USE_XOSC
+=======
+//#define USE_XOSC
+>>>>>>> aprs_dev
 #define XOSC_FREQUENCY		16369000
 #define XOSC_GCLK1_DIVIDE	4
 
 /**
- * Timings
+ * Telemetry
  */
+#define TELEMETRY_FREQUENCY	434600000
 #define TELEMETRY_INTERVAL	30
 
 /**
