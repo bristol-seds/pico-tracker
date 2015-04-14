@@ -121,11 +121,7 @@
 /**
  * XOSC
  */
-<<<<<<< HEAD
 //define USE_XOSC
-=======
-//#define USE_XOSC
->>>>>>> aprs_dev
 #define XOSC_FREQUENCY		16369000
 #define XOSC_GCLK1_DIVIDE	4
 
