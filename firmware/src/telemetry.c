@@ -308,7 +308,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* APRS: We use pwm to control gpio1 */
-        aprs_start();
+        aprs_start(51.47, -2.58, 10);
 
         si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 400);
         radio_on = 1;

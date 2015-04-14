@@ -25,7 +25,25 @@
 #ifndef APRS_H
 #define APRS_H
 
+/**
+ * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
+ */
+
+/**
+ * This should be a full licensed callsign you own. Not mine plz k thx bai
+ *
+ * Max. 6 characters
+ */
+#define APRS_CALLSIGN	"M0SBU"
+#define APRS_SSID	11
+
+/**
+ * APRS Map Symbol.  See Appendix 2: APRS Symbol Tables
+ */
+#define APRS_SYMBOL	"/O"    /* Balloon */
+
 void aprs_init(void);
+void aprs_start(float lat, float lon, float altitude);
 uint8_t aprs_tick(void);
 
 #endif /* APRS_H */

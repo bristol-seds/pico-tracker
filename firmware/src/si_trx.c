@@ -30,7 +30,9 @@
 #include "si_trx_defs.h"
 #include "hw_config.h"
 
-#define RADIO_FREQUENCY	434600000
+//#define RADIO_FREQUENCY	434600000
+#define RADIO_FREQUENCY	144888000
+
 #define RADIO_POWER	0x3f
 #define VCXO_FREQUENCY	SI406X_TCXO_FREQUENCY
 #define RF_DEVIATION	200
