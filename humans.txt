@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Richard Meadows -- @richardeoin
+
+# THANKS
+
+    Bristol University
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery

@@ -1,0 +1,16 @@
+# Site settings
+title: Bristol SEDS
+email: 
+description:
+  Homepage for the Univeristy of Bristol Students for the Exploration and Development of Space
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.bristol-seds.co.uk" # the base hostname & protocol for your site
+twitter_username: 
+github_username: bristol-seds
+flickr_username: bristolseds
+facebook_group: "Bristol SEDS"
+
+# Build settings
+markdown: kramdown
+
+excerpt_separator: <!--more-->

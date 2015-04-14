@@ -1,0 +1,40 @@
+<!-- ============================================================== -->
+<!--                         Scripts                                -->
+<!-- ============================================================== -->
+
+<!-- jQuery from CDN, if that fails use the local copy -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/lib/jquery/jquery-1.11.1.min.js"><\/script>')</script>
+<!-- jQuery plugins -->
+<script src="/lib/jquery/plugins.js"></script>
+
+<!-- Bootstrap -->
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55296093-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Maps -->
+{% if page.maps %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+{% for map in page.maps %}
+<script src="{{ map.url | prepend: page.asset_path }}"></script>
+{% endfor %}
+{% endif %}
+
+<!-- nvd3 Graphs -->
+{% if page.graphs %}
+<script src="/lib/nvd3/d3.min.js"></script>
+<script src="/lib/nvd3/nv.d3.min.js"></script>
+{% for graph in page.graphs %}
+<script src="{{ graph.url | prepend: page.asset_path }}"></script>
+{% endfor %}
+{% endif %}

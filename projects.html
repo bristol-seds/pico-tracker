@@ -1,0 +1,19 @@
+---
+layout: default
+asset_path: /assets/
+---
+
+<div class="container">
+  <ul class="post-list">
+    {% for post in site.posts %}
+      {% if post.categories contains 'test' %}{% else %}
+        <li>
+          <h2>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h2>
+          <span class="post-meta">{{ post.date | date: "%B %Y" }}</span>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,76 @@
+---
+layout: default
+asset_path: /assets/
+stories:
+  - id: /balloon/2014/06/15/hab-launch
+    image: hab.jpg
+
+  - id: /pico-tracker/balloon/2014/08/01/pico-tracker
+    image: pico-tracker.jpg
+
+  - id: /rockoon/2012/01/01/bristol-rockoon
+    image: rocketlaunch.jpg
+---
+
+<div id="image-carousel" class="carousel slide carousel-max-width-1920" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#image-carousel" data-slide-to="1"></li>
+    <li data-target="#image-carousel" data-slide-to="2"></li>
+    <li data-target="#image-carousel" data-slide-to="3"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{{ "slide1.jpg" | prepend: page.asset_path }}">
+    </div>
+    <div class="item">
+      <img src="{{ "slide2.jpg" | prepend: page.asset_path }}">
+    </div>
+    <div class="item">
+      <img src="{{ "slide3.jpg" | prepend: page.asset_path }}">
+    </div>
+    <div class="item">
+      <img src="{{ "slide4.jpg" | prepend: page.asset_path }}">
+    </div>
+  </div>
+
+  <a class="left carousel-control" href="#image-carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#image-carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+<div class="container">
+  <h1>We send stuff into the stratosphere <small>and sometimes get it back again</small></h1>
+  <p class="lead">We are the Bristol branch of UKSEDS (UK Students for the Exploration and
+  Development of Space). Here are some projects that we've done.</p>
+
+  {% for story in page.stories %}
+    {% capture image %}{% cycle 'odd', 'even' %}{% endcapture %}
+  
+    <div class="row">  
+      <div class="col-md-4 {% if image == 'even' %}col-md-push-8{% endif %}">
+          <img src="{{ story.image | prepend: page.asset_path }}" 
+          class="img-responsive img-rounded">
+        </div>
+      <div class="col-md-8 {% if image == 'even' %}col-md-pull-4{% endif %}">
+        {% for post in site.posts %}
+        {% if post.id == story.id %}
+        <h2>{{ post.title }}</h2>
+        <p class="lead">{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
+	<p><a class="btn btn-default btn-primary" href="{{ post.url }}">Read more...</a></p>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+
+
+  <h1>Join us!</h1>
+<p class="lead">Details of the next meeting will be posted on the <a href="https://www.facebook.com/groups/bristolseds/">facebook group</a>!</p>
+  <p>To officially join the society you'll need to sign in to the <a href="https://www.ubu.org.uk/login/">union website</a> and hit the join button on <a href="https://www.ubu.org.uk/activities/societies/9490/">our page</a>. But don't worry - You're more than welcome to come along to the first few meetings without doing this.</p>
+</div>
