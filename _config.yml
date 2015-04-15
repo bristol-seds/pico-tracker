@@ -3,7 +3,7 @@ title: Bristol SEDS Pico Tracker
 email:
 description:
   Microsite for the Bristol SEDS Pico Tracker
-baseurl: "/pico-tracker/" # the subpath of your site, e.g. /blog/
+baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.bristol-seds.co.uk" # the base hostname & protocol for your site
 twitter_username:
 github_username: bristol-seds
