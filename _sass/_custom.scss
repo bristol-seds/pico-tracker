@@ -104,8 +104,8 @@ pre {
 
 
 .fill-page {
-width:100%; height:100%;
-    position:relative;
+  width:100%; height:100%;
+  position:relative;
 }
 
 .fill-page > img {
@@ -128,18 +128,18 @@ width:100%; height:100%;
 }
 .ch-grid li {
   position: absolute;
-  width: 4%;
+  width: 7.5%;
   display: block;
 }
 .ch-pad {
-        height: 0;
-padding-bottom: 100%;
+  height: 0;
+  padding-bottom: 100%;
 }
 .ch-item {
-  margin: 10%;
+  margin: 15%;
   overflow: hidden;
   position: relative;
-  background-image: url(assets/circles.svg);
+  background-image: url(assets/circles_hw.svg);
   background-size: 100%;
 
   transition: all 0.2s ease-out;

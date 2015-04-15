@@ -10,7 +10,7 @@ scroll: true
     {% for post in site.posts %}
 
     <li style="top: {{ post.y }}; left: {{ post.x }}">
-      <a href="#{{ post.linkname }}">
+      <a href="#{{ post.linkname }}" title="{{ post.title }}">
         <div class="ch-item"><div class="ch-pad"></div></div>
       </a>
  </li>
