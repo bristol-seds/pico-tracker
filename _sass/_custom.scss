@@ -139,10 +139,15 @@ pre {
   margin: 15%;
   overflow: hidden;
   position: relative;
-  background-image: url(assets/circles_hw.svg);
   background-size: 100%;
 
   transition: all 0.2s ease-out;
+}
+.hardware {
+  background-image: url(assets/circles_hw.svg);
+}
+.software {
+  background-image: url(assets/circles_sw.svg);
 }
 .ch-item:hover {
   margin: 0px;

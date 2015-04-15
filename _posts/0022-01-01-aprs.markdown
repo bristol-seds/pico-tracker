@@ -1,0 +1,10 @@
+---
+title: APRS
+tagline:
+linkname: aprs
+software: true
+x: 70%
+y: 46%
+---
+
+The tracker also transmits Automatic Packet Reporting System (APRS) packets.

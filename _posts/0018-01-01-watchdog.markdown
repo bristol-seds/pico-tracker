@@ -1,0 +1,12 @@
+---
+title: Hardware Watchdog
+tagline:
+linkname: watchdog
+x: 59%
+y: 25%
+---
+
+Windowed Hardware Watchdog because yolobtfdsusesif
+
+**you only live once but total failure due to sporadic unexpected
+  software errors still isn't fun

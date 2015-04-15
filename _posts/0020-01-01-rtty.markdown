@@ -1,0 +1,10 @@
+---
+title: RTTY
+tagline: U8N2
+linkname: rtty
+software: true
+x: 70%
+y: 18%
+---
+
+The tracker transmits Radio Teletype (RTTY).
