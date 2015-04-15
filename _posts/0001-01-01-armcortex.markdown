@@ -1,37 +1,48 @@
 ---
 title: ARM Cortex M0+
-tagline: Low power and things
+tagline: Atmel SAM D20 E
 linkname: armcortex
-x: 50%
-y: 53%
+x: 49%
+y: 47%
 ---
 
-You’ll find this post in your `_posts` directory. Go ahead and edit it
-and re-build the site to see your changes. You can rebuild the site in
-many different ways, but the most common way is to run `jekyll serve
---watch`, which launches a web server and auto-regenerates your site
-when a file is updated.
+The board is centred around the [Atmel SAM D20][samd]
+microcontroller. We use the smallest **E** variant in a QFN-32 package (_-M_)
 
-To add new posts, simply add a file in the `_posts` directory that
-follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the
-necessary front matter. Take a look at the source for this post to get
-an idea about how it works.
+The firmware is written in C and targeted at the highly configurable
+Atmel SAMD20 series of ARM Cortex M0+ micromontrollers. The code can
+be built using [GNU Tools for ARM Embedded Processors][gnutools] See
+[README-samd20-gcc-blackmagic.md][gcc-blackmagic-readme] for more
+details.
 
-Jekyll also offers powerful support for code snippets:
+From the [datasheet][datasheet] we can see there's a few RAM/ROM size
+options:
 
-{% highlight ruby linenos %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+|~~Variant~~|~~Flash (KBytes)~~|~~SRAM KBytes~~
+|:-:|:-:|:-:
+|-14|16 KBytes|2 KBytes
+|-15|32 KBytes|4 KBytes
+|-16|64 KBytes|8 KBytes
+|_-17_|_128 KBytes_|_16 KBytes_
+|-18|256 KBytes|32 KBytes
+|
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the
-most out of Jekyll. File all bugs/feature requests at
-[Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask
-them on [Jekyll’s dedicated Help repository][jekyll-help].
+We've been using the _-17_ variant so far, but may upgrade to the
+_-18_ variant if we need more Flash for [geofencing](#geofence) or
+SRAM for [backlog](#backlog).
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+The SAM D series implements Generic Clocks (GCLKs) which allow us to
+divide, route and disable clock signals internally as required. These
+are used particularly for [APRS](#aprs).
+
+Thanks to an error in Revision C silicon we can't configure the
+correct pin layout for the SERCOM used to talk to the radio. Currently
+it's just being [bit-banged][bitbang] as our suppliers bought large
+quantities of Revision C silicon. **TODO: Fix in future board revision??**
+
+[armcortexm0+]: http://www.arm.com/products/processors/cortex-m/cortex-m0plus.php
+[samd]: http://www.atmel.com/products/microcontrollers/arm/sam-d.aspx
+[datasheet]: http://www.atmel.com/Images/atmel-42129-sam-d20_datasheet.pdf
+[bitbang]: https://github.com/bristol-seds/pico-tracker/blob/master/firmware/src/spi_bitbang.c#L78
+[gnutools]: https://launchpad.net/gcc-arm-embedded/
+[gcc-blackmagic-readme]: https://github.com/bristol-seds/pico-tracker/blob/master/firmware/README-samd20-gcc-blackmagic.md

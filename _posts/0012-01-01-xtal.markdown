@@ -1,37 +1,36 @@
 ---
 title: 16.369MHz TCXO
-tagline: ~2ppm
+tagline:
 linkname: xtal
-x: 70.5%
-y: 61%
+x: 68.5%
+y: 56%
 ---
 
-You’ll find this post in your `_posts` directory. Go ahead and edit it
-and re-build the site to see your changes. You can rebuild the site in
-many different ways, but the most common way is to run `jekyll serve
---watch`, which launches a web server and auto-regenerates your site
-when a file is updated.
+We use a temperature controlled oscillator (TXCO) from Epson to provide
+a clock to both the [radio](#radio) and [ARM Cortex](#armcortex).
 
-To add new posts, simply add a file in the `_posts` directory that
-follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the
-necessary front matter. Take a look at the source for this post to get
-an idea about how it works.
+![image]
 
-Jekyll also offers powerful support for code snippets:
+The Pin 1 marker is a perfect circle.
 
-{% highlight ruby linenos %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+It has a supply voltage of 1.7V - 3.3V. This was one of the harder
+parts for find for a 1.8V volt supply. The output waveform is
+specified at 0.8Vpk-pk and in test it's about 0.9Vpk-pk. This is no problem
+for the radio but ideally would be higher for the CLKIN pin of the ARM
+Cortex. We've had no problems with a 1.8V supply, but at 3.3V the ARM
+Cortex never locks on the clock. In this case the
+[`USE_XOSC` option][usexosc] in firmware can be set false.
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the
-most out of Jekyll. File all bugs/feature requests at
-[Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask
-them on [Jekyll’s dedicated Help repository][jekyll-help].
+The frequency tolerance is given at ±2 parts-per-million (ppm) at
+25°C, with ±1 ppm per year aging at 25°C. The temperature range is
+given at -30°C to 85°C with another ±2 ppm variation over this
+range. We've tested it to -55°C by dropping it unprotected into the
+jet stream (as you do) and it got rather drifty (10 ppm??) before the
+board cut out. **TODO: Cold chamber testing**
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+
+[datasheet]: http://www.farnell.com/datasheets/1804154.pdf
+[usexosc]: https://github.com/bristol-seds/pico-tracker/blob/master/firmware/inc/hw_config.h#L124
+
+[image]: assets/txco-epson-16369.jpg
+{: width="180px"}
