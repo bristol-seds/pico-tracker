@@ -12,7 +12,7 @@
 /* Longitude,  Latitude */
 
 /* -------------------Aruba */
-int32_t aw_outline_1[] = {
+const int32_t aw_outline_1[] = {
    -69826936,  11986388,
    -69507091,  12201509,
    -69472650,  12590449,
@@ -25,15 +25,15 @@ int32_t aw_outline_1[] = {
    -69829398,  11986025,
 };
 
-int32_t* aw_outlines[] = {
+const int32_t* aw_outlines[] = {
   aw_outline_1,
 };
-uint32_t aw_outline_lengths[] = {
+const uint32_t aw_outline_lengths[] = {
   10,
 };
 
 /* -------------Afghanistan */
-int32_t af_outline_1[] = {
+const int32_t af_outline_1[] = {
     74497906,  37057216,
     74372124,  37157728,
     74558938,  37236611,
@@ -115,15 +115,15 @@ int32_t af_outline_1[] = {
     74526437,  37030659,
 };
 
-int32_t* af_outlines[] = {
+const int32_t* af_outlines[] = {
   af_outline_1,
 };
-uint32_t af_outline_lengths[] = {
+const uint32_t af_outline_lengths[] = {
   79,
 };
 
 /* ------------------Angola */
-int32_t ao_outline_1[] = {
+const int32_t ao_outline_1[] = {
     12971376,  -4551761,
     12798208,  -4430529,
     12384597,  -4619089,
@@ -182,15 +182,15 @@ int32_t ao_outline_1[] = {
     13048065,  -4619197,
 };
 
-int32_t* ao_outlines[] = {
+const int32_t* ao_outlines[] = {
   ao_outline_1,
 };
-uint32_t ao_outline_lengths[] = {
+const uint32_t ao_outline_lengths[] = {
   56,
 };
 
 /* ----------------Anguilla */
-int32_t ai_outline_1[] = {
+const int32_t ai_outline_1[] = {
    -63156290,  17741526,
    -62705335,  17898531,
    -62530406,  18267670,
@@ -201,23 +201,23 @@ int32_t ai_outline_1[] = {
    -63476620,  17866585,
    -63159128,  17741509,
 };
-int32_t ai_outline_2[] = {
+const int32_t ai_outline_2[] = {
    -63023069,  18019181,
    -63115003,  18090699,
    -63012317,  18045409,
 };
 
-int32_t* ai_outlines[] = {
+const int32_t* ai_outlines[] = {
   ai_outline_1,
   ai_outline_2,
 };
-uint32_t ai_outline_lengths[] = {
+const uint32_t ai_outline_lengths[] = {
   9,
   3,
 };
 
 /* -----------------Albania */
-int32_t al_outline_1[] = {
+const int32_t al_outline_1[] = {
     19939069,  42506705,
     19788278,  42476163,
     19654438,  42628584,
@@ -246,15 +246,15 @@ int32_t al_outline_1[] = {
     20045726,  42549907,
 };
 
-int32_t* al_outlines[] = {
+const int32_t* al_outlines[] = {
   al_outline_1,
 };
-uint32_t al_outline_lengths[] = {
+const uint32_t al_outline_lengths[] = {
   26,
 };
 
 /* -------------------Aland */
-int32_t a0_outline_1[] = {
+const int32_t a0_outline_1[] = {
     20523836,  59786043,
     20980082,  59894242,
     21000195,  60152883,
@@ -267,15 +267,15 @@ int32_t a0_outline_1[] = {
     20520989,  59786038,
 };
 
-int32_t* a0_outlines[] = {
+const int32_t* a0_outlines[] = {
   a0_outline_1,
 };
-uint32_t a0_outline_lengths[] = {
+const uint32_t a0_outline_lengths[] = {
   10,
 };
 
 /* -----------------Andorra */
-int32_t ad_outline_1[] = {
+const int32_t ad_outline_1[] = {
      1421952,  42530815,
      1534044,  42441694,
      1709898,  42604427,
@@ -283,15 +283,15 @@ int32_t ad_outline_1[] = {
      1414829,  42548406,
 };
 
-int32_t* ad_outlines[] = {
+const int32_t* ad_outlines[] = {
   ad_outline_1,
 };
-uint32_t ad_outline_lengths[] = {
+const uint32_t ad_outline_lengths[] = {
   5,
 };
 
 /* ----United Arab Emirates */
-int32_t ae_outline_1[] = {
+const int32_t ae_outline_1[] = {
     51411257,  24570799,
     51395240,  24318845,
     51568355,  24286185,
@@ -320,37 +320,37 @@ int32_t ae_outline_1[] = {
     51455059,  24725600,
     51338494,  24564333,
 };
-int32_t ae_outline_2[] = {
+const int32_t ae_outline_2[] = {
     56183629,  25644913,
     56080431,  26062642,
     56378707,  26356344,
     56417775,  26208165,
     56249512,  25625386,
 };
-int32_t ae_outline_3[] = {
+const int32_t ae_outline_3[] = {
     56210552,  25213264,
     56277315,  25300854,
     56240214,  25208818,
 };
 
-int32_t* ae_outlines[] = {
+const int32_t* ae_outlines[] = {
   ae_outline_1,
   ae_outline_2,
   ae_outline_3,
 };
-uint32_t ae_outline_lengths[] = {
+const uint32_t ae_outline_lengths[] = {
   27,
   5,
   3,
 };
 
 /* ---------------Argentina */
-int32_t ar_outline_1[] = {
+const int32_t ar_outline_1[] = {
    -73836387, -49609319,
    -74009331, -49478633,
    -73891553, -49623735,
 };
-int32_t ar_outline_2[] = {
+const int32_t ar_outline_2[] = {
    -72522852, -51890888,
    -72542534, -51706145,
    -72856801, -51538408,
@@ -358,13 +358,13 @@ int32_t ar_outline_2[] = {
    -72674344, -51812854,
    -72552515, -51907093,
 };
-int32_t ar_outline_3[] = {
+const int32_t ar_outline_3[] = {
    -66611120, -55269959,
    -66523166, -55165518,
    -66435778, -55189753,
    -66551688, -55272903,
 };
-int32_t ar_outline_4[] = {
+const int32_t ar_outline_4[] = {
    -54677711, -26308829,
    -54825502, -26652217,
    -55426655, -27009250,
@@ -575,13 +575,13 @@ int32_t ar_outline_4[] = {
    -54631924, -26005800,
 };
 
-int32_t* ar_outlines[] = {
+const int32_t* ar_outlines[] = {
   ar_outline_1,
   ar_outline_2,
   ar_outline_3,
   ar_outline_4,
 };
-uint32_t ar_outline_lengths[] = {
+const uint32_t ar_outline_lengths[] = {
   3,
   6,
   4,
@@ -589,7 +589,7 @@ uint32_t ar_outline_lengths[] = {
 };
 
 /* -----------------Armenia */
-int32_t am_outline_1[] = {
+const int32_t am_outline_1[] = {
     44811344,  41259362,
     43439446,  41107098,
     43722631,  40719527,
@@ -619,15 +619,15 @@ int32_t am_outline_1[] = {
     44975888,  41277479,
 };
 
-int32_t* am_outlines[] = {
+const int32_t* am_outlines[] = {
   am_outline_1,
 };
-uint32_t am_outline_lengths[] = {
+const uint32_t am_outline_lengths[] = {
   27,
 };
 
 /* ----------American Samoa */
-int32_t as_outline_1[] = {
+const int32_t as_outline_1[] = {
   -170764741, -14797203,
   -170275482, -14598863,
   -170118978, -14261719,
@@ -639,15 +639,15 @@ int32_t as_outline_1[] = {
   -170767580, -14797229,
 };
 
-int32_t* as_outlines[] = {
+const int32_t* as_outlines[] = {
   as_outline_1,
 };
-uint32_t as_outline_lengths[] = {
+const uint32_t as_outline_lengths[] = {
   9,
 };
 
 /* -Ashmore and Cartier Is. */
-int32_t a1_outline_1[] = {
+const int32_t a1_outline_1[] = {
    123598769, -12876968,
    123922836, -12737740,
    124043668, -12411139,
@@ -659,15 +659,15 @@ int32_t a1_outline_1[] = {
    123595921, -12876985,
 };
 
-int32_t* a1_outlines[] = {
+const int32_t* a1_outlines[] = {
   a1_outline_1,
 };
-uint32_t a1_outline_lengths[] = {
+const uint32_t a1_outline_lengths[] = {
   9,
 };
 
 /* -------Antigua and Barb. */
-int32_t ag_outline_1[] = {
+const int32_t ag_outline_1[] = {
    -61744390,  16564478,
    -61352437,  16769246,
    -61238566,  17135706,
@@ -679,15 +679,15 @@ int32_t ag_outline_1[] = {
    -61747228,  16564461,
 };
 
-int32_t* ag_outlines[] = {
+const int32_t* ag_outlines[] = {
   ag_outline_1,
 };
-uint32_t ag_outline_lengths[] = {
+const uint32_t ag_outline_lengths[] = {
   9,
 };
 
 /* ---------------Australia */
-int32_t au_outline_1[] = {
+const int32_t au_outline_1[] = {
    146404155, -39494329,
    146765619, -39365776,
    146931664, -39009804,
@@ -895,7 +895,7 @@ int32_t au_outline_1[] = {
    145285142, -38904602,
    146401316, -39494343,
 };
-int32_t au_outline_2[] = {
+const int32_t au_outline_2[] = {
    146838005, -43944753,
    147539096, -43780834,
    147760881, -43547130,
@@ -928,7 +928,7 @@ int32_t au_outline_2[] = {
    145788854, -43815873,
    146835167, -43944766,
 };
-int32_t au_outline_3[] = {
+const int32_t au_outline_3[] = {
    158849029, -55008232,
    159229519, -54883519,
    159408050, -54470604,
@@ -940,19 +940,19 @@ int32_t au_outline_3[] = {
    158846190, -55008242,
 };
 
-int32_t* au_outlines[] = {
+const int32_t* au_outlines[] = {
   au_outline_1,
   au_outline_2,
   au_outline_3,
 };
-uint32_t au_outline_lengths[] = {
+const uint32_t au_outline_lengths[] = {
   206,
   31,
   9,
 };
 
 /* -----------------Austria */
-int32_t at_outline_1[] = {
+const int32_t at_outline_1[] = {
     16331848,  47002190,
     16476953,  47057851,
     16442898,  47399532,
@@ -999,15 +999,15 @@ int32_t at_outline_1[] = {
     16252572,  46971909,
 };
 
-int32_t* at_outlines[] = {
+const int32_t* at_outlines[] = {
   at_outline_1,
 };
-uint32_t at_outline_lengths[] = {
+const uint32_t at_outline_lengths[] = {
   44,
 };
 
 /* --------------Azerbaijan */
-int32_t az_outline_1[] = {
+const int32_t az_outline_1[] = {
     46348254,  41790161,
     46190536,  41624847,
     46672581,  41286830,
@@ -1055,7 +1055,7 @@ int32_t az_outline_1[] = {
     46749316,  41812584,
     46405467,  41855063,
 };
-int32_t az_outline_2[] = {
+const int32_t az_outline_2[] = {
     44817138,  39650418,
     45479628,  39006243,
     46114422,  38877777,
@@ -1068,17 +1068,17 @@ int32_t az_outline_2[] = {
     44783344,  39684651,
 };
 
-int32_t* az_outlines[] = {
+const int32_t* az_outlines[] = {
   az_outline_1,
   az_outline_2,
 };
-uint32_t az_outline_lengths[] = {
+const uint32_t az_outline_lengths[] = {
   46,
   10,
 };
 
 /* -----------------Burundi */
-int32_t bi_outline_1[] = {
+const int32_t bi_outline_1[] = {
     29016599,  -2799621,
     29224397,  -3053503,
     29211839,  -3833822,
@@ -1095,15 +1095,15 @@ int32_t bi_outline_1[] = {
     29014119,  -2758278,
 };
 
-int32_t* bi_outlines[] = {
+const int32_t* bi_outlines[] = {
   bi_outline_1,
 };
-uint32_t bi_outline_lengths[] = {
+const uint32_t bi_outline_lengths[] = {
   14,
 };
 
 /* -----------------Belgium */
-int32_t be_outline_1[] = {
+const int32_t be_outline_1[] = {
      4205768,  51456702,
      4004743,  51595865,
      4182610,  51610286,
@@ -1111,7 +1111,7 @@ int32_t be_outline_1[] = {
      3889867,  51572416,
      4141269,  51455748,
 };
-int32_t be_outline_2[] = {
+const int32_t be_outline_2[] = {
      3830749,  51212585,
      3432481,  51245760,
      3350105,  51377688,
@@ -1119,7 +1119,7 @@ int32_t be_outline_2[] = {
      4226124,  51386474,
      3902066,  51207670,
 };
-int32_t be_outline_3[] = {
+const int32_t be_outline_3[] = {
      6175046,  50232640,
      6364492,  50316151,
      6235979,  50596701,
@@ -1159,19 +1159,19 @@ int32_t be_outline_3[] = {
      6121309,  50139363,
 };
 
-int32_t* be_outlines[] = {
+const int32_t* be_outlines[] = {
   be_outline_1,
   be_outline_2,
   be_outline_3,
 };
-uint32_t be_outline_lengths[] = {
+const uint32_t be_outline_lengths[] = {
   6,
   6,
   37,
 };
 
 /* -------------------Benin */
-int32_t bj_outline_1[] = {
+const int32_t bj_outline_1[] = {
      3449845,  11851935,
      2878148,  12367720,
      2365983,  12221939,
@@ -1202,15 +1202,15 @@ int32_t bj_outline_1[] = {
      3531700,  11787440,
 };
 
-int32_t* bj_outlines[] = {
+const int32_t* bj_outlines[] = {
   bj_outline_1,
 };
-uint32_t bj_outline_lengths[] = {
+const uint32_t bj_outline_lengths[] = {
   28,
 };
 
 /* ------------Burkina Faso */
-int32_t bf_outline_1[] = {
+const int32_t bf_outline_1[] = {
       484129,  10991958,
       924618,  10992811,
      1426713,  11447103,
@@ -1262,15 +1262,15 @@ int32_t bf_outline_1[] = {
       159271,  11069601,
 };
 
-int32_t* bf_outlines[] = {
+const int32_t* bf_outlines[] = {
   bf_outline_1,
 };
-uint32_t bf_outline_lengths[] = {
+const uint32_t bf_outline_lengths[] = {
   49,
 };
 
 /* --------------Bangladesh */
-int32_t bd_outline_1[] = {
+const int32_t bd_outline_1[] = {
     92531846,  22410306,
     92246074,  23683614,
     91929607,  23685988,
@@ -1328,20 +1328,20 @@ int32_t bd_outline_1[] = {
     92561248,  22048032,
 };
 
-int32_t* bd_outlines[] = {
+const int32_t* bd_outlines[] = {
   bd_outline_1,
 };
-uint32_t bd_outline_lengths[] = {
+const uint32_t bd_outline_lengths[] = {
   55,
 };
 
 /* ----------------Bulgaria */
-int32_t bg_outline_1[] = {
+const int32_t bg_outline_1[] = {
     25254131,  40903632,
     24996862,  40963474,
     25251292,  40903625,
 };
-int32_t bg_outline_2[] = {
+const int32_t bg_outline_2[] = {
     26327205,  41772793,
     26615357,  41964875,
     27244357,  42093241,
@@ -1389,17 +1389,17 @@ int32_t bg_outline_2[] = {
     26318006,  41744684,
 };
 
-int32_t* bg_outlines[] = {
+const int32_t* bg_outlines[] = {
   bg_outline_1,
   bg_outline_2,
 };
-uint32_t bg_outline_lengths[] = {
+const uint32_t bg_outline_lengths[] = {
   3,
   45,
 };
 
 /* -----------------Bahrain */
-int32_t bh_outline_1[] = {
+const int32_t bh_outline_1[] = {
     50579013,  25399534,
     50761371,  25436319,
     51065020,  26039897,
@@ -1413,15 +1413,15 @@ int32_t bh_outline_1[] = {
     50576166,  25399518,
 };
 
-int32_t* bh_outlines[] = {
+const int32_t* bh_outlines[] = {
   bh_outline_1,
 };
-uint32_t bh_outline_lengths[] = {
+const uint32_t bh_outline_lengths[] = {
   11,
 };
 
 /* -----------------Bahamas */
-int32_t bs_outline_1[] = {
+const int32_t bs_outline_1[] = {
    -73657568,  20514814,
    -72987892,  20590761,
    -72668092,  20910869,
@@ -1487,15 +1487,15 @@ int32_t bs_outline_1[] = {
    -73660416,  20514806,
 };
 
-int32_t* bs_outlines[] = {
+const int32_t* bs_outlines[] = {
   bs_outline_1,
 };
-uint32_t bs_outline_lengths[] = {
+const uint32_t bs_outline_lengths[] = {
   63,
 };
 
 /* --------Bosnia and Herz. */
-int32_t ba_outline_1[] = {
+const int32_t ba_outline_1[] = {
     18480034,  42579184,
     18443859,  42968436,
     18623594,  43027681,
@@ -1539,15 +1539,15 @@ int32_t ba_outline_1[] = {
     18453938,  42564477,
 };
 
-int32_t* ba_outlines[] = {
+const int32_t* ba_outlines[] = {
   ba_outline_1,
 };
-uint32_t ba_outline_lengths[] = {
+const uint32_t ba_outline_lengths[] = {
   41,
 };
 
 /* ----------St. Barthelemy */
-int32_t bl_outline_1[] = {
+const int32_t bl_outline_1[] = {
    -62844538,  17444587,
    -62495462,  17586088,
    -62351408,  17935045,
@@ -1558,23 +1558,23 @@ int32_t bl_outline_1[] = {
    -63172343,  17575309,
    -62847377,  17444579,
 };
-int32_t bl_outline_2[] = {
+const int32_t bl_outline_2[] = {
    -63023069,  18019181,
    -63115003,  18090699,
    -63012317,  18045409,
 };
 
-int32_t* bl_outlines[] = {
+const int32_t* bl_outlines[] = {
   bl_outline_1,
   bl_outline_2,
 };
-uint32_t bl_outline_lengths[] = {
+const uint32_t bl_outline_lengths[] = {
   9,
   3,
 };
 
 /* -----------------Belarus */
-int32_t by_outline_1[] = {
+const int32_t by_outline_1[] = {
     31690596,  52220632,
     31577327,  52312310,
     31564823,  52759231,
@@ -1649,15 +1649,15 @@ int32_t by_outline_1[] = {
     31758607,  52125806,
 };
 
-int32_t* by_outlines[] = {
+const int32_t* by_outlines[] = {
   by_outline_1,
 };
-uint32_t by_outline_lengths[] = {
+const uint32_t by_outline_lengths[] = {
   72,
 };
 
 /* ------------------Belize */
-int32_t bz_outline_1[] = {
+const int32_t bz_outline_1[] = {
    -89182172,  17291187,
    -89237490,  15894430,
    -88603370,  15764175,
@@ -1677,15 +1677,15 @@ int32_t bz_outline_1[] = {
    -89171087,  17572285,
 };
 
-int32_t* bz_outlines[] = {
+const int32_t* bz_outlines[] = {
   bz_outline_1,
 };
-uint32_t bz_outline_lengths[] = {
+const uint32_t bz_outline_lengths[] = {
   17,
 };
 
 /* -----------------Bermuda */
-int32_t bm_outline_1[] = {
+const int32_t bm_outline_1[] = {
    -64816556,  31877183,
    -64413338,  32022694,
    -64219167,  32384826,
@@ -1697,15 +1697,15 @@ int32_t bm_outline_1[] = {
    -64819404,  31877167,
 };
 
-int32_t* bm_outlines[] = {
+const int32_t* bm_outlines[] = {
   bm_outline_1,
 };
-uint32_t bm_outline_lengths[] = {
+const uint32_t bm_outline_lengths[] = {
   9,
 };
 
 /* -----------------Bolivia */
-int32_t bo_outline_1[] = {
+const int32_t bo_outline_1[] = {
    -62566950, -21988679,
    -62276677, -21066048,
    -62276318, -20562463,
@@ -1778,15 +1778,15 @@ int32_t bo_outline_1[] = {
    -62628493, -22184017,
 };
 
-int32_t* bo_outlines[] = {
+const int32_t* bo_outlines[] = {
   bo_outline_1,
 };
-uint32_t bo_outline_lengths[] = {
+const uint32_t bo_outline_lengths[] = {
   70,
 };
 
 /* ------------------Brazil */
-int32_t br_outline_1[] = {
+const int32_t br_outline_1[] = {
    -54697403,   2359800,
    -54978674,   2597668,
    -55730564,   2406154,
@@ -2003,15 +2003,15 @@ int32_t br_outline_1[] = {
    -54661847,   2327551,
 };
 
-int32_t* br_outlines[] = {
+const int32_t* br_outlines[] = {
   br_outline_1,
 };
-uint32_t br_outline_lengths[] = {
+const uint32_t br_outline_lengths[] = {
   214,
 };
 
 /* ----------------Barbados */
-int32_t bb_outline_1[] = {
+const int32_t bb_outline_1[] = {
    -59517556,  12621488,
    -59162344,  12784120,
    -58980579,  13195442,
@@ -2023,15 +2023,15 @@ int32_t bb_outline_1[] = {
    -59520394,  12621471,
 };
 
-int32_t* bb_outlines[] = {
+const int32_t* bb_outlines[] = {
   bb_outline_1,
 };
-uint32_t bb_outline_lengths[] = {
+const uint32_t bb_outline_lengths[] = {
   9,
 };
 
 /* ------------------Brunei */
-int32_t bn_outline_1[] = {
+const int32_t bn_outline_1[] = {
    114654064,   4037658,
    114840249,   4393218,
    114746716,   4718082,
@@ -2050,15 +2050,15 @@ int32_t bn_outline_1[] = {
    114608331,   4023991,
 };
 
-int32_t* bn_outlines[] = {
+const int32_t* bn_outlines[] = {
   bn_outline_1,
 };
-uint32_t bn_outline_lengths[] = {
+const uint32_t bn_outline_lengths[] = {
   16,
 };
 
 /* ------------------Bhutan */
-int32_t bt_outline_1[] = {
+const int32_t bt_outline_1[] = {
     91641876,  27923256,
     91273010,  28078384,
     91020772,  27970075,
@@ -2078,15 +2078,15 @@ int32_t bt_outline_1[] = {
     91629372,  27800860,
 };
 
-int32_t* bt_outlines[] = {
+const int32_t* bt_outlines[] = {
   bt_outline_1,
 };
-uint32_t bt_outline_lengths[] = {
+const uint32_t bt_outline_lengths[] = {
   17,
 };
 
 /* ----------------Botswana */
-int32_t bw_outline_1[] = {
+const int32_t bw_outline_1[] = {
     24909097, -17821392,
     24530520, -18052739,
     24129305, -18077494,
@@ -2128,15 +2128,15 @@ int32_t bw_outline_1[] = {
     25215953, -17787591,
 };
 
-int32_t* bw_outlines[] = {
+const int32_t* bw_outlines[] = {
   bw_outline_1,
 };
-uint32_t bw_outline_lengths[] = {
+const uint32_t bw_outline_lengths[] = {
   39,
 };
 
 /* ----Central African Rep. */
-int32_t cf_outline_1[] = {
+const int32_t cf_outline_1[] = {
     18633718,   3954273,
     18594192,   4346212,
     19068530,   4891400,
@@ -2197,15 +2197,15 @@ int32_t cf_outline_1[] = {
     18596725,   3678690,
 };
 
-int32_t* cf_outlines[] = {
+const int32_t* cf_outlines[] = {
   cf_outline_1,
 };
-uint32_t cf_outline_lengths[] = {
+const uint32_t cf_outline_lengths[] = {
   58,
 };
 
 /* ------------------Canada */
-int32_t ca_outline_1[] = {
+const int32_t ca_outline_1[] = {
    -87589504,  74349568,
    -86205452,  74398641,
    -85757444,  74379181,
@@ -2550,7 +2550,7 @@ int32_t ca_outline_1[] = {
    -88601573,  74383539,
    -87592343,  74349566,
 };
-int32_t ca_outline_2[] = {
+const int32_t ca_outline_2[] = {
    -98940553,  79643627,
    -98609533,  79662218,
    -98403352,  79718739,
@@ -2564,7 +2564,7 @@ int32_t ca_outline_2[] = {
    -99548569,  79707566,
    -98943392,  79643622,
 };
-int32_t ca_outline_3[] = {
+const int32_t ca_outline_3[] = {
   -101826373,  77591177,
   -100761519,  77654232,
   -100564833,  77760221,
@@ -2620,7 +2620,7 @@ int32_t ca_outline_3[] = {
   -102247512,  77603016,
   -101829212,  77591171,
 };
-int32_t ca_outline_4[] = {
+const int32_t ca_outline_4[] = {
    -93832391,  77354239,
    -93189682,  77406551,
    -92684614,  77674512,
@@ -2654,7 +2654,7 @@ int32_t ca_outline_4[] = {
    -96195787,  77397599,
    -93835230,  77354235,
 };
-int32_t ca_outline_5[] = {
+const int32_t ca_outline_5[] = {
   -111512718,  78183055,
   -111048532,  78240817,
   -110423673,  78203469,
@@ -2677,7 +2677,7 @@ int32_t ca_outline_5[] = {
   -111965011,  78201544,
   -111515566,  78183050,
 };
-int32_t ca_outline_6[] = {
+const int32_t ca_outline_6[] = {
   -112172522,  77244936,
   -110503973,  77356021,
   -109832931,  77467994,
@@ -2703,7 +2703,7 @@ int32_t ca_outline_6[] = {
   -112647937,  77286213,
   -112176501,  77244933,
 };
-int32_t ca_outline_7[] = {
+const int32_t ca_outline_7[] = {
   -104706938,  77023469,
   -104294476,  77060523,
   -104072512,  77127409,
@@ -2717,7 +2717,7 @@ int32_t ca_outline_7[] = {
   -105540997,  77113290,
   -104709776,  77023465,
 };
-int32_t ca_outline_8[] = {
+const int32_t ca_outline_8[] = {
    -90092013,  77110534,
    -89806951,  77133790,
    -89340914,  77250132,
@@ -2731,7 +2731,7 @@ int32_t ca_outline_8[] = {
    -90440856,  77124542,
    -90094852,  77110532,
 };
-int32_t ca_outline_9[] = {
+const int32_t ca_outline_9[] = {
   -113013641,  74280631,
   -112397128,  74300265,
   -111515072,  74395992,
@@ -2849,7 +2849,7 @@ int32_t ca_outline_9[] = {
   -113938969,  74355948,
   -113016480,  74280629,
 };
-int32_t ca_outline_10[] = {
+const int32_t ca_outline_10[] = {
   -113708542,  76606887,
   -113249215,  76668836,
   -113062222,  76750234,
@@ -2861,7 +2861,7 @@ int32_t ca_outline_10[] = {
   -115088714,  76690757,
   -113711381,  76606883,
 };
-int32_t ca_outline_11[] = {
+const int32_t ca_outline_11[] = {
    -95349762,  74379873,
    -94981013,  74422524,
    -94826350,  74527752,
@@ -2927,7 +2927,7 @@ int32_t ca_outline_11[] = {
    -96192238,  74496627,
    -95352601,  74379871,
 };
-int32_t ca_outline_12[] = {
+const int32_t ca_outline_12[] = {
   -104304996,  74914470,
   -103503815,  74995828,
   -103194426,  75188976,
@@ -2940,7 +2940,7 @@ int32_t ca_outline_12[] = {
   -104927807,  74973345,
   -104307834,  74914465,
 };
-int32_t ca_outline_13[] = {
+const int32_t ca_outline_13[] = {
    -97653465,  74344883,
    -97028067,  74444021,
    -96842161,  74576942,
@@ -2950,7 +2950,7 @@ int32_t ca_outline_13[] = {
    -97992938,  74385874,
    -97656313,  74344881,
 };
-int32_t ca_outline_14[] = {
+const int32_t ca_outline_14[] = {
    -82213321,  41778690,
    -81277636,  42209178,
    -80247573,  42365990,
@@ -3857,7 +3857,7 @@ int32_t ca_outline_14[] = {
    -83029961,  41832971,
    -82439067,  41674867,
 };
-int32_t ca_outline_15[] = {
+const int32_t ca_outline_15[] = {
    -98659632,  71157483,
    -98072835,  71254459,
    -97786712,  71383735,
@@ -3907,12 +3907,12 @@ int32_t ca_outline_15[] = {
    -99564496,  71293472,
    -98662471,  71157480,
 };
-int32_t ca_outline_16[] = {
+const int32_t ca_outline_16[] = {
    -97548209,  73157136,
    -97465618,  73191375,
    -97511181,  73153378,
 };
-int32_t ca_outline_17[] = {
+const int32_t ca_outline_17[] = {
    -79023062,  72491664,
    -79773532,  72580200,
    -80188590,  72538062,
@@ -3922,7 +3922,7 @@ int32_t ca_outline_17[] = {
    -78925792,  72523934,
    -78933320,  72467367,
 };
-int32_t ca_outline_18[] = {
+const int32_t ca_outline_18[] = {
   -100316862,  70337000,
    -99909018,  70426971,
    -99847825,  70639545,
@@ -3933,12 +3933,12 @@ int32_t ca_outline_18[] = {
   -100797003,  70402366,
   -100319701,  70336994,
 };
-int32_t ca_outline_19[] = {
+const int32_t ca_outline_19[] = {
   -105100535,  68752587,
   -104990150,  68742552,
   -105089593,  68734134,
 };
-int32_t ca_outline_20[] = {
+const int32_t ca_outline_20[] = {
   -112992585,  67854610,
   -113801320,  67874444,
   -114732289,  67976249,
@@ -3958,7 +3958,7 @@ int32_t ca_outline_20[] = {
   -111029523,  67980235,
   -112862248,  67850112,
 };
-int32_t ca_outline_21[] = {
+const int32_t ca_outline_21[] = {
    -79060611,  68014080,
    -78649982,  68080375,
    -78384638,  68293619,
@@ -3969,7 +3969,7 @@ int32_t ca_outline_21[] = {
    -79372704,  68060068,
    -79063450,  68014077,
 };
-int32_t ca_outline_22[] = {
+const int32_t ca_outline_22[] = {
    -83694023,  61949477,
    -82711832,  62055105,
    -81741858,  62536137,
@@ -3983,7 +3983,7 @@ int32_t ca_outline_22[] = {
    -84074001,  62044517,
    -83696861,  61949464,
 };
-int32_t ca_outline_23[] = {
+const int32_t ca_outline_23[] = {
    -79811495,  61379912,
    -79528184,  61413074,
    -79279073,  61538033,
@@ -3997,7 +3997,7 @@ int32_t ca_outline_23[] = {
    -80536166,  61633262,
    -79814334,  61379899,
 };
-int32_t ca_outline_24[] = {
+const int32_t ca_outline_24[] = {
    -68320812,  60008756,
    -67615976,  60176649,
    -67369703,  60451161,
@@ -4007,7 +4007,7 @@ int32_t ca_outline_24[] = {
    -68714768,  60113549,
    -68323651,  60008752,
 };
-int32_t ca_outline_25[] = {
+const int32_t ca_outline_25[] = {
    -80314130,  59392755,
    -79914262,  59488296,
    -79449474,  59853519,
@@ -4017,12 +4017,12 @@ int32_t ca_outline_25[] = {
    -80640263,  59462596,
    -80316968,  59392750,
 };
-int32_t ca_outline_26[] = {
+const int32_t ca_outline_26[] = {
   -133194312,  57877707,
   -133476239,  57921379,
   -133212036,  57865693,
 };
-int32_t ca_outline_27[] = {
+const int32_t ca_outline_27[] = {
    -79805099,  57199448,
    -79444345,  57294955,
    -79264340,  57555908,
@@ -4033,7 +4033,7 @@ int32_t ca_outline_27[] = {
    -80139102,  57278154,
    -79807938,  57199443,
 };
-int32_t ca_outline_28[] = {
+const int32_t ca_outline_28[] = {
    -79760884,  55552999,
    -78850918,  55710154,
    -78304446,  56105365,
@@ -4050,7 +4050,7 @@ int32_t ca_outline_28[] = {
    -80360779,  55751497,
    -79763723,  55552989,
 };
-int32_t ca_outline_29[] = {
+const int32_t ca_outline_29[] = {
   -131043889,  51681352,
   -130660434,  51803031,
   -130562132,  52109996,
@@ -4066,7 +4066,7 @@ int32_t ca_outline_29[] = {
   -131422996,  51800603,
   -131046728,  51681347,
 };
-int32_t ca_outline_30[] = {
+const int32_t ca_outline_30[] = {
    -79935031,  53004187,
    -79580170,  53112260,
    -79496815,  53353918,
@@ -4077,13 +4077,13 @@ int32_t ca_outline_30[] = {
    -80282069,  53068098,
    -79937870,  53004176,
 };
-int32_t ca_outline_31[] = {
+const int32_t ca_outline_31[] = {
   -123094437,  48489079,
   -123162134,  48606387,
   -123024161,  48538480,
   -122986747,  48467996,
 };
-int32_t ca_outline_32[] = {
+const int32_t ca_outline_32[] = {
    -61947696,  46912077,
    -61435378,  47057391,
    -60950638,  47679446,
@@ -4095,7 +4095,7 @@ int32_t ca_outline_32[] = {
    -62292011,  46996585,
    -61950535,  46912071,
 };
-int32_t ca_outline_33[] = {
+const int32_t ca_outline_33[] = {
    -59919974,  43578243,
    -59439645,  43733974,
    -59307314,  44117997,
@@ -4107,7 +4107,7 @@ int32_t ca_outline_33[] = {
    -59922813,  43578237,
 };
 
-int32_t* ca_outlines[] = {
+const int32_t* ca_outlines[] = {
   ca_outline_1,
   ca_outline_2,
   ca_outline_3,
@@ -4142,7 +4142,7 @@ int32_t* ca_outlines[] = {
   ca_outline_32,
   ca_outline_33,
 };
-uint32_t ca_outline_lengths[] = {
+const uint32_t ca_outline_lengths[] = {
   343,
   12,
   54,
@@ -4179,7 +4179,7 @@ uint32_t ca_outline_lengths[] = {
 };
 
 /* -------------Switzerland */
-int32_t ch_outline_1[] = {
+const int32_t ch_outline_1[] = {
     10414897,  46964395,
     10133464,  46851506,
      9487719,  47062240,
@@ -4218,15 +4218,15 @@ int32_t ch_outline_1[] = {
     10454584,  46899431,
 };
 
-int32_t* ch_outlines[] = {
+const int32_t* ch_outlines[] = {
   ch_outline_1,
 };
-uint32_t ch_outline_lengths[] = {
+const uint32_t ch_outline_lengths[] = {
   36,
 };
 
 /* -------------------Chile */
-int32_t cl_outline_1[] = {
+const int32_t cl_outline_1[] = {
   -109431681, -27572292,
   -108942090, -27414365,
   -108773674, -27100038,
@@ -4237,7 +4237,7 @@ int32_t cl_outline_1[] = {
   -109751643, -27455082,
   -109434529, -27572300,
 };
-int32_t cl_outline_2[] = {
+const int32_t cl_outline_2[] = {
    -78980275, -34042538,
    -78502901, -33940190,
    -78319807, -33625159,
@@ -4248,7 +4248,7 @@ int32_t cl_outline_2[] = {
    -79300426, -33933407,
    -78983123, -34042545,
 };
-int32_t cl_outline_3[] = {
+const int32_t cl_outline_3[] = {
    -69684751, -17649825,
    -69852080, -17703827,
    -69802574, -17990266,
@@ -4467,31 +4467,31 @@ int32_t cl_outline_3[] = {
    -69586412, -17573190,
 };
 
-int32_t* cl_outlines[] = {
+const int32_t* cl_outlines[] = {
   cl_outline_1,
   cl_outline_2,
   cl_outline_3,
 };
-uint32_t cl_outline_lengths[] = {
+const uint32_t cl_outline_lengths[] = {
   9,
   9,
   216,
 };
 
 /* -------------------China */
-int32_t cn_outline_1[] = {
+const int32_t cn_outline_1[] = {
    114139006,  22348450,
    113902533,  22396098,
    114015398,  22511902,
    114266028,  22540970,
    114267986,  22295536,
 };
-int32_t cn_outline_2[] = {
+const int32_t cn_outline_2[] = {
    113851581,  22220447,
    114043919,  22333416,
    113877318,  22210452,
 };
-int32_t cn_outline_3[] = {
+const int32_t cn_outline_3[] = {
    130569210,  42291682,
    130343176,  42231540,
    130540060,  42202459,
@@ -4504,7 +4504,7 @@ int32_t cn_outline_3[] = {
    130834213,  42522934,
    130636494,  42274859,
 };
-int32_t cn_outline_4[] = {
+const int32_t cn_outline_4[] = {
    102236993,  22465990,
    102470878,  22750908,
    102981957,  22448263,
@@ -4918,13 +4918,13 @@ int32_t cn_outline_4[] = {
    102175961,  22414649,
 };
 
-int32_t* cn_outlines[] = {
+const int32_t* cn_outlines[] = {
   cn_outline_1,
   cn_outline_2,
   cn_outline_3,
   cn_outline_4,
 };
-uint32_t cn_outline_lengths[] = {
+const uint32_t cn_outline_lengths[] = {
   5,
   3,
   11,
@@ -4932,7 +4932,7 @@ uint32_t cn_outline_lengths[] = {
 };
 
 /* -------------Ivory Coast */
-int32_t ci_outline_1[] = {
+const int32_t ci_outline_1[] = {
     -2766613,   9424717,
     -3223542,   9895461,
     -3790639,   9917194,
@@ -4988,15 +4988,15 @@ int32_t ci_outline_1[] = {
     -2717188,   9457148,
 };
 
-int32_t* ci_outlines[] = {
+const int32_t* ci_outlines[] = {
   ci_outline_1,
 };
-uint32_t ci_outline_lengths[] = {
+const uint32_t ci_outline_lengths[] = {
   53,
 };
 
 /* ----------------Cameroon */
-int32_t cm_outline_1[] = {
+const int32_t cm_outline_1[] = {
     15552667,   7664487,
     15116212,   8557300,
     14004960,   9588716,
@@ -5057,15 +5057,15 @@ int32_t cm_outline_1[] = {
     15532464,   7604412,
 };
 
-int32_t* cm_outlines[] = {
+const int32_t* cm_outlines[] = {
   cm_outline_1,
 };
-uint32_t cm_outline_lengths[] = {
+const uint32_t cm_outline_lengths[] = {
   58,
 };
 
 /* --------Congo (Kinshasa) */
-int32_t cd_outline_1[] = {
+const int32_t cd_outline_1[] = {
     30653814,  -7970931,
     30212706,  -7037915,
     29540757,  -6313817,
@@ -5176,15 +5176,15 @@ int32_t cd_outline_1[] = {
     30720838,  -8104413,
 };
 
-int32_t* cd_outlines[] = {
+const int32_t* cd_outlines[] = {
   cd_outline_1,
 };
-uint32_t cd_outline_lengths[] = {
+const uint32_t cd_outline_lengths[] = {
   108,
 };
 
 /* -----Congo (Brazzaville) */
-int32_t cg_outline_1[] = {
+const int32_t cg_outline_1[] = {
     18499779,   3604088,
     18160989,   3499782,
     17437980,   3684628,
@@ -5242,15 +5242,15 @@ int32_t cg_outline_1[] = {
     18553831,   3510199,
 };
 
-int32_t* cg_outlines[] = {
+const int32_t* cg_outlines[] = {
   cg_outline_1,
 };
-uint32_t cg_outline_lengths[] = {
+const uint32_t cg_outline_lengths[] = {
   55,
 };
 
 /* ----------------Cook Is. */
-int32_t ck_outline_1[] = {
+const int32_t ck_outline_1[] = {
   -159768760, -21669939,
   -159406820, -21530836,
   -159291880, -21173449,
@@ -5262,15 +5262,15 @@ int32_t ck_outline_1[] = {
   -159771284, -21669956,
 };
 
-int32_t* ck_outlines[] = {
+const int32_t* ck_outlines[] = {
   ck_outline_1,
 };
-uint32_t ck_outline_lengths[] = {
+const uint32_t ck_outline_lengths[] = {
   9,
 };
 
 /* ----------------Colombia */
-int32_t co_outline_1[] = {
+const int32_t co_outline_1[] = {
    -66884487,   1358234,
    -67210827,   2390106,
    -67618707,   2793596,
@@ -5377,15 +5377,15 @@ int32_t co_outline_1[] = {
    -66895518,   1289891,
 };
 
-int32_t* co_outlines[] = {
+const int32_t* co_outlines[] = {
   co_outline_1,
 };
-uint32_t co_outline_lengths[] = {
+const uint32_t co_outline_lengths[] = {
   104,
 };
 
 /* -----------------Comoros */
-int32_t km_outline_1[] = {
+const int32_t km_outline_1[] = {
     43862319, -12809448,
     44178238, -12678659,
     44498093, -12797644,
@@ -5403,15 +5403,15 @@ int32_t km_outline_1[] = {
     43859480, -12809457,
 };
 
-int32_t* km_outlines[] = {
+const int32_t* km_outlines[] = {
   km_outline_1,
 };
-uint32_t km_outline_lengths[] = {
+const uint32_t km_outline_lengths[] = {
   15,
 };
 
 /* --------------Cape Verde */
-int32_t cv_outline_1[] = {
+const int32_t cv_outline_1[] = {
    -24319191,  16059270,
    -23664580,  16323702,
    -23585753,  16614539,
@@ -5428,7 +5428,7 @@ int32_t cv_outline_1[] = {
    -24592162,  16146348,
    -24322030,  16059261,
 };
-int32_t cv_outline_2[] = {
+const int32_t cv_outline_2[] = {
    -24383232,  14380824,
    -23948870,  14594069,
    -23359737,  14502290,
@@ -5450,17 +5450,17 @@ int32_t cv_outline_2[] = {
    -24386071,  14380816,
 };
 
-int32_t* cv_outlines[] = {
+const int32_t* cv_outlines[] = {
   cv_outline_1,
   cv_outline_2,
 };
-uint32_t cv_outline_lengths[] = {
+const uint32_t cv_outline_lengths[] = {
   15,
   19,
 };
 
 /* --------------Costa Rica */
-int32_t cr_outline_1[] = {
+const int32_t cr_outline_1[] = {
    -82875972,   7622777,
    -82555767,   7760081,
    -82430497,   8087144,
@@ -5501,15 +5501,15 @@ int32_t cr_outline_1[] = {
    -82878820,   7622768,
 };
 
-int32_t* cr_outlines[] = {
+const int32_t* cr_outlines[] = {
   cr_outline_1,
 };
-uint32_t cr_outline_lengths[] = {
+const uint32_t cr_outline_lengths[] = {
   38,
 };
 
 /* --------------------Cuba */
-int32_t cu_outline_1[] = {
+const int32_t cu_outline_1[] = {
    -77712276,  19429937,
    -76169680,  19564091,
    -75083590,  19477110,
@@ -5550,15 +5550,15 @@ int32_t cu_outline_1[] = {
    -77715115,  19429929,
 };
 
-int32_t* cu_outlines[] = {
+const int32_t* cu_outlines[] = {
   cu_outline_1,
 };
-uint32_t cu_outline_lengths[] = {
+const uint32_t cu_outline_lengths[] = {
   38,
 };
 
 /* -----------------Cura�ao */
-int32_t cw_outline_1[] = {
+const int32_t cw_outline_1[] = {
    -68799434,  11603012,
    -68391195,  11795140,
    -68332409,  12219809,
@@ -5570,15 +5570,15 @@ int32_t cw_outline_1[] = {
    -68802273,  11602995,
 };
 
-int32_t* cw_outlines[] = {
+const int32_t* cw_outlines[] = {
   cw_outline_1,
 };
-uint32_t cw_outline_lengths[] = {
+const uint32_t cw_outline_lengths[] = {
   9,
 };
 
 /* --------------Cayman Is. */
-int32_t ky_outline_1[] = {
+const int32_t ky_outline_1[] = {
    -80091527,  19239854,
    -79480735,  19404795,
    -79293877,  19781335,
@@ -5589,7 +5589,7 @@ int32_t ky_outline_1[] = {
    -80425098,  19350745,
    -80094366,  19239846,
 };
-int32_t ky_outline_2[] = {
+const int32_t ky_outline_2[] = {
    -81300165,  18844823,
    -80811625,  18983707,
    -80663655,  19372759,
@@ -5601,17 +5601,17 @@ int32_t ky_outline_2[] = {
    -81303004,  18844806,
 };
 
-int32_t* ky_outlines[] = {
+const int32_t* ky_outlines[] = {
   ky_outline_1,
   ky_outline_2,
 };
-uint32_t ky_outline_lengths[] = {
+const uint32_t ky_outline_lengths[] = {
   9,
   9,
 };
 
 /* ------------------Cyprus */
-int32_t cy_outline_1[] = {
+const int32_t cy_outline_1[] = {
     33010338,  34197191,
     34355655,  34716927,
     34498388,  34964765,
@@ -5625,15 +5625,15 @@ int32_t cy_outline_1[] = {
     33007499,  34197184,
 };
 
-int32_t* cy_outlines[] = {
+const int32_t* cy_outlines[] = {
   cy_outline_1,
 };
-uint32_t cy_outline_lengths[] = {
+const uint32_t cy_outline_lengths[] = {
   11,
 };
 
 /* --------------Czech Rep. */
-int32_t cz_outline_1[] = {
+const int32_t cz_outline_1[] = {
     18806886,  49613714,
     18516209,  49902376,
     18028280,  50035235,
@@ -5677,22 +5677,22 @@ int32_t cz_outline_1[] = {
     18829263,  49540124,
 };
 
-int32_t* cz_outlines[] = {
+const int32_t* cz_outlines[] = {
   cz_outline_1,
 };
-uint32_t cz_outline_lengths[] = {
+const uint32_t cz_outline_lengths[] = {
   41,
 };
 
 /* -----------------Germany */
-int32_t de_outline_1[] = {
+const int32_t de_outline_1[] = {
      9903917,  54896646,
      9771209,  55059894,
      9998797,  54986459,
     10057709,  54907910,
      9957142,  54872461,
 };
-int32_t de_outline_2[] = {
+const int32_t de_outline_2[] = {
     13684980,  48876706,
     12681113,  49414498,
     12390481,  49739647,
@@ -5803,17 +5803,17 @@ int32_t de_outline_2[] = {
     13769880,  48815982,
 };
 
-int32_t* de_outlines[] = {
+const int32_t* de_outlines[] = {
   de_outline_1,
   de_outline_2,
 };
-uint32_t de_outline_lengths[] = {
+const uint32_t de_outline_lengths[] = {
   5,
   108,
 };
 
 /* ----------------Djibouti */
-int32_t dj_outline_1[] = {
+const int32_t dj_outline_1[] = {
     42149079,  12134138,
     41792672,  11686056,
     41798197,  10980464,
@@ -5830,15 +5830,15 @@ int32_t dj_outline_1[] = {
     42280341,  12324258,
 };
 
-int32_t* dj_outlines[] = {
+const int32_t* dj_outlines[] = {
   dj_outline_1,
 };
-uint32_t dj_outline_lengths[] = {
+const uint32_t dj_outline_lengths[] = {
   14,
 };
 
 /* ----------------Dominica */
-int32_t dm_outline_1[] = {
+const int32_t dm_outline_1[] = {
    -61372712,  14790735,
    -60945437,  14959748,
    -60803871,  15413945,
@@ -5849,23 +5849,23 @@ int32_t dm_outline_1[] = {
    -61730295,  14959852,
    -61375550,  14790726,
 };
-int32_t dm_outline_2[] = {
+const int32_t dm_outline_2[] = {
    -61310719,  15894682,
    -61249975,  16006302,
    -61286222,  15886058,
 };
 
-int32_t* dm_outlines[] = {
+const int32_t* dm_outlines[] = {
   dm_outline_1,
   dm_outline_2,
 };
-uint32_t dm_outline_lengths[] = {
+const uint32_t dm_outline_lengths[] = {
   9,
   3,
 };
 
 /* -----------------Denmark */
-int32_t dk_outline_1[] = {
+const int32_t dk_outline_1[] = {
     11462216,  54367446,
     11980472,  54450151,
     12929380,  54827889,
@@ -5918,7 +5918,7 @@ int32_t dk_outline_1[] = {
     11191427,  54416802,
     11459377,  54367431,
 };
-int32_t dk_outline_2[] = {
+const int32_t dk_outline_2[] = {
     15055234,  54745916,
     15469798,  54885995,
     15562908,  55218297,
@@ -5929,25 +5929,25 @@ int32_t dk_outline_2[] = {
     14449572,  54882054,
     15052395,  54745906,
 };
-int32_t dk_outline_3[] = {
+const int32_t dk_outline_3[] = {
      8453776,  54691053,
      8510001,  54760298,
      8548961,  54688186,
 };
 
-int32_t* dk_outlines[] = {
+const int32_t* dk_outlines[] = {
   dk_outline_1,
   dk_outline_2,
   dk_outline_3,
 };
-uint32_t dk_outline_lengths[] = {
+const uint32_t dk_outline_lengths[] = {
   51,
   9,
   3,
 };
 
 /* ----------Dominican Rep. */
-int32_t do_outline_1[] = {
+const int32_t do_outline_1[] = {
    -71435585,  17204436,
    -71088279,  17331872,
    -70718272,  17853045,
@@ -5976,23 +5976,23 @@ int32_t do_outline_1[] = {
    -71984016,  17506469,
    -71438433,  17204428,
 };
-int32_t do_outline_2[] = {
+const int32_t do_outline_2[] = {
    -72418100,  18558704,
    -72429940,  18722950,
    -72447538,  18557539,
 };
 
-int32_t* do_outlines[] = {
+const int32_t* do_outlines[] = {
   do_outline_1,
   do_outline_2,
 };
-uint32_t do_outline_lengths[] = {
+const uint32_t do_outline_lengths[] = {
   27,
   3,
 };
 
 /* -----------------Algeria */
-int32_t dz_outline_1[] = {
+const int32_t dz_outline_1[] = {
     11767005,  23892596,
     11507643,  24314326,
     10255832,  24591031,
@@ -6072,15 +6072,15 @@ int32_t dz_outline_1[] = {
     11873051,  23694832,
 };
 
-int32_t* dz_outlines[] = {
+const int32_t* dz_outlines[] = {
   dz_outline_1,
 };
-uint32_t dz_outline_lengths[] = {
+const uint32_t dz_outline_lengths[] = {
   77,
 };
 
 /* -----------------Ecuador */
-int32_t ec_outline_1[] = {
+const int32_t ec_outline_1[] = {
    -90461661,  -1793981,
    -90048966,  -1598724,
    -89936452,  -1215877,
@@ -6101,7 +6101,7 @@ int32_t ec_outline_1[] = {
    -90948143,  -1434214,
    -90464499,  -1793990,
 };
-int32_t ec_outline_2[] = {
+const int32_t ec_outline_2[] = {
    -75617315,     62890,
    -76311039,    448499,
    -76494601,    235434,
@@ -6148,17 +6148,17 @@ int32_t ec_outline_2[] = {
    -75463937,    -38445,
 };
 
-int32_t* ec_outlines[] = {
+const int32_t* ec_outlines[] = {
   ec_outline_1,
   ec_outline_2,
 };
-uint32_t ec_outline_lengths[] = {
+const uint32_t ec_outline_lengths[] = {
   19,
   44,
 };
 
 /* -------------------Egypt */
-int32_t eg_outline_1[] = {
+const int32_t eg_outline_1[] = {
     34869833,  29563929,
     34198144,  31322607,
     34495882,  31610852,
@@ -6202,15 +6202,15 @@ int32_t eg_outline_1[] = {
     34904256,  29477315,
 };
 
-int32_t* eg_outlines[] = {
+const int32_t* eg_outlines[] = {
   eg_outline_1,
 };
-uint32_t eg_outline_lengths[] = {
+const uint32_t eg_outline_lengths[] = {
   41,
 };
 
 /* -----------------Eritrea */
-int32_t er_outline_1[] = {
+const int32_t er_outline_1[] = {
     36679129,  14307571,
     37024541,  14271996,
     37257240,  14453738,
@@ -6250,15 +6250,15 @@ int32_t er_outline_1[] = {
     36542397,  14258223,
 };
 
-int32_t* er_outlines[] = {
+const int32_t* er_outlines[] = {
   er_outline_1,
 };
-uint32_t er_outline_lengths[] = {
+const uint32_t er_outline_lengths[] = {
   37,
 };
 
 /* -------------------Spain */
-int32_t es_outline_1[] = {
+const int32_t es_outline_1[] = {
      3077493,  38951440,
      3564030,  39141107,
      3888771,  39589879,
@@ -6275,7 +6275,7 @@ int32_t es_outline_1[] = {
      2243444,  39191303,
      3074655,  38951419,
 };
-int32_t es_outline_2[] = {
+const int32_t es_outline_2[] = {
      1576004,  38305797,
      1991520,  38508048,
      2072719,  39043346,
@@ -6286,7 +6286,7 @@ int32_t es_outline_2[] = {
      1097328,  38414511,
      1573157,  38305776,
 };
-int32_t es_outline_3[] = {
+const int32_t es_outline_3[] = {
    -14329836,  27656817,
    -13563438,  28020923,
    -13378385,  28596231,
@@ -6300,7 +6300,7 @@ int32_t es_outline_3[] = {
    -14752062,  27772897,
    -14332674,  27656809,
 };
-int32_t es_outline_4[] = {
+const int32_t es_outline_4[] = {
    -17982053,  27245684,
    -17677821,  27353959,
    -17464875,  27675396,
@@ -6325,7 +6325,7 @@ int32_t es_outline_4[] = {
    -18440805,  27433988,
    -17984892,  27245676,
 };
-int32_t es_outline_5[] = {
+const int32_t es_outline_5[] = {
      1293278,  42709951,
       696832,  42845134,
       631614,  42689616,
@@ -6415,14 +6415,14 @@ int32_t es_outline_5[] = {
      1349449,  42690676,
 };
 
-int32_t* es_outlines[] = {
+const int32_t* es_outlines[] = {
   es_outline_1,
   es_outline_2,
   es_outline_3,
   es_outline_4,
   es_outline_5,
 };
-uint32_t es_outline_lengths[] = {
+const uint32_t es_outline_lengths[] = {
   15,
   9,
   12,
@@ -6431,7 +6431,7 @@ uint32_t es_outline_lengths[] = {
 };
 
 /* -----------------Estonia */
-int32_t ee_outline_1[] = {
+const int32_t ee_outline_1[] = {
     27354275,  57550283,
     27542122,  57799414,
     27776933,  57856725,
@@ -6472,15 +6472,15 @@ int32_t ee_outline_1[] = {
     27351949,  57528114,
 };
 
-int32_t* ee_outlines[] = {
+const int32_t* ee_outlines[] = {
   ee_outline_1,
 };
-uint32_t ee_outline_lengths[] = {
+const uint32_t ee_outline_lengths[] = {
   38,
 };
 
 /* ----------------Ethiopia */
-int32_t et_outline_1[] = {
+const int32_t et_outline_1[] = {
     42782948,  11009274,
     41798197,  10980464,
     41792672,  11686056,
@@ -6535,15 +6535,15 @@ int32_t et_outline_1[] = {
     42844132,  10997958,
 };
 
-int32_t* et_outlines[] = {
+const int32_t* et_outlines[] = {
   et_outline_1,
 };
-uint32_t et_outline_lengths[] = {
+const uint32_t et_outline_lengths[] = {
   52,
 };
 
 /* -----------------Finland */
-int32_t fi_outline_1[] = {
+const int32_t fi_outline_1[] = {
     20907076,  68967468,
     20918547,  68906931,
     21997442,  68520624,
@@ -6654,15 +6654,15 @@ int32_t fi_outline_1[] = {
     20895083,  68979821,
 };
 
-int32_t* fi_outlines[] = {
+const int32_t* fi_outlines[] = {
   fi_outline_1,
 };
-uint32_t fi_outline_lengths[] = {
+const uint32_t fi_outline_lengths[] = {
   108,
 };
 
 /* --------------------Fiji */
-int32_t fj_outline_1[] = {
+const int32_t fj_outline_1[] = {
    177084901, -12956521,
    177437660, -12818722,
    177575938, -12479294,
@@ -6673,7 +6673,7 @@ int32_t fj_outline_1[] = {
    176721802, -12837666,
    177082053, -12956530,
 };
-int32_t fj_outline_2[] = {
+const int32_t fj_outline_2[] = {
    180000000, -15908878,
    179985262, -15693673,
    179573097, -16017962,
@@ -6681,7 +6681,7 @@ int32_t fj_outline_2[] = {
    179684048, -17269965,
    180000000, -17394742,
 };
-int32_t fj_outline_3[] = {
+const int32_t fj_outline_3[] = {
   -179995353, -17394716,
   -179540823, -17146614,
   -179373188, -16760496,
@@ -6690,7 +6690,7 @@ int32_t fj_outline_3[] = {
   -180000000, -17269965,
   -179998191, -17394742,
 };
-int32_t fj_outline_4[] = {
+const int32_t fj_outline_4[] = {
    178025096, -19577910,
    178670275, -19406900,
    178887002, -19212446,
@@ -6722,7 +6722,7 @@ int32_t fj_outline_4[] = {
    177682002, -19457539,
    178022257, -19577927,
 };
-int32_t fj_outline_5[] = {
+const int32_t fj_outline_5[] = {
   -180000000, -17429420,
   -179756497, -17325885,
   -179569189, -17085110,
@@ -6730,7 +6730,7 @@ int32_t fj_outline_5[] = {
   -179918310, -15725590,
   -180000000, -15842983,
 };
-int32_t fj_outline_6[] = {
+const int32_t fj_outline_6[] = {
   -178771362, -18681022,
   -177952476, -18273506,
   -177810165, -17867755,
@@ -6744,14 +6744,14 @@ int32_t fj_outline_6[] = {
   -179136770, -18533034,
   -178774201, -18681030,
 };
-int32_t fj_outline_7[] = {
+const int32_t fj_outline_7[] = {
    180000000, -18496946,
    179810665, -18656312,
    179683527, -18982366,
    179816935, -19300158,
    180000000, -19429648,
 };
-int32_t fj_outline_8[] = {
+const int32_t fj_outline_8[] = {
   -179846655, -19429622,
   -179483430, -19274935,
   -179348476, -18966794,
@@ -6761,7 +6761,7 @@ int32_t fj_outline_8[] = {
   -180000000, -19300158,
   -179849493, -19429648,
 };
-int32_t fj_outline_9[] = {
+const int32_t fj_outline_9[] = {
   -178544115, -19601221,
   -178211227, -19461527,
   -178086361, -19147268,
@@ -6772,7 +6772,7 @@ int32_t fj_outline_9[] = {
   -178902588, -19462924,
   -178546954, -19601230,
 };
-int32_t fj_outline_10[] = {
+const int32_t fj_outline_10[] = {
   -178707474, -21092632,
   -178384889, -20962374,
   -178260724, -20653530,
@@ -6783,7 +6783,7 @@ int32_t fj_outline_10[] = {
   -179034847, -20970803,
   -178710313, -21092640,
 };
-int32_t fj_outline_11[] = {
+const int32_t fj_outline_11[] = {
    174625143, -22124913,
    174949318, -21992876,
    175078343, -21676421,
@@ -6795,7 +6795,7 @@ int32_t fj_outline_11[] = {
    174622304, -22124922,
 };
 
-int32_t* fj_outlines[] = {
+const int32_t* fj_outlines[] = {
   fj_outline_1,
   fj_outline_2,
   fj_outline_3,
@@ -6808,7 +6808,7 @@ int32_t* fj_outlines[] = {
   fj_outline_10,
   fj_outline_11,
 };
-uint32_t fj_outline_lengths[] = {
+const uint32_t fj_outline_lengths[] = {
   9,
   6,
   7,
@@ -6823,7 +6823,7 @@ uint32_t fj_outline_lengths[] = {
 };
 
 /* ------------Falkland Is. */
-int32_t fk_outline_1[] = {
+const int32_t fk_outline_1[] = {
    -59392376, -52582470,
    -58751077, -52368285,
    -58115932, -52294666,
@@ -6845,15 +6845,15 @@ int32_t fk_outline_1[] = {
    -59395223, -52582476,
 };
 
-int32_t* fk_outlines[] = {
+const int32_t* fk_outlines[] = {
   fk_outline_1,
 };
-uint32_t fk_outline_lengths[] = {
+const uint32_t fk_outline_lengths[] = {
   19,
 };
 
 /* ------------------France */
-int32_t fr_outline_1[] = {
+const int32_t fr_outline_1[] = {
      8998137,  41110353,
      9228402,  41257064,
      9541339,  41177533,
@@ -6868,7 +6868,7 @@ int32_t fr_outline_1[] = {
      8373071,  41502806,
      8972148,  41086807,
 };
-int32_t fr_outline_2[] = {
+const int32_t fr_outline_2[] = {
    -61263970,  15451421,
    -60815028,  15702784,
    -60731270,  16336818,
@@ -6881,7 +6881,7 @@ int32_t fr_outline_2[] = {
    -61458123,  15633096,
    -61264411,  15451404,
 };
-int32_t fr_outline_3[] = {
+const int32_t fr_outline_3[] = {
    -60859684,  13988082,
    -60416994,  14281177,
    -60501696,  14897785,
@@ -6894,7 +6894,7 @@ int32_t fr_outline_3[] = {
    -60908085,  14093349,
    -60862522,  13988073,
 };
-int32_t fr_outline_4[] = {
+const int32_t fr_outline_4[] = {
     45120014, -13425051,
     45533733, -13248423,
     45672002, -12737052,
@@ -6905,7 +6905,7 @@ int32_t fr_outline_4[] = {
     44723597, -13216328,
     45117175, -13425060,
 };
-int32_t fr_outline_5[] = {
+const int32_t fr_outline_5[] = {
     55660864, -21789167,
     56150428, -21599178,
     56278303, -21050338,
@@ -6916,7 +6916,7 @@ int32_t fr_outline_5[] = {
     55083615, -21603118,
     55658025, -21789192,
 };
-int32_t fr_outline_6[] = {
+const int32_t fr_outline_6[] = {
      6953715,  46017135,
      6772013,  46165138,
      6758062,  46415770,
@@ -7018,7 +7018,7 @@ int32_t fr_outline_6[] = {
      6790931,  45740873,
      7003886,  45958843,
 };
-int32_t fr_outline_7[] = {
+const int32_t fr_outline_7[] = {
    -54550510,   2293086,
    -54130045,   2121051,
    -53767763,   2354840,
@@ -7041,7 +7041,7 @@ int32_t fr_outline_7[] = {
    -54591958,   2313752,
 };
 
-int32_t* fr_outlines[] = {
+const int32_t* fr_outlines[] = {
   fr_outline_1,
   fr_outline_2,
   fr_outline_3,
@@ -7050,7 +7050,7 @@ int32_t* fr_outlines[] = {
   fr_outline_6,
   fr_outline_7,
 };
-uint32_t fr_outline_lengths[] = {
+const uint32_t fr_outline_lengths[] = {
   13,
   11,
   11,
@@ -7061,7 +7061,7 @@ uint32_t fr_outline_lengths[] = {
 };
 
 /* ---------------Faroe Is. */
-int32_t fo_outline_1[] = {
+const int32_t fo_outline_1[] = {
     -6676468,  61198301,
     -6252140,  61348281,
     -6267950,  61987271,
@@ -7078,15 +7078,15 @@ int32_t fo_outline_1[] = {
     -6679307,  61198297,
 };
 
-int32_t* fo_outlines[] = {
+const int32_t* fo_outlines[] = {
   fo_outline_1,
 };
-uint32_t fo_outline_lengths[] = {
+const uint32_t fo_outline_lengths[] = {
   14,
 };
 
 /* --------------Micronesia */
-int32_t fm_outline_1[] = {
+const int32_t fm_outline_1[] = {
    138071760,   8972793,
    138500849,   9192691,
    138662465,   9563422,
@@ -7097,7 +7097,7 @@ int32_t fm_outline_1[] = {
    137747127,   9105866,
    138068912,   8972766,
 };
-int32_t fm_outline_2[] = {
+const int32_t fm_outline_2[] = {
    151641737,   6884333,
    152192899,   7103407,
    152361764,   7457221,
@@ -7108,7 +7108,7 @@ int32_t fm_outline_2[] = {
    151272844,   7008863,
    151638899,   6884324,
 };
-int32_t fm_outline_3[] = {
+const int32_t fm_outline_3[] = {
    158259042,   6341833,
    158654633,   6520034,
    158781440,   6942110,
@@ -7119,7 +7119,7 @@ int32_t fm_outline_3[] = {
    157883600,   6466898,
    158256204,   6341824,
 };
-int32_t fm_outline_4[] = {
+const int32_t fm_outline_4[] = {
    162996577,   4826847,
    163324651,   4973001,
    163441414,   5310594,
@@ -7131,13 +7131,13 @@ int32_t fm_outline_4[] = {
    162993739,   4826838,
 };
 
-int32_t* fm_outlines[] = {
+const int32_t* fm_outlines[] = {
   fm_outline_1,
   fm_outline_2,
   fm_outline_3,
   fm_outline_4,
 };
-uint32_t fm_outline_lengths[] = {
+const uint32_t fm_outline_lengths[] = {
   9,
   9,
   9,
@@ -7145,7 +7145,7 @@ uint32_t fm_outline_lengths[] = {
 };
 
 /* -------------------Gabon */
-int32_t ga_outline_1[] = {
+const int32_t ga_outline_1[] = {
     11331169,   1740197,
     11335355,    999675,
      9590863,   1031974,
@@ -7187,15 +7187,15 @@ int32_t ga_outline_1[] = {
     11330037,   1935900,
 };
 
-int32_t* ga_outlines[] = {
+const int32_t* ga_outlines[] = {
   ga_outline_1,
 };
-uint32_t ga_outline_lengths[] = {
+const uint32_t ga_outline_lengths[] = {
   39,
 };
 
 /* --------------------Gaza */
-int32_t g1_outline_1[] = {
+const int32_t g1_outline_1[] = {
     34350175,  31362760,
     34689783,  31922987,
     34308772,  31940538,
@@ -7204,15 +7204,15 @@ int32_t g1_outline_1[] = {
     34348316,  31292920,
 };
 
-int32_t* g1_outlines[] = {
+const int32_t* g1_outlines[] = {
   g1_outline_1,
 };
-uint32_t g1_outline_lengths[] = {
+const uint32_t g1_outline_lengths[] = {
   6,
 };
 
 /* ----------United Kingdom */
-int32_t gb_outline_1[] = {
+const int32_t gb_outline_1[] = {
     -1296170,  59652116,
      -869111,  59800060,
      -590570,  60495642,
@@ -7228,7 +7228,7 @@ int32_t gb_outline_1[] = {
     -1732931,  59788325,
     -1299009,  59652112,
 };
-int32_t gb_outline_2[] = {
+const int32_t gb_outline_2[] = {
     -5221170,  49731134,
     -4883134,  49791317,
     -4384704,  50063168,
@@ -7334,17 +7334,17 @@ int32_t gb_outline_2[] = {
     -5224009,  49731123,
 };
 
-int32_t* gb_outlines[] = {
+const int32_t* gb_outlines[] = {
   gb_outline_1,
   gb_outline_2,
 };
-uint32_t gb_outline_lengths[] = {
+const uint32_t gb_outline_lengths[] = {
   14,
   103,
 };
 
 /* -----------------Georgia */
-int32_t ge_outline_1[] = {
+const int32_t ge_outline_1[] = {
     45280983,  41449562,
     46457911,  41070200,
     46662395,  41245492,
@@ -7378,15 +7378,15 @@ int32_t ge_outline_1[] = {
     45217167,  41423205,
 };
 
-int32_t* ge_outlines[] = {
+const int32_t* ge_outlines[] = {
   ge_outline_1,
 };
-uint32_t ge_outline_lengths[] = {
+const uint32_t ge_outline_lengths[] = {
   31,
 };
 
 /* ----------------Guernsey */
-int32_t gg_outline_1[] = {
+const int32_t gg_outline_1[] = {
     -2542583,  49134884,
     -2228002,  49222286,
     -2063170,  49496664,
@@ -7398,15 +7398,15 @@ int32_t gg_outline_1[] = {
     -2545421,  49134867,
 };
 
-int32_t* gg_outlines[] = {
+const int32_t* gg_outlines[] = {
   gg_outline_1,
 };
-uint32_t gg_outline_lengths[] = {
+const uint32_t gg_outline_lengths[] = {
   9,
 };
 
 /* -------------------Ghana */
-int32_t gh_outline_1[] = {
+const int32_t gh_outline_1[] = {
      -312551,  11118879,
      -627159,  10927390,
     -2829918,  10998367,
@@ -7446,15 +7446,15 @@ int32_t gh_outline_1[] = {
      -299453,  11166888,
 };
 
-int32_t* gh_outlines[] = {
+const int32_t* gh_outlines[] = {
   gh_outline_1,
 };
-uint32_t gh_outline_lengths[] = {
+const uint32_t gh_outline_lengths[] = {
   37,
 };
 
 /* ------------------Guinea */
-int32_t gn_outline_1[] = {
+const int32_t gn_outline_1[] = {
    -11573679,  12426316,
    -12399051,  12340068,
    -13061289,  12489984,
@@ -7525,15 +7525,15 @@ int32_t gn_outline_1[] = {
    -11456736,  12417558,
 };
 
-int32_t* gn_outlines[] = {
+const int32_t* gn_outlines[] = {
   gn_outline_1,
 };
-uint32_t gn_outline_lengths[] = {
+const uint32_t gn_outline_lengths[] = {
   68,
 };
 
 /* ------------------Gambia */
-int32_t gm_outline_1[] = {
+const int32_t gm_outline_1[] = {
    -16767989,  12628423,
    -16763336,  13064136,
    -16648765,  13154131,
@@ -7554,15 +7554,15 @@ int32_t gm_outline_1[] = {
    -16765177,  12623412,
 };
 
-int32_t* gm_outlines[] = {
+const int32_t* gm_outlines[] = {
   gm_outline_1,
 };
-uint32_t gm_outline_lengths[] = {
+const uint32_t gm_outline_lengths[] = {
   18,
 };
 
 /* -----------Guinea Bissau */
-int32_t gw_outline_1[] = {
+const int32_t gw_outline_1[] = {
    -14064842,  12675272,
    -15196090,  12679947,
    -15574775,  12490399,
@@ -7593,15 +7593,15 @@ int32_t gw_outline_1[] = {
    -13729258,  12673896,
 };
 
-int32_t* gw_outlines[] = {
+const int32_t* gw_outlines[] = {
   gw_outline_1,
 };
-uint32_t gw_outline_lengths[] = {
+const uint32_t gw_outline_lengths[] = {
   28,
 };
 
 /* --------------Eq. Guinea */
-int32_t gq_outline_1[] = {
+const int32_t gq_outline_1[] = {
      8654612,   2765558,
      9054838,   2941698,
      9399854,   3706739,
@@ -7613,7 +7613,7 @@ int32_t gq_outline_1[] = {
      8185413,   2919389,
      8651764,   2765549,
 };
-int32_t gq_outline_2[] = {
+const int32_t gq_outline_2[] = {
     10790940,   2167566,
      9979879,   2167774,
      9800772,   2304427,
@@ -7629,17 +7629,17 @@ int32_t gq_outline_2[] = {
     11096610,   2167485,
 };
 
-int32_t* gq_outlines[] = {
+const int32_t* gq_outlines[] = {
   gq_outline_1,
   gq_outline_2,
 };
-uint32_t gq_outline_lengths[] = {
+const uint32_t gq_outline_lengths[] = {
   10,
   13,
 };
 
 /* ------------------Greece */
-int32_t gr_outline_1[] = {
+const int32_t gr_outline_1[] = {
     25651204,  37795415,
     24766498,  38463142,
     25119608,  38760942,
@@ -7658,7 +7658,7 @@ int32_t gr_outline_1[] = {
     25708759,  37890090,
     25652570,  37794916,
 };
-int32_t gr_outline_2[] = {
+const int32_t gr_outline_2[] = {
     22783854,  41331995,
     22603607,  41140200,
     21993309,  41130977,
@@ -7768,17 +7768,17 @@ int32_t gr_outline_2[] = {
     22859249,  41337371,
 };
 
-int32_t* gr_outlines[] = {
+const int32_t* gr_outlines[] = {
   gr_outline_1,
   gr_outline_2,
 };
-uint32_t gr_outline_lengths[] = {
+const uint32_t gr_outline_lengths[] = {
   17,
   107,
 };
 
 /* -----------------Grenada */
-int32_t gd_outline_1[] = {
+const int32_t gd_outline_1[] = {
    -61777394,  11565937,
    -61297900,  11753044,
    -61157897,  12227788,
@@ -7790,15 +7790,15 @@ int32_t gd_outline_1[] = {
    -61780232,  11565910,
 };
 
-int32_t* gd_outlines[] = {
+const int32_t* gd_outlines[] = {
   gd_outline_1,
 };
-uint32_t gd_outline_lengths[] = {
+const uint32_t gd_outline_lengths[] = {
   9,
 };
 
 /* ---------------Greenland */
-int32_t gl_outline_1[] = {
+const int32_t gl_outline_1[] = {
    -43902042,  59588495,
    -43076428,  59738203,
    -42702414,  59982199,
@@ -8238,7 +8238,7 @@ int32_t gl_outline_1[] = {
    -44317881,  59629117,
    -43904890,  59588482,
 };
-int32_t gl_outline_2[] = {
+const int32_t gl_outline_2[] = {
    -18765429,  81750100,
    -18442907,  81770004,
    -18230204,  81830324,
@@ -8251,7 +8251,7 @@ int32_t gl_outline_2[] = {
    -19385033,  81787698,
    -18768268,  81750099,
 };
-int32_t gl_outline_3[] = {
+const int32_t gl_outline_3[] = {
    -19733274,  79864802,
    -19616331,  80052130,
    -19220875,  80177118,
@@ -8261,7 +8261,7 @@ int32_t gl_outline_3[] = {
    -19575646,  79834324,
    -19706531,  79830758,
 };
-int32_t gl_outline_4[] = {
+const int32_t gl_outline_4[] = {
    -19127261,  77844280,
    -18853140,  77864285,
    -18600391,  77929844,
@@ -8275,7 +8275,7 @@ int32_t gl_outline_4[] = {
    -19404562,  77864083,
    -19130109,  77844278,
 };
-int32_t gl_outline_5[] = {
+const int32_t gl_outline_5[] = {
    -17950423,  77545816,
    -17665496,  77568377,
    -17358137,  77652484,
@@ -8288,7 +8288,7 @@ int32_t gl_outline_5[] = {
    -18428857,  77567079,
    -17953262,  77545815,
 };
-int32_t gl_outline_6[] = {
+const int32_t gl_outline_6[] = {
    -72021125,  77217415,
    -71527726,  77231264,
    -71171211,  77279455,
@@ -8301,7 +8301,7 @@ int32_t gl_outline_6[] = {
    -72641547,  77276125,
    -72023964,  77217413,
 };
-int32_t gl_outline_7[] = {
+const int32_t gl_outline_7[] = {
    -52648103,  70889301,
    -53329771,  70910536,
    -53146542,  70961183,
@@ -8311,7 +8311,7 @@ int32_t gl_outline_7[] = {
    -52594168,  70882857,
 };
 
-int32_t* gl_outlines[] = {
+const int32_t* gl_outlines[] = {
   gl_outline_1,
   gl_outline_2,
   gl_outline_3,
@@ -8320,7 +8320,7 @@ int32_t* gl_outlines[] = {
   gl_outline_6,
   gl_outline_7,
 };
-uint32_t gl_outline_lengths[] = {
+const uint32_t gl_outline_lengths[] = {
   438,
   11,
   8,
@@ -8331,7 +8331,7 @@ uint32_t gl_outline_lengths[] = {
 };
 
 /* ---------------Guatemala */
-int32_t gt_outline_1[] = {
+const int32_t gt_outline_1[] = {
    -89728824,  17815343,
    -90989142,  17816428,
    -90992960,  17252435,
@@ -8361,15 +8361,15 @@ int32_t gt_outline_1[] = {
    -89371537,  17815008,
 };
 
-int32_t* gt_outlines[] = {
+const int32_t* gt_outlines[] = {
   gt_outline_1,
 };
-uint32_t gt_outline_lengths[] = {
+const uint32_t gt_outline_lengths[] = {
   27,
 };
 
 /* --------------------Guam */
-int32_t gu_outline_1[] = {
+const int32_t gu_outline_1[] = {
    144703276,  12817171,
    145077954,  12967314,
    145390002,  13572224,
@@ -8381,15 +8381,15 @@ int32_t gu_outline_1[] = {
    144700437,  12817153,
 };
 
-int32_t* gu_outlines[] = {
+const int32_t* gu_outlines[] = {
   gu_outline_1,
 };
-uint32_t gu_outline_lengths[] = {
+const uint32_t gu_outline_lengths[] = {
   9,
 };
 
 /* ------------------Guyana */
-int32_t gy_outline_1[] = {
+const int32_t gy_outline_1[] = {
    -60576400,   5192500,
    -60241661,   5257971,
    -59990671,   5082841,
@@ -8435,15 +8435,15 @@ int32_t gy_outline_1[] = {
    -60651355,   5221148,
 };
 
-int32_t* gy_outlines[] = {
+const int32_t* gy_outlines[] = {
   gy_outline_1,
 };
-uint32_t gy_outline_lengths[] = {
+const uint32_t gy_outline_lengths[] = {
   43,
 };
 
 /* ---------------Hong Kong */
-int32_t hk_outline_1[] = {
+const int32_t hk_outline_1[] = {
    113545498,  22221484,
    113399189,  22156221,
    113626481,  21858081,
@@ -8458,15 +8458,15 @@ int32_t hk_outline_1[] = {
    113548139,  22222622,
 };
 
-int32_t* hk_outlines[] = {
+const int32_t* hk_outlines[] = {
   hk_outline_1,
 };
-uint32_t hk_outline_lengths[] = {
+const uint32_t hk_outline_lengths[] = {
   12,
 };
 
 /* ----------------Honduras */
-int32_t hn_outline_1[] = {
+const int32_t hn_outline_1[] = {
    -89170126,  14360306,
    -88482681,  13854242,
    -88151014,  13987336,
@@ -8513,15 +8513,15 @@ int32_t hn_outline_1[] = {
    -89337248,  14411366,
 };
 
-int32_t* hn_outlines[] = {
+const int32_t* hn_outlines[] = {
   hn_outline_1,
 };
-uint32_t hn_outline_lengths[] = {
+const uint32_t hn_outline_lengths[] = {
   44,
 };
 
 /* -----------------Croatia */
-int32_t hr_outline_1[] = {
+const int32_t hr_outline_1[] = {
     19009510,  44919377,
     19136945,  45196231,
     19399981,  45212482,
@@ -8573,15 +8573,15 @@ int32_t hr_outline_1[] = {
     18995461,  44904025,
 };
 
-int32_t* hr_outlines[] = {
+const int32_t* hr_outlines[] = {
   hr_outline_1,
 };
-uint32_t hr_outline_lengths[] = {
+const uint32_t hr_outline_lengths[] = {
   49,
 };
 
 /* -------------------Haiti */
-int32_t ht_outline_1[] = {
+const int32_t ht_outline_1[] = {
    -71766228,  17608953,
    -71494533,  17698196,
    -72000374,  18597879,
@@ -8609,15 +8609,15 @@ int32_t ht_outline_1[] = {
    -71769067,  17608944,
 };
 
-int32_t* ht_outlines[] = {
+const int32_t* ht_outlines[] = {
   ht_outline_1,
 };
-uint32_t ht_outline_lengths[] = {
+const uint32_t ht_outline_lengths[] = {
   25,
 };
 
 /* -----------------Hungary */
-int32_t hu_outline_1[] = {
+const int32_t hu_outline_1[] = {
     20508080,  46166923,
     21151911,  46304356,
     21999714,  47505029,
@@ -8650,15 +8650,15 @@ int32_t hu_outline_1[] = {
     20280959,  46132997,
 };
 
-int32_t* hu_outlines[] = {
+const int32_t* hu_outlines[] = {
   hu_outline_1,
 };
-uint32_t hu_outline_lengths[] = {
+const uint32_t hu_outline_lengths[] = {
   30,
 };
 
 /* ---------------Indonesia */
-int32_t id_outline_1[] = {
+const int32_t id_outline_1[] = {
    122950895, -11352819,
    123456116, -11180415,
    123845266, -10788645,
@@ -8836,7 +8836,7 @@ int32_t id_outline_1[] = {
    122471608, -11171572,
    122857883, -11353227,
 };
-int32_t id_outline_2[] = {
+const int32_t id_outline_2[] = {
    126839414,   3305627,
    127249369,   3558426,
    127369259,   4320521,
@@ -8847,7 +8847,7 @@ int32_t id_outline_2[] = {
    126392799,   3525318,
    126836567,   3305609,
 };
-int32_t id_outline_3[] = {
+const int32_t id_outline_3[] = {
    108842108,   2401311,
    109266175,   2662604,
    109312573,   3139373,
@@ -8864,7 +8864,7 @@ int32_t id_outline_3[] = {
    108361527,   2739633,
    108839269,   2401302,
 };
-int32_t id_outline_4[] = {
+const int32_t id_outline_4[] = {
    114696671,  -4620540,
    115662791,  -4219761,
    115888556,  -4455359,
@@ -8936,12 +8936,12 @@ int32_t id_outline_4[] = {
    114293255,  -4422396,
    114693832,  -4620549,
 };
-int32_t id_outline_5[] = {
+const int32_t id_outline_5[] = {
    117649074,   4168992,
    117884720,   4186147,
    117745400,   4166926,
 };
-int32_t id_outline_6[] = {
+const int32_t id_outline_6[] = {
    125401427,   2177787,
    125788879,   2408395,
    125829887,   2999544,
@@ -8954,7 +8954,7 @@ int32_t id_outline_6[] = {
    125059546,   2331671,
    125398579,   2177769,
 };
-int32_t id_outline_7[] = {
+const int32_t id_outline_7[] = {
    105723013,   2407518,
    106555814,   2728974,
    106733878,   3178336,
@@ -8966,7 +8966,7 @@ int32_t id_outline_7[] = {
    105371844,   2572046,
    105720175,   2407500,
 };
-int32_t id_outline_8[] = {
+const int32_t id_outline_8[] = {
    140979103,  -9564812,
    141281171,  -9446213,
    141423626,  -9156968,
@@ -9143,18 +9143,18 @@ int32_t id_outline_8[] = {
    140641516,  -9431496,
    140976265,  -9564821,
 };
-int32_t id_outline_9[] = {
+const int32_t id_outline_9[] = {
    111223209,   1395827,
    110981589,   1486723,
    111145181,   1386939,
 };
-int32_t id_outline_10[] = {
+const int32_t id_outline_10[] = {
    103650133,   1325550,
    103817983,   1447088,
    103996370,   1365232,
    103819941,   1265398,
 };
-int32_t id_outline_11[] = {
+const int32_t id_outline_11[] = {
    100309810,  -2172148,
     99713230,  -1574017,
     99282677,   -670719,
@@ -9166,7 +9166,7 @@ int32_t id_outline_11[] = {
    100399148,  -2128227,
    100415758,  -2266601,
 };
-int32_t id_outline_12[] = {
+const int32_t id_outline_12[] = {
    102288089,  -5933437,
    102702213,  -5778429,
    102845242,  -5313296,
@@ -9177,7 +9177,7 @@ int32_t id_outline_12[] = {
    101845202,  -5703964,
    102285242,  -5933446,
 };
-int32_t id_outline_13[] = {
+const int32_t id_outline_13[] = {
    132849224,  -6437479,
    133292911,  -6161761,
    133622036,  -5346341,
@@ -9189,7 +9189,7 @@ int32_t id_outline_13[] = {
    132332783,  -6196015,
    132846386,  -6437497,
 };
-int32_t id_outline_14[] = {
+const int32_t id_outline_14[] = {
    134202096,  -7357398,
    134977225,  -7081314,
    135335006,  -6321907,
@@ -9201,7 +9201,7 @@ int32_t id_outline_14[] = {
    133773618,  -7151439,
    134199248,  -7357407,
 };
-int32_t id_outline_15[] = {
+const int32_t id_outline_15[] = {
    112701441,  -6296110,
    113038812,  -6139365,
    113176389,  -5744805,
@@ -9212,7 +9212,7 @@ int32_t id_outline_15[] = {
    112308446,  -6183824,
    112698602,  -6296128,
 };
-int32_t id_outline_16[] = {
+const int32_t id_outline_16[] = {
    128629164,  -7656915,
    129004552,  -7482622,
    129122348,  -7109276,
@@ -9223,7 +9223,7 @@ int32_t id_outline_16[] = {
    128239223,  -7479869,
    128626325,  -7656932,
 };
-int32_t id_outline_17[] = {
+const int32_t id_outline_17[] = {
    130777215,  -8796977,
    131662855,  -8296131,
    132347982,  -7492905,
@@ -9236,7 +9236,7 @@ int32_t id_outline_17[] = {
    130457379,  -8665890,
    130774376,  -8796986,
 };
-int32_t id_outline_18[] = {
+const int32_t id_outline_18[] = {
    129783229,  -8493889,
    130148430,  -8302180,
    130279477,  -7781369,
@@ -9247,12 +9247,12 @@ int32_t id_outline_18[] = {
    129442112,  -8397291,
    129780391,  -8493898,
 };
-int32_t id_outline_19[] = {
+const int32_t id_outline_19[] = {
    125507096,  -8275094,
    125646101,  -8139916,
    125579446,  -8311789,
 };
-int32_t id_outline_20[] = {
+const int32_t id_outline_20[] = {
    124134569,  -9413843,
    124036383,  -9341599,
    124198134,  -9256123,
@@ -9260,7 +9260,7 @@ int32_t id_outline_20[] = {
    124282315,  -9427892,
 };
 
-int32_t* id_outlines[] = {
+const int32_t* id_outlines[] = {
   id_outline_1,
   id_outline_2,
   id_outline_3,
@@ -9282,7 +9282,7 @@ int32_t* id_outlines[] = {
   id_outline_19,
   id_outline_20,
 };
-uint32_t id_outline_lengths[] = {
+const uint32_t id_outline_lengths[] = {
   176,
   9,
   15,
@@ -9306,7 +9306,7 @@ uint32_t id_outline_lengths[] = {
 };
 
 /* -------------Isle of Man */
-int32_t im_outline_1[] = {
+const int32_t im_outline_1[] = {
     -4610765,  53793630,
     -4077166,  54009438,
     -3888834,  54270060,
@@ -9318,21 +9318,21 @@ int32_t im_outline_1[] = {
     -4613613,  53793619,
 };
 
-int32_t* im_outlines[] = {
+const int32_t* im_outlines[] = {
   im_outline_1,
 };
-uint32_t im_outline_lengths[] = {
+const uint32_t im_outline_lengths[] = {
   9,
 };
 
 /* -------------------India */
-int32_t in_outline_1[] = {
+const int32_t in_outline_1[] = {
     91624161,  22563181,
     91480027,  22884798,
     91241812,  22666665,
     91621323,  22563156,
 };
-int32_t in_outline_2[] = {
+const int32_t in_outline_2[] = {
     92477049,  10075963,
     92889079,  10327996,
     93021742,  10665110,
@@ -9352,7 +9352,7 @@ int32_t in_outline_2[] = {
     92025861,  10261186,
     92474201,  10075945,
 };
-int32_t in_outline_3[] = {
+const int32_t in_outline_3[] = {
     72775782,  10752308,
     73113261,  10904636,
     73245098,  11263265,
@@ -9363,7 +9363,7 @@ int32_t in_outline_3[] = {
     72449765,  10888077,
     72772934,  10752299,
 };
-int32_t in_outline_4[] = {
+const int32_t in_outline_4[] = {
     93833505,   6299490,
     94172296,   6459251,
     94378046,   6948420,
@@ -9387,7 +9387,7 @@ int32_t in_outline_4[] = {
     93452044,   6504195,
     93830666,   6299463,
 };
-int32_t in_outline_5[] = {
+const int32_t in_outline_5[] = {
     73043255,   7804295,
     73393320,   7961116,
     73532711,   8315162,
@@ -9398,7 +9398,7 @@ int32_t in_outline_5[] = {
     72712047,   7935888,
     73040417,   7804277,
 };
-int32_t in_outline_6[] = {
+const int32_t in_outline_6[] = {
     97145153,  28340309,
     96281486,  28412060,
     96580904,  28763669,
@@ -9613,7 +9613,7 @@ int32_t in_outline_6[] = {
     97289486,  28236826,
 };
 
-int32_t* in_outlines[] = {
+const int32_t* in_outlines[] = {
   in_outline_1,
   in_outline_2,
   in_outline_3,
@@ -9621,7 +9621,7 @@ int32_t* in_outlines[] = {
   in_outline_5,
   in_outline_6,
 };
-uint32_t in_outline_lengths[] = {
+const uint32_t in_outline_lengths[] = {
   4,
   18,
   9,
@@ -9631,7 +9631,7 @@ uint32_t in_outline_lengths[] = {
 };
 
 /* -----------------Ireland */
-int32_t ie_outline_1[] = {
+const int32_t ie_outline_1[] = {
     -9733587,  51192347,
     -8659490,  51321272,
     -7216508,  51864156,
@@ -9676,15 +9676,15 @@ int32_t ie_outline_1[] = {
     -9736426,  51192336,
 };
 
-int32_t* ie_outlines[] = {
+const int32_t* ie_outlines[] = {
   ie_outline_1,
 };
-uint32_t ie_outline_lengths[] = {
+const uint32_t ie_outline_lengths[] = {
   42,
 };
 
 /* --------------------Iran */
-int32_t ir_outline_1[] = {
+const int32_t ir_outline_1[] = {
     61235566,  35705568,
     61119656,  36642563,
     60341302,  36637655,
@@ -9803,22 +9803,22 @@ int32_t ir_outline_1[] = {
     61238872,  35659269,
 };
 
-int32_t* ir_outlines[] = {
+const int32_t* ir_outlines[] = {
   ir_outline_1,
 };
-uint32_t ir_outline_lengths[] = {
+const uint32_t ir_outline_lengths[] = {
   116,
 };
 
 /* --------------------Iraq */
-int32_t iq_outline_1[] = {
+const int32_t iq_outline_1[] = {
     48179721,  29611415,
     48081436,  29798902,
     48184787,  29978839,
     48348191,  29782651,
     48218277,  29601932,
 };
-int32_t iq_outline_2[] = {
+const int32_t iq_outline_2[] = {
     42350104,  37060579,
     41788540,  36597146,
     41296012,  36383356,
@@ -9872,17 +9872,17 @@ int32_t iq_outline_2[] = {
     42359042,  37094991,
 };
 
-int32_t* iq_outlines[] = {
+const int32_t* iq_outlines[] = {
   iq_outline_1,
   iq_outline_2,
 };
-uint32_t iq_outline_lengths[] = {
+const uint32_t iq_outline_lengths[] = {
   5,
   51,
 };
 
 /* -----------------Iceland */
-int32_t is_outline_1[] = {
+const int32_t is_outline_1[] = {
    -18650013,  63204656,
    -17866072,  63319307,
    -17435204,  63563211,
@@ -9944,15 +9944,15 @@ int32_t is_outline_1[] = {
    -18652852,  63204648,
 };
 
-int32_t* is_outlines[] = {
+const int32_t* is_outlines[] = {
   is_outline_1,
 };
-uint32_t is_outline_lengths[] = {
+const uint32_t is_outline_lengths[] = {
   59,
 };
 
 /* ------------------Israel */
-int32_t il_outline_1[] = {
+const int32_t il_outline_1[] = {
     35276688,  31422781,
     34880478,  31368156,
     34950914,  31602280,
@@ -9982,20 +9982,20 @@ int32_t il_outline_1[] = {
     35408714,  31482932,
 };
 
-int32_t* il_outlines[] = {
+const int32_t* il_outlines[] = {
   il_outline_1,
 };
-uint32_t il_outline_lengths[] = {
+const uint32_t il_outline_lengths[] = {
   27,
 };
 
 /* -------------------Italy */
-int32_t it_outline_1[] = {
+const int32_t it_outline_1[] = {
     12396895,  43934549,
     12514664,  43952976,
     12426350,  43894086,
 };
-int32_t it_outline_2[] = {
+const int32_t it_outline_2[] = {
      8804568,  38557892,
      9954007,  38994523,
     10249652,  40549170,
@@ -10014,7 +10014,7 @@ int32_t it_outline_2[] = {
      8185000,  38669857,
      8801729,  38557885,
 };
-int32_t it_outline_3[] = {
+const int32_t it_outline_3[] = {
     12007241,  36383661,
     12374760,  36505875,
     12498081,  36793979,
@@ -10025,7 +10025,7 @@ int32_t it_outline_3[] = {
     11645184,  36507732,
     12004403,  36383646,
 };
-int32_t it_outline_4[] = {
+const int32_t it_outline_4[] = {
     13719862,  45587577,
     13874731,  45614837,
     13831172,  45680413,
@@ -10130,13 +10130,13 @@ int32_t it_outline_4[] = {
     13637333,  45535953,
 };
 
-int32_t* it_outlines[] = {
+const int32_t* it_outlines[] = {
   it_outline_1,
   it_outline_2,
   it_outline_3,
   it_outline_4,
 };
-uint32_t it_outline_lengths[] = {
+const uint32_t it_outline_lengths[] = {
   3,
   17,
   9,
@@ -10144,7 +10144,7 @@ uint32_t it_outline_lengths[] = {
 };
 
 /* -----------------Jamaica */
-int32_t jm_outline_1[] = {
+const int32_t jm_outline_1[] = {
    -77201943,  17283947,
    -75890421,  17611890,
    -75766049,  17973692,
@@ -10158,15 +10158,15 @@ int32_t jm_outline_1[] = {
    -77204791,  17283938,
 };
 
-int32_t* jm_outlines[] = {
+const int32_t* jm_outlines[] = {
   jm_outline_1,
 };
-uint32_t jm_outline_lengths[] = {
+const uint32_t jm_outline_lengths[] = {
   11,
 };
 
 /* ------------------Jersey */
-int32_t je_outline_1[] = {
+const int32_t je_outline_1[] = {
     -2049542,  48874431,
     -1681440,  48979539,
     -1583119,  49202371,
@@ -10178,15 +10178,15 @@ int32_t je_outline_1[] = {
     -2052381,  48874419,
 };
 
-int32_t* je_outlines[] = {
+const int32_t* je_outlines[] = {
   je_outline_1,
 };
-uint32_t je_outline_lengths[] = {
+const uint32_t je_outline_lengths[] = {
   9,
 };
 
 /* ------------------Jordan */
-int32_t jo_outline_1[] = {
+const int32_t jo_outline_1[] = {
     39247449,  32350991,
     39041366,  32305647,
     38773524,  33372198,
@@ -10209,15 +10209,15 @@ int32_t jo_outline_1[] = {
     39292769,  32243814,
 };
 
-int32_t* jo_outlines[] = {
+const int32_t* jo_outlines[] = {
   jo_outline_1,
 };
-uint32_t jo_outline_lengths[] = {
+const uint32_t jo_outline_lengths[] = {
   20,
 };
 
 /* -------------------Japan */
-int32_t jp_outline_1[] = {
+const int32_t jp_outline_1[] = {
    130511179,  29850653,
    131351293,  30205875,
    131529222,  30749158,
@@ -10349,7 +10349,7 @@ int32_t jp_outline_1[] = {
    130137318,  29980724,
    130508340,  29850646,
 };
-int32_t jp_outline_2[] = {
+const int32_t jp_outline_2[] = {
    139828469,  32666396,
    140165679,  32794223,
    140322588,  33105595,
@@ -10360,7 +10360,7 @@ int32_t jp_outline_2[] = {
    139458696,  32809889,
    139825631,  32666374,
 };
-int32_t jp_outline_3[] = {
+const int32_t jp_outline_3[] = {
    128959187,  27301986,
    129329230,  27450346,
    130074167,  28198887,
@@ -10372,7 +10372,7 @@ int32_t jp_outline_3[] = {
    128560559,  27465660,
    128956348,  27301978,
 };
-int32_t jp_outline_4[] = {
+const int32_t jp_outline_4[] = {
    127655345,  25688468,
    128136842,  25880406,
    128691507,  26506232,
@@ -10385,7 +10385,7 @@ int32_t jp_outline_4[] = {
    127316015,  25826410,
    127652506,  25688460,
 };
-int32_t jp_outline_5[] = {
+const int32_t jp_outline_5[] = {
    142173126,  26211252,
    142520334,  26344455,
    142649835,  26681861,
@@ -10396,7 +10396,7 @@ int32_t jp_outline_5[] = {
    141845007,  26336628,
    142170287,  26211244,
 };
-int32_t jp_outline_6[] = {
+const int32_t jp_outline_6[] = {
    125361829,  24306142,
    125762415,  24453347,
    125889670,  24795249,
@@ -10407,7 +10407,7 @@ int32_t jp_outline_6[] = {
    124995730,  24406475,
    125358991,  24306134,
 };
-int32_t jp_outline_7[] = {
+const int32_t jp_outline_7[] = {
    123829896,  23853637,
    124529316,  24047403,
    124771358,  24603269,
@@ -10419,7 +10419,7 @@ int32_t jp_outline_7[] = {
    123827058,  23853621,
 };
 
-int32_t* jp_outlines[] = {
+const int32_t* jp_outlines[] = {
   jp_outline_1,
   jp_outline_2,
   jp_outline_3,
@@ -10428,7 +10428,7 @@ int32_t* jp_outlines[] = {
   jp_outline_6,
   jp_outline_7,
 };
-uint32_t jp_outline_lengths[] = {
+const uint32_t jp_outline_lengths[] = {
   130,
   9,
   10,
@@ -10439,7 +10439,7 @@ uint32_t jp_outline_lengths[] = {
 };
 
 /* --------------Kazakhstan */
-int32_t kz_outline_1[] = {
+const int32_t kz_outline_1[] = {
     53012451,  41704757,
     53897228,  41985970,
     53624868,  42136394,
@@ -10447,7 +10447,7 @@ int32_t kz_outline_1[] = {
     52814893,  41711818,
     52878889,  41596525,
 };
-int32_t kz_outline_2[] = {
+const int32_t kz_outline_2[] = {
     80259108,  42235405,
     80202208,  42734471,
     80538933,  42873505,
@@ -10655,17 +10655,17 @@ int32_t kz_outline_2[] = {
     80233066,  42207809,
 };
 
-int32_t* kz_outlines[] = {
+const int32_t* kz_outlines[] = {
   kz_outline_1,
   kz_outline_2,
 };
-uint32_t kz_outline_lengths[] = {
+const uint32_t kz_outline_lengths[] = {
   6,
   205,
 };
 
 /* -------------------Kenya */
-int32_t ke_outline_1[] = {
+const int32_t ke_outline_1[] = {
     34878367,   5109584,
     33976090,   4220202,
     34165077,   3812996,
@@ -10706,32 +10706,32 @@ int32_t ke_outline_1[] = {
     35084449,   5311864,
 };
 
-int32_t* ke_outlines[] = {
+const int32_t* ke_outlines[] = {
   ke_outline_1,
 };
-uint32_t ke_outline_lengths[] = {
+const uint32_t ke_outline_lengths[] = {
   38,
 };
 
 /* --------------Kyrgyzstan */
-int32_t kg_outline_1[] = {
+const int32_t kg_outline_1[] = {
     71064213,  39884925,
     70976259,  40133259,
     71080338,  40079877,
     71228650,  40048148,
     71156254,  39883451,
 };
-int32_t kg_outline_2[] = {
+const int32_t kg_outline_2[] = {
     71705835,  39917409,
     71789908,  39995334,
     71752960,  39907150,
 };
-int32_t kg_outline_3[] = {
+const int32_t kg_outline_3[] = {
     70559548,  39790901,
     70698248,  39845862,
     70612046,  39786743,
 };
-int32_t kg_outline_4[] = {
+const int32_t kg_outline_4[] = {
     71035997,  42284678,
     71228551,  42162899,
     70856576,  42030819,
@@ -10796,13 +10796,13 @@ int32_t kg_outline_4[] = {
     70978999,  42266565,
 };
 
-int32_t* kg_outlines[] = {
+const int32_t* kg_outlines[] = {
   kg_outline_1,
   kg_outline_2,
   kg_outline_3,
   kg_outline_4,
 };
-uint32_t kg_outline_lengths[] = {
+const uint32_t kg_outline_lengths[] = {
   5,
   3,
   3,
@@ -10810,21 +10810,21 @@ uint32_t kg_outline_lengths[] = {
 };
 
 /* ----------------Cambodia */
-int32_t kh_outline_1[] = {
+const int32_t kh_outline_1[] = {
    102532790,  11614942,
    102606479,  11676494,
    102589941,  11572155,
 };
 
-int32_t* kh_outlines[] = {
+const int32_t* kh_outlines[] = {
   kh_outline_1,
 };
-uint32_t kh_outline_lengths[] = {
+const uint32_t kh_outline_lengths[] = {
   3,
 };
 
 /* ----------------Kiribati */
-int32_t ki_outline_1[] = {
+const int32_t ki_outline_1[] = {
   -159270905,   3345288,
   -158931818,   3505135,
   -158813060,   3890260,
@@ -10835,7 +10835,7 @@ int32_t ki_outline_1[] = {
   -159642825,   3465806,
   -159273743,   3345270,
 };
-int32_t ki_outline_2[] = {
+const int32_t ki_outline_2[] = {
    172774883,   2560907,
    173268768,   2792368,
    173418733,   3135815,
@@ -10846,7 +10846,7 @@ int32_t ki_outline_2[] = {
    172454319,   2691612,
    172772044,   2560880,
 };
-int32_t ki_outline_3[] = {
+const int32_t ki_outline_3[] = {
   -157242760,   1279711,
   -156829805,   1451582,
   -156749468,   1882174,
@@ -10857,7 +10857,7 @@ int32_t ki_outline_3[] = {
   -157660486,   1405708,
   -157245599,   1279702,
 };
-int32_t ki_outline_4[] = {
+const int32_t ki_outline_4[] = {
    172995626,    383314,
    173443239,    677149,
    173620674,   1393512,
@@ -10868,7 +10868,7 @@ int32_t ki_outline_4[] = {
    172664273,    511477,
    172992787,    383287,
 };
-int32_t ki_outline_5[] = {
+const int32_t ki_outline_5[] = {
    174783426,  -1715383,
    175163584,  -1496767,
    175189366,  -1034316,
@@ -10879,7 +10879,7 @@ int32_t ki_outline_5[] = {
    174413994,  -1549464,
    174780587,  -1715411,
 };
-int32_t ki_outline_6[] = {
+const int32_t ki_outline_6[] = {
    169543733,  -1328100,
    169873118,  -1188897,
    170004407,   -853593,
@@ -10890,7 +10890,7 @@ int32_t ki_outline_6[] = {
    169208230,  -1188228,
    169540894,  -1328109,
 };
-int32_t ki_outline_7[] = {
+const int32_t ki_outline_7[] = {
   -171085035,  -3594575,
   -170681584,  -3333705,
   -170722996,  -2847656,
@@ -10901,7 +10901,7 @@ int32_t ki_outline_7[] = {
   -172053293,  -3099396,
   -171087883,  -3594602,
 };
-int32_t ki_outline_8[] = {
+const int32_t ki_outline_8[] = {
   -154955775,  -4544729,
   -154627746,  -4398376,
   -154494230,  -4038478,
@@ -10912,7 +10912,7 @@ int32_t ki_outline_8[] = {
   -155328046,  -4377863,
   -154958623,  -4544738,
 };
-int32_t ki_outline_9[] = {
+const int32_t ki_outline_9[] = {
   -171239492,  -4918728,
   -170909477,  -4775923,
   -170782869,  -4442863,
@@ -10923,7 +10923,7 @@ int32_t ki_outline_9[] = {
   -171573090,  -4784664,
   -171242330,  -4918746,
 };
-int32_t ki_outline_10[] = {
+const int32_t ki_outline_10[] = {
   -172212151,  -4975019,
   -171870648,  -4840625,
   -171731795,  -4514159,
@@ -10934,7 +10934,7 @@ int32_t ki_outline_10[] = {
   -172534305,  -4841607,
   -172214990,  -4975028,
 };
-int32_t ki_outline_11[] = {
+const int32_t ki_outline_11[] = {
   -174497986,  -5145234,
   -174167981,  -4997037,
   -174053536,  -4650403,
@@ -10945,7 +10945,7 @@ int32_t ki_outline_11[] = {
   -174825719,  -5023325,
   -174500825,  -5145243,
 };
-int32_t ki_outline_12[] = {
+const int32_t ki_outline_12[] = {
   -155884831,  -6081575,
   -155536518,  -5934768,
   -155414967,  -5579377,
@@ -10956,7 +10956,7 @@ int32_t ki_outline_12[] = {
   -156209266,  -5970898,
   -155887679,  -6081584,
 };
-int32_t ki_outline_13[] = {
+const int32_t ki_outline_13[] = {
   -151786169, -11899490,
   -151460538, -11756868,
   -151334065, -11418408,
@@ -10968,7 +10968,7 @@ int32_t ki_outline_13[] = {
   -151789016, -11899517,
 };
 
-int32_t* ki_outlines[] = {
+const int32_t* ki_outlines[] = {
   ki_outline_1,
   ki_outline_2,
   ki_outline_3,
@@ -10983,7 +10983,7 @@ int32_t* ki_outlines[] = {
   ki_outline_12,
   ki_outline_13,
 };
-uint32_t ki_outline_lengths[] = {
+const uint32_t ki_outline_lengths[] = {
   9,
   9,
   9,
@@ -11000,7 +11000,7 @@ uint32_t ki_outline_lengths[] = {
 };
 
 /* -----St. Kitts and Nevis */
-int32_t kn_outline_1[] = {
+const int32_t kn_outline_1[] = {
    -62578080,  16668180,
    -62170990,  16864981,
    -62101596,  17286363,
@@ -11012,15 +11012,15 @@ int32_t kn_outline_1[] = {
    -62580919,  16668162,
 };
 
-int32_t* kn_outlines[] = {
+const int32_t* kn_outlines[] = {
   kn_outline_1,
 };
-uint32_t kn_outline_lengths[] = {
+const uint32_t kn_outline_lengths[] = {
   9,
 };
 
 /* ----------------S. Korea */
-int32_t kr_outline_1[] = {
+const int32_t kr_outline_1[] = {
    126284094,  32823088,
    126900967,  32929826,
    127320884,  33239191,
@@ -11058,7 +11058,7 @@ int32_t kr_outline_1[] = {
    125869297,  32998897,
    126281255,  32823080,
 };
-int32_t kr_outline_2[] = {
+const int32_t kr_outline_2[] = {
    130873407,  37089759,
    131246513,  37235634,
    131383416,  37530732,
@@ -11070,17 +11070,17 @@ int32_t kr_outline_2[] = {
    130870559,  37089752,
 };
 
-int32_t* kr_outlines[] = {
+const int32_t* kr_outlines[] = {
   kr_outline_1,
   kr_outline_2,
 };
-uint32_t kr_outline_lengths[] = {
+const uint32_t kr_outline_lengths[] = {
   36,
   9,
 };
 
 /* ------------------Kosovo */
-int32_t k0_outline_1[] = {
+const int32_t k0_outline_1[] = {
     21518918,  42328420,
     21752911,  42669798,
     21390657,  42751421,
@@ -11098,15 +11098,15 @@ int32_t k0_outline_1[] = {
     21541556,  42280829,
 };
 
-int32_t* k0_outlines[] = {
+const int32_t* k0_outlines[] = {
   k0_outline_1,
 };
-uint32_t k0_outline_lengths[] = {
+const uint32_t k0_outline_lengths[] = {
   15,
 };
 
 /* ------------------Kuwait */
-int32_t kw_outline_1[] = {
+const int32_t kw_outline_1[] = {
     48354596,  29956720,
     47672775,  30095602,
     47223294,  30041494,
@@ -11122,15 +11122,15 @@ int32_t kw_outline_1[] = {
     48454228,  29938453,
 };
 
-int32_t* kw_outlines[] = {
+const int32_t* kw_outlines[] = {
   kw_outline_1,
 };
-uint32_t kw_outline_lengths[] = {
+const uint32_t kw_outline_lengths[] = {
   13,
 };
 
 /* --------------------Laos */
-int32_t la_outline_1[] = {
+const int32_t la_outline_1[] = {
    107524468,  14871829,
    107653142,  15255214,
    107165887,  15802492,
@@ -11199,15 +11199,15 @@ int32_t la_outline_1[] = {
    107513778,  14817382,
 };
 
-int32_t* la_outlines[] = {
+const int32_t* la_outlines[] = {
   la_outline_1,
 };
-uint32_t la_outline_lengths[] = {
+const uint32_t la_outline_lengths[] = {
   66,
 };
 
 /* -----------------Lebanon */
-int32_t lb_outline_1[] = {
+const int32_t lb_outline_1[] = {
     35914735,  33465368,
     35986151,  33752638,
     36365096,  33839353,
@@ -11226,15 +11226,15 @@ int32_t lb_outline_1[] = {
     35869100,  33431751,
 };
 
-int32_t* lb_outlines[] = {
+const int32_t* lb_outlines[] = {
   lb_outline_1,
 };
-uint32_t lb_outline_lengths[] = {
+const uint32_t lb_outline_lengths[] = {
   16,
 };
 
 /* -----------------Liberia */
-int32_t lr_outline_1[] = {
+const int32_t lr_outline_1[] = {
    -10314636,   8310859,
    -10570844,   8071154,
    -10647480,   7759364,
@@ -11264,15 +11264,15 @@ int32_t lr_outline_1[] = {
    -10285746,   8454108,
 };
 
-int32_t* lr_outlines[] = {
+const int32_t* lr_outlines[] = {
   lr_outline_1,
 };
-uint32_t lr_outline_lengths[] = {
+const uint32_t lr_outline_lengths[] = {
   27,
 };
 
 /* -------------------Libya */
-int32_t ly_outline_1[] = {
+const int32_t ly_outline_1[] = {
      9310256,  30115238,
      9805219,  29176922,
      9915963,  27785689,
@@ -11328,15 +11328,15 @@ int32_t ly_outline_1[] = {
      9420947,  30179319,
 };
 
-int32_t* ly_outlines[] = {
+const int32_t* ly_outlines[] = {
   ly_outline_1,
 };
-uint32_t ly_outline_lengths[] = {
+const uint32_t ly_outline_lengths[] = {
   53,
 };
 
 /* -------------Saint Lucia */
-int32_t lc_outline_1[] = {
+const int32_t lc_outline_1[] = {
    -60948671,  13278033,
    -60572160,  13482166,
    -60440233,  14058493,
@@ -11348,30 +11348,30 @@ int32_t lc_outline_1[] = {
    -60951518,  13278024,
 };
 
-int32_t* lc_outlines[] = {
+const int32_t* lc_outlines[] = {
   lc_outline_1,
 };
-uint32_t lc_outline_lengths[] = {
+const uint32_t lc_outline_lengths[] = {
   9,
 };
 
 /* -----------Liechtenstein */
-int32_t li_outline_1[] = {
+const int32_t li_outline_1[] = {
      9610500,  47107149,
      9527505,  47270758,
      9479445,  47097513,
      9595723,  47075829,
 };
 
-int32_t* li_outlines[] = {
+const int32_t* li_outlines[] = {
   li_outline_1,
 };
-uint32_t li_outline_lengths[] = {
+const uint32_t li_outline_lengths[] = {
   4,
 };
 
 /* ---------------Sri Lanka */
-int32_t lk_outline_1[] = {
+const int32_t lk_outline_1[] = {
     80499093,   5499458,
     81479020,   5788757,
     81956995,   6109306,
@@ -11392,22 +11392,22 @@ int32_t lk_outline_1[] = {
     80496254,   5499449,
 };
 
-int32_t* lk_outlines[] = {
+const int32_t* lk_outlines[] = {
   lk_outline_1,
 };
-uint32_t lk_outline_lengths[] = {
+const uint32_t lk_outline_lengths[] = {
   18,
 };
 
 /* -----------------Lesotho */
 
-int32_t* ls_outlines[] = {
+const int32_t* ls_outlines[] = {
 };
-uint32_t ls_outline_lengths[] = {
+const uint32_t ls_outline_lengths[] = {
 };
 
 /* ---------------Lithuania */
-int32_t lt_outline_1[] = {
+const int32_t lt_outline_1[] = {
     23733669,  53912261,
     24191316,  53950451,
     24317925,  53892988,
@@ -11452,15 +11452,15 @@ int32_t lt_outline_1[] = {
     23559109,  53919808,
 };
 
-int32_t* lt_outlines[] = {
+const int32_t* lt_outlines[] = {
   lt_outline_1,
 };
-uint32_t lt_outline_lengths[] = {
+const uint32_t lt_outline_lengths[] = {
   42,
 };
 
 /* --------------Luxembourg */
-int32_t lu_outline_1[] = {
+const int32_t lu_outline_1[] = {
      6089059,  50154585,
      5976303,  50167166,
      5744070,  49919640,
@@ -11472,15 +11472,15 @@ int32_t lu_outline_1[] = {
      6110044,  50123761,
 };
 
-int32_t* lu_outlines[] = {
+const int32_t* lu_outlines[] = {
   lu_outline_1,
 };
-uint32_t lu_outline_lengths[] = {
+const uint32_t lu_outline_lengths[] = {
   9,
 };
 
 /* ------------------Latvia */
-int32_t lv_outline_1[] = {
+const int32_t lv_outline_1[] = {
     28202024,  56260388,
     27881532,  56824178,
     27639472,  56845647,
@@ -11513,15 +11513,15 @@ int32_t lv_outline_1[] = {
     28173350,  56190341,
 };
 
-int32_t* lv_outlines[] = {
+const int32_t* lv_outlines[] = {
   lv_outline_1,
 };
-uint32_t lv_outline_lengths[] = {
+const uint32_t lv_outline_lengths[] = {
   30,
 };
 
 /* -------------------Macau */
-int32_t mo_outline_1[] = {
+const int32_t mo_outline_1[] = {
    113481771,  21776640,
    113951707,  22038921,
    113870499,  22515116,
@@ -11533,15 +11533,15 @@ int32_t mo_outline_1[] = {
    113480433,  21776632,
 };
 
-int32_t* mo_outlines[] = {
+const int32_t* mo_outlines[] = {
   mo_outline_1,
 };
-uint32_t mo_outline_lengths[] = {
+const uint32_t mo_outline_lengths[] = {
   9,
 };
 
 /* --------------St. Martin */
-int32_t mf_outline_1[] = {
+const int32_t mf_outline_1[] = {
    -63007780,  17638809,
    -62665235,  17794700,
    -62562728,  18149203,
@@ -11553,15 +11553,15 @@ int32_t mf_outline_1[] = {
    -63010619,  17638800,
 };
 
-int32_t* mf_outlines[] = {
+const int32_t* mf_outlines[] = {
   mf_outline_1,
 };
-uint32_t mf_outline_lengths[] = {
+const uint32_t mf_outline_lengths[] = {
   9,
 };
 
 /* -----------------Morocco */
-int32_t ma_outline_1[] = {
+const int32_t ma_outline_1[] = {
     -8683358,  28620727,
     -7160202,  29612656,
     -6635370,  29568782,
@@ -11639,15 +11639,15 @@ int32_t ma_outline_1[] = {
     -8683358,  27656449,
 };
 
-int32_t* ma_outlines[] = {
+const int32_t* ma_outlines[] = {
   ma_outline_1,
 };
-uint32_t ma_outline_lengths[] = {
+const uint32_t ma_outline_lengths[] = {
   75,
 };
 
 /* ------------------Monaco */
-int32_t mc_outline_1[] = {
+const int32_t mc_outline_1[] = {
      7436937,  43761462,
      7012743,  43541614,
      7293053,  43411026,
@@ -11657,29 +11657,29 @@ int32_t mc_outline_1[] = {
      7438697,  43750451,
 };
 
-int32_t* mc_outlines[] = {
+const int32_t* mc_outlines[] = {
   mc_outline_1,
 };
-uint32_t mc_outline_lengths[] = {
+const uint32_t mc_outline_lengths[] = {
   7,
 };
 
 /* -----------------Moldova */
-int32_t md_outline_1[] = {
+const int32_t md_outline_1[] = {
     26787277,  48255810,
     26618968,  48259841,
     26713794,  48263458,
 };
 
-int32_t* md_outlines[] = {
+const int32_t* md_outlines[] = {
   md_outline_1,
 };
-uint32_t md_outline_lengths[] = {
+const uint32_t md_outline_lengths[] = {
   3,
 };
 
 /* --------------Madagascar */
-int32_t mg_outline_1[] = {
+const int32_t mg_outline_1[] = {
     45208597, -25977207,
     45634695, -25953398,
     46322957, -25612297,
@@ -11722,15 +11722,15 @@ int32_t mg_outline_1[] = {
     45205749, -25977215,
 };
 
-int32_t* mg_outlines[] = {
+const int32_t* mg_outlines[] = {
   mg_outline_1,
 };
-uint32_t mg_outline_lengths[] = {
+const uint32_t mg_outline_lengths[] = {
   40,
 };
 
 /* ----------------Maldives */
-int32_t mv_outline_1[] = {
+const int32_t mv_outline_1[] = {
     73398898,   2777879,
     73852898,   3084731,
     73856015,   3451065,
@@ -11748,15 +11748,15 @@ int32_t mv_outline_1[] = {
     73396060,   2777861,
 };
 
-int32_t* mv_outlines[] = {
+const int32_t* mv_outlines[] = {
   mv_outline_1,
 };
-uint32_t mv_outline_lengths[] = {
+const uint32_t mv_outline_lengths[] = {
   15,
 };
 
 /* ------------------Mexico */
-int32_t mx_outline_1[] = {
+const int32_t mx_outline_1[] = {
    -89133537,  17970786,
    -88857386,  17928828,
    -88522988,  18445900,
@@ -11899,7 +11899,7 @@ int32_t mx_outline_1[] = {
    -89161475,  17814827,
    -89162355,  17901954,
 };
-int32_t mx_outline_2[] = {
+const int32_t mx_outline_2[] = {
   -118283302,  28507777,
   -117882277,  28705933,
   -117800871,  29086456,
@@ -11910,7 +11910,7 @@ int32_t mx_outline_2[] = {
   -118622632,  28642261,
   -118286150,  28507769,
 };
-int32_t mx_outline_3[] = {
+const int32_t mx_outline_3[] = {
   -106528335,  21107637,
   -106181720,  21264461,
   -106055525,  21654488,
@@ -11921,7 +11921,7 @@ int32_t mx_outline_3[] = {
   -106908062,  21249312,
   -106531174,  21107629,
 };
-int32_t mx_outline_4[] = {
+const int32_t mx_outline_4[] = {
   -110972283,  18291845,
   -110603650,  18432208,
   -110465435,  18752768,
@@ -11933,13 +11933,13 @@ int32_t mx_outline_4[] = {
   -110975121,  18291836,
 };
 
-int32_t* mx_outlines[] = {
+const int32_t* mx_outlines[] = {
   mx_outline_1,
   mx_outline_2,
   mx_outline_3,
   mx_outline_4,
 };
-uint32_t mx_outline_lengths[] = {
+const uint32_t mx_outline_lengths[] = {
   141,
   9,
   9,
@@ -11947,7 +11947,7 @@ uint32_t mx_outline_lengths[] = {
 };
 
 /* ------------Marshall Is. */
-int32_t mh_outline_1[] = {
+const int32_t mh_outline_1[] = {
    166867894,  10702337,
    167204277,  10835706,
    167348493,  11167447,
@@ -11958,7 +11958,7 @@ int32_t mh_outline_1[] = {
    166532050,  10834773,
    166865055,  10702329,
 };
-int32_t mh_outline_2[] = {
+const int32_t mh_outline_2[] = {
    168818056,   6844866,
    169187766,   7037421,
    169262731,   7429963,
@@ -11969,7 +11969,7 @@ int32_t mh_outline_2[] = {
    168435832,   6942244,
    168815217,   6844857,
 };
-int32_t mh_outline_3[] = {
+const int32_t mh_outline_3[] = {
    171760523,   6524167,
    172178006,   6817355,
    172052027,   7311245,
@@ -11979,7 +11979,7 @@ int32_t mh_outline_3[] = {
    170740558,   6817786,
    171757676,   6524149,
 };
-int32_t mh_outline_4[] = {
+const int32_t mh_outline_4[] = {
    169619883,   5349798,
    169958745,   5509693,
    170183720,   6018267,
@@ -11991,13 +11991,13 @@ int32_t mh_outline_4[] = {
    169617044,   5349780,
 };
 
-int32_t* mh_outlines[] = {
+const int32_t* mh_outlines[] = {
   mh_outline_1,
   mh_outline_2,
   mh_outline_3,
   mh_outline_4,
 };
-uint32_t mh_outline_lengths[] = {
+const uint32_t mh_outline_lengths[] = {
   9,
   9,
   8,
@@ -12005,7 +12005,7 @@ uint32_t mh_outline_lengths[] = {
 };
 
 /* ---------------Macedonia */
-int32_t mk_outline_1[] = {
+const int32_t mk_outline_1[] = {
     22951497,  41605621,
     22836774,  41993610,
     22239699,  42358136,
@@ -12024,15 +12024,15 @@ int32_t mk_outline_1[] = {
     22929686,  41356076,
 };
 
-int32_t* mk_outlines[] = {
+const int32_t* mk_outlines[] = {
   mk_outline_1,
 };
-uint32_t mk_outline_lengths[] = {
+const uint32_t mk_outline_lengths[] = {
   16,
 };
 
 /* --------------------Mali */
-int32_t ml_outline_1[] = {
+const int32_t ml_outline_1[] = {
     -5479014,  10565088,
     -5490485,  11042368,
     -5250240,  11375759,
@@ -12117,15 +12117,15 @@ int32_t ml_outline_1[] = {
     -5507014,  10483437,
 };
 
-int32_t* ml_outlines[] = {
+const int32_t* ml_outlines[] = {
   ml_outline_1,
 };
-uint32_t ml_outline_lengths[] = {
+const uint32_t ml_outline_lengths[] = {
   82,
 };
 
 /* -------------------Malta */
-int32_t mt_outline_1[] = {
+const int32_t mt_outline_1[] = {
     14535622,  35453530,
     14944059,  35654819,
     14971349,  36010358,
@@ -12137,15 +12137,15 @@ int32_t mt_outline_1[] = {
     14532783,  35453522,
 };
 
-int32_t* mt_outlines[] = {
+const int32_t* mt_outlines[] = {
   mt_outline_1,
 };
-uint32_t mt_outline_lengths[] = {
+const uint32_t mt_outline_lengths[] = {
   9,
 };
 
 /* -----------------Myanmar */
-int32_t mm_outline_1[] = {
+const int32_t mm_outline_1[] = {
    101128167,  21705109,
    100604583,  21471762,
    100214733,  21462974,
@@ -12256,15 +12256,15 @@ int32_t mm_outline_1[] = {
    101147292,  21581627,
 };
 
-int32_t* mm_outlines[] = {
+const int32_t* mm_outlines[] = {
   mm_outline_1,
 };
-uint32_t mm_outline_lengths[] = {
+const uint32_t mm_outline_lengths[] = {
   108,
 };
 
 /* --------------Montenegro */
-int32_t me_outline_1[] = {
+const int32_t me_outline_1[] = {
     20339978,  42892881,
     19614436,  43173434,
     19194357,  43533308,
@@ -12289,15 +12289,15 @@ int32_t me_outline_1[] = {
     20347623,  42852781,
 };
 
-int32_t* me_outlines[] = {
+const int32_t* me_outlines[] = {
   me_outline_1,
 };
-uint32_t me_outline_lengths[] = {
+const uint32_t me_outline_lengths[] = {
   22,
 };
 
 /* ----------------Mongolia */
-int32_t mn_outline_1[] = {
+const int32_t mn_outline_1[] = {
    116551153,  49920307,
    116134541,  50010794,
    115717714,  49880625,
@@ -12434,15 +12434,15 @@ int32_t mn_outline_1[] = {
    116631561,  49877055,
 };
 
-int32_t* mn_outlines[] = {
+const int32_t* mn_outlines[] = {
   mn_outline_1,
 };
-uint32_t mn_outline_lengths[] = {
+const uint32_t mn_outline_lengths[] = {
   134,
 };
 
 /* ----------N. Mariana Is. */
-int32_t mp_outline_1[] = {
+const int32_t mp_outline_1[] = {
    145732134,  17626776,
    146099159,  17778873,
    146283511,  18166962,
@@ -12455,7 +12455,7 @@ int32_t mp_outline_1[] = {
    145319017,  17881604,
    145729296,  17626767,
 };
-int32_t mp_outline_2[] = {
+const int32_t mp_outline_2[] = {
    145694253,  15897977,
    146050228,  16053450,
    146165024,  16414867,
@@ -12466,7 +12466,7 @@ int32_t mp_outline_2[] = {
    145341493,  16023792,
    145691405,  15897960,
 };
-int32_t mp_outline_3[] = {
+const int32_t mp_outline_3[] = {
    145219358,  13672561,
    145643120,  13921650,
    145712704,  14220869,
@@ -12485,29 +12485,29 @@ int32_t mp_outline_3[] = {
    145216519,  13672543,
 };
 
-int32_t* mp_outlines[] = {
+const int32_t* mp_outlines[] = {
   mp_outline_1,
   mp_outline_2,
   mp_outline_3,
 };
-uint32_t mp_outline_lengths[] = {
+const uint32_t mp_outline_lengths[] = {
   11,
   9,
   16,
 };
 
 /* --------------Mozambique */
-int32_t mz_outline_1[] = {
+const int32_t mz_outline_1[] = {
     34580449, -12065768,
     34591400, -11971052,
     34621790, -12066599,
 };
-int32_t mz_outline_2[] = {
+const int32_t mz_outline_2[] = {
     34662097, -12100760,
     34738993, -12013060,
     34684214, -12118687,
 };
-int32_t mz_outline_3[] = {
+const int32_t mz_outline_3[] = {
     34659510, -11588638,
     34357829, -12164728,
     34563651, -13360165,
@@ -12584,19 +12584,19 @@ int32_t mz_outline_3[] = {
     34826534, -11575671,
 };
 
-int32_t* mz_outlines[] = {
+const int32_t* mz_outlines[] = {
   mz_outline_1,
   mz_outline_2,
   mz_outline_3,
 };
-uint32_t mz_outline_lengths[] = {
+const uint32_t mz_outline_lengths[] = {
   3,
   3,
   74,
 };
 
 /* --------------Mauritania */
-int32_t mr_outline_1[] = {
+const int32_t mr_outline_1[] = {
     -5275015,  25274523,
     -8683358,  27285927,
     -8682199,  25995515,
@@ -12645,15 +12645,15 @@ int32_t mr_outline_1[] = {
     -5049502,  25135464,
 };
 
-int32_t* mr_outlines[] = {
+const int32_t* mr_outlines[] = {
   mr_outline_1,
 };
-uint32_t mr_outline_lengths[] = {
+const uint32_t mr_outline_lengths[] = {
   46,
 };
 
 /* --------------Montserrat */
-int32_t ms_outline_1[] = {
+const int32_t ms_outline_1[] = {
    -62149781,  16247811,
    -61810919,  16401870,
    -61699689,  16758748,
@@ -12665,15 +12665,15 @@ int32_t ms_outline_1[] = {
    -62152620,  16247794,
 };
 
-int32_t* ms_outlines[] = {
+const int32_t* ms_outlines[] = {
   ms_outline_1,
 };
-uint32_t ms_outline_lengths[] = {
+const uint32_t ms_outline_lengths[] = {
   9,
 };
 
 /* ---------------Mauritius */
-int32_t mu_outline_1[] = {
+const int32_t mu_outline_1[] = {
     57526880, -20935775,
     58035354, -20723169,
     58241113, -20211623,
@@ -12685,25 +12685,25 @@ int32_t mu_outline_1[] = {
     57524041, -20935784,
 };
 
-int32_t* mu_outlines[] = {
+const int32_t* mu_outlines[] = {
   mu_outline_1,
 };
-uint32_t mu_outline_lengths[] = {
+const uint32_t mu_outline_lengths[] = {
   9,
 };
 
 /* ------------------Malawi */
-int32_t mw_outline_1[] = {
+const int32_t mw_outline_1[] = {
     34641633, -12013679,
     34553994, -11982258,
     34621790, -12066599,
 };
-int32_t mw_outline_2[] = {
+const int32_t mw_outline_2[] = {
     34719356, -12110678,
     34679929, -12008877,
     34684214, -12118687,
 };
-int32_t mw_outline_3[] = {
+const int32_t mw_outline_3[] = {
     34937018, -11463425,
     34607893, -11080506,
     34569903, -10241077,
@@ -12744,19 +12744,19 @@ int32_t mw_outline_3[] = {
     34952621, -11543738,
 };
 
-int32_t* mw_outlines[] = {
+const int32_t* mw_outlines[] = {
   mw_outline_1,
   mw_outline_2,
   mw_outline_3,
 };
-uint32_t mw_outline_lengths[] = {
+const uint32_t mw_outline_lengths[] = {
   3,
   3,
   38,
 };
 
 /* ----------------Malaysia */
-int32_t my_outline_1[] = {
+const int32_t my_outline_1[] = {
    110614771,    878135,
    111101308,   1050528,
    111809018,   1011665,
@@ -12813,7 +12813,7 @@ int32_t my_outline_1[] = {
    109654005,   1614888,
    110505734,    861958,
 };
-int32_t my_outline_2[] = {
+const int32_t my_outline_2[] = {
    103482444,    877385,
    104444953,    981265,
    104250198,   1102620,
@@ -12854,7 +12854,7 @@ int32_t my_outline_2[] = {
    100925902,   2628465,
    103479606,    877375,
 };
-int32_t my_outline_3[] = {
+const int32_t my_outline_3[] = {
    114571742,   4049051,
    114063817,   4592687,
    115047679,   5016352,
@@ -12862,32 +12862,32 @@ int32_t my_outline_3[] = {
    114840249,   4393218,
    114608331,   4023991,
 };
-int32_t my_outline_4[] = {
+const int32_t my_outline_4[] = {
    115170568,   4364202,
    115026802,   4899725,
    115266688,   4633980,
    115246691,   4347222,
 };
-int32_t my_outline_5[] = {
+const int32_t my_outline_5[] = {
    117625098,   4121476,
    117884720,   4186147,
    117922853,   4054274,
    117736821,   4004018,
 };
-int32_t my_outline_6[] = {
+const int32_t my_outline_6[] = {
    103650133,   1325550,
    103817983,   1447088,
    103996370,   1365232,
    103819941,   1265398,
 };
-int32_t my_outline_7[] = {
+const int32_t my_outline_7[] = {
    103963600,   1013211,
    103955335,   1137449,
    104139822,   1165560,
    104066134,    989547,
 };
 
-int32_t* my_outlines[] = {
+const int32_t* my_outlines[] = {
   my_outline_1,
   my_outline_2,
   my_outline_3,
@@ -12896,7 +12896,7 @@ int32_t* my_outlines[] = {
   my_outline_6,
   my_outline_7,
 };
-uint32_t my_outline_lengths[] = {
+const uint32_t my_outline_lengths[] = {
   55,
   39,
   6,
@@ -12907,7 +12907,7 @@ uint32_t my_outline_lengths[] = {
 };
 
 /* -----------------Namibia */
-int32_t na_outline_1[] = {
+const int32_t na_outline_1[] = {
     25001758, -17568589,
     24274931, -17480997,
     20745531, -18019774,
@@ -12954,15 +12954,15 @@ int32_t na_outline_1[] = {
     25092138, -17634321,
 };
 
-int32_t* na_outlines[] = {
+const int32_t* na_outlines[] = {
   na_outline_1,
 };
-uint32_t na_outline_lengths[] = {
+const uint32_t na_outline_lengths[] = {
   44,
 };
 
 /* -----------New Caledonia */
-int32_t nc_outline_1[] = {
+const int32_t nc_outline_1[] = {
    159940239, -19758918,
    160273766, -19614382,
    160424198, -19233284,
@@ -12973,7 +12973,7 @@ int32_t nc_outline_1[] = {
    159577032, -19588681,
    159937401, -19758935,
 };
-int32_t nc_outline_2[] = {
+const int32_t nc_outline_2[] = {
    167515139, -23077305,
    167966408, -22765971,
    167832119, -22270714,
@@ -12989,7 +12989,7 @@ int32_t nc_outline_2[] = {
    167194027, -22985282,
    167512301, -23077313,
 };
-int32_t nc_outline_3[] = {
+const int32_t nc_outline_3[] = {
    168011000, -22062394,
    168520570, -21806977,
    168489129, -21181470,
@@ -13008,19 +13008,19 @@ int32_t nc_outline_3[] = {
    168008162, -22062419,
 };
 
-int32_t* nc_outlines[] = {
+const int32_t* nc_outlines[] = {
   nc_outline_1,
   nc_outline_2,
   nc_outline_3,
 };
-uint32_t nc_outline_lengths[] = {
+const uint32_t nc_outline_lengths[] = {
   9,
   14,
   16,
 };
 
 /* -------------------Niger */
-int32_t ne_outline_1[] = {
+const int32_t ne_outline_1[] = {
     13448202,  14380640,
     14367987,  15750143,
     15474325,  16908372,
@@ -13077,15 +13077,15 @@ int32_t ne_outline_1[] = {
     13505766,  14134432,
 };
 
-int32_t* ne_outlines[] = {
+const int32_t* ne_outlines[] = {
   ne_outline_1,
 };
-uint32_t ne_outline_lengths[] = {
+const uint32_t ne_outline_lengths[] = {
   54,
 };
 
 /* ----------Norfolk Island */
-int32_t nf_outline_1[] = {
+const int32_t nf_outline_1[] = {
    167963255, -29490032,
    168300958, -29353535,
    168438122, -29010590,
@@ -13097,15 +13097,15 @@ int32_t nf_outline_1[] = {
    167960416, -29490040,
 };
 
-int32_t* nf_outlines[] = {
+const int32_t* nf_outlines[] = {
   nf_outline_1,
 };
-uint32_t nf_outline_lengths[] = {
+const uint32_t nf_outline_lengths[] = {
   9,
 };
 
 /* -----------------Nigeria */
-int32_t ng_outline_1[] = {
+const int32_t ng_outline_1[] = {
     13763475,  13489560,
     13606332,  13704612,
     13426912,  13701766,
@@ -13164,15 +13164,15 @@ int32_t ng_outline_1[] = {
     13932358,  13258490,
 };
 
-int32_t* ng_outlines[] = {
+const int32_t* ng_outlines[] = {
   ng_outline_1,
 };
-uint32_t ng_outline_lengths[] = {
+const uint32_t ng_outline_lengths[] = {
   56,
 };
 
 /* ---------------Nicaragua */
-int32_t ni_outline_1[] = {
+const int32_t ni_outline_1[] = {
    -87820704,  13285151,
    -88096244,  13105048,
    -88037072,  12652991,
@@ -13216,15 +13216,15 @@ int32_t ni_outline_1[] = {
    -87838400,  13385794,
 };
 
-int32_t* ni_outlines[] = {
+const int32_t* ni_outlines[] = {
   ni_outline_1,
 };
-uint32_t ni_outline_lengths[] = {
+const uint32_t ni_outline_lengths[] = {
   41,
 };
 
 /* --------------------Niue */
-int32_t nu_outline_1[] = {
+const int32_t nu_outline_1[] = {
   -169901280, -19564210,
   -169487139, -19385931,
   -169344271, -19041338,
@@ -13236,15 +13236,15 @@ int32_t nu_outline_1[] = {
   -169904119, -19564219,
 };
 
-int32_t* nu_outlines[] = {
+const int32_t* nu_outlines[] = {
   nu_outline_1,
 };
-uint32_t nu_outline_lengths[] = {
+const uint32_t nu_outline_lengths[] = {
   9,
 };
 
 /* -------------Netherlands */
-int32_t nl_outline_1[] = {
+const int32_t nl_outline_1[] = {
      6006846,  50949963,
      5857501,  51030114,
      6129987,  51147416,
@@ -13283,7 +13283,7 @@ int32_t nl_outline_1[] = {
      5993928,  50750438,
      6048447,  50904903,
 };
-int32_t nl_outline_2[] = {
+const int32_t nl_outline_2[] = {
    -62959541,  17043472,
    -62563150,  17257329,
    -62527074,  17670615,
@@ -13293,7 +13293,7 @@ int32_t nl_outline_2[] = {
    -63665491,  17454831,
    -62962388,  17043463,
 };
-int32_t nl_outline_3[] = {
+const int32_t nl_outline_3[] = {
    -68252010,  11589603,
    -67879946,  11787705,
    -67775624,  12298987,
@@ -13305,19 +13305,19 @@ int32_t nl_outline_3[] = {
    -68254849,  11589594,
 };
 
-int32_t* nl_outlines[] = {
+const int32_t* nl_outlines[] = {
   nl_outline_1,
   nl_outline_2,
   nl_outline_3,
 };
-uint32_t nl_outline_lengths[] = {
+const uint32_t nl_outline_lengths[] = {
   37,
   8,
   9,
 };
 
 /* ------------------Norway */
-int32_t no_outline_1[] = {
+const int32_t no_outline_1[] = {
     16704514,  76474622,
     17221953,  76525844,
     17488168,  76625753,
@@ -13466,7 +13466,7 @@ int32_t no_outline_1[] = {
     16114474,  76543206,
     16701675,  76474618,
 };
-int32_t no_outline_2[] = {
+const int32_t no_outline_2[] = {
     31579699,  80003788,
     32668098,  80045741,
     33773421,  80130918,
@@ -13480,7 +13480,7 @@ int32_t no_outline_2[] = {
     31272116,  80024583,
     31576851,  80003786,
 };
-int32_t no_outline_3[] = {
+const int32_t no_outline_3[] = {
     28041064,  78741351,
     28610102,  78797736,
     29478315,  78771217,
@@ -13495,7 +13495,7 @@ int32_t no_outline_3[] = {
     27578971,  78789125,
     28038226,  78741349,
 };
-int32_t no_outline_4[] = {
+const int32_t no_outline_4[] = {
     26732497,  78557681,
     27211425,  78589956,
     27446586,  78716096,
@@ -13506,7 +13506,7 @@ int32_t no_outline_4[] = {
     26406382,  78584857,
     26729650,  78557679,
 };
-int32_t no_outline_5[] = {
+const int32_t no_outline_5[] = {
     19102692,  74230490,
     19606665,  74329682,
     19699048,  74506097,
@@ -13517,7 +13517,7 @@ int32_t no_outline_5[] = {
     18758952,  74272611,
     19099854,  74230485,
 };
-int32_t no_outline_6[] = {
+const int32_t no_outline_6[] = {
     -9043367,  70684555,
     -7665109,  70944455,
     -7578978,  71226949,
@@ -13528,7 +13528,7 @@ int32_t no_outline_6[] = {
     -9342605,  70721613,
     -9046215,  70684552,
 };
-int32_t no_outline_7[] = {
+const int32_t no_outline_7[] = {
     20889298,  69071442,
     21104525,  69054440,
     21143746,  69247246,
@@ -13717,7 +13717,7 @@ int32_t no_outline_7[] = {
     20675867,  69069477,
 };
 
-int32_t* no_outlines[] = {
+const int32_t* no_outlines[] = {
   no_outline_1,
   no_outline_2,
   no_outline_3,
@@ -13726,7 +13726,7 @@ int32_t* no_outlines[] = {
   no_outline_6,
   no_outline_7,
 };
-uint32_t no_outline_lengths[] = {
+const uint32_t no_outline_lengths[] = {
   147,
   12,
   13,
@@ -13737,7 +13737,7 @@ uint32_t no_outline_lengths[] = {
 };
 
 /* -------------------Nepal */
-int32_t np_outline_1[] = {
+const int32_t np_outline_1[] = {
     80907646,  30171905,
     80401841,  29730252,
     80084592,  28994172,
@@ -13782,15 +13782,15 @@ int32_t np_outline_1[] = {
     80966145,  30180014,
 };
 
-int32_t* np_outlines[] = {
+const int32_t* np_outlines[] = {
   np_outline_1,
 };
-uint32_t np_outline_lengths[] = {
+const uint32_t np_outline_lengths[] = {
   42,
 };
 
 /* -------------------Nauru */
-int32_t nr_outline_1[] = {
+const int32_t nr_outline_1[] = {
    166942113,  -1002948,
    167262398,   -864580,
    167407566,   -514407,
@@ -13802,15 +13802,15 @@ int32_t nr_outline_1[] = {
    166939274,  -1002957,
 };
 
-int32_t* nr_outlines[] = {
+const int32_t* nr_outlines[] = {
   nr_outline_1,
 };
-uint32_t nr_outline_lengths[] = {
+const uint32_t nr_outline_lengths[] = {
   9,
 };
 
 /* -------------New Zealand */
-int32_t nz_outline_1[] = {
+const int32_t nz_outline_1[] = {
   -172479876,  -9029647,
   -172155872,  -8890943,
   -172030261,  -8565124,
@@ -13821,7 +13821,7 @@ int32_t nz_outline_1[] = {
   -172802237,  -8897903,
   -172482715,  -9029664,
 };
-int32_t nz_outline_2[] = {
+const int32_t nz_outline_2[] = {
   -171184497,  -9804112,
   -170864526,  -9667022,
   -170737477,  -9342188,
@@ -13832,7 +13832,7 @@ int32_t nz_outline_2[] = {
   -171504953,  -9674893,
   -171187335,  -9804130,
 };
-int32_t nz_outline_3[] = {
+const int32_t nz_outline_3[] = {
    167558079, -47568539,
    168534323, -47301889,
    168679832, -46910735,
@@ -13910,7 +13910,7 @@ int32_t nz_outline_3[] = {
    167231460, -47491338,
    167555240, -47568545,
 };
-int32_t nz_outline_4[] = {
+const int32_t nz_outline_4[] = {
   -176217021, -44652068,
   -175901685, -44576206,
   -175693438, -44363681,
@@ -13923,7 +13923,7 @@ int32_t nz_outline_4[] = {
   -176904349, -44343423,
   -176219859, -44652081,
 };
-int32_t nz_outline_5[] = {
+const int32_t nz_outline_5[] = {
    166190241, -51129530,
    166631664, -50987939,
    166716654, -50556980,
@@ -13934,7 +13934,7 @@ int32_t nz_outline_5[] = {
    165652303, -51056498,
    166187402, -51129535,
 };
-int32_t nz_outline_6[] = {
+const int32_t nz_outline_6[] = {
    169130634, -52843086,
    169532064, -52752353,
    169682675, -52547228,
@@ -13946,7 +13946,7 @@ int32_t nz_outline_6[] = {
    169127795, -52843092,
 };
 
-int32_t* nz_outlines[] = {
+const int32_t* nz_outlines[] = {
   nz_outline_1,
   nz_outline_2,
   nz_outline_3,
@@ -13954,7 +13954,7 @@ int32_t* nz_outlines[] = {
   nz_outline_5,
   nz_outline_6,
 };
-uint32_t nz_outline_lengths[] = {
+const uint32_t nz_outline_lengths[] = {
   9,
   9,
   76,
@@ -13964,7 +13964,7 @@ uint32_t nz_outline_lengths[] = {
 };
 
 /* --------------------Oman */
-int32_t om_outline_1[] = {
+const int32_t om_outline_1[] = {
     55320169,  22496920,
     55641020,  22001856,
     54977398,  19995935,
@@ -14015,15 +14015,15 @@ int32_t om_outline_1[] = {
     55259236,  22590895,
 };
 
-int32_t* om_outlines[] = {
+const int32_t* om_outlines[] = {
   om_outline_1,
 };
-uint32_t om_outline_lengths[] = {
+const uint32_t om_outline_lengths[] = {
   48,
 };
 
 /* ----------------Pakistan */
-int32_t pk_outline_1[] = {
+const int32_t pk_outline_1[] = {
     60843397,  29858688,
     61889890,  28546525,
     62758004,  28243572,
@@ -14141,15 +14141,15 @@ int32_t pk_outline_1[] = {
     60868200,  29884375,
 };
 
-int32_t* pk_outlines[] = {
+const int32_t* pk_outlines[] = {
   pk_outline_1,
 };
-uint32_t pk_outline_lengths[] = {
+const uint32_t pk_outline_lengths[] = {
   115,
 };
 
 /* ------------------Panama */
-int32_t pa_outline_1[] = {
+const int32_t pa_outline_1[] = {
    -80843408,   6771309,
    -80283883,   6853808,
    -79678113,   7199233,
@@ -14202,15 +14202,15 @@ int32_t pa_outline_1[] = {
    -80846247,   6771300,
 };
 
-int32_t* pa_outlines[] = {
+const int32_t* pa_outlines[] = {
   pa_outline_1,
 };
-uint32_t pa_outline_lengths[] = {
+const uint32_t pa_outline_lengths[] = {
   50,
 };
 
 /* ------------Pitcairn Is. */
-int32_t pn_outline_1[] = {
+const int32_t pn_outline_1[] = {
   -128295889, -24823151,
   -127958751, -24679685,
   -127842536, -24338485,
@@ -14222,15 +14222,15 @@ int32_t pn_outline_1[] = {
   -128298736, -24823168,
 };
 
-int32_t* pn_outlines[] = {
+const int32_t* pn_outlines[] = {
   pn_outline_1,
 };
-uint32_t pn_outline_lengths[] = {
+const uint32_t pn_outline_lengths[] = {
   9,
 };
 
 /* --------------------Peru */
-int32_t pe_outline_1[] = {
+const int32_t pe_outline_1[] = {
    -69839782, -10933436,
    -70642319, -11010277,
    -70541115,  -9437508,
@@ -14332,15 +14332,15 @@ int32_t pe_outline_1[] = {
    -69674034, -10954057,
 };
 
-int32_t* pe_outlines[] = {
+const int32_t* pe_outlines[] = {
   pe_outline_1,
 };
-uint32_t pe_outline_lengths[] = {
+const uint32_t pe_outline_lengths[] = {
   99,
 };
 
 /* -------------Philippines */
-int32_t ph_outline_1[] = {
+const int32_t ph_outline_1[] = {
    121945491,  19929515,
    122301548,  20090514,
    122477950,  20512520,
@@ -14351,7 +14351,7 @@ int32_t ph_outline_1[] = {
    121558641,  20100147,
    121942644,  19929498,
 };
-int32_t ph_outline_2[] = {
+const int32_t ph_outline_2[] = {
    125350493,   5148801,
    125766969,   5339651,
    126103362,   5868411,
@@ -14440,7 +14440,7 @@ int32_t ph_outline_2[] = {
    123893713,   5916841,
    125347654,   5148783,
 };
-int32_t ph_outline_3[] = {
+const int32_t ph_outline_3[] = {
    119880678,   4609660,
    120472236,   4816619,
    120699411,   5266435,
@@ -14452,19 +14452,19 @@ int32_t ph_outline_3[] = {
    119877830,   4609651,
 };
 
-int32_t* ph_outlines[] = {
+const int32_t* ph_outlines[] = {
   ph_outline_1,
   ph_outline_2,
   ph_outline_3,
 };
-uint32_t ph_outline_lengths[] = {
+const uint32_t ph_outline_lengths[] = {
   9,
   87,
   9,
 };
 
 /* -------------------Palau */
-int32_t pw_outline_1[] = {
+const int32_t pw_outline_1[] = {
    134536961,   6912010,
    134953923,   7111797,
    135108757,   7666333,
@@ -14475,7 +14475,7 @@ int32_t pw_outline_1[] = {
    134201386,   7059920,
    134534113,   6912001,
 };
-int32_t pw_outline_2[] = {
+const int32_t pw_outline_2[] = {
    131151723,   2570248,
    131490172,   2707068,
    131637092,   3056447,
@@ -14487,17 +14487,17 @@ int32_t pw_outline_2[] = {
    131148884,   2570239,
 };
 
-int32_t* pw_outlines[] = {
+const int32_t* pw_outlines[] = {
   pw_outline_1,
   pw_outline_2,
 };
-uint32_t pw_outline_lengths[] = {
+const uint32_t pw_outline_lengths[] = {
   9,
   9,
 };
 
 /* --------Papua New Guinea */
-int32_t pg_outline_1[] = {
+const int32_t pg_outline_1[] = {
    150324574, -11098828,
    151105039, -11030325,
    151649292, -10356584,
@@ -14597,7 +14597,7 @@ int32_t pg_outline_1[] = {
    149833375, -10982550,
    150321735, -11098854,
 };
-int32_t pg_outline_2[] = {
+const int32_t pg_outline_2[] = {
    147849257,  -2787418,
    148195243,  -2617968,
    148318303,  -2199593,
@@ -14610,7 +14610,7 @@ int32_t pg_outline_2[] = {
    147384028,  -2596855,
    147846418,  -2787445,
 };
-int32_t pg_outline_3[] = {
+const int32_t pg_outline_3[] = {
    155723152,  -7311496,
    156309806,  -7025189,
    156333099,  -6371671,
@@ -14623,13 +14623,13 @@ int32_t pg_outline_3[] = {
    155049910,  -7060943,
    155720313,  -7311514,
 };
-int32_t pg_outline_4[] = {
+const int32_t pg_outline_4[] = {
    155677554,  -7088915,
    155738945,  -6972952,
    155864619,  -7043237,
    155739358,  -7121058,
 };
-int32_t pg_outline_5[] = {
+const int32_t pg_outline_5[] = {
    152871953,  -9670240,
    153329483,  -9472311,
    153409406,  -8934805,
@@ -14640,7 +14640,7 @@ int32_t pg_outline_5[] = {
    152477054,  -9541656,
    152869115,  -9670258,
 };
-int32_t pg_outline_6[] = {
+const int32_t pg_outline_6[] = {
    153558096, -12072956,
    154548003, -11760630,
    154717614, -11464338,
@@ -14654,7 +14654,7 @@ int32_t pg_outline_6[] = {
    153555248, -12072974,
 };
 
-int32_t* pg_outlines[] = {
+const int32_t* pg_outlines[] = {
   pg_outline_1,
   pg_outline_2,
   pg_outline_3,
@@ -14662,7 +14662,7 @@ int32_t* pg_outlines[] = {
   pg_outline_5,
   pg_outline_6,
 };
-uint32_t pg_outline_lengths[] = {
+const uint32_t pg_outline_lengths[] = {
   98,
   11,
   11,
@@ -14672,7 +14672,7 @@ uint32_t pg_outline_lengths[] = {
 };
 
 /* ------------------Poland */
-int32_t pl_outline_1[] = {
+const int32_t pl_outline_1[] = {
     23482986,  54005951,
     23370076,  54200460,
     22893924,  54390530,
@@ -14744,15 +14744,15 @@ int32_t pl_outline_1[] = {
     23477668,  53958950,
 };
 
-int32_t* pl_outlines[] = {
+const int32_t* pl_outlines[] = {
   pl_outline_1,
 };
-uint32_t pl_outline_lengths[] = {
+const uint32_t pl_outline_lengths[] = {
   69,
 };
 
 /* -------------Puerto Rico */
-int32_t pr_outline_1[] = {
+const int32_t pr_outline_1[] = {
    -66242057,  17516821,
    -65143094,  17728674,
    -64872476,  17987223,
@@ -14769,15 +14769,15 @@ int32_t pr_outline_1[] = {
    -66244904,  17516813,
 };
 
-int32_t* pr_outlines[] = {
+const int32_t* pr_outlines[] = {
   pr_outline_1,
 };
-uint32_t pr_outline_lengths[] = {
+const uint32_t pr_outline_lengths[] = {
   14,
 };
 
 /* ----------------N. Korea */
-int32_t kp_outline_1[] = {
+const int32_t kp_outline_1[] = {
    125411452,  37361402,
    125795347,  37493271,
    126073591,  37387018,
@@ -14827,24 +14827,24 @@ int32_t kp_outline_1[] = {
    125104228,  37429712,
    125408614,  37361380,
 };
-int32_t kp_outline_2[] = {
+const int32_t kp_outline_2[] = {
    126460837,  37610364,
    126369371,  37772009,
    126493599,  37782547,
    126516030,  37604675,
 };
 
-int32_t* kp_outlines[] = {
+const int32_t* kp_outlines[] = {
   kp_outline_1,
   kp_outline_2,
 };
-uint32_t kp_outline_lengths[] = {
+const uint32_t kp_outline_lengths[] = {
   48,
   4,
 };
 
 /* ----------------Portugal */
-int32_t pt_outline_1[] = {
+const int32_t pt_outline_1[] = {
     -7832609,  36644612,
     -7164172,  36876022,
     -6970855,  37090702,
@@ -14890,7 +14890,7 @@ int32_t pt_outline_1[] = {
     -8558232,  36744321,
     -7938161,  36644322,
 };
-int32_t pt_outline_2[] = {
+const int32_t pt_outline_2[] = {
    -31176796,  39009376,
    -30827225,  39144087,
    -30689756,  39491733,
@@ -14901,7 +14901,7 @@ int32_t pt_outline_2[] = {
    -31553558,  39113259,
    -31179634,  39009355,
 };
-int32_t pt_outline_3[] = {
+const int32_t pt_outline_3[] = {
    -28227851,  38030260,
    -27438672,  38324588,
    -27052738,  38282463,
@@ -14917,7 +14917,7 @@ int32_t pt_outline_3[] = {
    -28639935,  38086052,
    -28230690,  38030253,
 };
-int32_t pt_outline_4[] = {
+const int32_t pt_outline_4[] = {
    -25435061,  37357659,
    -24832731,  37548665,
    -24797661,  38022109,
@@ -14929,7 +14929,7 @@ int32_t pt_outline_4[] = {
    -25921579,  37437986,
    -25437899,  37357645,
 };
-int32_t pt_outline_5[] = {
+const int32_t pt_outline_5[] = {
    -25029319,  36580151,
    -24675364,  36721559,
    -24590393,  37043370,
@@ -14940,7 +14940,7 @@ int32_t pt_outline_5[] = {
    -25411812,  36644301,
    -25032166,  36580144,
 };
-int32_t pt_outline_6[] = {
+const int32_t pt_outline_6[] = {
    -16834375,  32267485,
    -16324967,  32540447,
    -16290615,  32926084,
@@ -14952,7 +14952,7 @@ int32_t pt_outline_6[] = {
    -16837213,  32267477,
 };
 
-int32_t* pt_outlines[] = {
+const int32_t* pt_outlines[] = {
   pt_outline_1,
   pt_outline_2,
   pt_outline_3,
@@ -14960,7 +14960,7 @@ int32_t* pt_outlines[] = {
   pt_outline_5,
   pt_outline_6,
 };
-uint32_t pt_outline_lengths[] = {
+const uint32_t pt_outline_lengths[] = {
   44,
   9,
   14,
@@ -14970,7 +14970,7 @@ uint32_t pt_outline_lengths[] = {
 };
 
 /* ----------------Paraguay */
-int32_t py_outline_1[] = {
+const int32_t py_outline_1[] = {
    -58160031, -19854907,
    -59090515, -19286212,
    -60007362, -19297574,
@@ -15010,15 +15010,15 @@ int32_t py_outline_1[] = {
    -58139926, -19998882,
 };
 
-int32_t* py_outlines[] = {
+const int32_t* py_outlines[] = {
   py_outline_1,
 };
-uint32_t py_outline_lengths[] = {
+const uint32_t py_outline_lengths[] = {
   37,
 };
 
 /* -----------Fr. Polynesia */
-int32_t pf_outline_1[] = {
+const int32_t pf_outline_1[] = {
   -140092745,  -9889769,
   -139760808,  -9743893,
   -139584550,  -9392835,
@@ -15031,7 +15031,7 @@ int32_t pf_outline_1[] = {
   -140522463,  -9615008,
   -140095583,  -9889796,
 };
-int32_t pf_outline_2[] = {
+const int32_t pf_outline_2[] = {
   -138683638, -10976550,
   -138278552, -10765898,
   -138190140, -10349664,
@@ -15046,7 +15046,7 @@ int32_t pf_outline_2[] = {
   -139002064, -10849772,
   -138686477, -10976568,
 };
-int32_t pf_outline_3[] = {
+const int32_t pf_outline_3[] = {
   -145477687, -16779907,
   -145199613, -16683531,
   -145033245, -16334632,
@@ -15061,7 +15061,7 @@ int32_t pf_outline_3[] = {
   -145852428, -16617804,
   -145480525, -16779933,
 };
-int32_t pf_outline_4[] = {
+const int32_t pf_outline_4[] = {
   -142527080, -16540842,
   -142179621, -16388369,
   -142032064, -16014921,
@@ -15072,7 +15072,7 @@ int32_t pf_outline_4[] = {
   -142847069, -16414061,
   -142529919, -16540851,
 };
-int32_t pf_outline_5[] = {
+const int32_t pf_outline_5[] = {
   -151446408, -17311276,
   -151056261, -17178550,
   -150916680, -16830837,
@@ -15083,7 +15083,7 @@ int32_t pf_outline_5[] = {
   -151845026, -17122749,
   -151449255, -17311285,
 };
-int32_t pf_outline_6[] = {
+const int32_t pf_outline_6[] = {
   -143382447, -17101274,
   -142994752, -16881069,
   -143001759, -16444795,
@@ -15094,7 +15094,7 @@ int32_t pf_outline_6[] = {
   -143789671, -17037085,
   -143385286, -17101292,
 };
-int32_t pf_outline_7[] = {
+const int32_t pf_outline_7[] = {
   -149178575, -18291896,
   -148733846, -17971835,
   -148834538, -17458685,
@@ -15105,7 +15105,7 @@ int32_t pf_outline_7[] = {
   -150232047, -17827949,
   -149181414, -18291905,
 };
-int32_t pf_outline_8[] = {
+const int32_t pf_outline_8[] = {
   -140667442, -18844310,
   -140253435, -18571838,
   -140394965, -18052361,
@@ -15117,7 +15117,7 @@ int32_t pf_outline_8[] = {
   -141104131, -18653546,
   -140670281, -18844327,
 };
-int32_t pf_outline_9[] = {
+const int32_t pf_outline_9[] = {
   -136309301, -18994090,
   -135880661, -18712148,
   -135973843, -18243492,
@@ -15127,7 +15127,7 @@ int32_t pf_outline_9[] = {
   -137291169, -18661749,
   -136312149, -18994116,
 };
-int32_t pf_outline_10[] = {
+const int32_t pf_outline_10[] = {
   -138531383, -21297399,
   -138186430, -21153697,
   -138056893, -20844559,
@@ -15139,7 +15139,7 @@ int32_t pf_outline_10[] = {
   -138534222, -21297416,
 };
 
-int32_t* pf_outlines[] = {
+const int32_t* pf_outlines[] = {
   pf_outline_1,
   pf_outline_2,
   pf_outline_3,
@@ -15151,7 +15151,7 @@ int32_t* pf_outlines[] = {
   pf_outline_9,
   pf_outline_10,
 };
-uint32_t pf_outline_lengths[] = {
+const uint32_t pf_outline_lengths[] = {
   11,
   13,
   13,
@@ -15165,7 +15165,7 @@ uint32_t pf_outline_lengths[] = {
 };
 
 /* -------------------Qatar */
-int32_t qa_outline_1[] = {
+const int32_t qa_outline_1[] = {
     51623125,  24301046,
     52024358,  24871718,
     52014548,  25851944,
@@ -15181,15 +15181,15 @@ int32_t qa_outline_1[] = {
     51605455,  24338435,
 };
 
-int32_t* qa_outlines[] = {
+const int32_t* qa_outlines[] = {
   qa_outline_1,
 };
-uint32_t qa_outline_lengths[] = {
+const uint32_t qa_outline_lengths[] = {
   13,
 };
 
 /* -----------------Romania */
-int32_t ro_outline_1[] = {
+const int32_t ro_outline_1[] = {
     28111950,  45569156,
     28239493,  46640820,
     28071805,  46978420,
@@ -15243,15 +15243,15 @@ int32_t ro_outline_1[] = {
     28162543,  45513757,
 };
 
-int32_t* ro_outlines[] = {
+const int32_t* ro_outlines[] = {
   ro_outline_1,
 };
-uint32_t ro_outline_lengths[] = {
+const uint32_t ro_outline_lengths[] = {
   51,
 };
 
 /* ------------------Russia */
-int32_t ru_outline_1[] = {
+const int32_t ru_outline_1[] = {
     57969705,  81630504,
     59617817,  81706461,
     59788173,  81741223,
@@ -15264,7 +15264,7 @@ int32_t ru_outline_1[] = {
     57614816,  81654880,
     57966866,  81630500,
 };
-int32_t ru_outline_2[] = {
+const int32_t ru_outline_2[] = {
     63532612,  81530666,
     63970289,  81563114,
     64212816,  81631157,
@@ -15278,7 +15278,7 @@ int32_t ru_outline_2[] = {
     62723059,  81547498,
     63529773,  81530663,
 };
-int32_t ru_outline_3[] = {
+const int32_t ru_outline_3[] = {
     56990307,  79993737,
     57440938,  80048485,
     57846941,  80026967,
@@ -15373,7 +15373,7 @@ int32_t ru_outline_3[] = {
     55552500,  80023780,
     56987469,  79993736,
 };
-int32_t ru_outline_4[] = {
+const int32_t ru_outline_4[] = {
     98415200,  78700108,
     99671692,  78759481,
    100340748,  78926839,
@@ -15437,7 +15437,7 @@ int32_t ru_outline_4[] = {
     97334770,  78750483,
     98412353,  78700104,
 };
-int32_t ru_outline_5[] = {
+const int32_t ru_outline_5[] = {
     91227142,  80993788,
     91545110,  81015093,
     91984772,  81115694,
@@ -15449,7 +15449,7 @@ int32_t ru_outline_5[] = {
     89627260,  81069261,
     91224303,  80993786,
 };
-int32_t ru_outline_6[] = {
+const int32_t ru_outline_6[] = {
     51434488,  79841567,
     51730195,  79861635,
     51877483,  79911438,
@@ -15499,7 +15499,7 @@ int32_t ru_outline_6[] = {
     50207946,  79858470,
     51431649,  79841565,
 };
-int32_t ru_outline_7[] = {
+const int32_t ru_outline_7[] = {
     79101170,  80740036,
     80594018,  80808424,
     80877032,  80928157,
@@ -15512,7 +15512,7 @@ int32_t ru_outline_7[] = {
     78756127,  80765508,
     79098332,  80740035,
 };
-int32_t ru_outline_8[] = {
+const int32_t ru_outline_8[] = {
     52860599,  80096279,
     53685873,  80113663,
     54141462,  80183451,
@@ -15535,7 +15535,7 @@ int32_t ru_outline_8[] = {
     52458388,  80108236,
     52857761,  80096276,
 };
-int32_t ru_outline_9[] = {
+const int32_t ru_outline_9[] = {
     59333716,  79844120,
     59977421,  79895589,
     60360149,  79994494,
@@ -15547,7 +15547,7 @@ int32_t ru_outline_9[] = {
     58895688,  79875454,
     59330877,  79844118,
 };
-int32_t ru_outline_10[] = {
+const int32_t ru_outline_10[] = {
     76813539,  79407248,
     77853967,  79435617,
     78033145,  79489741,
@@ -15560,7 +15560,7 @@ int32_t ru_outline_10[] = {
     76390836,  79426206,
     76810700,  79407246,
 };
-int32_t ru_outline_11[] = {
+const int32_t ru_outline_11[] = {
     99849774,  77862745,
    100344395,  77898746,
    101444203,  78100803,
@@ -15598,7 +15598,7 @@ int32_t ru_outline_11[] = {
     99214809,  77903596,
     99846935,  77862739,
 };
-int32_t ru_outline_12[] = {
+const int32_t ru_outline_12[] = {
    107484250,  77964442,
    107927820,  78017618,
    108116287,  78098569,
@@ -15613,7 +15613,7 @@ int32_t ru_outline_12[] = {
    106199093,  78058648,
    107481403,  77964440,
 };
-int32_t ru_outline_13[] = {
+const int32_t ru_outline_13[] = {
    107306213,  77141884,
    107936327,  77186773,
    108128594,  77268821,
@@ -15624,7 +15624,7 @@ int32_t ru_outline_13[] = {
    106939557,  77182814,
    107303374,  77141880,
 };
-int32_t ru_outline_14[] = {
+const int32_t ru_outline_14[] = {
     89302124,  77083925,
     89847195,  77121783,
     90128143,  77285566,
@@ -15635,7 +15635,7 @@ int32_t ru_outline_14[] = {
     88858096,  77140196,
     89299286,  77083923,
 };
-int32_t ru_outline_15[] = {
+const int32_t ru_outline_15[] = {
     95856754,  76873288,
     96575280,  76933209,
     96990490,  77100090,
@@ -15648,7 +15648,7 @@ int32_t ru_outline_15[] = {
     95050219,  76930586,
     95853915,  76873286,
 };
-int32_t ru_outline_16[] = {
+const int32_t ru_outline_16[] = {
     56439236,  70412853,
     57480473,  70477235,
     57987357,  70640802,
@@ -15735,7 +15735,7 @@ int32_t ru_outline_16[] = {
     55424858,  70525363,
     56436397,  70412844,
 };
-int32_t ru_outline_17[] = {
+const int32_t ru_outline_17[] = {
    148400885,  76544085,
    149410232,  76575123,
    149855572,  76782439,
@@ -15746,7 +15746,7 @@ int32_t ru_outline_17[] = {
    148080977,  76574681,
    148398047,  76544082,
 };
-int32_t ru_outline_18[] = {
+const int32_t ru_outline_18[] = {
     97537924,  76479777,
     97877424,  76516718,
     98031970,  76615689,
@@ -15757,7 +15757,7 @@ int32_t ru_outline_18[] = {
     97131319,  76512753,
     97535085,  76479774,
 };
-int32_t ru_outline_19[] = {
+const int32_t ru_outline_19[] = {
    139103152,  74537201,
    139655723,  74606163,
    139910737,  74769048,
@@ -15797,7 +15797,7 @@ int32_t ru_outline_19[] = {
    137751852,  74720386,
    139100313,  74537196,
 };
-int32_t ru_outline_20[] = {
+const int32_t ru_outline_20[] = {
    152790261,  75977311,
    153119987,  76013240,
    153335035,  76122511,
@@ -15808,7 +15808,7 @@ int32_t ru_outline_20[] = {
    152465870,  76009865,
    152787422,  75977306,
 };
-int32_t ru_outline_21[] = {
+const int32_t ru_outline_21[] = {
    135748429,  75268127,
    136326342,  75348176,
    136618043,  75607748,
@@ -15819,7 +15819,7 @@ int32_t ru_outline_21[] = {
    135210329,  75293695,
    135745590,  75268125,
 };
-int32_t ru_outline_22[] = {
+const int32_t ru_outline_22[] = {
    149597379,  74654119,
    150548712,  74763791,
    150946945,  74851255,
@@ -15844,7 +15844,7 @@ int32_t ru_outline_22[] = {
    147873476,  74722643,
    149050637,  74653962,
 };
-int32_t ru_outline_23[] = {
+const int32_t ru_outline_23[] = {
     81980513,  75132277,
     82329284,  75175505,
     82670716,  75351133,
@@ -15856,7 +15856,7 @@ int32_t ru_outline_23[] = {
     81337868,  75207812,
     81977675,  75132274,
 };
-int32_t ru_outline_24[] = {
+const int32_t ru_outline_24[] = {
     84714383,  74278525,
     85082558,  74332017,
     85321563,  74521023,
@@ -15867,7 +15867,7 @@ int32_t ru_outline_24[] = {
     84143558,  74336912,
     84711545,  74278520,
 };
-int32_t ru_outline_25[] = {
+const int32_t ru_outline_25[] = {
    110421831,  74132613,
    110250513,  74140678,
    110360494,  74260181,
@@ -15879,7 +15879,7 @@ int32_t ru_outline_25[] = {
    110977493,  74168487,
    110718248,  74101579,
 };
-int32_t ru_outline_26[] = {
+const int32_t ru_outline_26[] = {
    143196595,  73090525,
    143677050,  73118813,
    143925631,  73213366,
@@ -15907,7 +15907,7 @@ int32_t ru_outline_26[] = {
    141464274,  73187049,
    143193747,  73090522,
 };
-int32_t ru_outline_27[] = {
+const int32_t ru_outline_27[] = {
    136125659,  73759823,
    136588992,  73852524,
    136674493,  74032106,
@@ -15919,7 +15919,7 @@ int32_t ru_outline_27[] = {
    135771076,  73806861,
    136122820,  73759818,
 };
-int32_t ru_outline_28[] = {
+const int32_t ru_outline_28[] = {
     83415051,  73915532,
     83771098,  73950548,
     84045246,  74051052,
@@ -15931,7 +15931,7 @@ int32_t ru_outline_28[] = {
     82216097,  73975333,
     83412212,  73915527,
 };
-int32_t ru_outline_29[] = {
+const int32_t ru_outline_29[] = {
    112019566,  73856536,
    111753826,  73910887,
    111999075,  74035480,
@@ -15939,7 +15939,7 @@ int32_t ru_outline_29[] = {
    112468283,  73848762,
    112222513,  73835225,
 };
-int32_t ru_outline_30[] = {
+const int32_t ru_outline_30[] = {
     75348521,  73303636,
     76089038,  73354875,
     76874067,  73321803,
@@ -15954,7 +15954,7 @@ int32_t ru_outline_30[] = {
     75028065,  73341036,
     75345682,  73303631,
 };
-int32_t ru_outline_31[] = {
+const int32_t ru_outline_31[] = {
    180000000,  71723702,
    179798475,  71664529,
    179580544,  71588550,
@@ -15962,7 +15962,7 @@ int32_t ru_outline_31[] = {
    179759479,  70869021,
    180000000,  70771520,
 };
-int32_t ru_outline_32[] = {
+const int32_t ru_outline_32[] = {
   -179413640,  70771523,
   -177594030,  70941499,
   -177142213,  71090065,
@@ -15975,7 +15975,7 @@ int32_t ru_outline_32[] = {
   -180000000,  70869021,
   -179416478,  70771520,
 };
-int32_t ru_outline_33[] = {
+const int32_t ru_outline_33[] = {
    178796829,  70673859,
    179837779,  70765219,
    180000000,  70920609,
@@ -15986,14 +15986,14 @@ int32_t ru_outline_33[] = {
    178400861,  70749650,
    178793991,  70673853,
 };
-int32_t ru_outline_34[] = {
+const int32_t ru_outline_34[] = {
   -180000000,  70765219,
   -179609434,  70920609,
   -179589410,  71595368,
   -179886582,  71674981,
   -180000000,  71653084,
 };
-int32_t ru_outline_35[] = {
+const int32_t ru_outline_35[] = {
    160653466,  70657534,
    161064301,  70728091,
    161155588,  70857224,
@@ -16004,13 +16004,13 @@ int32_t ru_outline_35[] = {
    160237833,  70700582,
    160650627,  70657531,
 };
-int32_t ru_outline_36[] = {
+const int32_t ru_outline_36[] = {
     30155186,  69745921,
     30116954,  69790160,
     29812282,  69728781,
     30088217,  69717552,
 };
-int32_t ru_outline_37[] = {
+const int32_t ru_outline_37[] = {
     48669797,  68569514,
     49882154,  68726078,
     50199583,  68876620,
@@ -16025,7 +16025,7 @@ int32_t ru_outline_37[] = {
     48061296,  68716785,
     48666958,  68569511,
 };
-int32_t ru_outline_38[] = {
+const int32_t ru_outline_38[] = {
    169838874,  68976573,
    169645701,  69186188,
    168711453,  69381082,
@@ -16038,7 +16038,7 @@ int32_t ru_outline_38[] = {
    170287646,  68975118,
    169869462,  68955752,
 };
-int32_t ru_outline_39[] = {
+const int32_t ru_outline_39[] = {
    180000000,  69140437,
    179781730,  69123885,
    179550917,  68985589,
@@ -16046,7 +16046,7 @@ int32_t ru_outline_39[] = {
    179911501,  64880739,
    180000000,  64918011,
 };
-int32_t ru_outline_40[] = {
+const int32_t ru_outline_40[] = {
   -173155140,  64083883,
   -172195047,  64240854,
   -171972014,  64349075,
@@ -16086,7 +16086,7 @@ int32_t ru_outline_40[] = {
   -174144392,  64246865,
   -173157979,  64083879,
 };
-int32_t ru_outline_41[] = {
+const int32_t ru_outline_41[] = {
     37185213,  64083812,
     36662448,  64163814,
     36482973,  64318388,
@@ -16101,7 +16101,7 @@ int32_t ru_outline_41[] = {
     37586751,  64096255,
     37349704,  64045693,
 };
-int32_t ru_outline_42[] = {
+const int32_t ru_outline_42[] = {
    168085444,  54250574,
    168413194,  54336245,
    168529193,  54532683,
@@ -16119,7 +16119,7 @@ int32_t ru_outline_42[] = {
    167092644,  54671706,
    168082605,  54250564,
 };
-int32_t ru_outline_43[] = {
+const int32_t ru_outline_43[] = {
     22766238,  54356781,
     22684428,  54562920,
     22824682,  54871274,
@@ -16138,13 +16138,13 @@ int32_t ru_outline_43[] = {
     19604357,  54459154,
     22731814,  54350117,
 };
-int32_t ru_outline_44[] = {
+const int32_t ru_outline_44[] = {
    135785565,  54886456,
    136342539,  55100603,
    136288829,  54873859,
    135919361,  54851568,
 };
-int32_t ru_outline_45[] = {
+const int32_t ru_outline_45[] = {
    153058408,  47402033,
    153386005,  47501602,
    153550208,  47765884,
@@ -16155,7 +16155,7 @@ int32_t ru_outline_45[] = {
    152701255,  47489158,
    153055569,  47402015,
 };
-int32_t ru_outline_46[] = {
+const int32_t ru_outline_46[] = {
    151819954,  46477722,
    152335569,  46690592,
    152735715,  47173580,
@@ -16168,7 +16168,7 @@ int32_t ru_outline_46[] = {
    151451879,  46559571,
    151817116,  46477709,
 };
-int32_t ru_outline_47[] = {
+const int32_t ru_outline_47[] = {
    146034471,  43078789,
    147237334,  43589828,
    147340316,  43864501,
@@ -16198,7 +16198,7 @@ int32_t ru_outline_47[] = {
    145575091,  43188811,
    146031624,  43078783,
 };
-int32_t ru_outline_48[] = {
+const int32_t ru_outline_48[] = {
     87476182,  49091447,
     87988042,  49186893,
     88192579,  49451707,
@@ -17278,7 +17278,7 @@ int32_t ru_outline_48[] = {
     86626474,  49562684,
     87416704,  49076589,
 };
-int32_t ru_outline_49[] = {
+const int32_t ru_outline_49[] = {
   -180000000,  64673745,
   -179556020,  65038544,
   -179551420,  68991589,
@@ -17286,7 +17286,7 @@ int32_t ru_outline_49[] = {
   -180000000,  69520945,
 };
 
-int32_t* ru_outlines[] = {
+const int32_t* ru_outlines[] = {
   ru_outline_1,
   ru_outline_2,
   ru_outline_3,
@@ -17337,7 +17337,7 @@ int32_t* ru_outlines[] = {
   ru_outline_48,
   ru_outline_49,
 };
-uint32_t ru_outline_lengths[] = {
+const uint32_t ru_outline_lengths[] = {
   11,
   12,
   93,
@@ -17390,7 +17390,7 @@ uint32_t ru_outline_lengths[] = {
 };
 
 /* ------------------Rwanda */
-int32_t rw_outline_1[] = {
+const int32_t rw_outline_1[] = {
     30656608,  -2373806,
     30854992,  -2265390,
     30812618,  -1563051,
@@ -17409,15 +17409,15 @@ int32_t rw_outline_1[] = {
     30593403,  -2396802,
 };
 
-int32_t* rw_outlines[] = {
+const int32_t* rw_outlines[] = {
   rw_outline_1,
 };
-uint32_t rw_outline_lengths[] = {
+const uint32_t rw_outline_lengths[] = {
   16,
 };
 
 /* ---------------W. Sahara */
-int32_t w0_outline_1[] = {
+const int32_t w0_outline_1[] = {
     -8817827,  27656425,
     -8794884,  27120690,
     -9413033,  27088468,
@@ -17453,15 +17453,15 @@ int32_t w0_outline_1[] = {
     -8683358,  27656449,
 };
 
-int32_t* w0_outlines[] = {
+const int32_t* w0_outlines[] = {
   w0_outline_1,
 };
-uint32_t w0_outline_lengths[] = {
+const uint32_t w0_outline_lengths[] = {
   33,
 };
 
 /* ------------Saudi Arabia */
-int32_t sa_outline_1[] = {
+const int32_t sa_outline_1[] = {
     55104312,  22621454,
     52555064,  22932807,
     51592537,  24078838,
@@ -17543,15 +17543,15 @@ int32_t sa_outline_1[] = {
     55119404,  22623940,
 };
 
-int32_t* sa_outlines[] = {
+const int32_t* sa_outlines[] = {
   sa_outline_1,
 };
-uint32_t sa_outline_lengths[] = {
+const uint32_t sa_outline_lengths[] = {
   79,
 };
 
 /* -------------------Sudan */
-int32_t sd_outline_1[] = {
+const int32_t sd_outline_1[] = {
     34078093,   9461510,
     34343977,  10658623,
     34571816,  10880184,
@@ -17630,20 +17630,20 @@ int32_t sd_outline_1[] = {
     34078102,   9461510,
 };
 
-int32_t* sd_outlines[] = {
+const int32_t* sd_outlines[] = {
   sd_outline_1,
 };
-uint32_t sd_outline_lengths[] = {
+const uint32_t sd_outline_lengths[] = {
   76,
 };
 
 /* ----------------S. Sudan */
-int32_t s0_outline_1[] = {
+const int32_t s0_outline_1[] = {
     24147398,   8665640,
     24048170,   8691330,
     24147389,   8665613,
 };
-int32_t s0_outline_2[] = {
+const int32_t s0_outline_2[] = {
     34380206,   4620667,
     35268316,   5492293,
     34983577,   5858318,
@@ -17704,17 +17704,17 @@ int32_t s0_outline_2[] = {
     34176854,   4419105,
 };
 
-int32_t* s0_outlines[] = {
+const int32_t* s0_outlines[] = {
   s0_outline_1,
   s0_outline_2,
 };
-uint32_t s0_outline_lengths[] = {
+const uint32_t s0_outline_lengths[] = {
   3,
   58,
 };
 
 /* -----------------Senegal */
-int32_t sn_outline_1[] = {
+const int32_t sn_outline_1[] = {
    -12408663,  14889014,
    -13206447,  15616869,
    -13409637,  16059174,
@@ -17750,7 +17750,7 @@ int32_t sn_outline_1[] = {
    -12019180,  14206497,
    -12302518,  14816998,
 };
-int32_t sn_outline_2[] = {
+const int32_t sn_outline_2[] = {
    -16769301,  13148497,
    -16824798,  13341042,
    -16669363,  13474984,
@@ -17771,17 +17771,17 @@ int32_t sn_outline_2[] = {
    -16763336,  13064136,
 };
 
-int32_t* sn_outlines[] = {
+const int32_t* sn_outlines[] = {
   sn_outline_1,
   sn_outline_2,
 };
-uint32_t sn_outline_lengths[] = {
+const uint32_t sn_outline_lengths[] = {
   34,
   18,
 };
 
 /* ---------------Singapore */
-int32_t sg_outline_1[] = {
+const int32_t sg_outline_1[] = {
    103824181,    813308,
    104212478,    951072,
    104411374,   1192324,
@@ -17795,24 +17795,24 @@ int32_t sg_outline_1[] = {
    103283494,   1064399,
    103822663,    813299,
 };
-int32_t sg_outline_2[] = {
+const int32_t sg_outline_2[] = {
    103963600,   1013211,
    103955335,   1137449,
    104139822,   1165560,
    104066134,    989547,
 };
 
-int32_t* sg_outlines[] = {
+const int32_t* sg_outlines[] = {
   sg_outline_1,
   sg_outline_2,
 };
-uint32_t sg_outline_lengths[] = {
+const uint32_t sg_outline_lengths[] = {
   12,
   4,
 };
 
 /* ------------Saint Helena */
-int32_t sh_outline_1[] = {
+const int32_t sh_outline_1[] = {
    -14395161,  -8423267,
    -14014033,  -8286745,
    -13853423,  -7930631,
@@ -17823,7 +17823,7 @@ int32_t sh_outline_1[] = {
    -14729388,  -8280857,
    -14398000,  -8423285,
 };
-int32_t sh_outline_2[] = {
+const int32_t sh_outline_2[] = {
     -5777757, -16437964,
     -5365493, -16298917,
     -5210552, -15966582,
@@ -17835,17 +17835,17 @@ int32_t sh_outline_2[] = {
     -5780596, -16437990,
 };
 
-int32_t* sh_outlines[] = {
+const int32_t* sh_outlines[] = {
   sh_outline_1,
   sh_outline_2,
 };
-uint32_t sh_outline_lengths[] = {
+const uint32_t sh_outline_lengths[] = {
   9,
   9,
 };
 
 /* -------------Solomon Is. */
-int32_t sb_outline_1[] = {
+const int32_t sb_outline_1[] = {
    162303285, -11275830,
    162725744, -11098482,
    162792399, -10663333,
@@ -17887,7 +17887,7 @@ int32_t sb_outline_1[] = {
    161292500, -10938442,
    162300446, -11275839,
 };
-int32_t sb_outline_2[] = {
+const int32_t sb_outline_2[] = {
    165908835, -11295052,
    166434834, -11086690,
    166610742, -10672120,
@@ -17898,7 +17898,7 @@ int32_t sb_outline_2[] = {
    165523709, -11178100,
    165905996, -11295079,
 };
-int32_t sb_outline_3[] = {
+const int32_t sb_outline_3[] = {
    160510526, -12274261,
    160958911, -12029534,
    160956890, -11562836,
@@ -17908,7 +17908,7 @@ int32_t sb_outline_3[] = {
    159622442, -11813955,
    160507687, -12274279,
 };
-int32_t sb_outline_4[] = {
+const int32_t sb_outline_4[] = {
    166843559, -12123628,
    167238144, -11986326,
    167376421, -11624418,
@@ -17920,13 +17920,13 @@ int32_t sb_outline_4[] = {
    166840720, -12123637,
 };
 
-int32_t* sb_outlines[] = {
+const int32_t* sb_outlines[] = {
   sb_outline_1,
   sb_outline_2,
   sb_outline_3,
   sb_outline_4,
 };
-uint32_t sb_outline_lengths[] = {
+const uint32_t sb_outline_lengths[] = {
   40,
   9,
   8,
@@ -17934,7 +17934,7 @@ uint32_t sb_outline_lengths[] = {
 };
 
 /* ------------Sierra Leone */
-int32_t sl_outline_1[] = {
+const int32_t sl_outline_1[] = {
    -11505119,   6457463,
    -11148218,   6622868,
    -11507527,   6906525,
@@ -17961,15 +17961,15 @@ int32_t sl_outline_1[] = {
    -11507967,   6457454,
 };
 
-int32_t* sl_outlines[] = {
+const int32_t* sl_outlines[] = {
   sl_outline_1,
 };
-uint32_t sl_outline_lengths[] = {
+const uint32_t sl_outline_lengths[] = {
   24,
 };
 
 /* -------------El Salvador */
-int32_t sv_outline_1[] = {
+const int32_t sv_outline_1[] = {
    -89418824,  14431082,
    -90095184,  13736518,
    -90546210,  13915665,
@@ -17988,22 +17988,22 @@ int32_t sv_outline_1[] = {
    -89383242,  14427615,
 };
 
-int32_t* sv_outlines[] = {
+const int32_t* sv_outlines[] = {
   sv_outline_1,
 };
-uint32_t sv_outline_lengths[] = {
+const uint32_t sv_outline_lengths[] = {
   16,
 };
 
 /* --------------San Marino */
 
-int32_t* sm_outlines[] = {
+const int32_t* sm_outlines[] = {
 };
-uint32_t sm_outline_lengths[] = {
+const uint32_t sm_outline_lengths[] = {
 };
 
 /* --------------Somaliland */
-int32_t s1_outline_1[] = {
+const int32_t s1_outline_1[] = {
     42862943,  10903207,
     42656438,  10600017,
     42841653,  10203064,
@@ -18029,15 +18029,15 @@ int32_t s1_outline_1[] = {
     42906143,  10960253,
 };
 
-int32_t* s1_outlines[] = {
+const int32_t* s1_outlines[] = {
   s1_outline_1,
 };
-uint32_t s1_outline_lengths[] = {
+const uint32_t s1_outline_lengths[] = {
   23,
 };
 
 /* -----------------Somalia */
-int32_t so_outline_1[] = {
+const int32_t so_outline_1[] = {
     47452840,   7490493,
     44940540,   4911997,
     43583518,   4854970,
@@ -18076,15 +18076,15 @@ int32_t so_outline_1[] = {
     47731587,   7759338,
 };
 
-int32_t* so_outlines[] = {
+const int32_t* so_outlines[] = {
   so_outline_1,
 };
-uint32_t so_outline_lengths[] = {
+const uint32_t so_outline_lengths[] = {
   36,
 };
 
 /* -St. Pierre and Miquelon */
-int32_t pm_outline_1[] = {
+const int32_t pm_outline_1[] = {
    -56168439,  46443256,
    -55795108,  46573536,
    -55697317,  46863405,
@@ -18098,15 +18098,15 @@ int32_t pm_outline_1[] = {
    -56171286,  46443249,
 };
 
-int32_t* pm_outlines[] = {
+const int32_t* pm_outlines[] = {
   pm_outline_1,
 };
-uint32_t pm_outline_lengths[] = {
+const uint32_t pm_outline_lengths[] = {
   11,
 };
 
 /* ------------------Serbia */
-int32_t rs_outline_1[] = {
+const int32_t rs_outline_1[] = {
     22445683,  42359115,
     22466766,  42842496,
     22706185,  42883917,
@@ -18148,15 +18148,15 @@ int32_t rs_outline_1[] = {
     22422066,  42328860,
 };
 
-int32_t* rs_outlines[] = {
+const int32_t* rs_outlines[] = {
   rs_outline_1,
 };
-uint32_t rs_outline_lengths[] = {
+const uint32_t rs_outline_lengths[] = {
   39,
 };
 
 /* ---Sao Tome and Principe */
-int32_t st_outline_1[] = {
+const int32_t st_outline_1[] = {
      7390593,   1089509,
      7749829,   1256700,
      7901438,   1633962,
@@ -18167,7 +18167,7 @@ int32_t st_outline_1[] = {
      7024053,   1244693,
      7387754,   1089491,
 };
-int32_t st_outline_2[] = {
+const int32_t st_outline_2[] = {
      6559345,   -404792,
      6996996,   -178260,
      7198955,    326756,
@@ -18179,17 +18179,17 @@ int32_t st_outline_2[] = {
      6556507,   -404801,
 };
 
-int32_t* st_outlines[] = {
+const int32_t* st_outlines[] = {
   st_outline_1,
   st_outline_2,
 };
-uint32_t st_outline_lengths[] = {
+const uint32_t st_outline_lengths[] = {
   9,
   9,
 };
 
 /* ----------------Suriname */
-int32_t sr_outline_1[] = {
+const int32_t sr_outline_1[] = {
    -54568413,   2342596,
    -54195523,   2817858,
    -53990464,   3589548,
@@ -18222,15 +18222,15 @@ int32_t sr_outline_1[] = {
    -54604741,   2335774,
 };
 
-int32_t* sr_outlines[] = {
+const int32_t* sr_outlines[] = {
   sr_outline_1,
 };
-uint32_t sr_outline_lengths[] = {
+const uint32_t sr_outline_lengths[] = {
   30,
 };
 
 /* ----------------Slovakia */
-int32_t sk_outline_1[] = {
+const int32_t sk_outline_1[] = {
     22295206,  48685814,
     22538650,  49072712,
     22020079,  49209499,
@@ -18266,15 +18266,15 @@ int32_t sk_outline_1[] = {
     22142861,  48568507,
 };
 
-int32_t* sk_outlines[] = {
+const int32_t* sk_outlines[] = {
   sk_outline_1,
 };
-uint32_t sk_outline_lengths[] = {
+const uint32_t sk_outline_lengths[] = {
   33,
 };
 
 /* ----------------Slovenia */
-int32_t si_outline_1[] = {
+const int32_t si_outline_1[] = {
     15976834,  46801378,
     15957655,  46677615,
     14893277,  46605914,
@@ -18310,15 +18310,15 @@ int32_t si_outline_1[] = {
     16037192,  46844837,
 };
 
-int32_t* si_outlines[] = {
+const int32_t* si_outlines[] = {
   si_outline_1,
 };
-uint32_t si_outline_lengths[] = {
+const uint32_t si_outline_lengths[] = {
   33,
 };
 
 /* ------------------Sweden */
-int32_t se_outline_1[] = {
+const int32_t se_outline_1[] = {
     18149517,  56674050,
     18649178,  56799783,
     19279670,  57262011,
@@ -18334,12 +18334,12 @@ int32_t se_outline_1[] = {
     17737514,  56818710,
     18146678,  56674045,
 };
-int32_t se_outline_2[] = {
+const int32_t se_outline_2[] = {
     12550893,  55556243,
     12620036,  55679362,
     12571563,  55554023,
 };
-int32_t se_outline_3[] = {
+const int32_t se_outline_3[] = {
     20116729,  69020901,
     20348036,  68848715,
     20239978,  68673121,
@@ -18462,19 +18462,19 @@ int32_t se_outline_3[] = {
     20491955,  69033304,
 };
 
-int32_t* se_outlines[] = {
+const int32_t* se_outlines[] = {
   se_outline_1,
   se_outline_2,
   se_outline_3,
 };
-uint32_t se_outline_lengths[] = {
+const uint32_t se_outline_lengths[] = {
   14,
   3,
   120,
 };
 
 /* ---------------Swaziland */
-int32_t sz_outline_1[] = {
+const int32_t sz_outline_1[] = {
     32077914, -26449804,
     32060495, -26018301,
     31335168, -25755584,
@@ -18486,15 +18486,15 @@ int32_t sz_outline_1[] = {
     32105977, -26519979,
 };
 
-int32_t* sz_outlines[] = {
+const int32_t* sz_outlines[] = {
   sz_outline_1,
 };
-uint32_t sz_outline_lengths[] = {
+const uint32_t sz_outline_lengths[] = {
   9,
 };
 
 /* ------------Sint Maarten */
-int32_t sx_outline_1[] = {
+const int32_t sx_outline_1[] = {
    -63018946,  17588940,
    -62665747,  17758613,
    -62570956,  18154244,
@@ -18506,15 +18506,15 @@ int32_t sx_outline_1[] = {
    -63021785,  17588923,
 };
 
-int32_t* sx_outlines[] = {
+const int32_t* sx_outlines[] = {
   sx_outline_1,
 };
-uint32_t sx_outline_lengths[] = {
+const uint32_t sx_outline_lengths[] = {
   9,
 };
 
 /* --------------Seychelles */
-int32_t sc_outline_1[] = {
+const int32_t sc_outline_1[] = {
     55546364,  -5235917,
     55904981,  -5052205,
     55985659,  -4634512,
@@ -18526,15 +18526,15 @@ int32_t sc_outline_1[] = {
     55543526,  -5235926,
 };
 
-int32_t* sc_outlines[] = {
+const int32_t* sc_outlines[] = {
   sc_outline_1,
 };
-uint32_t sc_outline_lengths[] = {
+const uint32_t sc_outline_lengths[] = {
   9,
 };
 
 /* -------------------Syria */
-int32_t sy_outline_1[] = {
+const int32_t sy_outline_1[] = {
     39268379,  33620011,
     40987036,  34429031,
     41194673,  34768982,
@@ -18576,15 +18576,15 @@ int32_t sy_outline_1[] = {
     39056709,  33514022,
 };
 
-int32_t* sy_outlines[] = {
+const int32_t* sy_outlines[] = {
   sy_outline_1,
 };
-uint32_t sy_outline_lengths[] = {
+const uint32_t sy_outline_lengths[] = {
   39,
 };
 
 /* ----Turks and Caicos Is. */
-int32_t tc_outline_1[] = {
+const int32_t tc_outline_1[] = {
    -71662284,  21331482,
    -71390589,  21419392,
    -71209246,  21659266,
@@ -18596,15 +18596,15 @@ int32_t tc_outline_1[] = {
    -71665123,  21331473,
 };
 
-int32_t* tc_outlines[] = {
+const int32_t* tc_outlines[] = {
   tc_outline_1,
 };
-uint32_t tc_outline_lengths[] = {
+const uint32_t tc_outline_lengths[] = {
   9,
 };
 
 /* --------------------Chad */
-int32_t td_outline_1[] = {
+const int32_t td_outline_1[] = {
     22937645,  11192026,
     22922661,  11344885,
     22591102,  11579887,
@@ -18659,39 +18659,39 @@ int32_t td_outline_1[] = {
     22894859,  11028985,
 };
 
-int32_t* td_outlines[] = {
+const int32_t* td_outlines[] = {
   td_outline_1,
 };
-uint32_t td_outline_lengths[] = {
+const uint32_t td_outline_lengths[] = {
   52,
 };
 
 /* --------------------Togo */
 
-int32_t* tg_outlines[] = {
+const int32_t* tg_outlines[] = {
 };
-uint32_t tg_outline_lengths[] = {
+const uint32_t tg_outline_lengths[] = {
 };
 
 /* ----------------Thailand */
-int32_t th_outline_1[] = {
+const int32_t th_outline_1[] = {
    103010487,  11275794,
    103036835,  11389950,
    103027331,  11275484,
 };
-int32_t th_outline_2[] = {
+const int32_t th_outline_2[] = {
     98118065,   9877895,
     98291700,  10051321,
     98134396,   9875365,
 };
-int32_t th_outline_3[] = {
+const int32_t th_outline_3[] = {
     99704741,   6337545,
     99646243,   6418365,
     99848094,   6465703,
     99918684,   6358576,
     99743710,   6263284,
 };
-int32_t th_outline_4[] = {
+const int32_t th_outline_4[] = {
     99954239,  20415441,
     99458863,  20363044,
     99485893,  20149850,
@@ -18789,13 +18789,13 @@ int32_t th_outline_4[] = {
    100003637,  20379580,
 };
 
-int32_t* th_outlines[] = {
+const int32_t* th_outlines[] = {
   th_outline_1,
   th_outline_2,
   th_outline_3,
   th_outline_4,
 };
-uint32_t th_outline_lengths[] = {
+const uint32_t th_outline_lengths[] = {
   3,
   3,
   5,
@@ -18803,12 +18803,12 @@ uint32_t th_outline_lengths[] = {
 };
 
 /* --------------Tajikistan */
-int32_t tj_outline_1[] = {
+const int32_t tj_outline_1[] = {
     70701653,  39825265,
     70482751,  39882731,
     70612046,  39786743,
 };
-int32_t tj_outline_2[] = {
+const int32_t tj_outline_2[] = {
     75008365,  37293532,
     75118804,  37385670,
     74894270,  37601423,
@@ -18876,17 +18876,17 @@ int32_t tj_outline_2[] = {
     74918138,  37250020,
 };
 
-int32_t* tj_outlines[] = {
+const int32_t* tj_outlines[] = {
   tj_outline_1,
   tj_outline_2,
 };
-uint32_t tj_outline_lengths[] = {
+const uint32_t tj_outline_lengths[] = {
   3,
   65,
 };
 
 /* ------------Turkmenistan */
-int32_t tm_outline_1[] = {
+const int32_t tm_outline_1[] = {
     66511371,  37599172,
     66574514,  38010774,
     65971196,  38244252,
@@ -18961,15 +18961,15 @@ int32_t tm_outline_1[] = {
     66510644,  37458691,
 };
 
-int32_t* tm_outlines[] = {
+const int32_t* tm_outlines[] = {
   tm_outline_1,
 };
-uint32_t tm_outline_lengths[] = {
+const uint32_t tm_outline_lengths[] = {
   72,
 };
 
 /* --------------East Timor */
-int32_t tl_outline_1[] = {
+const int32_t tl_outline_1[] = {
    125071853,  -9957486,
    127122572,  -9111464,
    127718101,  -8577776,
@@ -19001,15 +19001,15 @@ int32_t tl_outline_1[] = {
    125069014,  -9957504,
 };
 
-int32_t* tl_outlines[] = {
+const int32_t* tl_outlines[] = {
   tl_outline_1,
 };
-uint32_t tl_outline_lengths[] = {
+const uint32_t tl_outline_lengths[] = {
   29,
 };
 
 /* -------------------Tonga */
-int32_t to_outline_1[] = {
+const int32_t to_outline_1[] = {
   -173988732, -19126112,
   -173658565, -18985938,
   -173472703, -18585339,
@@ -19020,7 +19020,7 @@ int32_t to_outline_1[] = {
   -174366392, -18969905,
   -173991579, -19126120,
 };
-int32_t to_outline_2[] = {
+const int32_t to_outline_2[] = {
   -174914850, -21870474,
   -174519115, -21642621,
   -174506305, -21121958,
@@ -19031,17 +19031,17 @@ int32_t to_outline_2[] = {
   -174917688, -21870491,
 };
 
-int32_t* to_outlines[] = {
+const int32_t* to_outlines[] = {
   to_outline_1,
   to_outline_2,
 };
-uint32_t to_outline_lengths[] = {
+const uint32_t to_outline_lengths[] = {
   9,
   8,
 };
 
 /* -----Trinidad and Tobago */
-int32_t tt_outline_1[] = {
+const int32_t tt_outline_1[] = {
    -61159919,   9632846,
    -60632545,   9896227,
    -60469168,  10815334,
@@ -19066,15 +19066,15 @@ int32_t tt_outline_1[] = {
    -61299553,   9628415,
 };
 
-int32_t* tt_outlines[] = {
+const int32_t* tt_outlines[] = {
   tt_outline_1,
 };
-uint32_t tt_outline_lengths[] = {
+const uint32_t tt_outline_lengths[] = {
   22,
 };
 
 /* -----------------Tunisia */
-int32_t tn_outline_1[] = {
+const int32_t tn_outline_1[] = {
      9807384,  30342230,
     10256039,  30864933,
     10159874,  31545799,
@@ -19115,15 +19115,15 @@ int32_t tn_outline_1[] = {
      9637989,  30282333,
 };
 
-int32_t* tn_outlines[] = {
+const int32_t* tn_outlines[] = {
   tn_outline_1,
 };
-uint32_t tn_outline_lengths[] = {
+const uint32_t tn_outline_lengths[] = {
   38,
 };
 
 /* ------------------Turkey */
-int32_t tr_outline_1[] = {
+const int32_t tr_outline_1[] = {
     44758325,  37217108,
     44574054,  37435414,
     44589963,  37710359,
@@ -19241,30 +19241,30 @@ int32_t tr_outline_1[] = {
     44281868,  36978000,
     44766698,  37156333,
 };
-int32_t tr_outline_2[] = {
+const int32_t tr_outline_2[] = {
     26937709,  37024588,
     27034556,  36975982,
     26919931,  36945208,
 };
-int32_t tr_outline_3[] = {
+const int32_t tr_outline_3[] = {
     27788099,  36583708,
     27869854,  36622516,
     27838324,  36537973,
 };
 
-int32_t* tr_outlines[] = {
+const int32_t* tr_outlines[] = {
   tr_outline_1,
   tr_outline_2,
   tr_outline_3,
 };
-uint32_t tr_outline_lengths[] = {
+const uint32_t tr_outline_lengths[] = {
   116,
   3,
   3,
 };
 
 /* ----------------Tanzania */
-int32_t tz_outline_1[] = {
+const int32_t tz_outline_1[] = {
     30823677,   -999006,
     30470208,  -1131138,
     30812618,  -1563051,
@@ -19326,15 +19326,15 @@ int32_t tz_outline_1[] = {
     30844760,  -1002053,
 };
 
-int32_t* tz_outlines[] = {
+const int32_t* tz_outlines[] = {
   tz_outline_1,
 };
-uint32_t tz_outline_lengths[] = {
+const uint32_t tz_outline_lengths[] = {
   59,
 };
 
 /* ------------------Uganda */
-int32_t ug_outline_1[] = {
+const int32_t ug_outline_1[] = {
     30598730,  -1069698,
     33903227,  -1002053,
     33943121,    173783,
@@ -19365,15 +19365,15 @@ int32_t ug_outline_1[] = {
     30519867,  -1062518,
 };
 
-int32_t* ug_outlines[] = {
+const int32_t* ug_outlines[] = {
   ug_outline_1,
 };
-uint32_t ug_outline_lengths[] = {
+const uint32_t ug_outline_lengths[] = {
   28,
 };
 
 /* -----------------Ukraine */
-int32_t ua_outline_1[] = {
+const int32_t ua_outline_1[] = {
     31346020,  52105372,
     30980666,  52046177,
     30667298,  51814096,
@@ -19514,15 +19514,15 @@ int32_t ua_outline_1[] = {
     31573707,  52108082,
 };
 
-int32_t* ua_outlines[] = {
+const int32_t* ua_outlines[] = {
   ua_outline_1,
 };
-uint32_t ua_outline_lengths[] = {
+const uint32_t ua_outline_lengths[] = {
   138,
 };
 
 /* -----------------Uruguay */
-int32_t uy_outline_1[] = {
+const int32_t uy_outline_1[] = {
    -57650893, -30294994,
    -57872507, -30591045,
    -57810595, -30858632,
@@ -19562,15 +19562,15 @@ int32_t uy_outline_1[] = {
    -57645745, -30226986,
 };
 
-int32_t* uy_outlines[] = {
+const int32_t* uy_outlines[] = {
   uy_outline_1,
 };
-uint32_t uy_outline_lengths[] = {
+const uint32_t uy_outline_lengths[] = {
   37,
 };
 
 /* -----------United States */
-int32_t us_outline_1[] = {
+const int32_t us_outline_1[] = {
   -170793487,  52275114,
   -170386227,  52370836,
   -170160525,  52555923,
@@ -19872,7 +19872,7 @@ int32_t us_outline_1[] = {
   -171150307,  52378302,
   -170796335,  52275103,
 };
-int32_t us_outline_2[] = {
+const int32_t us_outline_2[] = {
   -169673710,  62750885,
   -169320501,  62817005,
   -169123824,  62979061,
@@ -19896,7 +19896,7 @@ int32_t us_outline_2[] = {
   -169983521,  62806515,
   -169676549,  62750881,
 };
-int32_t us_outline_3[] = {
+const int32_t us_outline_3[] = {
   -172228869,  60075461,
   -171809068,  60224068,
   -171931221,  60485098,
@@ -19908,14 +19908,14 @@ int32_t us_outline_3[] = {
   -172826509,  60126598,
   -172231708,  60075456,
 };
-int32_t us_outline_4[] = {
+const int32_t us_outline_4[] = {
   -147273967,  60576510,
   -147531909,  60698406,
   -147026652,  60759978,
   -146949226,  60610700,
   -147272961,  60575308,
 };
-int32_t us_outline_5[] = {
+const int32_t us_outline_5[] = {
   -170261190,  56891750,
   -169807092,  57033149,
   -169678983,  57297591,
@@ -19926,7 +19926,7 @@ int32_t us_outline_5[] = {
   -170636381,  56962154,
   -170264029,  56891745,
 };
-int32_t us_outline_6[] = {
+const int32_t us_outline_6[] = {
   -169584777,  56293487,
   -169114994,  56445091,
   -169052256,  56682625,
@@ -19937,7 +19937,7 @@ int32_t us_outline_6[] = {
   -169897822,  56344915,
   -169587615,  56293482,
 };
-int32_t us_outline_7[] = {
+const int32_t us_outline_7[] = {
   -155600433,  55535677,
   -155250827,  55633531,
   -155114786,  55888574,
@@ -19948,13 +19948,13 @@ int32_t us_outline_7[] = {
   -156021707,  55612680,
   -155603272,  55535666,
 };
-int32_t us_outline_8[] = {
+const int32_t us_outline_8[] = {
   -130575328,  54769679,
   -130214079,  55025890,
   -130203901,  54947031,
   -130535488,  54748748,
 };
-int32_t us_outline_9[] = {
+const int32_t us_outline_9[] = {
    173660685,  52080782,
    174060166,  52177699,
    174223866,  52473673,
@@ -19971,7 +19971,7 @@ int32_t us_outline_9[] = {
    173134497,  52183696,
    173657837,  52080777,
 };
-int32_t us_outline_10[] = {
+const int32_t us_outline_10[] = {
   -176958786,  51323112,
   -175794678,  51567020,
   -175560424,  51797796,
@@ -20004,7 +20004,7 @@ int32_t us_outline_10[] = {
   -177395134,  51423876,
   -176961625,  51323107,
 };
-int32_t us_outline_11[] = {
+const int32_t us_outline_11[] = {
    179453300,  51090630,
    179839190,  51230332,
    179892576,  51426016,
@@ -20027,14 +20027,14 @@ int32_t us_outline_11[] = {
    178324208,  51449737,
    179279773,  51090217,
 };
-int32_t us_outline_12[] = {
+const int32_t us_outline_12[] = {
   -180000000,  51605565,
   -179956641,  51707289,
   -179780904,  51908554,
   -179838001,  52112507,
   -180000000,  52267041,
 };
-int32_t us_outline_13[] = {
+const int32_t us_outline_13[] = {
    -81806043,  24130820,
    -80943399,  24304628,
    -80345642,  24592025,
@@ -20241,13 +20241,13 @@ int32_t us_outline_13[] = {
    -82154930,  24279779,
    -81808881,  24130812,
 };
-int32_t us_outline_14[] = {
+const int32_t us_outline_14[] = {
    -66844691,  44763931,
    -66745427,  44791399,
    -66762478,  44681769,
    -66897045,  44628902,
 };
-int32_t us_outline_15[] = {
+const int32_t us_outline_15[] = {
   -160197104,  21376807,
   -159838047,  21548595,
   -159236158,  21512554,
@@ -20262,7 +20262,7 @@ int32_t us_outline_15[] = {
   -160554103,  21508468,
   -160199942,  21376798,
 };
-int32_t us_outline_16[] = {
+const int32_t us_outline_16[] = {
   -155620888,  18536041,
   -154800403,  18966512,
   -154405818,  19327594,
@@ -20285,7 +20285,7 @@ int32_t us_outline_16[] = {
   -155623727,  18536015,
 };
 
-int32_t* us_outlines[] = {
+const int32_t* us_outlines[] = {
   us_outline_1,
   us_outline_2,
   us_outline_3,
@@ -20303,7 +20303,7 @@ int32_t* us_outlines[] = {
   us_outline_15,
   us_outline_16,
 };
-uint32_t us_outline_lengths[] = {
+const uint32_t us_outline_lengths[] = {
   300,
   22,
   10,
@@ -20323,19 +20323,19 @@ uint32_t us_outline_lengths[] = {
 };
 
 /* --------------Uzbekistan */
-int32_t uz_outline_1[] = {
+const int32_t uz_outline_1[] = {
     71206174,  39892551,
     71228650,  40048148,
     71005409,  40152273,
     71011760,  39895132,
     71156254,  39883451,
 };
-int32_t uz_outline_2[] = {
+const int32_t uz_outline_2[] = {
     71779622,  39950222,
     71681230,  39968666,
     71752960,  39907150,
 };
-int32_t uz_outline_3[] = {
+const int32_t uz_outline_3[] = {
     71094495,  40271234,
     71692495,  40152349,
     72131232,  40438617,
@@ -20431,34 +20431,34 @@ int32_t uz_outline_3[] = {
     70990578,  40254903,
 };
 
-int32_t* uz_outlines[] = {
+const int32_t* uz_outlines[] = {
   uz_outline_1,
   uz_outline_2,
   uz_outline_3,
 };
-uint32_t uz_outline_lengths[] = {
+const uint32_t uz_outline_lengths[] = {
   5,
   3,
   93,
 };
 
 /* -----------------Vatican */
-int32_t va_outline_1[] = {
+const int32_t va_outline_1[] = {
     12432728,  41561113,
     11992545,  41984422,
     12075343,  41691884,
     12429881,  41561106,
 };
 
-int32_t* va_outlines[] = {
+const int32_t* va_outlines[] = {
   va_outline_1,
 };
-uint32_t va_outline_lengths[] = {
+const uint32_t va_outline_lengths[] = {
   4,
 };
 
 /* ------St. Vin. and Gren. */
-int32_t vc_outline_1[] = {
+const int32_t vc_outline_1[] = {
    -61340579,  12253349,
    -60933516,  12489384,
    -60674864,  13297407,
@@ -20470,15 +20470,15 @@ int32_t vc_outline_1[] = {
    -61343418,  12253332,
 };
 
-int32_t* vc_outlines[] = {
+const int32_t* vc_outlines[] = {
   vc_outline_1,
 };
-uint32_t vc_outline_lengths[] = {
+const uint32_t vc_outline_lengths[] = {
   9,
 };
 
 /* ---------------Venezuela */
-int32_t ve_outline_1[] = {
+const int32_t ve_outline_1[] = {
    -66429238,    821654,
    -66060067,    785320,
    -65681436,    983453,
@@ -20574,15 +20574,15 @@ int32_t ve_outline_1[] = {
    -66619052,    992134,
 };
 
-int32_t* ve_outlines[] = {
+const int32_t* ve_outlines[] = {
   ve_outline_1,
 };
-uint32_t ve_outline_lengths[] = {
+const uint32_t ve_outline_lengths[] = {
   93,
 };
 
 /* ------British Virgin Is. */
-int32_t vg_outline_1[] = {
+const int32_t vg_outline_1[] = {
    -64669403,  17969823,
    -64021125,  18201368,
    -63824439,  18709691,
@@ -20593,15 +20593,15 @@ int32_t vg_outline_1[] = {
    -64672242,  17969815,
 };
 
-int32_t* vg_outlines[] = {
+const int32_t* vg_outlines[] = {
   vg_outline_1,
 };
-uint32_t vg_outline_lengths[] = {
+const uint32_t vg_outline_lengths[] = {
   8,
 };
 
 /* ---------U.S. Virgin Is. */
-int32_t vi_outline_1[] = {
+const int32_t vi_outline_1[] = {
    -64885663,  17270690,
    -64324522,  17396156,
    -64131788,  17770585,
@@ -20615,30 +20615,30 @@ int32_t vi_outline_1[] = {
    -65287920,  17503573,
    -64888502,  17270681,
 };
-int32_t vi_outline_2[] = {
+const int32_t vi_outline_2[] = {
    -64438024,  18458999,
    -64324665,  18517497,
    -64421127,  18457422,
 };
-int32_t vi_outline_3[] = {
+const int32_t vi_outline_3[] = {
    -64695086,  18411663,
    -64545148,  18438124,
    -64671801,  18399134,
 };
 
-int32_t* vi_outlines[] = {
+const int32_t* vi_outlines[] = {
   vi_outline_1,
   vi_outline_2,
   vi_outline_3,
 };
-uint32_t vi_outline_lengths[] = {
+const uint32_t vi_outline_lengths[] = {
   12,
   3,
   3,
 };
 
 /* -----------------Vietnam */
-int32_t vn_outline_1[] = {
+const int32_t vn_outline_1[] = {
    102301375,  22178152,
    102661977,  21676035,
    102815921,  21807371,
@@ -20748,15 +20748,15 @@ int32_t vn_outline_1[] = {
    102183040,  22284033,
 };
 
-int32_t* vn_outlines[] = {
+const int32_t* vn_outlines[] = {
   vn_outline_1,
 };
-uint32_t vn_outline_lengths[] = {
+const uint32_t vn_outline_lengths[] = {
   107,
 };
 
 /* -----------------Vanuatu */
-int32_t vu_outline_1[] = {
+const int32_t vu_outline_1[] = {
    168401857, -18236892,
    168814759, -18126176,
    169032951, -17727150,
@@ -20790,7 +20790,7 @@ int32_t vu_outline_1[] = {
    168022059, -18150216,
    168399019, -18236900,
 };
-int32_t vu_outline_2[] = {
+const int32_t vu_outline_2[] = {
    169863371, -20665130,
    170230719, -20482583,
    170319518, -20044467,
@@ -20808,17 +20808,17 @@ int32_t vu_outline_2[] = {
    169860524, -20665139,
 };
 
-int32_t* vu_outlines[] = {
+const int32_t* vu_outlines[] = {
   vu_outline_1,
   vu_outline_2,
 };
-uint32_t vu_outline_lengths[] = {
+const uint32_t vu_outline_lengths[] = {
   32,
   15,
 };
 
 /* ---------------West Bank */
-int32_t ps_outline_1[] = {
+const int32_t ps_outline_1[] = {
     35499462,  31672379,
     35551447,  32395512,
     35193226,  32534421,
@@ -20830,15 +20830,15 @@ int32_t ps_outline_1[] = {
     35465460,  31562361,
 };
 
-int32_t* ps_outlines[] = {
+const int32_t* ps_outlines[] = {
   ps_outline_1,
 };
-uint32_t ps_outline_lengths[] = {
+const uint32_t ps_outline_lengths[] = {
   9,
 };
 
 /* -------Wallis and Futuna */
-int32_t wf_outline_1[] = {
+const int32_t wf_outline_1[] = {
   -176174306, -13780343,
   -175833970, -13634522,
   -175678894, -13266638,
@@ -20849,7 +20849,7 @@ int32_t wf_outline_1[] = {
   -176502245, -13643958,
   -176177144, -13780352,
 };
-int32_t wf_outline_2[] = {
+const int32_t wf_outline_2[] = {
   -178098919, -14762397,
   -177718492, -14617172,
   -177599213, -14239989,
@@ -20861,17 +20861,17 @@ int32_t wf_outline_2[] = {
   -178101758, -14762415,
 };
 
-int32_t* wf_outlines[] = {
+const int32_t* wf_outlines[] = {
   wf_outline_1,
   wf_outline_2,
 };
-uint32_t wf_outline_lengths[] = {
+const uint32_t wf_outline_lengths[] = {
   9,
   9,
 };
 
 /* -------------------Samoa */
-int32_t ws_outline_1[] = {
+const int32_t ws_outline_1[] = {
   -171452868, -14484593,
   -171024561, -14174771,
   -171185134, -13631456,
@@ -20882,15 +20882,15 @@ int32_t ws_outline_1[] = {
   -171727016, -14485311,
 };
 
-int32_t* ws_outlines[] = {
+const int32_t* ws_outlines[] = {
   ws_outline_1,
 };
-uint32_t ws_outline_lengths[] = {
+const uint32_t ws_outline_lengths[] = {
   8,
 };
 
 /* -------------------Yemen */
-int32_t ye_outline_1[] = {
+const int32_t ye_outline_1[] = {
     53722470,  11876992,
     54654751,  12110599,
     54906135,  12342665,
@@ -20903,7 +20903,7 @@ int32_t ye_outline_1[] = {
     53344926,  11977411,
     53719631,  11876974,
 };
-int32_t ye_outline_2[] = {
+const int32_t ye_outline_2[] = {
     43298572,  12463890,
     43384577,  12269216,
     43989898,  12166407,
@@ -20947,17 +20947,17 @@ int32_t ye_outline_2[] = {
     43130830,  12660462,
 };
 
-int32_t* ye_outlines[] = {
+const int32_t* ye_outlines[] = {
   ye_outline_1,
   ye_outline_2,
 };
-uint32_t ye_outline_lengths[] = {
+const uint32_t ye_outline_lengths[] = {
   11,
   41,
 };
 
 /* ------------South Africa */
-int32_t za_outline_1[] = {
+const int32_t za_outline_1[] = {
     27901834, -30623812,
     27388429, -30315922,
     27056924, -29625630,
@@ -20970,7 +20970,7 @@ int32_t za_outline_1[] = {
     28392090, -30147565,
     28018157, -30642308,
 };
-int32_t za_outline_2[] = {
+const int32_t za_outline_2[] = {
     37817672, -47269468,
     38204469, -47138781,
     38328158, -46841194,
@@ -20981,7 +20981,7 @@ int32_t za_outline_2[] = {
     37362514, -47201695,
     37814833, -47269480,
 };
-int32_t za_outline_3[] = {
+const int32_t za_outline_3[] = {
     29013500, -22278431,
     28839819, -22480842,
     28210190, -22693648,
@@ -21063,19 +21063,19 @@ int32_t za_outline_3[] = {
     29129876, -22213262,
 };
 
-int32_t* za_outlines[] = {
+const int32_t* za_outlines[] = {
   za_outline_1,
   za_outline_2,
   za_outline_3,
 };
-uint32_t za_outline_lengths[] = {
+const uint32_t za_outline_lengths[] = {
   11,
   9,
   79,
 };
 
 /* ------------------Zambia */
-int32_t zm_outline_1[] = {
+const int32_t zm_outline_1[] = {
     30350579, -15349702,
     30231876, -14990347,
     33201724, -14013353,
@@ -21139,15 +21139,15 @@ int32_t zm_outline_1[] = {
     30379828, -15505868,
 };
 
-int32_t* zm_outlines[] = {
+const int32_t* zm_outlines[] = {
   zm_outline_1,
 };
-uint32_t zm_outline_lengths[] = {
+const uint32_t zm_outline_lengths[] = {
   61,
 };
 
 /* ----------------Zimbabwe */
-int32_t zw_outline_1[] = {
+const int32_t zw_outline_1[] = {
     29994891, -15644055,
     29487271, -15696762,
     28913095, -15987803,
@@ -21184,14 +21184,14 @@ int32_t zw_outline_1[] = {
     30250686, -15643437,
 };
 
-int32_t* zw_outlines[] = {
+const int32_t* zw_outlines[] = {
   zw_outline_1,
 };
-uint32_t zw_outline_lengths[] = {
+const uint32_t zw_outline_lengths[] = {
   34,
 };
 
-struct country_t countries[] = {
+const struct country_t countries[] = {
 
                                                   /* -------------------Aruba */
   { .outlines = aw_outlines, .outline_lengths = aw_outline_lengths, .isocode = "AW",

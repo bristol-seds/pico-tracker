@@ -12,7 +12,7 @@
 /* Longitude,  Latitude */
 
 /* -------------------Alpha */
-int32_t alpha_outline_1[] = {
+const int32_t alpha_outline_1[] = {
     16704514,  76474622,
     17221953,  76525844,
     17488168,  76625753,
@@ -161,7 +161,7 @@ int32_t alpha_outline_1[] = {
     16114474,  76543206,
     16701675,  76474618,
 };
-int32_t alpha_outline_2[] = {
+const int32_t alpha_outline_2[] = {
     31579699,  80003788,
     32668098,  80045741,
     33773421,  80130918,
@@ -175,7 +175,7 @@ int32_t alpha_outline_2[] = {
     31272116,  80024583,
     31576851,  80003786,
 };
-int32_t alpha_outline_3[] = {
+const int32_t alpha_outline_3[] = {
     28041064,  78741351,
     28610102,  78797736,
     29478315,  78771217,
@@ -190,7 +190,7 @@ int32_t alpha_outline_3[] = {
     27578971,  78789125,
     28038226,  78741349,
 };
-int32_t alpha_outline_4[] = {
+const int32_t alpha_outline_4[] = {
     26732497,  78557681,
     27211425,  78589956,
     27446586,  78716096,
@@ -201,7 +201,7 @@ int32_t alpha_outline_4[] = {
     26406382,  78584857,
     26729650,  78557679,
 };
-int32_t alpha_outline_5[] = {
+const int32_t alpha_outline_5[] = {
     19102692,  74230490,
     19606665,  74329682,
     19699048,  74506097,
@@ -212,7 +212,7 @@ int32_t alpha_outline_5[] = {
     18758952,  74272611,
     19099854,  74230485,
 };
-int32_t alpha_outline_6[] = {
+const int32_t alpha_outline_6[] = {
     -9043367,  70684555,
     -7665109,  70944455,
     -7578978,  71226949,
@@ -223,7 +223,7 @@ int32_t alpha_outline_6[] = {
     -9342605,  70721613,
     -9046215,  70684552,
 };
-int32_t alpha_outline_7[] = {
+const int32_t alpha_outline_7[] = {
     13325591,  55089614,
     14242430,  55143646,
     14438523,  55472143,
@@ -453,14 +453,14 @@ int32_t alpha_outline_7[] = {
     12824448,  55183081,
     13322752,  55089604,
 };
-int32_t alpha_outline_8[] = {
+const int32_t alpha_outline_8[] = {
     29990337,  69736673,
     29812282,  69728781,
     29954269,  69770628,
     30167134,  69791639,
     30088217,  69717552,
 };
-int32_t alpha_outline_9[] = {
+const int32_t alpha_outline_9[] = {
     -1296170,  59652116,
      -869111,  59800060,
      -590570,  60495642,
@@ -476,7 +476,7 @@ int32_t alpha_outline_9[] = {
     -1732931,  59788325,
     -1299009,  59652112,
 };
-int32_t alpha_outline_10[] = {
+const int32_t alpha_outline_10[] = {
     28317683,  45347124,
     28212463,  45450451,
     28499061,  45517736,
@@ -912,7 +912,7 @@ int32_t alpha_outline_10[] = {
     28760705,  45234136,
     28451262,  45292196,
 };
-int32_t alpha_outline_11[] = {
+const int32_t alpha_outline_11[] = {
     18149517,  56674050,
     18649178,  56799783,
     19279670,  57262011,
@@ -928,12 +928,12 @@ int32_t alpha_outline_11[] = {
     17737514,  56818710,
     18146678,  56674045,
 };
-int32_t alpha_outline_12[] = {
+const int32_t alpha_outline_12[] = {
     12396895,  43934549,
     12514664,  43952976,
     12426350,  43894086,
 };
-int32_t alpha_outline_13[] = {
+const int32_t alpha_outline_13[] = {
      7172607,  43441288,
      7012725,  43541634,
      7181393,  43659143,
@@ -941,7 +941,7 @@ int32_t alpha_outline_13[] = {
      7786220,  43543817,
      7377765,  43405158,
 };
-int32_t alpha_outline_14[] = {
+const int32_t alpha_outline_14[] = {
    130519776,  42540023,
    130246706,  42744827,
    130240346,  42891771,
@@ -999,7 +999,7 @@ int32_t alpha_outline_14[] = {
    130834213,  42522934,
    130687330,  42302559,
 };
-int32_t alpha_outline_15[] = {
+const int32_t alpha_outline_15[] = {
     -7281537,  38714535,
     -6997957,  39056452,
     -7535679,  39661556,
@@ -1043,7 +1043,7 @@ int32_t alpha_outline_15[] = {
     -7106402,  38181002,
     -7343009,  38457413,
 };
-int32_t alpha_outline_16[] = {
+const int32_t alpha_outline_16[] = {
    -31176796,  39009376,
    -30827225,  39144087,
    -30689756,  39491733,
@@ -1054,7 +1054,7 @@ int32_t alpha_outline_16[] = {
    -31553558,  39113259,
    -31179634,  39009355,
 };
-int32_t alpha_outline_17[] = {
+const int32_t alpha_outline_17[] = {
    -28227851,  38030260,
    -27438672,  38324588,
    -27052738,  38282463,
@@ -1070,7 +1070,7 @@ int32_t alpha_outline_17[] = {
    -28639935,  38086052,
    -28230690,  38030253,
 };
-int32_t alpha_outline_18[] = {
+const int32_t alpha_outline_18[] = {
    -25435061,  37357659,
    -24832731,  37548665,
    -24797661,  38022109,
@@ -1082,7 +1082,7 @@ int32_t alpha_outline_18[] = {
    -25921579,  37437986,
    -25437899,  37357645,
 };
-int32_t alpha_outline_19[] = {
+const int32_t alpha_outline_19[] = {
    -25029319,  36580151,
    -24675364,  36721559,
    -24590393,  37043370,
@@ -1093,7 +1093,7 @@ int32_t alpha_outline_19[] = {
    -25411812,  36644301,
    -25032166,  36580144,
 };
-int32_t alpha_outline_20[] = {
+const int32_t alpha_outline_20[] = {
     12007241,  36383661,
     12374760,  36505875,
     12498081,  36793979,
@@ -1104,7 +1104,7 @@ int32_t alpha_outline_20[] = {
     11645184,  36507732,
     12004403,  36383646,
 };
-int32_t alpha_outline_21[] = {
+const int32_t alpha_outline_21[] = {
    -16834375,  32267485,
    -16324967,  32540447,
    -16290615,  32926084,
@@ -1115,7 +1115,7 @@ int32_t alpha_outline_21[] = {
    -17370741,  32381068,
    -16837213,  32267477,
 };
-int32_t alpha_outline_22[] = {
+const int32_t alpha_outline_22[] = {
     46727666,  17265581,
     45148069,  17427462,
     43916936,  17324728,
@@ -1155,12 +1155,12 @@ int32_t alpha_outline_22[] = {
     47441782,  17111874,
     46975664,  16953482,
 };
-int32_t alpha_outline_23[] = {
+const int32_t alpha_outline_23[] = {
    -61230490,  15889927,
    -61249975,  16006302,
    -61286222,  15886058,
 };
-int32_t alpha_outline_24[] = {
+const int32_t alpha_outline_24[] = {
    -60416994,  14281177,
    -60501696,  14897785,
    -60837810,  15208490,
@@ -1172,7 +1172,7 @@ int32_t alpha_outline_24[] = {
    -60837801,  14525928,
    -60470974,  14188496,
 };
-int32_t alpha_outline_25[] = {
+const int32_t alpha_outline_25[] = {
     53722470,  11876992,
     54654751,  12110599,
     54906135,  12342665,
@@ -1185,7 +1185,7 @@ int32_t alpha_outline_25[] = {
     53344926,  11977411,
     53719631,  11876974,
 };
-int32_t alpha_outline_26[] = {
+const int32_t alpha_outline_26[] = {
    -54089764,   2150486,
    -53767763,   2354840,
    -53009729,   2181727,
@@ -1205,7 +1205,7 @@ int32_t alpha_outline_26[] = {
    -54616267,   2326783,
    -54130045,   2121051,
 };
-int32_t alpha_outline_27[] = {
+const int32_t alpha_outline_27[] = {
     45120014, -13425051,
     45533733, -13248423,
     45672002, -12737052,
@@ -1216,7 +1216,7 @@ int32_t alpha_outline_27[] = {
     44723597, -13216328,
     45117175, -13425060,
 };
-int32_t alpha_outline_28[] = {
+const int32_t alpha_outline_28[] = {
     55660864, -21789167,
     56150428, -21599178,
     56278303, -21050338,
@@ -1228,7 +1228,7 @@ int32_t alpha_outline_28[] = {
     55658025, -21789192,
 };
 
-int32_t* alpha_outlines[] = {
+const int32_t* alpha_outlines[] = {
   alpha_outline_1,
   alpha_outline_2,
   alpha_outline_3,
@@ -1258,7 +1258,7 @@ int32_t* alpha_outlines[] = {
   alpha_outline_27,
   alpha_outline_28,
 };
-uint32_t alpha_outline_lengths[] = {
+const uint32_t alpha_outline_lengths[] = {
   147,
   12,
   13,
@@ -1291,7 +1291,7 @@ uint32_t alpha_outline_lengths[] = {
 
 
 /* -----------------Charlie */
-int32_t charlie_outline_1[] = {
+const int32_t charlie_outline_1[] = {
    180000000,  64918011,
    179733671,  64914156,
    179550863,  65066044,
@@ -1323,7 +1323,7 @@ int32_t charlie_outline_1[] = {
    178955415,  44398567,
    180000000,  44115900,
 };
-int32_t charlie_outline_2[] = {
+const int32_t charlie_outline_2[] = {
    -71715168,  19465310,
    -71779227,  19718149,
    -71667396,  19848600,
@@ -1898,7 +1898,7 @@ int32_t charlie_outline_2[] = {
    -71746492,  19285846,
    -71706958,  19421960,
 };
-int32_t charlie_outline_3[] = {
+const int32_t charlie_outline_3[] = {
    -72200815,  77225483,
    -72860484,  77328430,
    -72934694,  77444688,
@@ -1911,7 +1911,7 @@ int32_t charlie_outline_3[] = {
    -71527726,  77231264,
    -72023964,  77217413,
 };
-int32_t charlie_outline_4[] = {
+const int32_t charlie_outline_4[] = {
    161483275,  54238305,
    161279304,  52660490,
    161737714,  50947824,
@@ -1946,7 +1946,7 @@ int32_t charlie_outline_4[] = {
    161930385,  54299787,
    161486051,  54246292,
 };
-int32_t charlie_outline_5[] = {
+const int32_t charlie_outline_5[] = {
   -180000000,  43793785,
   -178318743,  43962573,
   -176052213,  44472939,
@@ -1964,7 +1964,7 @@ int32_t charlie_outline_5[] = {
   -178587564,  58353038,
   -180000000,  58473296,
 };
-int32_t charlie_outline_6[] = {
+const int32_t charlie_outline_6[] = {
    167942863,  54263376,
    167092644,  54671706,
    166826634,  54455386,
@@ -1982,7 +1982,7 @@ int32_t charlie_outline_6[] = {
    168413194,  54336245,
    168082605,  54250564,
 };
-int32_t charlie_outline_7[] = {
+const int32_t charlie_outline_7[] = {
    -56381923,  46472831,
    -56825143,  46758736,
    -56794942,  47203421,
@@ -1995,7 +1995,7 @@ int32_t charlie_outline_7[] = {
    -55795108,  46573536,
    -56171286,  46443249,
 };
-int32_t charlie_outline_8[] = {
+const int32_t charlie_outline_8[] = {
   -155600604,   7993641,
   -152963222,   8313776,
   -150556923,   9201814,
@@ -2032,7 +2032,7 @@ int32_t charlie_outline_8[] = {
   -158107874,   8266173,
   -155614519,   7993614,
 };
-int32_t charlie_outline_9[] = {
+const int32_t charlie_outline_9[] = {
   -118470772,  28543082,
   -118807757,  28946593,
   -118839198,  29250575,
@@ -2043,7 +2043,7 @@ int32_t charlie_outline_9[] = {
   -118065901,  28558414,
   -118286150,  28507769,
 };
-int32_t charlie_outline_10[] = {
+const int32_t charlie_outline_10[] = {
   -106697578,  21137542,
   -107007586,  21371262,
   -107079892,  21779753,
@@ -2053,7 +2053,7 @@ int32_t charlie_outline_10[] = {
   -106181720,  21264461,
   -106531174,  21107629,
 };
-int32_t charlie_outline_11[] = {
+const int32_t charlie_outline_11[] = {
    -80277047,  19267224,
    -80574452,  19646624,
    -80459791,  19956341,
@@ -2064,7 +2064,7 @@ int32_t charlie_outline_11[] = {
    -79748568,  19286596,
    -80094366,  19239846,
 };
-int32_t charlie_outline_12[] = {
+const int32_t charlie_outline_12[] = {
    -81512258,  18863784,
    -81787403,  19054904,
    -81799305,  19601511,
@@ -2075,7 +2075,7 @@ int32_t charlie_outline_12[] = {
    -80979566,  18895774,
    -81303004,  18844806,
 };
-int32_t charlie_outline_13[] = {
+const int32_t charlie_outline_13[] = {
    -77384292,  17319802,
    -77960930,  17488497,
    -78630264,  17933179,
@@ -2088,7 +2088,7 @@ int32_t charlie_outline_13[] = {
    -75890421,  17611890,
    -77204791,  17283938,
 };
-int32_t charlie_outline_14[] = {
+const int32_t charlie_outline_14[] = {
    -87751381,  17850541,
    -87408386,  18225947,
    -87744931,  18570981,
@@ -2100,13 +2100,13 @@ int32_t charlie_outline_14[] = {
    -88168630,  17943205,
    -87912242,  17843065,
 };
-int32_t charlie_outline_15[] = {
+const int32_t charlie_outline_15[] = {
    -72418100,  18558704,
    -72429940,  18722950,
    -72447538,  18557539,
 };
 
-int32_t* charlie_outlines[] = {
+const int32_t* charlie_outlines[] = {
   charlie_outline_1,
   charlie_outline_2,
   charlie_outline_3,
@@ -2123,7 +2123,7 @@ int32_t* charlie_outlines[] = {
   charlie_outline_14,
   charlie_outline_15,
 };
-uint32_t charlie_outline_lengths[] = {
+const uint32_t charlie_outline_lengths[] = {
   30,
   573,
   11,
@@ -2143,13 +2143,13 @@ uint32_t charlie_outline_lengths[] = {
 
 
 /* -------------------Bravo */
-int32_t bravo_outline_1[] = {
+const int32_t bravo_outline_1[] = {
    180000000,  -6573794,
    179878731,  -8132960,
    179943580,  -9609275,
    180000000, -10975875,
 };
-int32_t bravo_outline_2[] = {
+const int32_t bravo_outline_2[] = {
   -171177975, -16836953,
   -169489852, -16644687,
   -168026128, -16175345,
@@ -2183,7 +2183,7 @@ int32_t bravo_outline_2[] = {
   -172761022, -16671565,
   -171189339, -16836962,
 };
-int32_t bravo_outline_3[] = {
+const int32_t bravo_outline_3[] = {
   -171224948,  -3573680,
   -171517951,  -3293547,
   -171931320,  -3212178,
@@ -2196,7 +2196,7 @@ int32_t bravo_outline_3[] = {
   -170846101,  -3522412,
   -171087883,  -3594602,
 };
-int32_t bravo_outline_4[] = {
+const int32_t bravo_outline_4[] = {
   -171423475,  -4884066,
   -171673198,  -4640650,
   -171682469,  -4290799,
@@ -2206,7 +2206,7 @@ int32_t bravo_outline_4[] = {
   -170814031,  -4625435,
   -171242330,  -4918746,
 };
-int32_t bravo_outline_5[] = {
+const int32_t bravo_outline_5[] = {
   -172386658,  -4940937,
   -172640908,  -4685230,
   -172643684,  -4335464,
@@ -2216,7 +2216,7 @@ int32_t bravo_outline_5[] = {
   -171870648,  -4840625,
   -172214990,  -4975028,
 };
-int32_t bravo_outline_6[] = {
+const int32_t bravo_outline_6[] = {
   -174681036,  -5111719,
   -174942087,  -4863873,
   -174970231,  -4525095,
@@ -2226,7 +2226,7 @@ int32_t bravo_outline_6[] = {
   -174167981,  -4997037,
   -174500825,  -5145243,
 };
-int32_t bravo_outline_7[] = {
+const int32_t bravo_outline_7[] = {
   -176354005, -13744773,
   -176611731, -13466596,
   -176615432, -13145891,
@@ -2236,7 +2236,7 @@ int32_t bravo_outline_7[] = {
   -175833970, -13634522,
   -176177144, -13780352,
 };
-int32_t bravo_outline_8[] = {
+const int32_t bravo_outline_8[] = {
   -170912738, -14774329,
   -171250945, -14437272,
   -171810110, -14477976,
@@ -2252,7 +2252,7 @@ int32_t bravo_outline_8[] = {
   -170162465, -14454797,
   -170767580, -14797229,
 };
-int32_t bravo_outline_9[] = {
+const int32_t bravo_outline_9[] = {
    169142455, -56978884,
    171235781, -56811837,
    172964742, -56419637,
@@ -2305,7 +2305,7 @@ int32_t bravo_outline_9[] = {
    167097953, -56825646,
    169131092, -56978894,
 };
-int32_t bravo_outline_10[] = {
+const int32_t bravo_outline_10[] = {
   -180000000, -47276456,
   -179840139, -45897147,
   -178205097, -44844621,
@@ -2322,7 +2322,7 @@ int32_t bravo_outline_10[] = {
   -179103619, -31643265,
   -180000000, -30264969,
 };
-int32_t bravo_outline_11[] = {
+const int32_t bravo_outline_11[] = {
    180000000, -38498130,
    178746710, -39120306,
    177679322, -39843743,
@@ -2337,7 +2337,7 @@ int32_t bravo_outline_11[] = {
    179433499, -48662677,
    180000000, -49121691,
 };
-int32_t bravo_outline_12[] = {
+const int32_t bravo_outline_12[] = {
   -176204983, -49554088,
   -174606952, -49437702,
   -173241225, -49161915,
@@ -2364,7 +2364,7 @@ int32_t bravo_outline_12[] = {
   -176216347, -49554099,
 };
 
-int32_t* bravo_outlines[] = {
+const int32_t* bravo_outlines[] = {
   bravo_outline_1,
   bravo_outline_2,
   bravo_outline_3,
@@ -2378,7 +2378,7 @@ int32_t* bravo_outlines[] = {
   bravo_outline_11,
   bravo_outline_12,
 };
-uint32_t bravo_outline_lengths[] = {
+const uint32_t bravo_outline_lengths[] = {
   4,
   32,
   11,
@@ -2395,7 +2395,7 @@ uint32_t bravo_outline_lengths[] = {
 
 
 /* --------------------Echo */
-int32_t echo_outline_1[] = {
+const int32_t echo_outline_1[] = {
    141422682,  -2730582,
    141382869,  -2423891,
    141018512,  -2162261,
@@ -2458,7 +2458,7 @@ int32_t echo_outline_1[] = {
    140747401,  -2607127,
    141185617,  -2627842,
 };
-int32_t echo_outline_2[] = {
+const int32_t echo_outline_2[] = {
    127423184,  -2822501,
    128099804,  -2425264,
    129610510,  -2343780,
@@ -2490,7 +2490,7 @@ int32_t echo_outline_2[] = {
    126922643,  -2632368,
    127346109,  -2849797,
 };
-int32_t echo_outline_3[] = {
+const int32_t echo_outline_3[] = {
    147597333,  -2748712,
    147384028,  -2596855,
    146345378,  -2612583,
@@ -2505,7 +2505,7 @@ int32_t echo_outline_3[] = {
    148195243,  -2617968,
    147846418,  -2787445,
 };
-int32_t echo_outline_4[] = {
+const int32_t echo_outline_4[] = {
    125178016,  -8647842,
    125522053,  -8547715,
    125578251,  -8374738,
@@ -2789,7 +2789,7 @@ int32_t echo_outline_4[] = {
    123694790,  -9645183,
    125026919,  -8859040,
 };
-int32_t echo_outline_5[] = {
+const int32_t echo_outline_5[] = {
    132555421,  -6353984,
    132246473,  -6024706,
    132215032,  -5435220,
@@ -2800,7 +2800,7 @@ int32_t echo_outline_5[] = {
    133292911,  -6161761,
    132846386,  -6437497,
 };
-int32_t echo_outline_6[] = {
+const int32_t echo_outline_6[] = {
    134004350,  -7312626,
    133773618,  -7151439,
    133609972,  -6768804,
@@ -2812,7 +2812,7 @@ int32_t echo_outline_6[] = {
    134977225,  -7081314,
    134199248,  -7357407,
 };
-int32_t echo_outline_7[] = {
+const int32_t echo_outline_7[] = {
    128438936,  -7616655,
    128121517,  -7321649,
    128126350,  -6937289,
@@ -2822,7 +2822,7 @@ int32_t echo_outline_7[] = {
    129098426,  -7318313,
    128626325,  -7656932,
 };
-int32_t echo_outline_8[] = {
+const int32_t echo_outline_8[] = {
    130602789,  -8762759,
    130326036,  -8350136,
    130906222,  -7194226,
@@ -2833,7 +2833,7 @@ int32_t echo_outline_8[] = {
    131437773,  -8494542,
    130774376,  -8796986,
 };
-int32_t echo_outline_9[] = {
+const int32_t echo_outline_9[] = {
    127891099,  -8682660,
    127698257,  -8607093,
    127694619,  -8218116,
@@ -2857,7 +2857,7 @@ int32_t echo_outline_9[] = {
    128427896,  -8495696,
    128048169,  -8701859,
 };
-int32_t echo_outline_10[] = {
+const int32_t echo_outline_10[] = {
    129588537,  -8470475,
    129156008,  -8025393,
    129211308,  -7595063,
@@ -2868,12 +2868,12 @@ int32_t echo_outline_10[] = {
    129990516,  -8441640,
    129780391,  -8493898,
 };
-int32_t echo_outline_11[] = {
+const int32_t echo_outline_11[] = {
    125507096,  -8275094,
    125646101,  -8139916,
    125579446,  -8311789,
 };
-int32_t echo_outline_12[] = {
+const int32_t echo_outline_12[] = {
    152726651,  -9647786,
    152204020,  -9331722,
    152066191,  -8996746,
@@ -2884,7 +2884,7 @@ int32_t echo_outline_12[] = {
    153329483,  -9472311,
    152869115,  -9670258,
 };
-int32_t echo_outline_13[] = {
+const int32_t echo_outline_13[] = {
    153399381, -12046078,
    153041798, -11887980,
    152826939, -11606528,
@@ -2897,7 +2897,7 @@ int32_t echo_outline_13[] = {
    154548003, -11760630,
    153555248, -12072974,
 };
-int32_t echo_outline_14[] = {
+const int32_t echo_outline_14[] = {
    123417426, -12847917,
    123164146, -12616645,
    123149431, -12275586,
@@ -2907,7 +2907,7 @@ int32_t echo_outline_14[] = {
    124017366, -12586673,
    123595921, -12876985,
 };
-int32_t echo_outline_15[] = {
+const int32_t echo_outline_15[] = {
    159734678, -19713624,
    159498035, -19425957,
    159510854, -19016545,
@@ -2918,7 +2918,7 @@ int32_t echo_outline_15[] = {
    160273766, -19614382,
    159937401, -19758935,
 };
-int32_t echo_outline_16[] = {
+const int32_t echo_outline_16[] = {
    140526703,  -8664129,
    140672886,  -9447872,
    140976265,  -9564821,
@@ -2927,12 +2927,12 @@ int32_t echo_outline_16[] = {
    141133218,  -9221244,
    140786576,  -8973713,
 };
-int32_t echo_outline_17[] = {
+const int32_t echo_outline_17[] = {
    124194172,  -9419508,
    124413002,  -9314314,
    124297442,  -9414744,
 };
-int32_t echo_outline_18[] = {
+const int32_t echo_outline_18[] = {
    124963049,  -9665659,
    124768815,  -9844222,
    124907857,  -9928203,
@@ -2941,7 +2941,7 @@ int32_t echo_outline_18[] = {
    124997976,  -9565356,
 };
 
-int32_t* echo_outlines[] = {
+const int32_t* echo_outlines[] = {
   echo_outline_1,
   echo_outline_2,
   echo_outline_3,
@@ -2961,7 +2961,7 @@ int32_t* echo_outlines[] = {
   echo_outline_17,
   echo_outline_18,
 };
-uint32_t echo_outline_lengths[] = {
+const uint32_t echo_outline_lengths[] = {
   61,
   30,
   13,
@@ -2984,7 +2984,7 @@ uint32_t echo_outline_lengths[] = {
 
 
 /* -------------------Delta */
-int32_t delta_outline_1[] = {
+const int32_t delta_outline_1[] = {
    -59686879,  12652320,
    -60038435,  12941869,
    -60089953,  13374123,
@@ -2994,7 +2994,7 @@ int32_t delta_outline_1[] = {
    -59162344,  12784120,
    -59520394,  12621471,
 };
-int32_t delta_outline_2[] = {
+const int32_t delta_outline_2[] = {
    -68397205,  11612595,
    -68973995,  11636213,
    -69566048,  12122956,
@@ -3014,7 +3014,7 @@ int32_t delta_outline_2[] = {
    -67945622,  11710748,
    -68254849,  11589594,
 };
-int32_t delta_outline_3[] = {
+const int32_t delta_outline_3[] = {
    -61588891,   9894535,
    -61765913,   9813815,
    -61735891,   9632400,
@@ -3037,7 +3037,7 @@ int32_t delta_outline_3[] = {
    -60632545,   9896227,
    -61299553,   9628415,
 };
-int32_t delta_outline_4[] = {
+const int32_t delta_outline_4[] = {
    -60449486,  13767823,
    -61288405,  11763454,
    -61780232,  11565910,
@@ -3174,13 +3174,13 @@ int32_t delta_outline_4[] = {
    -60438527,  14039156,
 };
 
-int32_t* delta_outlines[] = {
+const int32_t* delta_outlines[] = {
   delta_outline_1,
   delta_outline_2,
   delta_outline_3,
   delta_outline_4,
 };
-uint32_t delta_outline_lengths[] = {
+const uint32_t delta_outline_lengths[] = {
   8,
   18,
   21,
@@ -3189,12 +3189,12 @@ uint32_t delta_outline_lengths[] = {
 
 
 /* --------------------Golf */
-int32_t golf_outline_1[] = {
+const int32_t golf_outline_1[] = {
    -54471889,   4806013,
    -54452198,   5013487,
    -54473336,   4914682,
 };
-int32_t golf_outline_2[] = {
+const int32_t golf_outline_2[] = {
    -55951990,   6393751,
    -54777820,   6434316,
    -53747847,   6220773,
@@ -3446,18 +3446,18 @@ int32_t golf_outline_2[] = {
    -56105117,   6315579,
 };
 
-int32_t* golf_outlines[] = {
+const int32_t* golf_outlines[] = {
   golf_outline_1,
   golf_outline_2,
 };
-uint32_t golf_outline_lengths[] = {
+const uint32_t golf_outline_lengths[] = {
   3,
   249,
 };
 
 
 /* -----------------Foxtrot */
-int32_t foxtrot_outline_1[] = {
+const int32_t foxtrot_outline_1[] = {
    100173455,   4288391,
    100065648,   4850393,
     99755828,   5171443,
@@ -3577,24 +3577,24 @@ int32_t foxtrot_outline_1[] = {
     98687552,   4486725,
    100233786,   4065721,
 };
-int32_t foxtrot_outline_2[] = {
+const int32_t foxtrot_outline_2[] = {
    101717084,  21160987,
    101542353,  21234254,
    101704777,  21150124,
 };
 
-int32_t* foxtrot_outlines[] = {
+const int32_t* foxtrot_outlines[] = {
   foxtrot_outline_1,
   foxtrot_outline_2,
 };
-uint32_t foxtrot_outline_lengths[] = {
+const uint32_t foxtrot_outline_lengths[] = {
   118,
   3,
 };
 
 
 /* -------------------India */
-int32_t india_outline_1[] = {
+const int32_t india_outline_1[] = {
    126289169,  31601196,
    127473256,  31810929,
    128345161,  32358677,
@@ -3651,16 +3651,16 @@ int32_t india_outline_1[] = {
    126284085,  31601180,
 };
 
-int32_t* india_outlines[] = {
+const int32_t* india_outlines[] = {
   india_outline_1,
 };
-uint32_t india_outline_lengths[] = {
+const uint32_t india_outline_lengths[] = {
   54,
 };
 
 
 /* --------------------Kilo */
-int32_t kilo_outline_1[] = {
+const int32_t kilo_outline_1[] = {
    123564543,  23889713,
    123289182,  24086022,
    123329598,  24575235,
@@ -3671,7 +3671,7 @@ int32_t kilo_outline_1[] = {
    124316163,  23940650,
    123827058,  23853621,
 };
-int32_t kilo_outline_2[] = {
+const int32_t kilo_outline_2[] = {
    113289226,  21815861,
    113034653,  22133752,
    113266391,  22088751,
@@ -3684,7 +3684,7 @@ int32_t kilo_outline_2[] = {
    113878189,  21938687,
    113480433,  21776632,
 };
-int32_t kilo_outline_3[] = {
+const int32_t kilo_outline_3[] = {
    130343176,  42231540,
    130668294,  42219281,
    130955719,  42380165,
@@ -4077,12 +4077,12 @@ int32_t kilo_outline_3[] = {
    130457487,  42301705,
 };
 
-int32_t* kilo_outlines[] = {
+const int32_t* kilo_outlines[] = {
   kilo_outline_1,
   kilo_outline_2,
   kilo_outline_3,
 };
-uint32_t kilo_outline_lengths[] = {
+const uint32_t kilo_outline_lengths[] = {
   9,
   11,
   390,
@@ -4090,7 +4090,7 @@ uint32_t kilo_outline_lengths[] = {
 
 
 /* ------------------Juliet */
-int32_t juliet_outline_1[] = {
+const int32_t juliet_outline_1[] = {
   -118283302,  28507777,
   -117882277,  28705933,
   -117800871,  29086456,
@@ -4101,7 +4101,7 @@ int32_t juliet_outline_1[] = {
   -118622632,  28642261,
   -118286150,  28507769,
 };
-int32_t juliet_outline_2[] = {
+const int32_t juliet_outline_2[] = {
   -106528335,  21107637,
   -106181720,  21264461,
   -106055525,  21654488,
@@ -4112,7 +4112,7 @@ int32_t juliet_outline_2[] = {
   -106908062,  21249312,
   -106531174,  21107629,
 };
-int32_t juliet_outline_3[] = {
+const int32_t juliet_outline_3[] = {
    -65123456,  17334064,
    -65287920,  17503573,
    -65262893,  18004260,
@@ -4129,12 +4129,12 @@ int32_t juliet_outline_3[] = {
    -64333936,  17390059,
    -64888502,  17270681,
 };
-int32_t juliet_outline_4[] = {
+const int32_t juliet_outline_4[] = {
    -72418100,  18558704,
    -72429940,  18722950,
    -72447538,  18557539,
 };
-int32_t juliet_outline_5[] = {
+const int32_t juliet_outline_5[] = {
    -61159919,   9632846,
    -60632545,   9896227,
    -60469168,  10815334,
@@ -4158,7 +4158,7 @@ int32_t juliet_outline_5[] = {
    -61588891,   9894535,
    -61299553,   9628415,
 };
-int32_t juliet_outline_6[] = {
+const int32_t juliet_outline_6[] = {
     93615250,   6353516,
     93226253,   6892260,
     93174663,   7470751,
@@ -4179,7 +4179,7 @@ int32_t juliet_outline_6[] = {
     94172296,   6459251,
     93830666,   6299463,
 };
-int32_t juliet_outline_7[] = {
+const int32_t juliet_outline_7[] = {
    119676383,   4643111,
    119413626,   4880750,
    119478215,   5416449,
@@ -4189,7 +4189,7 @@ int32_t juliet_outline_7[] = {
    120623845,   4992668,
    119877830,   4609651,
 };
-int32_t juliet_outline_8[] = {
+const int32_t juliet_outline_8[] = {
    114416558,   4255835,
    114063817,   4592687,
    113860528,   4170832,
@@ -4207,7 +4207,7 @@ int32_t juliet_outline_8[] = {
    114840249,   4393218,
    114608331,   4023991,
 };
-int32_t juliet_outline_9[] = {
+const int32_t juliet_outline_9[] = {
    -74552722,   -430964,
    -74495544,   1250751,
    -73959762,   3527891,
@@ -4252,7 +4252,7 @@ int32_t juliet_outline_9[] = {
    -74417875,   -580631,
    -74552254,   -438063,
 };
-int32_t juliet_outline_10[] = {
+const int32_t juliet_outline_10[] = {
    130967254,   2606250,
    130720810,   2850348,
    130718340,   3203673,
@@ -4262,7 +4262,7 @@ int32_t juliet_outline_10[] = {
    131599910,   2865956,
    131148884,   2570239,
 };
-int32_t juliet_outline_11[] = {
+const int32_t juliet_outline_11[] = {
    127230433,  -2764194,
    126471240,  -2621193,
    126501531,  -2256480,
@@ -4294,7 +4294,7 @@ int32_t juliet_outline_11[] = {
    128099804,  -2425264,
    127346109,  -2849797,
 };
-int32_t juliet_outline_12[] = {
+const int32_t juliet_outline_12[] = {
    132849224,  -6437479,
    133292911,  -6161761,
    133622036,  -5346341,
@@ -4306,7 +4306,7 @@ int32_t juliet_outline_12[] = {
    132332783,  -6196015,
    132846386,  -6437497,
 };
-int32_t juliet_outline_13[] = {
+const int32_t juliet_outline_13[] = {
    134202096,  -7357398,
    134977225,  -7081314,
    135335006,  -6321907,
@@ -4318,7 +4318,7 @@ int32_t juliet_outline_13[] = {
    133773618,  -7151439,
    134199248,  -7357407,
 };
-int32_t juliet_outline_14[] = {
+const int32_t juliet_outline_14[] = {
    128629164,  -7656915,
    129004552,  -7482622,
    129122348,  -7109276,
@@ -4329,7 +4329,7 @@ int32_t juliet_outline_14[] = {
    128239223,  -7479869,
    128626325,  -7656932,
 };
-int32_t juliet_outline_15[] = {
+const int32_t juliet_outline_15[] = {
    130777215,  -8796977,
    131662855,  -8296131,
    132347982,  -7492905,
@@ -4342,7 +4342,7 @@ int32_t juliet_outline_15[] = {
    130457379,  -8665890,
    130774376,  -8796986,
 };
-int32_t juliet_outline_16[] = {
+const int32_t juliet_outline_16[] = {
    129783229,  -8493889,
    130148430,  -8302180,
    130279477,  -7781369,
@@ -4353,12 +4353,12 @@ int32_t juliet_outline_16[] = {
    129442112,  -8397291,
    129780391,  -8493898,
 };
-int32_t juliet_outline_17[] = {
+const int32_t juliet_outline_17[] = {
    125507096,  -8275094,
    125646101,  -8139916,
    125579446,  -8311789,
 };
-int32_t juliet_outline_18[] = {
+const int32_t juliet_outline_18[] = {
   -109423461, -32265340,
   -108392788, -32179425,
   -107101801, -31876784,
@@ -4393,7 +4393,7 @@ int32_t juliet_outline_18[] = {
   -110479584, -32178401,
   -109433298, -32265348,
 };
-int32_t juliet_outline_19[] = {
+const int32_t juliet_outline_19[] = {
    -66310113, -46735036,
    -65875867, -45315899,
    -66090906, -45295404,
@@ -4402,25 +4402,25 @@ int32_t juliet_outline_19[] = {
    -66516133, -46745640,
    -66311847, -46763304,
 };
-int32_t juliet_outline_20[] = {
+const int32_t juliet_outline_20[] = {
    -74025240, -49575140,
    -74009331, -49478633,
    -73892460, -49523431,
    -73891553, -49623735,
 };
-int32_t juliet_outline_21[] = {
+const int32_t juliet_outline_21[] = {
    -72674344, -51812854,
    -72583309, -51737250,
    -72856801, -51538408,
    -72489624, -51763712,
    -72552515, -51907093,
 };
-int32_t juliet_outline_22[] = {
+const int32_t juliet_outline_22[] = {
    -66435778, -55189753,
    -66624757, -55213063,
    -66551688, -55272903,
 };
-int32_t juliet_outline_23[] = {
+const int32_t juliet_outline_23[] = {
    -88461256,  18476778,
    -88130245,  18350709,
    -88168630,  17943205,
@@ -4598,7 +4598,7 @@ int32_t juliet_outline_23[] = {
    -88806326,  17965516,
    -88401788,  18475209,
 };
-int32_t juliet_outline_24[] = {
+const int32_t juliet_outline_24[] = {
    -61797327,  15077797,
    -62234986,  16263960,
    -62509790,  16367165,
@@ -4675,18 +4675,18 @@ int32_t juliet_outline_24[] = {
    -61636062,  14640377,
    -61730295,  14959852,
 };
-int32_t juliet_outline_25[] = {
+const int32_t juliet_outline_25[] = {
    123762343,  -8992138,
    124025109,  -8844102,
    123807411,  -8961226,
 };
-int32_t juliet_outline_26[] = {
+const int32_t juliet_outline_26[] = {
    124036383,  -9341599,
    124297442,  -9414744,
    124444425,  -9190335,
    124198134,  -9256123,
 };
-int32_t juliet_outline_27[] = {
+const int32_t juliet_outline_27[] = {
    124968268,  -9294263,
    125149441,  -9122901,
    124922275,  -8942496,
@@ -5029,7 +5029,7 @@ int32_t juliet_outline_27[] = {
    125068107,  -9511917,
    125033639,  -9381853,
 };
-int32_t juliet_outline_28[] = {
+const int32_t juliet_outline_28[] = {
    -67794435, -22879479,
    -68197015, -21300295,
    -68558264, -20901921,
@@ -5234,7 +5234,7 @@ int32_t juliet_outline_28[] = {
    -67579917, -22891673,
 };
 
-int32_t* juliet_outlines[] = {
+const int32_t* juliet_outlines[] = {
   juliet_outline_1,
   juliet_outline_2,
   juliet_outline_3,
@@ -5264,7 +5264,7 @@ int32_t* juliet_outlines[] = {
   juliet_outline_27,
   juliet_outline_28,
 };
-uint32_t juliet_outline_lengths[] = {
+const uint32_t juliet_outline_lengths[] = {
   9,
   9,
   15,
@@ -5297,7 +5297,7 @@ uint32_t juliet_outline_lengths[] = {
 
 
 /* --------------------Mike */
-int32_t mike_outline_1[] = {
+const int32_t mike_outline_1[] = {
    -66516133, -46745640,
    -67111760, -46289070,
    -67148502, -46103867,
@@ -5306,12 +5306,12 @@ int32_t mike_outline_1[] = {
    -65875867, -45315899,
    -66311847, -46763304,
 };
-int32_t mike_outline_2[] = {
+const int32_t mike_outline_2[] = {
    -73836387, -49609319,
    -74009331, -49478633,
    -73891553, -49623735,
 };
-int32_t mike_outline_3[] = {
+const int32_t mike_outline_3[] = {
    -72522852, -51890888,
    -72542534, -51706145,
    -72856801, -51538408,
@@ -5319,13 +5319,13 @@ int32_t mike_outline_3[] = {
    -72674344, -51812854,
    -72552515, -51907093,
 };
-int32_t mike_outline_4[] = {
+const int32_t mike_outline_4[] = {
    -66611120, -55269959,
    -66523166, -55165518,
    -66435778, -55189753,
    -66551688, -55272903,
 };
-int32_t mike_outline_5[] = {
+const int32_t mike_outline_5[] = {
    -58180162, -19817853,
    -59090515, -19286212,
    -60007362, -19297574,
@@ -5537,14 +5537,14 @@ int32_t mike_outline_5[] = {
    -58160031, -19854907,
 };
 
-int32_t* mike_outlines[] = {
+const int32_t* mike_outlines[] = {
   mike_outline_1,
   mike_outline_2,
   mike_outline_3,
   mike_outline_4,
   mike_outline_5,
 };
-uint32_t mike_outline_lengths[] = {
+const uint32_t mike_outline_lengths[] = {
   7,
   3,
   6,
@@ -5554,7 +5554,7 @@ uint32_t mike_outline_lengths[] = {
 
 
 /* --------------------Lima */
-int32_t lima_outline_1[] = {
+const int32_t lima_outline_1[] = {
    151615246,  46494097,
    151319350,  46694078,
    151355328,  47036618,
@@ -5565,7 +5565,7 @@ int32_t lima_outline_1[] = {
    152335569,  46690592,
    151817116,  46477709,
 };
-int32_t lima_outline_2[] = {
+const int32_t lima_outline_2[] = {
    145754781,  43107737,
    145550953,  43208093,
    145832988,  43385926,
@@ -5593,7 +5593,7 @@ int32_t lima_outline_2[] = {
    147237334,  43589828,
    146031624,  43078783,
 };
-int32_t lima_outline_3[] = {
+const int32_t lima_outline_3[] = {
    123829896,  23853637,
    124529316,  24047403,
    124771358,  24603269,
@@ -5604,7 +5604,7 @@ int32_t lima_outline_3[] = {
    123416644,  23954528,
    123827058,  23853621,
 };
-int32_t lima_outline_4[] = {
+const int32_t lima_outline_4[] = {
    132517153,  38336384,
    132811639,  37659100,
    132704461,  36999295,
@@ -5750,13 +5750,13 @@ int32_t lima_outline_4[] = {
    132514234,  38339660,
 };
 
-int32_t* lima_outlines[] = {
+const int32_t* lima_outlines[] = {
   lima_outline_1,
   lima_outline_2,
   lima_outline_3,
   lima_outline_4,
 };
-uint32_t lima_outline_lengths[] = {
+const uint32_t lima_outline_lengths[] = {
   9,
   26,
   9,
@@ -5764,7 +5764,7 @@ uint32_t lima_outline_lengths[] = {
 };
 
 
-struct aprs_zone_t aprs_zones[] = {
+const struct aprs_zone_t aprs_zones[] = {
                                                   /* -------------------Alpha */
   { .outlines = alpha_outlines, .outline_lengths = alpha_outline_lengths,
     .frequency = 0, .deviation = 0, .name = "Alpha" },

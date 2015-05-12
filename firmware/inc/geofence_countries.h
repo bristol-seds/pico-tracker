@@ -15,13 +15,14 @@
  * struct representing all we need to know about a country
  */
 struct country_t {
-  int32_t** outlines;
+  const int32_t** outlines;
+  const uint32_t* outline_lengths;
   char* name;
   char* isocode;
   bool data_tx, aprs_tx;
 };
 
 
-struct country_t countries[233];
+const struct country_t countries[233];
 
 #endif /* GEOFENCE_COUNTRIES_H */

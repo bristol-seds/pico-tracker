@@ -15,13 +15,13 @@
  * struct representing all we need to know about a aprs zone
  */
 struct aprs_zone_t {
-  int32_t** outlines;
-  uint32_t* outline_lengths;
+  const int32_t** outlines;
+  const uint32_t* outline_lengths;
   int32_t frequency, deviation;
   char* name;
 };
 
 
-struct aprs_zone_t aprs_zones[12];
+const struct aprs_zone_t aprs_zones[12];
 
 #endif /* GEOFENCE_APRS_H */
