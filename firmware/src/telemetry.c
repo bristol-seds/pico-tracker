@@ -118,7 +118,10 @@ uint8_t radio_on = 0;
  * Temperature
  */
 float _si_temperature = 128.0;
-
+/**
+ * APRS frequency
+ */
+int32_t _aprs_frequency = 0;
 
 /**
  * Returns 1 if we're currently outputting.
@@ -187,6 +190,13 @@ int telemetry_start_rsid(rsid_code_t rsid) {
     return 1; /* Already active */
   }
 }
+/**
+ * Setter for the APRS frequency
+ */
+void telemetry_aprs_set_frequency(int32_t frequency) {
+  _aprs_frequency = frequency;
+}
+
 /**
  * Stops the ongoing telemetry at the earliest possible moment (end of
  * symbol / block).
@@ -310,8 +320,14 @@ void telemetry_tick(void) {
         /* APRS: We use pwm to control gpio1 */
         aprs_start();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 144888000, 400);
-        radio_on = 1;
+//        if (_aprs_frequency) { TODO configurable frequency
+//          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, 400);
+//          radio_on = 1;
+//        }
+
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 144800000, 400);
+          radio_on = 1;
+
       }
 
       if (!aprs_tick()) {

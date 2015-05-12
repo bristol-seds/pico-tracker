@@ -47,6 +47,7 @@ char telemetry_string[TELEMETRY_STRING_MAX];
 int telemetry_active(void);
 int telemetry_start(enum telemetry_t type, int32_t length);
 int telemetry_start_rsid(rsid_code_t rsid);
+void telemetry_aprs_set_frequency(int32_t frequency);
 void telemetry_stop(void);
 float telemetry_si_temperature(void);
 

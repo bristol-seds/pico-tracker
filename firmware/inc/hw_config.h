@@ -130,6 +130,7 @@
  */
 #define TELEMETRY_FREQUENCY	434600000
 #define TELEMETRY_INTERVAL	30
+#define APRS_INTERVAL		180
 
 /**
  * Watchdog Timer

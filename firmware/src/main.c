@@ -44,6 +44,8 @@
 #include "timer.h"
 #include "contestia.h"
 #include "rsid.h"
+#include "aprs.h"
+#include "location.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "analogue.h"
@@ -236,9 +238,35 @@ void output_telemetry_string(enum telemetry_t type)
   while (telemetry_active()) {
     system_sleep();
   }
+}
 
-  /* Pips */
-  telemetry_start(TELEMETRY_PIPS, 0xFFFF);
+void aprs_telemetry(void) {
+
+  if (!gps_is_locked()) return; /* Don't bother with no GPS */
+
+  struct ubx_nav_posllh pos = gps_get_nav_posllh();
+  float lat = (float)pos.payload.lat / 10000000.0;
+  float lon = (float)pos.payload.lon / 10000000.0;
+  uint32_t altitude = pos.payload.height / 1000;
+
+  /* Update location */
+  aprs_location_update(lon, lat);
+
+  /* aprs okay here? */
+  if (aprs_location_tx_allow()) {
+
+    /* Set location */
+    aprs_set_location(lat, lon, altitude);
+
+    /* Set frequency */
+    telemetry_aprs_set_frequency(aprs_location_frequency());
+
+    /* Transmit packet and wait */
+    telemetry_start(TELEMETRY_APRS, 0xFFFF);
+    while (telemetry_active()) {
+      system_sleep();
+    }
+  }
 }
 
 /**
@@ -304,10 +332,30 @@ void xosc_measure_callback(uint32_t result)
   _xosc_error = result - XOSC_FREQUENCY;
 }
 
+uint32_t telemetry_interval_count = TELEMETRY_INTERVAL;
+uint32_t aprs_interval_count = 0;
 uint8_t telemetry_trigger_flag = 0;
+uint8_t aprs_trigger_flag = 0;
+
+/**
+ * Called by the timer at 1Hz
+ */
 void timepulse_callback(uint32_t sequence)
 {
-  telemetry_trigger_flag = 1;
+  telemetry_interval_count++;
+  aprs_interval_count++;
+
+  /* Runs at the rate of telemetry packets */
+  if (telemetry_interval_count >= TELEMETRY_INTERVAL) {
+    telemetry_interval_count = 0;
+    telemetry_trigger_flag = 1;
+  }
+
+  /* Runs at the rate of aprs packets */
+  if (aprs_interval_count >= APRS_INTERVAL) {
+    aprs_interval_count = 0;
+    aprs_trigger_flag = 1;
+  }
 }
 
 /**
@@ -322,16 +370,6 @@ int main(void)
 
   led_on();
 
-
-  /* while (1) { */
-  /*   telemetry_start(TELEMETRY_APRS, 0xFFFF); */
-
-  /*   while (telemetry_active()) { */
-  /*     system_sleep(); */
-  /*   } */
-
-  /*   for (int i = 0; i < 1000*1000; i++); */
-  /* } */
 
 
   while (1) {
@@ -354,6 +392,17 @@ int main(void)
     output_telemetry_string((telemetry_alternate++ & 1) ?
                             TELEMETRY_CONTESTIA :
                             TELEMETRY_RTTY);
+
+
+    /* Maybe aprs? */
+    if (aprs_trigger_flag) {
+      aprs_telemetry();
+    }
+    aprs_trigger_flag = 0;
+
+
+    /* Pips */
+    telemetry_start(TELEMETRY_PIPS, 0xFFFF);
 
     /* Measure XOSC against gps timepulse */
     measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);

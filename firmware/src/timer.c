@@ -32,7 +32,6 @@
 #include "system/interrupt.h"
 
 uint32_t gps_timepulse_count = 0;
-uint32_t telemetry_interval_count = TELEMETRY_INTERVAL;
 uint32_t timepulse_sequence = 0;
 
 timepulse_callback_t _timer_callback;
@@ -89,15 +88,9 @@ void EIC_Handler(void) {
     if (gps_timepulse_count >= GPS_TIMEPULSE_FREQ) {
       gps_timepulse_count = 0;
 
-      telemetry_interval_count++;
-      /* Runs at the rate of telemetry packets */
-      if (telemetry_interval_count >= TELEMETRY_INTERVAL) {
-        telemetry_interval_count = 0;
-
-        /* Make the callback if we have one */
-        if (_timer_callback) {
-          _timer_callback(timepulse_sequence++);
-        }
+      /* Make the callback if we have one */
+      if (_timer_callback) {
+        _timer_callback(timepulse_sequence++);
       }
     }
   }
