@@ -460,30 +460,13 @@ void TC0_Handler(void)
  */
 void telemetry_gpio1_pwm_init(void)
 {
-  float gclk1_frequency = (float)system_gclk_gen_get_hz(1);
-
-  uint32_t top = 38;//(uint32_t)(gclk1_frequency / 13200.0*4);// & ~0x1;
-  uint32_t capture = top >> 1;  /* 50% duty cycle */
-
-  if (top > 0xFF) while (1); // It's only an 8-bit counter
-
-  /* Setup GCLK genertor 7 */
-  system_gclk_gen_set_config(GCLK_GENERATOR_7,
-                             GCLK_SOURCE_GCLKGEN1,	/* Source	*/
-        		     false,		/* High When Disabled	*/
-        		     11, /* Division Factor	*/// TODO
-        		     false,		/* Run in standby	*/
-        		     false);		/* Output Pin Enable	*/
-  system_gclk_gen_enable(GCLK_GENERATOR_7);
-
-  /* Configure timer */
   bool capture_channel_enables[]    = {false, true};
-  uint32_t compare_channel_values[] = {0x0000, capture};
+  uint32_t compare_channel_values[] = {0x0000, 0x0000};
 
   tc_init(TC5,
-	  GCLK_GENERATOR_7,
+	  GCLK_GENERATOR_0,
 	  TC_COUNTER_SIZE_8BIT,
-	  TC_CLOCK_PRESCALER_DIV4,
+	  TC_CLOCK_PRESCALER_DIV1,
 	  TC_WAVE_GENERATION_NORMAL_PWM,
 	  TC_RELOAD_ACTION_GCLK,
 	  TC_COUNT_DIRECTION_UP,
@@ -491,7 +474,7 @@ void telemetry_gpio1_pwm_init(void)
 	  false,			/* Oneshot = false */
 	  false,			/* Run in standby = false */
 	  0x0000,			/* Initial value */
-	  top,				/* Top value */
+	  GPIO1_PWM_STEPS,		/* Top value */
 	  capture_channel_enables,	/* Capture Channel Enables */
 	  compare_channel_values);	/* Compare Channels Values */
 
