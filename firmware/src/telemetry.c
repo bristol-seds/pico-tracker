@@ -363,6 +363,9 @@ void telemetry_tick(void) {
  * =============================================================================
  */
 
+const enum gclk_generator tick_gclk_gen = GCLK_GENERATOR_1;
+const uint8_t tick_gclk_gen_num = 1;
+
 /**
  * Initialises a timer interupt at the given frequency
  *
@@ -370,9 +373,6 @@ void telemetry_tick(void) {
  */
 float timer0_tick_init(float frequency)
 {
-  const enum gclk_generator tick_gclk_gen = GCLK_GENERATOR_1;
-  const uint8_t tick_gclk_gen_num = 1;
-
   /* Calculate the wrap value for the given frequency */
   float gclk_frequency = (float)system_gclk_gen_get_hz(tick_gclk_gen_num);
   uint32_t count = (uint32_t)(gclk_frequency / frequency);
@@ -420,7 +420,7 @@ float timer0_tick_init(float frequency)
  */
 uint32_t timer0_tick_frequency(float frequency)
 {
-  float gclk_frequency = (float)system_gclk_chan_get_hz(0);
+  float gclk_frequency = (float)system_gclk_gen_get_hz(tick_gclk_gen_num);
   uint32_t count = (uint32_t)(gclk_frequency / frequency);
 
   tc_set_compare_value(TC0,
