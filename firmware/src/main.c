@@ -283,8 +283,8 @@ void init(void)
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
 
-  /* Up the clock rate to 8MHz */
-  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_1, /* Prescaler */
+  /* Up the clock rate to 4MHz */
+  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_2, /* Prescaler */
 				       false,		   /* Run in Standby */
 				       false);		   /* Run on Demand */
 
