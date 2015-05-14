@@ -4062,8 +4062,8 @@ Covered vias can be set in Masks (Limit).
 <elements>
 <element name="L1" library="SparkFun" package="1007" value="2.2µH" x="2.75" y="17.875" rot="R90"/>
 <element name="U$2" library="fbri" package="AA" value="AA_HOLDER" x="7" y="32" rot="MR0"/>
-<element name="C19" library="resistor" package="C0603K" value="10µF" x="1.75" y="19.75" rot="R180"/>
-<element name="U4" library="ADP1607" package="DFN200X200X60-7N" value="ADP1607ACPZN-R7" x="1.75" y="15.5">
+<element name="C2" library="resistor" package="C0603K" value="10µF" x="1.75" y="19.75" rot="R180"/>
+<element name="U1" library="ADP1607" package="DFN200X200X60-7N" value="ADP1607ACPZN-R7" x="1.75" y="15.5">
 <attribute name="PACKAGE" value="6LFCSP" x="1.75" y="15.5" size="1.778" layer="27" display="off"/>
 <attribute name="OC_NEWARK" value="54W6610" x="1.75" y="15.5" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="ADP1607ACPZN-R7" x="1.75" y="15.5" size="1.778" layer="27" display="off"/>
@@ -4072,7 +4072,7 @@ Covered vias can be set in Masks (Limit).
 </element>
 <element name="R1" library="microbuilder_v3" package="_0402" value="100kΩ" x="0.75" y="13.5" rot="R270"/>
 <element name="R2" library="microbuilder_v3" package="_0402" value="240kΩ" x="2.125" y="14" rot="R180"/>
-<element name="C18" library="resistor" package="C0603K" value="10µF" x="1" y="22.25" rot="R90"/>
+<element name="C1" library="resistor" package="C0603K" value="10µF" x="1" y="22.25" rot="R90"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -4090,11 +4090,11 @@ Covered vias can be set in Masks (Limit).
 </polygon>
 <contactref element="U$2" pad="-2"/>
 <contactref element="U$2" pad="-1"/>
-<contactref element="C19" pad="2"/>
-<contactref element="U4" pad="4"/>
-<contactref element="U4" pad="7"/>
+<contactref element="C2" pad="2"/>
+<contactref element="U1" pad="4"/>
+<contactref element="U1" pad="7"/>
 <contactref element="R2" pad="1"/>
-<contactref element="C18" pad="2"/>
+<contactref element="C1" pad="2"/>
 <via x="1.75" y="16" extent="1-16" drill="0.3"/>
 <via x="1.75" y="15" extent="1-16" drill="0.3"/>
 <wire x1="2.7406" y1="14.8396" x2="2.0768" y2="14.8396" width="0.3048" layer="1"/>
@@ -4112,30 +4112,30 @@ Covered vias can be set in Masks (Limit).
 <signal name="KEY">
 </signal>
 <signal name="1.8V">
-<contactref element="C19" pad="1"/>
-<contactref element="U4" pad="6"/>
+<contactref element="C2" pad="1"/>
+<contactref element="U1" pad="6"/>
 <contactref element="R1" pad="2"/>
 <wire x1="2.7406" y1="16.1604" x2="2.625" y2="19.75" width="0" layer="19" extent="1-1"/>
 <wire x1="0.75" y1="12.992" x2="2.7406" y2="16.1604" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="1.2V">
 <contactref element="U$2" pad="+2"/>
-<contactref element="U4" pad="1"/>
-<contactref element="U4" pad="2"/>
+<contactref element="U1" pad="1"/>
+<contactref element="U1" pad="2"/>
 <contactref element="L1" pad="1"/>
-<contactref element="C18" pad="1"/>
+<contactref element="C1" pad="1"/>
 <wire x1="0.7594" y1="15.5" x2="0.7594" y2="16.1604" width="0.3048" layer="1"/>
 <wire x1="1" y1="21.375" x2="7" y2="43.5" width="0" layer="19" extent="1-16"/>
 <wire x1="1.75" y1="17.875" x2="1" y2="21.375" width="0" layer="19" extent="1-1"/>
 <wire x1="0.7594" y1="16.1604" x2="1.75" y2="17.875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SW">
-<contactref element="U4" pad="5"/>
+<contactref element="U1" pad="5"/>
 <contactref element="L1" pad="2"/>
 <wire x1="2.7406" y1="15.5" x2="3.75" y2="17.875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FB">
-<contactref element="U4" pad="3"/>
+<contactref element="U1" pad="3"/>
 <contactref element="R2" pad="2"/>
 <contactref element="R1" pad="1"/>
 <wire x1="0.7594" y1="14.8396" x2="0.7848" y2="14.0428" width="0.3048" layer="1"/>

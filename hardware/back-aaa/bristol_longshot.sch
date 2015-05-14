@@ -4632,15 +4632,15 @@ Metric Code Size 5664</description>
 <part name="U$46" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$47" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="U$2" library="fbri" deviceset="AA_HOLDER" device=""/>
-<part name="C19" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="U4" library="ADP1607" deviceset="ADP1607ACPZN-R7" device=""/>
+<part name="C2" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="U1" library="ADP1607" deviceset="ADP1607ACPZN-R7" device=""/>
 <part name="U$26" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="R1" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$32" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="240kΩ"/>
 <part name="U$35" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C18" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C1" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$52" library="microbuilder_v3" deviceset="1.8V" device=""/>
 </parts>
 <sheets>
@@ -4665,15 +4665,15 @@ holder</text>
 <instance part="U$46" gate="G$1" x="60.96" y="71.12"/>
 <instance part="U$47" gate="G$1" x="60.96" y="106.68"/>
 <instance part="U$2" gate="G$1" x="60.96" y="86.36" rot="R270"/>
-<instance part="C19" gate="G$1" x="170.18" y="83.82"/>
-<instance part="U4" gate="A" x="142.24" y="93.98"/>
+<instance part="C2" gate="G$1" x="170.18" y="83.82"/>
+<instance part="U1" gate="A" x="142.24" y="93.98"/>
 <instance part="U$26" gate="G$1" x="111.76" y="114.3"/>
 <instance part="R1" gate="G$1" x="101.6" y="96.52" rot="R90"/>
 <instance part="U$32" gate="G$1" x="101.6" y="71.12"/>
 <instance part="R2" gate="G$1" x="101.6" y="81.28" rot="R90"/>
 <instance part="U$35" gate="G$1" x="91.44" y="114.3"/>
 <instance part="U$36" gate="G$1" x="91.44" y="71.12"/>
-<instance part="C18" gate="G$1" x="91.44" y="93.98"/>
+<instance part="C1" gate="G$1" x="91.44" y="93.98"/>
 <instance part="U$52" gate="G$1" x="101.6" y="109.22" rot="MR0"/>
 </instances>
 <busses>
@@ -4682,7 +4682,7 @@ holder</text>
 <net name="GND" class="0">
 <segment>
 <pinref part="U$29" gate="G$1" pin="GND"/>
-<pinref part="C19" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="170.18" y1="73.66" x2="170.18" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -4691,11 +4691,11 @@ holder</text>
 <pinref part="U$2" gate="G$1" pin="-"/>
 </segment>
 <segment>
-<pinref part="U4" gate="A" pin="GND"/>
+<pinref part="U1" gate="A" pin="GND"/>
 <pinref part="U$1" gate="G$1" pin="GND"/>
 <wire x1="124.46" y1="83.82" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="83.82" x2="121.92" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="U4" gate="A" pin="EP"/>
+<pinref part="U1" gate="A" pin="EP"/>
 <wire x1="121.92" y1="81.28" x2="121.92" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="81.28" x2="121.92" y2="81.28" width="0.1524" layer="91"/>
 <junction x="121.92" y="81.28"/>
@@ -4707,7 +4707,7 @@ holder</text>
 </segment>
 <segment>
 <pinref part="U$36" gate="G$1" pin="GND"/>
-<pinref part="C18" gate="G$1" pin="2"/>
+<pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="73.66" x2="91.44" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -4715,8 +4715,8 @@ holder</text>
 <segment>
 <pinref part="U$30" gate="G$1" pin="1.8V"/>
 <wire x1="170.18" y1="86.36" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="C19" gate="G$1" pin="1"/>
-<pinref part="U4" gate="A" pin="VOUT"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<pinref part="U1" gate="A" pin="VOUT"/>
 <wire x1="170.18" y1="96.52" x2="170.18" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="96.52" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
 <junction x="170.18" y="96.52"/>
@@ -4734,11 +4734,11 @@ holder</text>
 <pinref part="U$2" gate="G$1" pin="+"/>
 </segment>
 <segment>
-<pinref part="U4" gate="A" pin="VIN"/>
+<pinref part="U1" gate="A" pin="VIN"/>
 <pinref part="U$33" gate="G$1" pin="1.2V"/>
 <wire x1="124.46" y1="99.06" x2="121.92" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="99.06" x2="121.92" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="U4" gate="A" pin="EN"/>
+<pinref part="U1" gate="A" pin="EN"/>
 <wire x1="124.46" y1="93.98" x2="121.92" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="93.98" x2="121.92" y2="99.06" width="0.1524" layer="91"/>
 <junction x="121.92" y="99.06"/>
@@ -4751,12 +4751,12 @@ holder</text>
 <segment>
 <pinref part="U$35" gate="G$1" pin="1.2V"/>
 <wire x1="91.44" y1="96.52" x2="91.44" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="C18" gate="G$1" pin="1"/>
+<pinref part="C1" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="SW" class="0">
 <segment>
-<pinref part="U4" gate="A" pin="SW"/>
+<pinref part="U1" gate="A" pin="SW"/>
 <wire x1="124.46" y1="91.44" x2="111.76" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="L1" gate="G$1" pin="2"/>
 <wire x1="111.76" y1="91.44" x2="111.76" y2="93.98" width="0.1524" layer="91"/>
@@ -4764,7 +4764,7 @@ holder</text>
 </net>
 <net name="FB" class="0">
 <segment>
-<pinref part="U4" gate="A" pin="FB"/>
+<pinref part="U1" gate="A" pin="FB"/>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="124.46" y1="88.9" x2="101.6" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="88.9" x2="101.6" y2="86.36" width="0.1524" layer="91"/>
