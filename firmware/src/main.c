@@ -52,7 +52,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDSx"
+#define CALLSIGN	"UBSEDS5"
 
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
@@ -333,7 +333,7 @@ void xosc_measure_callback(uint32_t result)
 }
 
 uint32_t telemetry_interval_count = TELEMETRY_INTERVAL;
-uint32_t aprs_interval_count = 0;
+uint32_t aprs_interval_count = APRS_INTERVAL;
 uint8_t telemetry_trigger_flag = 0;
 uint8_t aprs_trigger_flag = 0;
 
@@ -396,7 +396,7 @@ int main(void)
 
     /* Maybe aprs? */
     if (aprs_trigger_flag) {
-      aprs_telemetry();
+//      aprs_telemetry();
     }
     aprs_trigger_flag = 0;
 
