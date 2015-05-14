@@ -1357,6 +1357,10 @@ chip</description>
 <wire x1="1.1684" y1="21.7076" x2="1.1684" y2="24.0444" width="0.127" layer="21"/>
 <wire x1="-1.1684" y1="21.7076" x2="-1.1684" y2="24.0444" width="0.127" layer="21"/>
 <wire x1="1.1684" y1="24.0444" x2="-1.1684" y2="24.0444" width="0.127" layer="21"/>
+<rectangle x1="-1.5" y1="21" x2="1.5" y2="24" layer="31"/>
+<rectangle x1="-3" y1="9" x2="3" y2="14" layer="31"/>
+<rectangle x1="-3" y1="-14" x2="3" y2="-9" layer="31"/>
+<rectangle x1="-1.5" y1="-24" x2="1.5" y2="-21" layer="31"/>
 </package>
 <package name="M04X2">
 <pad name="P$1" x="-1.905" y="-0.635" drill="0.4" shape="octagon"/>
