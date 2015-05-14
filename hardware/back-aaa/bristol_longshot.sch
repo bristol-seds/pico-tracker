@@ -916,6 +916,16 @@ chip</description>
 <text x="-1.524" y="1.016" size="1.27" layer="96">&gt;VALUE</text>
 <pin name="1.2V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="CAPACITOR">
+<wire x1="0" y1="0.762" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="1.778" width="0.1524" layer="94"/>
+<text x="2.54" y="2.54" size="1.27" layer="95" font="vector">&gt;NAME</text>
+<text x="2.54" y="0" size="1.27" layer="96" font="vector">&gt;VALUE</text>
+<rectangle x1="-1.27" y1="0.508" x2="1.27" y2="1.016" layer="94"/>
+<rectangle x1="-1.27" y1="1.524" x2="1.27" y2="2.032" layer="94"/>
+<pin name="P$1" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<pin name="P$2" x="0" y="-2.54" visible="off" length="short" direction="pas" swaplevel="1" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="GND">
@@ -1153,6 +1163,167 @@ chip</description>
 </device>
 </devices>
 </deviceset>
+<deviceset name="CAP_CERAMIC" prefix="C" uservalue="yes">
+<description>&lt;p&gt;&lt;b&gt;Ceramic Capacitors&lt;/b&gt;&lt;/p&gt;
+&lt;b&gt;0402&lt;/b&gt; - 0402 Surface Mount Capacitors
+&lt;ul&gt;
+&lt;li&gt;16pF 50V 5% [Digikey: 445-4899-2-ND]&lt;/li&gt;
+&lt;li&gt;18pF 50V 5% [Digikey: 490-1281-2-ND]&lt;/li&gt;
+&lt;li&gt;22pF 50V 5% [Digikey: 490-1283-2-ND]&lt;/li&gt;
+&lt;li&gt;68pF 50V 5% [Digikey: 490-1289-2-ND]&lt;/li&gt;
+&lt;li&gt;0.1uF 10V 10% [Digikey: 490-1318-2-ND]&lt;/li&gt;
+&lt;li&gt;1.0uF 6.3V 10% [Digikey: 490-1320-2-ND]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;0603&lt;/b&gt; - 0603 Surface Mount Capacitors
+&lt;ul&gt;
+&lt;li&gt;16 pF 50V 5% [Digikey: 445-5051-2-ND]&lt;/li&gt;
+&lt;li&gt;22 pF 50V [Digikey: PCC220ACVTR-ND]&lt;/li&gt;
+&lt;li&gt;33 pF 50V 5% [Digikey: 490-1415-1-ND]&lt;/li&gt;
+&lt;li&gt;56pF 50V 5% [Digikey: 490-1421-1-ND]&lt;/li&gt;
+&lt;li&gt;220pF 50V 5% [Digikey: 445-1285-1-ND]&lt;/li&gt;
+&lt;li&gt;680 pF 50V &lt;/li&gt;
+&lt;li&gt;2200 pF 50V 5% C0G [Digikey: 445-1297-1-ND]&lt;/li&gt;
+&lt;li&gt;5600 pF 100V 5% X7R [Digikey: 478-3711-1-ND]&lt;/li&gt;
+&lt;li&gt;0.1 µF 25V 10% [Digikey: PCC2277TR-ND]&lt;/li&gt;
+&lt;li&gt;0.22 µF 16V 10% X7R [Digikey: 445-1318-1-ND]&lt;/li&gt;
+&lt;li&gt;1.0 µF 25V 10% [Digikey: 445-5146-2-ND]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;0603&lt;/b&gt; - RF Specific
+&lt;ul&gt;
+&lt;li&gt;3pF 250V +/-0.1pF RF [Digikey: 712-1347-1-ND]&lt;/li&gt;
+&lt;li&gt;18 pF 250V 5%  [Digikey: 478-3505-1-ND or 712-1322-1-ND]&lt;/li&gt;
+&lt;li&gt;56 pF 250V 5% C0G RF [Digikey: 490-4867-1-ND]&lt;/li&gt;
+&lt;li&gt;68 pF 250V RF [Digikey: 490-4868-1-ND]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;0805&lt;/b&gt; - 0805 Surface Mount Capacitors
+&lt;ul&gt;
+&lt;li&gt;220 pF 250V 2% &lt;strong&gt;RF&lt;/strong&gt; Ceramic Capacitor [Digikey: 712-1398-1-ND]&lt;/li&gt;
+&lt;li&gt;1000 pF 50V 2% NP0 Ceramic Capacitor [Digikey: 478-3760-1-ND]&lt;/li&gt;
+&lt;li&gt;0.1 µF 25V 10% Ceramic Capacitor [Digikey: PCC1828TR-ND]&lt;/li&gt;
+&lt;li&gt;1.0 µF 16V 10% Ceramic Capacitor[Digikey: 490-1691-2-ND]&lt;/li&gt;
+&lt;li&gt;10.0 µF 10V 10% Ceramic Capacitor[Digikey: 709-1228-1-ND]&lt;/li&gt;
+&lt;li&gt;10.0 uF 16V 10% Ceramic Capacitor [Digikey: 478-5165-2-ND]&lt;/li&gt;
+&lt;li&gt;47 uF 6.3V 20% Ceramic Capacitor [Digikey: 587-1779-1-ND or 399-5506-1-ND]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;&lt;b&gt;1206&lt;/b&gt; - 1206 Surface Mount Capacitors
+&lt;ul&gt;
+&lt;li&gt;47uF 10V 20% Ceramic Capacitor [Digikey: 490-5528-1-ND or 399-5508-1-ND or 445-6010-1-ND]&lt;/li&gt;
+&lt;li&gt;100uF 6.3V -20%, +80% Y5V Ceramic Capacitor (Digikey: 490-4512-1-ND, Mouser: 81-GRM31CF50J107ZE1L)&lt;/li&gt;
+&lt;/ul&gt;</description>
+<gates>
+<gate name="G$1" symbol="CAPACITOR" x="0" y="-2.54"/>
+</gates>
+<devices>
+<device name="0805" package="0805">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="1206" package="1206">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0603" package="0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0402" package="0402">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0603MINI" package="0603-MINI">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0805-NOTHERMALS" package="0805_NOTHERMALS">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0402" package="_0402">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0402MP" package="_0402MP">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0603" package="_0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0603MP" package="_0603MP">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0805" package="_0805">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0805MP" package="_0805MP">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="fbri">
@@ -1187,6 +1358,31 @@ chip</description>
 <wire x1="-1.1684" y1="21.7076" x2="-1.1684" y2="24.0444" width="0.127" layer="21"/>
 <wire x1="1.1684" y1="24.0444" x2="-1.1684" y2="24.0444" width="0.127" layer="21"/>
 </package>
+<package name="M04X2">
+<pad name="P$1" x="-1.905" y="-0.635" drill="0.4" shape="octagon"/>
+<pad name="P$2" x="-1.905" y="0.635" drill="0.4" shape="octagon"/>
+<pad name="P$3" x="-0.635" y="-0.635" drill="0.4" shape="octagon"/>
+<pad name="P$4" x="-0.635" y="0.635" drill="0.4" shape="octagon"/>
+<pad name="P$5" x="0.635" y="-0.635" drill="0.4" shape="octagon"/>
+<pad name="P$6" x="0.635" y="0.635" drill="0.4" shape="octagon"/>
+<pad name="P$7" x="1.905" y="-0.635" drill="0.4" shape="octagon"/>
+<pad name="P$8" x="1.905" y="0.635" drill="0.4" shape="octagon"/>
+<wire x1="-1.936" y1="1.714" x2="1.936" y2="1.714" width="0.127" layer="21"/>
+<wire x1="1.936" y1="1.714" x2="2.793" y2="0.857" width="0.127" layer="21"/>
+<wire x1="2.793" y1="0.857" x2="2.793" y2="-0.857" width="0.127" layer="21"/>
+<wire x1="2.793" y1="-0.857" x2="1.936" y2="-1.714" width="0.127" layer="21"/>
+<wire x1="1.936" y1="-1.714" x2="-1.936" y2="-1.714" width="0.127" layer="21"/>
+<wire x1="-1.936" y1="-1.714" x2="-2.793" y2="-0.857" width="0.127" layer="21"/>
+<wire x1="-2.793" y1="-0.857" x2="-2.793" y2="0.857" width="0.127" layer="21"/>
+<wire x1="-2.793" y1="0.857" x2="-1.936" y2="1.714" width="0.127" layer="21"/>
+<polygon width="0.127" layer="21">
+<vertex x="-2.793" y="-0.857"/>
+<vertex x="-2.793" y="-1.714"/>
+<vertex x="-1.936" y="-1.714"/>
+</polygon>
+<text x="-2.793" y="2.1425" size="0.4064" layer="25" font="vector" ratio="14">&gt;NAME</text>
+<text x="-2.793" y="-2.571" size="0.4064" layer="27" font="vector" ratio="14">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="BATTERY">
@@ -1198,6 +1394,30 @@ chip</description>
 <pin name="-" x="3.81" y="0" visible="off" length="short" direction="pwr" rot="R180"/>
 <pin name="+" x="-3.81" y="0" visible="off" length="short" direction="pwr"/>
 <pin name="+2" x="-5.08" y="2.54" visible="off" length="middle" direction="pwr"/>
+</symbol>
+<symbol name="M04X2">
+<wire x1="-1.27" y1="0" x2="-2.54" y2="0" width="0.6096" layer="94"/>
+<wire x1="-1.27" y1="2.54" x2="-2.54" y2="2.54" width="0.6096" layer="94"/>
+<wire x1="-1.27" y1="5.08" x2="-2.54" y2="5.08" width="0.6096" layer="94"/>
+<wire x1="-3.81" y1="7.62" x2="-3.81" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-1.27" y1="-2.54" x2="-2.54" y2="-2.54" width="0.6096" layer="94"/>
+<wire x1="3.81" y1="-5.08" x2="-3.81" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="3.81" y1="-5.08" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-3.81" y1="7.62" x2="3.81" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
+<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="2.54" y2="2.54" width="0.6096" layer="94"/>
+<wire x1="1.27" y1="5.08" x2="2.54" y2="5.08" width="0.6096" layer="94"/>
+<text x="-4.572" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-4.064" y="8.382" size="1.778" layer="95">&gt;NAME</text>
+<pin name="1" x="-7.62" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+<pin name="2" x="7.62" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="3" x="-7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+<pin name="4" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="5" x="-7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+<pin name="6" x="7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="7" x="-7.62" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+<pin name="8" x="7.62" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1211,6 +1431,28 @@ chip</description>
 <connect gate="G$1" pin="+" pad="+2"/>
 <connect gate="G$1" pin="+2" pad="+1"/>
 <connect gate="G$1" pin="-" pad="-1 -2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="M04X2">
+<gates>
+<gate name="G$1" symbol="M04X2" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="M04X2">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+<connect gate="G$1" pin="2" pad="P$2"/>
+<connect gate="G$1" pin="3" pad="P$3"/>
+<connect gate="G$1" pin="4" pad="P$4"/>
+<connect gate="G$1" pin="5" pad="P$5"/>
+<connect gate="G$1" pin="6" pad="P$6"/>
+<connect gate="G$1" pin="7" pad="P$7"/>
+<connect gate="G$1" pin="8" pad="P$8"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -4642,6 +4884,15 @@ Metric Code Size 5664</description>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C1" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$52" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="C3" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
+<part name="U$3" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$10" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="U$11" library="microbuilder_v3" deviceset="1.2V" device=""/>
+<part name="U$12" library="fbri" deviceset="M04X2" device=""/>
+<part name="U$6" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$13" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$14" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$15" library="microbuilder_v3" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4653,19 +4904,21 @@ Metric Code Size 5664</description>
 is the 2nd physical
 connection on the
 holder</text>
+<text x="33.02" y="43.18" size="1.27" layer="97" font="vector" ratio="11">NC, GND, Status, Vsolar, CLK</text>
+<text x="33.02" y="5.08" size="1.27" layer="97" font="vector" ratio="11">GND, GND, 1.8V, Vbattery, DATA</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="147.32" y="0"/>
 <instance part="U$1" gate="G$1" x="121.92" y="71.12"/>
-<instance part="U$29" gate="G$1" x="170.18" y="71.12"/>
-<instance part="U$30" gate="G$1" x="170.18" y="109.22" rot="MR0"/>
+<instance part="U$29" gate="G$1" x="185.42" y="71.12"/>
+<instance part="U$30" gate="G$1" x="185.42" y="109.22" rot="MR0"/>
 <instance part="L1" gate="G$1" x="111.76" y="101.6"/>
 <instance part="U$33" gate="G$1" x="121.92" y="114.3"/>
 <instance part="U$46" gate="G$1" x="60.96" y="71.12"/>
-<instance part="U$47" gate="G$1" x="60.96" y="106.68"/>
+<instance part="U$47" gate="G$1" x="63.5" y="106.68"/>
 <instance part="U$2" gate="G$1" x="60.96" y="86.36" rot="R270"/>
-<instance part="C2" gate="G$1" x="170.18" y="83.82"/>
+<instance part="C2" gate="G$1" x="185.42" y="83.82"/>
 <instance part="U1" gate="A" x="142.24" y="93.98"/>
 <instance part="U$26" gate="G$1" x="111.76" y="114.3"/>
 <instance part="R1" gate="G$1" x="101.6" y="96.52" rot="R90"/>
@@ -4675,6 +4928,15 @@ holder</text>
 <instance part="U$36" gate="G$1" x="91.44" y="71.12"/>
 <instance part="C1" gate="G$1" x="91.44" y="93.98"/>
 <instance part="U$52" gate="G$1" x="101.6" y="109.22" rot="MR0"/>
+<instance part="C3" gate="G$1" x="172.72" y="81.28"/>
+<instance part="U$3" gate="G$1" x="172.72" y="71.12"/>
+<instance part="U$10" gate="G$1" x="45.72" y="12.7" rot="MR180"/>
+<instance part="U$11" gate="G$1" x="48.26" y="12.7" rot="R180"/>
+<instance part="U$12" gate="G$1" x="48.26" y="27.94" rot="R90"/>
+<instance part="U$6" gate="G$1" x="43.18" y="17.78"/>
+<instance part="U$13" gate="G$1" x="43.18" y="38.1" rot="R180"/>
+<instance part="U$14" gate="G$1" x="45.72" y="38.1" rot="R180"/>
+<instance part="U$15" gate="G$1" x="48.26" y="38.1" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -4683,7 +4945,7 @@ holder</text>
 <segment>
 <pinref part="U$29" gate="G$1" pin="GND"/>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="170.18" y1="73.66" x2="170.18" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="73.66" x2="185.42" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$46" gate="G$1" pin="GND"/>
@@ -4710,29 +4972,54 @@ holder</text>
 <pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="73.66" x2="91.44" y2="88.9" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="GND"/>
+<pinref part="C3" gate="G$1" pin="P$2"/>
+<wire x1="172.72" y1="73.66" x2="172.72" y2="78.74" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$12" gate="G$1" pin="1"/>
+<pinref part="U$6" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U$12" gate="G$1" pin="2"/>
+<pinref part="U$13" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U$12" gate="G$1" pin="4"/>
+<pinref part="U$14" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U$12" gate="G$1" pin="6"/>
+<pinref part="U$15" gate="G$1" pin="GND"/>
+</segment>
 </net>
 <net name="1.8V" class="0">
 <segment>
 <pinref part="U$30" gate="G$1" pin="1.8V"/>
-<wire x1="170.18" y1="86.36" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="86.36" x2="185.42" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <pinref part="U1" gate="A" pin="VOUT"/>
-<wire x1="170.18" y1="96.52" x2="170.18" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="160.02" y1="96.52" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
-<junction x="170.18" y="96.52"/>
+<wire x1="185.42" y1="96.52" x2="185.42" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="160.02" y1="96.52" x2="172.72" y2="96.52" width="0.1524" layer="91"/>
+<junction x="185.42" y="96.52"/>
+<pinref part="C3" gate="G$1" pin="P$1"/>
+<wire x1="172.72" y1="96.52" x2="185.42" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="86.36" x2="172.72" y2="96.52" width="0.1524" layer="91"/>
+<junction x="172.72" y="96.52"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
 <pinref part="U$52" gate="G$1" pin="1.8V"/>
 <wire x1="101.6" y1="101.6" x2="101.6" y2="106.68" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U$10" gate="G$1" pin="1.8V"/>
+<pinref part="U$12" gate="G$1" pin="3"/>
+<wire x1="45.72" y1="15.24" x2="45.72" y2="20.32" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="1.2V" class="0">
-<segment>
-<pinref part="U$47" gate="G$1" pin="1.2V"/>
-<wire x1="60.96" y1="90.17" x2="60.96" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="+"/>
-</segment>
 <segment>
 <pinref part="U1" gate="A" pin="VIN"/>
 <pinref part="U$33" gate="G$1" pin="1.2V"/>
@@ -4752,6 +5039,16 @@ holder</text>
 <pinref part="U$35" gate="G$1" pin="1.2V"/>
 <wire x1="91.44" y1="96.52" x2="91.44" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="+2"/>
+<pinref part="U$47" gate="G$1" pin="1.2V"/>
+<wire x1="63.5" y1="91.44" x2="63.5" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$11" gate="G$1" pin="1.2V"/>
+<pinref part="U$12" gate="G$1" pin="5"/>
+<wire x1="48.26" y1="15.24" x2="48.26" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SW" class="0">
