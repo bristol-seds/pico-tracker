@@ -41,6 +41,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |20021121-00010C4LF|FCI - CONNECTOR, HEADER, SMT, R/A, 1.27MM, 10P|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
+|20021111-00008T4LF|FCI - HEADER, VERT, 1.27MM, THT, 8WAY|[1865284](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865284)|1|Interconnect Header
 |BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
 |CG0603MLC-05LE|BOURNS - ESD SUPPRESSOR, 0603, 5V, 0.5PF|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|2|ESD1, ESD2
 |2997|KEYSTONE - BATTERY HOLDER, 11.6MM COIN CELL, THT|[2293265](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2293265) [534-2997](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=534-2997)|1|Single-piece battery holder
