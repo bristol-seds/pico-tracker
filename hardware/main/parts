@@ -46,6 +46,15 @@
 1828732 2 ESD1, ESD2
 2293265 534-2997 1 Single-piece battery holder
 
+
+----
+
+### Additional parts for jupiter gps
+
+| Part | Description | Supplier | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+2467859 1 Y1 32.786kHz xtal
+
 ----
 ## Extras for Development Version TODO
 
