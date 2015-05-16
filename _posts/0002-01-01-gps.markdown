@@ -1,7 +1,23 @@
 ---
 title: Global Positioning System
-tagline: from ublox ag.
+tagline: ublox MAX-M8C
 linkname: gps
 x: 18%
 y: 60%
 ---
+
+The MAX-M8C module is used for positioning. The _-M8C_ variant has a
+1.65V - 3.6V supply but doesn't include a RTC crystal. The ARM Cortex
+communicates over 9600 baud UART using the UBX protocol.
+
+The module is set in flight mode (Platform Model = `AIRBOURNE
+1G`). Whilst the module is capable of receiving two GNSS contellations
+at once it is set to only receive GPS. This allows the receiver to be
+set in power save mode (`lpMode = 1` in the `CFG RXM`
+message). **TODO: Update this after experiments with advanced
+powersave modes**
+
+[HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108)
+is a great supplier for this module.
+
+**TODO: Photo**

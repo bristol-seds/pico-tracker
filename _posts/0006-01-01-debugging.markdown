@@ -7,12 +7,10 @@ y: 23.5%
 ---
 
 To program and debug the [ARM Cortex](#armcortex) we use a
-[Blackmagic Probe][bmp].
+[Blackmagic Probe][bmp]. The probe and its source are GPL-licensed and
+available in [the github repository][bmp-github].
 
-The probe and its source are GPL-licensed and available in
-[the github repository][bmp-github].
-
-You can build you own or [buy one online][bmp].
+You can build your own or [buy one online][bmp].
 
 ![bmp-image]
 

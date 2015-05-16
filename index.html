@@ -13,7 +13,6 @@ scroll: true
       <a href="#{{ post.linkname }}" title="{{ post.title }}">
 
         {% if post.software %}
-        <div class="ch-item software"><div class="ch-pad"></div></div>
         {% else %}
         <div class="ch-item hardware"><div class="ch-pad"></div></div>
         {% endif %}
@@ -41,7 +40,7 @@ scroll: true
   </p>
 
   <article class="post-content">
-    {% for post in site.posts %}
+    {% for post in site.posts reversed %}
 
     <hr/>
 

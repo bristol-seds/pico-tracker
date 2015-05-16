@@ -1,0 +1,21 @@
+---
+title: Geofence
+tagline:
+linkname: geofence
+software: true
+x: 70%
+y: 46%
+---
+
+The tracker uses geofences to decide which frequencies to operate on
+etc. APRS transmissions essentially follow this [map] and this [list]
+with exceptions for areas where airboune operation is not permitted.
+
+See this [ipython notebook] used to automatically generate the C
+header files used for geofencing.
+
+[map]: http://aprsisce.wdfiles.com/local--files/doc:frequencies/APRSVHFworldmap.png
+[list]: http://aprsisce.wikidot.com/doc:frequencies
+[ipython notebook]: https://github.com/bristol-seds/pico-tracker/blob/master/sim/geofence/geofence.ipynb
+
+**TODO: Actually test this**

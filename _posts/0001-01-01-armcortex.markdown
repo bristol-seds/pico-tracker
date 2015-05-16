@@ -37,8 +37,9 @@ are used particularly for [APRS](#aprs).
 
 Thanks to an error in Revision C silicon we can't configure the
 correct pin layout for the SERCOM used to talk to the radio. Currently
-it's just being [bit-banged][bitbang] as our suppliers bought large
-quantities of Revision C silicon. **TODO: Fix in future board revision??**
+it's just being [bit-banged][bitbang] as both Mouser and Farnell
+appear to have bought large quantities of Revision C silicon. **TODO:
+Fix in future board revision??**
 
 [armcortexm0+]: http://www.arm.com/products/processors/cortex-m/cortex-m0plus.php
 [samd]: http://www.atmel.com/products/microcontrollers/arm/sam-d.aspx

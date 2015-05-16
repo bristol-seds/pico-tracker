@@ -1,13 +1,33 @@
 ---
 title: Radio
-tagline: Si 4060
+tagline: Si 4063/60
 linkname: radio
 x: 64.8%
 y: 44.9%
 ---
 
+The tracker uses the Si4063/60 transmitter from Si-Labs, although the
+Si446x series of transceivers is pin-compatible. With a 1.8V - 3.6V
+supply and 142 - 1050MHz frequency range this transmitter is ideal.
 
+The Si4060 specifies a max output power of +13dBm, and the Si4063
+specifies +20dBm. Thus far we have used the Si4063 on a reduced power
+setting to give +6dBm of output power as measured by a signal
+analyser. **TODO: More testing to bring the output power up to the
++10dBm limit.**
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+For FSK modes (RTTY, Contestia) the radio is set in CW mode and the
+`MODEM_FREQ_OFFSET` parameter is used to set the tone. The 16.369MHz
+clock from the TCXO gives a frequency resolution of 7.8053 Hz in this
+case.
+
+For AFSK (APRS) the radio is set in 2GFSK mode and the
+`MODEM_FREQ_DEV` parameter is used to set the FM deviation. GPIO1 is
+then used in direct mode as a modulation input. The radio applies a
+gaussian filter to this square wave which results in an acceptable
+spectrum. See this [ipython notebook] for more details on how the
+`MODEM_TX_NCO_MODE` parameters are chosen et cetera. (The internal
+filter is a 17-tap FIR filter that is by default configured as
+gaussian.)
+
+[ipython notebook]: https://github.com/bristol-seds/pico-tracker/blob/master/sim/si_fir_filter/si_fir_filter.ipynb
