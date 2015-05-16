@@ -9,7 +9,7 @@ y: 56%
 We use a temperature controlled oscillator (TXCO) from Epson to provide
 a clock to both the [radio](#radio) and [ARM Cortex](#armcortex).
 
-![image]
+<img src="assets/txco-epson-16369.jpg" alt="Epson TXCO" style="width: 200px;"/>
 
 The Pin 1 marker is a perfect circle.
 
@@ -31,6 +31,4 @@ board cut out. **TODO: Cold chamber testing**
 
 [datasheet]: http://www.farnell.com/datasheets/1804154.pdf
 [usexosc]: https://github.com/bristol-seds/pico-tracker/blob/master/firmware/inc/hw_config.h#L124
-
 [image]: assets/txco-epson-16369.jpg
-{: width="180px"}
