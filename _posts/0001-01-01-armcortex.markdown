@@ -9,9 +9,8 @@ y: 47%
 The board is centred around the [Atmel SAM D20][samd]
 microcontroller. We use the smallest **E** variant in a QFN-32 package (_-M_)
 
-The firmware is written in C and targeted at the highly configurable
-Atmel SAMD20 series of ARM Cortex M0+ micromontrollers. The code can
-be built using [GNU Tools for ARM Embedded Processors][gnutools] See
+The firmware is written in C and can be built using
+[GNU Tools for ARM Embedded Processors][gnutools] See
 [README-samd20-gcc-blackmagic.md][gcc-blackmagic-readme] for more
 details.
 
