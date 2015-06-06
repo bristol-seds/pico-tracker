@@ -23,15 +23,7 @@
 2331717 1 R6 220Ω
 1759380 9 C1, C2, C3, C4, C5, C6, C7, C8, C9 100nF
 1758969 1 C10 100pF
-
-
-1828874 2 C1, C3
-1758945 3 C2, C4, C7
-| C5, C6 | DNP
-
-
-2362088 1 C17
-1833804 2 C18, C19
+2346871 2 C11, C12 1µF
 
 ----
 
@@ -42,32 +34,6 @@
 1865279 649-202112100010C4LF 1 JTAG1
 1515765 2 FB1, FB2
 
-
-## Extras for Development Version TODO
-
-| ID | Part Number | Description | Supplier | Order Code | Quantity
-| --- | --- | --- | --- | --- | ---
-| U6 | STM32F103CBT6 | Microcontroller, 128Kb Flash, 20Kb SRAM, -40 to 85°C | [1606327](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1606327*) | 1
-| JTAG2 | 20021121-00010C4LF | 2x5 Pin Header, SMT, 1.27mm Pitch, Gold Plate | [1865279](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1865279*) | 1
-| CN1 | 67503-1230 | USB Mini B Receptacle, SMT | [2313554](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2313554*) | 1
-| BTN1 | B3U-1000P-B | SPST-NO Switch, SMD | [1333654](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1333654*) | 1
-| ICxx | INA216A4YFFT | Amplifier, Current Sense, 2.5kHz, DSBGA4 | [2382813](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2382813*) | 7
-| IC3 | TLV70033DCKT | LDO Regulator, 3.3V 200mA, 5SC70 | [1815750](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1815750*) | 1
-| ICxxx | LD1117S12TR | LDO Regulator, 1.2V 800mA, SOT-223 | [1467778](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1467778*) | 1
-| ICxxx | LP38501TS-ADJ | Adj. LDO Regulator, 3A, 5-TO263 | [2102669](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2102669*) | 1
-| Y1 | ABMM2-8.000MHZ-E2-T | Crystal, 8MHz, 18pF, 6x3.6mm | [1611803](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1611803*) | 1
-| Rxx |  MCMR04W1R00FTL | Resistor 1Ω, 0.0625W, 1%, 0402 1005 Metric | [2072500](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2072500*) | 14
-| R1, R2 | MC0063W0603122R | Resistor 22Ω, 0.063W, 1%, 0603 1608 Metric | [9330844](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330844*) | 2
-| R3 | MC0063W060311K5 | Resistor 1.5KΩ, 0.063W, 1%, 0603 1608 Metric | [9330607](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330607*) | 1
-| R4, R5, R6, R13 | MC0063W0603110K | Resistor 10KΩ, 0.063W, 1%, 0603 1608 Metric | [9330399](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9330399*) | 4
-| R7, R8 | MC0063W060314K7 | Resistor 4.7KΩ, 0.063W, 1%, 0603 1608 Metric | [9331247](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9331247*) | 2
-| R9, R10, R11, R12 | MC0063W06031390R | Resistor 390Ω, 0.063W, 1%, 0603 1608 Metric | [9331131](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*9331131*) | 4
-| D1 | KPT-1608SGC | LED, Green 568nm, 0603 1608 Metric | [2099223](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099223*) | 1
-| D2 | KPT-1608EC | LED, Red 625nm, 0603 1608 Metric | [2099221](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099221*) | 1
-| D3, D4 | KPT-1608YC | LED, Yellow 588nm, 0603 1608 Metric | [2099227](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*2099227*) | 2
-| C1, C2 | MC0603X105K100CT | Capacitor 1µF, X5R, 10V, 0603 1608 Metric | [1759399](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1759399*) | 2
-| C3, C4, C5, C6 | MC0603B104K500CT | Capacitor 100nF, X7R, 50V, 0603 1608 Metric | [1759122](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1759122*) | 4
-| C7, C8 | MC0603N180J500CT | Capacitor 18pF, C0G / NP0, 50V, 0603 1608 Metric | [1759056](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1759056*) | 2
 
 ## Useful Hardware
 
