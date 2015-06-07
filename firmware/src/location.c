@@ -136,7 +136,7 @@ void aprs_location_update(float lon, float lat) {
   /* Find which aprs zone we are in and save it */
   for (z = 0; z < 12; z++) { /* For each zone */
 
-    for (outline = 0; outline < sizeof(aprs_zones[z].outline_lengths); outline++) {
+    for (outline = 0; outline < aprs_zones[z].outline_count; outline++) {
 
       if (latlon_in_aprs_zone(z, outline, lon, lat)) { /* If we're in this zone */
 
