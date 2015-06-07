@@ -38,6 +38,7 @@
 
 #include "times_two.h"
 #include "osc8m_calib.h"
+#include "location_aprs.h"
 
 /******************************* tc_main ********************************/
 

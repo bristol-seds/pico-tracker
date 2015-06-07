@@ -17,22 +17,26 @@ from random import randint
 class location_aprs_tc:
     def __init__(self):
         self.name = self.__class__.__name__
-        self.iterations = 20
+        self.iterations = 30
 
 
     def get_test(self):
         """Returns some suitable test parameters"""
         params = main.struct_location_aprs_tc_params()
-        params.input = randint(0, 10000)
+
+        params.lon = -5 + randint(0, 120)*0.1;
+        params.lat = 52;
 
         return params
 
     def is_correct(self, params, result, print_info):
         """Returns if a result is correct for the given parameters"""
 
-        print_info("%d * 2 = %d"%(params.input, result['result']))
+        freq = result['frequency'] / (1000*1000)
+        status_str = "NO"
+        if result['tx_allow']:
+            status_str = "Tx"
 
-        if (params.input * 2 == result['result']):
-            return True
-        else:
-            return False
+        print_info("%f, %f = %s, %f"%(params.lon, params.lat, status_str, freq))
+
+        return True
