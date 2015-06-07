@@ -52,7 +52,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDS6"
+#define CALLSIGN	"UBSEDSx"
 
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
@@ -248,8 +248,6 @@ void aprs_telemetry(void) {
   float lat = (float)pos.payload.lat / 10000000.0; // This division is from the gps reciver, not for geofence
   float lon = (float)pos.payload.lon / 10000000.0;
   uint32_t altitude = pos.payload.height / 1000;
-
-  lat = 52; lon = 0;
 
   /* Update location */
   aprs_location_update(lon, lat);
