@@ -103,7 +103,7 @@ uint16_t crc_fcs(uint8_t *string, uint32_t length)
 void ax25_start(char* addresses, uint32_t addresses_len,
                 char* information, uint32_t information_len)
 {
-  uint32_t i;
+  uint32_t i = 0;
   uint16_t fcs;
 
   /* Process addresses */
@@ -201,6 +201,12 @@ void ax25_gpio1_pwm_init(void)
   tc_start_counter(TC5);
 }
 
+void ax25_gpio1_pwm_deinit(void)
+{
+  tc_stop_counter(TC5);
+  tc_disable(TC5);
+}
+
 
 /**
  * Returns the next byte to transmit
@@ -247,7 +253,7 @@ uint8_t ax25_get_next_byte(struct ax25_byte_t* next) {
     ax25_index++;
     if (ax25_index >= AX25_POSTAMBLE_FLAGS) {
       /* Next state */
-      ax25_state = AX25_PREAMBLE;
+      ax25_state = AX25_IDLE;
       ax25_index = 0;
     }
     break;
@@ -313,6 +319,8 @@ enum ax25_symbol_t ax25_get_next_symbol(void)
 uint8_t ax25_tick(void)
 {
   if (next_symbol == AX25_NONE) {
+    ax25_gpio1_pwm_deinit();
+
     return 0;                   /* We're done */
   }
 
