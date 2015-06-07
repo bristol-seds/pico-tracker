@@ -1,5 +1,12 @@
 ## Verification
 
+#### Setup
+
+```
+sudo apt-get install python-pip
+sudo pip install colorama
+```
+
 #### Usage
 
 Something like this.
