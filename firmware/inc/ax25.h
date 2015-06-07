@@ -48,8 +48,7 @@
  * AX25 packet parameters
  */
 #define AX25_BITSTUFFINGCOUNT	5
-#define AX25_PREAMBLE_FLAGS	30
-//15 /* 100 ms of flags */
+#define AX25_PREAMBLE_FLAGS	15 /* 100 ms of flags */
 #define AX25_POSTAMBLE_FLAGS	1
 #define AX25_MAX_FRAME_LEN	0x100
 
