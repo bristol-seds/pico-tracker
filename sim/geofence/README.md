@@ -6,8 +6,10 @@ this. This notebook is also used to calculate the deviation values.
 ## Prerequisites
 
 ```
-sudo apt-get install ipython libblas-dev liblapack-dev gfortran python-pyproj
+sudo apt-get install ipython ipython-notebook libblas-dev liblapack-dev gfortran python-pyproj
+sudo apt-get install libfreetype6-dev python-dev
 sudo pip install scipy matplotlib
+sudo apt-get install g++
 sudo pip install --pre pyclipper
 ```
 

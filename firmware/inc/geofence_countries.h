@@ -16,6 +16,7 @@
  */
 struct country_t {
   const int32_t** outlines;
+  const int32_t outline_count;
   const uint32_t* outline_lengths;
   char* name;
   char* isocode;

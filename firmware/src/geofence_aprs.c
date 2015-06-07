@@ -5766,39 +5766,39 @@ const uint32_t lima_outline_lengths[] = {
 
 const struct aprs_zone_t aprs_zones[] = {
                                                   /* -------------------Alpha */
-  { .outlines = alpha_outlines, .outline_lengths = alpha_outline_lengths,
+  { .outlines = alpha_outlines, .outline_count = 28, .outline_lengths = alpha_outline_lengths,
     .frequency = 0, .deviation = 0, .name = "Alpha" },
                                                   /* -----------------Charlie */
-  { .outlines = charlie_outlines, .outline_lengths = charlie_outline_lengths,
+  { .outlines = charlie_outlines, .outline_count = 15, .outline_lengths = charlie_outline_lengths,
     .frequency = 144390000, .deviation = 5000, .name = "Charlie" },
                                                   /* -------------------Bravo */
-  { .outlines = bravo_outlines, .outline_lengths = bravo_outline_lengths,
+  { .outlines = bravo_outlines, .outline_count = 12, .outline_lengths = bravo_outline_lengths,
     .frequency = 144575000, .deviation = 3000, .name = "Bravo" },
                                                   /* --------------------Echo */
-  { .outlines = echo_outlines, .outline_lengths = echo_outline_lengths,
+  { .outlines = echo_outlines, .outline_count = 18, .outline_lengths = echo_outline_lengths,
     .frequency = 145175000, .deviation = 3000, .name = "Echo" },
                                                   /* -------------------Delta */
-  { .outlines = delta_outlines, .outline_lengths = delta_outline_lengths,
+  { .outlines = delta_outlines, .outline_count = 4, .outline_lengths = delta_outline_lengths,
     .frequency = 145010000, .deviation = 3000, .name = "Delta" },
                                                   /* --------------------Golf */
-  { .outlines = golf_outlines, .outline_lengths = golf_outline_lengths,
+  { .outlines = golf_outlines, .outline_count = 2, .outline_lengths = golf_outline_lengths,
     .frequency = 145570000, .deviation = 3000, .name = "Golf" },
                                                   /* -----------------Foxtrot */
-  { .outlines = foxtrot_outlines, .outline_lengths = foxtrot_outline_lengths,
+  { .outlines = foxtrot_outlines, .outline_count = 2, .outline_lengths = foxtrot_outline_lengths,
     .frequency = 145525000, .deviation = 3000, .name = "Foxtrot" },
                                                   /* -------------------India */
-  { .outlines = india_outlines, .outline_lengths = india_outline_lengths,
+  { .outlines = india_outlines, .outline_count = 1, .outline_lengths = india_outline_lengths,
     .frequency = 144620000, .deviation = 3000, .name = "India" },
                                                   /* --------------------Kilo */
-  { .outlines = kilo_outlines, .outline_lengths = kilo_outline_lengths,
+  { .outlines = kilo_outlines, .outline_count = 3, .outline_lengths = kilo_outline_lengths,
     .frequency = 144640000, .deviation = 3000, .name = "Kilo" },
                                                   /* ------------------Juliet */
-  { .outlines = juliet_outlines, .outline_lengths = juliet_outline_lengths,
+  { .outlines = juliet_outlines, .outline_count = 28, .outline_lengths = juliet_outline_lengths,
     .frequency = 144390000, .deviation = 3000, .name = "Juliet" },
                                                   /* --------------------Mike */
-  { .outlines = mike_outlines, .outline_lengths = mike_outline_lengths,
+  { .outlines = mike_outlines, .outline_count = 5, .outline_lengths = mike_outline_lengths,
     .frequency = 144930000, .deviation = 3000, .name = "Mike" },
                                                   /* --------------------Lima */
-  { .outlines = lima_outlines, .outline_lengths = lima_outline_lengths,
+  { .outlines = lima_outlines, .outline_count = 4, .outline_lengths = lima_outline_lengths,
     .frequency = 144660000, .deviation = 3000, .name = "Lima" },
 };

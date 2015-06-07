@@ -21194,934 +21194,934 @@ const uint32_t zw_outline_lengths[] = {
 const struct country_t countries[] = {
 
                                                   /* -------------------Aruba */
-  { .outlines = aw_outlines, .outline_lengths = aw_outline_lengths, .isocode = "AW",
+  { .outlines = aw_outlines, .outline_count = 1, .outline_lengths = aw_outline_lengths, .isocode = "AW",
     .data_tx =  true, .aprs_tx =  true, .name = "Aruba" },
 
                                                   /* -------------Afghanistan */
-  { .outlines = af_outlines, .outline_lengths = af_outline_lengths, .isocode = "AF",
+  { .outlines = af_outlines, .outline_count = 1, .outline_lengths = af_outline_lengths, .isocode = "AF",
     .data_tx =  true, .aprs_tx =  true, .name = "Afghanistan" },
 
                                                   /* ------------------Angola */
-  { .outlines = ao_outlines, .outline_lengths = ao_outline_lengths, .isocode = "AO",
+  { .outlines = ao_outlines, .outline_count = 1, .outline_lengths = ao_outline_lengths, .isocode = "AO",
     .data_tx =  true, .aprs_tx =  true, .name = "Angola" },
 
                                                   /* ----------------Anguilla */
-  { .outlines = ai_outlines, .outline_lengths = ai_outline_lengths, .isocode = "AI",
+  { .outlines = ai_outlines, .outline_count = 2, .outline_lengths = ai_outline_lengths, .isocode = "AI",
     .data_tx =  true, .aprs_tx =  true, .name = "Anguilla" },
 
                                                   /* -----------------Albania */
-  { .outlines = al_outlines, .outline_lengths = al_outline_lengths, .isocode = "AL",
+  { .outlines = al_outlines, .outline_count = 1, .outline_lengths = al_outline_lengths, .isocode = "AL",
     .data_tx =  true, .aprs_tx = false, .name = "Albania" },
 
                                                   /* -------------------Aland */
-  { .outlines = a0_outlines, .outline_lengths = a0_outline_lengths, .isocode = "A0",
+  { .outlines = a0_outlines, .outline_count = 1, .outline_lengths = a0_outline_lengths, .isocode = "A0",
     .data_tx =  true, .aprs_tx =  true, .name = "Aland" },
 
                                                   /* -----------------Andorra */
-  { .outlines = ad_outlines, .outline_lengths = ad_outline_lengths, .isocode = "AD",
+  { .outlines = ad_outlines, .outline_count = 1, .outline_lengths = ad_outline_lengths, .isocode = "AD",
     .data_tx =  true, .aprs_tx =  true, .name = "Andorra" },
 
                                                   /* ----United Arab Emirates */
-  { .outlines = ae_outlines, .outline_lengths = ae_outline_lengths, .isocode = "AE",
+  { .outlines = ae_outlines, .outline_count = 3, .outline_lengths = ae_outline_lengths, .isocode = "AE",
     .data_tx =  true, .aprs_tx =  true, .name = "United Arab Emirates" },
 
                                                   /* ---------------Argentina */
-  { .outlines = ar_outlines, .outline_lengths = ar_outline_lengths, .isocode = "AR",
+  { .outlines = ar_outlines, .outline_count = 4, .outline_lengths = ar_outline_lengths, .isocode = "AR",
     .data_tx =  true, .aprs_tx =  true, .name = "Argentina" },
 
                                                   /* -----------------Armenia */
-  { .outlines = am_outlines, .outline_lengths = am_outline_lengths, .isocode = "AM",
+  { .outlines = am_outlines, .outline_count = 1, .outline_lengths = am_outline_lengths, .isocode = "AM",
     .data_tx =  true, .aprs_tx =  true, .name = "Armenia" },
 
                                                   /* ----------American Samoa */
-  { .outlines = as_outlines, .outline_lengths = as_outline_lengths, .isocode = "AS",
+  { .outlines = as_outlines, .outline_count = 1, .outline_lengths = as_outline_lengths, .isocode = "AS",
     .data_tx =  true, .aprs_tx =  true, .name = "American Samoa" },
 
                                                   /* -Ashmore and Cartier Is. */
-  { .outlines = a1_outlines, .outline_lengths = a1_outline_lengths, .isocode = "A1",
+  { .outlines = a1_outlines, .outline_count = 1, .outline_lengths = a1_outline_lengths, .isocode = "A1",
     .data_tx =  true, .aprs_tx =  true, .name = "Ashmore and Cartier Is." },
 
                                                   /* -------Antigua and Barb. */
-  { .outlines = ag_outlines, .outline_lengths = ag_outline_lengths, .isocode = "AG",
+  { .outlines = ag_outlines, .outline_count = 1, .outline_lengths = ag_outline_lengths, .isocode = "AG",
     .data_tx =  true, .aprs_tx =  true, .name = "Antigua and Barb." },
 
                                                   /* ---------------Australia */
-  { .outlines = au_outlines, .outline_lengths = au_outline_lengths, .isocode = "AU",
+  { .outlines = au_outlines, .outline_count = 3, .outline_lengths = au_outline_lengths, .isocode = "AU",
     .data_tx =  true, .aprs_tx =  true, .name = "Australia" },
 
                                                   /* -----------------Austria */
-  { .outlines = at_outlines, .outline_lengths = at_outline_lengths, .isocode = "AT",
+  { .outlines = at_outlines, .outline_count = 1, .outline_lengths = at_outline_lengths, .isocode = "AT",
     .data_tx =  true, .aprs_tx =  true, .name = "Austria" },
 
                                                   /* --------------Azerbaijan */
-  { .outlines = az_outlines, .outline_lengths = az_outline_lengths, .isocode = "AZ",
+  { .outlines = az_outlines, .outline_count = 2, .outline_lengths = az_outline_lengths, .isocode = "AZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Azerbaijan" },
 
                                                   /* -----------------Burundi */
-  { .outlines = bi_outlines, .outline_lengths = bi_outline_lengths, .isocode = "BI",
+  { .outlines = bi_outlines, .outline_count = 1, .outline_lengths = bi_outline_lengths, .isocode = "BI",
     .data_tx =  true, .aprs_tx =  true, .name = "Burundi" },
 
                                                   /* -----------------Belgium */
-  { .outlines = be_outlines, .outline_lengths = be_outline_lengths, .isocode = "BE",
+  { .outlines = be_outlines, .outline_count = 3, .outline_lengths = be_outline_lengths, .isocode = "BE",
     .data_tx =  true, .aprs_tx = false, .name = "Belgium" },
 
                                                   /* -------------------Benin */
-  { .outlines = bj_outlines, .outline_lengths = bj_outline_lengths, .isocode = "BJ",
+  { .outlines = bj_outlines, .outline_count = 1, .outline_lengths = bj_outline_lengths, .isocode = "BJ",
     .data_tx =  true, .aprs_tx =  true, .name = "Benin" },
 
                                                   /* ------------Burkina Faso */
-  { .outlines = bf_outlines, .outline_lengths = bf_outline_lengths, .isocode = "BF",
+  { .outlines = bf_outlines, .outline_count = 1, .outline_lengths = bf_outline_lengths, .isocode = "BF",
     .data_tx =  true, .aprs_tx =  true, .name = "Burkina Faso" },
 
                                                   /* --------------Bangladesh */
-  { .outlines = bd_outlines, .outline_lengths = bd_outline_lengths, .isocode = "BD",
+  { .outlines = bd_outlines, .outline_count = 1, .outline_lengths = bd_outline_lengths, .isocode = "BD",
     .data_tx =  true, .aprs_tx =  true, .name = "Bangladesh" },
 
                                                   /* ----------------Bulgaria */
-  { .outlines = bg_outlines, .outline_lengths = bg_outline_lengths, .isocode = "BG",
+  { .outlines = bg_outlines, .outline_count = 2, .outline_lengths = bg_outline_lengths, .isocode = "BG",
     .data_tx =  true, .aprs_tx =  true, .name = "Bulgaria" },
 
                                                   /* -----------------Bahrain */
-  { .outlines = bh_outlines, .outline_lengths = bh_outline_lengths, .isocode = "BH",
+  { .outlines = bh_outlines, .outline_count = 1, .outline_lengths = bh_outline_lengths, .isocode = "BH",
     .data_tx =  true, .aprs_tx =  true, .name = "Bahrain" },
 
                                                   /* -----------------Bahamas */
-  { .outlines = bs_outlines, .outline_lengths = bs_outline_lengths, .isocode = "BS",
+  { .outlines = bs_outlines, .outline_count = 1, .outline_lengths = bs_outline_lengths, .isocode = "BS",
     .data_tx =  true, .aprs_tx =  true, .name = "Bahamas" },
 
                                                   /* --------Bosnia and Herz. */
-  { .outlines = ba_outlines, .outline_lengths = ba_outline_lengths, .isocode = "BA",
+  { .outlines = ba_outlines, .outline_count = 1, .outline_lengths = ba_outline_lengths, .isocode = "BA",
     .data_tx =  true, .aprs_tx = false, .name = "Bosnia and Herz." },
 
                                                   /* ----------St. Barthelemy */
-  { .outlines = bl_outlines, .outline_lengths = bl_outline_lengths, .isocode = "BL",
+  { .outlines = bl_outlines, .outline_count = 2, .outline_lengths = bl_outline_lengths, .isocode = "BL",
     .data_tx =  true, .aprs_tx =  true, .name = "St. Barthelemy" },
 
                                                   /* -----------------Belarus */
-  { .outlines = by_outlines, .outline_lengths = by_outline_lengths, .isocode = "BY",
+  { .outlines = by_outlines, .outline_count = 1, .outline_lengths = by_outline_lengths, .isocode = "BY",
     .data_tx =  true, .aprs_tx =  true, .name = "Belarus" },
 
                                                   /* ------------------Belize */
-  { .outlines = bz_outlines, .outline_lengths = bz_outline_lengths, .isocode = "BZ",
+  { .outlines = bz_outlines, .outline_count = 1, .outline_lengths = bz_outline_lengths, .isocode = "BZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Belize" },
 
                                                   /* -----------------Bermuda */
-  { .outlines = bm_outlines, .outline_lengths = bm_outline_lengths, .isocode = "BM",
+  { .outlines = bm_outlines, .outline_count = 1, .outline_lengths = bm_outline_lengths, .isocode = "BM",
     .data_tx =  true, .aprs_tx =  true, .name = "Bermuda" },
 
                                                   /* -----------------Bolivia */
-  { .outlines = bo_outlines, .outline_lengths = bo_outline_lengths, .isocode = "BO",
+  { .outlines = bo_outlines, .outline_count = 1, .outline_lengths = bo_outline_lengths, .isocode = "BO",
     .data_tx =  true, .aprs_tx =  true, .name = "Bolivia" },
 
                                                   /* ------------------Brazil */
-  { .outlines = br_outlines, .outline_lengths = br_outline_lengths, .isocode = "BR",
+  { .outlines = br_outlines, .outline_count = 1, .outline_lengths = br_outline_lengths, .isocode = "BR",
     .data_tx =  true, .aprs_tx =  true, .name = "Brazil" },
 
                                                   /* ----------------Barbados */
-  { .outlines = bb_outlines, .outline_lengths = bb_outline_lengths, .isocode = "BB",
+  { .outlines = bb_outlines, .outline_count = 1, .outline_lengths = bb_outline_lengths, .isocode = "BB",
     .data_tx =  true, .aprs_tx =  true, .name = "Barbados" },
 
                                                   /* ------------------Brunei */
-  { .outlines = bn_outlines, .outline_lengths = bn_outline_lengths, .isocode = "BN",
+  { .outlines = bn_outlines, .outline_count = 1, .outline_lengths = bn_outline_lengths, .isocode = "BN",
     .data_tx =  true, .aprs_tx =  true, .name = "Brunei" },
 
                                                   /* ------------------Bhutan */
-  { .outlines = bt_outlines, .outline_lengths = bt_outline_lengths, .isocode = "BT",
+  { .outlines = bt_outlines, .outline_count = 1, .outline_lengths = bt_outline_lengths, .isocode = "BT",
     .data_tx =  true, .aprs_tx =  true, .name = "Bhutan" },
 
                                                   /* ----------------Botswana */
-  { .outlines = bw_outlines, .outline_lengths = bw_outline_lengths, .isocode = "BW",
+  { .outlines = bw_outlines, .outline_count = 1, .outline_lengths = bw_outline_lengths, .isocode = "BW",
     .data_tx =  true, .aprs_tx =  true, .name = "Botswana" },
 
                                                   /* ----Central African Rep. */
-  { .outlines = cf_outlines, .outline_lengths = cf_outline_lengths, .isocode = "CF",
+  { .outlines = cf_outlines, .outline_count = 1, .outline_lengths = cf_outline_lengths, .isocode = "CF",
     .data_tx =  true, .aprs_tx =  true, .name = "Central African Rep." },
 
                                                   /* ------------------Canada */
-  { .outlines = ca_outlines, .outline_lengths = ca_outline_lengths, .isocode = "CA",
+  { .outlines = ca_outlines, .outline_count = 33, .outline_lengths = ca_outline_lengths, .isocode = "CA",
     .data_tx =  true, .aprs_tx =  true, .name = "Canada" },
 
                                                   /* -------------Switzerland */
-  { .outlines = ch_outlines, .outline_lengths = ch_outline_lengths, .isocode = "CH",
+  { .outlines = ch_outlines, .outline_count = 1, .outline_lengths = ch_outline_lengths, .isocode = "CH",
     .data_tx =  true, .aprs_tx =  true, .name = "Switzerland" },
 
                                                   /* -------------------Chile */
-  { .outlines = cl_outlines, .outline_lengths = cl_outline_lengths, .isocode = "CL",
+  { .outlines = cl_outlines, .outline_count = 3, .outline_lengths = cl_outline_lengths, .isocode = "CL",
     .data_tx =  true, .aprs_tx =  true, .name = "Chile" },
 
                                                   /* -------------------China */
-  { .outlines = cn_outlines, .outline_lengths = cn_outline_lengths, .isocode = "CN",
+  { .outlines = cn_outlines, .outline_count = 4, .outline_lengths = cn_outline_lengths, .isocode = "CN",
     .data_tx =  true, .aprs_tx =  true, .name = "China" },
 
                                                   /* -------------Ivory Coast */
-  { .outlines = ci_outlines, .outline_lengths = ci_outline_lengths, .isocode = "CI",
+  { .outlines = ci_outlines, .outline_count = 1, .outline_lengths = ci_outline_lengths, .isocode = "CI",
     .data_tx =  true, .aprs_tx =  true, .name = "Ivory Coast" },
 
                                                   /* ----------------Cameroon */
-  { .outlines = cm_outlines, .outline_lengths = cm_outline_lengths, .isocode = "CM",
+  { .outlines = cm_outlines, .outline_count = 1, .outline_lengths = cm_outline_lengths, .isocode = "CM",
     .data_tx =  true, .aprs_tx =  true, .name = "Cameroon" },
 
                                                   /* --------Congo (Kinshasa) */
-  { .outlines = cd_outlines, .outline_lengths = cd_outline_lengths, .isocode = "CD",
+  { .outlines = cd_outlines, .outline_count = 1, .outline_lengths = cd_outline_lengths, .isocode = "CD",
     .data_tx =  true, .aprs_tx =  true, .name = "Congo (Kinshasa)" },
 
                                                   /* -----Congo (Brazzaville) */
-  { .outlines = cg_outlines, .outline_lengths = cg_outline_lengths, .isocode = "CG",
+  { .outlines = cg_outlines, .outline_count = 1, .outline_lengths = cg_outline_lengths, .isocode = "CG",
     .data_tx =  true, .aprs_tx =  true, .name = "Congo (Brazzaville)" },
 
                                                   /* ----------------Cook Is. */
-  { .outlines = ck_outlines, .outline_lengths = ck_outline_lengths, .isocode = "CK",
+  { .outlines = ck_outlines, .outline_count = 1, .outline_lengths = ck_outline_lengths, .isocode = "CK",
     .data_tx =  true, .aprs_tx =  true, .name = "Cook Is." },
 
                                                   /* ----------------Colombia */
-  { .outlines = co_outlines, .outline_lengths = co_outline_lengths, .isocode = "CO",
+  { .outlines = co_outlines, .outline_count = 1, .outline_lengths = co_outline_lengths, .isocode = "CO",
     .data_tx =  true, .aprs_tx =  true, .name = "Colombia" },
 
                                                   /* -----------------Comoros */
-  { .outlines = km_outlines, .outline_lengths = km_outline_lengths, .isocode = "KM",
+  { .outlines = km_outlines, .outline_count = 1, .outline_lengths = km_outline_lengths, .isocode = "KM",
     .data_tx =  true, .aprs_tx =  true, .name = "Comoros" },
 
                                                   /* --------------Cape Verde */
-  { .outlines = cv_outlines, .outline_lengths = cv_outline_lengths, .isocode = "CV",
+  { .outlines = cv_outlines, .outline_count = 2, .outline_lengths = cv_outline_lengths, .isocode = "CV",
     .data_tx =  true, .aprs_tx =  true, .name = "Cape Verde" },
 
                                                   /* --------------Costa Rica */
-  { .outlines = cr_outlines, .outline_lengths = cr_outline_lengths, .isocode = "CR",
+  { .outlines = cr_outlines, .outline_count = 1, .outline_lengths = cr_outline_lengths, .isocode = "CR",
     .data_tx =  true, .aprs_tx =  true, .name = "Costa Rica" },
 
                                                   /* --------------------Cuba */
-  { .outlines = cu_outlines, .outline_lengths = cu_outline_lengths, .isocode = "CU",
+  { .outlines = cu_outlines, .outline_count = 1, .outline_lengths = cu_outline_lengths, .isocode = "CU",
     .data_tx =  true, .aprs_tx =  true, .name = "Cuba" },
 
                                                   /* -----------------Cura�ao */
-  { .outlines = cw_outlines, .outline_lengths = cw_outline_lengths, .isocode = "CW",
+  { .outlines = cw_outlines, .outline_count = 1, .outline_lengths = cw_outline_lengths, .isocode = "CW",
     .data_tx =  true, .aprs_tx =  true, .name = "Cura�ao" },
 
                                                   /* --------------Cayman Is. */
-  { .outlines = ky_outlines, .outline_lengths = ky_outline_lengths, .isocode = "KY",
+  { .outlines = ky_outlines, .outline_count = 2, .outline_lengths = ky_outline_lengths, .isocode = "KY",
     .data_tx =  true, .aprs_tx =  true, .name = "Cayman Is." },
 
                                                   /* ------------------Cyprus */
-  { .outlines = cy_outlines, .outline_lengths = cy_outline_lengths, .isocode = "CY",
+  { .outlines = cy_outlines, .outline_count = 1, .outline_lengths = cy_outline_lengths, .isocode = "CY",
     .data_tx =  true, .aprs_tx =  true, .name = "Cyprus" },
 
                                                   /* --------------Czech Rep. */
-  { .outlines = cz_outlines, .outline_lengths = cz_outline_lengths, .isocode = "CZ",
+  { .outlines = cz_outlines, .outline_count = 1, .outline_lengths = cz_outline_lengths, .isocode = "CZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Czech Rep." },
 
                                                   /* -----------------Germany */
-  { .outlines = de_outlines, .outline_lengths = de_outline_lengths, .isocode = "DE",
+  { .outlines = de_outlines, .outline_count = 2, .outline_lengths = de_outline_lengths, .isocode = "DE",
     .data_tx =  true, .aprs_tx =  true, .name = "Germany" },
 
                                                   /* ----------------Djibouti */
-  { .outlines = dj_outlines, .outline_lengths = dj_outline_lengths, .isocode = "DJ",
+  { .outlines = dj_outlines, .outline_count = 1, .outline_lengths = dj_outline_lengths, .isocode = "DJ",
     .data_tx =  true, .aprs_tx =  true, .name = "Djibouti" },
 
                                                   /* ----------------Dominica */
-  { .outlines = dm_outlines, .outline_lengths = dm_outline_lengths, .isocode = "DM",
+  { .outlines = dm_outlines, .outline_count = 2, .outline_lengths = dm_outline_lengths, .isocode = "DM",
     .data_tx =  true, .aprs_tx =  true, .name = "Dominica" },
 
                                                   /* -----------------Denmark */
-  { .outlines = dk_outlines, .outline_lengths = dk_outline_lengths, .isocode = "DK",
+  { .outlines = dk_outlines, .outline_count = 3, .outline_lengths = dk_outline_lengths, .isocode = "DK",
     .data_tx =  true, .aprs_tx =  true, .name = "Denmark" },
 
                                                   /* ----------Dominican Rep. */
-  { .outlines = do_outlines, .outline_lengths = do_outline_lengths, .isocode = "DO",
+  { .outlines = do_outlines, .outline_count = 2, .outline_lengths = do_outline_lengths, .isocode = "DO",
     .data_tx =  true, .aprs_tx =  true, .name = "Dominican Rep." },
 
                                                   /* -----------------Algeria */
-  { .outlines = dz_outlines, .outline_lengths = dz_outline_lengths, .isocode = "DZ",
+  { .outlines = dz_outlines, .outline_count = 1, .outline_lengths = dz_outline_lengths, .isocode = "DZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Algeria" },
 
                                                   /* -----------------Ecuador */
-  { .outlines = ec_outlines, .outline_lengths = ec_outline_lengths, .isocode = "EC",
+  { .outlines = ec_outlines, .outline_count = 2, .outline_lengths = ec_outline_lengths, .isocode = "EC",
     .data_tx =  true, .aprs_tx =  true, .name = "Ecuador" },
 
                                                   /* -------------------Egypt */
-  { .outlines = eg_outlines, .outline_lengths = eg_outline_lengths, .isocode = "EG",
+  { .outlines = eg_outlines, .outline_count = 1, .outline_lengths = eg_outline_lengths, .isocode = "EG",
     .data_tx =  true, .aprs_tx =  true, .name = "Egypt" },
 
                                                   /* -----------------Eritrea */
-  { .outlines = er_outlines, .outline_lengths = er_outline_lengths, .isocode = "ER",
+  { .outlines = er_outlines, .outline_count = 1, .outline_lengths = er_outline_lengths, .isocode = "ER",
     .data_tx =  true, .aprs_tx =  true, .name = "Eritrea" },
 
                                                   /* -------------------Spain */
-  { .outlines = es_outlines, .outline_lengths = es_outline_lengths, .isocode = "ES",
+  { .outlines = es_outlines, .outline_count = 5, .outline_lengths = es_outline_lengths, .isocode = "ES",
     .data_tx =  true, .aprs_tx =  true, .name = "Spain" },
 
                                                   /* -----------------Estonia */
-  { .outlines = ee_outlines, .outline_lengths = ee_outline_lengths, .isocode = "EE",
+  { .outlines = ee_outlines, .outline_count = 1, .outline_lengths = ee_outline_lengths, .isocode = "EE",
     .data_tx =  true, .aprs_tx =  true, .name = "Estonia" },
 
                                                   /* ----------------Ethiopia */
-  { .outlines = et_outlines, .outline_lengths = et_outline_lengths, .isocode = "ET",
+  { .outlines = et_outlines, .outline_count = 1, .outline_lengths = et_outline_lengths, .isocode = "ET",
     .data_tx =  true, .aprs_tx =  true, .name = "Ethiopia" },
 
                                                   /* -----------------Finland */
-  { .outlines = fi_outlines, .outline_lengths = fi_outline_lengths, .isocode = "FI",
+  { .outlines = fi_outlines, .outline_count = 1, .outline_lengths = fi_outline_lengths, .isocode = "FI",
     .data_tx =  true, .aprs_tx = false, .name = "Finland" },
 
                                                   /* --------------------Fiji */
-  { .outlines = fj_outlines, .outline_lengths = fj_outline_lengths, .isocode = "FJ",
+  { .outlines = fj_outlines, .outline_count = 11, .outline_lengths = fj_outline_lengths, .isocode = "FJ",
     .data_tx =  true, .aprs_tx =  true, .name = "Fiji" },
 
                                                   /* ------------Falkland Is. */
-  { .outlines = fk_outlines, .outline_lengths = fk_outline_lengths, .isocode = "FK",
+  { .outlines = fk_outlines, .outline_count = 1, .outline_lengths = fk_outline_lengths, .isocode = "FK",
     .data_tx =  true, .aprs_tx =  true, .name = "Falkland Is." },
 
                                                   /* ------------------France */
-  { .outlines = fr_outlines, .outline_lengths = fr_outline_lengths, .isocode = "FR",
+  { .outlines = fr_outlines, .outline_count = 7, .outline_lengths = fr_outline_lengths, .isocode = "FR",
     .data_tx =  true, .aprs_tx = false, .name = "France" },
 
                                                   /* ---------------Faroe Is. */
-  { .outlines = fo_outlines, .outline_lengths = fo_outline_lengths, .isocode = "FO",
+  { .outlines = fo_outlines, .outline_count = 1, .outline_lengths = fo_outline_lengths, .isocode = "FO",
     .data_tx =  true, .aprs_tx =  true, .name = "Faroe Is." },
 
                                                   /* --------------Micronesia */
-  { .outlines = fm_outlines, .outline_lengths = fm_outline_lengths, .isocode = "FM",
+  { .outlines = fm_outlines, .outline_count = 4, .outline_lengths = fm_outline_lengths, .isocode = "FM",
     .data_tx =  true, .aprs_tx =  true, .name = "Micronesia" },
 
                                                   /* -------------------Gabon */
-  { .outlines = ga_outlines, .outline_lengths = ga_outline_lengths, .isocode = "GA",
+  { .outlines = ga_outlines, .outline_count = 1, .outline_lengths = ga_outline_lengths, .isocode = "GA",
     .data_tx =  true, .aprs_tx =  true, .name = "Gabon" },
 
                                                   /* --------------------Gaza */
-  { .outlines = g1_outlines, .outline_lengths = g1_outline_lengths, .isocode = "G1",
+  { .outlines = g1_outlines, .outline_count = 1, .outline_lengths = g1_outline_lengths, .isocode = "G1",
     .data_tx =  true, .aprs_tx =  true, .name = "Gaza" },
 
                                                   /* ----------United Kingdom */
-  { .outlines = gb_outlines, .outline_lengths = gb_outline_lengths, .isocode = "GB",
+  { .outlines = gb_outlines, .outline_count = 2, .outline_lengths = gb_outline_lengths, .isocode = "GB",
     .data_tx =  true, .aprs_tx = false, .name = "United Kingdom" },
 
                                                   /* -----------------Georgia */
-  { .outlines = ge_outlines, .outline_lengths = ge_outline_lengths, .isocode = "GE",
+  { .outlines = ge_outlines, .outline_count = 1, .outline_lengths = ge_outline_lengths, .isocode = "GE",
     .data_tx =  true, .aprs_tx =  true, .name = "Georgia" },
 
                                                   /* ----------------Guernsey */
-  { .outlines = gg_outlines, .outline_lengths = gg_outline_lengths, .isocode = "GG",
+  { .outlines = gg_outlines, .outline_count = 1, .outline_lengths = gg_outline_lengths, .isocode = "GG",
     .data_tx =  true, .aprs_tx = false, .name = "Guernsey" },
 
                                                   /* -------------------Ghana */
-  { .outlines = gh_outlines, .outline_lengths = gh_outline_lengths, .isocode = "GH",
+  { .outlines = gh_outlines, .outline_count = 1, .outline_lengths = gh_outline_lengths, .isocode = "GH",
     .data_tx =  true, .aprs_tx =  true, .name = "Ghana" },
 
                                                   /* ------------------Guinea */
-  { .outlines = gn_outlines, .outline_lengths = gn_outline_lengths, .isocode = "GN",
+  { .outlines = gn_outlines, .outline_count = 1, .outline_lengths = gn_outline_lengths, .isocode = "GN",
     .data_tx =  true, .aprs_tx =  true, .name = "Guinea" },
 
                                                   /* ------------------Gambia */
-  { .outlines = gm_outlines, .outline_lengths = gm_outline_lengths, .isocode = "GM",
+  { .outlines = gm_outlines, .outline_count = 1, .outline_lengths = gm_outline_lengths, .isocode = "GM",
     .data_tx =  true, .aprs_tx =  true, .name = "Gambia" },
 
                                                   /* -----------Guinea Bissau */
-  { .outlines = gw_outlines, .outline_lengths = gw_outline_lengths, .isocode = "GW",
+  { .outlines = gw_outlines, .outline_count = 1, .outline_lengths = gw_outline_lengths, .isocode = "GW",
     .data_tx =  true, .aprs_tx =  true, .name = "Guinea Bissau" },
 
                                                   /* --------------Eq. Guinea */
-  { .outlines = gq_outlines, .outline_lengths = gq_outline_lengths, .isocode = "GQ",
+  { .outlines = gq_outlines, .outline_count = 2, .outline_lengths = gq_outline_lengths, .isocode = "GQ",
     .data_tx =  true, .aprs_tx =  true, .name = "Eq. Guinea" },
 
                                                   /* ------------------Greece */
-  { .outlines = gr_outlines, .outline_lengths = gr_outline_lengths, .isocode = "GR",
+  { .outlines = gr_outlines, .outline_count = 2, .outline_lengths = gr_outline_lengths, .isocode = "GR",
     .data_tx =  true, .aprs_tx =  true, .name = "Greece" },
 
                                                   /* -----------------Grenada */
-  { .outlines = gd_outlines, .outline_lengths = gd_outline_lengths, .isocode = "GD",
+  { .outlines = gd_outlines, .outline_count = 1, .outline_lengths = gd_outline_lengths, .isocode = "GD",
     .data_tx =  true, .aprs_tx =  true, .name = "Grenada" },
 
                                                   /* ---------------Greenland */
-  { .outlines = gl_outlines, .outline_lengths = gl_outline_lengths, .isocode = "GL",
+  { .outlines = gl_outlines, .outline_count = 7, .outline_lengths = gl_outline_lengths, .isocode = "GL",
     .data_tx =  true, .aprs_tx =  true, .name = "Greenland" },
 
                                                   /* ---------------Guatemala */
-  { .outlines = gt_outlines, .outline_lengths = gt_outline_lengths, .isocode = "GT",
+  { .outlines = gt_outlines, .outline_count = 1, .outline_lengths = gt_outline_lengths, .isocode = "GT",
     .data_tx =  true, .aprs_tx =  true, .name = "Guatemala" },
 
                                                   /* --------------------Guam */
-  { .outlines = gu_outlines, .outline_lengths = gu_outline_lengths, .isocode = "GU",
+  { .outlines = gu_outlines, .outline_count = 1, .outline_lengths = gu_outline_lengths, .isocode = "GU",
     .data_tx =  true, .aprs_tx =  true, .name = "Guam" },
 
                                                   /* ------------------Guyana */
-  { .outlines = gy_outlines, .outline_lengths = gy_outline_lengths, .isocode = "GY",
+  { .outlines = gy_outlines, .outline_count = 1, .outline_lengths = gy_outline_lengths, .isocode = "GY",
     .data_tx =  true, .aprs_tx =  true, .name = "Guyana" },
 
                                                   /* ---------------Hong Kong */
-  { .outlines = hk_outlines, .outline_lengths = hk_outline_lengths, .isocode = "HK",
+  { .outlines = hk_outlines, .outline_count = 1, .outline_lengths = hk_outline_lengths, .isocode = "HK",
     .data_tx =  true, .aprs_tx =  true, .name = "Hong Kong" },
 
                                                   /* ----------------Honduras */
-  { .outlines = hn_outlines, .outline_lengths = hn_outline_lengths, .isocode = "HN",
+  { .outlines = hn_outlines, .outline_count = 1, .outline_lengths = hn_outline_lengths, .isocode = "HN",
     .data_tx =  true, .aprs_tx =  true, .name = "Honduras" },
 
                                                   /* -----------------Croatia */
-  { .outlines = hr_outlines, .outline_lengths = hr_outline_lengths, .isocode = "HR",
+  { .outlines = hr_outlines, .outline_count = 1, .outline_lengths = hr_outline_lengths, .isocode = "HR",
     .data_tx =  true, .aprs_tx = false, .name = "Croatia" },
 
                                                   /* -------------------Haiti */
-  { .outlines = ht_outlines, .outline_lengths = ht_outline_lengths, .isocode = "HT",
+  { .outlines = ht_outlines, .outline_count = 1, .outline_lengths = ht_outline_lengths, .isocode = "HT",
     .data_tx =  true, .aprs_tx =  true, .name = "Haiti" },
 
                                                   /* -----------------Hungary */
-  { .outlines = hu_outlines, .outline_lengths = hu_outline_lengths, .isocode = "HU",
+  { .outlines = hu_outlines, .outline_count = 1, .outline_lengths = hu_outline_lengths, .isocode = "HU",
     .data_tx =  true, .aprs_tx = false, .name = "Hungary" },
 
                                                   /* ---------------Indonesia */
-  { .outlines = id_outlines, .outline_lengths = id_outline_lengths, .isocode = "ID",
+  { .outlines = id_outlines, .outline_count = 20, .outline_lengths = id_outline_lengths, .isocode = "ID",
     .data_tx =  true, .aprs_tx =  true, .name = "Indonesia" },
 
                                                   /* -------------Isle of Man */
-  { .outlines = im_outlines, .outline_lengths = im_outline_lengths, .isocode = "IM",
+  { .outlines = im_outlines, .outline_count = 1, .outline_lengths = im_outline_lengths, .isocode = "IM",
     .data_tx =  true, .aprs_tx = false, .name = "Isle of Man" },
 
                                                   /* -------------------India */
-  { .outlines = in_outlines, .outline_lengths = in_outline_lengths, .isocode = "IN",
+  { .outlines = in_outlines, .outline_count = 6, .outline_lengths = in_outline_lengths, .isocode = "IN",
     .data_tx =  true, .aprs_tx =  true, .name = "India" },
 
                                                   /* -----------------Ireland */
-  { .outlines = ie_outlines, .outline_lengths = ie_outline_lengths, .isocode = "IE",
+  { .outlines = ie_outlines, .outline_count = 1, .outline_lengths = ie_outline_lengths, .isocode = "IE",
     .data_tx =  true, .aprs_tx =  true, .name = "Ireland" },
 
                                                   /* --------------------Iran */
-  { .outlines = ir_outlines, .outline_lengths = ir_outline_lengths, .isocode = "IR",
+  { .outlines = ir_outlines, .outline_count = 1, .outline_lengths = ir_outline_lengths, .isocode = "IR",
     .data_tx =  true, .aprs_tx =  true, .name = "Iran" },
 
                                                   /* --------------------Iraq */
-  { .outlines = iq_outlines, .outline_lengths = iq_outline_lengths, .isocode = "IQ",
+  { .outlines = iq_outlines, .outline_count = 2, .outline_lengths = iq_outline_lengths, .isocode = "IQ",
     .data_tx =  true, .aprs_tx =  true, .name = "Iraq" },
 
                                                   /* -----------------Iceland */
-  { .outlines = is_outlines, .outline_lengths = is_outline_lengths, .isocode = "IS",
+  { .outlines = is_outlines, .outline_count = 1, .outline_lengths = is_outline_lengths, .isocode = "IS",
     .data_tx =  true, .aprs_tx =  true, .name = "Iceland" },
 
                                                   /* ------------------Israel */
-  { .outlines = il_outlines, .outline_lengths = il_outline_lengths, .isocode = "IL",
+  { .outlines = il_outlines, .outline_count = 1, .outline_lengths = il_outline_lengths, .isocode = "IL",
     .data_tx =  true, .aprs_tx =  true, .name = "Israel" },
 
                                                   /* -------------------Italy */
-  { .outlines = it_outlines, .outline_lengths = it_outline_lengths, .isocode = "IT",
+  { .outlines = it_outlines, .outline_count = 4, .outline_lengths = it_outline_lengths, .isocode = "IT",
     .data_tx =  true, .aprs_tx = false, .name = "Italy" },
 
                                                   /* -----------------Jamaica */
-  { .outlines = jm_outlines, .outline_lengths = jm_outline_lengths, .isocode = "JM",
+  { .outlines = jm_outlines, .outline_count = 1, .outline_lengths = jm_outline_lengths, .isocode = "JM",
     .data_tx =  true, .aprs_tx =  true, .name = "Jamaica" },
 
                                                   /* ------------------Jersey */
-  { .outlines = je_outlines, .outline_lengths = je_outline_lengths, .isocode = "JE",
+  { .outlines = je_outlines, .outline_count = 1, .outline_lengths = je_outline_lengths, .isocode = "JE",
     .data_tx =  true, .aprs_tx = false, .name = "Jersey" },
 
                                                   /* ------------------Jordan */
-  { .outlines = jo_outlines, .outline_lengths = jo_outline_lengths, .isocode = "JO",
+  { .outlines = jo_outlines, .outline_count = 1, .outline_lengths = jo_outline_lengths, .isocode = "JO",
     .data_tx =  true, .aprs_tx =  true, .name = "Jordan" },
 
                                                   /* -------------------Japan */
-  { .outlines = jp_outlines, .outline_lengths = jp_outline_lengths, .isocode = "JP",
+  { .outlines = jp_outlines, .outline_count = 7, .outline_lengths = jp_outline_lengths, .isocode = "JP",
     .data_tx =  true, .aprs_tx =  true, .name = "Japan" },
 
                                                   /* --------------Kazakhstan */
-  { .outlines = kz_outlines, .outline_lengths = kz_outline_lengths, .isocode = "KZ",
+  { .outlines = kz_outlines, .outline_count = 2, .outline_lengths = kz_outline_lengths, .isocode = "KZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Kazakhstan" },
 
                                                   /* -------------------Kenya */
-  { .outlines = ke_outlines, .outline_lengths = ke_outline_lengths, .isocode = "KE",
+  { .outlines = ke_outlines, .outline_count = 1, .outline_lengths = ke_outline_lengths, .isocode = "KE",
     .data_tx =  true, .aprs_tx =  true, .name = "Kenya" },
 
                                                   /* --------------Kyrgyzstan */
-  { .outlines = kg_outlines, .outline_lengths = kg_outline_lengths, .isocode = "KG",
+  { .outlines = kg_outlines, .outline_count = 4, .outline_lengths = kg_outline_lengths, .isocode = "KG",
     .data_tx =  true, .aprs_tx =  true, .name = "Kyrgyzstan" },
 
                                                   /* ----------------Cambodia */
-  { .outlines = kh_outlines, .outline_lengths = kh_outline_lengths, .isocode = "KH",
+  { .outlines = kh_outlines, .outline_count = 1, .outline_lengths = kh_outline_lengths, .isocode = "KH",
     .data_tx =  true, .aprs_tx =  true, .name = "Cambodia" },
 
                                                   /* ----------------Kiribati */
-  { .outlines = ki_outlines, .outline_lengths = ki_outline_lengths, .isocode = "KI",
+  { .outlines = ki_outlines, .outline_count = 13, .outline_lengths = ki_outline_lengths, .isocode = "KI",
     .data_tx =  true, .aprs_tx =  true, .name = "Kiribati" },
 
                                                   /* -----St. Kitts and Nevis */
-  { .outlines = kn_outlines, .outline_lengths = kn_outline_lengths, .isocode = "KN",
+  { .outlines = kn_outlines, .outline_count = 1, .outline_lengths = kn_outline_lengths, .isocode = "KN",
     .data_tx =  true, .aprs_tx =  true, .name = "St. Kitts and Nevis" },
 
                                                   /* ----------------S. Korea */
-  { .outlines = kr_outlines, .outline_lengths = kr_outline_lengths, .isocode = "KR",
+  { .outlines = kr_outlines, .outline_count = 2, .outline_lengths = kr_outline_lengths, .isocode = "KR",
     .data_tx =  true, .aprs_tx =  true, .name = "S. Korea" },
 
                                                   /* ------------------Kosovo */
-  { .outlines = k0_outlines, .outline_lengths = k0_outline_lengths, .isocode = "K0",
+  { .outlines = k0_outlines, .outline_count = 1, .outline_lengths = k0_outline_lengths, .isocode = "K0",
     .data_tx =  true, .aprs_tx =  true, .name = "Kosovo" },
 
                                                   /* ------------------Kuwait */
-  { .outlines = kw_outlines, .outline_lengths = kw_outline_lengths, .isocode = "KW",
+  { .outlines = kw_outlines, .outline_count = 1, .outline_lengths = kw_outline_lengths, .isocode = "KW",
     .data_tx =  true, .aprs_tx =  true, .name = "Kuwait" },
 
                                                   /* --------------------Laos */
-  { .outlines = la_outlines, .outline_lengths = la_outline_lengths, .isocode = "LA",
+  { .outlines = la_outlines, .outline_count = 1, .outline_lengths = la_outline_lengths, .isocode = "LA",
     .data_tx =  true, .aprs_tx =  true, .name = "Laos" },
 
                                                   /* -----------------Lebanon */
-  { .outlines = lb_outlines, .outline_lengths = lb_outline_lengths, .isocode = "LB",
+  { .outlines = lb_outlines, .outline_count = 1, .outline_lengths = lb_outline_lengths, .isocode = "LB",
     .data_tx =  true, .aprs_tx =  true, .name = "Lebanon" },
 
                                                   /* -----------------Liberia */
-  { .outlines = lr_outlines, .outline_lengths = lr_outline_lengths, .isocode = "LR",
+  { .outlines = lr_outlines, .outline_count = 1, .outline_lengths = lr_outline_lengths, .isocode = "LR",
     .data_tx =  true, .aprs_tx =  true, .name = "Liberia" },
 
                                                   /* -------------------Libya */
-  { .outlines = ly_outlines, .outline_lengths = ly_outline_lengths, .isocode = "LY",
+  { .outlines = ly_outlines, .outline_count = 1, .outline_lengths = ly_outline_lengths, .isocode = "LY",
     .data_tx =  true, .aprs_tx =  true, .name = "Libya" },
 
                                                   /* -------------Saint Lucia */
-  { .outlines = lc_outlines, .outline_lengths = lc_outline_lengths, .isocode = "LC",
+  { .outlines = lc_outlines, .outline_count = 1, .outline_lengths = lc_outline_lengths, .isocode = "LC",
     .data_tx =  true, .aprs_tx =  true, .name = "Saint Lucia" },
 
                                                   /* -----------Liechtenstein */
-  { .outlines = li_outlines, .outline_lengths = li_outline_lengths, .isocode = "LI",
+  { .outlines = li_outlines, .outline_count = 1, .outline_lengths = li_outline_lengths, .isocode = "LI",
     .data_tx =  true, .aprs_tx =  true, .name = "Liechtenstein" },
 
                                                   /* ---------------Sri Lanka */
-  { .outlines = lk_outlines, .outline_lengths = lk_outline_lengths, .isocode = "LK",
+  { .outlines = lk_outlines, .outline_count = 1, .outline_lengths = lk_outline_lengths, .isocode = "LK",
     .data_tx =  true, .aprs_tx =  true, .name = "Sri Lanka" },
 
                                                   /* -----------------Lesotho */
-  { .outlines = ls_outlines, .outline_lengths = ls_outline_lengths, .isocode = "LS",
+  { .outlines = ls_outlines, .outline_count = 0, .outline_lengths = ls_outline_lengths, .isocode = "LS",
     .data_tx =  true, .aprs_tx =  true, .name = "Lesotho" },
 
                                                   /* ---------------Lithuania */
-  { .outlines = lt_outlines, .outline_lengths = lt_outline_lengths, .isocode = "LT",
+  { .outlines = lt_outlines, .outline_count = 1, .outline_lengths = lt_outline_lengths, .isocode = "LT",
     .data_tx =  true, .aprs_tx =  true, .name = "Lithuania" },
 
                                                   /* --------------Luxembourg */
-  { .outlines = lu_outlines, .outline_lengths = lu_outline_lengths, .isocode = "LU",
+  { .outlines = lu_outlines, .outline_count = 1, .outline_lengths = lu_outline_lengths, .isocode = "LU",
     .data_tx =  true, .aprs_tx = false, .name = "Luxembourg" },
 
                                                   /* ------------------Latvia */
-  { .outlines = lv_outlines, .outline_lengths = lv_outline_lengths, .isocode = "LV",
+  { .outlines = lv_outlines, .outline_count = 1, .outline_lengths = lv_outline_lengths, .isocode = "LV",
     .data_tx =  true, .aprs_tx =  true, .name = "Latvia" },
 
                                                   /* -------------------Macau */
-  { .outlines = mo_outlines, .outline_lengths = mo_outline_lengths, .isocode = "MO",
+  { .outlines = mo_outlines, .outline_count = 1, .outline_lengths = mo_outline_lengths, .isocode = "MO",
     .data_tx =  true, .aprs_tx =  true, .name = "Macau" },
 
                                                   /* --------------St. Martin */
-  { .outlines = mf_outlines, .outline_lengths = mf_outline_lengths, .isocode = "MF",
+  { .outlines = mf_outlines, .outline_count = 1, .outline_lengths = mf_outline_lengths, .isocode = "MF",
     .data_tx =  true, .aprs_tx =  true, .name = "St. Martin" },
 
                                                   /* -----------------Morocco */
-  { .outlines = ma_outlines, .outline_lengths = ma_outline_lengths, .isocode = "MA",
+  { .outlines = ma_outlines, .outline_count = 1, .outline_lengths = ma_outline_lengths, .isocode = "MA",
     .data_tx =  true, .aprs_tx =  true, .name = "Morocco" },
 
                                                   /* ------------------Monaco */
-  { .outlines = mc_outlines, .outline_lengths = mc_outline_lengths, .isocode = "MC",
+  { .outlines = mc_outlines, .outline_count = 1, .outline_lengths = mc_outline_lengths, .isocode = "MC",
     .data_tx =  true, .aprs_tx =  true, .name = "Monaco" },
 
                                                   /* -----------------Moldova */
-  { .outlines = md_outlines, .outline_lengths = md_outline_lengths, .isocode = "MD",
+  { .outlines = md_outlines, .outline_count = 1, .outline_lengths = md_outline_lengths, .isocode = "MD",
     .data_tx =  true, .aprs_tx = false, .name = "Moldova" },
 
                                                   /* --------------Madagascar */
-  { .outlines = mg_outlines, .outline_lengths = mg_outline_lengths, .isocode = "MG",
+  { .outlines = mg_outlines, .outline_count = 1, .outline_lengths = mg_outline_lengths, .isocode = "MG",
     .data_tx =  true, .aprs_tx =  true, .name = "Madagascar" },
 
                                                   /* ----------------Maldives */
-  { .outlines = mv_outlines, .outline_lengths = mv_outline_lengths, .isocode = "MV",
+  { .outlines = mv_outlines, .outline_count = 1, .outline_lengths = mv_outline_lengths, .isocode = "MV",
     .data_tx =  true, .aprs_tx =  true, .name = "Maldives" },
 
                                                   /* ------------------Mexico */
-  { .outlines = mx_outlines, .outline_lengths = mx_outline_lengths, .isocode = "MX",
+  { .outlines = mx_outlines, .outline_count = 4, .outline_lengths = mx_outline_lengths, .isocode = "MX",
     .data_tx =  true, .aprs_tx =  true, .name = "Mexico" },
 
                                                   /* ------------Marshall Is. */
-  { .outlines = mh_outlines, .outline_lengths = mh_outline_lengths, .isocode = "MH",
+  { .outlines = mh_outlines, .outline_count = 4, .outline_lengths = mh_outline_lengths, .isocode = "MH",
     .data_tx =  true, .aprs_tx =  true, .name = "Marshall Is." },
 
                                                   /* ---------------Macedonia */
-  { .outlines = mk_outlines, .outline_lengths = mk_outline_lengths, .isocode = "MK",
+  { .outlines = mk_outlines, .outline_count = 1, .outline_lengths = mk_outline_lengths, .isocode = "MK",
     .data_tx =  true, .aprs_tx = false, .name = "Macedonia" },
 
                                                   /* --------------------Mali */
-  { .outlines = ml_outlines, .outline_lengths = ml_outline_lengths, .isocode = "ML",
+  { .outlines = ml_outlines, .outline_count = 1, .outline_lengths = ml_outline_lengths, .isocode = "ML",
     .data_tx =  true, .aprs_tx =  true, .name = "Mali" },
 
                                                   /* -------------------Malta */
-  { .outlines = mt_outlines, .outline_lengths = mt_outline_lengths, .isocode = "MT",
+  { .outlines = mt_outlines, .outline_count = 1, .outline_lengths = mt_outline_lengths, .isocode = "MT",
     .data_tx =  true, .aprs_tx =  true, .name = "Malta" },
 
                                                   /* -----------------Myanmar */
-  { .outlines = mm_outlines, .outline_lengths = mm_outline_lengths, .isocode = "MM",
+  { .outlines = mm_outlines, .outline_count = 1, .outline_lengths = mm_outline_lengths, .isocode = "MM",
     .data_tx =  true, .aprs_tx =  true, .name = "Myanmar" },
 
                                                   /* --------------Montenegro */
-  { .outlines = me_outlines, .outline_lengths = me_outline_lengths, .isocode = "ME",
+  { .outlines = me_outlines, .outline_count = 1, .outline_lengths = me_outline_lengths, .isocode = "ME",
     .data_tx =  true, .aprs_tx = false, .name = "Montenegro" },
 
                                                   /* ----------------Mongolia */
-  { .outlines = mn_outlines, .outline_lengths = mn_outline_lengths, .isocode = "MN",
+  { .outlines = mn_outlines, .outline_count = 1, .outline_lengths = mn_outline_lengths, .isocode = "MN",
     .data_tx =  true, .aprs_tx =  true, .name = "Mongolia" },
 
                                                   /* ----------N. Mariana Is. */
-  { .outlines = mp_outlines, .outline_lengths = mp_outline_lengths, .isocode = "MP",
+  { .outlines = mp_outlines, .outline_count = 3, .outline_lengths = mp_outline_lengths, .isocode = "MP",
     .data_tx =  true, .aprs_tx =  true, .name = "N. Mariana Is." },
 
                                                   /* --------------Mozambique */
-  { .outlines = mz_outlines, .outline_lengths = mz_outline_lengths, .isocode = "MZ",
+  { .outlines = mz_outlines, .outline_count = 3, .outline_lengths = mz_outline_lengths, .isocode = "MZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Mozambique" },
 
                                                   /* --------------Mauritania */
-  { .outlines = mr_outlines, .outline_lengths = mr_outline_lengths, .isocode = "MR",
+  { .outlines = mr_outlines, .outline_count = 1, .outline_lengths = mr_outline_lengths, .isocode = "MR",
     .data_tx =  true, .aprs_tx =  true, .name = "Mauritania" },
 
                                                   /* --------------Montserrat */
-  { .outlines = ms_outlines, .outline_lengths = ms_outline_lengths, .isocode = "MS",
+  { .outlines = ms_outlines, .outline_count = 1, .outline_lengths = ms_outline_lengths, .isocode = "MS",
     .data_tx =  true, .aprs_tx =  true, .name = "Montserrat" },
 
                                                   /* ---------------Mauritius */
-  { .outlines = mu_outlines, .outline_lengths = mu_outline_lengths, .isocode = "MU",
+  { .outlines = mu_outlines, .outline_count = 1, .outline_lengths = mu_outline_lengths, .isocode = "MU",
     .data_tx =  true, .aprs_tx =  true, .name = "Mauritius" },
 
                                                   /* ------------------Malawi */
-  { .outlines = mw_outlines, .outline_lengths = mw_outline_lengths, .isocode = "MW",
+  { .outlines = mw_outlines, .outline_count = 3, .outline_lengths = mw_outline_lengths, .isocode = "MW",
     .data_tx =  true, .aprs_tx =  true, .name = "Malawi" },
 
                                                   /* ----------------Malaysia */
-  { .outlines = my_outlines, .outline_lengths = my_outline_lengths, .isocode = "MY",
+  { .outlines = my_outlines, .outline_count = 7, .outline_lengths = my_outline_lengths, .isocode = "MY",
     .data_tx =  true, .aprs_tx =  true, .name = "Malaysia" },
 
                                                   /* -----------------Namibia */
-  { .outlines = na_outlines, .outline_lengths = na_outline_lengths, .isocode = "NA",
+  { .outlines = na_outlines, .outline_count = 1, .outline_lengths = na_outline_lengths, .isocode = "NA",
     .data_tx =  true, .aprs_tx =  true, .name = "Namibia" },
 
                                                   /* -----------New Caledonia */
-  { .outlines = nc_outlines, .outline_lengths = nc_outline_lengths, .isocode = "NC",
+  { .outlines = nc_outlines, .outline_count = 3, .outline_lengths = nc_outline_lengths, .isocode = "NC",
     .data_tx =  true, .aprs_tx =  true, .name = "New Caledonia" },
 
                                                   /* -------------------Niger */
-  { .outlines = ne_outlines, .outline_lengths = ne_outline_lengths, .isocode = "NE",
+  { .outlines = ne_outlines, .outline_count = 1, .outline_lengths = ne_outline_lengths, .isocode = "NE",
     .data_tx =  true, .aprs_tx =  true, .name = "Niger" },
 
                                                   /* ----------Norfolk Island */
-  { .outlines = nf_outlines, .outline_lengths = nf_outline_lengths, .isocode = "NF",
+  { .outlines = nf_outlines, .outline_count = 1, .outline_lengths = nf_outline_lengths, .isocode = "NF",
     .data_tx =  true, .aprs_tx =  true, .name = "Norfolk Island" },
 
                                                   /* -----------------Nigeria */
-  { .outlines = ng_outlines, .outline_lengths = ng_outline_lengths, .isocode = "NG",
+  { .outlines = ng_outlines, .outline_count = 1, .outline_lengths = ng_outline_lengths, .isocode = "NG",
     .data_tx =  true, .aprs_tx =  true, .name = "Nigeria" },
 
                                                   /* ---------------Nicaragua */
-  { .outlines = ni_outlines, .outline_lengths = ni_outline_lengths, .isocode = "NI",
+  { .outlines = ni_outlines, .outline_count = 1, .outline_lengths = ni_outline_lengths, .isocode = "NI",
     .data_tx =  true, .aprs_tx =  true, .name = "Nicaragua" },
 
                                                   /* --------------------Niue */
-  { .outlines = nu_outlines, .outline_lengths = nu_outline_lengths, .isocode = "NU",
+  { .outlines = nu_outlines, .outline_count = 1, .outline_lengths = nu_outline_lengths, .isocode = "NU",
     .data_tx =  true, .aprs_tx =  true, .name = "Niue" },
 
                                                   /* -------------Netherlands */
-  { .outlines = nl_outlines, .outline_lengths = nl_outline_lengths, .isocode = "NL",
+  { .outlines = nl_outlines, .outline_count = 3, .outline_lengths = nl_outline_lengths, .isocode = "NL",
     .data_tx =  true, .aprs_tx =  true, .name = "Netherlands" },
 
                                                   /* ------------------Norway */
-  { .outlines = no_outlines, .outline_lengths = no_outline_lengths, .isocode = "NO",
+  { .outlines = no_outlines, .outline_count = 7, .outline_lengths = no_outline_lengths, .isocode = "NO",
     .data_tx =  true, .aprs_tx = false, .name = "Norway" },
 
                                                   /* -------------------Nepal */
-  { .outlines = np_outlines, .outline_lengths = np_outline_lengths, .isocode = "NP",
+  { .outlines = np_outlines, .outline_count = 1, .outline_lengths = np_outline_lengths, .isocode = "NP",
     .data_tx =  true, .aprs_tx =  true, .name = "Nepal" },
 
                                                   /* -------------------Nauru */
-  { .outlines = nr_outlines, .outline_lengths = nr_outline_lengths, .isocode = "NR",
+  { .outlines = nr_outlines, .outline_count = 1, .outline_lengths = nr_outline_lengths, .isocode = "NR",
     .data_tx =  true, .aprs_tx =  true, .name = "Nauru" },
 
                                                   /* -------------New Zealand */
-  { .outlines = nz_outlines, .outline_lengths = nz_outline_lengths, .isocode = "NZ",
+  { .outlines = nz_outlines, .outline_count = 6, .outline_lengths = nz_outline_lengths, .isocode = "NZ",
     .data_tx =  true, .aprs_tx =  true, .name = "New Zealand" },
 
                                                   /* --------------------Oman */
-  { .outlines = om_outlines, .outline_lengths = om_outline_lengths, .isocode = "OM",
+  { .outlines = om_outlines, .outline_count = 1, .outline_lengths = om_outline_lengths, .isocode = "OM",
     .data_tx =  true, .aprs_tx =  true, .name = "Oman" },
 
                                                   /* ----------------Pakistan */
-  { .outlines = pk_outlines, .outline_lengths = pk_outline_lengths, .isocode = "PK",
+  { .outlines = pk_outlines, .outline_count = 1, .outline_lengths = pk_outline_lengths, .isocode = "PK",
     .data_tx =  true, .aprs_tx =  true, .name = "Pakistan" },
 
                                                   /* ------------------Panama */
-  { .outlines = pa_outlines, .outline_lengths = pa_outline_lengths, .isocode = "PA",
+  { .outlines = pa_outlines, .outline_count = 1, .outline_lengths = pa_outline_lengths, .isocode = "PA",
     .data_tx =  true, .aprs_tx =  true, .name = "Panama" },
 
                                                   /* ------------Pitcairn Is. */
-  { .outlines = pn_outlines, .outline_lengths = pn_outline_lengths, .isocode = "PN",
+  { .outlines = pn_outlines, .outline_count = 1, .outline_lengths = pn_outline_lengths, .isocode = "PN",
     .data_tx =  true, .aprs_tx =  true, .name = "Pitcairn Is." },
 
                                                   /* --------------------Peru */
-  { .outlines = pe_outlines, .outline_lengths = pe_outline_lengths, .isocode = "PE",
+  { .outlines = pe_outlines, .outline_count = 1, .outline_lengths = pe_outline_lengths, .isocode = "PE",
     .data_tx =  true, .aprs_tx =  true, .name = "Peru" },
 
                                                   /* -------------Philippines */
-  { .outlines = ph_outlines, .outline_lengths = ph_outline_lengths, .isocode = "PH",
+  { .outlines = ph_outlines, .outline_count = 3, .outline_lengths = ph_outline_lengths, .isocode = "PH",
     .data_tx =  true, .aprs_tx =  true, .name = "Philippines" },
 
                                                   /* -------------------Palau */
-  { .outlines = pw_outlines, .outline_lengths = pw_outline_lengths, .isocode = "PW",
+  { .outlines = pw_outlines, .outline_count = 2, .outline_lengths = pw_outline_lengths, .isocode = "PW",
     .data_tx =  true, .aprs_tx =  true, .name = "Palau" },
 
                                                   /* --------Papua New Guinea */
-  { .outlines = pg_outlines, .outline_lengths = pg_outline_lengths, .isocode = "PG",
+  { .outlines = pg_outlines, .outline_count = 6, .outline_lengths = pg_outline_lengths, .isocode = "PG",
     .data_tx =  true, .aprs_tx =  true, .name = "Papua New Guinea" },
 
                                                   /* ------------------Poland */
-  { .outlines = pl_outlines, .outline_lengths = pl_outline_lengths, .isocode = "PL",
+  { .outlines = pl_outlines, .outline_count = 1, .outline_lengths = pl_outline_lengths, .isocode = "PL",
     .data_tx =  true, .aprs_tx =  true, .name = "Poland" },
 
                                                   /* -------------Puerto Rico */
-  { .outlines = pr_outlines, .outline_lengths = pr_outline_lengths, .isocode = "PR",
+  { .outlines = pr_outlines, .outline_count = 1, .outline_lengths = pr_outline_lengths, .isocode = "PR",
     .data_tx =  true, .aprs_tx =  true, .name = "Puerto Rico" },
 
                                                   /* ----------------N. Korea */
-  { .outlines = kp_outlines, .outline_lengths = kp_outline_lengths, .isocode = "KP",
+  { .outlines = kp_outlines, .outline_count = 2, .outline_lengths = kp_outline_lengths, .isocode = "KP",
     .data_tx = false, .aprs_tx = false, .name = "N. Korea" },
 
                                                   /* ----------------Portugal */
-  { .outlines = pt_outlines, .outline_lengths = pt_outline_lengths, .isocode = "PT",
+  { .outlines = pt_outlines, .outline_count = 6, .outline_lengths = pt_outline_lengths, .isocode = "PT",
     .data_tx =  true, .aprs_tx = false, .name = "Portugal" },
 
                                                   /* ----------------Paraguay */
-  { .outlines = py_outlines, .outline_lengths = py_outline_lengths, .isocode = "PY",
+  { .outlines = py_outlines, .outline_count = 1, .outline_lengths = py_outline_lengths, .isocode = "PY",
     .data_tx =  true, .aprs_tx =  true, .name = "Paraguay" },
 
                                                   /* -----------Fr. Polynesia */
-  { .outlines = pf_outlines, .outline_lengths = pf_outline_lengths, .isocode = "PF",
+  { .outlines = pf_outlines, .outline_count = 10, .outline_lengths = pf_outline_lengths, .isocode = "PF",
     .data_tx =  true, .aprs_tx =  true, .name = "Fr. Polynesia" },
 
                                                   /* -------------------Qatar */
-  { .outlines = qa_outlines, .outline_lengths = qa_outline_lengths, .isocode = "QA",
+  { .outlines = qa_outlines, .outline_count = 1, .outline_lengths = qa_outline_lengths, .isocode = "QA",
     .data_tx =  true, .aprs_tx =  true, .name = "Qatar" },
 
                                                   /* -----------------Romania */
-  { .outlines = ro_outlines, .outline_lengths = ro_outline_lengths, .isocode = "RO",
+  { .outlines = ro_outlines, .outline_count = 1, .outline_lengths = ro_outline_lengths, .isocode = "RO",
     .data_tx =  true, .aprs_tx = false, .name = "Romania" },
 
                                                   /* ------------------Russia */
-  { .outlines = ru_outlines, .outline_lengths = ru_outline_lengths, .isocode = "RU",
+  { .outlines = ru_outlines, .outline_count = 49, .outline_lengths = ru_outline_lengths, .isocode = "RU",
     .data_tx =  true, .aprs_tx =  true, .name = "Russia" },
 
                                                   /* ------------------Rwanda */
-  { .outlines = rw_outlines, .outline_lengths = rw_outline_lengths, .isocode = "RW",
+  { .outlines = rw_outlines, .outline_count = 1, .outline_lengths = rw_outline_lengths, .isocode = "RW",
     .data_tx =  true, .aprs_tx =  true, .name = "Rwanda" },
 
                                                   /* ---------------W. Sahara */
-  { .outlines = w0_outlines, .outline_lengths = w0_outline_lengths, .isocode = "W0",
+  { .outlines = w0_outlines, .outline_count = 1, .outline_lengths = w0_outline_lengths, .isocode = "W0",
     .data_tx =  true, .aprs_tx =  true, .name = "W. Sahara" },
 
                                                   /* ------------Saudi Arabia */
-  { .outlines = sa_outlines, .outline_lengths = sa_outline_lengths, .isocode = "SA",
+  { .outlines = sa_outlines, .outline_count = 1, .outline_lengths = sa_outline_lengths, .isocode = "SA",
     .data_tx =  true, .aprs_tx =  true, .name = "Saudi Arabia" },
 
                                                   /* -------------------Sudan */
-  { .outlines = sd_outlines, .outline_lengths = sd_outline_lengths, .isocode = "SD",
+  { .outlines = sd_outlines, .outline_count = 1, .outline_lengths = sd_outline_lengths, .isocode = "SD",
     .data_tx =  true, .aprs_tx =  true, .name = "Sudan" },
 
                                                   /* ----------------S. Sudan */
-  { .outlines = s0_outlines, .outline_lengths = s0_outline_lengths, .isocode = "S0",
+  { .outlines = s0_outlines, .outline_count = 2, .outline_lengths = s0_outline_lengths, .isocode = "S0",
     .data_tx =  true, .aprs_tx =  true, .name = "S. Sudan" },
 
                                                   /* -----------------Senegal */
-  { .outlines = sn_outlines, .outline_lengths = sn_outline_lengths, .isocode = "SN",
+  { .outlines = sn_outlines, .outline_count = 2, .outline_lengths = sn_outline_lengths, .isocode = "SN",
     .data_tx =  true, .aprs_tx =  true, .name = "Senegal" },
 
                                                   /* ---------------Singapore */
-  { .outlines = sg_outlines, .outline_lengths = sg_outline_lengths, .isocode = "SG",
+  { .outlines = sg_outlines, .outline_count = 2, .outline_lengths = sg_outline_lengths, .isocode = "SG",
     .data_tx =  true, .aprs_tx =  true, .name = "Singapore" },
 
                                                   /* ------------Saint Helena */
-  { .outlines = sh_outlines, .outline_lengths = sh_outline_lengths, .isocode = "SH",
+  { .outlines = sh_outlines, .outline_count = 2, .outline_lengths = sh_outline_lengths, .isocode = "SH",
     .data_tx =  true, .aprs_tx =  true, .name = "Saint Helena" },
 
                                                   /* -------------Solomon Is. */
-  { .outlines = sb_outlines, .outline_lengths = sb_outline_lengths, .isocode = "SB",
+  { .outlines = sb_outlines, .outline_count = 4, .outline_lengths = sb_outline_lengths, .isocode = "SB",
     .data_tx =  true, .aprs_tx =  true, .name = "Solomon Is." },
 
                                                   /* ------------Sierra Leone */
-  { .outlines = sl_outlines, .outline_lengths = sl_outline_lengths, .isocode = "SL",
+  { .outlines = sl_outlines, .outline_count = 1, .outline_lengths = sl_outline_lengths, .isocode = "SL",
     .data_tx =  true, .aprs_tx =  true, .name = "Sierra Leone" },
 
                                                   /* -------------El Salvador */
-  { .outlines = sv_outlines, .outline_lengths = sv_outline_lengths, .isocode = "SV",
+  { .outlines = sv_outlines, .outline_count = 1, .outline_lengths = sv_outline_lengths, .isocode = "SV",
     .data_tx =  true, .aprs_tx =  true, .name = "El Salvador" },
 
                                                   /* --------------San Marino */
-  { .outlines = sm_outlines, .outline_lengths = sm_outline_lengths, .isocode = "SM",
+  { .outlines = sm_outlines, .outline_count = 0, .outline_lengths = sm_outline_lengths, .isocode = "SM",
     .data_tx =  true, .aprs_tx =  true, .name = "San Marino" },
 
                                                   /* --------------Somaliland */
-  { .outlines = s1_outlines, .outline_lengths = s1_outline_lengths, .isocode = "S1",
+  { .outlines = s1_outlines, .outline_count = 1, .outline_lengths = s1_outline_lengths, .isocode = "S1",
     .data_tx =  true, .aprs_tx =  true, .name = "Somaliland" },
 
                                                   /* -----------------Somalia */
-  { .outlines = so_outlines, .outline_lengths = so_outline_lengths, .isocode = "SO",
+  { .outlines = so_outlines, .outline_count = 1, .outline_lengths = so_outline_lengths, .isocode = "SO",
     .data_tx =  true, .aprs_tx =  true, .name = "Somalia" },
 
                                                   /* -St. Pierre and Miquelon */
-  { .outlines = pm_outlines, .outline_lengths = pm_outline_lengths, .isocode = "PM",
+  { .outlines = pm_outlines, .outline_count = 1, .outline_lengths = pm_outline_lengths, .isocode = "PM",
     .data_tx =  true, .aprs_tx =  true, .name = "St. Pierre and Miquelon" },
 
                                                   /* ------------------Serbia */
-  { .outlines = rs_outlines, .outline_lengths = rs_outline_lengths, .isocode = "RS",
+  { .outlines = rs_outlines, .outline_count = 1, .outline_lengths = rs_outline_lengths, .isocode = "RS",
     .data_tx =  true, .aprs_tx =  true, .name = "Serbia" },
 
                                                   /* ---Sao Tome and Principe */
-  { .outlines = st_outlines, .outline_lengths = st_outline_lengths, .isocode = "ST",
+  { .outlines = st_outlines, .outline_count = 2, .outline_lengths = st_outline_lengths, .isocode = "ST",
     .data_tx =  true, .aprs_tx =  true, .name = "Sao Tome and Principe" },
 
                                                   /* ----------------Suriname */
-  { .outlines = sr_outlines, .outline_lengths = sr_outline_lengths, .isocode = "SR",
+  { .outlines = sr_outlines, .outline_count = 1, .outline_lengths = sr_outline_lengths, .isocode = "SR",
     .data_tx =  true, .aprs_tx =  true, .name = "Suriname" },
 
                                                   /* ----------------Slovakia */
-  { .outlines = sk_outlines, .outline_lengths = sk_outline_lengths, .isocode = "SK",
+  { .outlines = sk_outlines, .outline_count = 1, .outline_lengths = sk_outline_lengths, .isocode = "SK",
     .data_tx =  true, .aprs_tx = false, .name = "Slovakia" },
 
                                                   /* ----------------Slovenia */
-  { .outlines = si_outlines, .outline_lengths = si_outline_lengths, .isocode = "SI",
+  { .outlines = si_outlines, .outline_count = 1, .outline_lengths = si_outline_lengths, .isocode = "SI",
     .data_tx =  true, .aprs_tx =  true, .name = "Slovenia" },
 
                                                   /* ------------------Sweden */
-  { .outlines = se_outlines, .outline_lengths = se_outline_lengths, .isocode = "SE",
+  { .outlines = se_outlines, .outline_count = 3, .outline_lengths = se_outline_lengths, .isocode = "SE",
     .data_tx =  true, .aprs_tx = false, .name = "Sweden" },
 
                                                   /* ---------------Swaziland */
-  { .outlines = sz_outlines, .outline_lengths = sz_outline_lengths, .isocode = "SZ",
+  { .outlines = sz_outlines, .outline_count = 1, .outline_lengths = sz_outline_lengths, .isocode = "SZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Swaziland" },
 
                                                   /* ------------Sint Maarten */
-  { .outlines = sx_outlines, .outline_lengths = sx_outline_lengths, .isocode = "SX",
+  { .outlines = sx_outlines, .outline_count = 1, .outline_lengths = sx_outline_lengths, .isocode = "SX",
     .data_tx =  true, .aprs_tx =  true, .name = "Sint Maarten" },
 
                                                   /* --------------Seychelles */
-  { .outlines = sc_outlines, .outline_lengths = sc_outline_lengths, .isocode = "SC",
+  { .outlines = sc_outlines, .outline_count = 1, .outline_lengths = sc_outline_lengths, .isocode = "SC",
     .data_tx =  true, .aprs_tx =  true, .name = "Seychelles" },
 
                                                   /* -------------------Syria */
-  { .outlines = sy_outlines, .outline_lengths = sy_outline_lengths, .isocode = "SY",
+  { .outlines = sy_outlines, .outline_count = 1, .outline_lengths = sy_outline_lengths, .isocode = "SY",
     .data_tx =  true, .aprs_tx =  true, .name = "Syria" },
 
                                                   /* ----Turks and Caicos Is. */
-  { .outlines = tc_outlines, .outline_lengths = tc_outline_lengths, .isocode = "TC",
+  { .outlines = tc_outlines, .outline_count = 1, .outline_lengths = tc_outline_lengths, .isocode = "TC",
     .data_tx =  true, .aprs_tx =  true, .name = "Turks and Caicos Is." },
 
                                                   /* --------------------Chad */
-  { .outlines = td_outlines, .outline_lengths = td_outline_lengths, .isocode = "TD",
+  { .outlines = td_outlines, .outline_count = 1, .outline_lengths = td_outline_lengths, .isocode = "TD",
     .data_tx =  true, .aprs_tx =  true, .name = "Chad" },
 
                                                   /* --------------------Togo */
-  { .outlines = tg_outlines, .outline_lengths = tg_outline_lengths, .isocode = "TG",
+  { .outlines = tg_outlines, .outline_count = 0, .outline_lengths = tg_outline_lengths, .isocode = "TG",
     .data_tx =  true, .aprs_tx =  true, .name = "Togo" },
 
                                                   /* ----------------Thailand */
-  { .outlines = th_outlines, .outline_lengths = th_outline_lengths, .isocode = "TH",
+  { .outlines = th_outlines, .outline_count = 4, .outline_lengths = th_outline_lengths, .isocode = "TH",
     .data_tx =  true, .aprs_tx =  true, .name = "Thailand" },
 
                                                   /* --------------Tajikistan */
-  { .outlines = tj_outlines, .outline_lengths = tj_outline_lengths, .isocode = "TJ",
+  { .outlines = tj_outlines, .outline_count = 2, .outline_lengths = tj_outline_lengths, .isocode = "TJ",
     .data_tx =  true, .aprs_tx =  true, .name = "Tajikistan" },
 
                                                   /* ------------Turkmenistan */
-  { .outlines = tm_outlines, .outline_lengths = tm_outline_lengths, .isocode = "TM",
+  { .outlines = tm_outlines, .outline_count = 1, .outline_lengths = tm_outline_lengths, .isocode = "TM",
     .data_tx =  true, .aprs_tx =  true, .name = "Turkmenistan" },
 
                                                   /* --------------East Timor */
-  { .outlines = tl_outlines, .outline_lengths = tl_outline_lengths, .isocode = "TL",
+  { .outlines = tl_outlines, .outline_count = 1, .outline_lengths = tl_outline_lengths, .isocode = "TL",
     .data_tx =  true, .aprs_tx =  true, .name = "East Timor" },
 
                                                   /* -------------------Tonga */
-  { .outlines = to_outlines, .outline_lengths = to_outline_lengths, .isocode = "TO",
+  { .outlines = to_outlines, .outline_count = 2, .outline_lengths = to_outline_lengths, .isocode = "TO",
     .data_tx =  true, .aprs_tx =  true, .name = "Tonga" },
 
                                                   /* -----Trinidad and Tobago */
-  { .outlines = tt_outlines, .outline_lengths = tt_outline_lengths, .isocode = "TT",
+  { .outlines = tt_outlines, .outline_count = 1, .outline_lengths = tt_outline_lengths, .isocode = "TT",
     .data_tx =  true, .aprs_tx =  true, .name = "Trinidad and Tobago" },
 
                                                   /* -----------------Tunisia */
-  { .outlines = tn_outlines, .outline_lengths = tn_outline_lengths, .isocode = "TN",
+  { .outlines = tn_outlines, .outline_count = 1, .outline_lengths = tn_outline_lengths, .isocode = "TN",
     .data_tx =  true, .aprs_tx =  true, .name = "Tunisia" },
 
                                                   /* ------------------Turkey */
-  { .outlines = tr_outlines, .outline_lengths = tr_outline_lengths, .isocode = "TR",
+  { .outlines = tr_outlines, .outline_count = 3, .outline_lengths = tr_outline_lengths, .isocode = "TR",
     .data_tx =  true, .aprs_tx =  true, .name = "Turkey" },
 
                                                   /* ----------------Tanzania */
-  { .outlines = tz_outlines, .outline_lengths = tz_outline_lengths, .isocode = "TZ",
+  { .outlines = tz_outlines, .outline_count = 1, .outline_lengths = tz_outline_lengths, .isocode = "TZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Tanzania" },
 
                                                   /* ------------------Uganda */
-  { .outlines = ug_outlines, .outline_lengths = ug_outline_lengths, .isocode = "UG",
+  { .outlines = ug_outlines, .outline_count = 1, .outline_lengths = ug_outline_lengths, .isocode = "UG",
     .data_tx =  true, .aprs_tx =  true, .name = "Uganda" },
 
                                                   /* -----------------Ukraine */
-  { .outlines = ua_outlines, .outline_lengths = ua_outline_lengths, .isocode = "UA",
+  { .outlines = ua_outlines, .outline_count = 1, .outline_lengths = ua_outline_lengths, .isocode = "UA",
     .data_tx =  true, .aprs_tx =  true, .name = "Ukraine" },
 
                                                   /* -----------------Uruguay */
-  { .outlines = uy_outlines, .outline_lengths = uy_outline_lengths, .isocode = "UY",
+  { .outlines = uy_outlines, .outline_count = 1, .outline_lengths = uy_outline_lengths, .isocode = "UY",
     .data_tx =  true, .aprs_tx =  true, .name = "Uruguay" },
 
                                                   /* -----------United States */
-  { .outlines = us_outlines, .outline_lengths = us_outline_lengths, .isocode = "US",
+  { .outlines = us_outlines, .outline_count = 16, .outline_lengths = us_outline_lengths, .isocode = "US",
     .data_tx =  true, .aprs_tx =  true, .name = "United States" },
 
                                                   /* --------------Uzbekistan */
-  { .outlines = uz_outlines, .outline_lengths = uz_outline_lengths, .isocode = "UZ",
+  { .outlines = uz_outlines, .outline_count = 3, .outline_lengths = uz_outline_lengths, .isocode = "UZ",
     .data_tx =  true, .aprs_tx =  true, .name = "Uzbekistan" },
 
                                                   /* -----------------Vatican */
-  { .outlines = va_outlines, .outline_lengths = va_outline_lengths, .isocode = "VA",
+  { .outlines = va_outlines, .outline_count = 1, .outline_lengths = va_outline_lengths, .isocode = "VA",
     .data_tx =  true, .aprs_tx =  true, .name = "Vatican" },
 
                                                   /* ------St. Vin. and Gren. */
-  { .outlines = vc_outlines, .outline_lengths = vc_outline_lengths, .isocode = "VC",
+  { .outlines = vc_outlines, .outline_count = 1, .outline_lengths = vc_outline_lengths, .isocode = "VC",
     .data_tx =  true, .aprs_tx =  true, .name = "St. Vin. and Gren." },
 
                                                   /* ---------------Venezuela */
-  { .outlines = ve_outlines, .outline_lengths = ve_outline_lengths, .isocode = "VE",
+  { .outlines = ve_outlines, .outline_count = 1, .outline_lengths = ve_outline_lengths, .isocode = "VE",
     .data_tx =  true, .aprs_tx =  true, .name = "Venezuela" },
 
                                                   /* ------British Virgin Is. */
-  { .outlines = vg_outlines, .outline_lengths = vg_outline_lengths, .isocode = "VG",
+  { .outlines = vg_outlines, .outline_count = 1, .outline_lengths = vg_outline_lengths, .isocode = "VG",
     .data_tx =  true, .aprs_tx =  true, .name = "British Virgin Is." },
 
                                                   /* ---------U.S. Virgin Is. */
-  { .outlines = vi_outlines, .outline_lengths = vi_outline_lengths, .isocode = "VI",
+  { .outlines = vi_outlines, .outline_count = 3, .outline_lengths = vi_outline_lengths, .isocode = "VI",
     .data_tx =  true, .aprs_tx =  true, .name = "U.S. Virgin Is." },
 
                                                   /* -----------------Vietnam */
-  { .outlines = vn_outlines, .outline_lengths = vn_outline_lengths, .isocode = "VN",
+  { .outlines = vn_outlines, .outline_count = 1, .outline_lengths = vn_outline_lengths, .isocode = "VN",
     .data_tx =  true, .aprs_tx =  true, .name = "Vietnam" },
 
                                                   /* -----------------Vanuatu */
-  { .outlines = vu_outlines, .outline_lengths = vu_outline_lengths, .isocode = "VU",
+  { .outlines = vu_outlines, .outline_count = 2, .outline_lengths = vu_outline_lengths, .isocode = "VU",
     .data_tx =  true, .aprs_tx =  true, .name = "Vanuatu" },
 
                                                   /* ---------------West Bank */
-  { .outlines = ps_outlines, .outline_lengths = ps_outline_lengths, .isocode = "PS",
+  { .outlines = ps_outlines, .outline_count = 1, .outline_lengths = ps_outline_lengths, .isocode = "PS",
     .data_tx =  true, .aprs_tx =  true, .name = "West Bank" },
 
                                                   /* -------Wallis and Futuna */
-  { .outlines = wf_outlines, .outline_lengths = wf_outline_lengths, .isocode = "WF",
+  { .outlines = wf_outlines, .outline_count = 2, .outline_lengths = wf_outline_lengths, .isocode = "WF",
     .data_tx =  true, .aprs_tx =  true, .name = "Wallis and Futuna" },
 
                                                   /* -------------------Samoa */
-  { .outlines = ws_outlines, .outline_lengths = ws_outline_lengths, .isocode = "WS",
+  { .outlines = ws_outlines, .outline_count = 1, .outline_lengths = ws_outline_lengths, .isocode = "WS",
     .data_tx =  true, .aprs_tx =  true, .name = "Samoa" },
 
                                                   /* -------------------Yemen */
-  { .outlines = ye_outlines, .outline_lengths = ye_outline_lengths, .isocode = "YE",
+  { .outlines = ye_outlines, .outline_count = 2, .outline_lengths = ye_outline_lengths, .isocode = "YE",
     .data_tx = false, .aprs_tx = false, .name = "Yemen" },
 
                                                   /* ------------South Africa */
-  { .outlines = za_outlines, .outline_lengths = za_outline_lengths, .isocode = "ZA",
+  { .outlines = za_outlines, .outline_count = 3, .outline_lengths = za_outline_lengths, .isocode = "ZA",
     .data_tx =  true, .aprs_tx =  true, .name = "South Africa" },
 
                                                   /* ------------------Zambia */
-  { .outlines = zm_outlines, .outline_lengths = zm_outline_lengths, .isocode = "ZM",
+  { .outlines = zm_outlines, .outline_count = 1, .outline_lengths = zm_outline_lengths, .isocode = "ZM",
     .data_tx =  true, .aprs_tx =  true, .name = "Zambia" },
 
                                                   /* ----------------Zimbabwe */
-  { .outlines = zw_outlines, .outline_lengths = zw_outline_lengths, .isocode = "ZW",
+  { .outlines = zw_outlines, .outline_count = 1, .outline_lengths = zw_outline_lengths, .isocode = "ZW",
     .data_tx =  true, .aprs_tx =  true, .name = "Zimbabwe" },
 };
