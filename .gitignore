@@ -5,3 +5,7 @@ firmware/test/main.py*
 *.s#*
 *.b#*
 *.l#*
+
+*.#
+
+*.ipynb_checkpoints
