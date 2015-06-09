@@ -7967,7 +7967,6 @@ by exp-lbrs.ulp</description>
 <part name="C33" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
 <part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
 <part name="FRAME6" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
-<part name="C34" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="C35" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$104" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$105" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -7992,6 +7991,7 @@ by exp-lbrs.ulp</description>
 <part name="C42" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="R21" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
 <part name="L1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
+<part name="C25" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 </parts>
 <sheets>
 <sheet>
@@ -8201,7 +8201,6 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="R12" gate="G$1" x="76.2" y="-53.34"/>
 <instance part="FRAME6" gate="G$1" x="251.46" y="-187.96"/>
 <instance part="FRAME6" gate="G$2" x="396.24" y="-187.96"/>
-<instance part="C34" gate="G$1" x="40.64" y="-73.66"/>
 <instance part="C35" gate="G$1" x="50.8" y="-73.66"/>
 <instance part="U$104" gate="G$1" x="40.64" y="-81.28"/>
 <instance part="U$105" gate="G$1" x="50.8" y="-81.28"/>
@@ -8226,6 +8225,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="C42" gate="G$1" x="182.88" y="-71.12"/>
 <instance part="R21" gate="G$1" x="378.46" y="-48.26"/>
 <instance part="L1" gate="G$1" x="81.28" y="-60.96"/>
+<instance part="C25" gate="G$1" x="40.64" y="-71.12"/>
 </instances>
 <busses>
 </busses>
@@ -8534,11 +8534,6 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="93.98" y1="-48.26" x2="96.52" y2="-48.26" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$104" gate="G$1" pin="GND"/>
-<pinref part="C34" gate="G$1" pin="P$2"/>
-<wire x1="40.64" y1="-78.74" x2="40.64" y2="-76.2" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="U$105" gate="G$1" pin="GND"/>
 <pinref part="C35" gate="G$1" pin="P$2"/>
 <wire x1="50.8" y1="-78.74" x2="50.8" y2="-76.2" width="0.1524" layer="91"/>
@@ -8583,6 +8578,11 @@ Will the boost then run in inefficient discontinous mode????</text>
 <pinref part="U$114" gate="G$1" pin="GND"/>
 <pinref part="C42" gate="G$1" pin="P$2"/>
 <wire x1="182.88" y1="-73.66" x2="182.88" y2="-78.74" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C25" gate="G$1" pin="2"/>
+<wire x1="40.64" y1="-78.74" x2="40.64" y2="-76.2" width="0.1524" layer="91"/>
+<pinref part="U$104" gate="G$1" pin="GND"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -9330,7 +9330,6 @@ Will the boost then run in inefficient discontinous mode????</text>
 <junction x="68.58" y="-53.34"/>
 <pinref part="C35" gate="G$1" pin="P$1"/>
 <wire x1="50.8" y1="-68.58" x2="50.8" y2="-63.5" width="0.1524" layer="91"/>
-<pinref part="C34" gate="G$1" pin="P$1"/>
 <wire x1="40.64" y1="-68.58" x2="40.64" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="50.8" y="-63.5"/>
 <pinref part="U$113" gate="G$1" pin="1"/>
@@ -9340,6 +9339,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="76.2" y1="-60.96" x2="73.66" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="73.66" y1="-60.96" x2="73.66" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="73.66" y="-63.5"/>
+<pinref part="C25" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA04"/>
