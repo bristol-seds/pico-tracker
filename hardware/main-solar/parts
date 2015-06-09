@@ -7,15 +7,15 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
-|SI4060-B1B-FM|SILICON LABS - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4060-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4060-B1B-FM)|1|U2
-|SI4060-B1B-FM|SILICON LABS - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4063-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4063-B1B-FM)|1|U2
+2361006 556-ATSAMD20E17A-MU 1 U1
+2414373 634-SI4060-B1B-FM  1 U2
+2414373 634-SI4063-B1B-FM 1 U2
 | UBLOX MAX-8C | GPS | [HAB Supplies]() | 1 | U3
-|S25FS128SAGNFI101|SPANSION - IC, MEMORY, FLASH, 128MBIT, 1.8V, 8WSON|[2367709](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2367709) [797-25FS128SAGNFI101](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=797-25FS128SAGNFI101)|0|U4 memory
-|X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U5 TCXO
+2367709 797-25FS128SAGNFI101 0 U4 memory
+2405790 1 U5 TCXO
 | U6 | DNP
-|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J8DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J8DBVT)|1|U7 watchdog
-|SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate
+1755607 595-TPS3123J8DBVT 1 U7 watchdog
+1470880 595-SN74LVC1G32DCKR 1 U8 or-gate
 
 ----
 
@@ -23,21 +23,21 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|0402AF-221XJLU|COILCRAFT - INDUCTOR, RF, 220NH, 5%,1.15GHZ, SMD|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
-|LQG15HN56NJ02D|MURATA - INDUCTOR, 0402 CASE, 56NHÂ±5%|[1343091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1343091)|1|L3 56nH filter
-|L-07C18NJV6T|JOHANSON TECHNOLOGY - INDUCTOR RF, 0402, 18NH, 5%|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH filter
+2285640 1 L2 220nH radio
+1343091 1 L3 56nH filter
+1865775 1 L4, L5 18nH filter
 | L6 | DNP
-|MC00625W0402110K|MULTICOMP - RESISTOR, 10K, 0.063W, 1%, 0402|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|4|R1, R2, R3, R7 10k
+1358069 4 R1, R2, R3, R7 10k
 | R4, R5, R6 | DNP
-|CRG0402F22K|TE CONNECTIVITY - RESISTOR, FIXED, 22K, 1%, 0402|[2331489](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331489)|1|R8 22k
-|CRG0402F100K|TE CONNECTIVITY - RESISTOR, PRECISION, 100K, 1%, 0402|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R9, R10 100k
-|GRM1555C1H8R2CA01D|MURATA - CAP, MLCC, C0G/NP0, 8.2PF, 50V, 0402|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
-|MC0402N150J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 15PF, 50V, 0402|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
+2331489 1 R8 22k
+2331442 2 R9, R10 100k
+1828874 2 C1, C3 8.2pF
+1758945 3 C2, C4, C7 15pF
 | C5, C6 | DNP
-|MC0402N101J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 100PF, 50V, 0402|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF
-|MC0402X104K100CT|MULTICOMP - CAP, MLCC, X5R, 100NF, 10V, 0402|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|8|C11, C12, C13, C14, C15, C16, C17, C18 100nF
+1758969 3 C8, C9, C10 100pF
+1759380 8 C11, C12, C13, C14, C15, C16, C17, C18 100nF
 | C19, C20 | DNP
-|GRM155R60J225ME15D|MURATA - CAP, MLCC, X5R, 2.2UF, 6.3V, 0402|[2362088](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362088)|1|C21 2.2µF
+2362088 1 C21 2.2µF
 | C22, C23 | DNP
 
 ----
@@ -46,10 +46,10 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|20021121-00010C4LF|FCI - CONNECTOR, HEADER, SMT, R/A, 1.27MM, 10P|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
-|20021111-00008T4LF|FCI - HEADER, VERT, 1.27MM, THT, 8WAY|[1865284](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865284)|1|Interconnect Header
-|BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
-|CG0603MLC-05LE|BOURNS - ESD SUPPRESSOR, 0603, 5V, 0.5PF|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|2|ESD1, ESD2
+1865279 649-202112100010C4LF 1 JTAG1
+1865284 1 Interconnect Header
+1515765 2 FB1, FB2
+1828732 2 ESD1, ESD2
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
 
 ----
@@ -59,11 +59,11 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 | SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U9
-|X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U6 TCXO
-|ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz xtal
-|MC00625W0402110K|MULTICOMP - RESISTOR, 10K, 0.063W, 1%, 0402|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|3|R4, R5, R6 10k
-|MC0402X104K100CT|MULTICOMP - CAP, MLCC, X5R, 100NF, 10V, 0402|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|2|C19, C20 100nF
-|MC0402N180J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 18PF, 50V, 0402|[1758947](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758947)|2|C22, C23 18pF
+2405790 1 U6 TCXO
+2467859 1 Y1 32.786kHz xtal
+1358069 3 R4, R5, R6 10k
+1759380 2 C19, C20 100nF
+1758947 2 C22, C23 18pF
 
 
 ----
