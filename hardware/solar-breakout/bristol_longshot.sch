@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -63,6 +63,7 @@
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -71,6 +72,7 @@
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="99" name="SpiceOrder" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="100" name="Muster" color="7" fill="1" visible="no" active="no"/>
 <layer number="101" name="Patch_Top" color="12" fill="4" visible="yes" active="yes"/>
 <layer number="102" name="Vscore" color="7" fill="1" visible="yes" active="yes"/>
@@ -84,6 +86,7 @@
 <layer number="110" name="fp0" color="7" fill="1" visible="no" active="yes"/>
 <layer number="111" name="LPC17xx" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="113" name="IDFDebug" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
@@ -96,8 +99,12 @@
 <layer number="131" name="tAdjust" color="7" fill="1" visible="no" active="yes"/>
 <layer number="132" name="bAdjust" color="7" fill="1" visible="no" active="yes"/>
 <layer number="144" name="Drill_legend" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="150" name="Notes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="151" name="HeatSink" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="152" name="_bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="153" name="FabDoc1" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="154" name="FabDoc2" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="155" name="FabDoc3" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="199" name="Contour" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="200" name="200bmp" color="1" fill="10" visible="no" active="no"/>
 <layer number="201" name="201bmp" color="2" fill="1" visible="no" active="no"/>
@@ -8002,6 +8009,73 @@ linear charger for single cell lithium-ion batteries.in SOT-23-5 package.</descr
 </deviceset>
 </devicesets>
 </library>
+<library name="PecanFemto4">
+<description>Generated from &lt;b&gt;PecanFemto4.sch&lt;/b&gt;&lt;p&gt;
+by exp-lbrs.ulp</description>
+<packages>
+<package name="LPS3015">
+<wire x1="-1.75" y1="1.315" x2="-1.75" y2="-1.315" width="0.1" layer="51"/>
+<wire x1="-1.44" y1="-1.625" x2="1.44" y2="-1.625" width="0.1" layer="51"/>
+<wire x1="1.75" y1="-1.315" x2="1.75" y2="1.315" width="0.1" layer="51"/>
+<wire x1="1.44" y1="1.625" x2="-1.44" y2="1.625" width="0.1" layer="51"/>
+<wire x1="1.44" y1="-1.625" x2="1.75" y2="-1.315" width="0.1" layer="51"/>
+<wire x1="-1.75" y1="1.315" x2="-1.44" y2="1.625" width="0.1" layer="51"/>
+<wire x1="-1.44" y1="-1.625" x2="-1.75" y2="-1.315" width="0.1" layer="51"/>
+<wire x1="1.75" y1="1.315" x2="1.44" y2="1.625" width="0.1" layer="51"/>
+<smd name="1_1" x="-1.27" y="0" dx="2.54" dy="0.762" layer="1" rot="R270"/>
+<smd name="1_2" x="-0.9525" y="-1.397" dx="0.254" dy="0.889" layer="1" rot="R90"/>
+<smd name="1_3" x="-0.9525" y="1.397" dx="0.254" dy="0.889" layer="1" rot="R90"/>
+<smd name="1_4" x="-0.6985" y="-1.04775" dx="0.381" dy="0.4445" layer="1"/>
+<smd name="1_5" x="-0.6985" y="1.04775" dx="0.381" dy="0.4445" layer="1"/>
+<smd name="1_6" x="-1.3977625" y="-1.2707625" dx="0.35915625" dy="0.35915625" layer="1" rot="R45"/>
+<smd name="1_7" x="-1.3977625" y="1.2707625" dx="0.35915625" dy="0.35915625" layer="1" rot="R45"/>
+<smd name="1_8" x="-0.889" y="-0.822959375" dx="0.53848125" dy="0.53848125" layer="1" rot="R45"/>
+<smd name="1_9" x="-0.889" y="0.822959375" dx="0.53848125" dy="0.53848125" layer="1" rot="R45"/>
+<smd name="2_1" x="1.27" y="0" dx="2.54" dy="0.762" layer="1" rot="R90"/>
+<smd name="2_2" x="0.9525" y="-1.397" dx="0.254" dy="0.889" layer="1" rot="R270"/>
+<smd name="2_3" x="0.9525" y="1.397" dx="0.254" dy="0.889" layer="1" rot="R270"/>
+<smd name="2_4" x="0.6985" y="-1.04775" dx="0.381" dy="0.4445" layer="1" rot="R180"/>
+<smd name="2_5" x="0.6985" y="1.04775" dx="0.381" dy="0.4445" layer="1" rot="R180"/>
+<smd name="2_6" x="1.3977625" y="-1.2707625" dx="0.35915625" dy="0.35915625" layer="1" rot="R225"/>
+<smd name="2_7" x="1.3977625" y="1.2707625" dx="0.35915625" dy="0.35915625" layer="1" rot="R225"/>
+<smd name="2_8" x="0.889" y="-0.822959375" dx="0.53848125" dy="0.53848125" layer="1" rot="R225"/>
+<smd name="2_9" x="0.889" y="0.822959375" dx="0.53848125" dy="0.53848125" layer="1" rot="R225"/>
+<text x="-1.4" y="-2.05" size="0.3" layer="25">&gt;NAME</text>
+<text x="-1.4" y="-2.5" size="0.3" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="INDUCTANCE">
+<rectangle x1="-2.54" y1="-0.889" x2="2.54" y2="0.889" layer="94"/>
+<wire x1="-2.54" y1="0.889" x2="-2.54" y2="-0.889" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="0.889" x2="2.54" y2="0.889" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0.889" x2="2.54" y2="-0.889" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-0.889" x2="2.54" y2="-0.889" width="0.254" layer="94"/>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<text x="-3.81" y="1.4986" size="1.27" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-3.302" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IND-LPS3015">
+<gates>
+<gate name="G$1" symbol="INDUCTANCE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="LPS3015">
+<connects>
+<connect gate="G$1" pin="1" pad="1_1 1_2 1_3 1_4 1_5 1_6 1_7 1_8 1_9"/>
+<connect gate="G$1" pin="2" pad="2_1 2_2 2_3 2_4 2_5 2_6 2_7 2_8 2_9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -8118,6 +8192,8 @@ linear charger for single cell lithium-ion batteries.in SOT-23-5 package.</descr
 <part name="U$38" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C19" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$26" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="L1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
+<part name="L2" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
 </parts>
 <sheets>
 <sheet>
@@ -8251,6 +8327,8 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="U$38" gate="G$1" x="195.58" y="50.8"/>
 <instance part="C19" gate="G$1" x="739.14" y="88.9"/>
 <instance part="U$26" gate="G$1" x="739.14" y="78.74"/>
+<instance part="L1" gate="G$1" x="81.28" y="121.92"/>
+<instance part="L2" gate="G$1" x="81.28" y="66.04"/>
 </instances>
 <busses>
 </busses>
@@ -8695,7 +8773,12 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="91.44" y1="124.46" x2="99.06" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="U$33" gate="G$1" pin="1"/>
 <pinref part="U$5" gate="G$1" pin="2"/>
-<wire x1="91.44" y1="124.46" x2="86.36" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="124.46" x2="88.9" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="L1" gate="G$1" pin="2"/>
+<wire x1="88.9" y1="124.46" x2="86.36" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="121.92" x2="88.9" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="121.92" x2="88.9" y2="124.46" width="0.1524" layer="91"/>
+<junction x="88.9" y="124.46"/>
 </segment>
 </net>
 <net name="LX2" class="0">
@@ -8704,14 +8787,20 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="91.44" y1="68.58" x2="99.06" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="U$34" gate="G$1" pin="1"/>
 <pinref part="U$6" gate="G$1" pin="2"/>
-<wire x1="91.44" y1="68.58" x2="86.36" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="68.58" x2="88.9" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="L2" gate="G$1" pin="2"/>
+<wire x1="88.9" y1="68.58" x2="86.36" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="66.04" x2="88.9" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="66.04" x2="88.9" y2="68.58" width="0.1524" layer="91"/>
+<junction x="88.9" y="68.58"/>
 </segment>
 </net>
 <net name="PV1" class="0">
 <segment>
-<wire x1="76.2" y1="124.46" x2="68.58" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="124.46" x2="73.66" y2="124.46" width="0.1524" layer="91"/>
 <label x="60.96" y="124.46" size="1.778" layer="95"/>
 <pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="73.66" y1="124.46" x2="68.58" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="124.46" x2="50.8" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="124.46" x2="40.64" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="124.46" x2="30.48" y2="124.46" width="0.1524" layer="91"/>
@@ -8733,6 +8822,10 @@ Will the boost then run in inefficient discontinous mode????</text>
 <junction x="50.8" y="124.46"/>
 <pinref part="U$30" gate="G$1" pin="1"/>
 <pinref part="U$5" gate="G$1" pin="1"/>
+<pinref part="L1" gate="G$1" pin="1"/>
+<wire x1="76.2" y1="121.92" x2="73.66" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="121.92" x2="73.66" y2="124.46" width="0.1524" layer="91"/>
+<junction x="73.66" y="124.46"/>
 </segment>
 </net>
 <net name="MPPT-VOUT-2" class="0">
@@ -8826,7 +8919,12 @@ Will the boost then run in inefficient discontinous mode????</text>
 <junction x="50.8" y="68.58"/>
 <pinref part="U$31" gate="G$1" pin="1"/>
 <pinref part="U$6" gate="G$1" pin="1"/>
-<wire x1="68.58" y1="68.58" x2="76.2" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="68.58" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="L2" gate="G$1" pin="1"/>
+<wire x1="73.66" y1="68.58" x2="76.2" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="66.04" x2="73.66" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="66.04" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<junction x="73.66" y="68.58"/>
 </segment>
 </net>
 <net name="N$1" class="0">
