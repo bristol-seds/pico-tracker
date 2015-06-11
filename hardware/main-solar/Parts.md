@@ -10,8 +10,8 @@
 |ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
 |SI4060-B1B-FM|SILICON LABS - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4060-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4060-B1B-FM)|1|U2
 |SI4060-B1B-FM|SILICON LABS - RF TRANSMITTER, 142MHZ-1.05GHZ, QFN-20|[2414373](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414373) [634-SI4063-B1B-FM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4063-B1B-FM)|1|U2
-| UBLOX MAX-8C | GPS | [HAB Supplies]() | 1 | U3
-|S25FS128SAGNFI101|SPANSION - IC, MEMORY, FLASH, 128MBIT, 1.8V, 8WSON|[2367709](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2367709) [797-25FS128SAGNFI101](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=797-25FS128SAGNFI101)|0|U4 memory
+| UBLOX MAX-8C | GPS | [HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108) | 1 | U3
+|SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U5 TCXO
 | U6 | DNP
 |TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J8DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J8DBVT)|1|U7 watchdog
@@ -23,6 +23,8 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
+|XAL6060-103MEC|COILCRAFT - INDUCTOR, PWR, 10UH, 7A,  20%, 14MHZ|[2289091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2289091)|1|L1A 10µH XAL6060
+|LPS3015-103MRB|COILCRAFT - INDUCTOR, SHLD, 10UH, 20%, 0.55A, SMD|[2408024](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2408024)|1|L1B 10µH LPS3015
 |0402AF-221XJLU|COILCRAFT - INDUCTOR, RF, 220NH, 5%,1.15GHZ, SMD|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
 |LQG15HN56NJ02D|MURATA - INDUCTOR, 0402 CASE, 56NHÂ±5%|[1343091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1343091)|1|L3 56nH filter
 |L-07C18NJV6T|JOHANSON TECHNOLOGY - INDUCTOR RF, 0402, 18NH, 5%|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH filter
@@ -31,13 +33,13 @@
 | R4, R5, R6 | DNP
 |CRG0402F22K|TE CONNECTIVITY - Chip SMD Resistor, CRG Series, CRG Series, 22 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331489](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331489)|1|R8 22k
 |CRG0402F100K|TE CONNECTIVITY - Chip SMD Resistor, CRG Series, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R9, R10 100k
-|GRM1555C1H8R2CA01D|MURATA - CAP, MLCC, C0G/NP0, 8.2PF, 50V, 0402|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
-|MC0402N150J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 15PF, 50V, 0402|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
+|GRM1555C1H8R2CA01D|MURATA - Multilayer Ceramic Capacitor, GRM Series, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
+|MC0402N150J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
 | C5, C6 | DNP
-|MC0402N101J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 100PF, 50V, 0402|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF
-|MC0402X104K100CT|MULTICOMP - CAP, MLCC, X5R, 100NF, 10V, 0402|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|8|C11, C12, C13, C14, C15, C16, C17, C18 100nF
+|MC0402N101J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF
+|MC0402X104K100CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|8|C11, C12, C13, C14, C15, C16, C17, C18 100nF
 | C19, C20 | DNP
-|GRM155R60J225ME15D|MURATA - CAP, MLCC, X5R, 2.2UF, 6.3V, 0402|[2362088](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362088)|1|C21 2.2µF
+|GRM155R60J225ME15D|MURATA - Multilayer Ceramic Capacitor, GRM Series, GRM Series, 2.2 ÂµF, Â± 20%, X5R, 6.3 V|[2362088](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362088)|1|C21 2.2µF
 | C22, C23 | DNP
 
 ----
@@ -47,7 +49,6 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |20021121-00010C4LF|FCI - CONNECTOR, HEADER, SMT, R/A, 1.27MM, 10P|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
-|20021111-00008T4LF|FCI - HEADER, VERT, 1.27MM, THT, 8WAY|[1865284](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865284)|1|Interconnect Header
 |BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
 |CG0603MLC-05LE|BOURNS - ESD SUPPRESSOR, 0603, 5V, 0.5PF|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|2|ESD1, ESD2
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
@@ -62,8 +63,8 @@
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U6 TCXO
 |ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz xtal
 |MC00625W0402110K|MULTICOMP - Chip SMD Resistor, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|3|R4, R5, R6 10k
-|MC0402X104K100CT|MULTICOMP - CAP, MLCC, X5R, 100NF, 10V, 0402|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|2|C19, C20 100nF
-|MC0402N180J500CT|MULTICOMP - CAP, MLCC, C0G/NP0, 18PF, 50V, 0402|[1758947](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758947)|2|C22, C23 18pF
+|MC0402X104K100CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|2|C19, C20 100nF
+|MC0402N180J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 18 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758947](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758947)|2|C22, C23 18pF
 
 
 ----
