@@ -11,24 +11,28 @@ sudo pip install colorama
 
 Something like this.
 
-`> /dev/null arm-none-eabi-gdb -q -x tools/verification/list/protocol.py `
+`> /dev/null arm-none-eabi-gdb -q -x tools/tests.py `
 
-You need to have your debugger configured in config.mk or I imagine
-things won't work to well
+You need to have your debugger configured in config.mk and possibly
+also have gdbscript-custom. The test driver just issues an `attach 1`
+command after gdb startup and expects that to work.
 
 #### Operation
 
-Initially the `verification.py` loads the latest binary, and runs
-`Reset_Handler` until the top of `main`. It then jumps to `tc_main` instead.
+Initially `tests.py` loads the latest binary, and runs `Reset_Handler`
+until the top of `main`. It then jumps to `tc_main` instead.
 
 While stopped in `tc_main` a pointer to the test case is set. The
 program is then run, and one loop of `tc_main` runs the test case.
 
 #### Writing a new test case
 
-Several naming conventions need to the followed for `verification.py`
-to find everything
+* Choose a testcase name `[tc-name]`
+* Create `tc/[tc-name].py` and `tc/[tc_name].h`. Use a pre-existing test case as a template.
+* Add `#include [tc-name].h` to the section at the top of `main.c`
 
-.
-.
-.
+You'll need to fill in the `/* Parameters In */` and `/* Results Out
+*/` structures in `tc/[tc-name].h`
+
+`tc/[tc-name].py` must contain a class called `[tc-name]_tc` that
+defines `get_test` and `is_correct` methods.
