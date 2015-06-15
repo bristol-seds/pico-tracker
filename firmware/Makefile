@@ -115,7 +115,7 @@ INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/ test/tc/
 # Verification suite code
 #
 #
-SYSTEM		+= test/main.c
+SYSTEM		+= test/tmain.c
 
 # Linker Scripts
 #
@@ -253,12 +253,12 @@ emacs:
 TESTCASES	:= $(shell $(FIND) test/tc -name '*.[h]')
 
 .PHONY: test
-test: test/main.py
+test: test/main.py all
 	@echo "Running tests..."
-	>/dev/null $(DB) -q -x test/tests.py
+	$(DB) -q -x test/tests.py
 
 # Ctypesgen for test
-test/main.py: test/main.c $(TESTCASES)
+test/main.py: test/tmain.c $(TESTCASES)
 	@echo "Generating Python Wrappers...."
 	@echo
 	test/ctypesgen/ctypesgen.py -o $@ \
