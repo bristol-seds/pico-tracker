@@ -22,18 +22,18 @@
 |SRN4026-100M|BOURNS - INDUCTOR, SEMI-SHLD, 10UH, 20%, 0.97A|[2428219](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2428219)|0|10µH Lx for MPPT 4x4mm 0.102Ω esr, try this L1, L2
 |SRN2512-2R2M|BOURNS - INDUCTOR, SEMI-SHLD, 2.2UH, 20%, 2.3A|[2428203](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2428203)|0|2.2µH Lx for MPPT, try this L1, L2 <-- Doesn't work
 |SRN2512-2R2M|BOURNS - INDUCTOR, SEMI-SHLD, 2.2UH, 20%, 2.3A|[2428203](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2428203)|2|Inductutor for Buck L3, L4
-|C1005X5R0J475M050BC|TDK - CAP, MLCC, X5R, 4.7UF, 6.3V, 0402|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|4|Solar input cap 4.7uF C1, C2, C3, C4
-|C1005X5R0J475M050BC|TDK - CAP, MLCC, X5R, 4.7UF, 6.3V, 0402|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|4|MPPT output cap 4.7µF C13, C14
-|MC0402B102J500CT|MULTICOMP - CAP, MLCC, X7R, 1NF, 50V, 0402|[2320765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2320765)|5|Mpp-set, vctrl, vcc-sup 1nF C5, C6, C7, C8, C10
-|C1005X5R0J475M050BC|TDK - CAP, MLCC, X5R, 4.7UF, 6.3V, 0402|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|Chg in / out 4.7µF C11, C12
-|C1005X5R0J475M050BC|TDK - CAP, MLCC, X5R, 4.7UF, 6.3V, 0402|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|Buck in 4.7µF C15, C16
-|06036D106MAT2A|AVX - CAP, MLCC, X5R, 10UF, 6.3V, 0603|[1833804](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1833804)|3|Buck Out 10µF 0603 C17, C18, C19
-|CRG0402F1K0|TE CONNECTIVITY - RESISTOR, FIXED, 1K0, 1%, 0402|[2331474](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331474)|2|Mpp-set R1, R2
-|CRG0402F10K|TE CONNECTIVITY - RESISTOR, PRECISION, 10K, 1%, 0402|[2331444](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331444)|2|en-pull-up R3, R4
-|CRG0402F220K|TE CONNECTIVITY - RESISTOR, FIXED, 220K, 1%, 0402|[2331487](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331487)|2|Vctrl-up R5, R6
-|CRG0402F82K|TE CONNECTIVITY - RESISTOR, FIXED, 82K, 1%, 0402|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|2|Vctrl-down R7, R8
-|CRG0402F2K2|TE CONNECTIVITY - RESISTOR, FIXED, 2K2, 1%, 0402|[2331502](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331502)|1|Rprog R9
-|CRG0402F330R|TE CONNECTIVITY - RESISTOR, FIXED, 330R, 1%, 0402|[2331511](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331511)|1|led R10
+|C1005X5R0J475M050BC|TDK - Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|4|Solar input cap 4.7uF C1, C2, C3, C4
+|C1005X5R0J475M050BC|TDK - Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|4|MPPT output cap 4.7µF C13, C14
+|MC0402B102J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 1000 pF, Â± 5%, X7R, 50 V, 0402 [1005 Metric]|[2320765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2320765)|5|Mpp-set, vctrl, vcc-sup 1nF C5, C6, C7, C8, C10
+|C1005X5R0J475M050BC|TDK - Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|Chg in / out 4.7µF C11, C12
+|C1005X5R0J475M050BC|TDK - Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|Buck in 4.7µF C15, C16
+|06036D106MAT2A|AVX - Multilayer Ceramic Capacitor, 10 ÂµF, Â± 20%, X5R, 6.3 V, 0603 [1608 Metric]|[1833804](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1833804)|3|Buck Out 10µF 0603 C17, C18, C19
+|CRG0402F1K0|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 1 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331474](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331474)|2|Mpp-set R1, R2
+|CRG0402F10K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 10 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331444](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331444)|2|en-pull-up R3, R4
+|CRG0402F220K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 220 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331487](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331487)|2|Vctrl-up R5, R6
+|CRG0402F82K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 82 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|2|Vctrl-down R7, R8
+|CRG0402F2K2|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 2.2 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331502](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331502)|1|Rprog R9
+|CRG0402F330R|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 330 ohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331511](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331511)|1|led R10
 |PTVS5V0S1UR|NXP - DIODE, TVS, UNI, 5V, 400W, SOD123W|[1829262](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1829262)|2|TVS diodes D5, D6
 
 ## Items used in breakout verision ONLY

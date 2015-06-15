@@ -2940,7 +2940,7 @@ Covered vias can be set in Masks (Limit).
 </pass>
 </autorouter>
 <elements>
-<element name="U$74" library="fbri" package="M05_SIDE" value="M05" x="12.25" y="4.5"/>
+<element name="JTAG2" library="fbri" package="M05_SIDE" value="M05" x="12.25" y="4.5"/>
 <element name="JTAG1" library="microbuilder_v3" package="2X05_1.27MM_SMT" value="" x="4" y="4.5" rot="R90"/>
 </elements>
 <signals>
@@ -2957,7 +2957,7 @@ Covered vias can be set in Masks (Limit).
 <vertex x="14" y="0"/>
 <vertex x="0" y="0"/>
 </polygon>
-<contactref element="U$74" pad="$1"/>
+<contactref element="JTAG2" pad="$1"/>
 <contactref element="JTAG1" pad="3"/>
 <contactref element="JTAG1" pad="5"/>
 <via x="7.75" y="4.5" extent="1-16" drill="0.3"/>
@@ -2965,7 +2965,7 @@ Covered vias can be set in Masks (Limit).
 <via x="11" y="2" extent="1-16" drill="0.3"/>
 </signal>
 <signal name="SWDIO">
-<contactref element="U$74" pad="$4"/>
+<contactref element="JTAG2" pad="$4"/>
 <contactref element="JTAG1" pad="2"/>
 <wire x1="2.15" y1="1.96" x2="3.085" y2="1.96" width="0.15" layer="1"/>
 <wire x1="3.085" y1="1.96" x2="4" y2="2.875" width="0.15" layer="1"/>
@@ -2977,7 +2977,7 @@ Covered vias can be set in Masks (Limit).
 <wire x1="11.98" y1="5.5" x2="12.25" y2="5.77" width="0.15" layer="1"/>
 </signal>
 <signal name="SWDCLK">
-<contactref element="U$74" pad="$5"/>
+<contactref element="JTAG2" pad="$5"/>
 <contactref element="JTAG1" pad="4"/>
 <wire x1="2.15" y1="3.23" x2="3.23" y2="3.23" width="0.15" layer="1"/>
 <wire x1="3.23" y1="3.23" x2="4" y2="4" width="0.15" layer="1"/>
@@ -2991,7 +2991,7 @@ Covered vias can be set in Masks (Limit).
 <signal name="KEY">
 </signal>
 <signal name="EXT!RESET">
-<contactref element="U$74" pad="$2"/>
+<contactref element="JTAG2" pad="$2"/>
 <contactref element="JTAG1" pad="10"/>
 <wire x1="12.25" y1="3.23" x2="12.605" y2="3.23" width="0.15" layer="1"/>
 <wire x1="12.605" y1="3.23" x2="13.375" y2="4" width="0.15" layer="1"/>
@@ -3004,7 +3004,7 @@ Covered vias can be set in Masks (Limit).
 </signal>
 <signal name="3.3V">
 <contactref element="JTAG1" pad="1"/>
-<contactref element="U$74" pad="$3"/>
+<contactref element="JTAG2" pad="$3"/>
 <wire x1="5.85" y1="1.96" x2="7.71" y2="1.96" width="0.4" layer="1"/>
 <wire x1="7.71" y1="1.96" x2="10.25" y2="4.5" width="0.4" layer="1"/>
 <wire x1="10.25" y1="4.5" x2="12.25" y2="4.5" width="0.4" layer="1"/>

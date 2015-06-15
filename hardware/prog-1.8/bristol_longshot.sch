@@ -1252,12 +1252,12 @@ package type OT</description>
 <parts>
 <part name="FRAME1" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 <part name="U$6" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$74" library="fbri" deviceset="M05" device=""/>
+<part name="JTAG2" library="fbri" deviceset="M05" device=""/>
 <part name="U$1" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
 <part name="U$2" library="microbuilder_v3" deviceset="3.3V" device=""/>
 <part name="U$34" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="IC3" library="tlv700" deviceset="TLV700" device="DCK" value="TLV70018DCK"/>
+<part name="U1" library="tlv700" deviceset="TLV700" device="DCK" value="TLV70018DCK"/>
 <part name="U$70" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$83" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$84" library="microbuilder" deviceset="GND" device=""/>
@@ -1276,12 +1276,12 @@ package type OT</description>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="147.32" y="0"/>
 <instance part="U$6" gate="G$1" x="30.48" y="152.4"/>
-<instance part="U$74" gate="A" x="22.86" y="162.56"/>
+<instance part="JTAG2" gate="A" x="22.86" y="162.56"/>
 <instance part="U$1" gate="G$1" x="12.7" y="106.68"/>
 <instance part="JTAG1" gate="G$1" x="25.4" y="114.3"/>
 <instance part="U$2" gate="G$1" x="12.7" y="137.16"/>
 <instance part="U$34" gate="G$1" x="162.56" y="160.02" rot="MR0"/>
-<instance part="IC3" gate="G$1" x="137.16" y="142.24"/>
+<instance part="U1" gate="G$1" x="137.16" y="142.24"/>
 <instance part="U$70" gate="G$1" x="144.78" y="132.08"/>
 <instance part="U$83" gate="G$1" x="124.46" y="132.08"/>
 <instance part="U$84" gate="G$1" x="162.56" y="132.08"/>
@@ -1295,7 +1295,7 @@ package type OT</description>
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="1"/>
+<pinref part="JTAG2" gate="A" pin="1"/>
 <wire x1="27.94" y1="157.48" x2="30.48" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="U$6" gate="G$1" pin="GND"/>
 <wire x1="30.48" y1="157.48" x2="30.48" y2="154.94" width="0.1524" layer="91"/>
@@ -1317,7 +1317,7 @@ package type OT</description>
 </segment>
 <segment>
 <pinref part="U$70" gate="G$1" pin="GND"/>
-<pinref part="IC3" gate="G$1" pin="GND"/>
+<pinref part="U1" gate="G$1" pin="GND"/>
 <wire x1="144.78" y1="134.62" x2="144.78" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -1328,7 +1328,7 @@ package type OT</description>
 </net>
 <net name="SWDIO" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="4"/>
+<pinref part="JTAG2" gate="A" pin="4"/>
 <wire x1="27.94" y1="165.1" x2="45.72" y2="165.1" width="0.1524" layer="91"/>
 <label x="33.02" y="165.1" size="1.778" layer="95"/>
 </segment>
@@ -1340,7 +1340,7 @@ package type OT</description>
 </net>
 <net name="SWDCLK" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="5"/>
+<pinref part="JTAG2" gate="A" pin="5"/>
 <wire x1="27.94" y1="167.64" x2="45.72" y2="167.64" width="0.1524" layer="91"/>
 <label x="33.02" y="167.64" size="1.778" layer="95"/>
 </segment>
@@ -1352,7 +1352,7 @@ package type OT</description>
 </net>
 <net name="EXT!RESET" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="2"/>
+<pinref part="JTAG2" gate="A" pin="2"/>
 <wire x1="27.94" y1="160.02" x2="58.42" y2="160.02" width="0.1524" layer="91"/>
 <label x="33.02" y="160.02" size="1.778" layer="95"/>
 </segment>
@@ -1371,11 +1371,11 @@ package type OT</description>
 </segment>
 <segment>
 <wire x1="124.46" y1="152.4" x2="124.46" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="IC3" gate="G$1" pin="IN"/>
+<pinref part="U1" gate="G$1" pin="IN"/>
 <wire x1="124.46" y1="147.32" x2="124.46" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="132.08" y1="147.32" x2="129.54" y2="147.32" width="0.1524" layer="91"/>
 <junction x="124.46" y="147.32"/>
-<pinref part="IC3" gate="G$1" pin="EN"/>
+<pinref part="U1" gate="G$1" pin="EN"/>
 <wire x1="129.54" y1="147.32" x2="124.46" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="144.78" x2="132.08" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="144.78" x2="129.54" y2="147.32" width="0.1524" layer="91"/>
@@ -1386,7 +1386,7 @@ package type OT</description>
 </net>
 <net name="1.8V" class="0">
 <segment>
-<pinref part="IC3" gate="G$1" pin="OUT"/>
+<pinref part="U1" gate="G$1" pin="OUT"/>
 <wire x1="157.48" y1="147.32" x2="162.56" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="147.32" x2="162.56" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="157.48" x2="162.56" y2="147.32" width="0.1524" layer="91"/>
@@ -1395,7 +1395,7 @@ package type OT</description>
 <pinref part="U$34" gate="G$1" pin="1.8V"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="3"/>
+<pinref part="JTAG2" gate="A" pin="3"/>
 <wire x1="27.94" y1="162.56" x2="63.5" y2="162.56" width="0.1524" layer="91"/>
 <pinref part="U$3" gate="G$1" pin="1.8V"/>
 </segment>

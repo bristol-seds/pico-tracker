@@ -741,7 +741,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <parts>
 <part name="FRAME1" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 <part name="U$6" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$74" library="fbri" deviceset="M05" device=""/>
+<part name="JTAG2" library="fbri" deviceset="M05" device=""/>
 <part name="U$1" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
 <part name="U$2" library="microbuilder_v3" deviceset="3.3V" device=""/>
@@ -756,7 +756,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="147.32" y="0"/>
 <instance part="U$6" gate="G$1" x="30.48" y="152.4"/>
-<instance part="U$74" gate="A" x="22.86" y="162.56"/>
+<instance part="JTAG2" gate="A" x="22.86" y="162.56"/>
 <instance part="U$1" gate="G$1" x="12.7" y="106.68"/>
 <instance part="JTAG1" gate="G$1" x="25.4" y="114.3"/>
 <instance part="U$2" gate="G$1" x="12.7" y="137.16"/>
@@ -767,7 +767,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="1"/>
+<pinref part="JTAG2" gate="A" pin="1"/>
 <wire x1="27.94" y1="157.48" x2="30.48" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="U$6" gate="G$1" pin="GND"/>
 <wire x1="30.48" y1="157.48" x2="30.48" y2="154.94" width="0.1524" layer="91"/>
@@ -785,7 +785,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 </net>
 <net name="SWDIO" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="4"/>
+<pinref part="JTAG2" gate="A" pin="4"/>
 <wire x1="27.94" y1="165.1" x2="45.72" y2="165.1" width="0.1524" layer="91"/>
 <label x="33.02" y="165.1" size="1.778" layer="95"/>
 </segment>
@@ -797,7 +797,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 </net>
 <net name="SWDCLK" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="5"/>
+<pinref part="JTAG2" gate="A" pin="5"/>
 <wire x1="27.94" y1="167.64" x2="45.72" y2="167.64" width="0.1524" layer="91"/>
 <label x="33.02" y="167.64" size="1.778" layer="95"/>
 </segment>
@@ -809,7 +809,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 </net>
 <net name="EXT!RESET" class="0">
 <segment>
-<pinref part="U$74" gate="A" pin="2"/>
+<pinref part="JTAG2" gate="A" pin="2"/>
 <wire x1="27.94" y1="160.02" x2="58.42" y2="160.02" width="0.1524" layer="91"/>
 <label x="33.02" y="160.02" size="1.778" layer="95"/>
 </segment>
@@ -827,7 +827,7 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <wire x1="12.7" y1="124.46" x2="12.7" y2="134.62" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="3"/>
+<pinref part="JTAG2" gate="A" pin="3"/>
 <pinref part="U$3" gate="G$1" pin="3.3V"/>
 <wire x1="27.94" y1="162.56" x2="63.5" y2="162.56" width="0.1524" layer="91"/>
 </segment>

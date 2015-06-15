@@ -2976,9 +2976,9 @@ Covered vias can be set in Masks (Limit).
 </pass>
 </autorouter>
 <elements>
-<element name="U$74" library="fbri" package="M05_SIDE" value="M05" x="12.25" y="4.5"/>
+<element name="JTAG2" library="fbri" package="M05_SIDE" value="M05" x="12.25" y="4.5"/>
 <element name="JTAG1" library="microbuilder_v3" package="2X05_1.27MM_SMT" value="" x="4" y="4.5" rot="R90"/>
-<element name="IC3" library="tlv700" package="SC70-5L" value="TLV70018DCK" x="9.5" y="2.375" rot="R270"/>
+<element name="U1" library="tlv700" package="SC70-5L" value="TLV70018DCK" x="9.5" y="2.375" rot="R270"/>
 <element name="C11" library="microbuilder_v3" package="_0402" value="1µF" x="10" y="0.75"/>
 <element name="C12" library="microbuilder_v3" package="_0402" value="1µF" x="10" y="4" rot="R180"/>
 </elements>
@@ -2996,19 +2996,19 @@ Covered vias can be set in Masks (Limit).
 <vertex x="14" y="0"/>
 <vertex x="0" y="0"/>
 </polygon>
-<contactref element="U$74" pad="$1"/>
+<contactref element="JTAG2" pad="$1"/>
 <contactref element="JTAG1" pad="3"/>
 <contactref element="JTAG1" pad="5"/>
 <via x="7.75" y="4.5" extent="1-16" drill="0.3"/>
 <via x="7.75" y="3.25" extent="1-16" drill="0.3"/>
 <via x="11" y="2.375" extent="1-16" drill="0.3"/>
 <contactref element="C11" pad="2"/>
-<contactref element="IC3" pad="2"/>
+<contactref element="U1" pad="2"/>
 <contactref element="C12" pad="2"/>
 <via x="10" y="4.75" extent="1-16" drill="0.3"/>
 </signal>
 <signal name="SWDIO">
-<contactref element="U$74" pad="$4"/>
+<contactref element="JTAG2" pad="$4"/>
 <contactref element="JTAG1" pad="2"/>
 <wire x1="2.15" y1="1.96" x2="3.085" y2="1.96" width="0.15" layer="1"/>
 <wire x1="3.085" y1="1.96" x2="4" y2="2.875" width="0.15" layer="1"/>
@@ -3020,7 +3020,7 @@ Covered vias can be set in Masks (Limit).
 <wire x1="11.98" y1="5.5" x2="12.25" y2="5.77" width="0.15" layer="1"/>
 </signal>
 <signal name="SWDCLK">
-<contactref element="U$74" pad="$5"/>
+<contactref element="JTAG2" pad="$5"/>
 <contactref element="JTAG1" pad="4"/>
 <wire x1="2.15" y1="3.23" x2="3.23" y2="3.23" width="0.15" layer="1"/>
 <wire x1="3.23" y1="3.23" x2="4" y2="4" width="0.15" layer="1"/>
@@ -3034,7 +3034,7 @@ Covered vias can be set in Masks (Limit).
 <signal name="KEY">
 </signal>
 <signal name="EXT!RESET">
-<contactref element="U$74" pad="$2"/>
+<contactref element="JTAG2" pad="$2"/>
 <contactref element="JTAG1" pad="10"/>
 <wire x1="12.25" y1="3.23" x2="12.605" y2="3.23" width="0.15" layer="1"/>
 <wire x1="12.605" y1="3.23" x2="13.375" y2="4" width="0.15" layer="1"/>
@@ -3047,8 +3047,8 @@ Covered vias can be set in Masks (Limit).
 </signal>
 <signal name="3.3V">
 <contactref element="JTAG1" pad="1"/>
-<contactref element="IC3" pad="1"/>
-<contactref element="IC3" pad="3"/>
+<contactref element="U1" pad="1"/>
+<contactref element="U1" pad="3"/>
 <contactref element="C11" pad="1"/>
 <wire x1="8.65" y1="1.725" x2="6.085" y2="1.725" width="0.4" layer="1"/>
 <wire x1="6.085" y1="1.725" x2="5.85" y2="1.96" width="0.4" layer="1"/>
@@ -3063,9 +3063,9 @@ Covered vias can be set in Masks (Limit).
 <wire x1="9.459" y1="1.725" x2="9.492" y2="1.758" width="0.15" layer="1"/>
 </signal>
 <signal name="1.8V">
-<contactref element="IC3" pad="5"/>
+<contactref element="U1" pad="5"/>
 <contactref element="C12" pad="1"/>
-<contactref element="U$74" pad="$3"/>
+<contactref element="JTAG2" pad="$3"/>
 <wire x1="10.508" y1="4" x2="10.508" y2="3.183" width="0.4" layer="1"/>
 <wire x1="10.508" y1="3.183" x2="10.35" y2="3.025" width="0.4" layer="1"/>
 <wire x1="10.508" y1="4" x2="10.758" y2="4.25" width="0.4" layer="1"/>

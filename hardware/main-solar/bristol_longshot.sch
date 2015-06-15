@@ -7911,8 +7911,8 @@ by exp-lbrs.ulp</description>
 <part name="U$65" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="U$66" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
-<part name="R6" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="U$67" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$68" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C22" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="18pF"/>
@@ -7926,33 +7926,33 @@ by exp-lbrs.ulp</description>
 <part name="C18" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="D2" library="led" deviceset="LED" device="CHIPLED_0603" value="GREEN"/>
 <part name="U$73" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="U$74" library="fbri" deviceset="M05" device=""/>
+<part name="JTAG1" library="fbri" deviceset="M05" device=""/>
 <part name="U6" library="fbri" deviceset="TG-5006CJ" device=""/>
 <part name="C20" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$76" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$77" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C17" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$78" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="22kΩ"/>
 <part name="U$56" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$19" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
+<part name="U4" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
 <part name="FRAME4" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
-<part name="U4" library="TPS62243" deviceset="TPS62243" device=""/>
-<part name="U10" library="TPS62243" deviceset="TPS62243" device=""/>
-<part name="U11" library="TPS3808" deviceset="TPS3808" device=""/>
-<part name="U12" library="74LVC1G04GW_inverter" deviceset="74LVC1G04GW" device=""/>
+<part name="U13" library="TPS62243" deviceset="TPS62243" device=""/>
+<part name="U12" library="TPS62243" deviceset="TPS62243" device=""/>
+<part name="U14" library="TPS3808" deviceset="TPS3808" device=""/>
+<part name="U15" library="74LVC1G04GW_inverter" deviceset="74LVC1G04GW" device=""/>
 <part name="D3" library="BAT760" deviceset="BAT760" device=""/>
 <part name="D4" library="BAT760" deviceset="BAT760" device=""/>
 <part name="L8" library="SparkFun" deviceset="INDUCTOR" device="1007" value="2.2µH"/>
-<part name="C31" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C26" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$22" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="U13" library="spv1040" deviceset="SPV1040" device=""/>
-<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
-<part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="220kΩ"/>
+<part name="U10" library="spv1040" deviceset="SPV1040" device=""/>
+<part name="R13" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="75kΩ/82kΩ"/>
+<part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="180kΩ/220kΩ"/>
 <part name="U$23" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$33" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C32" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
+<part name="C34" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
 <part name="U$38" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="FRAME5" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 <part name="U$48" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -7962,36 +7962,36 @@ by exp-lbrs.ulp</description>
 <part name="U$75" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$79" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="L9" library="SparkFun" deviceset="INDUCTOR" device="1007" value="2.2µH"/>
-<part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="U$80" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C33" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
-<part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
+<part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
 <part name="FRAME6" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
-<part name="C35" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C27" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$104" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$105" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C36" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C30" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$106" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R18" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="2.2kΩ"/>
-<part name="C37" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="R14" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="2.2kΩ"/>
+<part name="C29" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$107" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C38" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
-<part name="C39" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C32" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C31" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$108" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$109" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$110" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C40" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
-<part name="C41" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="U$111" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R19" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
-<part name="U14" library="XYKlib" deviceset="LT4054" device="ES5-4.2"/>
-<part name="U$112" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U$113" library="XAL6060" deviceset="XAL6060" device=""/>
-<part name="U$114" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C42" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
-<part name="R21" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
-<part name="L1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
+<part name="C35" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
 <part name="C25" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="U$111" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="R6" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="U11" library="XYKlib" deviceset="LT4054" device="ES5-4.2"/>
+<part name="U$112" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="L1A" library="XAL6060" deviceset="XAL6060" device=""/>
+<part name="U$114" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="C28" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="R15" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω/DNP"/>
+<part name="L1B" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
+<part name="C24" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 </parts>
 <sheets>
 <sheet>
@@ -8029,7 +8029,7 @@ DOPO: 0x0)</text>
 <text x="71.12" y="-33.02" size="1.778" layer="97">Still quite unsure on inductor value.. but 2.2µH is worth trying,
 since it would be much better than the recommended 10µH.
 Will the boost then run in inefficient discontinous mode????</text>
-<text x="68.58" y="-91.44" size="1.778" layer="97">The ICTRL inputs are just pulled to Vout as we're not using constant-current regulation</text>
+<text x="63.5" y="-91.44" size="1.778" layer="97">The ICTRL inputs are just pulled to Vout as we're not using constant-current regulation</text>
 <text x="510.54" y="-119.38" size="1.778" layer="97">Leaving Ct open sets the reset time
 (transition battery-&gt;solar) to 20ms</text>
 <text x="307.34" y="-101.6" size="1.778" layer="97">Recommended input cap is 1µF</text>
@@ -8037,12 +8037,14 @@ Will the boost then run in inefficient discontinous mode????</text>
 <text x="510.54" y="-104.14" size="1.778" layer="97">!MR! has internal pull-up</text>
 <text x="347.98" y="-114.3" size="1.778" layer="97">Rchg = 2.2kΩ gives Ichg = 70mA</text>
 <text x="347.98" y="-119.38" size="1.778" layer="97">Ichg can be measured by Vprog</text>
-<text x="165.1" y="-43.18" size="1.778" layer="97">Vout = 1.25(R1/R2 + 1)</text>
+<text x="165.1" y="-40.64" size="1.778" layer="97">Vout = 1.25(R1/R2 + 1)</text>
 <text x="165.1" y="-50.8" size="1.778" layer="97">Choose so total current through divider is 2µA - 20µA</text>
 <text x="7.62" y="-50.8" size="1.778" layer="97">Not actually an SMA connector</text>
 <text x="96.52" y="81.788" size="1.27" layer="97" font="vector" ratio="11">(AIN[0])</text>
 <text x="96.52" y="76.708" size="1.27" layer="97" font="vector" ratio="11">(AIN[4])</text>
-<text x="165.1" y="-45.72" size="1.778" layer="97">4.6V = 1.25(220/82 + 1)</text>
+<text x="165.1" y="-45.72" size="1.778" layer="97">4.60V = 1.25(220/82 + 1)</text>
+<text x="353.06" y="-35.56" size="1.778" layer="97">Place</text>
+<text x="165.1" y="-43.18" size="1.778" layer="97">4.25V = 1.25(180/75 + 1)</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -8142,8 +8144,8 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="U$65" gate="G$1" x="419.1" y="132.08" rot="MR0"/>
 <instance part="R4" gate="G$1" x="406.4" y="76.2" rot="R180"/>
 <instance part="U$66" gate="G$1" x="391.16" y="76.2" rot="MR270"/>
-<instance part="R5" gate="G$1" x="474.98" y="88.9" rot="R180"/>
-<instance part="R6" gate="G$1" x="474.98" y="91.44" rot="R180"/>
+<instance part="R2" gate="G$1" x="474.98" y="88.9" rot="R180"/>
+<instance part="R3" gate="G$1" x="474.98" y="91.44" rot="R180"/>
 <instance part="U$67" gate="G$1" x="482.6" y="88.9" rot="R90"/>
 <instance part="U$68" gate="G$1" x="482.6" y="91.44" rot="R90"/>
 <instance part="C22" gate="G$1" x="487.68" y="157.48" rot="R90"/>
@@ -8157,35 +8159,35 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="C18" gate="G$1" x="226.06" y="93.98" rot="R90"/>
 <instance part="D2" gate="G$1" x="208.28" y="109.22"/>
 <instance part="U$73" gate="G$1" x="208.28" y="116.84" rot="MR0"/>
-<instance part="U$74" gate="A" x="22.86" y="162.56"/>
+<instance part="JTAG1" gate="A" x="22.86" y="162.56"/>
 <instance part="U6" gate="A" x="485.14" y="129.54"/>
 <instance part="C20" gate="G$1" x="462.28" y="127"/>
 <instance part="U$76" gate="G$1" x="472.44" y="114.3"/>
 <instance part="U$77" gate="G$1" x="462.28" y="121.92"/>
 <instance part="C17" gate="G$1" x="12.7" y="121.92"/>
 <instance part="U$78" gate="G$1" x="12.7" y="114.3"/>
-<instance part="R7" gate="G$1" x="236.22" y="121.92" rot="R90"/>
+<instance part="R5" gate="G$1" x="236.22" y="121.92" rot="R90"/>
 <instance part="R8" gate="G$1" x="236.22" y="137.16" rot="R90"/>
 <instance part="U$56" gate="G$1" x="236.22" y="111.76"/>
-<instance part="U$19" gate="G$1" x="101.6" y="25.4"/>
+<instance part="U4" gate="G$1" x="101.6" y="25.4"/>
 <instance part="FRAME4" gate="G$1" x="0" y="-187.96"/>
 <instance part="FRAME4" gate="G$2" x="144.78" y="-187.96"/>
-<instance part="U4" gate="G$1" x="693.42" y="-93.98"/>
-<instance part="U10" gate="G$1" x="693.42" y="-63.5"/>
-<instance part="U11" gate="G$1" x="538.48" y="-86.36"/>
-<instance part="U12" gate="A" x="601.98" y="-88.9"/>
+<instance part="U13" gate="G$1" x="693.42" y="-93.98"/>
+<instance part="U12" gate="G$1" x="693.42" y="-63.5"/>
+<instance part="U14" gate="G$1" x="538.48" y="-86.36"/>
+<instance part="U15" gate="A" x="601.98" y="-88.9"/>
 <instance part="D3" gate="G$1" x="538.48" y="-53.34"/>
 <instance part="D4" gate="G$1" x="538.48" y="-63.5"/>
 <instance part="L8" gate="G$1" x="716.28" y="-86.36" rot="R90"/>
-<instance part="C31" gate="G$1" x="728.98" y="-99.06"/>
+<instance part="C26" gate="G$1" x="728.98" y="-99.06"/>
 <instance part="U$22" gate="G$1" x="728.98" y="-43.18" rot="MR0"/>
-<instance part="U13" gate="G$1" x="124.46" y="-60.96"/>
-<instance part="R2" gate="G$1" x="172.72" y="-73.66" rot="R90"/>
-<instance part="R3" gate="G$1" x="172.72" y="-63.5" rot="R90"/>
+<instance part="U10" gate="G$1" x="124.46" y="-60.96"/>
+<instance part="R13" gate="G$1" x="172.72" y="-78.74" rot="R90"/>
+<instance part="R12" gate="G$1" x="172.72" y="-63.5" rot="R90"/>
 <instance part="U$23" gate="G$1" x="93.98" y="-58.42" rot="R270"/>
-<instance part="U$33" gate="G$1" x="172.72" y="-81.28"/>
-<instance part="C32" gate="G$1" x="162.56" y="-76.2"/>
-<instance part="U$38" gate="G$1" x="162.56" y="-81.28"/>
+<instance part="U$33" gate="G$1" x="172.72" y="-88.9"/>
+<instance part="C34" gate="G$1" x="162.56" y="-78.74"/>
+<instance part="U$38" gate="G$1" x="162.56" y="-88.9"/>
 <instance part="FRAME5" gate="G$1" x="505.46" y="-187.96"/>
 <instance part="FRAME5" gate="G$2" x="650.24" y="-187.96"/>
 <instance part="U$48" gate="G$1" x="538.48" y="-109.22"/>
@@ -8195,37 +8197,37 @@ Will the boost then run in inefficient discontinous mode????</text>
 <instance part="U$75" gate="G$1" x="678.18" y="-109.22"/>
 <instance part="U$79" gate="G$1" x="728.98" y="-109.22"/>
 <instance part="L9" gate="G$1" x="716.28" y="-55.88" rot="R90"/>
-<instance part="R11" gate="G$1" x="622.3" y="-73.66" rot="R90"/>
+<instance part="R7" gate="G$1" x="622.3" y="-73.66" rot="R90"/>
 <instance part="U$80" gate="G$1" x="99.06" y="-48.26" rot="R90"/>
 <instance part="C33" gate="G$1" x="88.9" y="-48.26" rot="R270"/>
-<instance part="R12" gate="G$1" x="76.2" y="-53.34"/>
+<instance part="R11" gate="G$1" x="76.2" y="-53.34"/>
 <instance part="FRAME6" gate="G$1" x="251.46" y="-187.96"/>
 <instance part="FRAME6" gate="G$2" x="396.24" y="-187.96"/>
-<instance part="C35" gate="G$1" x="50.8" y="-73.66"/>
+<instance part="C27" gate="G$1" x="50.8" y="-73.66"/>
 <instance part="U$104" gate="G$1" x="40.64" y="-81.28"/>
 <instance part="U$105" gate="G$1" x="50.8" y="-81.28"/>
-<instance part="C36" gate="G$1" x="447.04" y="-81.28"/>
+<instance part="C30" gate="G$1" x="447.04" y="-81.28"/>
 <instance part="U$106" gate="G$1" x="447.04" y="-88.9"/>
-<instance part="R18" gate="G$1" x="355.6" y="-71.12"/>
-<instance part="C37" gate="G$1" x="317.5" y="-81.28"/>
+<instance part="R14" gate="G$1" x="355.6" y="-71.12"/>
+<instance part="C29" gate="G$1" x="317.5" y="-81.28"/>
 <instance part="U$107" gate="G$1" x="317.5" y="-93.98"/>
-<instance part="C38" gate="G$1" x="668.02" y="-101.6"/>
-<instance part="C39" gate="G$1" x="668.02" y="-71.12"/>
+<instance part="C32" gate="G$1" x="668.02" y="-101.6"/>
+<instance part="C31" gate="G$1" x="668.02" y="-71.12"/>
 <instance part="U$108" gate="G$1" x="668.02" y="-109.22"/>
 <instance part="U$109" gate="G$1" x="668.02" y="-78.74"/>
 <instance part="U$110" gate="G$1" x="556.26" y="-81.28"/>
-<instance part="C40" gate="G$1" x="556.26" y="-73.66"/>
-<instance part="C41" gate="G$1" x="718.82" y="-99.06"/>
+<instance part="C35" gate="G$1" x="556.26" y="-73.66"/>
+<instance part="C25" gate="G$1" x="718.82" y="-99.06"/>
 <instance part="U$111" gate="G$1" x="718.82" y="-109.22"/>
-<instance part="R19" gate="G$1" x="571.5" y="-73.66" rot="R90"/>
-<instance part="U14" gate="G$1" x="381" y="-66.04" rot="R180"/>
+<instance part="R6" gate="G$1" x="571.5" y="-73.66" rot="R90"/>
+<instance part="U11" gate="G$1" x="381" y="-66.04" rot="R180"/>
 <instance part="U$112" gate="G$1" x="396.24" y="-101.6"/>
-<instance part="U$113" gate="G$1" x="81.28" y="-63.5"/>
+<instance part="L1A" gate="G$1" x="81.28" y="-63.5"/>
 <instance part="U$114" gate="G$1" x="182.88" y="-81.28"/>
-<instance part="C42" gate="G$1" x="182.88" y="-71.12"/>
-<instance part="R21" gate="G$1" x="378.46" y="-48.26"/>
-<instance part="L1" gate="G$1" x="81.28" y="-60.96"/>
-<instance part="C25" gate="G$1" x="40.64" y="-71.12"/>
+<instance part="C28" gate="G$1" x="182.88" y="-71.12"/>
+<instance part="R15" gate="G$1" x="378.46" y="-48.26"/>
+<instance part="L1B" gate="G$1" x="81.28" y="-60.96"/>
+<instance part="C24" gate="G$1" x="40.64" y="-71.12"/>
 </instances>
 <busses>
 </busses>
@@ -8273,8 +8275,8 @@ Will the boost then run in inefficient discontinous mode????</text>
 <pinref part="C10" gate="G$1" pin="P$2"/>
 <wire x1="66.04" y1="20.32" x2="66.04" y2="22.86" width="0.1524" layer="91"/>
 <junction x="66.04" y="20.32"/>
-<pinref part="U$19" gate="G$1" pin="VSS"/>
-<pinref part="U$19" gate="G$1" pin="GND_PAD"/>
+<pinref part="U4" gate="G$1" pin="VSS"/>
+<pinref part="U4" gate="G$1" pin="GND_PAD"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="P$2"/>
@@ -8418,11 +8420,11 @@ Will the boost then run in inefficient discontinous mode????</text>
 <pinref part="U$64" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="R2" gate="G$1" pin="1"/>
 <pinref part="U$67" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R6" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="1"/>
 <pinref part="U$68" gate="G$1" pin="GND"/>
 </segment>
 <segment>
@@ -8441,7 +8443,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="411.48" y1="116.84" x2="411.48" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="1"/>
+<pinref part="JTAG1" gate="A" pin="1"/>
 <wire x1="27.94" y1="157.48" x2="30.48" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="U$6" gate="G$1" pin="GND"/>
 <wire x1="30.48" y1="157.48" x2="30.48" y2="154.94" width="0.1524" layer="91"/>
@@ -8463,29 +8465,31 @@ Will the boost then run in inefficient discontinous mode????</text>
 </segment>
 <segment>
 <pinref part="U$56" gate="G$1" pin="GND"/>
-<pinref part="R7" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="236.22" y1="114.3" x2="236.22" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R13" gate="G$1" pin="1"/>
 <pinref part="U$33" gate="G$1" pin="GND"/>
+<wire x1="172.72" y1="-86.36" x2="172.72" y2="-83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C32" gate="G$1" pin="P$2"/>
+<pinref part="C34" gate="G$1" pin="P$2"/>
 <pinref part="U$38" gate="G$1" pin="GND"/>
+<wire x1="162.56" y1="-86.36" x2="162.56" y2="-81.28" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$23" gate="G$1" pin="GND"/>
-<pinref part="U13" gate="G$1" pin="GND"/>
+<pinref part="U10" gate="G$1" pin="GND"/>
 <wire x1="96.52" y1="-58.42" x2="99.06" y2="-58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U11" gate="G$1" pin="GND"/>
+<pinref part="U14" gate="G$1" pin="GND"/>
 <pinref part="U$48" gate="G$1" pin="GND"/>
 <wire x1="538.48" y1="-106.68" x2="538.48" y2="-104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U11" gate="G$1" pin="GND2"/>
+<pinref part="U14" gate="G$1" pin="GND2"/>
 <pinref part="U$51" gate="G$1" pin="GND"/>
 <wire x1="541.02" y1="-106.68" x2="541.02" y2="-104.14" width="0.1524" layer="91"/>
 </segment>
@@ -8493,38 +8497,38 @@ Will the boost then run in inefficient discontinous mode????</text>
 <pinref part="U$54" gate="G$1" pin="GND"/>
 <wire x1="584.2" y1="-99.06" x2="579.12" y2="-99.06" width="0.1524" layer="91"/>
 <wire x1="579.12" y1="-99.06" x2="579.12" y2="-106.68" width="0.1524" layer="91"/>
-<pinref part="U12" gate="A" pin="GND"/>
+<pinref part="U15" gate="A" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U10" gate="G$1" pin="GND"/>
+<pinref part="U12" gate="G$1" pin="GND"/>
 <pinref part="U$59" gate="G$1" pin="GND"/>
 <wire x1="680.72" y1="-68.58" x2="678.18" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="678.18" y1="-68.58" x2="678.18" y2="-71.12" width="0.1524" layer="91"/>
-<pinref part="U10" gate="G$1" pin="GND2"/>
+<pinref part="U12" gate="G$1" pin="GND2"/>
 <wire x1="678.18" y1="-71.12" x2="678.18" y2="-76.2" width="0.1524" layer="91"/>
 <wire x1="680.72" y1="-71.12" x2="678.18" y2="-71.12" width="0.1524" layer="91"/>
 <junction x="678.18" y="-71.12"/>
-<pinref part="U10" gate="G$1" pin="MODE"/>
+<pinref part="U12" gate="G$1" pin="MODE"/>
 <wire x1="680.72" y1="-63.5" x2="678.18" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="678.18" y1="-63.5" x2="678.18" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="678.18" y="-68.58"/>
 </segment>
 <segment>
-<pinref part="U4" gate="G$1" pin="GND"/>
+<pinref part="U13" gate="G$1" pin="GND"/>
 <pinref part="U$75" gate="G$1" pin="GND"/>
 <wire x1="680.72" y1="-99.06" x2="678.18" y2="-99.06" width="0.1524" layer="91"/>
 <wire x1="678.18" y1="-99.06" x2="678.18" y2="-101.6" width="0.1524" layer="91"/>
-<pinref part="U4" gate="G$1" pin="GND2"/>
+<pinref part="U13" gate="G$1" pin="GND2"/>
 <wire x1="678.18" y1="-101.6" x2="678.18" y2="-106.68" width="0.1524" layer="91"/>
 <wire x1="680.72" y1="-101.6" x2="678.18" y2="-101.6" width="0.1524" layer="91"/>
 <junction x="678.18" y="-101.6"/>
-<pinref part="U4" gate="G$1" pin="MODE"/>
+<pinref part="U13" gate="G$1" pin="MODE"/>
 <wire x1="680.72" y1="-93.98" x2="678.18" y2="-93.98" width="0.1524" layer="91"/>
 <wire x1="678.18" y1="-93.98" x2="678.18" y2="-99.06" width="0.1524" layer="91"/>
 <junction x="678.18" y="-99.06"/>
 </segment>
 <segment>
-<pinref part="C31" gate="G$1" pin="2"/>
+<pinref part="C26" gate="G$1" pin="2"/>
 <pinref part="U$79" gate="G$1" pin="GND"/>
 <wire x1="728.98" y1="-104.14" x2="728.98" y2="-106.68" width="0.1524" layer="91"/>
 </segment>
@@ -8535,52 +8539,52 @@ Will the boost then run in inefficient discontinous mode????</text>
 </segment>
 <segment>
 <pinref part="U$105" gate="G$1" pin="GND"/>
-<pinref part="C35" gate="G$1" pin="P$2"/>
+<pinref part="C27" gate="G$1" pin="P$2"/>
 <wire x1="50.8" y1="-78.74" x2="50.8" y2="-76.2" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$106" gate="G$1" pin="GND"/>
-<pinref part="C36" gate="G$1" pin="P$2"/>
+<pinref part="C30" gate="G$1" pin="P$2"/>
 <wire x1="447.04" y1="-86.36" x2="447.04" y2="-83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$107" gate="G$1" pin="GND"/>
-<pinref part="C37" gate="G$1" pin="P$2"/>
+<pinref part="C29" gate="G$1" pin="P$2"/>
 <wire x1="317.5" y1="-91.44" x2="317.5" y2="-83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C39" gate="G$1" pin="P$2"/>
+<pinref part="C31" gate="G$1" pin="P$2"/>
 <pinref part="U$109" gate="G$1" pin="GND"/>
 <wire x1="668.02" y1="-73.66" x2="668.02" y2="-76.2" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C38" gate="G$1" pin="P$2"/>
+<pinref part="C32" gate="G$1" pin="P$2"/>
 <pinref part="U$108" gate="G$1" pin="GND"/>
 <wire x1="668.02" y1="-104.14" x2="668.02" y2="-106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$110" gate="G$1" pin="GND"/>
-<pinref part="C40" gate="G$1" pin="P$2"/>
+<pinref part="C35" gate="G$1" pin="P$2"/>
 <wire x1="556.26" y1="-76.2" x2="556.26" y2="-78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C41" gate="G$1" pin="2"/>
+<pinref part="C25" gate="G$1" pin="2"/>
 <pinref part="U$111" gate="G$1" pin="GND"/>
 <wire x1="718.82" y1="-104.14" x2="718.82" y2="-106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U14" gate="G$1" pin="GND"/>
+<pinref part="U11" gate="G$1" pin="GND"/>
 <pinref part="U$112" gate="G$1" pin="GND"/>
 <wire x1="391.16" y1="-66.04" x2="396.24" y2="-66.04" width="0.1524" layer="91"/>
 <wire x1="396.24" y1="-66.04" x2="396.24" y2="-99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$114" gate="G$1" pin="GND"/>
-<pinref part="C42" gate="G$1" pin="P$2"/>
+<pinref part="C28" gate="G$1" pin="P$2"/>
 <wire x1="182.88" y1="-73.66" x2="182.88" y2="-78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C25" gate="G$1" pin="2"/>
+<pinref part="C24" gate="G$1" pin="2"/>
 <wire x1="40.64" y1="-78.74" x2="40.64" y2="-76.2" width="0.1524" layer="91"/>
 <pinref part="U$104" gate="G$1" pin="GND"/>
 </segment>
@@ -8594,7 +8598,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="116.84" y1="96.52" x2="83.82" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="4"/>
+<pinref part="JTAG1" gate="A" pin="4"/>
 <wire x1="27.94" y1="165.1" x2="45.72" y2="165.1" width="0.1524" layer="91"/>
 <label x="33.02" y="165.1" size="1.778" layer="95"/>
 </segment>
@@ -8608,7 +8612,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="119.38" y1="99.06" x2="83.82" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="5"/>
+<pinref part="JTAG1" gate="A" pin="5"/>
 <wire x1="27.94" y1="167.64" x2="45.72" y2="167.64" width="0.1524" layer="91"/>
 <label x="33.02" y="167.64" size="1.778" layer="95"/>
 </segment>
@@ -8646,7 +8650,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <pinref part="C10" gate="G$1" pin="P$1"/>
 <wire x1="66.04" y1="30.48" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
 <junction x="66.04" y="33.02"/>
-<pinref part="U$19" gate="G$1" pin="VDD"/>
+<pinref part="U4" gate="G$1" pin="VDD"/>
 </segment>
 <segment>
 <pinref part="FB1" gate="G$1" pin="P$2"/>
@@ -8719,19 +8723,19 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="208.28" y1="114.3" x2="208.28" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$74" gate="A" pin="3"/>
+<pinref part="JTAG1" gate="A" pin="3"/>
 <pinref part="U$4" gate="G$1" pin="1.8V"/>
 <wire x1="27.94" y1="162.56" x2="33.02" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U4" gate="G$1" pin="FB"/>
+<pinref part="U13" gate="G$1" pin="FB"/>
 <wire x1="706.12" y1="-93.98" x2="718.82" y2="-93.98" width="0.1524" layer="91"/>
 <wire x1="718.82" y1="-93.98" x2="728.98" y2="-93.98" width="0.1524" layer="91"/>
 <wire x1="728.98" y1="-93.98" x2="728.98" y2="-86.36" width="0.1524" layer="91"/>
-<pinref part="U10" gate="G$1" pin="FB"/>
+<pinref part="U12" gate="G$1" pin="FB"/>
 <wire x1="728.98" y1="-86.36" x2="728.98" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="728.98" y1="-63.5" x2="706.12" y2="-63.5" width="0.1524" layer="91"/>
-<pinref part="C31" gate="G$1" pin="1"/>
+<pinref part="C26" gate="G$1" pin="1"/>
 <wire x1="728.98" y1="-93.98" x2="728.98" y2="-96.52" width="0.1524" layer="91"/>
 <junction x="728.98" y="-93.98"/>
 <pinref part="U$22" gate="G$1" pin="1.8V"/>
@@ -8744,7 +8748,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="728.98" y1="-86.36" x2="723.9" y2="-86.36" width="0.1524" layer="91"/>
 <junction x="728.98" y="-86.36"/>
 <junction x="728.98" y="-55.88"/>
-<pinref part="C41" gate="G$1" pin="1"/>
+<pinref part="C25" gate="G$1" pin="1"/>
 <wire x1="718.82" y1="-93.98" x2="718.82" y2="-96.52" width="0.1524" layer="91"/>
 <junction x="718.82" y="-93.98"/>
 </segment>
@@ -8786,7 +8790,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="121.92" y1="33.02" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
 <label x="127" y="33.02" size="1.778" layer="95" ratio="11"/>
-<pinref part="U$19" gate="G$1" pin="SI/IO0"/>
+<pinref part="U4" gate="G$1" pin="SI/IO0"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA08"/>
@@ -8798,7 +8802,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="139.7" y1="20.32" x2="121.92" y2="20.32" width="0.1524" layer="91"/>
 <label x="127" y="20.32" size="1.778" layer="95" ratio="11"/>
-<pinref part="U$19" gate="G$1" pin="CSN"/>
+<pinref part="U4" gate="G$1" pin="CSN"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA10"/>
@@ -8810,7 +8814,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="121.92" y1="22.86" x2="139.7" y2="22.86" width="0.1524" layer="91"/>
 <label x="127" y="22.86" size="1.778" layer="95" ratio="11"/>
-<pinref part="U$19" gate="G$1" pin="WPN/IO2"/>
+<pinref part="U4" gate="G$1" pin="WPN/IO2"/>
 </segment>
 </net>
 <net name="GIMO" class="0">
@@ -8846,7 +8850,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="121.92" y1="27.94" x2="139.7" y2="27.94" width="0.1524" layer="91"/>
 <label x="127" y="27.94" size="1.778" layer="95" ratio="11"/>
-<pinref part="U$19" gate="G$1" pin="SCK"/>
+<pinref part="U4" gate="G$1" pin="SCK"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA09"/>
@@ -8858,7 +8862,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="121.92" y1="30.48" x2="139.7" y2="30.48" width="0.1524" layer="91"/>
 <label x="127" y="30.48" size="1.778" layer="95" ratio="11"/>
-<pinref part="U$19" gate="G$1" pin="SO/IO1"/>
+<pinref part="U4" gate="G$1" pin="SO/IO1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA11"/>
@@ -9186,7 +9190,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="66.04" y1="129.54" x2="66.04" y2="137.16" width="0.1524" layer="91"/>
 <junction x="66.04" y="137.16"/>
 <label x="60.96" y="137.16" size="1.778" layer="95"/>
-<pinref part="U$74" gate="A" pin="2"/>
+<pinref part="JTAG1" gate="A" pin="2"/>
 <wire x1="27.94" y1="160.02" x2="58.42" y2="160.02" width="0.1524" layer="91"/>
 <label x="33.02" y="160.02" size="1.778" layer="95"/>
 </segment>
@@ -9225,14 +9229,14 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <pinref part="U9" gate="A" pin="GPIO0"/>
 <wire x1="469.9" y1="91.44" x2="467.36" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="R6" gate="G$1" pin="2"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
 <pinref part="U9" gate="A" pin="GPIO1"/>
 <wire x1="467.36" y1="88.9" x2="469.9" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="SE_ON_OFF" class="0">
@@ -9315,7 +9319,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="76.2" y1="-63.5" x2="73.66" y2="-63.5" width="0.1524" layer="91"/>
 <label x="43.18" y="-63.5" size="1.778" layer="95"/>
-<pinref part="R12" gate="G$1" pin="1"/>
+<pinref part="R11" gate="G$1" pin="1"/>
 <wire x1="73.66" y1="-63.5" x2="68.58" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-63.5" x2="50.8" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="-63.5" x2="40.64" y2="-63.5" width="0.1524" layer="91"/>
@@ -9325,21 +9329,21 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="68.58" y1="-53.34" x2="68.58" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-43.18" x2="154.94" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="154.94" y1="-43.18" x2="154.94" y2="-53.34" width="0.1524" layer="91"/>
-<pinref part="U13" gate="G$1" pin="XSHUT"/>
+<pinref part="U10" gate="G$1" pin="XSHUT"/>
 <wire x1="154.94" y1="-53.34" x2="149.86" y2="-53.34" width="0.1524" layer="91"/>
 <junction x="68.58" y="-53.34"/>
-<pinref part="C35" gate="G$1" pin="P$1"/>
+<pinref part="C27" gate="G$1" pin="P$1"/>
 <wire x1="50.8" y1="-68.58" x2="50.8" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="-68.58" x2="40.64" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="50.8" y="-63.5"/>
-<pinref part="U$113" gate="G$1" pin="1"/>
+<pinref part="L1A" gate="G$1" pin="1"/>
 <junction x="40.64" y="-63.5"/>
 <wire x1="25.4" y1="-63.5" x2="40.64" y2="-63.5" width="0.1524" layer="91"/>
-<pinref part="L1" gate="G$1" pin="1"/>
+<pinref part="L1B" gate="G$1" pin="1"/>
 <wire x1="76.2" y1="-60.96" x2="73.66" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="73.66" y1="-60.96" x2="73.66" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="73.66" y="-63.5"/>
-<pinref part="C25" gate="G$1" pin="1"/>
+<pinref part="C24" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA04"/>
@@ -9349,7 +9353,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="VBATT_SENSE" class="0">
 <segment>
-<pinref part="R7" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 <pinref part="R8" gate="G$1" pin="1"/>
 <wire x1="236.22" y1="127" x2="236.22" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="129.54" x2="236.22" y2="132.08" width="0.1524" layer="91"/>
@@ -9380,43 +9384,43 @@ Will the boost then run in inefficient discontinous mode????</text>
 <net name="SUPERVISOR_VCC" class="0">
 <segment>
 <pinref part="D3" gate="G$1" pin="C"/>
-<pinref part="U11" gate="G$1" pin="VDD"/>
+<pinref part="U14" gate="G$1" pin="VDD"/>
 <wire x1="541.02" y1="-53.34" x2="543.56" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="543.56" y1="-53.34" x2="543.56" y2="-63.5" width="0.1524" layer="91"/>
 <pinref part="D4" gate="G$1" pin="C"/>
 <wire x1="543.56" y1="-63.5" x2="543.56" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="541.02" y1="-63.5" x2="543.56" y2="-63.5" width="0.1524" layer="91"/>
-<pinref part="U12" gate="A" pin="VCC"/>
+<pinref part="U15" gate="A" pin="VCC"/>
 <wire x1="584.2" y1="-83.82" x2="579.12" y2="-83.82" width="0.1524" layer="91"/>
 <wire x1="579.12" y1="-83.82" x2="579.12" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="579.12" y1="-63.5" x2="571.5" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="543.56" y="-63.5"/>
 <label x="546.1" y="-63.5" size="1.778" layer="95"/>
-<pinref part="R11" gate="G$1" pin="2"/>
+<pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="571.5" y1="-63.5" x2="556.26" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="556.26" y1="-63.5" x2="543.56" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="579.12" y1="-63.5" x2="622.3" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="622.3" y1="-63.5" x2="622.3" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="579.12" y="-63.5"/>
-<pinref part="C40" gate="G$1" pin="P$1"/>
+<pinref part="C35" gate="G$1" pin="P$1"/>
 <wire x1="556.26" y1="-68.58" x2="556.26" y2="-63.5" width="0.1524" layer="91"/>
 <junction x="556.26" y="-63.5"/>
-<pinref part="R19" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="2"/>
 <wire x1="571.5" y1="-63.5" x2="571.5" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="571.5" y="-63.5"/>
 </segment>
 </net>
 <net name="BATTERY_EN" class="0">
 <segment>
-<pinref part="U4" gate="G$1" pin="EN"/>
+<pinref part="U13" gate="G$1" pin="EN"/>
 <wire x1="680.72" y1="-88.9" x2="660.4" y2="-88.9" width="0.1524" layer="91"/>
 <label x="662.94" y="-88.9" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U12" gate="A" pin="Y"/>
+<pinref part="U15" gate="A" pin="Y"/>
 <wire x1="619.76" y1="-83.82" x2="622.3" y2="-83.82" width="0.1524" layer="91"/>
 <label x="627.38" y="-83.82" size="1.778" layer="95"/>
-<pinref part="R11" gate="G$1" pin="1"/>
+<pinref part="R7" gate="G$1" pin="1"/>
 <wire x1="622.3" y1="-83.82" x2="645.16" y2="-83.82" width="0.1524" layer="91"/>
 <wire x1="622.3" y1="-83.82" x2="622.3" y2="-78.74" width="0.1524" layer="91"/>
 <junction x="622.3" y="-83.82"/>
@@ -9424,7 +9428,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="TANK_BUCK_SW" class="0">
 <segment>
-<pinref part="U10" gate="G$1" pin="SW"/>
+<pinref part="U12" gate="G$1" pin="SW"/>
 <pinref part="L9" gate="G$1" pin="1"/>
 <wire x1="706.12" y1="-55.88" x2="708.66" y2="-55.88" width="0.1524" layer="91"/>
 </segment>
@@ -9432,22 +9436,22 @@ Will the boost then run in inefficient discontinous mode????</text>
 <net name="BATTERY_BUCK_SW" class="0">
 <segment>
 <pinref part="L8" gate="G$1" pin="1"/>
-<pinref part="U4" gate="G$1" pin="SW"/>
+<pinref part="U13" gate="G$1" pin="SW"/>
 <wire x1="708.66" y1="-86.36" x2="706.12" y2="-86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="TANK_EN" class="0">
 <segment>
-<pinref part="U10" gate="G$1" pin="EN"/>
+<pinref part="U12" gate="G$1" pin="EN"/>
 <wire x1="680.72" y1="-58.42" x2="660.4" y2="-58.42" width="0.1524" layer="91"/>
 <label x="662.94" y="-58.42" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U11" gate="G$1" pin="!RESET"/>
-<pinref part="U12" gate="A" pin="A"/>
+<pinref part="U14" gate="G$1" pin="!RESET"/>
+<pinref part="U15" gate="A" pin="A"/>
 <wire x1="553.72" y1="-88.9" x2="571.5" y2="-88.9" width="0.1524" layer="91"/>
 <label x="556.26" y="-88.9" size="1.778" layer="95"/>
-<pinref part="R19" gate="G$1" pin="1"/>
+<pinref part="R6" gate="G$1" pin="1"/>
 <wire x1="571.5" y1="-88.9" x2="584.2" y2="-88.9" width="0.1524" layer="91"/>
 <wire x1="571.5" y1="-78.74" x2="571.5" y2="-88.9" width="0.1524" layer="91"/>
 <junction x="571.5" y="-88.9"/>
@@ -9455,10 +9459,10 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="BATTERY" class="0">
 <segment>
-<pinref part="U4" gate="G$1" pin="VIN"/>
+<pinref part="U13" gate="G$1" pin="VIN"/>
 <wire x1="680.72" y1="-86.36" x2="668.02" y2="-86.36" width="0.1524" layer="91"/>
 <label x="662.94" y="-86.36" size="1.778" layer="95"/>
-<pinref part="C38" gate="G$1" pin="P$1"/>
+<pinref part="C32" gate="G$1" pin="P$1"/>
 <wire x1="668.02" y1="-86.36" x2="660.4" y2="-86.36" width="0.1524" layer="91"/>
 <wire x1="668.02" y1="-86.36" x2="668.02" y2="-96.52" width="0.1524" layer="91"/>
 <junction x="668.02" y="-86.36"/>
@@ -9470,12 +9474,12 @@ Will the boost then run in inefficient discontinous mode????</text>
 </segment>
 <segment>
 <label x="424.18" y="-60.96" size="1.778" layer="95"/>
-<pinref part="C36" gate="G$1" pin="P$1"/>
+<pinref part="C30" gate="G$1" pin="P$1"/>
 <wire x1="391.16" y1="-60.96" x2="396.24" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="396.24" y1="-60.96" x2="447.04" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="447.04" y1="-76.2" x2="447.04" y2="-60.96" width="0.1524" layer="91"/>
-<pinref part="U14" gate="G$1" pin="BAT"/>
-<pinref part="R21" gate="G$1" pin="2"/>
+<pinref part="U11" gate="G$1" pin="BAT"/>
+<pinref part="R15" gate="G$1" pin="2"/>
 <wire x1="383.54" y1="-48.26" x2="396.24" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="396.24" y1="-48.26" x2="396.24" y2="-60.96" width="0.1524" layer="91"/>
 <junction x="396.24" y="-60.96"/>
@@ -9489,10 +9493,10 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="LX1" class="0">
 <segment>
-<pinref part="U13" gate="G$1" pin="LX"/>
+<pinref part="U10" gate="G$1" pin="LX"/>
 <wire x1="86.36" y1="-63.5" x2="88.9" y2="-63.5" width="0.1524" layer="91"/>
-<pinref part="U$113" gate="G$1" pin="2"/>
-<pinref part="L1" gate="G$1" pin="2"/>
+<pinref part="L1A" gate="G$1" pin="2"/>
+<pinref part="L1B" gate="G$1" pin="2"/>
 <wire x1="88.9" y1="-63.5" x2="99.06" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="-60.96" x2="88.9" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="88.9" y1="-60.96" x2="88.9" y2="-63.5" width="0.1524" layer="91"/>
@@ -9501,33 +9505,34 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="MPP-SET" class="0">
 <segment>
-<pinref part="U13" gate="G$1" pin="MPP-SET"/>
+<pinref part="U10" gate="G$1" pin="MPP-SET"/>
 <wire x1="83.82" y1="-53.34" x2="99.06" y2="-53.34" width="0.1524" layer="91"/>
 <pinref part="C33" gate="G$1" pin="P$2"/>
 <wire x1="86.36" y1="-48.26" x2="83.82" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="-48.26" x2="83.82" y2="-53.34" width="0.1524" layer="91"/>
 <junction x="83.82" y="-53.34"/>
-<pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="R11" gate="G$1" pin="2"/>
 <wire x1="81.28" y1="-53.34" x2="83.82" y2="-53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SPV_VCTRL1" class="0">
 <segment>
-<pinref part="C32" gate="G$1" pin="P$1"/>
-<wire x1="162.56" y1="-68.58" x2="162.56" y2="-71.12" width="0.1524" layer="91"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-<pinref part="R3" gate="G$1" pin="1"/>
+<pinref part="C34" gate="G$1" pin="P$1"/>
+<wire x1="162.56" y1="-68.58" x2="162.56" y2="-73.66" width="0.1524" layer="91"/>
+<pinref part="R13" gate="G$1" pin="2"/>
+<pinref part="R12" gate="G$1" pin="1"/>
 <wire x1="162.56" y1="-68.58" x2="172.72" y2="-68.58" width="0.1524" layer="91"/>
-<pinref part="U13" gate="G$1" pin="VCTRL"/>
+<pinref part="U10" gate="G$1" pin="VCTRL"/>
 <wire x1="149.86" y1="-68.58" x2="162.56" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="162.56" y="-68.58"/>
-<junction x="172.72" y="-68.58"/>
 <label x="157.48" y="-68.58" size="1.778" layer="95"/>
+<wire x1="172.72" y1="-73.66" x2="172.72" y2="-68.58" width="0.1524" layer="91"/>
+<junction x="172.72" y="-68.58"/>
 </segment>
 </net>
 <net name="CHG_CONTROL" class="0">
 <segment>
-<pinref part="R18" gate="G$1" pin="1"/>
+<pinref part="R14" gate="G$1" pin="1"/>
 <wire x1="350.52" y1="-71.12" x2="327.66" y2="-71.12" width="0.1524" layer="91"/>
 <label x="330.2" y="-71.12" size="1.778" layer="95"/>
 </segment>
@@ -9539,21 +9544,21 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="PROG" class="0">
 <segment>
-<pinref part="U14" gate="G$1" pin="PROG"/>
-<pinref part="R18" gate="G$1" pin="2"/>
+<pinref part="U11" gate="G$1" pin="PROG"/>
+<pinref part="R14" gate="G$1" pin="2"/>
 <wire x1="365.76" y1="-71.12" x2="360.68" y2="-71.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CHG_STATUS" class="0">
 <segment>
-<pinref part="U14" gate="G$1" pin="CHRG"/>
+<pinref part="U11" gate="G$1" pin="CHRG"/>
 <wire x1="391.16" y1="-71.12" x2="421.64" y2="-71.12" width="0.1524" layer="91"/>
 <label x="401.32" y="-71.12" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CT" class="0">
 <segment>
-<pinref part="U11" gate="G$1" pin="CT"/>
+<pinref part="U14" gate="G$1" pin="CT"/>
 <wire x1="523.24" y1="-93.98" x2="513.08" y2="-93.98" width="0.1524" layer="91"/>
 <label x="515.62" y="-93.98" size="1.778" layer="95"/>
 </segment>
@@ -9567,18 +9572,18 @@ Will the boost then run in inefficient discontinous mode????</text>
 </net>
 <net name="MPPT-VOUT-TANK" class="0">
 <segment>
-<pinref part="U13" gate="G$1" pin="ICTRL+"/>
+<pinref part="U10" gate="G$1" pin="ICTRL+"/>
 <wire x1="149.86" y1="-58.42" x2="165.1" y2="-58.42" width="0.1524" layer="91"/>
-<pinref part="U13" gate="G$1" pin="ICTRL-"/>
+<pinref part="U10" gate="G$1" pin="ICTRL-"/>
 <wire x1="149.86" y1="-63.5" x2="165.1" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="-63.5" x2="165.1" y2="-58.42" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="-58.42" x2="172.72" y2="-58.42" width="0.1524" layer="91"/>
 <junction x="165.1" y="-58.42"/>
-<pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="R12" gate="G$1" pin="2"/>
 <junction x="172.72" y="-58.42"/>
 <wire x1="172.72" y1="-58.42" x2="182.88" y2="-58.42" width="0.1524" layer="91"/>
 <label x="157.48" y="-58.42" size="1.778" layer="95"/>
-<pinref part="C42" gate="G$1" pin="P$1"/>
+<pinref part="C28" gate="G$1" pin="P$1"/>
 <wire x1="182.88" y1="-66.04" x2="182.88" y2="-58.42" width="0.1524" layer="91"/>
 <junction x="182.88" y="-58.42"/>
 <wire x1="182.88" y1="-58.42" x2="231.14" y2="-58.42" width="0.1524" layer="91"/>
@@ -9589,18 +9594,18 @@ Will the boost then run in inefficient discontinous mode????</text>
 <wire x1="360.68" y1="-60.96" x2="317.5" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="317.5" y1="-60.96" x2="304.8" y2="-60.96" width="0.1524" layer="91"/>
 <label x="304.8" y="-60.96" size="1.778" layer="95"/>
-<pinref part="C37" gate="G$1" pin="P$1"/>
+<pinref part="C29" gate="G$1" pin="P$1"/>
 <wire x1="317.5" y1="-60.96" x2="317.5" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="U14" gate="G$1" pin="VCC"/>
+<pinref part="U11" gate="G$1" pin="VCC"/>
 <junction x="317.5" y="-60.96"/>
-<pinref part="R21" gate="G$1" pin="1"/>
+<pinref part="R15" gate="G$1" pin="1"/>
 <wire x1="373.38" y1="-48.26" x2="360.68" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="-48.26" x2="360.68" y2="-60.96" width="0.1524" layer="91"/>
 <junction x="360.68" y="-60.96"/>
 </segment>
 <segment>
 <pinref part="D4" gate="G$1" pin="A"/>
-<pinref part="U11" gate="G$1" pin="SENSE"/>
+<pinref part="U14" gate="G$1" pin="SENSE"/>
 <wire x1="535.94" y1="-63.5" x2="533.4" y2="-63.5" width="0.1524" layer="91"/>
 <wire x1="533.4" y1="-63.5" x2="533.4" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="533.4" y1="-63.5" x2="515.62" y2="-63.5" width="0.1524" layer="91"/>
@@ -9610,13 +9615,13 @@ Will the boost then run in inefficient discontinous mode????</text>
 <segment>
 <wire x1="99.06" y1="-68.58" x2="78.74" y2="-68.58" width="0.1524" layer="91"/>
 <label x="81.28" y="-68.58" size="1.778" layer="95"/>
-<pinref part="U13" gate="G$1" pin="VOUT"/>
+<pinref part="U10" gate="G$1" pin="VOUT"/>
 </segment>
 <segment>
-<pinref part="U10" gate="G$1" pin="VIN"/>
+<pinref part="U12" gate="G$1" pin="VIN"/>
 <wire x1="680.72" y1="-55.88" x2="668.02" y2="-55.88" width="0.1524" layer="91"/>
 <label x="662.94" y="-55.88" size="1.778" layer="95"/>
-<pinref part="C39" gate="G$1" pin="P$1"/>
+<pinref part="C31" gate="G$1" pin="P$1"/>
 <wire x1="668.02" y1="-55.88" x2="660.4" y2="-55.88" width="0.1524" layer="91"/>
 <wire x1="668.02" y1="-55.88" x2="668.02" y2="-66.04" width="0.1524" layer="91"/>
 <junction x="668.02" y="-55.88"/>

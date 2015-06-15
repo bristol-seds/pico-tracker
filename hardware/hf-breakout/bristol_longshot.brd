@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -562,6 +562,9 @@ Covered vias can be set in Masks (Limit).
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -683,7 +686,7 @@ Covered vias can be set in Masks (Limit).
 <element name="FB1" library="microbuilder_v3" package="_0402" value="" x="7.25" y="7.875" rot="R90"/>
 <element name="L5" library="microbuilder_v3" package="_0402" value="100nH" x="11" y="7.25" rot="R180"/>
 <element name="J$2" library="SparkFun" package="SMA-EDGE" value="SMA_EDGE" x="9" y="2.5"/>
-<element name="IC3" library="tlv700" package="SC70-5L" value="TLV70018DCK" x="11.5" y="32.5" rot="R270"/>
+<element name="U4" library="tlv700" package="SC70-5L" value="TLV70018DCK" x="11.5" y="32.5" rot="R270"/>
 <element name="JP1" library="SparkFun" package="1X03_LOCK" value="" x="9" y="35.5"/>
 <element name="C11" library="microbuilder_v3" package="_0402" value="1µF" x="8.5" y="33.5" rot="R180"/>
 <element name="C12" library="microbuilder_v3" package="_0402" value="1µF" x="14.5" y="33.5"/>
@@ -799,7 +802,7 @@ Covered vias can be set in Masks (Limit).
 <via x="6.5" y="9.25" extent="1-16" drill="0.3"/>
 <via x="5" y="15" extent="1-16" drill="0.3"/>
 <via x="5" y="13" extent="1-16" drill="0.3"/>
-<contactref element="IC3" pad="2"/>
+<contactref element="U4" pad="2"/>
 <contactref element="C11" pad="2"/>
 <contactref element="C12" pad="2"/>
 <via x="11.5" y="32.5" extent="1-16" drill="0.3"/>
@@ -1111,8 +1114,8 @@ Covered vias can be set in Masks (Limit).
 </signal>
 <signal name="3.3V">
 <contactref element="JTAG1" pad="1"/>
-<contactref element="IC3" pad="1"/>
-<contactref element="IC3" pad="3"/>
+<contactref element="U4" pad="1"/>
+<contactref element="U4" pad="3"/>
 <contactref element="JP1" pad="1"/>
 <contactref element="C11" pad="1"/>
 <wire x1="9" y1="35.627" x2="9" y2="33.508" width="0.4" layer="1"/>
@@ -1131,7 +1134,7 @@ Covered vias can be set in Masks (Limit).
 <wire x1="9.008" y1="33.15" x2="9.008" y2="33.5" width="0.4" layer="1"/>
 </signal>
 <signal name="N$1">
-<contactref element="IC3" pad="5"/>
+<contactref element="U4" pad="5"/>
 <contactref element="JP1" pad="3"/>
 <contactref element="C12" pad="1"/>
 <wire x1="14.08" y1="35.627" x2="13.992" y2="35.539" width="0.4" layer="1"/>

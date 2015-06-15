@@ -4175,7 +4175,7 @@ package type OT</description>
 <part name="U$44" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$45" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$1" library="microbuilder_v3" deviceset="3.3V" device=""/>
-<part name="IC3" library="tlv700" deviceset="TLV700" device="DCK" value="TLV70018DCK"/>
+<part name="U4" library="tlv700" deviceset="TLV700" device="DCK" value="TLV70018DCK"/>
 <part name="U$70" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$83" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$84" library="microbuilder" deviceset="GND" device=""/>
@@ -4287,7 +4287,7 @@ to a supply &gt;1.5V</text>
 <instance part="U$44" gate="G$1" x="243.84" y="58.42" rot="MR270"/>
 <instance part="U$45" gate="G$1" x="243.84" y="60.96" rot="MR270"/>
 <instance part="U$1" gate="G$1" x="15.24" y="172.72"/>
-<instance part="IC3" gate="G$1" x="205.74" y="116.84"/>
+<instance part="U4" gate="G$1" x="205.74" y="116.84"/>
 <instance part="U$70" gate="G$1" x="213.36" y="106.68"/>
 <instance part="U$83" gate="G$1" x="193.04" y="106.68"/>
 <instance part="U$84" gate="G$1" x="231.14" y="106.68"/>
@@ -4452,7 +4452,7 @@ to a supply &gt;1.5V</text>
 </segment>
 <segment>
 <pinref part="U$70" gate="G$1" pin="GND"/>
-<pinref part="IC3" gate="G$1" pin="GND"/>
+<pinref part="U4" gate="G$1" pin="GND"/>
 <wire x1="213.36" y1="109.22" x2="213.36" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -4885,11 +4885,11 @@ to a supply &gt;1.5V</text>
 </segment>
 <segment>
 <wire x1="193.04" y1="127" x2="193.04" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="IC3" gate="G$1" pin="IN"/>
+<pinref part="U4" gate="G$1" pin="IN"/>
 <wire x1="193.04" y1="121.92" x2="193.04" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="200.66" y1="121.92" x2="198.12" y2="121.92" width="0.1524" layer="91"/>
 <junction x="193.04" y="121.92"/>
-<pinref part="IC3" gate="G$1" pin="EN"/>
+<pinref part="U4" gate="G$1" pin="EN"/>
 <wire x1="198.12" y1="121.92" x2="193.04" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="198.12" y1="119.38" x2="200.66" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="198.12" y1="119.38" x2="198.12" y2="121.92" width="0.1524" layer="91"/>
@@ -4906,7 +4906,7 @@ to a supply &gt;1.5V</text>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="IC3" gate="G$1" pin="OUT"/>
+<pinref part="U4" gate="G$1" pin="OUT"/>
 <wire x1="226.06" y1="121.92" x2="231.14" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="121.92" x2="231.14" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="JP1" gate="G$1" pin="3"/>
