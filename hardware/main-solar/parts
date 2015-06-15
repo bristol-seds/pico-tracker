@@ -8,8 +8,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 2361006 556-ATSAMD20E17A-MU 1 U1
-2414373 634-SI4060-B1B-FM  1 U2
-2414373 634-SI4063-B1B-FM 1 U2
+2462638 634-SI4467-A2A-IM 1 U2
 | UBLOX MAX-8C | GPS | [HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108) | 1 | U3
 2414758 579-25WF040BT-40I/NP 1 U4 memory 4mbit
 2405790 2 U5, U6 TCXO Si4xxx, SE880
@@ -41,9 +40,17 @@
 1343091 1 L3 56nH rf filter
 1865775 1 L4, L5 18nH rf filter
 | L6, L7 | DNP ||| si4xxx rx
+2428203 2 L8, L9 inductor for buck regulators 2.2µH
 1358069 7 R1, R2, R3, R4, R5, R6, R7 10k
 2331489 1 R8 22k
 2331442 2 R9, R10 100k
+2331474 1 R11 Mpp-set 1k
+2331487 1 R12A Vctrl-up 4.6V 220k
+2331468 1 R12B Vctrl-up 4.25V 180k
+2331569 1 R13A Vctrl-down 4.6V 82k
+2447215 1 R13B Vctrl-down 4.25V 75k
+2331502 1 R14 Rprog 2.2k
+9232516 1 R15 Bridge 0Ω
 1828874 2 C1, C3 8.2pF
 1758945 3 C2, C4, C7 15pF
 | C5, C6 | DNP ||| si4xxx rx
@@ -51,25 +58,9 @@
 1759380 10 C11, C12, C13, C14, C15, C16, C17, C18, C19, C20 100nF
 2362088 1 C21 2.2µF
 1758947 2 C22, C23 18pF se880 y1 load
-
-#### Passives (Solar)
-
-| Part | Description | Supplier | Quantity Required | Notes
-| ---  | ---         | ---       | ---               | ---
-2289091 2 Recomended Lx for MPPT L1, L2
-2428219 0 10µH Lx for MPPT 4x4mm 0.102Ω esr, try this L1, L2
-2428203 2 Inductutor for Buck L3, L4
-2309027 4 Solar input cap 4.7uF C1, C2, C3, C4
-2309027 4 MPPT output cap 4.7µF C13, C14
-2320765 5 Mpp-set, vctrl, vcc-sup 1nF C5, C6, C7, C8, C10
-2309027 2 Chg in / out 4.7µF C11, C12
-2309027 2 Buck in 4.7µF C15, C16
-1833804 3 Buck Out 10µF 0603 C17, C18, C19
-2331474 2 Mpp-set R1, R2
-2331444 2 en-pull-up R3, R4
-2331487 2 Vctrl-up R5, R6
-2331569 2 Vctrl-down R7, R8
-2331502 1 Rprog R9
+1833804 3 C24, C25, C26 Solar input, Buck Out 10µF 0603
+2309027 6 C27, C28, C29, C30, C31, C32 Solar input, MPPT Output, Chg in, chg out, buck in 4.7µF
+2320765 3 C33, C34, C35 Mpp-set, vctrl, vcc-sup 1nF
 
 ----
 
@@ -77,7 +68,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-1865279 649-202112100010C4LF 1 JTAG1
+1099560 855-M52-040023V0545 1 JTAG1
 1515765 2 FB1, FB2
 1828732 0 ESD1, ESD2
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
@@ -88,4 +79,4 @@
 
 | ID | Part Number | Description | Supplier | Order Code | Quantity
 | --- | --- | --- | --- | --- | ---
-| N/A | FFSD-05-D-06.00-01-N | Ribbon Cable 6", Grey, 10 way, 1.27mm Pitch | [1667659](http://uk.farnell.com/jsp/search/browse.jsp;jsessionid=0?N=0&Ntk=partnumbers&Ntt=*1667659*) | 1
+1667659 Ribbon 10way 1.27mm
