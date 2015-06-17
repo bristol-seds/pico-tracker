@@ -6,12 +6,20 @@ Parts.md: parts
 schematic: bristol_longshot.sch.pdf bristol_longshot.sch.png
 board: bristol_longshot.brd.pdf bristol_longshot.brd.png
 
+.PHONY: clean
+clean:
+	rm Parts.md
+	rm bristol_longshot.sch.pdf
+	rm bristol_longshot.sch.png
+	rm bristol_longshot.brd.pdf
+	rm bristol_longshot.brd.png
+
 #
 # PNG from .sch
 #
 %.sch.png: %.sch
 	rm -f $@
-	eagle -C "export image $@ 600; display all; quit" $<
+	eagle -C "export image $@ 300; display all; quit" $<
 #
 # PDF from .sch
 # 1 page lanscape
@@ -25,7 +33,7 @@ board: bristol_longshot.brd.pdf bristol_longshot.brd.png
 #
 %.brd.png: %.brd
 	rm -f $@
-	eagle -C "ratsnest; export image $@ 2400; display all; quit" $<
+	eagle -C "ratsnest; export image $@ 1800; display all; quit" $<
 #
 # PDF from .brd
 # -1 limits to one page
