@@ -273,6 +273,33 @@ void aprs_telemetry(void) {
 }
 
 /**
+ * APRS function for use during testing. Not for flight
+ */
+void aprs_test(void)
+{
+  if (!gps_is_locked()) return; /* Don't bother with no GPS */
+
+  while(1) {
+  struct ubx_nav_posllh pos = gps_get_nav_posllh();
+  float lat = (float)pos.payload.lat / 10000000.0; // This division is from the gps reciver, not for geofence
+  float lon = (float)pos.payload.lon / 10000000.0;
+  uint32_t altitude = pos.payload.height / 1000;
+
+  /* Set location */
+  aprs_set_location(lat, lon, altitude);
+
+  /* Set frequency */
+  telemetry_aprs_set_frequency(144800000);
+
+  /* Transmit packet and wait */
+  telemetry_start(TELEMETRY_APRS, 0xFFFF);
+  while (telemetry_active()) {
+    system_sleep();
+  }
+  }
+}
+
+/**
  * Internal initialisation
  * =============================================================================
  */
