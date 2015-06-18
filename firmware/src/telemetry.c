@@ -506,5 +506,5 @@ void telemetry_gpio1_pwm_duty(float duty_cycle)
 void telemetry_gpio1_pwm_deinit(void)
 {
   tc_stop_counter(TC5);
-  tc_enable(TC5);
+  tc_disable(TC5);
 }
