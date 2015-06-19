@@ -6,10 +6,10 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
-|SI5356A-B-GM|SILICON LABS - CLOCK GENERATOR, 200MHZ, QFN-24|[2421797](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2421797)|1|U2 HF Gen
-|AD8354ACPZ-REEL7|ANALOG DEVICES - RF/IF AMP, 19.5DB, 1MHZ-2.7GHZ, LFCSP-8|[2377134](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2377134)|1|U3 RF Amplifier
+|SI5356A-B-GM|SILICON LABS - CLOCK GENERATOR, 200MHZ, QFN-24|[2421797](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2421797) [634-SI5356A-B-GM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI5356A-B-GM)|1|U2 HF Gen Si5356B
+|AD8354ACPZ-REEL7|ANALOG DEVICES - RF/IF AMP, 19.5DB, 1MHZ-2.7GHZ, LFCSP-8|[2377134](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2377134) [584-AD8354ACPZ-R7](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=584-AD8354ACPZ-R7)|1|U3 RF Amplifier
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U6 TCXO
-|TLV70018DCKT|TEXAS INSTRUMENTS - IC, LDO, 200MA, 1.8V, 5SC70|[1778221](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1778221)|1|U4 1.8V reg
+|TLV70018DCKT|TEXAS INSTRUMENTS - IC, LDO, 200MA, 1.8V, 5SC70|[1778221](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1778221) [595-TLV70018DCKT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TLV70018DCKT)|1|U4 1.8V reg
 
 ----
 
@@ -17,7 +17,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|MLK1005SR10J|TDK - INDUCTOR, HI FREQUENCY, 100NH, 0402|[1669646](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1669646)|1|L1 100nH
+|0402AF-101XJLU|COILCRAFT - INDUCTOR, RF, 100NH, 5%, 1.4GHZ, SMD|[2285636](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285636)|1|L1 100nH wirewound ferrite
 |CRGH0603J10K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 10 kohm, 200 mW, Â± 5%, 50 V, 0603 [1608 Metric]|[2331740](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331740)|4|R1, R2, R3, R4 10kΩ
 |CRGH0603J15K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 15 kohm, 200 mW, Â± 5%, 50 V, 0603 [1608 Metric]|[2331742](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331742)|1|R5 15kΩ
 |CRGH0603J220R|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 220 ohm, 200 mW, Â± 5%, 50 V, 0603 [1608 Metric]|[2331717](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331717)|1|R6 220Ω

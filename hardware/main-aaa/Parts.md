@@ -8,7 +8,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
-|SI4467-A2A-IM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462638](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462638) [634-SI4467-A2A-IM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4467-A2A-IM)|1|U2
+|SI4468-A2A-IM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462639](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462639) [634-SI4468-A2A-IM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4468-A2A-IM)|1|U2
 | UBLOX MAX-8C | GPS | [HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory 4mbit
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|2|U5, U6 TCXO Si4xxx, SE880
