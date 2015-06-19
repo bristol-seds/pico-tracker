@@ -6,10 +6,10 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 2361006 556-ATSAMD20E17A-MU 1 U1
-2421797 1 U2 HF Gen
-2377134 1 U3 RF Amplifier
+2421797 634-SI5356A-B-GM 1 U2 HF Gen Si5356B
+2377134 584-AD8354ACPZ-R7 1 U3 RF Amplifier
 2405790 1 U6 TCXO
-1778221 1 U4 1.8V reg
+1778221 595-TLV70018DCKT 1 U4 1.8V reg
 
 ----
 
