@@ -1,3 +1,6 @@
+[submodule "breakout-hardware/tracking"]
+	path = breakout-hardware/tracking
+	url = https://github.com/richardeoin/parts
 [submodule "hardware/partslist"]
 	path = hardware/partslist
-	url = http://github.com/richardeoin/parts
+	url = https://github.com/richardeoin/parts

@@ -1,4 +1,8 @@
-all: Parts.md
+# Recursive Make
+SUBDIRS := $(wildcard */Makefile)
 
-Parts.md: parts
-	ruby partslist/parts.rb
+all: $(SUBDIRS)
+$(SUBDIRS):
+	$(MAKE) -C $(@D)
+
+.PHONY: all $(SUBDIRS)
