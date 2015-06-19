@@ -5,7 +5,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|TLV70018DCKT|TEXAS INSTRUMENTS - IC, LDO, 200MA, 1.8V, 5SC70|[1778221](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1778221)|1|U1 1.8V reg
+|TLV70018DCKT|TEXAS INSTRUMENTS - IC, LDO, 200MA, 1.8V, 5SC70|[1778221](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1778221) [595-TLV70018DCKT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TLV70018DCKT)|1|U1 1.8V reg
 
 ----
 

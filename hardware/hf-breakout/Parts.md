@@ -32,7 +32,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |20021121-00010C4LF|FCI - CONNECTOR, HEADER, SMT, R/A, 1.27MM, 10P|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
-|BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
+|742792731|WURTH ELEKTRONIK - FERRITE BEAD, 0.09OHM, 1.2A, 0402|[1961698](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1961698)|2|FB1, FB2
 
 ----
 
