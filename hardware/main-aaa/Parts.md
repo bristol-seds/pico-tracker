@@ -48,7 +48,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 |M52-040023V0545|HARWIN - HEADER, THT, VERTICAL, 1.27MM, 5WAY|[1099560](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1099560) [855-M52-040023V0545](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=855-M52-040023V0545)|1|JTAG1
-|BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|2|FB1, FB2
+|742792731|WURTH ELEKTRONIK - FERRITE BEAD, 0.09OHM, 1.2A, 0402|[1961698](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1961698)|2|FB1, FB2
 |CG0603MLC-05LE|BOURNS - ESD SUPPRESSOR, 0603, 5V, 0.5PF|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|0|ESD1, ESD2
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
 
