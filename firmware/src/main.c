@@ -201,9 +201,6 @@ void output_telemetry_string(enum telemetry_t type)
   memset(telemetry_string, '$', dollars);
   len = dollars;
 
-  /* XOSC error disabled */
-  _xosc_error = -1;
-
   /* sprintf - full string */
   len += sprintf(telemetry_string + len,
 		"%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.1f,%ld",
@@ -436,7 +433,6 @@ int main(void)
     telemetry_start(TELEMETRY_PIPS, 0xFFFF);
 
     /* Measure XOSC against gps timepulse */
-    /* ==== Disabled === */
-    //measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+    measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
   }
 }
