@@ -13,7 +13,7 @@
 ||tc2|counts cycles of tcxo. 32-bit
 ||tc3|^^^^^
 ||tc4|osc8m event source
-||tc5|telemetry pwm 16-bit
+||tc5|telemetry pwm 16-bit, ALSO aprs carrier 8-bit
 
 |*EXTINT*|
 ||extint[5]|gps timepulse
@@ -32,7 +32,25 @@
 
 | Name | Function | Priority H(0-3)L | Notes
 | --- | --- | --- | ---
-|TC0_IRQn|telemetry tick timer|0
-|TC2_IRQn|xosc measurement done|2
-|[GPS_SERCOM]_IRQn|gps usart rx|0
-|EIC_IRQn|timer|1
+|TC0_IRQn|telemetry tick timer|0|latency critical for symbol timing. rate <= 1200Hz
+|[GPS_SERCOM]_IRQn|gps usart rx|1|latency not so critical. rate <= 960Hz
+|EIC_IRQn|timepulse|1|latency not so critical. rate = 2
+|TC2_IRQn|xosc measurement done|2|latency not critical
+
+
+
+
+## Clock Layout
+
+
+[osc8m] --> [glck0] |--> [gps usart]
+                    |--> [tc5]
+
+
+                     |\
+         [osc8m]--> 0| |
+                     | | --> [glck1] |--> [tc0, telemetry tick]
+tcxo --> [xosc] --> 1| |             |--> [tc2, count tcxo]
+                     |/              |--> [glck7] --> [tc5] --> si_gpio1
+                      |
+                 *USE_XOSC*

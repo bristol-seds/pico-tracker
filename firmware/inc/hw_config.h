@@ -161,14 +161,12 @@
 /**
  * Interrupt Priority
  */
-/* Telemetry Tick Timer */
-#define TC0_INT_PRIO		0
-/* XOSC Measure Timer */
-#define TC2_INT_PRIO		2
-/* GPS USART Rx */
-#define GPS_SERCOM_INT_PRIO	0
-/* Timepulse, telemetry */
-#define EIC_INT_PRIO		0
+#define TC0_INT_PRIO		0 /* Telemetry Tick Timer */
 
+#define GPS_SERCOM_INT_PRIO	1 /* GPS USART Rx */
+
+#define EIC_INT_PRIO		1 /* Timepulse, telemetry */
+
+#define TC2_INT_PRIO		2 /* XOSC Measure Timer */
 
 #endif /* HW_CONFIG_H */
