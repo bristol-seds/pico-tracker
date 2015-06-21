@@ -6,7 +6,7 @@
 ||gclk0|main clock, internal osc8m|4 MHz
 ||gclk1|tcxo clock, fed from xosc OR osc8m
 ||gclk7|aprs clock, fed from gclk1, div 6 / 11
-
+|
 |*TC*||
 ||tc0|telemetry tick timer. 32-bit
 ||tc1|^^^^^
@@ -14,14 +14,14 @@
 ||tc3|^^^^^
 ||tc4|osc8m event source
 ||tc5|telemetry pwm 16-bit, ALSO aprs carrier 8-bit
-
+|
 |*EXTINT*|
 ||extint[5]|gps timepulse
-
+|
 |*event channels*|
 ||0|event source for timer 2 xosc measurement
 ||1|tc4 retrigger
-
+|
 |*SERCOM*||
 ||sercom0|spi flash
 ||sercom1|ublox gps
@@ -42,7 +42,7 @@
 
 ## Clock Layout
 
-
+```
 [osc8m] --> [glck0] |--> [gps usart]
                     |--> [tc5]
 
@@ -54,3 +54,4 @@ tcxo --> [xosc] --> 1| |             |--> [tc2, count tcxo]
                      |/              |--> [glck7] --> [tc5] --> si_gpio1
                       |
                  *USE_XOSC*
+```
