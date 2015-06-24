@@ -38,7 +38,7 @@
 #include "gps.h"
 #include "mfsk.h"
 #include "ubx_messages.h"
-#include "system/wdt.h"
+#include "watchdog.h"
 #include "xosc.h"
 #include "telemetry.h"
 #include "timer.h"
@@ -52,7 +52,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDS8"
+#define CALLSIGN	"UBSEDSx"
 
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
@@ -60,51 +60,29 @@ void timepulse_callback(uint32_t sequence);
 int32_t _xosc_error = 0;
 
 /**
- * Initialises the status LED
+ * Initialises the status LED. SHOULD TURN ON THE LED
  */
-static inline void led_init(void)
+static inline void led_reset(void)
 {
-/**
- * This pin is shared with the XOSC line on the current hardware bodge
- */
   port_pin_set_config(LED0_PIN,
-		      PORT_PIN_DIR_INPUT,	/* Direction */
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
-//  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
+  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
 }
 /**
  * Turns the status LED on
  */
 static inline void led_on(void)
 {
-  //port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
+  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
 }
 /**
  * Turns the status LED off
  */
 static inline void led_off(void)
 {
-  //port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
-}
-
-void wdt_init() {
-  /* 64 seconds timeout. So 2^(15+6) cycles of the wdt clock */
-  system_gclk_gen_set_config(WDT_GCLK,
-			     GCLK_SOURCE_OSCULP32K, /* Source 		*/
-			     false,		/* High When Disabled	*/
-			     128,		/* Division Factor	*/
-			     false,		/* Run in standby	*/
-			     true);		/* Output Pin Enable	*/
-  system_gclk_gen_enable(WDT_GCLK);
-
-  /* Set the watchdog timer. On 256Hz gclk 4  */
-  wdt_set_config(true,			/* Lock WDT		*/
-  		 true,			/* Enable WDT		*/
-  		 GCLK_GENERATOR_4,	/* Clock Source		*/
-  		 WDT_PERIOD_16384CLK,	/* Timeout Period	*/
-  		 WDT_PERIOD_NONE,	/* Window Period	*/
-  		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
+  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
 }
 
 /**
@@ -277,22 +255,22 @@ void aprs_test(void)
   if (!gps_is_locked()) return; /* Don't bother with no GPS */
 
   while(1) {
-  struct ubx_nav_posllh pos = gps_get_nav_posllh();
-  float lat = (float)pos.payload.lat / 10000000.0; // This division is from the gps reciver, not for geofence
-  float lon = (float)pos.payload.lon / 10000000.0;
-  uint32_t altitude = pos.payload.height / 1000;
+    struct ubx_nav_posllh pos = gps_get_nav_posllh();
+    float lat = (float)pos.payload.lat / 10000000.0; // This division is from the gps reciver, not for geofence
+    float lon = (float)pos.payload.lon / 10000000.0;
+    uint32_t altitude = pos.payload.height / 1000;
 
-  /* Set location */
-  aprs_set_location(lat, lon, altitude);
+    /* Set location */
+    aprs_set_location(lat, lon, altitude);
 
-  /* Set frequency */
-  telemetry_aprs_set_frequency(144800000);
+    /* Set frequency */
+    telemetry_aprs_set_frequency(144800000);
 
-  /* Transmit packet and wait */
-  telemetry_start(TELEMETRY_APRS, 0xFFFF);
-  while (telemetry_active()) {
-    system_sleep();
-  }
+    /* Transmit packet and wait */
+    telemetry_start(TELEMETRY_APRS, 0xFFFF);
+    while (telemetry_active()) {
+      system_sleep();
+    }
   }
 }
 
@@ -302,6 +280,21 @@ void aprs_test(void)
  */
 void init(void)
 {
+  /**
+   * Reset to get the system in a safe state
+   * --------------------------------------------------------------------------
+   */
+  led_reset();
+  si_trx_shutdown();
+
+  /* If the reset was caused by the internal watchdog... */
+  if (PM->RCAUSE.reg & PM_RCAUSE_WDT) {
+    /* External hardware is in an undefined state. Wait here for the
+       external watchdog to trigger an external reset */
+
+    while (1);
+  }
+
   /**
    * Internal initialisation
    * ---------------------------------------------------------------------------
@@ -320,8 +313,8 @@ void init(void)
   system_events_init();
   system_extint_init();
 
-  /* Get the current CPU Clock */
-  SystemCoreClock = system_cpu_clock_get_hz();
+  /* Remember the HW watchdog has been running since reset */
+  //watchdog_init();
 
   /* Configure Sleep Mode */
   //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
@@ -335,15 +328,11 @@ void init(void)
    * ---------------------------------------------------------------------------
    */
 
-  /* Set the wdt here. We should get to the first reset in one min */
-  //wdt_init();
-  //wdt_reset_count();
-
-  /* Enables the xosc on gclk1 */
+  /* Enable the xosc on gclk1 */
   xosc_init();
 
-  led_init();
-  gps_init();
+  /* GPS init */
+//  gps_init();
 
   /* Enable timer interrupt and event channel */
   timepulse_extint_init();
@@ -395,31 +384,11 @@ int main(void)
 
   init();
 
-  led_on();
-
-
-
   while (1) {
-    /* Sleep wait for next telemetry */
-    while (telemetry_trigger_flag == 0) {
-      system_sleep();
-    }
-    telemetry_trigger_flag = 0;
-
-    /* End pips */
-    telemetry_stop();
-    while (telemetry_active()) {
-      system_sleep();
-    }
-
-    /* Watchdog */
-    //wdt_reset_count();
-
-    /* Send the next packet */
+    /* Send a packet */
     output_telemetry_string((telemetry_alternate++ & 1) ?
                             TELEMETRY_CONTESTIA :
                             TELEMETRY_RTTY);
-
 
     /* Maybe aprs? */
 #if APRS_ENABLE
@@ -434,5 +403,17 @@ int main(void)
 
     /* Measure XOSC against gps timepulse */
     measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+
+    /* Sleep wait for next telemetry */
+    while (telemetry_trigger_flag == 0) {
+      system_sleep();
+    }
+    telemetry_trigger_flag = 0;
+
+    /* End pips */
+    telemetry_stop();
+    while (telemetry_active()) {
+      system_sleep();
+    }
   }
 }

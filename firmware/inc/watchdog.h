@@ -1,6 +1,6 @@
 /*
- * Functions for controlling Si Labs Transceivers
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Functions related to the watchdog.
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,20 +22,37 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SI_TRX_H
-#define SI_TRX_H
+#ifndef WATCHDOG_H
+#define WATCHDOG_H
 
 #include "samd20.h"
 
-float si_trx_get_temperature(void);
+/**
+ * These are random constants to prevent run-away code from
+ * accidentially hitting them.
+ */
+typedef enum {
+  IDLE_NONE,
+  IDLE_WAIT_FOR_GPS 		= 0x90137526,
+  IDLE_WHILE_TELEMETRY_ACTIVE	= 0x15476064,
+  IDLE_WAIT_FOR_NEXT_TELEMETRY	= 0x36749870,
+} idle_wait_t;
 
-void si_trx_on(uint8_t modulation_type, uint32_t frequency, uint16_t deviation);
-void si_trx_off(void);
-void si_trx_switch_channel(int16_t channel);
+/**
+ * Define how many iterations these loops are permitted before a reset
+ * is triggered.
+ */
+#define MAXIDLE_WAIT_FOR_GPS		0xFFFFFFFE
+#define MAXIDLE_WHILE_TELEMETRY_ACTIVE	0xFFFFFFFE
+#define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	0xFFFFFFFE
 
-void si_trx_shutdown(void);
-void si_trx_init(void);
+struct idle_counter {
+  uint32_t wait_for_gps;
+  uint32_t while_telemetry_active;
+  uint32_t wait_for_next_telemetry;
+};
 
-void spi_loopback_test(void);
+void watchdog_do_idle(idle_wait_t idle_t);
+void watchdog_init(void);
 
-#endif /* SI_TRX_H */
+#endif /* WATCHDOG_H */

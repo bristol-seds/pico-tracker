@@ -466,9 +466,9 @@ void si_trx_switch_channel(int16_t channel)
 }
 
 /**
- * Initialises the radio interface to the radio
+ * Resets the radio
  */
-void si_trx_init(void)
+void si_trx_shutdown(void)
 {
   /* Configure the SDN pin */
   port_pin_set_config(SI406X_SDN_PIN,
@@ -478,6 +478,13 @@ void si_trx_init(void)
 
   /* Put the transciever in shutdown */
   _si_trx_sdn_enable();
+}
+/**
+ * Initialises the radio interface to the radio
+ */
+void si_trx_init(void)
+{
+  si_trx_shutdown();
 
   /* Configure the SPI select pin */
   port_pin_set_config(SI406X_SEL_PIN,
