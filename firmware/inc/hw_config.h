@@ -56,7 +56,7 @@
 #ifdef XPLAINED
 #define LED0_PIN		PIN_PA14
 #else
-#define LED0_PIN		PIN_PA15
+#define LED0_PIN		PIN_PA16
 #endif
 
 /**
@@ -112,7 +112,7 @@
 #define SI406X_SEL_PIN		PIN_PA18
 #define SI406X_IRQ_PIN		PIN_PA24
 #define SI406X_IRQ_PINMUX	PINMUX_PA24A_EIC_EXTINT12
-#define SI406X_SDN_PIN		PIN_PA16
+#define SI406X_SDN_PIN		PIN_PA17
 #define SI406X_GPIO0_PIN	PIN_PA27
 #define SI406X_GPIO1_PIN	PIN_PA25
 #define SI406X_GPIO1_PINMUX	PINMUX_PA25F_TC5_WO1
@@ -150,13 +150,6 @@
 #define SWD_SWDCLK_PINMUX	PINMUX_PA30G_CORE_SWCLK
 #define SWD_SWDIO_PIN		PIN_PA31
 
-/**
- * NC - Pins not connected externally
- */
-#define NC1_PIN			PIN_PA02
-#define NC2_PIN			PIN_PA03
-#define NC3_PIN			PIN_PA04
-#define NC4_PIN			PIN_PA14
 
 /**
  * Interrupt Priority
