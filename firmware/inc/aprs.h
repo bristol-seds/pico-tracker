@@ -44,7 +44,7 @@
 
 void aprs_set_location(float lat, float lon, float altitude);
 
-void aprs_start(void);
+uint8_t aprs_start(void);
 uint8_t aprs_tick(void);
 
 #endif /* APRS_H */

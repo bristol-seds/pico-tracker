@@ -119,6 +119,15 @@
 #define SI406X_TCXO_FREQUENCY	16369000
 
 /**
+ * RF Power @ 1.8V
+ *
+ * These values are taken from the datasheet, but the
+ * difference between them has been measured as 6dB
+ */
+#define RF_POWER_14dBm		0x7f
+#define RF_POWER_8dBm		36
+
+/**
  * XOSC
  */
 #define USE_XOSC
@@ -130,8 +139,14 @@
  */
 #define TELEMETRY_FREQUENCY	434600000
 #define TELEMETRY_INTERVAL	30
+#define TELEMETRY_POWER		RF_POWER_8dBm
+
+/**
+ * APRS
+ */
 #define APRS_ENABLE		1
 #define APRS_INTERVAL		180
+#define APRS_POWER		RF_POWER_14dBm
 
 /**
  * Watchdog Timer

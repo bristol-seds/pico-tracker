@@ -198,44 +198,50 @@ void telemetry_aprs_set_frequency(int32_t frequency) {
 }
 
 /**
- * Stops the ongoing telemetry at the earliest possible moment (end of
- * symbol / block).
- */
-void telemetry_stop(void) {
-  if (telemetry_active()) {
-    telemetry_stop_flag = 1;
-  }
-}
-/**
  * Get the SI radio temperature at the end of the last transmission.
  */
 float telemetry_si_temperature(void) {
   return _si_temperature;
 }
 
+void telemetry_stop(void) {
+  /* All done, deactivate */
+  telemetry_string_length = 0;
+  telemetry_stop_flag = 0;
 
+  /* Turn radio off */
+  if (radio_on) {
+    si_trx_state_ready(); /* Stop RF */
+    _si_temperature = si_trx_get_temperature();
+    si_trx_off(); /* Shutdown */
+
+    radio_on = 0;
+  }
+
+  /* De-init timer */
+  timer0_tick_deinit();
+}
 uint8_t is_telemetry_finished(void) {
   if (telemetry_index >= telemetry_string_length || telemetry_stop_flag) {
-    /* All done, deactivate */
-    telemetry_string_length = 0;
-    telemetry_stop_flag = 0;
 
-    /* Turn radio off */
-    if (radio_on) {
-      si_trx_state_ready(); /* Stop RF */
-      _si_temperature = si_trx_get_temperature();
-      si_trx_off(); /* Shutdown */
-
-      radio_on = 0;
-    }
-
-    /* De-init timer */
-    timer0_tick_deinit();
-
+    /* Finish telemetry */
+    telemetry_stop();
     return 1;
   }
   return 0;
 }
+/**
+ * Stops the ongoing telemetry at the earliest possible moment (end of
+ * symbol / block).
+ */
+void telemetry_request_stop(void) {
+  if (telemetry_active()) {
+    telemetry_stop_flag = 1;
+  }
+}
+
+
+
 /**
  * Called at the telemetry mode's baud rate
  */
@@ -246,7 +252,7 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* Contestia: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
         radio_on = 1;
         contestia_preamble();
       }
@@ -267,16 +273,16 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RTTY: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
         radio_on = 1;
         rtty_preamble();
       }
 
       if (!rtty_tick()) {
-        /* Transmission Finished */
+        /* Maybe the transmission is finished */
         if (is_telemetry_finished()) return;
 
-        /* Let's start again */
+        /* Otherwise go for the next byte */
         uint8_t data = telemetry_string[telemetry_index];
         telemetry_index++;
 
@@ -298,7 +304,7 @@ void telemetry_tick(void) {
         /* RSID: We PWM frequencies with the external pin */
         telemetry_gpio1_pwm_init();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, TELEMETRY_FREQUENCY, 1);
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
         radio_on = 1;
 
         return;
@@ -318,21 +324,20 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* APRS: We use pwm to control gpio1 */
-        aprs_start();
+        if (aprs_start() && _aprs_frequency) {
 
-//        if (_aprs_frequency) { TODO configurable frequency
-//          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, 400);
-//          radio_on = 1;
-//        }
-
-          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, 144800000, 400);
+          /* Radio on */
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, 400, APRS_POWER);
           radio_on = 1;
-
+        } else {
+          /* Stop immediately */
+          telemetry_stop();
+        }
       }
 
       if (!aprs_tick()) {
         /* Transmission Finished */
-        telemetry_stop();
+        telemetry_request_stop();
         if (is_telemetry_finished()) return;
       }
 
@@ -342,7 +347,8 @@ void telemetry_tick(void) {
 
       if (!radio_on) { /* Turn on */
         /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1); radio_on = 1;
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
+        radio_on = 1;
         timer0_tick_frequency(PIPS_ON_FREQUENCY);
 
       } else { /* Turn off */

@@ -75,7 +75,7 @@ void aprs_set_location(float lat, float lon, float altitude) {
 /**
  * Start the transmission of an aprs frame
  */
-void aprs_start(void)
+uint8_t aprs_start(void)
 {
   char addresses[50];
   char information[50];
@@ -83,7 +83,7 @@ void aprs_start(void)
   char compressed_lon[5];
 
   /* Don't run without a valid position */
-  if (_lat == 0 && _lon == 0) return;
+  if (_lat == 0 && _lon == 0) return 0;
 
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
@@ -114,9 +114,11 @@ void aprs_start(void)
   /* Let's actually try that out.. We can add comment etc. later */
 
 
-  /* Transmit the frame */
+  /* Transmit the frame using ax25 */
   ax25_start(addresses,   addresses_len,
              information, information_len);
+
+  return 1;
 }
 
 uint8_t aprs_tick(void)

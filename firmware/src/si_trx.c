@@ -30,7 +30,7 @@
 #include "si_trx_defs.h"
 #include "hw_config.h"
 
-#define RADIO_POWER	0x3f
+
 #define VCXO_FREQUENCY	SI406X_TCXO_FREQUENCY
 
 
@@ -397,7 +397,8 @@ static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
 /**
  * Resets the transceiver
  */
-void si_trx_reset(uint8_t modulation_type, uint32_t frequency, uint16_t deviation)
+void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
+                  uint16_t deviation, uint8_t power)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -425,7 +426,7 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency, uint16_t deviatio
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
   si_trx_set_frequency(frequency, deviation);
-  si_trx_set_tx_power(RADIO_POWER);
+  si_trx_set_tx_power(power);
 
   si_trx_modem_set_tx_datarate(3000);
 
@@ -441,9 +442,10 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency, uint16_t deviatio
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(uint8_t modulation_type, uint32_t frequency, uint16_t deviation)
+void si_trx_on(uint8_t modulation_type, uint32_t frequency,
+               uint16_t deviation, uint8_t power)
 {
-  si_trx_reset(modulation_type, frequency, deviation);
+  si_trx_reset(modulation_type, frequency, deviation, power);
   si_trx_start_tx(0);
 }
 /**
