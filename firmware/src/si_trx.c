@@ -250,7 +250,7 @@ static void si_trx_frequency_control_set_band(uint8_t band, uint8_t sy_sel)
  *
  * This is an unsigned 17-bit value.
  */
-static void si_trx_modem_set_deviation(uint32_t deviation)
+void si_trx_modem_set_deviation(uint32_t deviation)
 {
   _si_trx_set_property_24(SI_PROPERTY_GROUP_MODEM,
 			  SI_MODEM_FREQ_DEV,

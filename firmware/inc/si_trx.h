@@ -29,6 +29,8 @@
 
 float si_trx_get_temperature(void);
 
+void si_trx_modem_set_deviation(uint32_t deviation);
+
 void si_trx_on(uint8_t modulation_type, uint32_t frequency,
                uint16_t deviation, uint8_t power);
 void si_trx_off(void);
