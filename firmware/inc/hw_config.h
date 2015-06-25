@@ -141,7 +141,7 @@
  */
 #define USE_XOSC
 #define XOSC_FREQUENCY		16369000
-#define XOSC_GCLK1_DIVIDE	4
+#define XOSC_GCLK1_DIVIDE	2
 
 /**
  * Telemetry
