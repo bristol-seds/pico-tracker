@@ -154,12 +154,12 @@ void ax25_gpio1_pwm_init(void)
 {
   float gclk1_frequency = (float)system_gclk_gen_get_hz(1);
 
-  float divide_needed = round(gclk1_frequency / (13200*4));
+  float divide_needed = round(gclk1_frequency / 13200);
 
   uint32_t top = (uint32_t)divide_needed & ~0x1;
   uint32_t capture = top >> 1;  /* 50% duty cycle */
 
-  if (top > 0xFF) while (1); // It's only an 8-bit counter
+  if (top > 0xFFFF) while (1); // It's only an 16-bit counter
 
   /* Setup GCLK genertor 7 */
   system_gclk_gen_set_config(GCLK_GENERATOR_7,
@@ -171,14 +171,14 @@ void ax25_gpio1_pwm_init(void)
   system_gclk_gen_enable(GCLK_GENERATOR_7);
 
   /* Configure timer */
-  bool capture_channel_enables[]    = {false, true};
-  uint32_t compare_channel_values[] = {0x0000, capture};
+  bool capture_channel_enables[]    = {false, false};
+  uint32_t compare_channel_values[] = {top, capture};
 
   tc_init(TC5,
 	  GCLK_GENERATOR_7,
-	  TC_COUNTER_SIZE_8BIT,
-	  TC_CLOCK_PRESCALER_DIV4,
-	  TC_WAVE_GENERATION_NORMAL_PWM,
+	  TC_COUNTER_SIZE_16BIT,
+	  TC_CLOCK_PRESCALER_DIV1,
+	  TC_WAVE_GENERATION_MATCH_PWM,
 	  TC_RELOAD_ACTION_GCLK,
 	  TC_COUNT_DIRECTION_UP,
 	  TC_WAVEFORM_INVERT_OUTPUT_NONE,

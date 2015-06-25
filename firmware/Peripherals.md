@@ -13,7 +13,7 @@
 ||tc2|counts cycles of tcxo. 32-bit
 ||tc3|^^^^^
 ||tc4|osc8m event source
-||tc5|telemetry pwm 16-bit, ALSO aprs carrier 8-bit
+||tc5|telemetry pwm 16-bit, ALSO aprs carrier 16-bit
 |
 |*EXTINT*|
 ||extint[5]|gps timepulse
