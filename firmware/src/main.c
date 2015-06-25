@@ -191,7 +191,7 @@ void aprs_telemetry(void) {
   uint32_t altitude = pos.payload.height / 1000;
 
   /* Update location */
-  aprs_location_update(lon, lat);
+  aprs_location_update(lon, lat, altitude);
 
   /* aprs okay here? */
   if (aprs_location_tx_allow()) {

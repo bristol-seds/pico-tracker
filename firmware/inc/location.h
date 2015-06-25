@@ -32,6 +32,6 @@ bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon
 bool aprs_location_tx_allow(void);
 int32_t aprs_location_frequency(void);
 
-void aprs_location_update(float lon, float lat);
+void aprs_location_update(float lon, float lat, uint32_t altitude);
 
 #endif /* LOCATION_H */
