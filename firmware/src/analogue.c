@@ -24,10 +24,10 @@
 
 #include "samd20.h"
 #include "adc/adc.h"
+#include "hw_config.h"
 
 struct adc_module adc_instance;
 
-#define BATTERY_ADC	ADC_POSITIVE_INPUT_PIN19
 #define TEMP_ADC	ADC_POSITIVE_INPUT_TEMP
 
 void configure_adc(enum adc_positive_input input)
@@ -45,17 +45,17 @@ void configure_adc(enum adc_positive_input input)
 
 float get_battery(void)
 {
-  configure_adc(BATTERY_ADC);
+  configure_adc(BATTERY_ADC_CHANNEL);
   adc_start_conversion(&adc_instance);
 
   uint16_t result;
 
   do {
     /* Wait for conversion to be done and read out result */
-  } while (adc_read(&adc_instance, &result) == STATUS_BUSY);
+  } while (adc_read(&adc_instance, &result) == ADC_STATUS_BUSY);
 
   /* 12-bit, 1V ref, div 2 */
-  return (float)(result * 2) / 4096;
+  return (float)(result * 2) / (4096 * BATTERY_ADC_CHANNEL_DIV);
 }
 float get_temperature(void)
 {
@@ -66,7 +66,7 @@ float get_temperature(void)
 
   do {
     /* Wait for conversion to be done and read out result */
-    } while (adc_read(&adc_instance, &result) == STATUS_BUSY);
+    } while (adc_read(&adc_instance, &result) == ADC_STATUS_BUSY);
 
   /* 12-bit, 1V ref, div 2 */
   float voltage = (float)(result * 2) / 4096;

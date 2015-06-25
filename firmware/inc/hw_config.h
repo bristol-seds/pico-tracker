@@ -27,6 +27,7 @@
 
 #include "port.h"
 #include "samd20.h"
+#include "adc/adc.h"
 
 /*
  * Convenience definitions for available GPIO modules
@@ -92,8 +93,19 @@
 /**
  * Battery ADC
  */
-#define BATTERY_ADC_PIN		PIN_PA11
-#define BATTERY_ADC_PINMUX	PINMUX_PA11B_ADC_AIN19
+#define BATTERY_ADC_PIN		PIN_PA02
+#define BATTERY_ADC_PINMUX	PINMUX_PA02B_ADC_AIN0
+#define BATTERY_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN0
+#define BATTERY_ADC_CHANNEL_DIV	0.3125
+
+/**
+ * Solar ADC
+ */
+#define SOLAR_ADC		1
+#define SOLAR_ADC_PIN		PIN_PA04
+#define SOLAR_ADC_PINMUX	PINMUX_PA04B_ADC_AIN4
+#define SOLAR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN4
+#define SOLAR_ADC_CHANNEL_DIV	1
 
 /**
  * Radio

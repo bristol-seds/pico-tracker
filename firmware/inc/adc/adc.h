@@ -401,12 +401,12 @@
 extern struct adc_module *_adc_instances[ADC_INST_NUM];
 #endif
 
-enum status_code {
-  STATUS_OK,
-  STATUS_BUSY,
-  STATUS_ERR_INVALID_ARG,
-  STATUS_ERR_OVERFLOW,
-  STATUS_ERR_DENIED
+enum adc_status_code {
+  ADC_STATUS_OK,
+  ADC_STATUS_BUSY,
+  ADC_STATUS_ERR_INVALID_ARG,
+  ADC_STATUS_ERR_OVERFLOW,
+  ADC_STATUS_ERR_DENIED
 };
 
 /** Forward definition of the device instance */
@@ -433,8 +433,6 @@ enum adc_callback {
 	ADC_CALLBACK_N,
 #  endif
 };
-
-#endif
 
 /**
  * \name Module status flags
@@ -928,7 +926,7 @@ struct adc_module {
 	/** Bit mask for callbacks enabled */
 	uint8_t enabled_callback_mask;
 	/** Holds the status of the ongoing or last conversion job */
-	volatile enum status_code job_status;
+	volatile enum adc_status_code job_status;
 	/** If software triggering is needed */
 	bool software_trigger;
 #  endif
@@ -939,7 +937,7 @@ struct adc_module {
  * \name Driver initialization and configuration
  * @{
  */
-enum status_code adc_init(
+enum adc_status_code adc_init(
 		struct adc_module *const module_inst,
 		Adc *hw,
 		struct adc_config *config);
@@ -1144,7 +1142,7 @@ static inline bool adc_is_syncing(
  *
  * \param[in] module_inst  Pointer to the ADC software instance struct
  */
-static inline enum status_code adc_enable(
+static inline enum adc_status_code adc_enable(
 		struct adc_module *const module_inst)
 {
 	Assert(module_inst);
@@ -1166,7 +1164,7 @@ static inline enum status_code adc_enable(
 #endif
 
 	adc_module->CTRLA.reg |= ADC_CTRLA_ENABLE;
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 /**
@@ -1176,7 +1174,7 @@ static inline enum status_code adc_enable(
  *
  * \param[in] module_inst Pointer to the ADC software instance struct
  */
-static inline enum status_code adc_disable(
+static inline enum adc_status_code adc_disable(
 		struct adc_module *const module_inst)
 {
 	Assert(module_inst);
@@ -1193,7 +1191,7 @@ static inline enum status_code adc_disable(
 	}
 
 	adc_module->CTRLA.reg &= ~ADC_CTRLA_ENABLE;
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 /**
@@ -1204,7 +1202,7 @@ static inline enum status_code adc_disable(
  *
  * \param[in] module_inst  Pointer to the ADC software instance struct
  */
-static inline enum status_code adc_reset(
+static inline enum adc_status_code adc_reset(
 		struct adc_module *const module_inst)
 {
 	/* Sanity check arguments */
@@ -1222,7 +1220,7 @@ static inline enum status_code adc_reset(
 
 	/* Software reset the module */
 	adc_module->CTRLA.reg |= ADC_CTRLA_SWRST;
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 
@@ -1331,12 +1329,12 @@ static inline void adc_start_conversion(
  * \param[out] result       Pointer to store the result value in
  *
  * \return Status of the ADC read request.
- * \retval STATUS_OK           The result was retrieved successfully
- * \retval STATUS_BUSY         A conversion result was not ready
- * \retval STATUS_ERR_OVERFLOW The result register has been overwritten by the
+ * \retval ADC_STATUS_OK           The result was retrieved successfully
+ * \retval ADC_STATUS_BUSY         A conversion result was not ready
+ * \retval ADC_STATUS_ERR_OVERFLOW The result register has been overwritten by the
  *                             ADC module before the result was read by the software
  */
-static inline enum status_code adc_read(
+static inline enum adc_status_code adc_read(
 		struct adc_module *const module_inst,
 		uint16_t *result)
 {
@@ -1346,7 +1344,7 @@ static inline enum status_code adc_read(
 
 	if (!(adc_get_status(module_inst) & ADC_STATUS_RESULT_READY)) {
 		/* Result not ready */
-		return STATUS_BUSY;
+		return ADC_STATUS_BUSY;
 	}
 
 	Adc *const adc_module = module_inst->hw;
@@ -1363,10 +1361,10 @@ static inline enum status_code adc_read(
 
 	if (adc_get_status(module_inst) & ADC_STATUS_OVERRUN) {
 		adc_clear_status(module_inst, ADC_STATUS_OVERRUN);
-		return STATUS_ERR_OVERFLOW;
+		return ADC_STATUS_ERR_OVERFLOW;
 	}
 
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 /** @} */
@@ -1489,11 +1487,11 @@ static inline void adc_set_gain(
  *
  * \return Status of the pin scan configuration set request.
  *
- * \retval STATUS_OK               Pin scan mode has been set successfully
- * \retval STATUS_ERR_INVALID_ARG  Number of input pins to scan or offset has
+ * \retval ADC_STATUS_OK               Pin scan mode has been set successfully
+ * \retval ADC_STATUS_ERR_INVALID_ARG  Number of input pins to scan or offset has
  *                                 an invalid value
  */
-static inline enum status_code adc_set_pin_scan_mode(
+static inline enum adc_status_code adc_set_pin_scan_mode(
 		struct adc_module *const module_inst,
 		uint8_t inputs_to_scan,
 		const uint8_t start_offset)
@@ -1516,7 +1514,7 @@ static inline enum status_code adc_set_pin_scan_mode(
 	if (inputs_to_scan > (ADC_INPUTCTRL_INPUTSCAN_Msk >> ADC_INPUTCTRL_INPUTSCAN_Pos) ||
 			start_offset > (ADC_INPUTCTRL_INPUTOFFSET_Msk >> ADC_INPUTCTRL_INPUTOFFSET_Pos)) {
 		/* Invalid number of input pins */
-		return STATUS_ERR_INVALID_ARG;
+		return ADC_STATUS_ERR_INVALID_ARG;
 	}
 
 	while (adc_is_syncing(module_inst)) {
@@ -1530,7 +1528,7 @@ static inline enum status_code adc_set_pin_scan_mode(
 			(start_offset   << ADC_INPUTCTRL_INPUTOFFSET_Pos) |
 			(inputs_to_scan << ADC_INPUTCTRL_INPUTSCAN_Pos);
 
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 /**
@@ -1772,5 +1770,7 @@ static inline void adc_disable_interrupt(struct adc_module *const module_inst,
  *	</tr>
  * </table>
  */
+
+#endif
 
 #endif /* ADC_H_INCLUDED */

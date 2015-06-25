@@ -155,10 +155,10 @@ static inline void _adc_configure_ain_pin(uint32_t pin)
  * \param[in]  config       Pointer to configuration struct
  *
  * \return Status of the configuration procedure
- * \retval STATUS_OK               The configuration was successful
- * \retval STATUS_ERR_INVALID_ARG  Invalid argument(s) were provided
+ * \retval ADC_STATUS_OK               The configuration was successful
+ * \retval ADC_STATUS_ERR_INVALID_ARG  Invalid argument(s) were provided
  */
-static enum status_code _adc_set_config(
+static enum adc_status_code _adc_set_config(
 		struct adc_module *const module_inst,
 		struct adc_config *const config)
 {
@@ -286,14 +286,14 @@ static enum status_code _adc_set_config(
 
 	default:
 		/* Unknown. Abort. */
-		return STATUS_ERR_INVALID_ARG;
+		return ADC_STATUS_ERR_INVALID_ARG;
 	}
 
 	adc_module->AVGCTRL.reg = ADC_AVGCTRL_ADJRES(adjres) | accumulate;
 
 	/* Check validity of sample length value */
 	if (config->sample_length > 63) {
-		return STATUS_ERR_INVALID_ARG;
+		return ADC_STATUS_ERR_INVALID_ARG;
 	} else {
 		/* Configure sample length */
 		adc_module->SAMPCTRL.reg =
@@ -323,11 +323,11 @@ static enum status_code _adc_set_config(
 					config->window.window_upper_value > 127 ||
 					config->window.window_upper_value < -128)) {
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			} else if (config->window.window_lower_value > 255 ||
 					config->window.window_upper_value > 255){
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			}
 			break;
 		case ADC_RESOLUTION_10BIT:
@@ -337,11 +337,11 @@ static enum status_code _adc_set_config(
 					config->window.window_upper_value > 511 ||
 					config->window.window_upper_value > -512)) {
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			} else if (config->window.window_lower_value > 1023 ||
 					config->window.window_upper_value > 1023){
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			}
 			break;
 		case ADC_RESOLUTION_12BIT:
@@ -351,11 +351,11 @@ static enum status_code _adc_set_config(
 					config->window.window_upper_value > 2047 ||
 					config->window.window_upper_value < -2048)) {
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			} else if (config->window.window_lower_value > 4095 ||
 					config->window.window_upper_value > 4095){
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			}
 			break;
 		case ADC_RESOLUTION_16BIT:
@@ -365,11 +365,11 @@ static enum status_code _adc_set_config(
 					config->window.window_upper_value > 32767 ||
 					config->window.window_upper_value < -32768)) {
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			} else if (config->window.window_lower_value > 65535 ||
 					config->window.window_upper_value > 65535){
 				/* Invalid value */
-				return STATUS_ERR_INVALID_ARG;
+				return ADC_STATUS_ERR_INVALID_ARG;
 			}
 			break;
 		}
@@ -410,7 +410,7 @@ static enum status_code _adc_set_config(
 	if (inputs_to_scan > (ADC_INPUTCTRL_INPUTSCAN_Msk >> ADC_INPUTCTRL_INPUTSCAN_Pos) ||
 			config->pin_scan.offset_start_scan > (ADC_INPUTCTRL_INPUTOFFSET_Msk >> ADC_INPUTCTRL_INPUTOFFSET_Pos)) {
 		/* Invalid number of input pins or input offset */
-		return STATUS_ERR_INVALID_ARG;
+		return ADC_STATUS_ERR_INVALID_ARG;
 	}
 
 	while (adc_is_syncing(module_inst)) {
@@ -437,7 +437,7 @@ static enum status_code _adc_set_config(
 	if (config->correction.correction_enable){
 		/* Make sure gain_correction value is valid */
 		if (config->correction.gain_correction > ADC_GAINCORR_GAINCORR_Msk) {
-			return STATUS_ERR_INVALID_ARG;
+			return ADC_STATUS_ERR_INVALID_ARG;
 		} else {
 			/* Set gain correction value */
 			adc_module->GAINCORR.reg = config->correction.gain_correction <<
@@ -447,7 +447,7 @@ static enum status_code _adc_set_config(
 		/* Make sure offset correction value is valid */
 		if (config->correction.offset_correction > 2047 ||
 				config->correction.offset_correction < -2048) {
-			return STATUS_ERR_INVALID_ARG;
+			return ADC_STATUS_ERR_INVALID_ARG;
 		} else {
 			/* Set offset correction value */
 			adc_module->OFFSETCORR.reg = config->correction.offset_correction <<
@@ -464,7 +464,7 @@ static enum status_code _adc_set_config(
 				(*(uint64_t *)ADC_FUSES_LINEARITY_0_ADDR >> ADC_FUSES_LINEARITY_0_Pos)
 			);
 
-	return STATUS_OK;
+	return ADC_STATUS_OK;
 }
 
 /**
@@ -478,12 +478,12 @@ static enum status_code _adc_set_config(
  * \param[in]  config      Pointer to the configuration struct
  *
  * \return Status of the initialization procedure
- * \retval STATUS_OK                The initialization was successful
- * \retval STATUS_ERR_INVALID_ARG   Invalid argument(s) were provided
- * \retval STATUS_BUSY          The module is busy with a reset operation
- * \retval STATUS_ERR_DENIED        The module is enabled
+ * \retval ADC_STATUS_OK                The initialization was successful
+ * \retval ADC_STATUS_ERR_INVALID_ARG   Invalid argument(s) were provided
+ * \retval ADC_STATUS_BUSY          The module is busy with a reset operation
+ * \retval ADC_STATUS_ERR_DENIED        The module is enabled
  */
-enum status_code adc_init(
+enum adc_status_code adc_init(
 		struct adc_module *const module_inst,
 		Adc *hw,
 		struct adc_config *config)
@@ -501,12 +501,12 @@ enum status_code adc_init(
 
 	if (hw->CTRLA.reg & ADC_CTRLA_SWRST) {
 		/* We are in the middle of a reset. Abort. */
-		return STATUS_BUSY;
+		return ADC_STATUS_BUSY;
 	}
 
 	if (hw->CTRLA.reg & ADC_CTRLA_ENABLE) {
 		/* Module must be disabled before initialization. Abort. */
-		return STATUS_ERR_DENIED;
+		return ADC_STATUS_ERR_DENIED;
 	}
 
 	/* Store the selected reference for later use */
@@ -520,7 +520,7 @@ enum status_code adc_init(
 	module_inst->registered_callback_mask = 0;
 	module_inst->enabled_callback_mask = 0;
 	module_inst->remaining_conversions = 0;
-	module_inst->job_status = STATUS_OK;
+	module_inst->job_status = ADC_STATUS_OK;
 
 	_adc_instances[0] = module_inst;
 
