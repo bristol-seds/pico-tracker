@@ -32,9 +32,9 @@
 #include "system/system.h"
 #include "sercom/usart.h"
 #include "system/port.h"
-#include "system/events.h"
 #include "system/extint.h"
 #include "tc/tc_driver.h"
+#include "init.h"
 #include "gps.h"
 #include "mfsk.h"
 #include "ubx_messages.h"
@@ -58,44 +58,6 @@ void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
 
 int32_t _xosc_error = 0;
-
-/**
- * Initialises the status LED. SHOULD TURN ON THE LED
- */
-static inline void led_reset(void)
-{
-  port_pin_set_config(LED0_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
-}
-/**
- * Turns the status LED on
- */
-static inline void led_on(void)
-{
-  port_pin_set_output_level(LED0_PIN, 0);	/* LED is active low */
-}
-/**
- * Turns the status LED off
- */
-static inline void led_off(void)
-{
-  port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
-}
-
-/**
- * Power Management
- */
-void powermananger_init(void)
-{
-  system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
-//			      PM_APBAMASK_EIC | /* EIC is used now */
-//			      PM_APBAMASK_RTC | /* RTC is used now */
-    0);
-}
-
 
 /**
  * Telemetry String
@@ -274,74 +236,6 @@ void aprs_test(void)
   }
 }
 
-/**
- * Internal initialisation
- * =============================================================================
- */
-void init(void)
-{
-  /**
-   * Reset to get the system in a safe state
-   * --------------------------------------------------------------------------
-   */
-  led_reset();
-  si_trx_shutdown();
-
-  /* If the reset was caused by the internal watchdog... */
-  if (PM->RCAUSE.reg & PM_RCAUSE_WDT) {
-    /* External hardware is in an undefined state. Wait here for the
-       external watchdog to trigger an external reset */
-
-    while (1);
-  }
-
-  /**
-   * Internal initialisation
-   * ---------------------------------------------------------------------------
-   */
-
-  /* Clock up to 14MHz with 0 wait states */
-  system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
-
-  /* Up the clock rate to 4MHz */
-  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_2, /* Prescaler */
-				       false,		   /* Run in Standby */
-				       false);		   /* Run on Demand */
-
-  /* Restart the GCLK Module */
-  system_gclk_init();
-  system_events_init();
-  system_extint_init();
-
-  /* Remember the HW watchdog has been running since reset */
-  //watchdog_init();
-
-  /* Configure Sleep Mode */
-  //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
-  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Disable CPU, AHB and APB */
-
-  /* Configure the Power Manager */
-  //powermananger_init();
-
-  /**
-   * System initialisation
-   * ---------------------------------------------------------------------------
-   */
-
-  /* Enable the xosc on gclk1 */
-  xosc_init();
-
-  /* GPS init */
-//  gps_init();
-
-  /* Enable timer interrupt and event channel */
-  timepulse_extint_init();
-  timepulse_set_callback(timepulse_callback);
-
-  /* Initialise Si4060 interface */
-  si_trx_init();
-}
-
 
 void xosc_measure_callback(uint32_t result)
 {
@@ -382,7 +276,7 @@ int main(void)
 {
   uint32_t telemetry_alternate = 0;
 
-  init();
+  init(timepulse_callback);
 
   while (1) {
     /* Send a packet */
