@@ -486,8 +486,8 @@ void telemetry_gpio1_pwm_init(void)
 
 
   /* Enable the output pin */
-  system_pinmux_pin_set_config(SI406X_GPIO1_PINMUX >> 16,	/* GPIO Pin	*/
- 			       SI406X_GPIO1_PINMUX & 0xFFFF,	/* Mux Position */
+  system_pinmux_pin_set_config(SI4xxx_GPIO1_PINMUX >> 16,	/* GPIO Pin	*/
+ 			       SI4xxx_GPIO1_PINMUX & 0xFFFF,	/* Mux Position */
  			       SYSTEM_PINMUX_PIN_DIR_INPUT,	/* Direction	*/
  			       SYSTEM_PINMUX_PIN_PULL_NONE,	/* Pull		*/
  			       false);    			/* Powersave	*/

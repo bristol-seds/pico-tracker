@@ -31,7 +31,7 @@
 #include "hw_config.h"
 
 
-#define VCXO_FREQUENCY	SI406X_TCXO_FREQUENCY
+#define VCXO_FREQUENCY	SI4xxx_TCXO_FREQUENCY
 
 
 void _si_trx_transfer_nocts(int tx_count, int rx_count, uint8_t *data)
@@ -260,7 +260,7 @@ static void si_trx_modem_set_deviation(uint32_t deviation)
 
 static void si_trx_modem_set_tx_datarate(uint32_t rate)
 {
-  uint32_t nco_max_count = ((float)SI406X_TCXO_FREQUENCY / 10);
+  uint32_t nco_max_count = ((float)SI4xxx_TCXO_FREQUENCY / 10);
 
   /* Set TX_NCO_MODE */
   _si_trx_set_property_32(SI_PROPERTY_GROUP_MODEM,
@@ -473,7 +473,7 @@ void si_trx_switch_channel(int16_t channel)
 void si_trx_shutdown(void)
 {
   /* Configure the SDN pin */
-  port_pin_set_config(SI406X_SDN_PIN,
+  port_pin_set_config(SI4xxx_SDN_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
@@ -489,7 +489,7 @@ void si_trx_init(void)
   si_trx_shutdown();
 
   /* Configure the SPI select pin */
-  port_pin_set_config(SI406X_SEL_PIN,
+  port_pin_set_config(SI4xxx_SEL_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
@@ -498,24 +498,24 @@ void si_trx_init(void)
   _si_trx_cs_disable();
 
   /* Configure the GPIO pins */
-  port_pin_set_config(SI406X_GPIO0_PIN,
+  port_pin_set_config(SI4xxx_GPIO0_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
-  port_pin_set_output_level(SI406X_GPIO0_PIN, 0);
-  port_pin_set_config(SI406X_GPIO1_PIN,
+  port_pin_set_output_level(SI4xxx_GPIO0_PIN, 0);
+  port_pin_set_config(SI4xxx_GPIO1_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
-  port_pin_set_output_level(SI406X_GPIO1_PIN, 0);
+  port_pin_set_output_level(SI4xxx_GPIO1_PIN, 0);
 
   /* Configure the IRQ pin */
   // TODO
 
   /* Configure the serial port */
-  spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
-		   SI406X_SERCOM_MISO_PIN,
-		   SI406X_SERCOM_SCK_PIN);
+  spi_bitbang_init(SI4xxx_SERCOM_MOSI_PIN,
+		   SI4xxx_SERCOM_MISO_PIN,
+		   SI4xxx_SERCOM_SCK_PIN);
 }
 
 
@@ -530,7 +530,7 @@ void spi_loopback_test(void)
   /* 	   SPI_MODE_MASTER,		/\** SPI mode *\/ */
   /* 	   SPI_DATA_ORDER_MSB,		/\** Data order *\/ */
   /* 	   SPI_TRANSFER_MODE_0,		/\** Transfer mode *\/ */
-  /* 	   SI406X_SERCOM_MUX,		/\** Mux setting *\/ */
+  /* 	   SI4xxx_SERCOM_MUX,		/\** Mux setting *\/ */
   /* 	   SPI_CHARACTER_SIZE_8BIT,	/\** SPI character size *\/ */
   /* 	   false,			/\** Enabled in sleep *\/ */
   /* 	   true,				/\** Enable receiver *\/ */
@@ -541,15 +541,15 @@ void spi_loopback_test(void)
   /* 	   0,				/\** Slave - Address mask *\/ */
   /* 	   false,			/\** Slave - Preload data  *\/ */
   /* 	   GCLK_GENERATOR_0,		/\** GCLK generator to use *\/ */
-  /* 	   SI406X_SERCOM_MOSI_PINMUX,	/\** Pinmux *\/ */
-  /* 	   SI406X_SERCOM_MISO_PINMUX,	/\** Pinmux *\/ */
-  /* 	   SI406X_SERCOM_SCK_PINMUX,	/\** Pinmux *\/ */
+  /* 	   SI4xxx_SERCOM_MOSI_PINMUX,	/\** Pinmux *\/ */
+  /* 	   SI4xxx_SERCOM_MISO_PINMUX,	/\** Pinmux *\/ */
+  /* 	   SI4xxx_SERCOM_SCK_PINMUX,	/\** Pinmux *\/ */
   /* 	   PINMUX_UNUSED);		/\** Pinmux *\/ */
 
   /* Init loopback */
-  spi_bitbang_init(SI406X_SERCOM_MOSI_PIN,
-		   SI406X_SERCOM_MOSI_PIN,
-		   SI406X_SERCOM_SCK_PIN);
+  spi_bitbang_init(SI4xxx_SERCOM_MOSI_PIN,
+		   SI4xxx_SERCOM_MOSI_PIN,
+		   SI4xxx_SERCOM_SCK_PIN);
 
   /* Enable */
 

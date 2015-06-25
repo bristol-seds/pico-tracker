@@ -302,17 +302,17 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data);
  * Chip Select. Active Low (High = Inactive, Low = Active)
  */
 #define _si_trx_cs_enable()			\
-  port_pin_set_output_level(SI406X_SEL_PIN, 0)
+  port_pin_set_output_level(SI4xxx_SEL_PIN, 0)
 #define _si_trx_cs_disable()			\
-  port_pin_set_output_level(SI406X_SEL_PIN, 1)
+  port_pin_set_output_level(SI4xxx_SEL_PIN, 1)
 
 /**
  * Shutdown. Active High (High = Shutdown, Low = Run)
  */
 #define _si_trx_sdn_enable()			\
-  port_pin_set_output_level(SI406X_SDN_PIN, 1)
+  port_pin_set_output_level(SI4xxx_SDN_PIN, 1)
 #define _si_trx_sdn_disable()			\
-  port_pin_set_output_level(SI406X_SDN_PIN, 0)
+  port_pin_set_output_level(SI4xxx_SDN_PIN, 0)
 
 /**
  * HF Clock
