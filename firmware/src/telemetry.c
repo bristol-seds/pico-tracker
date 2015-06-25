@@ -327,7 +327,7 @@ void telemetry_tick(void) {
         if (aprs_start() && _aprs_frequency) {
 
           /* Radio on */
-          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, 400, APRS_POWER);
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, 1800, APRS_POWER);
           radio_on = 1;
         } else {
           /* Stop immediately */
