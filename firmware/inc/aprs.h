@@ -25,9 +25,13 @@
 #ifndef APRS_H
 #define APRS_H
 
+#include "rf_tests.h"
+
 /**
  * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
  */
+
+#if RF_TEST != RF_TEST_APRS
 
 /**
  * This should be a full licensed callsign you own. Not mine plz k thx bai
@@ -40,7 +44,15 @@
 /**
  * APRS Map Symbol.  See Appendix 2: APRS Symbol Tables
  */
-#define APRS_SYMBOL	"/O"    /* Balloon */
+#define APRS_SYMBOL     "/O"    /* Balloon */
+
+#else /* ----------- Parameters for testing */
+
+#define APRS_CALLSIGN	"M0SBU"
+#define APRS_SSID	2
+#define APRS_SYMBOL	"/2"
+
+#endif
 
 void aprs_set_location(float lat, float lon, float altitude);
 
