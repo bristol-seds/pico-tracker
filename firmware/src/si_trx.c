@@ -447,10 +447,16 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
   si_trx_set_frequency(frequency, deviation);
   si_trx_set_tx_power(power);
 
+  /**
+   * Modem tx filter coefficients for APRS
+   * 0dB @ 2.2kHz
+   * -6dB @ 1.2kHz (for pre-emphasis)
+   * < -30dB from 3.6KHz
+   */
   uint8_t p_si_coeff[] = {0x6, 0x8, 0x1, 0xf2, 0xe4, 0xe7, 0xff, 0x1d, 0x2b};
-
-  si_trx_modem_set_tx_datarate(1600);
+  si_trx_modem_set_tx_datarate(1600); /* Filter sampling rate 1600*10 = 16kHz */
   si_trx_modem_tx_filter_coefficients(p_si_coeff);
+
 
   /* RTTY from GPIO1 */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC

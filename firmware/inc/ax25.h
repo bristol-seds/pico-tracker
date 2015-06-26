@@ -42,9 +42,10 @@
 /**
  * The fm deviation setting for the si radio
  *
- * More work required to determine this value..
+ * With the current si filter settings this is equal to the deviation
+ * of the high tone.
  */
-#define AX25_DEVIATION		1800 /* corresponds to about ±2.5kHz maybe */
+#define AX25_DEVIATION		2500
 
 /**
  * How often our handler gets called
