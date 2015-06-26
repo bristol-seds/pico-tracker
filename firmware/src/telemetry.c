@@ -328,7 +328,7 @@ void telemetry_tick(void) {
 
           /* Radio on */
           si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency,
-                    AX25_DEVIATION_MARK, APRS_POWER);
+                    AX25_DEVIATION, APRS_POWER);
           radio_on = 1;
         } else {
           /* Stop immediately */

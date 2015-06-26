@@ -101,7 +101,7 @@ uint8_t aprs_start(void)
   /* Encode the information field */
   /* Compressed Lat/Long position report, no timestamp */
   uint32_t information_len = sprintf(information,
-                                     "!%c%s%s%c%s%c/A=%06ld RTTY/434.6U8N2",
+                                     "!%c%s%s%c%s%c/A=%06ld TESTING",// RTTY/434.6U8N2",
                                      APRS_SYMBOL[0], /* Symbol Table ID */
                                      compressed_lat,
                                      compressed_lon,

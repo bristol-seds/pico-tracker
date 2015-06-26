@@ -242,6 +242,7 @@ enum {
   SI_MODEM_TX_NCO_TXOSR_20X		= (0x02 << 26),
   SI_MODEM_FREQ_DEV			= 0x0a,
   SI_MODEM_FREQ_OFFSET			= 0x0d,
+  SI_MODEM_TX_FILTER_COEFF8		= 0x0f,
   SI_MODEM_CLKGEN_BAND			= 0x51,
   SI_MODEM_CLKGEN_SY_SEL_0		= (0x00 << 3), /* low power */
   SI_MODEM_CLKGEN_SY_SEL_1		= (0x01 << 3), /* default */

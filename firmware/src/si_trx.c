@@ -273,6 +273,25 @@ static void si_trx_modem_set_tx_datarate(uint32_t rate)
                           SI_MODEM_DATA_RATE,
                           rate & 0xFFFFFF);
 }
+/**
+ * Writes the coefficients of the modem tx filter
+ *
+ */
+static void si_trx_modem_tx_filter_coefficients(uint8_t* coeff_array)
+{
+  uint8_t buffer[4+9];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = SI_PROPERTY_GROUP_MODEM; // group
+  buffer[2] = 9;
+  buffer[3] = SI_MODEM_TX_FILTER_COEFF8; // prop
+  /* Write filter coefficents 8 to 0 */
+  for (int i = 0; i < 9; i++) {
+    buffer[4+i] = coeff_array[8-i];
+  }
+
+  _si_trx_transfer(4+9, 0, buffer);
+}
 
 
 /**
@@ -428,7 +447,10 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
   si_trx_set_frequency(frequency, deviation);
   si_trx_set_tx_power(power);
 
-  si_trx_modem_set_tx_datarate(3000);
+  uint8_t p_si_coeff[] = {0x6, 0x8, 0x1, 0xf2, 0xe4, 0xe7, 0xff, 0x1d, 0x2b};
+
+  si_trx_modem_set_tx_datarate(1600);
+  si_trx_modem_tx_filter_coefficients(p_si_coeff);
 
   /* RTTY from GPIO1 */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC

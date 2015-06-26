@@ -42,11 +42,9 @@
 /**
  * The fm deviation setting for the si radio
  *
- * See https://github.com/bristol-seds/pico-tracker/blob/master/sim/si_fir_filter/si_fir_filter.ipynb
- * for the source of these values
+ * More work required to determine this value..
  */
-#define AX25_DEVIATION_MARK	1800 /* 1600 Hz */ /* TODO currently this deviation is used for both mark and space */
-#define AX25_DEVIATION_SPACE	4800 /* 3000 Hz */
+#define AX25_DEVIATION		1800 /* corresponds to about ±2.5kHz maybe */
 
 /**
  * How often our handler gets called
