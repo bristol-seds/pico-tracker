@@ -43,7 +43,7 @@
 #include "sercom/spi.h"
 #include "samd20.h"
 
-#define SPI_WAIT_FOR_SYNC(hw)	while(hw->STATUS.reg & SERCOM_SPI_STATUS_SYNCBUSY)
+
 #define SPI_MODE_MASTER(hw)	((hw->CTRLA.reg & SERCOM_SPI_CTRLA_MODE_Msk) \
 				 == SERCOM_SPI_CTRLA_MODE_SPI_MASTER)
 #define SPI_MODE_SLAVE(hw)	((hw->CTRLA.reg & SERCOM_SPI_CTRLA_MODE_Msk) \
@@ -64,7 +64,7 @@ void spi_reset(SercomSpi* const hw)
   /* Disable the module */
   spi_disable(hw);
 
-  USART_WAIT_FOR_SYNC();
+  SPI_WAIT_FOR_SYNC(hw);
 
   /* Software reset the module */
   hw->CTRLA.reg |= SERCOM_SPI_CTRLA_SWRST;
@@ -199,7 +199,7 @@ enum sercom_status_t spi_init(SercomSpi *const hw,
   /* Set up the GCLK for the module */
   system_gclk_chan_set_config(gclk_index, generator_source);
   system_gclk_chan_enable(gclk_index);
-  sercom_set_gclk_generator(generator_source);
+  _sercom_set_gclk_generator(generator_source);
 
   if (mode == SPI_MODE_MASTER) {
     /* Set the SERCOM in SPI master mode */

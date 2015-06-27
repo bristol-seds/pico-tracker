@@ -320,9 +320,10 @@
 #include <string.h>
 
 #define CONF_SPI_MASTER_ENABLE     true
-#define CONF_SPI_SLAVE_ENABLE      true
+#define CONF_SPI_SLAVE_ENABLE      false
 #define CONF_SPI_TIMEOUT           10000
 
+#define SPI_WAIT_FOR_SYNC(hw)	while(hw->STATUS.reg & SERCOM_SPI_STATUS_SYNCBUSY)
 
 /**
  * Define SERCOM SPI features set according to different device family.

@@ -35,6 +35,7 @@
 #include "timer.h"
 #include "cron.h"
 #include "data.h"
+#include "memory.h"
 
 /**
  * Initialises the status LED. SHOULD TURN ON THE LED
@@ -112,6 +113,9 @@ void init(timepulse_callback_t callback)
    * System initialisation
    * ---------------------------------------------------------------------------
    */
+
+  /* Memory */
+  init_memory();
 
   /* Enable the xosc on gclk1 */
   xosc_init();
