@@ -371,8 +371,12 @@ void gps_set_timepulse_five(uint32_t frequency)
   /* Define the settings we want */
   ubx_cfg_tp5.payload.tpIdx = 0;
   ubx_cfg_tp5.payload.antCableDelay = 50; /* 50 nS	*/
-  /* GPS time, duty cyle, frequency, lock to GPS, active */
-  ubx_cfg_tp5.payload.flags = 0x80 | 0x8 | 0x3;
+
+  /* frequency, lock to GPS, active */
+  ubx_cfg_tp5.payload.flags =
+    UBX_TP5_ENABLE | UBX_TP5_LOCK_TO_GPS | UBX_TP5_IS_FREQ |
+    UBX_TP5_ALIGN_RISING | UBX_TP5_USE_GRID_UTC;
+
   ubx_cfg_tp5.payload.freqPeriod = frequency;
   ubx_cfg_tp5.payload.pulseLenRatio = 0x80000000; /* 50 % duty cycle*/
 

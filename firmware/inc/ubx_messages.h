@@ -200,6 +200,22 @@ enum {
   UBX_POWERSAVE_OFF	= 0,
   UBX_POWERSAVE_ON	= 1,
 };
+/**
+ * UBX TP5 Flags
+ */
+enum {
+  UBX_TP5_ENABLE	= (1 << 0),
+  UBX_TP5_LOCK_TO_GPS	= (1 << 1),
+  UBX_TP5_LOCKED_OTHER	= (1 << 2),
+  UBX_TP5_IS_FREQ	= (1 << 3),
+  UBX_TP5_IS_LENGTH	= (1 << 4),
+  UBX_TP5_ALIGN_TO_TOW	= (1 << 5),
+  UBX_TP5_ALIGN_FALLING	= (0 << 6),
+  UBX_TP5_ALIGN_RISING  = (1 << 6),
+  UBX_TP5_USE_GRID_UTC	= (0 << 7),
+  UBX_TP5_USE_GRID_GPS	= (1 << 7),
+};
+
 
 /**
  * =============================================================================
