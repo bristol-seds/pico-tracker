@@ -26,13 +26,11 @@
 #define PIPS_H
 
 /**
- * 10ms pips, once per second
+ * 50ms pips, once per second
  */
 
 #define PIPS_RATE	1
 #define PIPS_LENGTH_MS	50
-
-#define PIPS_ON_FREQUENCY	(1000 / PIPS_LENGTH_MS)
-#define PIPS_OFF_FREQUENCY	PIPS_RATE
+#define PIPS_FREQUENCY	(1000 / PIPS_LENGTH_MS)
 
 #endif /* PIPS_H */

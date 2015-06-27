@@ -34,7 +34,7 @@
 | --- | --- | --- | ---
 |TC0_IRQn|telemetry tick timer|0|latency critical for symbol timing. rate <= 1200Hz
 |[GPS_SERCOM]_IRQn|gps usart rx|1|latency not so critical. rate <= 960Hz
-|EIC_IRQn|timepulse|1|latency not so critical. rate = 2
+|EIC_IRQn|timepulse|1|latency not so critical. rate = 1
 |TC2_IRQn|xosc measurement done|2|latency not critical
 
 

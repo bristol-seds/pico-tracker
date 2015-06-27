@@ -33,7 +33,7 @@ enum rf_tests {
   RF_TEST_TELEMETRY_TONE,
 };
 
-#define RF_TEST	RF_TEST_APRS
+#define RF_TEST	RF_TEST_NONE
 
 #include "samd20.h"
 

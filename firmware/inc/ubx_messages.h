@@ -285,4 +285,14 @@ __PACKED__ struct ubx_nav_status {
   } payload;
 };
 
+/**
+ * UBX TIMEUTC valid flags
+ */
+enum {
+  UBX_TIMEUTC_VALID_TOW		= (1 << 0),
+  UBX_TIMEUTC_VALID_WKN		= (1 << 1),
+  UBX_TIMEUTC_VALID_UTC		= (1 << 2),
+};
+
+
 #endif /* UBX_MESSAGES_H */

@@ -147,14 +147,12 @@
  * Telemetry
  */
 #define TELEMETRY_FREQUENCY	434600000
-#define TELEMETRY_INTERVAL	30
 #define TELEMETRY_POWER		RF_POWER_8dBm
 
 /**
  * APRS
  */
 #define APRS_ENABLE		1
-#define APRS_INTERVAL		180
 #define APRS_POWER		RF_POWER_14dBm
 
 /**
@@ -185,5 +183,6 @@
 #define EIC_INT_PRIO		1 /* Timepulse, telemetry */
 
 #define TC2_INT_PRIO		2 /* XOSC Measure Timer */
+
 
 #endif /* HW_CONFIG_H */

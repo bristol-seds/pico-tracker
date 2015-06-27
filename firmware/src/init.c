@@ -33,6 +33,8 @@
 #include "watchdog.h"
 #include "xosc.h"
 #include "timer.h"
+#include "cron.h"
+#include "data.h"
 
 /**
  * Initialises the status LED. SHOULD TURN ON THE LED
@@ -53,7 +55,7 @@ void powermananger_init(void)
 {
   system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
 //			      PM_APBAMASK_EIC | /* EIC is used now */
-//			      PM_APBAMASK_RTC | /* RTC is used now */
+			      PM_APBAMASK_RTC |
     0);
 }
 
@@ -104,7 +106,7 @@ void init(timepulse_callback_t callback)
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Disable CPU, AHB and APB */
 
   /* Configure the Power Manager */
-  //powermananger_init();
+  powermananger_init();
 
   /**
    * System initialisation
@@ -123,4 +125,8 @@ void init(timepulse_callback_t callback)
 
   /* Initialise Si4060 interface */
   si_trx_init();
+
+  /* Data and Cron structures */
+  data_init();
+  cron_init();
 }

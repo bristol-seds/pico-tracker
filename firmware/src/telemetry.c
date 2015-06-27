@@ -107,10 +107,6 @@ int32_t telemetry_string_length = 0;
  */
 int32_t telemetry_index;
 /**
- * Should we stop?
- */
-uint8_t telemetry_stop_flag = 0;
-/**
  * Is the radio currently on?
  */
 uint8_t radio_on = 0;
@@ -142,7 +138,6 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
     telemetry_type = type;
     telemetry_index = 0;
     telemetry_string_length = length;
-    telemetry_stop_flag = 0;
 
     /* Setup timer tick */
     switch(telemetry_type) {
@@ -153,7 +148,7 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
       timer0_tick_init(RTTY_BITRATE);
       break;
     case TELEMETRY_PIPS:
-      timer0_tick_init(PIPS_OFF_FREQUENCY);
+      timer0_tick_init(PIPS_FREQUENCY);
       break;
     case TELEMETRY_APRS:
       timer0_tick_init(AX25_TICK_RATE);
@@ -207,7 +202,6 @@ float telemetry_si_temperature(void) {
 void telemetry_stop(void) {
   /* All done, deactivate */
   telemetry_string_length = 0;
-  telemetry_stop_flag = 0;
 
   /* Turn radio off */
   if (radio_on) {
@@ -222,7 +216,7 @@ void telemetry_stop(void) {
   timer0_tick_deinit();
 }
 uint8_t is_telemetry_finished(void) {
-  if (telemetry_index >= telemetry_string_length || telemetry_stop_flag) {
+  if (telemetry_index >= telemetry_string_length) {
 
     /* Finish telemetry */
     telemetry_stop();
@@ -230,16 +224,6 @@ uint8_t is_telemetry_finished(void) {
   }
   return 0;
 }
-/**
- * Stops the ongoing telemetry at the earliest possible moment (end of
- * symbol / block).
- */
-void telemetry_request_stop(void) {
-  if (telemetry_active()) {
-    telemetry_stop_flag = 1;
-  }
-}
-
 
 
 /**
@@ -338,8 +322,7 @@ void telemetry_tick(void) {
 
       if (!aprs_tick()) {
         /* Transmission Finished */
-        telemetry_request_stop();
-        if (is_telemetry_finished()) return;
+        telemetry_stop();
       }
 
       break;
@@ -350,14 +333,11 @@ void telemetry_tick(void) {
         /* Pips: Cw */
         si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
         radio_on = 1;
-        timer0_tick_frequency(PIPS_ON_FREQUENCY);
 
       } else { /* Turn off */
         si_trx_off(); radio_on = 0;
-        timer0_tick_frequency(PIPS_OFF_FREQUENCY);
 
-        telemetry_index++;
-        if (is_telemetry_finished()) return;
+        telemetry_stop();
       }
       break;
     }

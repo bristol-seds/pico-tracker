@@ -1,6 +1,6 @@
 /*
- * Telemetry strings and formatting
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Cron job for the system
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,43 +22,18 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef TELEMETRY_H
-#define TELEMETRY_H
+#ifndef CRON_H
+#define CRON_H
 
-uint16_t crc_checksum(char *string);
+typedef struct tracker_time {
+  uint64_t epoch;
+  uint16_t year;
+  uint8_t month, day, hour, minute, second;
+  uint8_t valid;
+} tracker_time;
 
-#include "util/dbuffer.h"
-#include "rsid.h"
+void do_cron(void);
+void cron_tick(void);
+void cron_init(void);
 
-enum telemetry_t {
-  TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA,
-  TELEMETRY_RSID,
-  TELEMETRY_APRS,
-  TELEMETRY_PIPS,
-};
-
-/**
- * Output String
- */
-#define TELEMETRY_STRING_MAX	0x200
-char telemetry_string[TELEMETRY_STRING_MAX];
-
-int telemetry_active(void);
-int telemetry_start(enum telemetry_t type, int32_t length);
-int telemetry_start_rsid(rsid_code_t rsid);
-void telemetry_aprs_set_frequency(int32_t frequency);
-float telemetry_si_temperature(void);
-
-float timer0_tick_init(float frequency);
-uint32_t timer0_tick_frequency(float frequency);
-void timer0_tick_deinit();
-
-void telemetry_gpio1_pwm_init(void);
-void telemetry_gpio1_pwm_duty(float duty_cycle);
-void telemetry_gpio1_pwm_deinit(void);
-
-void telemetry_gpio1_init(void);
-void telemetry_gpio1_set(uint8_t value);
-
-#endif /* TELEMETRY_H */
+#endif /* CRON_H */

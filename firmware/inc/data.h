@@ -1,6 +1,6 @@
 /*
- * Telemetry strings and formatting
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Collects data from sensors etc into a struct
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,43 +22,37 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef TELEMETRY_H
-#define TELEMETRY_H
+#ifndef DATA_H
+#define DATA_H
 
-uint16_t crc_checksum(char *string);
-
-#include "util/dbuffer.h"
-#include "rsid.h"
-
-enum telemetry_t {
-  TELEMETRY_RTTY,
-  TELEMETRY_CONTESTIA,
-  TELEMETRY_RSID,
-  TELEMETRY_APRS,
-  TELEMETRY_PIPS,
-};
+#include "samd20.h"
+#include "cron.h"
 
 /**
- * Output String
+ * Structure for all the information in each datapoint.
+ *
+ * Size is approx 40 bytes
  */
-#define TELEMETRY_STRING_MAX	0x200
-char telemetry_string[TELEMETRY_STRING_MAX];
+typedef struct tracker_datapoint {
+  /* Time */
+  struct tracker_time time;
 
-int telemetry_active(void);
-int telemetry_start(enum telemetry_t type, int32_t length);
-int telemetry_start_rsid(rsid_code_t rsid);
-void telemetry_aprs_set_frequency(int32_t frequency);
-float telemetry_si_temperature(void);
+  /* Position */
+  uint32_t latitude;            /* 100 nanodeg */
+  uint32_t longitude;           /* 100 nanodeg */
+  uint32_t altitude;            /* mm */
+  uint8_t satillite_count;      /*  */
 
-float timer0_tick_init(float frequency);
-uint32_t timer0_tick_frequency(float frequency);
-void timer0_tick_deinit();
+  /* Sensors */
+  float battery;                /* Volts */
+  float temperature;            /* ºC */
+  uint32_t xosc_error;          /* Hertz */
 
-void telemetry_gpio1_pwm_init(void);
-void telemetry_gpio1_pwm_duty(float duty_cycle);
-void telemetry_gpio1_pwm_deinit(void);
+} tracker_datapoint;
 
-void telemetry_gpio1_init(void);
-void telemetry_gpio1_set(uint8_t value);
 
-#endif /* TELEMETRY_H */
+void collect_data_async(void);
+struct tracker_datapoint* collect_data(void);
+void data_init(void);
+
+#endif /* DATA_H */
