@@ -180,7 +180,7 @@
 
 #define GPS_SERCOM_INT_PRIO	1 /* GPS USART Rx */
 
-#define EIC_INT_PRIO		1 /* Timepulse, telemetry */
+#define EIC_INT_PRIO		2 /* Timepulse, telemetry */
 
 #define TC2_INT_PRIO		2 /* XOSC Measure Timer */
 
