@@ -47,6 +47,10 @@ program is then run, and one loop of `tc_main` runs the test case.
 
 #### Writing a new test case
 
+```
+From this directory you can just run 'make name=<new_name>'
+```
+
 * Choose a testcase name `[tc-name]`
 * Create `tc/[tc-name].py` and `tc/[tc_name].h`. Use a pre-existing test case as a template.
 * Add `#include [tc-name].h` to the section at the top of `main.c`
