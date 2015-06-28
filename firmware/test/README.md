@@ -31,7 +31,11 @@ to run all tests, or
 make test tc=<tc name>
 ```
 
-to run a specific test case
+to run a specific test case. To get extra debug info
+
+```
+make test tc=<tc name> tc-gdb-info=1
+```
 
 #### Operation
 

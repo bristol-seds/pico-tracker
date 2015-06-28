@@ -251,7 +251,11 @@ TESTCASES	:= $(shell $(FIND) test/tc -name '*.[h]')
 test: test/main.py all
 	@echo "Running tests..."
 	@echo $(tc) > test/.testcommand
+ifdef tc-gdb-info
 	$(DB) -q -x test/tests.py
+else
+	@>/dev/null $(DB) -q -x test/tests.py
+endif
 
 # Ctypesgen for test
 test/main.py: test/tmain.c $(TESTCASES)
