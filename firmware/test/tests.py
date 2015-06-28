@@ -12,6 +12,7 @@ import sys
 import importlib
 from time import *
 from colorama import *
+import arrow
 
 sys.path.append("./test")
 import tc
@@ -59,7 +60,7 @@ class Tests():
 
         self.printf("")
         self.printf(Fore.GREEN + "    " + tc_name + " - PASS" \
-               + (" " * offset) + "CLOCKS = " + str(time) + Fore.RESET)
+               + (" " * offset) + "CLOCK " + str(time) + Fore.RESET)
 
     def print_fail(self, tc_name, time):
         """Evil red pass notice"""
@@ -67,7 +68,7 @@ class Tests():
 
         self.printf("")
         self.printf(Fore.RED + "  p  " + tc_name + "- FAIL" \
-               + (" " * offset) + "CLOCKS = " + str(time) + Fore.RESET)
+               + (" " * offset) + "CLOCK " + str(time) + Fore.RESET)
 
     def print_summary(self, results):
         passes = 0
@@ -125,11 +126,6 @@ class Tests():
         else:
             return None
 
-    def hw_get_last_time(self):
-        """Returns the number of clocks the last test case took"""
-        return 1
-
-
     #### Read / Write
 
     def read_variable(self, name):
@@ -145,7 +141,9 @@ class Tests():
         tc_name = test_case.__class__.__name__
         self.print_header(tc_name)
         fail = False
-        ttime = 0
+
+        start = arrow.now()
+
         if hasattr(test_case, 'iterations'):
             """This is for test cases that need to be run multiple time to check
             the result is always correct
@@ -154,7 +152,7 @@ class Tests():
             for i in range(test_case.iterations):
                 params = test_case.get_test()
                 result = self.hw_run_tc(tc_name, params)
-                ttime += self.hw_get_last_time()
+
                 if result:
                     if not test_case.is_correct(params, result, self.print_info):
                         fail = True
@@ -169,7 +167,7 @@ class Tests():
             params = test_case.get_test()
             while (params):
                 result = self.hw_run_tc(tc_name, params)
-                ttime += self.hw_get_last_time()
+
                 if result:
                     if not test_case.is_correct(params, result, self.print_info):
                         fail = True
@@ -177,7 +175,9 @@ class Tests():
                 else: # No result, Failure
                     fail = True
 
-        params = test_case.get_test()
+        # Calculate time taken
+        ttime = (arrow.now()-start)
+
         if not fail:
             self.print_pass(tc_name, ttime)
         else:
