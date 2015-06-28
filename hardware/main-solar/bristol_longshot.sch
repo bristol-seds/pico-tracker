@@ -1881,21 +1881,20 @@ chip</description>
 <text x="-1.5" y="-4" size="0.5" layer="21" font="vector" ratio="12">&gt;VALUE</text>
 </package>
 <package name="USON-8">
-<smd name="3" x="0.25" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
+<smd name="3" x="0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
 <wire x1="-1" y1="1.5" x2="1" y2="1.5" width="0.05" layer="21"/>
 <wire x1="1" y1="1.5" x2="1" y2="-1.5" width="0.05" layer="21"/>
 <wire x1="1" y1="-1.5" x2="-0.75" y2="-1.5" width="0.05" layer="21"/>
 <wire x1="-0.75" y1="-1.5" x2="-1" y2="-1.25" width="0.05" layer="21"/>
 <wire x1="-1" y1="-1.25" x2="-1" y2="1.5" width="0.05" layer="21"/>
-<smd name="4" x="0.75" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="2" x="-0.25" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="1" x="-0.75" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="8" x="-0.75" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="7" x="-0.25" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="6" x="0.25" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="5" x="0.75" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
+<smd name="4" x="0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="2" x="-0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="1" x="-0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="8" x="-0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="7" x="-0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="6" x="0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="5" x="0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
 <smd name="P$9" x="0" y="0" dx="1.8" dy="0.4" layer="1" cream="no"/>
-<rectangle x1="-0.875" y1="-0.125" x2="0.875" y2="0.125" layer="31"/>
 <text x="-1.25" y="-1.5" size="0.5" layer="25" font="vector" rot="R90">&gt;NAME</text>
 <text x="1.75" y="-1.625" size="0.5" layer="27" font="vector" rot="R90">&gt;VALUE</text>
 </package>
@@ -8645,12 +8644,17 @@ Will the boost then run in inefficient discontinous mode????</text>
 </segment>
 <segment>
 <pinref part="U$40" gate="G$1" pin="1.8V"/>
-<wire x1="81.28" y1="33.02" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="33.02" x2="78.74" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="33.02" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="33.02" x2="66.04" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="C10" gate="G$1" pin="P$1"/>
 <wire x1="66.04" y1="30.48" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
 <junction x="66.04" y="33.02"/>
 <pinref part="U4" gate="G$1" pin="VDD"/>
+<pinref part="U4" gate="G$1" pin="IO3/RESETN"/>
+<wire x1="81.28" y1="27.94" x2="78.74" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="27.94" x2="78.74" y2="33.02" width="0.1524" layer="91"/>
+<junction x="78.74" y="33.02"/>
 </segment>
 <segment>
 <pinref part="FB1" gate="G$1" pin="P$2"/>

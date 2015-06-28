@@ -2767,7 +2767,7 @@ SWD</text>
 <wire x1="1.625" y1="48.875" x2="0.625" y2="48.375" width="0.2" layer="29" curve="75"/>
 <wire x1="1.625" y1="48.875" x2="0.625" y2="49.375" width="0.2" layer="29" curve="-75"/>
 <wire x1="1.625" y1="41.875" x2="0.625" y2="41.375" width="0.2" layer="29"/>
-<text x="2.25" y="45.75" size="0.8" layer="29" font="vector" ratio="14">V0.982.0</text>
+<text x="2.25" y="45.75" size="0.8" layer="29" font="vector" ratio="14">V0.982.1</text>
 <rectangle x1="4.5" y1="45.5" x2="9" y2="49.5" layer="40"/>
 <rectangle x1="3.5" y1="33.5" x2="10.5" y2="39.5" layer="40"/>
 <polygon width="0.15" layer="30">
@@ -3037,21 +3037,20 @@ SWD</text>
 <text x="-1.5" y="-4" size="0.5" layer="21" font="vector" ratio="12">&gt;VALUE</text>
 </package>
 <package name="USON-8">
-<smd name="3" x="0.25" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
+<smd name="3" x="0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
 <wire x1="-1" y1="1.5" x2="1" y2="1.5" width="0.05" layer="21"/>
 <wire x1="1" y1="1.5" x2="1" y2="-1.5" width="0.05" layer="21"/>
 <wire x1="1" y1="-1.5" x2="-0.75" y2="-1.5" width="0.05" layer="21"/>
 <wire x1="-0.75" y1="-1.5" x2="-1" y2="-1.25" width="0.05" layer="21"/>
 <wire x1="-1" y1="-1.25" x2="-1" y2="1.5" width="0.05" layer="21"/>
-<smd name="4" x="0.75" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="2" x="-0.25" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="1" x="-0.75" y="-1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="8" x="-0.75" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="7" x="-0.25" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="6" x="0.25" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
-<smd name="5" x="0.75" y="1.4" dx="0.5" dy="0.28" layer="1" rot="R90"/>
+<smd name="4" x="0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="2" x="-0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="1" x="-0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="8" x="-0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="7" x="-0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="6" x="0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="5" x="0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
 <smd name="P$9" x="0" y="0" dx="1.8" dy="0.4" layer="1" cream="no"/>
-<rectangle x1="-0.875" y1="-0.125" x2="0.875" y2="0.125" layer="31"/>
 <text x="-1.25" y="-1.5" size="0.5" layer="25" font="vector" rot="R90">&gt;NAME</text>
 <text x="1.75" y="-1.625" size="0.5" layer="27" font="vector" rot="R90">&gt;VALUE</text>
 </package>
@@ -4920,10 +4919,11 @@ Covered vias can be set in Masks (Limit).
 <via x="13" y="32.625" extent="1-16" drill="0.3"/>
 <contactref element="U4" pad="8"/>
 <wire x1="1.375" y1="20.125" x2="2.25" y2="20.125" width="0.2" layer="1"/>
-<wire x1="2.25" y1="20.125" x2="4.625" y2="20.125" width="0.2" layer="1"/>
+<wire x1="2.25" y1="20.125" x2="2.75" y2="20.125" width="0.2" layer="1"/>
+<wire x1="2.75" y1="20.125" x2="4.625" y2="20.125" width="0.2" layer="1"/>
 <wire x1="4.625" y1="20.125" x2="4.875" y2="19.875" width="0.2" layer="1"/>
 <wire x1="4.875" y1="19.875" x2="5.125" y2="19.875" width="0.2" layer="1"/>
-<wire x1="2.25" y1="19.525" x2="2.25" y2="20.125" width="0.2" layer="1"/>
+<wire x1="2.25" y1="19.375" x2="2.25" y2="20.125" width="0.2" layer="1"/>
 <wire x1="1.375" y1="19.258" x2="1.375" y2="20.125" width="0.4" layer="1"/>
 <wire x1="2.5" y1="38.625" x2="4.5157875" y2="40.6407875" width="0.4" layer="1"/>
 <wire x1="10.875" y1="33.375" x2="10.875" y2="33.5" width="0.4" layer="1"/>
@@ -4949,6 +4949,8 @@ Covered vias can be set in Masks (Limit).
 <wire x1="2" y1="27.492" x2="2" y2="26" width="0.4" layer="1"/>
 <wire x1="2" y1="26" x2="6.625" y2="26" width="0.4" layer="1"/>
 <wire x1="6.625" y1="26" x2="6.625" y2="25.625" width="0.4" layer="1"/>
+<contactref element="U4" pad="7"/>
+<wire x1="2.75" y1="19.375" x2="2.75" y2="20.125" width="0.2" layer="1"/>
 </signal>
 <signal name="VDD_CORE">
 <contactref element="U1" pad="29"/>
@@ -4970,17 +4972,17 @@ Covered vias can be set in Masks (Limit).
 <signal name="MEM_MOSI">
 <contactref element="U4" pad="5"/>
 <contactref element="U1" pad="11"/>
-<wire x1="5.125" y1="18.875" x2="4.4" y2="18.875" width="0.15" layer="1"/>
-<wire x1="4.4" y1="18.875" x2="3.75" y2="19.525" width="0.15" layer="1"/>
+<wire x1="5.125" y1="18.875" x2="4.25" y2="18.875" width="0.15" layer="1"/>
+<wire x1="4.25" y1="18.875" x2="3.75" y2="19.375" width="0.15" layer="1"/>
 </signal>
 <signal name="MEM_CSN">
 <contactref element="U4" pad="1"/>
 <contactref element="U1" pad="13"/>
 <wire x1="5.125" y1="17.875" x2="4.375" y2="17.875" width="0.15" layer="1"/>
-<wire x1="4.375" y1="17.875" x2="4.125" y2="17.625" width="0.15" layer="1"/>
-<wire x1="4.125" y1="17.625" x2="2.875" y2="17.625" width="0.15" layer="1"/>
-<wire x1="2.875" y1="17.625" x2="2.25" y2="17" width="0.15" layer="1"/>
-<wire x1="2.25" y1="17" x2="2.25" y2="16.725" width="0.15" layer="1"/>
+<wire x1="4.375" y1="17.875" x2="4.1875" y2="17.6875" width="0.15" layer="1"/>
+<wire x1="4.1875" y1="17.6875" x2="2.6875" y2="17.6875" width="0.15" layer="1"/>
+<wire x1="2.6875" y1="17.6875" x2="2.25" y2="17.25" width="0.15" layer="1"/>
+<wire x1="2.25" y1="17.25" x2="2.25" y2="16.875" width="0.15" layer="1"/>
 </signal>
 <signal name="GIMO">
 <contactref element="U3" pad="3_RXD1"/>
@@ -5014,20 +5016,18 @@ Covered vias can be set in Masks (Limit).
 <signal name="MEM_SCK">
 <contactref element="U4" pad="6"/>
 <contactref element="U1" pad="12"/>
-<wire x1="5.125" y1="18.375" x2="4.375" y2="18.375" width="0.15" layer="1"/>
-<wire x1="4.375" y1="18.375" x2="3.75" y2="19" width="0.15" layer="1"/>
-<wire x1="3.75" y1="19" x2="3.5" y2="19" width="0.15" layer="1"/>
-<wire x1="3.5" y1="19" x2="3.25" y2="19.25" width="0.15" layer="1"/>
-<wire x1="3.25" y1="19.25" x2="3.25" y2="19.525" width="0.15" layer="1"/>
+<wire x1="5.125" y1="18.375" x2="4.25" y2="18.375" width="0.15" layer="1"/>
+<wire x1="4.25" y1="18.375" x2="4" y2="18.625" width="0.15" layer="1"/>
+<wire x1="4" y1="18.625" x2="3.75" y2="18.625" width="0.15" layer="1"/>
+<wire x1="3.75" y1="18.625" x2="3.25" y2="19.125" width="0.15" layer="1"/>
+<wire x1="3.25" y1="19.125" x2="3.25" y2="19.375" width="0.15" layer="1"/>
 </signal>
 <signal name="MEM_MISO">
 <contactref element="U4" pad="2"/>
 <contactref element="U1" pad="14"/>
-<wire x1="5.125" y1="17.375" x2="4.375" y2="17.375" width="0.15" layer="1"/>
-<wire x1="4.375" y1="17.375" x2="4.25" y2="17.25" width="0.15" layer="1"/>
-<wire x1="4.25" y1="17.25" x2="3" y2="17.25" width="0.15" layer="1"/>
-<wire x1="3" y1="17.25" x2="2.75" y2="17" width="0.15" layer="1"/>
-<wire x1="2.75" y1="17" x2="2.75" y2="16.725" width="0.15" layer="1"/>
+<wire x1="5.125" y1="17.375" x2="2.875" y2="17.375" width="0.15" layer="1"/>
+<wire x1="2.875" y1="17.375" x2="2.75" y2="17.25" width="0.15" layer="1"/>
+<wire x1="2.75" y1="17.25" x2="2.75" y2="16.875" width="0.15" layer="1"/>
 </signal>
 <signal name="SI_MOSI">
 <contactref element="U2" pad="14"/>
