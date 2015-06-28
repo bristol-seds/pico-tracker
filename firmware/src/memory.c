@@ -147,7 +147,7 @@ void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length)
   _mem_cs_disable();
 }
 /**
- * Write 256-byte page
+ * Write 256-byte page. Address should be page aligned
  */
 void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
 {
@@ -173,7 +173,7 @@ void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
 }
 /**
  * Erase sector
- */
+na */
 void mem_erase_sector(uint32_t address)
 {
   uint8_t tx_data[4];
@@ -231,7 +231,8 @@ void init_memory(void)
   /* Enable */
   spi_enable(FLASH_SERCOM);
 
-  if (mem_read_jedec_id() == 0) {
+  /* Check it's the chip we're expecting */
+  if (mem_read_jedec_id() != SST25WF040B_JEDEC_ID) {
     /* Memory JEDIC ID wrong!! */
     while (1);
   }
