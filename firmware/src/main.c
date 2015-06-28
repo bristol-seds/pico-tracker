@@ -114,7 +114,7 @@ void rtty_telemetry(struct tracker_datapoint* dp) {
 
   /* Sleep Wait for main telemetry */
   while (telemetry_active()) {
-    system_sleep();
+    idle(IDLE_TELEMETRY_ACTIVE);
   }
 }
 /**
@@ -134,7 +134,7 @@ void contestia_telemetry(struct tracker_datapoint* dp) {
 
   /* Sleep Wait for RSID */
   while (telemetry_active()) {
-    system_sleep();
+    idle(IDLE_TELEMETRY_ACTIVE);
   }
 
   /* Main telemetry */
@@ -142,7 +142,7 @@ void contestia_telemetry(struct tracker_datapoint* dp) {
 
   /* Sleep Wait for main telemetry */
   while (telemetry_active()) {
-    system_sleep();
+    idle(IDLE_TELEMETRY_ACTIVE);
   }
 }
 /**
@@ -171,7 +171,7 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     /* Transmit packet and wait */
     telemetry_start(TELEMETRY_APRS, 0xFFFF);
     while (telemetry_active()) {
-      system_sleep();
+      idle(IDLE_TELEMETRY_ACTIVE);
     }
   }
 }
@@ -184,7 +184,7 @@ void pips_telemetry(void)
   telemetry_start(TELEMETRY_PIPS, 0xFFFF);
 
   while (telemetry_active()) {
-    system_sleep();
+    idle(IDLE_TELEMETRY_ACTIVE);
   }
 }
 
@@ -227,6 +227,6 @@ int main(void)
     }
 
     /* Idle */
-    system_sleep();
+    idle(IDLE_WAIT_FOR_NEXT_TELEMETRY);
   }
 }

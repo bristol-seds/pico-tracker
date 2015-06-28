@@ -34,7 +34,7 @@
 typedef enum {
   IDLE_NONE,
   IDLE_WAIT_FOR_GPS 		= 0x90137526,
-  IDLE_WHILE_TELEMETRY_ACTIVE	= 0x15476064,
+  IDLE_TELEMETRY_ACTIVE		= 0x15476064,
   IDLE_WAIT_FOR_NEXT_TELEMETRY	= 0x36749870,
 } idle_wait_t;
 
@@ -52,7 +52,7 @@ struct idle_counter {
   uint32_t wait_for_next_telemetry;
 };
 
-void watchdog_do_idle(idle_wait_t idle_t);
+void idle(idle_wait_t idle_t);
 void watchdog_init(void);
 
 #endif /* WATCHDOG_H */

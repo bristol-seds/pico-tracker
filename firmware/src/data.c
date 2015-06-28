@@ -32,6 +32,7 @@
 #include "gps.h"
 #include "ubx_messages.h"
 #include "telemetry.h"
+#include "watchdog.h"
 
 struct tracker_datapoint datapoint;
 
@@ -68,7 +69,7 @@ struct tracker_datapoint* collect_data(void)
 
   /* Wait for the gps update */
   while (gps_update_position_pending()) {
-    system_sleep();
+    idle(IDLE_WAIT_FOR_GPS);
   }
 
   /* GPS Status */

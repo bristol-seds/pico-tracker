@@ -30,6 +30,8 @@
 #include "ubx_messages.h"
 #include "data.h"
 #include "hw_config.h"
+#include "watchdog.h"
+
 
 /* Internal time representation */
 struct tracker_time time;
@@ -54,7 +56,7 @@ void read_gps_time(void)
 
   /* Sleep Wait */
   while (gps_update_time_pending()) {
-    system_sleep();
+    idle(IDLE_WAIT_FOR_GPS);
   }
 
   /* Time */

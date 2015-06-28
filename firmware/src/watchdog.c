@@ -29,11 +29,13 @@
 #include "hw_config.h"
 #include "system/gclk.h"
 #include "system/wdt.h"
+#include "system/port.h"
 
 struct idle_counter idle_count, idle_count_max;
 
 idle_wait_t last_idle_t = IDLE_NONE;
 
+#define kick_external_watchdog()	  port_pin_toggle_output_level(WDT_WDI_PIN)
 
 /**
  * Increments the specified idle counter
@@ -44,7 +46,7 @@ void increment_idle_counter(idle_wait_t idle_t)
     case IDLE_WAIT_FOR_GPS:
       idle_count.wait_for_gps++;
       break;
-    case IDLE_WHILE_TELEMETRY_ACTIVE:
+    case IDLE_TELEMETRY_ACTIVE:
       idle_count.while_telemetry_active++;
       break;
     case IDLE_WAIT_FOR_NEXT_TELEMETRY:
@@ -87,11 +89,11 @@ void clear_idle_counters(void)
  *
  * idle_t - The type of idle loop
  */
-void watchdog_do_idle(idle_wait_t idle_t)
+void idle(idle_wait_t idle_t)
 {
   /* Check valid */
   if ((idle_t != IDLE_WAIT_FOR_GPS) &&
-      (idle_t != IDLE_WHILE_TELEMETRY_ACTIVE) &&
+      (idle_t != IDLE_TELEMETRY_ACTIVE) &&
       (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY)) {
     /* Oh dear */
     while (1);
@@ -109,8 +111,12 @@ void watchdog_do_idle(idle_wait_t idle_t)
   /* Check idle counter is still okay */
   check_idle_counters();
 
-  /* And finally kick the watchdog */
+  /* Kick the watchdog */
   wdt_reset_count();
+  kick_external_watchdog();
+
+  /* And sleep */
+  system_sleep();
 }
 
 
@@ -126,6 +132,13 @@ void watchdog_do_idle(idle_wait_t idle_t)
 
 void watchdog_init(void)
 {
+  /* Setup the external watchdog interrupt pin */
+  port_pin_set_config(WDT_WDI_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  kick_external_watchdog();                     /* Kick External */
+
   /* 0.25 seconds timeout. So 2^(15-2) cycles of the 32.768kHz wdt clock */
   system_gclk_gen_set_config(WDT_GCLK,
 			     GCLK_SOURCE_OSCULP32K, /* Source 		*/
@@ -143,7 +156,9 @@ void watchdog_init(void)
   		 WDT_PERIOD_NONE,	/* Window Period	*/
   		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
 
+  /* Kick Watchdogs */
   wdt_reset_count();
+  kick_external_watchdog();
 }
 
 
