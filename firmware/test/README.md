@@ -17,6 +17,22 @@ You need to have your debugger configured in config.mk and possibly
 also have gdbscript-custom. The test driver just issues an `attach 1`
 command after gdb startup and expects that to work.
 
+##### From the makefile
+
+From the main firmware makefile you can just run
+
+```
+make test
+```
+
+to run all tests, or
+
+```
+make test tc=<tc name>
+```
+
+to run a specific test case
+
 #### Operation
 
 Initially `tests.py` loads the latest binary, and runs `Reset_Handler`

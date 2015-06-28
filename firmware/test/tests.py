@@ -147,6 +147,10 @@ class Tests():
         fail = False
         ttime = 0
         if hasattr(test_case, 'iterations'):
+            """This is for test cases that need to be run multiple time to check
+            the result is always correct
+
+            """
             for i in range(test_case.iterations):
                 params = test_case.get_test()
                 result = self.hw_run_tc(tc_name, params)
@@ -158,6 +162,10 @@ class Tests():
                 else: # No result, Failure
                     fail = True
         else:
+            """This is for test cases that only run once or that use a pre-set
+            list of cases
+
+            """
             params = test_case.get_test()
             while (params):
                 result = self.hw_run_tc(tc_name, params)
@@ -195,8 +203,17 @@ class Tests():
 if __name__ == '__main__':
     t = Tests()
 
-    # Run all testcases
-    for tc_name in tc.__all__:
-        t.run_test_case(t.get_testcase_from_name(tc_name)())
+    # Read in our command file
+    with open("./test/.testcommand") as f:
+        tc_name = f.readline().strip('\n')
+
+    if tc_name in tc.__all__:
+        # If we've been commanded to run a test
+         t.run_test_case(t.get_testcase_from_name(tc_name)())
+
+    else:
+         # Run all testcases
+         for tc_name in tc.__all__:
+             t.run_test_case(t.get_testcase_from_name(tc_name)())
 
     del t

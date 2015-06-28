@@ -250,6 +250,7 @@ TESTCASES	:= $(shell $(FIND) test/tc -name '*.[h]')
 .PHONY: test
 test: test/main.py all
 	@echo "Running tests..."
+	@echo $(tc) > test/.testcommand
 	$(DB) -q -x test/tests.py
 
 # Ctypesgen for test
