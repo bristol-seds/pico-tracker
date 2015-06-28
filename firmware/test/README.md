@@ -53,7 +53,7 @@ From this directory you can just run 'make name=<new_name>'
 
 * Choose a testcase name `[tc-name]`
 * Create `tc/[tc-name].py` and `tc/[tc_name].h`. Use a pre-existing test case as a template.
-* Add `#include [tc-name].h` to the section at the top of `main.c`
+* Add `#include [tc-name].h` to the section at the top of `tmain.c`
 
 You'll need to fill in the `/* Parameters In */` and `/* Results Out
 */` structures in `tc/[tc-name].h`

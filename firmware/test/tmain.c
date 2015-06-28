@@ -39,6 +39,9 @@
 #include "times_two.h"
 #include "osc8m_calib.h"
 #include "location_aprs.h"
+#include "mem_write_page.h"
+/* [new_tc] */
+
 
 /******************************* tc_main ********************************/
 
