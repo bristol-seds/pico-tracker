@@ -2089,12 +2089,12 @@ chip</description>
 </symbol>
 <symbol name="SST25WF040BT">
 <pin name="VDD" x="-20.32" y="7.62" length="middle" direction="pwr"/>
-<pin name="WPN/IO2" x="20.32" y="-2.54" length="middle" direction="out" rot="R180"/>
+<pin name="!WP" x="20.32" y="-2.54" length="middle" direction="out" rot="R180"/>
 <pin name="SCK" x="20.32" y="2.54" length="middle" direction="in" rot="R180"/>
-<pin name="SO/IO1" x="20.32" y="5.08" length="middle" direction="out" rot="R180"/>
-<pin name="SI/IO0" x="20.32" y="7.62" length="middle" rot="R180"/>
-<pin name="CSN" x="20.32" y="-5.08" length="middle" direction="in" rot="R180"/>
-<pin name="IO3/RESETN" x="-20.32" y="2.54" length="middle" direction="out"/>
+<pin name="SO/SIO1" x="20.32" y="5.08" length="middle" direction="out" rot="R180"/>
+<pin name="SI/SIO0" x="20.32" y="7.62" length="middle" rot="R180"/>
+<pin name="!CE" x="20.32" y="-5.08" length="middle" direction="in" rot="R180"/>
+<pin name="!HOLD" x="-20.32" y="2.54" length="middle" direction="out"/>
 <pin name="GND_PAD" x="-20.32" y="-7.62" length="middle" direction="pwr"/>
 <pin name="VSS" x="-20.32" y="-5.08" length="middle" direction="pwr"/>
 <wire x1="-15.24" y1="-10.16" x2="15.24" y2="-10.16" width="0.254" layer="94"/>
@@ -2296,15 +2296,15 @@ chip</description>
 <devices>
 <device name="" package="USON-8">
 <connects>
-<connect gate="G$1" pin="CSN" pad="1"/>
+<connect gate="G$1" pin="!CE" pad="1"/>
+<connect gate="G$1" pin="!HOLD" pad="7"/>
+<connect gate="G$1" pin="!WP" pad="3"/>
 <connect gate="G$1" pin="GND_PAD" pad="P$9"/>
-<connect gate="G$1" pin="IO3/RESETN" pad="7"/>
 <connect gate="G$1" pin="SCK" pad="6"/>
-<connect gate="G$1" pin="SI/IO0" pad="5"/>
-<connect gate="G$1" pin="SO/IO1" pad="2"/>
+<connect gate="G$1" pin="SI/SIO0" pad="5"/>
+<connect gate="G$1" pin="SO/SIO1" pad="2"/>
 <connect gate="G$1" pin="VDD" pad="8"/>
 <connect gate="G$1" pin="VSS" pad="4"/>
-<connect gate="G$1" pin="WPN/IO2" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -8004,7 +8004,7 @@ holder</text>
 <wire x1="66.04" y1="30.48" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
 <junction x="66.04" y="33.02"/>
 <pinref part="U4" gate="G$1" pin="VDD"/>
-<pinref part="U4" gate="G$1" pin="IO3/RESETN"/>
+<pinref part="U4" gate="G$1" pin="!HOLD"/>
 <wire x1="81.28" y1="27.94" x2="78.74" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="27.94" x2="78.74" y2="33.02" width="0.1524" layer="91"/>
 <junction x="78.74" y="33.02"/>
@@ -8136,7 +8136,7 @@ holder</text>
 <segment>
 <wire x1="121.92" y1="33.02" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
 <label x="127" y="33.02" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="SI/IO0"/>
+<pinref part="U4" gate="G$1" pin="SI/SIO0"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA08"/>
@@ -8148,7 +8148,7 @@ holder</text>
 <segment>
 <wire x1="139.7" y1="20.32" x2="121.92" y2="20.32" width="0.1524" layer="91"/>
 <label x="127" y="20.32" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="CSN"/>
+<pinref part="U4" gate="G$1" pin="!CE"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA10"/>
@@ -8160,7 +8160,7 @@ holder</text>
 <segment>
 <wire x1="121.92" y1="22.86" x2="139.7" y2="22.86" width="0.1524" layer="91"/>
 <label x="127" y="22.86" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="WPN/IO2"/>
+<pinref part="U4" gate="G$1" pin="!WP"/>
 </segment>
 </net>
 <net name="GIMO" class="0">
@@ -8208,7 +8208,7 @@ holder</text>
 <segment>
 <wire x1="121.92" y1="30.48" x2="139.7" y2="30.48" width="0.1524" layer="91"/>
 <label x="127" y="30.48" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="SO/IO1"/>
+<pinref part="U4" gate="G$1" pin="SO/SIO1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA11"/>
