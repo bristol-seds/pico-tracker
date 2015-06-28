@@ -8044,6 +8044,8 @@ Will the boost then run in inefficient discontinous mode????</text>
 <text x="165.1" y="-45.72" size="1.778" layer="97">4.60V = 1.25(220/82 + 1)</text>
 <text x="353.06" y="-35.56" size="1.778" layer="97">Place</text>
 <text x="165.1" y="-43.18" size="1.778" layer="97">4.25V = 1.25(180/75 + 1)</text>
+<wire x1="110.236" y1="87.884" x2="110.236" y2="83.312" width="0.1524" layer="97"/>
+<text x="109.22" y="86.614" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM1)</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
