@@ -114,6 +114,8 @@ void mem_chip_erase(void)
   _mem_single_command(MEM_OP_WRITE_ENABLE);
 
   _mem_single_command(MEM_OP_CHIP_ERASE);
+
+  /* Wait */
   _mem_wait_for_done();
 
   _mem_single_command(MEM_OP_WRITE_DISABLE);

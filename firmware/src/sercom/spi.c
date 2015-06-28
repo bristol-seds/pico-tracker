@@ -399,46 +399,18 @@ enum sercom_status_t spi_read_buffer_wait(SercomSpi* const hw,
     return SERCOM_STATUS_INVALID_ARG;
   }
 
-//  if ((hw->mode == SPI_MODE_SLAVE) && (spi_is_write_complete(hw))) {
-    /* Clear TX complete flag */
-//    _spi_clear_tx_complete_flag(hw);
-//  }
-
   uint16_t rx_pos = 0;
 
   while (length--) {
-    if (SPI_MODE_MASTER(hw)) {
-      /* Wait until the module is ready to write a character */
-      while (!spi_is_ready_to_write(hw)) {
-      }
 
-      /* Send dummy SPI character to read in master mode */
-      spi_write(hw, dummy);
-    } else if (SPI_MODE_SLAVE(hw)) {
+    /* Wait until the module is ready to write a character */
+    while (!spi_is_ready_to_write(hw));
 
-      /* Start timeout period for slave */
-      for (uint32_t i = 0; i <= SPI_TIMEOUT; i++) {
-	if (spi_is_ready_to_read(hw)) {
-	  break;
-	}
-      }
-      /* Check if master has ended the transaction */
-      if (spi_is_write_complete(hw)) {
-	_spi_clear_tx_complete_flag(hw);
-	return SERCOM_STATUS_ABORTED;
-      }
-
-      if (!spi_is_ready_to_read(hw)) {
-	/* Not ready to read data within timeout period */
-	return SERCOM_STATUS_TIMEOUT;
-      }
-    } else {
-      //ERROR
-    }
+    /* Send dummy SPI character to read in master mode */
+    spi_write(hw, dummy);
 
     /* Wait until the module is ready to read a character */
-    while (!spi_is_ready_to_read(hw)) {
-    }
+    while (!spi_is_ready_to_read(hw));
 
     uint16_t received_data = 0;
     enum sercom_status_t retval = spi_read(hw, &received_data);
@@ -450,11 +422,6 @@ enum sercom_status_t spi_read_buffer_wait(SercomSpi* const hw,
 
     /* Read value will be at least 8-bits long */
     rx_data[rx_pos++] = received_data;
-
-    /* If 9-bit data, write next received byte to the buffer */
-//    if (hw->character_size == SPI_CHARACTER_SIZE_9BIT) {
-//      rx_data[rx_pos++] = (received_data >> 8);
-//    }
   }
 
   return SERCOM_STATUS_OK;
@@ -656,108 +623,26 @@ enum sercom_status_t spi_write_buffer_wait(SercomSpi* const hw,
 
   /* Write block */
   while (length--) {
-    /* Start timeout period for slave */
-    if (SPI_MODE_SLAVE(hw)) {
-      for (uint32_t i = 0; i <= SPI_TIMEOUT; i++) {
-	if (spi_is_ready_to_write(hw)) {
-	  break;
-	}
-      }
-      /* Check if master has ended the transaction */
-      if (spi_is_write_complete(hw)) {
-	_spi_clear_tx_complete_flag(hw);
-	return SERCOM_STATUS_ABORTED;
-      }
-
-      if (!spi_is_ready_to_write(hw)) {
-	/* Not ready to write data within timeout period */
-	return SERCOM_STATUS_TIMEOUT;
-      }
-    }
-
-    /* Wait until the module is ready to write a character */
-    while (!spi_is_ready_to_write(hw)) {
-    }
 
     /* Write value will be at least 8-bits long */
     uint16_t data_to_send = tx_data[tx_pos++];
 
-    /* If 9-bit data, get next byte to send from the buffer */
-//    if (hw->character_size == SPI_CHARACTER_SIZE_9BIT) {
-//      data_to_send |= (tx_data[tx_pos++] << 8);
-//    }
+    /* Wait until the module is ready to write a character */
+    while (!spi_is_ready_to_write(hw));
 
     /* Write the data to send */
     spi_write(hw, data_to_send);
 
-//    if (hw->receiver_enabled) {
-      /* Start timeout period for slave */
-      if (SPI_MODE_SLAVE(hw)) {
-	for (uint32_t i = 0; i <= SPI_TIMEOUT; i++) {
-	  if (spi_is_ready_to_write(hw)) {
-	    data_to_send = tx_data[tx_pos++];
-	    /* If 9-bit data, get next byte to send from the buffer */
-//	    if (module->character_size == SPI_CHARACTER_SIZE_9BIT) {
-//	      data_to_send |= (tx_data[tx_pos++] << 8);
-//	    }
+    while (!spi_is_ready_to_read(hw));
 
-	    /* Write the data to send */
-	    spi_write(hw, data_to_send);
-	    length--;
-	  }
-	  if (spi_is_ready_to_read(hw)) {
-	    break;
-	  }
-	}
-
-	/* Check if master has ended the transaction */
-	if (spi_is_write_complete(hw)) {
-	  _spi_clear_tx_complete_flag(hw);
-	  return SERCOM_STATUS_ABORTED;
-	}
-
-	if (!spi_is_ready_to_read(hw)) {
-	  /* Not ready to read data within timeout period */
-	  return SERCOM_STATUS_TIMEOUT;
-	}
-      }
-
-      while (!spi_is_ready_to_read(hw)) {
-      }
-
-      /* Flush read buffer */
-      uint16_t flush;
-      spi_read(hw, &flush);
-      flush_length--;
-//    }
+    /* Flush read buffer */
+    uint16_t flush;
+    spi_read(hw, &flush);
+    flush_length--;
   }
 
-  if (SPI_MODE_MASTER(hw)) {
-    /* Wait for last byte to be transferred */
-    while (!spi_is_write_complete(hw)) {
-    }
-  }
-
-  if (SPI_MODE_SLAVE(hw)) {
-//    if (module->receiver_enabled) {
-//      while (flush_length) {
-	/* Start timeout period for slave */
-//	for (uint32_t i = 0; i <= SPI_TIMEOUT; i++) {
-//	  if (spi_is_ready_to_read(hw)) {
-//	    break;
-//	  }
-//	}
-//	if (!spi_is_ready_to_read(hw)) {
-	  /* Not ready to read data within timeout period */
-//	  return STATUS_ERR_TIMEOUT;
-//	}
-	/* Flush read buffer */
-//	uint16_t flush;
-//	spi_read(hw, &flush);
-//	flush_length--;
-//      }
-//    }
-  }
+  /* Wait for last byte to be transferred */
+  while (!spi_is_write_complete(hw));
 
   return SERCOM_STATUS_OK;
 }
@@ -800,10 +685,6 @@ enum sercom_status_t spi_transceive_buffer_wait(SercomSpi* const hw,
   if (length == 0) {
     return SERCOM_STATUS_INVALID_ARG;
   }
-
-//  if (!(hw->receiver_enabled)) {
-//    return SERCOM_STATUS_DENIED;
-//  }
 
   if (SPI_MODE_SLAVE(hw) && (spi_is_write_complete(hw))) {
     /* Clear TX complete flag */
