@@ -40,6 +40,7 @@
 #include "osc8m_calib.h"
 #include "location_aprs.h"
 #include "mem_write_page.h"
+#include "mem_write_all.h"
 /* [new_tc] */
 
 

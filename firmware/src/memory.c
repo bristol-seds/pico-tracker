@@ -109,7 +109,15 @@ void _mem_wait_for_done(void)
 /**
  * Simple Commands
  */
-#define mem_chip_erase()	_mem_single_comand(MEM_OP_CHIP_ERASE)
+void mem_chip_erase(void)
+{
+  _mem_single_command(MEM_OP_WRITE_ENABLE);
+
+  _mem_single_command(MEM_OP_CHIP_ERASE);
+  _mem_wait_for_done();
+
+  _mem_single_command(MEM_OP_WRITE_DISABLE);
+}
 
 /**
  * JEDEC ID

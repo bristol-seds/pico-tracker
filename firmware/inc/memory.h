@@ -47,7 +47,7 @@
 #define BACKLOG_START_PAGE	0x00
 #define BACKLOG_END_PAGE	0x7f
 
-
+void mem_chip_erase(void);
 void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
 void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length);
 void mem_erase_sector(uint32_t address);
