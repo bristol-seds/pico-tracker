@@ -175,6 +175,10 @@ class Tests():
 
                 params = test_case.get_test()
 
+        # Teardown testcase if required
+        if hasattr(test_case, 'teardown'):
+            test_case.teardown()
+
         # Calculate time taken
         ttime = (arrow.now()-start)
 
