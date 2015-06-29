@@ -8036,7 +8036,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <text x="510.54" y="-104.14" size="1.778" layer="97">!MR! has internal pull-up</text>
 <text x="347.98" y="-114.3" size="1.778" layer="97">Rchg = 2.2kΩ gives Ichg = 70mA</text>
 <text x="347.98" y="-119.38" size="1.778" layer="97">Ichg can be measured by Vprog</text>
-<text x="165.1" y="-40.64" size="1.778" layer="97">Vout = 1.25(R1/R2 + 1)</text>
+<text x="165.1" y="-38.1" size="1.778" layer="97">Vout = 1.25(R1/R2 + 1)</text>
 <text x="165.1" y="-50.8" size="1.778" layer="97">Choose so total current through divider is 2µA - 20µA</text>
 <text x="7.62" y="-50.8" size="1.778" layer="97">Not actually an SMA connector</text>
 <text x="96.52" y="81.788" size="1.27" layer="97" font="vector" ratio="11">(AIN[0])</text>
@@ -8046,6 +8046,7 @@ Will the boost then run in inefficient discontinous mode????</text>
 <text x="165.1" y="-43.18" size="1.778" layer="97">4.25V = 1.25(180/75 + 1)</text>
 <wire x1="110.236" y1="87.884" x2="110.236" y2="83.312" width="0.1524" layer="97"/>
 <text x="109.22" y="86.614" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM1)</text>
+<text x="165.1" y="-40.64" size="1.778" layer="97">4.00V = 1.25(180/82 + 1)</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
