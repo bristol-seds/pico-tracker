@@ -156,7 +156,6 @@ class Tests():
                 if result:
                     if not test_case.is_correct(params, result, self.print_info):
                         fail = True
-                        break
                 else: # No result, Failure
                     fail = True
         else:
@@ -171,9 +170,10 @@ class Tests():
                 if result:
                     if not test_case.is_correct(params, result, self.print_info):
                         fail = True
-                        break
                 else: # No result, Failure
                     fail = True
+
+                params = test_case.get_test()
 
         # Calculate time taken
         ttime = (arrow.now()-start)
