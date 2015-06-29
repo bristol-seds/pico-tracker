@@ -59,7 +59,7 @@ bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y
     if (((polyY(i) < y && polyY(j) >= y) || (polyY(j) < y && polyY(i) >= y)) &&
         (polyX(i) <= x || polyX(j) <= x)) {
 
-      if (polyX(i) + (y-polyY(i)) / (polyY(j) - polyY(i)) * (polyX(j)-polyX(i)) < x) {
+      if (polyX(i) + (float)(y-polyY(i)) / (polyY(j) - polyY(i)) * (polyX(j)-polyX(i)) < x) {
         oddNodes =! oddNodes;
       }
     }
@@ -98,10 +98,8 @@ bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon
  */
 bool aprs_location_tx_allow(void) {
 
-  /* Not in any zone, or in a zone other than Alpha, or not airbourne */
-  return (current_aprs_zone == -1) ||
-    (current_aprs_zone > 0) ||
-    (_altitude < 200);
+  /* Not in any zone, or in a zone other than Alpha */
+  return (current_aprs_zone == -1) || (current_aprs_zone > 0);
 }
 /**
  * Returns the aprs frequency in the current zone.
