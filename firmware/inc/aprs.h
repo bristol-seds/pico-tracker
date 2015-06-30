@@ -26,6 +26,7 @@
 #define APRS_H
 
 #include "rf_tests.h"
+#include "data.h"
 
 /**
  * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
@@ -54,7 +55,8 @@
 
 #endif
 
-void aprs_set_location(float lat, float lon, float altitude);
+void aprs_set_datapoint(tracker_datapoint* dp);
+void aprs_set_comment(char* comment);
 
 uint8_t aprs_start(void);
 uint8_t aprs_tick(void);

@@ -45,6 +45,7 @@ typedef struct tracker_datapoint {
 
   /* Sensors */
   float battery;                /* Volts */
+  float solar;                  /* Volts */
   float temperature;            /* ºC */
   uint32_t xosc_error;          /* Hertz */
 

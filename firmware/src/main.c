@@ -163,7 +163,7 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
   if (aprs_location_tx_allow()) {
 
     /* Set location */
-    aprs_set_location(lat, lon, altitude);
+    aprs_set_datapoint(dp);
 
     /* Set frequency */
     telemetry_aprs_set_frequency(aprs_location_frequency());

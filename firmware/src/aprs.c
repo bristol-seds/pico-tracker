@@ -29,6 +29,7 @@
 #include "samd20.h"
 #include "aprs.h"
 #include "ax25.h"
+#include "data.h"
 
 /**
  * USEFUL RESOURCES
@@ -55,16 +56,63 @@ void base91_encode(char *str, uint8_t n, uint32_t value)
 
 
 /**
+ * Compressed latitude in base-91 representation. Four characters
+ *
+ * Latitude should be given in decimal degrees
+ */
+void encode_latitude(char* str, float lat)
+{
+  uint32_t compressed_lat_value = (uint32_t)round(380926 * ( 90 - lat));
+  base91_encode(str, 4, compressed_lat_value);
+}
+/**
+ * Compressed longitude in base-91 representation. Four characters
+ *
+ * Longitude should be given in decimal degrees
+ */
+void encode_longitude(char* str, float lon)
+{
+  uint32_t compressed_lon_value = (uint32_t)round(190463 * (180 + lon));
+  base91_encode(str, 4, compressed_lon_value);
+}
+/**
+ * Compressed altitude in base-91 representation. Two characters
+ *
+ * Altitude should be given in meters
+ */
+void encode_altitude(char* str, uint32_t altitude_meters) {
+  uint32_t altitude_feet = altitude_meters * 3.2808; /* Oh yeah feet! Everyone loves feet */
+  uint16_t compressed_value = log(altitude_feet) / log(1.002);
+
+  base91_encode(str, 2, compressed_value);
+}
+
+/**
+ * String for telemetry
+ *
+ * String length should be >= 9
+ */
+void encode_telemetry(char* str, tracker_datapoint* dp)
+{
+  base91_encode(str+0, 2, (dp->battery * 1000)); /* Battery never > 8V */
+  base91_encode(str+2, 2, (dp->solar * 1000));   /* Solar never > 8V */
+  base91_encode(str+4, 2, ((dp->temperature+273.2)*10)); /* Temp never > 526º! */
+  base91_encode(str+6, 2, dp->satillite_count);        /* Small! */
+}
+
+/**
  * SET VALUES
  * =============================================================================
  */
 
-float _lat = 0, _lon = 0, _altitude;
-void aprs_set_location(float lat, float lon, float altitude) {
-  _lat = lat; _lon = lon; _altitude = altitude;
+struct tracker_datapoint* _dp = NULL;
+char* _comment = NULL;
+void aprs_set_datapoint(tracker_datapoint* dp) {
+  _dp = dp;
 }
-
-
+void aprs_set_comment(char* comment) {
+  _comment = comment;
+}
 
 
 /**
@@ -78,12 +126,13 @@ void aprs_set_location(float lat, float lon, float altitude) {
 uint8_t aprs_start(void)
 {
   char addresses[50];
-  char information[50];
+  char information[150];
   char compressed_lat[5];
   char compressed_lon[5];
+  char telemetry[20];
 
   /* Don't run without a valid position */
-  if (_lat == 0 && _lon == 0) return 0;
+  if (!_dp || (_dp->latitude == 0 && _dp->longitude == 0)) return 0;
 
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
@@ -92,24 +141,29 @@ uint8_t aprs_start(void)
                                    "WIDE2", 1);
 
   /* Prepare the aprs position report */
-  uint32_t compressed_lat_value = (uint32_t)round(380926 * ( 90 - _lat));
-  uint32_t compressed_lon_value = (uint32_t)round(190463 * (180 + _lon));
-  base91_encode(compressed_lat, 4, compressed_lat_value);
-  base91_encode(compressed_lon, 4, compressed_lon_value);
-  uint32_t altitude_feet = _altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
+  encode_latitude(compressed_lat, _dp->latitude);
+  encode_longitude(compressed_lon, _dp->longitude);
+  uint32_t altitude_feet = _dp->altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
+
+  /* Encode telemetry string */
+  encode_telemetry(telemetry, _dp);
 
   /* Encode the information field */
   /* Compressed Lat/Long position report, no timestamp */
   uint32_t information_len = sprintf(information,
-                                     "!%c%s%s%c%s%c/A=%06ld TESTING",// RTTY/434.6U8N2",
+                                     "!%c%s%s%c%s%c/A=%06ld %s|%s|",
                                      APRS_SYMBOL[0], /* Symbol Table ID */
                                      compressed_lat,
                                      compressed_lon,
                                      APRS_SYMBOL[1], /* Symbol Code */
                                      "  ",           /* Compressed Altitude */
                                      ' ',            /* Compression Type */
-                                     altitude_feet   /* Altitude */
+                                     altitude_feet,   /* Altitude */
+                                     _comment ? _comment : "",
+                                     telemetry
     );
+
+// RTTY/434.6U8N2",
 
   /* Let's actually try that out.. We can add comment etc. later */
 
