@@ -34,6 +34,5 @@ typedef struct tracker_time {
 
 void do_cron(void);
 void cron_tick(void);
-void cron_init(void);
 
 #endif /* CRON_H */

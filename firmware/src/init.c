@@ -99,7 +99,7 @@ void init(timepulse_callback_t callback)
   system_events_init();
   system_extint_init();
 
-  /* Remember the HW watchdog has been running since reset */
+  /* Watchdog */
   //watchdog_init();
 
   /* Configure Sleep Mode */
@@ -129,8 +129,4 @@ void init(timepulse_callback_t callback)
 
   /* Initialise Si4060 interface */
   si_trx_init();
-
-  /* Data and Cron structures */
-  data_init();
-  cron_init();
 }

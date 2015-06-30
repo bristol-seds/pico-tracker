@@ -34,7 +34,7 @@
 
 
 /* Internal time representation */
-struct tracker_time time;
+struct tracker_time time = {};
 
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
@@ -138,9 +138,4 @@ void cron_tick(void) {
     /* Be careful not a call this while the collect_data function is running */
     read_gps_time();
   }
-}
-
-void cron_init(void)
-{
-  memset(&time, 0, sizeof(struct tracker_time));
 }

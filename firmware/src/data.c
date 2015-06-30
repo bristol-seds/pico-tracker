@@ -34,7 +34,7 @@
 #include "telemetry.h"
 #include "watchdog.h"
 
-struct tracker_datapoint datapoint;
+struct tracker_datapoint datapoint = {};
 
 void xosc_measure_callback(uint32_t result)
 {
@@ -89,10 +89,4 @@ struct tracker_datapoint* collect_data(void)
   gps_set_powersave_auto();
 
 return &datapoint;
-}
-
-
-void data_init(void)
-{
-  memset(&datapoint, 0, sizeof(struct tracker_datapoint));
 }

@@ -53,6 +53,5 @@ typedef struct tracker_datapoint {
 
 void collect_data_async(void);
 struct tracker_datapoint* collect_data(void);
-void data_init(void);
 
 #endif /* DATA_H */
