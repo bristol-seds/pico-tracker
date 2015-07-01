@@ -31,10 +31,10 @@
 #include "data.h"
 #include "hw_config.h"
 #include "watchdog.h"
-
+#include "backlog.h"
 
 /* Internal time representation */
-struct tracker_time time = {};
+struct tracker_time time = {0};
 
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
@@ -110,6 +110,11 @@ void do_cron(void)
   } else if ((time.second % 1) == 0) {
     pips_telemetry();
 
+  }
+
+  /* ---- Record for backlog ---- */
+  if ((time.minute == 0) && (time.second == 25)) {
+    record_backlog(dp);
   }
 }
 

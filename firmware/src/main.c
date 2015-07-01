@@ -39,8 +39,10 @@
 #include "location.h"
 #include "rf_tests.h"
 #include "data.h"
+#include "backlog.h"
 
 #define CALLSIGN	"UBSEDSx"
+#define APRS_COMMENT	"RTTY/434.6U8N2"
 
 /**
  * Formats a UKHAS telemetry string for the given datapoint
@@ -150,6 +152,8 @@ void contestia_telemetry(struct tracker_datapoint* dp) {
  */
 void aprs_telemetry(struct tracker_datapoint* dp) {
 
+  struct tracker_datapoint* backlog_dp_ptr;
+
   if (!gps_is_locked()) return; /* Don't bother with no GPS */
 
   float lat = (float)dp->latitude / 10000000.0;  /* degrees */
@@ -164,6 +168,19 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
 
     /* Set location */
     aprs_set_datapoint(dp);
+
+    /* Set comment */
+    if ((dp->time.hour % 2) == 0) {
+      aprs_set_comment(APRS_COMMENT);
+    } else {
+      backlog_dp_ptr = get_backlog();
+
+      if (backlog_dp_ptr) {     /* Backlog comment if we can */
+        aprs_set_backlog_comment(backlog_dp_ptr);
+      } else {
+        aprs_set_comment(APRS_COMMENT);
+      }
+    }
 
     /* Set frequency */
     telemetry_aprs_set_frequency(aprs_location_frequency());
