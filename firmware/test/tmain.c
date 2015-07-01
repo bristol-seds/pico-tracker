@@ -42,6 +42,8 @@
 #include "mem_write_page.h"
 #include "mem_write_all.h"
 #include "location_aprs_file.h"
+#include "backlog_write_read.h"
+#include "mem_erase_all.h"
 /* [new_tc] */
 
 

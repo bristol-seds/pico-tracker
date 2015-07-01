@@ -1,5 +1,5 @@
 /*
- * Provides functions for using the external flash memory
+ * Records and retreives backlog points from memory
  * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,40 +22,31 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef BACKLOG_H
+#define BACKLOG_H
+
+#include "samd20.h"
+#include "data.h"
 
 /**
- * Memory layout:
+ * How many things we store in our backlog.
  *
- * 256-byte pages
- * 4-kbyte sectors (erase) - 16 pages
- * 64-kbyte blocks - 16 sectors
+ * Should be a power of two because of fractal retreival algorithm
+ * 256 @ 1 / hour = 10 days 16 hours
  */
-
-#define TOTAL_PAGES	0x800
-#define TOTAL_SECTORS	0x80
-#define TOTAL_BLOCKS	0x8
-
-#define MEMORY_MASK	0x7FFFF
-#define PAGE_MASK	0x7FF00
-#define SECTOR_MASK	0x7F000
-
-#define MEMORY_SIZE	0x80000
-#define PAGE_SIZE	0x00100
-#define SECTOR_SIZE	0x01000
-#define BLOCK_SIZE	0x10000
-
+#define BACKLOG_COUNT_BITS	8
+#define BACKLOG_COUNT		256
 /**
- * Pages assigned to backlog. Currently 128 records
+ * How many bytes each memory record uses
  */
-#define BACKLOG_START_PAGE	0x00
-#define BACKLOG_END_PAGE	0x7f
+#define BACKLOG_ITEM_SIZE	0x100   /* Currently one backlog per page */
+#define BACKLOGS_PER_SECTOR	16
+/**
+ * Address offset in memory
+ */
+#define BACKLOG_ADDRESS 0
 
-void mem_chip_erase(void);
-void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
-void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length);
-void mem_erase_sector(uint32_t address);
-void init_memory(void);
+void record_backlog(tracker_datapoint* dp);
+struct tracker_datapoint* get_backlog(void);
 
 #endif

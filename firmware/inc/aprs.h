@@ -57,6 +57,7 @@
 
 void aprs_set_datapoint(tracker_datapoint* dp);
 void aprs_set_comment(char* comment);
+void aprs_set_backlog_comment(tracker_datapoint* log_dp);
 
 uint8_t aprs_start(void);
 uint8_t aprs_tick(void);

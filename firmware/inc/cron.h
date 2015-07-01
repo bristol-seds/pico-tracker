@@ -26,7 +26,7 @@
 #define CRON_H
 
 typedef struct tracker_time {
-  uint64_t epoch;
+  uint32_t epoch;
   uint16_t year;
   uint8_t month, day, hour, minute, second;
   uint8_t valid;

@@ -98,7 +98,7 @@ void _mem_wait_for_done(void)
   do {
     _mem_read(&status_register, 1);
 
-    // Sleep for afew hundred microseconds??
+    // Sleep for a few hundred microseconds??
     for (int i = 0; i < 100; i++);
 
   } while (status_register & MEM_STATUS_BUSY);

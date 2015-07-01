@@ -92,6 +92,7 @@ void encode_altitude(char* str, uint32_t altitude_meters) {
  *
  * String length should be >= 9
  */
+#define TELEMETRY_FIELD_LEN	((4 * 2) + 1)
 void encode_telemetry(char* str, tracker_datapoint* dp)
 {
   base91_encode(str+0, 2, (dp->battery * 1000)); /* Battery never > 8V */
@@ -101,17 +102,50 @@ void encode_telemetry(char* str, tracker_datapoint* dp)
 }
 
 /**
+ * Comment string for backlog
+ */
+#define BACKLOG_COMMENT_LEN	(7 + (2 * 4) + 2 + (4 * 2) + 1)
+void encode_backlog(char* str, tracker_datapoint* dp)
+{
+  char compressed_lat[5];
+  char compressed_lon[5];
+  char compressed_altitude[3];
+  char telemetry[TELEMETRY_FIELD_LEN];
+
+  /* Prepare the aprs position report */
+  encode_latitude(compressed_lat, dp->latitude);
+  encode_longitude(compressed_lon, dp->longitude);
+  encode_altitude(compressed_altitude, dp->altitude);
+
+  /* Encode telemetry string */
+  encode_telemetry(telemetry, dp);
+
+  /* Encode backlog string */
+  sprintf(str,
+          "%02d%02d%02dz%s%s%s%s",
+          dp->time.day, dp->time.hour, dp->time.second,
+          compressed_lat, compressed_lon, compressed_altitude,
+          telemetry
+    );
+}
+
+/**
  * SET VALUES
  * =============================================================================
  */
 
 struct tracker_datapoint* _dp = NULL;
 char* _comment = NULL;
+char backlog_comment[BACKLOG_COMMENT_LEN];
 void aprs_set_datapoint(tracker_datapoint* dp) {
   _dp = dp;
 }
 void aprs_set_comment(char* comment) {
   _comment = comment;
+}
+void aprs_set_backlog_comment(tracker_datapoint* log_dp) {
+  encode_backlog(backlog_comment, log_dp);
+  _comment = backlog_comment;
 }
 
 
@@ -129,7 +163,7 @@ uint8_t aprs_start(void)
   char information[150];
   char compressed_lat[5];
   char compressed_lon[5];
-  char telemetry[20];
+  char telemetry[TELEMETRY_FIELD_LEN];
 
   /* Don't run without a valid position */
   if (!_dp || (_dp->latitude == 0 && _dp->longitude == 0)) return 0;
