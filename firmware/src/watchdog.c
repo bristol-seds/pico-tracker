@@ -29,7 +29,11 @@
 #include "hw_config.h"
 #include "system/gclk.h"
 #include "system/wdt.h"
+#include "system/interrupt.h"
 #include "system/port.h"
+#include "tc/tc_driver.h"
+#include "si_trx.h"
+#include "init.h"
 
 struct idle_counter idle_count, idle_count_max;
 
@@ -85,6 +89,18 @@ void clear_idle_counters(void)
 }
 
 /**
+ * Kick
+ */
+void kick_the_watchdog(void)
+{
+  /* tc_set_count_value(TC1, 0); */
+  /* tc_clear_status(TC1, TC_STATUS_CHANNEL_0_MATCH); */
+
+  wdt_reset_count();
+
+  kick_external_watchdog();
+}
+/**
  * Called in idle loops. Kicks the watchdog
  *
  * idle_t - The type of idle loop
@@ -112,8 +128,7 @@ void idle(idle_wait_t idle_t)
   check_idle_counters();
 
   /* Kick the watchdog */
-  wdt_reset_count();
-  kick_external_watchdog();
+  kick_the_watchdog();
 
   /* And sleep */
   system_sleep();
@@ -123,7 +138,7 @@ void idle(idle_wait_t idle_t)
 /**
  * The internal watchdog is used to bring the processor to a halt and
  * coredump to external memory.
- * 0.2s < tout < 0.32s
+ * 0.4s < t_early_w < 0.64s
  *
  * The external watchdog then hard resets the MCU and GPS to bring the
  * system back up in a clean state.
@@ -139,36 +154,56 @@ void watchdog_init(void)
 		      false);			/* Powersave */
   kick_external_watchdog();                     /* Kick External */
 
-  /* 0.25 seconds timeout. So 2^(15-2) cycles of the 32.768kHz wdt clock */
+  /* /\* 0.5s early warn. So 2^(15-1) cycles of the 32.768kHz ulposc *\/ */
   system_gclk_gen_set_config(WDT_GCLK,
-			     GCLK_SOURCE_OSCULP32K, /* Source 		*/
-			     false,		/* High When Disabled	*/
-			     128,		/* Division Factor 2^7	*/
-			     false,		/* Run in standby	*/
-			     true);		/* Output Pin Enable	*/
+        		     GCLK_SOURCE_OSCULP32K, /* Source 		*/
+        		     false,		/* High When Disabled	*/
+        		     128,		/* Division Factor 2^7  */
+        		     false,		/* Run in standby	*/
+        		     true);		/* Output Pin Enable	*/
   system_gclk_gen_enable(WDT_GCLK);
 
   /* Set the watchdog timer. On 256Hz gclk  */
-  wdt_set_config(true,			/* Lock WDT		*/
-  		 true,			/* Enable WDT		*/
-  		 WDT_GCLK,		/* Clock Source */
-  		 WDT_PERIOD_64CLK,	/* Timeout Period div 2^6 */
-  		 WDT_PERIOD_NONE,	/* Window Period	*/
-  		 WDT_PERIOD_NONE);	/* Early Warning Period	*/
+  wdt_set_config(false,			/* Lock WDT		*/
+                 true,			/* Enable WDT		*/
+                 WDT_GCLK,		/* Clock Source		*/
+                 WDT_PERIOD_16384CLK,	/* Timeout Period	*/
+                 WDT_PERIOD_NONE,	/* Window Period	*/
+                 WDT_PERIOD_256CLK);	/* Early Warning Period	*/
+
+  WDT->INTENSET.reg |= WDT_INTENSET_EW;
+  WDT->INTFLAG.reg |= WDT_INTFLAG_EW;
+  irq_register_handler(WDT_IRQn, 0);
 
   /* Kick Watchdogs */
-  wdt_reset_count();
   kick_external_watchdog();
+  wdt_reset_count();
 }
 
 
-/**
- * Called for the watchdog early warning interrupt
- */
-void WDT_Handler(void) {
+void WDT_Handler(void)
+{
+  Wdt *const hw = WDT;
+
+  /* Bring the system into a safe state */
+  si_trx_shutdown();
+
+  /* LED on */
+  led_on();
 
   /* Coredump */
 
-  /* Wait for the watchdog to kill us */
-  while (1);
+  /* Wait for the external watchdog to kill us */
+  while (1) {
+    led_on();
+    for (int i = 0; i < 25*1000; i++);
+    led_off();
+    for (int i = 0; i < 25*1000; i++);
+
+    /**
+     * Whilst this is generally bad practice in this system we have an
+     * external watchdog for the actual reset.
+     */
+    wdt_reset_count();
+  }
 }

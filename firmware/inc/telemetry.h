@@ -50,15 +50,12 @@ int telemetry_start_rsid(rsid_code_t rsid);
 void telemetry_aprs_set_frequency(int32_t frequency);
 float telemetry_si_temperature(void);
 
-float timer0_tick_init(float frequency);
-uint32_t timer0_tick_frequency(float frequency);
+void timer0_tick_init(uint32_t count);
 void timer0_tick_deinit();
+void telemetry_init();
 
 void telemetry_gpio1_pwm_init(void);
 void telemetry_gpio1_pwm_duty(float duty_cycle);
 void telemetry_gpio1_pwm_deinit(void);
-
-void telemetry_gpio1_init(void);
-void telemetry_gpio1_set(uint8_t value);
 
 #endif /* TELEMETRY_H */

@@ -73,14 +73,6 @@ void init(timepulse_callback_t callback)
   led_reset();
   si_trx_shutdown();
 
-  /* If the reset was caused by the internal watchdog... */
-  if (PM->RCAUSE.reg & PM_RCAUSE_WDT) {
-    /* External hardware is in an undefined state. Wait here for the
-       external watchdog to trigger an external reset */
-
-    while (1);
-  }
-
   /**
    * Internal initialisation
    * ---------------------------------------------------------------------------
@@ -100,7 +92,7 @@ void init(timepulse_callback_t callback)
   system_extint_init();
 
   /* Watchdog */
-  //watchdog_init();
+  watchdog_init();
 
   /* Configure Sleep Mode */
   //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
@@ -120,8 +112,11 @@ void init(timepulse_callback_t callback)
   /* Enable the xosc on gclk1 */
   xosc_init();
 
+  /* Telemetry init depends on gclk */
+  telemetry_init();
+
   /* GPS init */
-//  gps_init();
+  gps_init();
 
   /* Enable timer interrupt and event channel */
   timepulse_extint_init();

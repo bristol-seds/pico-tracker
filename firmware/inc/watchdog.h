@@ -52,6 +52,7 @@ struct idle_counter {
   uint32_t wait_for_next_telemetry;
 };
 
+void kick_the_watchdog(void);
 void idle(idle_wait_t idle_t);
 void watchdog_init(void);
 

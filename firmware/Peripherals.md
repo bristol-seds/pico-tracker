@@ -8,12 +8,12 @@
 ||gclk7|aprs clock, fed from gclk1, div 6 / 11
 |
 |*TC*||
-||tc0|telemetry tick timer. 32-bit
+||tc0|telemetry tick timer. 32-bit. glck1
 ||tc1|^^^^^
-||tc2|counts cycles of tcxo. 32-bit
+||tc2|counts cycles of tcxo. 32-bit. gclk1
 ||tc3|^^^^^
-||tc4|osc8m event source
-||tc5|telemetry pwm 16-bit, ALSO aprs carrier 16-bit
+||tc4|unused (osc8m event source)
+||tc5|telemetry pwm 16-bit glck0, ALSO aprs carrier 16-bit gclk7
 |
 |*EXTINT*|
 ||extint[5]|gps timepulse
@@ -32,11 +32,11 @@
 
 | Name | Function | Priority H(0-3)L | Notes
 | --- | --- | --- | ---
-|TC0_IRQn|telemetry tick timer|0|latency critical for symbol timing. rate <= 1200Hz
-|[GPS_SERCOM]_IRQn|gps usart rx|1|latency not so critical. rate <= 960Hz
-|EIC_IRQn|timepulse|2|latency not so critical. rate = 1
-|TC2_IRQn|xosc measurement done|2|latency not critical
-|ADC_IRQn|adc measurement done|2|latency not critical
+|TC0_IRQn|telemetry tick timer|1|latency critical for symbol timing. rate <= 1200Hz
+|[GPS_SERCOM]_IRQn|gps usart rx|2|latency not so critical. rate <= 960Hz
+|EIC_IRQn|timepulse|3|latency not so critical. rate = 1
+|TC2_IRQn|xosc measurement done|3|latency not critical
+|ADC_IRQn|adc measurement done|3|latency not critical
 
 
 

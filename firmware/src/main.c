@@ -40,6 +40,7 @@
 #include "rf_tests.h"
 #include "data.h"
 #include "backlog.h"
+#include "pips.h"
 
 #define CALLSIGN	"UBSEDSx"
 #define APRS_COMMENT	"RTTY/434.6U8N2"
@@ -50,7 +51,7 @@
  * The telemetry string starts with the specified number of dollar signs
  */
 uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
-                                 uint8_t dollars)
+                                 uint8_t dollars, uint8_t reduce_char_set)
 {
   double lat_fmt = 0.0;
   double lon_fmt = 0.0;
@@ -73,6 +74,11 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
                  lat_fmt, lon_fmt, altitude, dp->satillite_count,
                  dp->battery, dp->temperature, dp->xosc_error);
 
+  if (reduce_char_set) {
+    /* Reduce character set */
+    contestiaize(telemetry_string + dollars);
+  }
+
   /* sprintf - checksum. don't include dollars */
   len += sprintf(telemetry_string + len,
 		 "*%04X\r",
@@ -93,6 +99,11 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
                  dp->time.hour, dp->time.minute, dp->time.second,
                  lat_fmt, lon_fmt, altitude);
 
+  if (reduce_char_set) {
+    /* Reduce character set */
+    contestiaize(telemetry_string + dollars);
+  }
+
   /* sprintf - checksum. don't include dollars */
   len += sprintf(telemetry_string + len,
 		 "*%04X\r",
@@ -109,7 +120,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 void rtty_telemetry(struct tracker_datapoint* dp) {
   uint16_t len;
 
-  len = format_telemetry_string(telemetry_string, dp, RTTY_DOLLARS);
+  len = format_telemetry_string(telemetry_string, dp, RTTY_DOLLARS, 0);
 
   /* Main telemetry */
   telemetry_start(TELEMETRY_RTTY, len);
@@ -126,10 +137,7 @@ void rtty_telemetry(struct tracker_datapoint* dp) {
 void contestia_telemetry(struct tracker_datapoint* dp) {
   uint16_t len;
 
-  len = format_telemetry_string(telemetry_string, dp, CONTESTIA_DOLLARS);
-
-  /* Reduce character set */
-  contestiaize(telemetry_string + CONTESTIA_DOLLARS);
+  len = format_telemetry_string(telemetry_string, dp, CONTESTIA_DOLLARS, 1);
 
   /* RSID */
   telemetry_start_rsid(RSID_CONTESTIA_32_1000);

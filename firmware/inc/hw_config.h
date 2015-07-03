@@ -66,6 +66,7 @@
 #define GPS_SERCOM_MIGO_PIN	PIN_PA07
 #define GPS_SERCOM_MIGO_PINMUX	PINMUX_PA07D_SERCOM0_PAD3
 #define GPS_SERCOM_MUX		USART_RX_3_TX_2_XCK_3
+#define GPS_BAUD_RATE		9600
 #define GPS_PLATFORM_MODEL	UBX_PLATFORM_MODEL_AIRBORNE_1G
 #define GPS_TIMEPULSE_PIN	PIN_PA05
 #define GPS_TIMEPULSE_PINMUX	PINMUX_PA05A_EIC_EXTINT5
@@ -75,7 +76,7 @@
 /**
  * USART Loopback Testing
  */
-#define USART_MUX_LOOPBACK	USART_RX_0_TX_0_XCK_1
+#define USART_MUX_LOOPBACK	USART_RX_2_TX_2_XCK_3
 
 /**
  * Flash Memory
@@ -185,14 +186,16 @@
 /**
  * Interrupt Priority
  */
-#define TC0_INT_PRIO		0 /* Telemetry Tick Timer */
+#define WDT_INT_PRIO		0 /* Early warning interrupt */
 
-#define GPS_SERCOM_INT_PRIO	1 /* GPS USART Rx */
+#define TC0_INT_PRIO		1 /* Telemetry Tick Timer */
 
-#define EIC_INT_PRIO		2 /* Timepulse, telemetry */
+#define GPS_SERCOM_INT_PRIO	2 /* GPS USART Rx */
 
-#define TC2_INT_PRIO		2 /* XOSC Measure Timer */
+#define EIC_INT_PRIO		3 /* Timepulse, telemetry */
 
-#define ADC_INT_PRIO		2 /* ADC */
+#define TC2_INT_PRIO		3 /* XOSC Measure Timer */
+
+#define ADC_INT_PRIO		3 /* ADC */
 
 #endif /* HW_CONFIG_H */

@@ -421,12 +421,14 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
-  for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
+  for (int i = 0; i < 15*1000; i++); /* Approx. 15 */
   _si_trx_sdn_disable();   /* booting */
   for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
 
 
   uint16_t part_number = si_trx_get_part_info();
+
+  while (part_number != 17512);
 
   /* Power Up */
   si_trx_power_up(SI_POWER_UP_TCXO, VCXO_FREQUENCY);
@@ -573,6 +575,7 @@ void spi_loopback_test(void)
   /* 	   SI4xxx_SERCOM_MISO_PINMUX,	/\** Pinmux *\/ */
   /* 	   SI4xxx_SERCOM_SCK_PINMUX,	/\** Pinmux *\/ */
   /* 	   PINMUX_UNUSED);		/\** Pinmux *\/ */
+  /* spi_enable(SI_TRX_SERCOM); */
 
   /* Init loopback */
   spi_bitbang_init(SI4xxx_SERCOM_MOSI_PIN,

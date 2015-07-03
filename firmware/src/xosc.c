@@ -97,59 +97,59 @@ void osc8m_set_calibration(struct osc8m_calibration_t calib) {
 /**
  * Configure timer 4 to generate events at 1Hz of OSC8M
  */
-void osc8m_event_source(void) {
+/* void osc8m_event_source(void) { */
 
-  /* Timer 4 runs on GCLK0 (4MHz) */
-  bool t4_capture_channel_enables[]    = {false, false};
-  uint32_t t4_compare_channel_values[] = {15625, 0x0000};
-  /* Divide by 256*15625 = 1Hz events */
-  tc_init(TC4,
-	  GCLK_GENERATOR_0,
-	  TC_COUNTER_SIZE_16BIT,
-	  TC_CLOCK_PRESCALER_DIV256,
-	  TC_WAVE_GENERATION_NORMAL_FREQ,
-	  TC_RELOAD_ACTION_GCLK,
-	  TC_COUNT_DIRECTION_UP,
-	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
-	  false,			/* Oneshot  */
-	  false,			/* Run in standby */
-	  0x0000,			/* Initial value */
-	  0xFFFF,			/* Top value */
-	  t4_capture_channel_enables,	/* Capture Channel Enables */
-	  t4_compare_channel_values);	/* Compare Channels Values */
+/*   /\* Timer 4 runs on GCLK0 (4MHz) *\/ */
+/*   bool t4_capture_channel_enables[]    = {false, false}; */
+/*   uint32_t t4_compare_channel_values[] = {15625, 0x0000}; */
+/*   /\* Divide by 256*15625 = 1Hz events *\/ */
+/*   tc_init(TC4, */
+/* 	  GCLK_GENERATOR_0, */
+/* 	  TC_COUNTER_SIZE_16BIT, */
+/* 	  TC_CLOCK_PRESCALER_DIV256, */
+/* 	  TC_WAVE_GENERATION_NORMAL_FREQ, */
+/* 	  TC_RELOAD_ACTION_GCLK, */
+/* 	  TC_COUNT_DIRECTION_UP, */
+/* 	  TC_WAVEFORM_INVERT_OUTPUT_NONE, */
+/* 	  false,			/\* Oneshot  *\/ */
+/* 	  false,			/\* Run in standby *\/ */
+/* 	  0x0000,			/\* Initial value *\/ */
+/* 	  0xFFFF,			/\* Top value *\/ */
+/* 	  t4_capture_channel_enables,	/\* Capture Channel Enables *\/ */
+/* 	  t4_compare_channel_values);	/\* Compare Channels Values *\/ */
 
-  /* Timer 4 generates an event on compare channel 0 */
-  struct tc_events events;
-  events.generate_event_on_compare_channel[0] = true;
-  events.generate_event_on_compare_channel[1] = false;
-  events.generate_event_on_overflow = false;
-  events.invert_event_input = false;
-  events.on_event_perform_action = true;
-  events.event_action = TC_EVENT_ACTION_RETRIGGER;
-  tc_enable_events(TC4, &events);
+/*   /\* Timer 4 generates an event on compare channel 0 *\/ */
+/*   struct tc_events events; */
+/*   events.generate_event_on_compare_channel[0] = true; */
+/*   events.generate_event_on_compare_channel[1] = false; */
+/*   events.generate_event_on_overflow = false; */
+/*   events.invert_event_input = false; */
+/*   events.on_event_perform_action = true; */
+/*   events.event_action = TC_EVENT_ACTION_RETRIGGER; */
+/*   tc_enable_events(TC4, &events); */
 
-  events_attach_user(0, 4); // Timer 4 is event user on channel 1
+/*   events_attach_user(0, 4); // Timer 4 is event user on channel 1 */
 
-  /* This event is picked up on event channel 0 */
-  events_allocate(0,
-                  EVENTS_EDGE_DETECT_NONE,
-                  EVENTS_PATH_ASYNCHRONOUS,
-                  0x29, /* TC4 MC0 */
-                  0);
+/*   /\* This event is picked up on event channel 0 *\/ */
+/*   events_allocate(0, */
+/*                   EVENTS_EDGE_DETECT_NONE, */
+/*                   EVENTS_PATH_ASYNCHRONOUS, */
+/*                   0x29, /\* TC4 MC0 *\/ */
+/*                   0); */
 
-  /* This event is picked up on event channel 1 */
-  events_allocate(1,
-                  EVENTS_EDGE_DETECT_NONE,
-                  EVENTS_PATH_ASYNCHRONOUS,
-                  0x29, /* TC4 MC0 */
-                  0);
+/*   /\* This event is picked up on event channel 1 *\/ */
+/*   events_allocate(1, */
+/*                   EVENTS_EDGE_DETECT_NONE, */
+/*                   EVENTS_PATH_ASYNCHRONOUS, */
+/*                   0x29, /\* TC4 MC0 *\/ */
+/*                   0); */
 
-  tc_enable(TC4); /* Retrigger event means counter doesn't start yet */
-  tc_start_counter(TC4); /* We start it manually now */
-}
-void osc8m_event_source_disable(void) {
-  tc_disable(TC4);
-}
+/*   tc_enable(TC4); /\* Retrigger event means counter doesn't start yet *\/ */
+/*   tc_start_counter(TC4); /\* We start it manually now *\/ */
+/* } */
+/* void osc8m_event_source_disable(void) { */
+/*   tc_disable(TC4); */
+/* } */
 
 /**
  * Configure the timepulse extint to generate events
@@ -212,7 +212,7 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
   /* Configure an event source */
   switch (measurement_t) {
   case XOSC_MEASURE_OSC8M:
-    osc8m_event_source();     // osc8m issues events
+//    osc8m_event_source();     // osc8m issues events
     break;
   case XOSC_MEASURE_TIMEPULSE:
     timepulse_extint_event_source(); // timepulse issues events
@@ -227,7 +227,7 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
 
   switch (measurement_t) {
   case XOSC_MEASURE_OSC8M:
-    osc8m_event_source_disable();
+//    osc8m_event_source_disable();
     break;
   case XOSC_MEASURE_TIMEPULSE:
     timepulse_extint_event_source_disable();

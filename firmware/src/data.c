@@ -49,6 +49,9 @@ void collect_data_async(void)
 {
   /* Measure XOSC against gps timepulse */
   measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+
+  /* Analogue Measurements */
+  start_adc_conversion_sequence();
 }
 /**
  * Collect Data synchronously and return datapoint

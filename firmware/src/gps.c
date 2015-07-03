@@ -35,6 +35,7 @@
 #include "util/dbuffer.h"
 #include "ubx_messages.h"
 #include "gps.h"
+#include "watchdog.h"
 
 /**
  * UBX Constants
@@ -264,13 +265,13 @@ void _ubx_poll(ubx_message_t* message) {
 /**
  * Disable NMEA messages on the uBlox
  */
-void gps_disable_nmea(void)
+void gps_set_io_config(uint32_t baud_rate)
 {
   ubx_cfg_prt.payload.portID = 1;
   ubx_cfg_prt.payload.res0 = 0;
   ubx_cfg_prt.payload.txReady = 0;
   ubx_cfg_prt.payload.mode = 0x08D0; /* 8 bit, No Parity */
-  ubx_cfg_prt.payload.baudRate = 9600;
+  ubx_cfg_prt.payload.baudRate = baud_rate;
   ubx_cfg_prt.payload.inProtoMask = 0x7; /* UBX */
   ubx_cfg_prt.payload.outProtoMask = 0x1; /* UBX */
   ubx_cfg_prt.payload.flags = 0;
@@ -450,9 +451,9 @@ void gps_set_powersave_auto(void)
 }
 
 /**
- * Init
+ * Init + enable for the usart at the given baud rate
  */
-void gps_init(void)
+void gps_usart_init_enable(uint32_t baud_rate)
 {
   /* USART */
   usart_init(GPS_SERCOM,
@@ -468,7 +469,7 @@ void gps_init(void)
 	     false,	     /** Enable LIN Slave Support */
 	     false,	     /** Enable start of frame dection */
 	     false,	     /** Enable collision dection */
-	     9600,	     /** USART Baud rate */
+	     baud_rate,      /** USART Baud rate */
 	     true,	     /** Enable receiver */
 	     true,	     /** Enable transmitter */
 	     false,	     /** Sample on the rising edge of XLCK */
@@ -483,18 +484,33 @@ void gps_init(void)
 	     PINMUX_UNUSED);			/** PAD3 pinmux */
 
   usart_enable(GPS_SERCOM);
+}
+
+/**
+ * Init
+ */
+void gps_init(void)
+{
+  /* Enable usart */
+  gps_usart_init_enable(GPS_BAUD_RATE);
+
+  kick_the_watchdog();
 
   /* We use ubx protocol */
-  gps_disable_nmea();
+  gps_set_io_config(GPS_BAUD_RATE);
 
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
+
+  kick_the_watchdog();
 
   /* Set the platform model */
   gps_set_platform_model();
 
   /* Set which GNSS constellation we'd like to use */
   gps_set_gnss();
+
+  kick_the_watchdog();
 
   /* Exit powersave mode to start */
   gps_set_powersave(false);
@@ -524,7 +540,7 @@ void usart_loopback_test(void)
 	     false,	     /** Enable LIN Slave Support */
 	     false,	     /** Enable start of frame dection */
 	     false,	     /** Enable collision dection */
-	     9600,	     /** USART Baud rate */
+	     GPS_BAUD_RATE,  /** USART Baud rate */
 	     true,	     /** Enable receiver */
 	     true,	     /** Enable transmitter */
 	     false,	     /** Sample on the rising edge of XLCK */
@@ -532,8 +548,8 @@ void usart_loopback_test(void)
 	     0,		     /** External clock frequency in synchronous mode. */
 	     false,	     /** Run in standby */
 	     GCLK_GENERATOR_0,		/** GCLK generator source */
-	     PINMUX_DEFAULT, 		/** PAD0 pinmux */
-	     PINMUX_DEFAULT,		/** PAD1 pinmux */
+	     GPS_SERCOM_MOGI_PINMUX, 	/** PAD0 pinmux */
+	     GPS_SERCOM_MIGO_PINMUX,	/** PAD1 pinmux */
 	     PINMUX_UNUSED,		/** PAD2 pinmux */
 	     PINMUX_UNUSED);		/** PAD3 pinmux */
 
@@ -542,5 +558,5 @@ void usart_loopback_test(void)
   usart_write_wait(GPS_SERCOM, 0x34);
   usart_read_wait(GPS_SERCOM, &data);
 
-  semihost_printf("Rx'ed: 0x%02x\n", data);
+  usart_disable(GPS_SERCOM);
 }

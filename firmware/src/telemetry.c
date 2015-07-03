@@ -126,6 +126,8 @@ int telemetry_active(void) {
   return (telemetry_string_length > 0);
 }
 
+uint32_t contestia_timer_count, rtty_timer_count;
+uint32_t pips_timer_count, ax25_timer_count, rsid_timer_count;
 /**
  * Starts telemetry output
  *
@@ -142,16 +144,16 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
     /* Setup timer tick */
     switch(telemetry_type) {
     case TELEMETRY_CONTESTIA:
-      timer0_tick_init(CONTESTIA_SYMBOL_RATE);
+      timer0_tick_init(contestia_timer_count);
       break;
     case TELEMETRY_RTTY:
-      timer0_tick_init(RTTY_BITRATE);
+      timer0_tick_init(rtty_timer_count);
       break;
     case TELEMETRY_PIPS:
-      timer0_tick_init(PIPS_FREQUENCY);
+      timer0_tick_init(pips_timer_count);
       break;
     case TELEMETRY_APRS:
-      timer0_tick_init(AX25_TICK_RATE);
+      timer0_tick_init(ax25_timer_count);
       break;
     case TELEMETRY_RSID: /* Not used - see function below */
       break;
@@ -178,7 +180,7 @@ int telemetry_start_rsid(rsid_code_t rsid) {
     rsid_start(rsid);
 
     /* Setup timer tick */
-    timer0_tick_init(RSID_SYMBOL_RATE);
+    timer0_tick_init(rsid_timer_count);
 
     return 0; /* Success */
   } else {
@@ -335,10 +337,11 @@ void telemetry_tick(void) {
         radio_on = 1;
 
       } else { /* Turn off */
-        si_trx_off(); radio_on = 0;
 
+        si_trx_off(); radio_on = 0;
         telemetry_stop();
       }
+
       break;
     }
   }
@@ -358,12 +361,8 @@ const uint8_t tick_gclk_gen_num = 1;
  *
  * Returns the frequency we actually initialised.
  */
-float timer0_tick_init(float frequency)
+void timer0_tick_init(uint32_t count)
 {
-  /* Calculate the wrap value for the given frequency */
-  float gclk_frequency = (float)system_gclk_gen_get_hz(tick_gclk_gen_num);
-  uint32_t count = (uint32_t)(gclk_frequency / frequency);
-
   /* Configure Timer 0 */
   bool t0_capture_channel_enables[]    = {false, false};
   uint32_t t0_compare_channel_values[] = {count, 0x0000};
@@ -390,31 +389,20 @@ float timer0_tick_init(float frequency)
   tc_enable_events(TC0, &event);
 
   /* Enable Interrupt */
-  TC0->COUNT32.INTENSET.reg = (1 << 4);
+  TC0->COUNT16.INTENSET.reg = TC_INTENSET_MC0;
   irq_register_handler(TC0_IRQn, TC0_INT_PRIO); /* Highest Priority */
 
   /* Enable Timer */
   tc_enable(TC0);
   tc_start_counter(TC0);
-
-  /* Return the frequency we actually initialised */
-  return gclk_frequency / (float)count;
 }
 /**
- * Changes the timer0 frequency.
- *
- * Returns the timer count that this corresponds to.
+ * Gets the count value required on timer0 for a specific frequency
  */
-uint32_t timer0_tick_frequency(float frequency)
+uint32_t timer0_get_count_value(float frequency)
 {
   float gclk_frequency = (float)system_gclk_gen_get_hz(tick_gclk_gen_num);
   uint32_t count = (uint32_t)(gclk_frequency / frequency);
-
-  tc_set_compare_value(TC0,
-                       TC_COMPARE_CAPTURE_CHANNEL_0,
-                       count);
-  /* We need to reset the count here so it's not beyond the capture limit */
-  tc_set_count_value(TC0, 0);
 
   return count;
 }
@@ -437,7 +425,26 @@ void TC0_Handler(void)
     telemetry_tick();
   }
 }
+/**
+ * Init. Mostly used for calculating timer counts. Must be called after gclk1
+ */
+void telemetry_init(void)
+{
+  contestia_timer_count = timer0_get_count_value(CONTESTIA_SYMBOL_RATE);
+  rtty_timer_count	= timer0_get_count_value(RTTY_BITRATE);
+  pips_timer_count	= timer0_get_count_value(PIPS_FREQUENCY);
+  ax25_timer_count      = timer0_get_count_value(AX25_TICK_RATE);
+  rsid_timer_count	= timer0_get_count_value(RSID_SYMBOL_RATE);
+}
 
+
+
+
+
+
+/**
+ * =========== PWM
+ */
 
 
 #define GPIO1_PWM_STEPS 200 // ~ 2kHz on a 4 MHz clock

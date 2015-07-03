@@ -29,6 +29,7 @@
 #include "telemetry.h"
 #include "aprs.h"
 #include "ax25.h"
+#include "watchdog.h"
 
 #define APRS_TEST_LAT 51.47
 #define APRS_TEST_LON -2.58
@@ -39,10 +40,14 @@ void telemetry_tone(void)
 {
   while (1) {
     si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 36);
-    for (int i = 0; i < 200*1000; i++);
+    for (int i = 0; i < 200*1000; i++) {
+      idle(IDLE_TELEMETRY_ACTIVE);
+    }
     si_trx_off();
     si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 0x7f);
-    for (int i = 0; i < 200*1000; i++);
+    for (int i = 0; i < 200*1000; i++) {
+      idle(IDLE_TELEMETRY_ACTIVE);
+    }
     si_trx_off();
   }
 }
@@ -50,10 +55,14 @@ void aprs_tone(void)
 {
   while (1) {
     si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 36);
-    for (int i = 0; i < 200*1000; i++);
+    for (int i = 0; i < 200*1000; i++) {
+      idle(IDLE_TELEMETRY_ACTIVE);
+    }
     si_trx_off();
     si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 0x7f);
-    for (int i = 0; i < 200*1000; i++);
+    for (int i = 0; i < 200*1000; i++) {
+      idle(IDLE_TELEMETRY_ACTIVE);
+    }
     si_trx_off();
   }
 }
@@ -75,7 +84,9 @@ void aprs_high_fm_tone(void)
 
   si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, APRS_TEST_FREQUENCY,
             AX25_DEVIATION, APRS_POWER);
-  while (1);
+  while (1) {
+    idle(IDLE_TELEMETRY_ACTIVE);
+  }
 }
 
 /**
@@ -92,7 +103,9 @@ void aprs_test(void)
 
     /* Transmit packet and wait */
     telemetry_start(TELEMETRY_APRS, 0xFFFF);
-    while (telemetry_active());
+    while (telemetry_active()) {
+      idle(IDLE_TELEMETRY_ACTIVE);
+    }
   }
 }
 

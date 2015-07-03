@@ -626,7 +626,7 @@ static usart_rx_callback_t _usart_rx_callbacks[SERCOM_INST_NUM] = {
 void _usart_interrupt_handler(Sercom* const sercom_instance, uint8_t instance_index)
 {
   /* Hardware instance */
-  SercomUsart* const hw = (SercomUsart*)SERCOM1; //sercom_instance;
+  SercomUsart* const hw = (SercomUsart*)sercom_instance;
 
   /* Temporary variables */
   uint16_t interrupt_status;

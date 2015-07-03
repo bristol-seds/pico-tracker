@@ -40,7 +40,8 @@ struct tracker_time time = {0};
 struct tracker_datapoint* dp;
 
 /* Low Power Mode */
-#define LOW_POWER(d)	(d->solar < 0.2)
+#define LOW_POWER(d)	(0)
+//(d->solar < 0.2)
 
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
@@ -86,26 +87,26 @@ void do_cron(void)
   memcpy(&t, &time, sizeof(struct tracker_time));
 
   /* ---- Data every 30 seconds ---- */
-  if ((time.second % 30) == 0) {
+  if ((t.second % 30) == 0) {
     dp = collect_data();
-    memcpy(&dp->time, &t, sizeof(struct tracker_time));
-  } else if ((time.second % 30) == 20) {
+    memcpy(&dp->time, &time, sizeof(struct tracker_time));
+  } else if ((t.second % 30) == 20) {
     collect_data_async();
   }
 
 
   /* ---- Telemetry output ---- */
   /* RTTY */
-  if (time.second == 0 && !LOW_POWER(dp)) {
+  if (t.second == 0 && !LOW_POWER(dp)) {
     rtty_telemetry(dp);
 
     /* Contestia */
-  } else if (time.second == 30 && !LOW_POWER(dp)) {
+  } else if (t.second == 30 && !LOW_POWER(dp)) {
     contestia_telemetry(dp);
 
     /* Low Power */
-  } else if (time.second == 0 && LOW_POWER(dp)) {
-    if ((time.minute % 2) == 0) {
+  } else if (t.second == 0 && LOW_POWER(dp)) {
+    if ((t.minute % 2) == 0) {
       rtty_telemetry(dp);
     } else {
       contestia_telemetry(dp);
@@ -113,18 +114,18 @@ void do_cron(void)
 
     /* APRS */
 #ifdef APRS_ENABLE
-  } else if ((time.minute % 2) == 0 && time.second == 55) {
+  } else if ((t.minute % 2) == 0 && t.second == 55) {
     aprs_telemetry(dp);
 #endif
 
     /* Pips */
-  } else if ((time.second % 1) == 0) {
+  } else if ((t.second % 1) == 0) {
     pips_telemetry();
 
   }
 
   /* ---- Record for backlog ---- */
-  if ((time.minute == 0) && (time.second == 25)) {
+  if ((t.minute % 1 == 0) && (t.second == 25)) {
     record_backlog(dp);
   }
 }
@@ -136,11 +137,11 @@ void cron_tick(void) {
 
   /* Update time internally */
   time.epoch++; time.second++;
-  if (time.second > 60) {
+  if (time.second >= 60) {
     time.second = 0; time.minute++;
-    if (time.minute > 60) {
+    if (time.minute >= 60) {
       time.minute = 0; time.hour++;
-      if (time.hour > 23) {
+      if (time.hour >= 24) {
         time.hour = 0;
       }
     }
@@ -151,7 +152,7 @@ void cron_tick(void) {
   if (((time.hour == 0) && (time.minute == 0) && (time.second == 5)) ||
       ((time.second == 5) && !(time.valid & UBX_TIMEUTC_VALID_UTC))) {
 
-    /* Be careful not a call this while the collect_data function is running */
+    /* Be careful not to call this while the collect_data function is running */
     read_gps_time();
   }
 }

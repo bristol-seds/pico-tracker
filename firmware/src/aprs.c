@@ -197,11 +197,6 @@ uint8_t aprs_start(void)
                                      telemetry
     );
 
-// RTTY/434.6U8N2",
-
-  /* Let's actually try that out.. We can add comment etc. later */
-
-
   /* Transmit the frame using ax25 */
   ax25_start(addresses,   addresses_len,
              information, information_len);
