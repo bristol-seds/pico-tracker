@@ -132,6 +132,9 @@ void idle(idle_wait_t idle_t)
 
   /* And sleep */
   system_sleep();
+
+  /* Same again when we wake from sleep */
+  kick_the_watchdog();
 }
 
 
@@ -169,11 +172,11 @@ void watchdog_init(void)
                  WDT_GCLK,		/* Clock Source		*/
                  WDT_PERIOD_16384CLK,	/* Timeout Period	*/
                  WDT_PERIOD_NONE,	/* Window Period	*/
-                 WDT_PERIOD_256CLK);	/* Early Warning Period	*/
+                 WDT_PERIOD_128CLK);	/* Early Warning Period	*/
 
   WDT->INTENSET.reg |= WDT_INTENSET_EW;
   WDT->INTFLAG.reg |= WDT_INTFLAG_EW;
-  irq_register_handler(WDT_IRQn, 0);
+  irq_register_handler(WDT_IRQn, WDT_INT_PRIO);
 
   /* Kick Watchdogs */
   kick_external_watchdog();

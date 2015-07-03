@@ -114,7 +114,7 @@ void do_cron(void)
 
     /* APRS */
 #ifdef APRS_ENABLE
-  } else if ((t.minute % 2) == 0 && t.second == 55) {
+  } else if ((t.minute % 2) == 0 && t.second == 0) {
     aprs_telemetry(dp);
 #endif
 
@@ -125,8 +125,21 @@ void do_cron(void)
   }
 
   /* ---- Record for backlog ---- */
-  if ((t.minute % 1 == 0) && (t.second == 25)) {
+  if ((t.minute % 1 == 0) && (t.second == 0)) {
+
+    kick_the_watchdog();
+
     record_backlog(dp);
+  }
+
+  /* Update internal time from GPS */
+  /* We do this just after midnight or if time is yet to set UTC exactly */
+  if (((t.hour == 0) && (t.minute == 0) && (t.second == 0)) ||
+      ((t.second == 0) && !(t.valid & UBX_TIMEUTC_VALID_UTC))) {
+
+    kick_the_watchdog();
+
+    read_gps_time();            /* TODO semaphore to stop mid-update increment */
   }
 }
 
@@ -145,14 +158,5 @@ void cron_tick(void) {
         time.hour = 0;
       }
     }
-  }
-
-  /* Update internal time from GPS */
-  /* We do this just after midnight or if time is yet to set UTC exactly */
-  if (((time.hour == 0) && (time.minute == 0) && (time.second == 5)) ||
-      ((time.second == 5) && !(time.valid & UBX_TIMEUTC_VALID_UTC))) {
-
-    /* Be careful not to call this while the collect_data function is running */
-    read_gps_time();
   }
 }

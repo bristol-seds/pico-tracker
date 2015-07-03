@@ -393,6 +393,7 @@ void timer0_tick_init(uint32_t count)
   irq_register_handler(TC0_IRQn, TC0_INT_PRIO); /* Highest Priority */
 
   /* Enable Timer */
+  tc_set_count_value(TC0, 0);
   tc_enable(TC0);
   tc_start_counter(TC0);
 }
