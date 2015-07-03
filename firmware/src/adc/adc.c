@@ -57,31 +57,31 @@
 #endif
 
 /**
-* \internal Configure MUX settings for the analog pins
-*
-* This function will set the given ADC input pins
-* to the analog function in the pin mux, giving
-* the ADC access to the analog signal
-*
-* \param [in] pin AINxx pin to configure
-*/
+ * \internal Configure MUX settings for the analog pins
+ *
+ * This function will set the given ADC input pins
+ * to the analog function in the pin mux, giving
+ * the ADC access to the analog signal
+ *
+ * \param [in] pin AINxx pin to configure
+ */
 static inline void _adc_configure_ain_pin(uint32_t pin)
 {
 #define PIN_INVALID_ADC_AIN    0xFFFFUL
 
-	/* Pinmapping table for AINxx -> GPIO pin number */
-	const uint32_t pinmapping[] = {
+  /* Pinmapping table for AINxx -> GPIO pin number */
+  const uint32_t pinmapping[] = {
 //#if (SAMD20E | SAMD21E)
-			PIN_PA02B_ADC_AIN0,  PIN_PA03B_ADC_AIN1,
-			PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
-			PIN_PA04B_ADC_AIN4,  PIN_PA05B_ADC_AIN5,
-			PIN_PA06B_ADC_AIN6,  PIN_PA07B_ADC_AIN7,
-			PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
-			PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
-			PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
-			PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
-			PIN_PA08B_ADC_AIN16, PIN_PA09B_ADC_AIN17,
-			PIN_PA10B_ADC_AIN18, PIN_PA11B_ADC_AIN19,
+    PIN_PA02B_ADC_AIN0,  PIN_PA03B_ADC_AIN1,
+    PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
+    PIN_PA04B_ADC_AIN4,  PIN_PA05B_ADC_AIN5,
+    PIN_PA06B_ADC_AIN6,  PIN_PA07B_ADC_AIN7,
+    PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
+    PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
+    PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
+    PIN_INVALID_ADC_AIN, PIN_INVALID_ADC_AIN,
+    PIN_PA08B_ADC_AIN16, PIN_PA09B_ADC_AIN17,
+    PIN_PA10B_ADC_AIN18, PIN_PA11B_ADC_AIN19,
 /* #elif (SAMD20G | SAMD21G) */
 /* 			PIN_PA02B_ADC_AIN0,  PIN_PA03B_ADC_AIN1, */
 /* 			PIN_PB08B_ADC_AIN2,  PIN_PB09B_ADC_AIN3, */
@@ -129,21 +129,21 @@ static inline void _adc_configure_ain_pin(uint32_t pin)
 /* #else */
 /* #  error ADC pin mappings are not defined for this device. */
 /* #endif */
-		};
+  };
 
-	uint32_t pin_map_result = PIN_INVALID_ADC_AIN;
+  uint32_t pin_map_result = PIN_INVALID_ADC_AIN;
 
-	if (pin <= ADC_EXTCHANNEL_MSB) {
-		pin_map_result = pinmapping[pin >> ADC_INPUTCTRL_MUXPOS_Pos];
+  if (pin <= ADC_EXTCHANNEL_MSB) {
+    pin_map_result = pinmapping[pin >> ADC_INPUTCTRL_MUXPOS_Pos];
 
-		Assert(pin_map_result != PIN_INVALID_ADC_AIN);
+    Assert(pin_map_result != PIN_INVALID_ADC_AIN);
 
-		system_pinmux_pin_set_config(pin_map_result,
-					     1, // B
-					     SYSTEM_PINMUX_PIN_DIR_INPUT,
-					     SYSTEM_PINMUX_PIN_PULL_NONE,
-					     false);
-	}
+    system_pinmux_pin_set_config(pin_map_result,
+                                 1, // B
+                                 SYSTEM_PINMUX_PIN_DIR_INPUT,
+                                 SYSTEM_PINMUX_PIN_PULL_NONE,
+                                 false);
+  }
 }
 
 /**
@@ -158,313 +158,311 @@ static inline void _adc_configure_ain_pin(uint32_t pin)
  * \retval ADC_STATUS_OK               The configuration was successful
  * \retval ADC_STATUS_ERR_INVALID_ARG  Invalid argument(s) were provided
  */
-static enum adc_status_code _adc_set_config(
-		struct adc_module *const module_inst,
-		struct adc_config *const config)
+static enum adc_status_code _adc_set_config(struct adc_config *const config)
 {
-	uint8_t adjres = 0;
-	uint32_t resolution = ADC_RESOLUTION_16BIT;
-	enum adc_accumulate_samples accumulate = ADC_ACCUMULATE_DISABLE;
+  uint8_t adjres = 0;
+  uint32_t resolution = ADC_RESOLUTION_16BIT;
+  enum adc_accumulate_samples accumulate = ADC_ACCUMULATE_DISABLE;
 #ifdef SAMD20
-	uint8_t revision_num = ((REG_DSU_DID & DSU_DID_DIE_Msk) >> DSU_DID_DIE_Pos);
+  uint8_t revision_num = ((REG_DSU_DID & DSU_DID_DIE_Msk) >> DSU_DID_DIE_Pos);
 #endif
 
-	/* Get the hardware module pointer */
-	Adc *const adc_module = module_inst->hw;
+  /* Get the hardware module pointer */
+  Adc *const adc_module = module_inst.hw;
 
-	/* Configure GCLK channel and enable clock */
-	system_gclk_chan_set_config(ADC_GCLK_ID, config->clock_source);
-	system_gclk_chan_enable(ADC_GCLK_ID);
+  /* Configure GCLK channel and enable clock */
+  system_gclk_chan_set_config(ADC_GCLK_ID, config->clock_source);
+  system_gclk_chan_enable(ADC_GCLK_ID);
 
-	/* Setup pinmuxing for analog inputs */
-	if (config->pin_scan.inputs_to_scan != 0) {
-		uint8_t offset = config->pin_scan.offset_start_scan;
-		uint8_t start_pin =
-				offset +(uint8_t)config->positive_input;
-		uint8_t end_pin =
-				start_pin + config->pin_scan.inputs_to_scan;
+  /* Setup pinmuxing for analog inputs */
+  if (config->pin_scan.inputs_to_scan != 0) {
+    uint8_t offset = config->pin_scan.offset_start_scan;
+    uint8_t start_pin =
+      offset +(uint8_t)config->positive_input;
+    uint8_t end_pin =
+      start_pin + config->pin_scan.inputs_to_scan;
 
-		while (start_pin < end_pin) {
-			_adc_configure_ain_pin((offset % 16)+(uint8_t)config->positive_input);
-			start_pin++;
-			offset++;
-		}
-		_adc_configure_ain_pin(config->negative_input);
-	} else {
-		_adc_configure_ain_pin(config->positive_input);
-		_adc_configure_ain_pin(config->negative_input);
-	}
+    while (start_pin < end_pin) {
+      _adc_configure_ain_pin((offset % 16)+(uint8_t)config->positive_input);
+      start_pin++;
+      offset++;
+    }
+    _adc_configure_ain_pin(config->negative_input);
+  } else {
+    _adc_configure_ain_pin(config->positive_input);
+    _adc_configure_ain_pin(config->negative_input);
+  }
 
-	/* Configure run in standby */
-	adc_module->CTRLA.reg = (config->run_in_standby << ADC_CTRLA_RUNSTDBY_Pos);
+  /* Configure run in standby */
+  adc_module->CTRLA.reg = (config->run_in_standby << ADC_CTRLA_RUNSTDBY_Pos);
 
-	/* Configure reference */
-	adc_module->REFCTRL.reg =
-			(config->reference_compensation_enable << ADC_REFCTRL_REFCOMP_Pos) |
-			(config->reference);
+  /* Configure reference */
+  adc_module->REFCTRL.reg =
+    (config->reference_compensation_enable << ADC_REFCTRL_REFCOMP_Pos) |
+    (config->reference);
 
-	/* Set adjusting result and number of samples */
-	switch (config->resolution) {
+  /* Set adjusting result and number of samples */
+  switch (config->resolution) {
 
-	case ADC_RESOLUTION_CUSTOM:
-		adjres = config->divide_result;
-		accumulate = config->accumulate_samples;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_CUSTOM:
+      adjres = config->divide_result;
+      accumulate = config->accumulate_samples;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 
-	case ADC_RESOLUTION_13BIT:
-		/* Increase resolution by 1 bit */
-		adjres = ADC_DIVIDE_RESULT_2;
-		accumulate = ADC_ACCUMULATE_SAMPLES_4;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_13BIT:
+      /* Increase resolution by 1 bit */
+      adjres = ADC_DIVIDE_RESULT_2;
+      accumulate = ADC_ACCUMULATE_SAMPLES_4;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 
-	case ADC_RESOLUTION_14BIT:
-		/* Increase resolution by 2 bit */
-		adjres = ADC_DIVIDE_RESULT_4;
-		accumulate = ADC_ACCUMULATE_SAMPLES_16;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_14BIT:
+      /* Increase resolution by 2 bit */
+      adjres = ADC_DIVIDE_RESULT_4;
+      accumulate = ADC_ACCUMULATE_SAMPLES_16;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 #ifdef SAMD20
-	/* Please see $35.1.8 for ADC errata of SAM D20.
-	   The revisions before D have this issue.*/
-	case ADC_RESOLUTION_15BIT:
-		/* Increase resolution by 3 bit */
-		if(revision_num < REVISON_D_NUM) {
-			adjres = ADC_DIVIDE_RESULT_8;
-		} else {
-			adjres = ADC_DIVIDE_RESULT_2;
-		}
-		accumulate = ADC_ACCUMULATE_SAMPLES_64;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+      /* Please see $35.1.8 for ADC errata of SAM D20.
+         The revisions before D have this issue.*/
+    case ADC_RESOLUTION_15BIT:
+      /* Increase resolution by 3 bit */
+      if(revision_num < REVISON_D_NUM) {
+        adjres = ADC_DIVIDE_RESULT_8;
+      } else {
+        adjres = ADC_DIVIDE_RESULT_2;
+      }
+      accumulate = ADC_ACCUMULATE_SAMPLES_64;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 
-	case ADC_RESOLUTION_16BIT:
-		if(revision_num < REVISON_D_NUM) {
-			/* Increase resolution by 4 bit */
-			adjres = ADC_DIVIDE_RESULT_16;
-		} else {
-			adjres = ADC_DIVIDE_RESULT_DISABLE;
-		}
-		accumulate = ADC_ACCUMULATE_SAMPLES_256;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_16BIT:
+      if(revision_num < REVISON_D_NUM) {
+        /* Increase resolution by 4 bit */
+        adjres = ADC_DIVIDE_RESULT_16;
+      } else {
+        adjres = ADC_DIVIDE_RESULT_DISABLE;
+      }
+      accumulate = ADC_ACCUMULATE_SAMPLES_256;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 #else
-	case ADC_RESOLUTION_15BIT:
-		/* Increase resolution by 3 bit */
-		adjres = ADC_DIVIDE_RESULT_2;
-		accumulate = ADC_ACCUMULATE_SAMPLES_64;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_15BIT:
+      /* Increase resolution by 3 bit */
+      adjres = ADC_DIVIDE_RESULT_2;
+      accumulate = ADC_ACCUMULATE_SAMPLES_64;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 
-	case ADC_RESOLUTION_16BIT:
-		/* Increase resolution by 4 bit */
-		adjres = ADC_DIVIDE_RESULT_DISABLE;
-		accumulate = ADC_ACCUMULATE_SAMPLES_256;
-		/* 16-bit result register */
-		resolution = ADC_RESOLUTION_16BIT;
-		break;
+    case ADC_RESOLUTION_16BIT:
+      /* Increase resolution by 4 bit */
+      adjres = ADC_DIVIDE_RESULT_DISABLE;
+      accumulate = ADC_ACCUMULATE_SAMPLES_256;
+      /* 16-bit result register */
+      resolution = ADC_RESOLUTION_16BIT;
+      break;
 #endif
-	case ADC_RESOLUTION_8BIT:
-		/* 8-bit result register */
-		resolution = ADC_RESOLUTION_8BIT;
-		break;
-	case ADC_RESOLUTION_10BIT:
-		/* 10-bit result register */
-		resolution = ADC_RESOLUTION_10BIT;
-		break;
-	case ADC_RESOLUTION_12BIT:
-		/* 12-bit result register */
-		resolution = ADC_RESOLUTION_12BIT;
-		break;
+    case ADC_RESOLUTION_8BIT:
+      /* 8-bit result register */
+      resolution = ADC_RESOLUTION_8BIT;
+      break;
+    case ADC_RESOLUTION_10BIT:
+      /* 10-bit result register */
+      resolution = ADC_RESOLUTION_10BIT;
+      break;
+    case ADC_RESOLUTION_12BIT:
+      /* 12-bit result register */
+      resolution = ADC_RESOLUTION_12BIT;
+      break;
 
-	default:
-		/* Unknown. Abort. */
-		return ADC_STATUS_ERR_INVALID_ARG;
-	}
+    default:
+      /* Unknown. Abort. */
+      return ADC_STATUS_ERR_INVALID_ARG;
+  }
 
-	adc_module->AVGCTRL.reg = ADC_AVGCTRL_ADJRES(adjres) | accumulate;
+  adc_module->AVGCTRL.reg = ADC_AVGCTRL_ADJRES(adjres) | accumulate;
 
-	/* Check validity of sample length value */
-	if (config->sample_length > 63) {
-		return ADC_STATUS_ERR_INVALID_ARG;
-	} else {
-		/* Configure sample length */
-		adc_module->SAMPCTRL.reg =
-				(config->sample_length << ADC_SAMPCTRL_SAMPLEN_Pos);
-	}
+  /* Check validity of sample length value */
+  if (config->sample_length > 63) {
+    return ADC_STATUS_ERR_INVALID_ARG;
+  } else {
+    /* Configure sample length */
+    adc_module->SAMPCTRL.reg =
+      (config->sample_length << ADC_SAMPCTRL_SAMPLEN_Pos);
+  }
 
-	while (adc_is_syncing(module_inst)) {
-		/* Wait for synchronization */
-	}
+  while (adc_is_syncing()) {
+    /* Wait for synchronization */
+  }
 
-	/* Configure CTRLB */
-	adc_module->CTRLB.reg =
-			config->clock_prescaler |
-			resolution |
-			(config->correction.correction_enable << ADC_CTRLB_CORREN_Pos) |
-			(config->freerunning << ADC_CTRLB_FREERUN_Pos) |
-			(config->left_adjust << ADC_CTRLB_LEFTADJ_Pos) |
-			(config->differential_mode << ADC_CTRLB_DIFFMODE_Pos);
+  /* Configure CTRLB */
+  adc_module->CTRLB.reg =
+    config->clock_prescaler |
+    resolution |
+    (config->correction.correction_enable << ADC_CTRLB_CORREN_Pos) |
+    (config->freerunning << ADC_CTRLB_FREERUN_Pos) |
+    (config->left_adjust << ADC_CTRLB_LEFTADJ_Pos) |
+    (config->differential_mode << ADC_CTRLB_DIFFMODE_Pos);
 
-	/* Check validity of window thresholds */
-	if (config->window.window_mode != ADC_WINDOW_MODE_DISABLE) {
-		switch (resolution) {
-		case ADC_RESOLUTION_8BIT:
-			if (config->differential_mode &&
-					(config->window.window_lower_value > 127 ||
-					config->window.window_lower_value < -128 ||
-					config->window.window_upper_value > 127 ||
-					config->window.window_upper_value < -128)) {
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			} else if (config->window.window_lower_value > 255 ||
-					config->window.window_upper_value > 255){
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			}
-			break;
-		case ADC_RESOLUTION_10BIT:
-			if (config->differential_mode &&
-					(config->window.window_lower_value > 511 ||
-					config->window.window_lower_value < -512 ||
-					config->window.window_upper_value > 511 ||
-					config->window.window_upper_value > -512)) {
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			} else if (config->window.window_lower_value > 1023 ||
-					config->window.window_upper_value > 1023){
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			}
-			break;
-		case ADC_RESOLUTION_12BIT:
-			if (config->differential_mode &&
-					(config->window.window_lower_value > 2047 ||
-					config->window.window_lower_value < -2048 ||
-					config->window.window_upper_value > 2047 ||
-					config->window.window_upper_value < -2048)) {
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			} else if (config->window.window_lower_value > 4095 ||
-					config->window.window_upper_value > 4095){
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			}
-			break;
-		case ADC_RESOLUTION_16BIT:
-			if (config->differential_mode &&
-					(config->window.window_lower_value > 32767 ||
-					config->window.window_lower_value < -32768 ||
-					config->window.window_upper_value > 32767 ||
-					config->window.window_upper_value < -32768)) {
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			} else if (config->window.window_lower_value > 65535 ||
-					config->window.window_upper_value > 65535){
-				/* Invalid value */
-				return ADC_STATUS_ERR_INVALID_ARG;
-			}
-			break;
-		}
-	}
+  /* Check validity of window thresholds */
+  if (config->window.window_mode != ADC_WINDOW_MODE_DISABLE) {
+    switch (resolution) {
+      case ADC_RESOLUTION_8BIT:
+        if (config->differential_mode &&
+            (config->window.window_lower_value > 127 ||
+             config->window.window_lower_value < -128 ||
+             config->window.window_upper_value > 127 ||
+             config->window.window_upper_value < -128)) {
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        } else if (config->window.window_lower_value > 255 ||
+                   config->window.window_upper_value > 255){
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        }
+        break;
+      case ADC_RESOLUTION_10BIT:
+        if (config->differential_mode &&
+            (config->window.window_lower_value > 511 ||
+             config->window.window_lower_value < -512 ||
+             config->window.window_upper_value > 511 ||
+             config->window.window_upper_value > -512)) {
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        } else if (config->window.window_lower_value > 1023 ||
+                   config->window.window_upper_value > 1023){
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        }
+        break;
+      case ADC_RESOLUTION_12BIT:
+        if (config->differential_mode &&
+            (config->window.window_lower_value > 2047 ||
+             config->window.window_lower_value < -2048 ||
+             config->window.window_upper_value > 2047 ||
+             config->window.window_upper_value < -2048)) {
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        } else if (config->window.window_lower_value > 4095 ||
+                   config->window.window_upper_value > 4095){
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        }
+        break;
+      case ADC_RESOLUTION_16BIT:
+        if (config->differential_mode &&
+            (config->window.window_lower_value > 32767 ||
+             config->window.window_lower_value < -32768 ||
+             config->window.window_upper_value > 32767 ||
+             config->window.window_upper_value < -32768)) {
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        } else if (config->window.window_lower_value > 65535 ||
+                   config->window.window_upper_value > 65535){
+          /* Invalid value */
+          return ADC_STATUS_ERR_INVALID_ARG;
+        }
+        break;
+    }
+  }
 
-	while (adc_is_syncing(module_inst)) {
-		/* Wait for synchronization */
-	}
+  while (adc_is_syncing()) {
+    /* Wait for synchronization */
+  }
 
-	/* Configure window mode */
-	adc_module->WINCTRL.reg = config->window.window_mode;
+  /* Configure window mode */
+  adc_module->WINCTRL.reg = config->window.window_mode;
 
-	while (adc_is_syncing(module_inst)) {
-		/* Wait for synchronization */
-	}
+  while (adc_is_syncing()) {
+    /* Wait for synchronization */
+  }
 
-	/* Configure lower threshold */
-	adc_module->WINLT.reg =
-			config->window.window_lower_value << ADC_WINLT_WINLT_Pos;
+  /* Configure lower threshold */
+  adc_module->WINLT.reg =
+    config->window.window_lower_value << ADC_WINLT_WINLT_Pos;
 
-	while (adc_is_syncing(module_inst)) {
-		/* Wait for synchronization */
-	}
+  while (adc_is_syncing()) {
+    /* Wait for synchronization */
+  }
 
-	/* Configure lower threshold */
-	adc_module->WINUT.reg = config->window.window_upper_value <<
-			ADC_WINUT_WINUT_Pos;
+  /* Configure lower threshold */
+  adc_module->WINUT.reg = config->window.window_upper_value <<
+    ADC_WINUT_WINUT_Pos;
 
-	uint8_t inputs_to_scan = config->pin_scan.inputs_to_scan;
-	if (inputs_to_scan > 0) {
-		/*
-		* Number of input sources included is the value written to INPUTSCAN
-		* plus 1.
-		*/
-		inputs_to_scan--;
-	}
+  uint8_t inputs_to_scan = config->pin_scan.inputs_to_scan;
+  if (inputs_to_scan > 0) {
+    /*
+     * Number of input sources included is the value written to INPUTSCAN
+     * plus 1.
+     */
+    inputs_to_scan--;
+  }
 
-	if (inputs_to_scan > (ADC_INPUTCTRL_INPUTSCAN_Msk >> ADC_INPUTCTRL_INPUTSCAN_Pos) ||
-			config->pin_scan.offset_start_scan > (ADC_INPUTCTRL_INPUTOFFSET_Msk >> ADC_INPUTCTRL_INPUTOFFSET_Pos)) {
-		/* Invalid number of input pins or input offset */
-		return ADC_STATUS_ERR_INVALID_ARG;
-	}
+  if (inputs_to_scan > (ADC_INPUTCTRL_INPUTSCAN_Msk >> ADC_INPUTCTRL_INPUTSCAN_Pos) ||
+      config->pin_scan.offset_start_scan > (ADC_INPUTCTRL_INPUTOFFSET_Msk >> ADC_INPUTCTRL_INPUTOFFSET_Pos)) {
+    /* Invalid number of input pins or input offset */
+    return ADC_STATUS_ERR_INVALID_ARG;
+  }
 
-	while (adc_is_syncing(module_inst)) {
-		/* Wait for synchronization */
-	}
+  while (adc_is_syncing()) {
+    /* Wait for synchronization */
+  }
 
-	/* Configure pin scan mode and positive and negative input pins */
-	adc_module->INPUTCTRL.reg =
-			config->gain_factor |
-			(config->pin_scan.offset_start_scan <<
-			ADC_INPUTCTRL_INPUTOFFSET_Pos) |
-			(inputs_to_scan << ADC_INPUTCTRL_INPUTSCAN_Pos) |
-			config->negative_input |
-			config->positive_input;
+  /* Configure pin scan mode and positive and negative input pins */
+  adc_module->INPUTCTRL.reg =
+    config->gain_factor |
+    (config->pin_scan.offset_start_scan <<
+     ADC_INPUTCTRL_INPUTOFFSET_Pos) |
+    (inputs_to_scan << ADC_INPUTCTRL_INPUTSCAN_Pos) |
+    config->negative_input |
+    config->positive_input;
 
-	/* Configure events */
-	adc_module->EVCTRL.reg = config->event_action;
+  /* Configure events */
+  adc_module->EVCTRL.reg = config->event_action;
 
-	/* Disable all interrupts */
-	adc_module->INTENCLR.reg =
-			(1 << ADC_INTENCLR_SYNCRDY_Pos) | (1 << ADC_INTENCLR_WINMON_Pos) |
-			(1 << ADC_INTENCLR_OVERRUN_Pos) | (1 << ADC_INTENCLR_RESRDY_Pos);
+  /* Disable all interrupts */
+  adc_module->INTENCLR.reg =
+    (1 << ADC_INTENCLR_SYNCRDY_Pos) | (1 << ADC_INTENCLR_WINMON_Pos) |
+    (1 << ADC_INTENCLR_OVERRUN_Pos) | (1 << ADC_INTENCLR_RESRDY_Pos);
 
-	if (config->correction.correction_enable){
-		/* Make sure gain_correction value is valid */
-		if (config->correction.gain_correction > ADC_GAINCORR_GAINCORR_Msk) {
-			return ADC_STATUS_ERR_INVALID_ARG;
-		} else {
-			/* Set gain correction value */
-			adc_module->GAINCORR.reg = config->correction.gain_correction <<
-					ADC_GAINCORR_GAINCORR_Pos;
-		}
+  if (config->correction.correction_enable){
+    /* Make sure gain_correction value is valid */
+    if (config->correction.gain_correction > ADC_GAINCORR_GAINCORR_Msk) {
+      return ADC_STATUS_ERR_INVALID_ARG;
+    } else {
+      /* Set gain correction value */
+      adc_module->GAINCORR.reg = config->correction.gain_correction <<
+        ADC_GAINCORR_GAINCORR_Pos;
+    }
 
-		/* Make sure offset correction value is valid */
-		if (config->correction.offset_correction > 2047 ||
-				config->correction.offset_correction < -2048) {
-			return ADC_STATUS_ERR_INVALID_ARG;
-		} else {
-			/* Set offset correction value */
-			adc_module->OFFSETCORR.reg = config->correction.offset_correction <<
-					ADC_OFFSETCORR_OFFSETCORR_Pos;
-		}
-	}
+    /* Make sure offset correction value is valid */
+    if (config->correction.offset_correction > 2047 ||
+        config->correction.offset_correction < -2048) {
+      return ADC_STATUS_ERR_INVALID_ARG;
+    } else {
+      /* Set offset correction value */
+      adc_module->OFFSETCORR.reg = config->correction.offset_correction <<
+        ADC_OFFSETCORR_OFFSETCORR_Pos;
+    }
+  }
 
-	/* Load in the fixed device ADC calibration constants */
-	adc_module->CALIB.reg =
-			ADC_CALIB_BIAS_CAL(
-				(*(uint32_t *)ADC_FUSES_BIASCAL_ADDR >> ADC_FUSES_BIASCAL_Pos)
-			) |
-			ADC_CALIB_LINEARITY_CAL(
-				(*(uint64_t *)ADC_FUSES_LINEARITY_0_ADDR >> ADC_FUSES_LINEARITY_0_Pos)
-			);
+  /* Load in the fixed device ADC calibration constants */
+  adc_module->CALIB.reg =
+    ADC_CALIB_BIAS_CAL(
+      (*(uint32_t *)ADC_FUSES_BIASCAL_ADDR >> ADC_FUSES_BIASCAL_Pos)
+      ) |
+    ADC_CALIB_LINEARITY_CAL(
+      (*(uint64_t *)ADC_FUSES_LINEARITY_0_ADDR >> ADC_FUSES_LINEARITY_0_Pos)
+      );
 
-	return ADC_STATUS_OK;
+  return ADC_STATUS_OK;
 }
 
 /**
@@ -483,55 +481,191 @@ static enum adc_status_code _adc_set_config(
  * \retval ADC_STATUS_BUSY          The module is busy with a reset operation
  * \retval ADC_STATUS_ERR_DENIED        The module is enabled
  */
-enum adc_status_code adc_init(
-		struct adc_module *const module_inst,
-		Adc *hw,
-		struct adc_config *config)
+enum adc_status_code adc_init(Adc *hw,
+                              struct adc_config *config)
 {
-	/* Sanity check arguments */
-	Assert(module_inst);
-	Assert(hw);
-	Assert(config);
+  /* Sanity check arguments */
 
-	/* Associate the software module instance with the hardware module */
-	module_inst->hw = hw;
+  Assert(hw);
+  Assert(config);
 
-	/* Turn on the digital interface clock */
-	system_apb_clock_set_mask(SYSTEM_CLOCK_APB_APBC, PM_APBCMASK_ADC);
+  /* Associate the software module instance with the hardware module */
+  module_inst.hw = hw;
 
-	if (hw->CTRLA.reg & ADC_CTRLA_SWRST) {
-		/* We are in the middle of a reset. Abort. */
-		return ADC_STATUS_BUSY;
-	}
+  /* Turn on the digital interface clock */
+  system_apb_clock_set_mask(SYSTEM_CLOCK_APB_APBC, PM_APBCMASK_ADC);
 
-	if (hw->CTRLA.reg & ADC_CTRLA_ENABLE) {
-		/* Module must be disabled before initialization. Abort. */
-		return ADC_STATUS_ERR_DENIED;
-	}
+  if (hw->CTRLA.reg & ADC_CTRLA_SWRST) {
+    /* We are in the middle of a reset. Abort. */
+    return ADC_STATUS_BUSY;
+  }
 
-	/* Store the selected reference for later use */
-	module_inst->reference = config->reference;
+  if (hw->CTRLA.reg & ADC_CTRLA_ENABLE) {
+    /* Module must be disabled before initialization. Abort. */
+    return ADC_STATUS_ERR_DENIED;
+  }
 
-#if ADC_CALLBACK_MODE == true
-	for (uint8_t i = 0; i < ADC_CALLBACK_N; i++) {
-		module_inst->callback[i] = NULL;
-	};
+  /* Store the selected reference for later use */
+  module_inst.reference = config->reference;
 
-	module_inst->registered_callback_mask = 0;
-	module_inst->enabled_callback_mask = 0;
-	module_inst->remaining_conversions = 0;
-	module_inst->job_status = ADC_STATUS_OK;
+  for (uint8_t i = 0; i < ADC_CALLBACK_N; i++) {
+    module_inst.callback[i] = NULL;
+  };
 
-	_adc_instances[0] = module_inst;
+  module_inst.registered_callback_mask = 0;
+  module_inst.enabled_callback_mask = 0;
+  module_inst.remaining_conversions = 0;
+  module_inst.job_status = ADC_STATUS_OK;
 
-	if (config->event_action == ADC_EVENT_ACTION_DISABLED &&
-			!config->freerunning) {
-		module_inst->software_trigger = true;
-	} else {
-		module_inst->software_trigger = false;
-	}
-#endif
+  if (config->event_action == ADC_EVENT_ACTION_DISABLED &&
+      !config->freerunning) {
+    module_inst.software_trigger = true;
+  } else {
+    module_inst.software_trigger = false;
+  }
 
-	/* Write configuration to module */
-	return _adc_set_config(module_inst, config);
+  /* Write configuration to module */
+  return _adc_set_config(config);
+}
+
+/** Interrupt handler for the ADC module. */
+void ADC_Handler(void)
+{
+  /* get interrupt flags and mask out enabled callbacks */
+  uint32_t flags = module_inst.hw->INTFLAG.reg;
+
+  if (flags & ADC_INTFLAG_RESRDY) {
+    /* job is complete. update status,disable interrupt
+     * and call callback */
+    module_inst.job_status = ADC_STATUS_OK;
+    adc_disable_interrupt(ADC_INTERRUPT_RESULT_READY);
+
+    (module_inst.callback[ADC_CALLBACK_READ_BUFFER])();
+  }
+
+  if (flags & ADC_INTFLAG_WINMON) {
+    module_inst.hw->INTFLAG.reg = ADC_INTFLAG_WINMON;
+    if ((module_inst.enabled_callback_mask & (1 << ADC_CALLBACK_WINDOW)) &&
+        (module_inst.registered_callback_mask & (1 << ADC_CALLBACK_WINDOW))) {
+      (module_inst.callback[ADC_CALLBACK_WINDOW])();
+    }
+
+  }
+
+  if (flags & ADC_INTFLAG_OVERRUN) {
+    module_inst.hw->INTFLAG.reg = ADC_INTFLAG_OVERRUN;
+    if ((module_inst.enabled_callback_mask & (1 << ADC_CALLBACK_ERROR)) &&
+        (module_inst.registered_callback_mask & (1 << ADC_CALLBACK_ERROR))) {
+      (module_inst.callback[ADC_CALLBACK_ERROR])();
+    }
+  }
+}
+
+/**
+ * \brief Registers a callback
+ *
+ * Registers a callback function which is implemented by the user.
+ *
+ * \note The callback must be enabled by for the interrupt handler to call it
+ * when the condition for the callback is met.
+ *
+ * \param[in] module         Pointer to ADC software instance struct
+ * \param[in] callback_func  Pointer to callback function
+ * \param[in] callback_type  Callback type given by an enum
+ *
+ */
+void adc_register_callback(
+  adc_callback_t callback_func,
+  enum adc_callback callback_type)
+{
+  /* Sanity check arguments */
+  Assert(callback_func);
+
+  /* Register callback function */
+  module_inst.callback[callback_type] = callback_func;
+
+  /* Set the bit corresponding to the callback_type */
+  module_inst.registered_callback_mask |= (1 << callback_type);
+}
+
+/**
+ * \brief Unregisters a callback
+ *
+ * Unregisters a callback function which is implemented by the user.
+ *
+ * \param[in] module         Pointer to ADC software instance struct
+ * \param[in] callback_type  Callback type given by an enum
+ *
+ */
+void adc_unregister_callback(
+  enum adc_callback callback_type)
+{
+  /* Unregister callback function */
+  module_inst.callback[callback_type] = NULL;
+
+  /* Clear the bit corresponding to the callback_type */
+  module_inst.registered_callback_mask &= ~(1 << callback_type);
+}
+
+/**
+ * \brief Read multiple samples from ADC
+ *
+ * Read \c samples samples from the ADC into the buffer \c buffer.
+ * If there is no hardware trigger defined (event action) the
+ * driver will retrigger the ADC conversion whenever a conversion
+ * is complete until \c samples samples has been acquired. To avoid
+ * jitter in the sampling frequency using an event trigger is advised.
+ *
+ * \param[in]  module_inst  Pointer to the ADC software instance struct
+ * \param[in]  samples      Number of samples to acquire
+ * \param[out] buffer       Buffer to store the ADC samples
+ *
+ * \return Status of the job start
+ * \retval STATUS_OK        The conversion job was started successfully and is
+ *                          in progress
+ * \retval STATUS_BUSY      The ADC is already busy with another job
+ */
+enum adc_status_code adc_read_buffer_job(
+  uint16_t *buffer,
+  uint16_t samples)
+{
+  Assert(samples);
+  Assert(buffer);
+
+  if(module_inst.remaining_conversions != 0 ||
+     module_inst.job_status == ADC_STATUS_BUSY){
+    return ADC_STATUS_BUSY;
+  }
+
+  module_inst.job_status = ADC_STATUS_BUSY;
+  module_inst.remaining_conversions = samples;
+  module_inst.job_buffer = buffer;
+
+  adc_enable_interrupt(ADC_INTERRUPT_RESULT_READY);
+
+  if(module_inst.software_trigger == true) {
+    adc_start_conversion();
+  }
+
+  return ADC_STATUS_OK;
+}
+
+/**
+ * \brief Gets the status of a job
+ *
+ * Gets the status of an ongoing or the last job.
+ *
+ * \param [in]  module_inst Pointer to the ADC software instance struct
+ * \param [in]  type        Type of job to abort
+ *
+ * \return Status of the job
+ */
+enum adc_status_code adc_get_job_status(
+  enum adc_job_type type)
+{
+  if (type == ADC_JOB_READ_BUFFER ) {
+    return module_inst.job_status;
+  } else {
+    return ADC_STATUS_ERR_INVALID_ARG;
+  }
 }

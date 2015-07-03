@@ -25,7 +25,10 @@
 #ifndef ANALOGUE_H
 #define ANALOGUE_H
 
+
+void start_adc_conversion_sequence(void);
+uint8_t is_adc_conversion_done(void);
 float get_battery(void);
-float get_temperature(void);
+float get_solar(void);
 
 #endif /* ANALOGUE_H */

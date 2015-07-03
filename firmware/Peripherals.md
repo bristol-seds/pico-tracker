@@ -36,7 +36,7 @@
 |[GPS_SERCOM]_IRQn|gps usart rx|1|latency not so critical. rate <= 960Hz
 |EIC_IRQn|timepulse|2|latency not so critical. rate = 1
 |TC2_IRQn|xosc measurement done|2|latency not critical
-
+|ADC_IRQn|adc measurement done|2|latency not critical
 
 
 

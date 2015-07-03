@@ -44,6 +44,7 @@
 #include "location_aprs_file.h"
 #include "backlog_write_read.h"
 #include "mem_erase_all.h"
+#include "adc_battery_solar_read.h"
 /* [new_tc] */
 
 

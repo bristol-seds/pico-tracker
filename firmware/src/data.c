@@ -59,6 +59,7 @@ struct tracker_datapoint* collect_data(void)
    * ---- Analogue ----
    */
   datapoint.battery = get_battery();
+  datapoint.solar = get_solar();
   datapoint.temperature = telemetry_si_temperature();
 
 

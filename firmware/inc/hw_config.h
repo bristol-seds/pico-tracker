@@ -193,5 +193,6 @@
 
 #define TC2_INT_PRIO		2 /* XOSC Measure Timer */
 
+#define ADC_INT_PRIO		2 /* ADC */
 
 #endif /* HW_CONFIG_H */
