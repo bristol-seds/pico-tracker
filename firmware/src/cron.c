@@ -39,6 +39,8 @@ struct tracker_time time = {0};
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
 
+/* Low Power Mode */
+#define LOW_POWER(d)	(d->solar < 0.2)
 
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
@@ -94,18 +96,27 @@ void do_cron(void)
 
   /* ---- Telemetry output ---- */
   /* RTTY */
-  if (time.second == 0) {
+  if (time.second == 0 && !LOW_POWER(dp)) {
     rtty_telemetry(dp);
 
     /* Contestia */
-  } else if (time.second == 30) {
+  } else if (time.second == 30 && !LOW_POWER(dp)) {
     contestia_telemetry(dp);
 
-    /* APRS */ /* LIMIT CONTESTIA PACKET LENGTH */
+    /* Low Power */
+  } else if (time.second == 0 && LOW_POWER(dp)) {
+    if ((time.minute % 2) == 0) {
+      rtty_telemetry(dp);
+    } else {
+      contestia_telemetry(dp);
+    }
+
+    /* APRS */
 #ifdef APRS_ENABLE
   } else if ((time.minute % 2) == 0 && time.second == 55) {
     aprs_telemetry(dp);
 #endif
+
     /* Pips */
   } else if ((time.second % 1) == 0) {
     pips_telemetry();
