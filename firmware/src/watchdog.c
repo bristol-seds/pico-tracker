@@ -93,6 +93,10 @@ void clear_idle_counters(void)
  */
 void kick_the_watchdog(void)
 {
+#ifdef DEBUG_USE_INTWATCHDOG
+  wdt_reset_count();
+#endif
+  kick_external_watchdog();
 }
 /**
  * Called in idle loops. Kicks the watchdog
