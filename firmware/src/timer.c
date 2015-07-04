@@ -30,6 +30,7 @@
 #include "system/extint.h"
 #include "system/events.h"
 #include "system/interrupt.h"
+#include "system/port.h"
 
 uint32_t gps_timepulse_count = 0;
 uint32_t timepulse_sequence = 0;
@@ -48,6 +49,10 @@ void timepulse_extint_init(void) {
   extint_enable_events(&events);
 
   /* Configure extinit channel */
+  /**
+   * We trigger on both edges so that we get woken up at 2x the tick
+   * rate. This means we can kick the watchdog often enough.
+   */
   struct extint_chan_conf config;
   config.gpio_pin = GPS_TIMEPULSE_PIN;
   config.gpio_pin_mux = GPS_TIMEPULSE_PINMUX;

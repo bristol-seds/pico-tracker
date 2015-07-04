@@ -363,6 +363,8 @@ const uint8_t tick_gclk_gen_num = 1;
  */
 void timer0_tick_init(uint32_t count)
 {
+  tc_reset(TC0);
+
   /* Configure Timer 0 */
   bool t0_capture_channel_enables[]    = {false, false};
   uint32_t t0_compare_channel_values[] = {count, 0x0000};
@@ -381,15 +383,8 @@ void timer0_tick_init(uint32_t count)
 	  t0_capture_channel_enables,	/* Capture Channel Enables */
 	  t0_compare_channel_values);	/* Compare Channels Values */
 
-  /* Enable Events */
-  struct tc_events event;
-  memset(&event, 0, sizeof(struct tc_events));
-  event.generate_event_on_compare_channel[0] = true;
-  event.event_action = TC_EVENT_ACTION_RETRIGGER;
-  tc_enable_events(TC0, &event);
-
   /* Enable Interrupt */
-  TC0->COUNT16.INTENSET.reg = TC_INTENSET_MC0;
+  TC0->COUNT32.INTENSET.reg = TC_INTENSET_MC0;
   irq_register_handler(TC0_IRQn, TC0_INT_PRIO); /* Highest Priority */
 
   /* Enable Timer */
@@ -420,7 +415,7 @@ void timer0_tick_deinit()
  */
 void TC0_Handler(void)
 {
-  if (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
+  while (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC0, TC_STATUS_CHANNEL_0_MATCH);
 
     telemetry_tick();

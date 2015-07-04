@@ -300,7 +300,7 @@ static void si_trx_modem_tx_filter_coefficients(uint8_t* coeff_array)
  *
  * This is a signed 16-bit value.
  */
-static void si_trx_modem_set_offset(int16_t offset)
+void si_trx_modem_set_offset(int16_t offset)
 {
   /* _si_trx_set_property_16(SI_PROPERTY_GROUP_MODEM, */
   /*                         SI_MODEM_FREQ_OFFSET, */
@@ -487,14 +487,6 @@ void si_trx_off(void)
 
   /* Physical shutdown */
   _si_trx_sdn_enable();
-}
-
-/**
- * Switches the transmission to the specified channel. Signed 16-bit int
- */
-void si_trx_switch_channel(int16_t channel)
-{
-  si_trx_modem_set_offset(channel);
 }
 
 /**

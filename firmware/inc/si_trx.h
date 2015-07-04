@@ -34,7 +34,10 @@ void si_trx_modem_set_deviation(uint32_t deviation);
 void si_trx_on(uint8_t modulation_type, uint32_t frequency,
                uint16_t deviation, uint8_t power);
 void si_trx_off(void);
-void si_trx_switch_channel(int16_t channel);
+
+void si_trx_modem_set_offset(int16_t channel);
+#define si_trx_switch_channel si_trx_modem_set_offset
+
 
 void si_trx_shutdown(void);
 void si_trx_init(void);

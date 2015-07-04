@@ -93,12 +93,6 @@ void clear_idle_counters(void)
  */
 void kick_the_watchdog(void)
 {
-  /* tc_set_count_value(TC1, 0); */
-  /* tc_clear_status(TC1, TC_STATUS_CHANNEL_0_MATCH); */
-
-  wdt_reset_count();
-
-  kick_external_watchdog();
 }
 /**
  * Called in idle loops. Kicks the watchdog
@@ -128,20 +122,28 @@ void idle(idle_wait_t idle_t)
   check_idle_counters();
 
   /* Kick the watchdog */
-  kick_the_watchdog();
+#ifdef DEBUG_USE_INTWATCHDOG
+  wdt_reset_count();
+#endif
+
+  port_pin_set_output_level(WDT_WDI_PIN, 0);
 
   /* And sleep */
   system_sleep();
 
   /* Same again when we wake from sleep */
-  kick_the_watchdog();
+#ifdef DEBUG_USE_INTWATCHDOG
+  wdt_reset_count();
+#endif
+
+  port_pin_set_output_level(WDT_WDI_PIN, 1);
 }
 
 
 /**
  * The internal watchdog is used to bring the processor to a halt and
  * coredump to external memory.
- * 0.4s < t_early_w < 0.64s
+ * 0.8s < t_early_w < 0.128s
  *
  * The external watchdog then hard resets the MCU and GPS to bring the
  * system back up in a clean state.
@@ -157,30 +159,30 @@ void watchdog_init(void)
 		      false);			/* Powersave */
   kick_external_watchdog();                     /* Kick External */
 
+#if DEBUG_USE_INTWATCHDOG
   /* /\* 0.5s early warn. So 2^(15-1) cycles of the 32.768kHz ulposc *\/ */
   system_gclk_gen_set_config(WDT_GCLK,
         		     GCLK_SOURCE_OSCULP32K, /* Source 		*/
         		     false,		/* High When Disabled	*/
-        		     128,		/* Division Factor 2^7  */
+        		     4,			/* Division Factor 1	*/
         		     false,		/* Run in standby	*/
         		     true);		/* Output Pin Enable	*/
   system_gclk_gen_enable(WDT_GCLK);
 
-  /* Set the watchdog timer. On 256Hz gclk  */
+  /* Set the watchdog timer. On 8kHz gclk  */
   wdt_set_config(false,			/* Lock WDT		*/
                  true,			/* Enable WDT		*/
                  WDT_GCLK,		/* Clock Source		*/
                  WDT_PERIOD_16384CLK,	/* Timeout Period	*/
                  WDT_PERIOD_NONE,	/* Window Period	*/
-                 WDT_PERIOD_128CLK);	/* Early Warning Period	*/
+                 WDT_PERIOD_8192CLK);	/* Early Warning Period	*/
 
   WDT->INTENSET.reg |= WDT_INTENSET_EW;
   WDT->INTFLAG.reg |= WDT_INTFLAG_EW;
   irq_register_handler(WDT_IRQn, WDT_INT_PRIO);
 
-  /* Kick Watchdogs */
-  kick_external_watchdog();
   wdt_reset_count();
+#endif
 }
 
 
