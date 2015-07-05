@@ -1,3 +1,4 @@
+
 datasheets
 firmware/test/ctypesgen/.svn
 firmware/test/main.py*
@@ -10,3 +11,6 @@ firmware/test/.testcommand
 *.#
 
 *.ipynb_checkpoints
+
+*.d
+*.i
