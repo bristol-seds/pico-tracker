@@ -40,8 +40,7 @@ struct tracker_time time = {0};
 struct tracker_datapoint* dp;
 
 /* Low Power Mode */
-#define LOW_POWER(d)	(0)
-//(d->solar < 0.2)
+#define LOW_POWER(d)	(d->solar < 0.2)
 
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
