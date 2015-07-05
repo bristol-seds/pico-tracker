@@ -38,9 +38,9 @@ typedef struct tracker_datapoint {
   struct tracker_time time;
 
   /* Position */
-  uint32_t latitude;            /* 100 nanodeg */
-  uint32_t longitude;           /* 100 nanodeg */
-  uint32_t altitude;            /* mm */
+  int32_t latitude;            	/* 100 nanodeg */
+  int32_t longitude;           	/* 100 nanodeg */
+  int32_t altitude;            	/* mm */
   uint8_t satillite_count;      /*  */
 
   /* Sensors */
