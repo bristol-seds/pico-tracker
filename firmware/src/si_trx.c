@@ -244,6 +244,16 @@ static void si_trx_frequency_control_set_band(uint8_t band, uint8_t sy_sel)
 			 sy_sel | (band & 0x7));
 }
 /**
+ * Set the control word of the modem delta-sigma modulator
+ */
+static void si_trx_modem_set_dsm_ctrl(uint8_t ctrl_word)
+{
+  _si_trx_set_property_8(SI_PROPERTY_GROUP_MODEM,
+			 SI_MODEM_DSM_CTRL,
+			 ctrl_word);
+}
+
+/**
  * Sets the modem frequency deviation. This is how much the external
  * pin deviates the synthesiser from the centre frequency. In units of
  * the resolution of the frac-n pll synthsiser.
@@ -346,9 +356,6 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 }
 
 
-
-
-
 /**
  * Set the synthesiser to the given frequency.
  *
@@ -402,11 +409,14 @@ static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
     si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_1);
   }
 
-
   /* Set the frac-n PLL divisior */
   si_trx_frequency_control_set_divider(n, m);
 
-  /* Set the external pin frequency deviation to the LSB tuning resoultion */
+  /* Set the modem dsm control word. Allow even deviation values */
+  si_trx_modem_set_dsm_ctrl(SI_MODEM_DSM_CTRL_NOFORCE_DSM_LSB |
+                            SI_MODEM_DSM_CTRL_MASH_1_1_1);
+
+  /* Set the modem frequency deviation (for the external pin)*/
   si_trx_modem_set_deviation(deviation);
 
   /* Return the LSB tuning resolution of the frac-n pll synthesiser. */
