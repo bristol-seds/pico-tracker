@@ -39,12 +39,12 @@
 void telemetry_tone(void)
 {
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 36);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 36, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 0x7f);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 0x7f, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
@@ -54,12 +54,12 @@ void telemetry_tone(void)
 void aprs_tone(void)
 {
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 36);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 36, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 0x7f);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 0x7f, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
@@ -83,7 +83,7 @@ void aprs_high_fm_tone(void)
                              false);		/* Output Pin Enable	*/
 
   si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, APRS_TEST_FREQUENCY,
-            AX25_DEVIATION, APRS_POWER);
+            AX25_DEVIATION, APRS_POWER, SI_FILTER_APRS);
   while (1) {
     idle(IDLE_TELEMETRY_ACTIVE);
   }
@@ -109,6 +109,23 @@ void aprs_test(void)
   }
 }
 
+/**
+ * RSID function for use during testing. Not for flight
+ */
+void rsid_test(void)
+{
+  while (1) {
+
+   telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+
+//    Sleep wait for RSID
+   while (telemetry_active()) {
+     idle(IDLE_TELEMETRY_ACTIVE);
+   }
+
+    for (int i = 3*200*1000; i; i--);
+  }
+}
 
 void rf_tests(void)
 {
@@ -124,6 +141,9 @@ void rf_tests(void)
       break;
     case RF_TEST_TELEMETRY_TONE:
       telemetry_tone();
+      break;
+    case RF_TEST_RSID:
+      rsid_test();
       break;
     default:
       break;

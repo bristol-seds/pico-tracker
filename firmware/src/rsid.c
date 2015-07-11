@@ -100,6 +100,7 @@ void rsid_encode(rsid_code_t rsid_code, int8_t* rsid)
  */
 
 uint8_t rsid_index = 0xFE;
+uint8_t rsid_subtick;
 int8_t rsid[RSID_NSYMBOLS];
 
 #define MODEM_TONE_SPACING 7.805
@@ -118,6 +119,7 @@ void rsid_start(rsid_code_t rsid_code)
 {
   /* Start transmission */
   rsid_index = 0;
+  rsid_subtick = 0;
   rsid_encode(rsid_code, rsid);
 }
 
@@ -147,24 +149,35 @@ void rsid_tone(uint8_t tone)
   deviation = tone_offset - (float)channel;
 #endif
 
-  float duty_cycle = 0.5 + (deviation / 2); // FSK only provides a marginal improvement in performance!
+  float duty_cycle = 0.5 + deviation;
 
-  si_trx_switch_channel(channel);
+  si_trx_switch_channel(channel-2); /* -2 offset to line up with contestia signal */
   telemetry_gpio1_pwm_duty(duty_cycle);
 }
 
 /**
  * Called at the rsid baud rate
+ *
+ * We mantain the first tone longer than the others to give the radio
+ * time to start up. Oh so hacky but hey
  */
 uint8_t rsid_tick(void)
 {
+  if (rsid_index < RSID_NSYMBOLS || rsid_subtick) {
 
-  if (rsid_index < RSID_NSYMBOLS) {
+    /* Actual tick */
+    if (rsid_subtick == 0) {
+      /* Transmit this tone */
+      rsid_tone(rsid[rsid_index]);
+      rsid_index++;
+    }
 
-    /* Transmit this tone */
-    rsid_tone(rsid[rsid_index]);
+    rsid_subtick++;
+    if ((rsid_index-1 == 0 && rsid_subtick == 3) || /* First tone */
+        (rsid_index-1 != 0 && rsid_subtick == 2)) { /* Other tones */
+      rsid_subtick = 0;
+    }
 
-    rsid_index++;
     return 1;
   }
 

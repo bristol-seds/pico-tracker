@@ -27,12 +27,18 @@
 
 #include "samd20.h"
 
+enum si_filter_model {
+  SI_FILTER_DEFAULT,
+  SI_FILTER_APRS,
+  SI_FILTER_RSID
+};
+
 float si_trx_get_temperature(void);
 
 void si_trx_modem_set_deviation(uint32_t deviation);
 
 void si_trx_on(uint8_t modulation_type, uint32_t frequency,
-               uint16_t deviation, uint8_t power);
+                 uint16_t deviation, uint8_t power, enum si_filter_model filter);
 void si_trx_off(void);
 
 void si_trx_modem_set_offset(int16_t channel);

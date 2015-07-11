@@ -427,7 +427,7 @@ static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
  * Resets the transceiver
  */
 void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
-                  uint16_t deviation, uint8_t power)
+                  uint16_t deviation, uint8_t power, enum si_filter_model filter)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
@@ -459,22 +459,40 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
   si_trx_set_frequency(frequency, deviation);
   si_trx_set_tx_power(power);
 
-  /**
-   * Modem tx filter coefficients for APRS
-   * 0dB @ 2.2kHz
-   * -6dB @ 1.2kHz (for pre-emphasis)
-   * < -30dB from 3.6KHz
-   */
+  /* Modem tx filter coefficients */
+  uint8_t rsid_si_coeff[] = {0x1, 0x4, 0x9, 0x11, 0x19, 0x22, 0x2a, 0x30, 0x31};
   uint8_t p_si_coeff[] = {0x6, 0x8, 0x1, 0xf2, 0xe4, 0xe7, 0xff, 0x1d, 0x2b};
-  si_trx_modem_set_tx_datarate(1600); /* Filter sampling rate 1600*10 = 16kHz */
-  si_trx_modem_tx_filter_coefficients(p_si_coeff);
+
+  switch (filter) {
+    case SI_FILTER_APRS:
+      /**
+       * Modem tx filter coefficients for APRS
+       * 0dB @ 2.2kHz
+       * -6dB @ 1.2kHz (for pre-emphasis)
+       * < -30dB from 3.6KHz
+       */
+      si_trx_modem_set_tx_datarate(1600); /* Filter sampling rate 1600*10 = 16kHz */
+      si_trx_modem_tx_filter_coefficients(p_si_coeff);
+      break;
+    case SI_FILTER_RSID:
+      /**
+       * Modem tx filter coefficients for RSID
+       * -6dB @ dc (for ±0.5 deviation max)
+       * < -50dB from 1.8KHz
+       */
+      si_trx_modem_set_tx_datarate(1600); /* Filter sampling rate 1600*10 = 16kHz */
+      si_trx_modem_tx_filter_coefficients(rsid_si_coeff);
+      break;
+    default:                      /* Just leave the defaults from startup in place */
+      break;
+  }
 
 
   /* RTTY from GPIO1 */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC
-			      SI_MODEM_MOD_GPIO_1,
-			      SI_MODEM_MOD_SOURCE_DIRECT,
-			      modulation_type);
+                              SI_MODEM_MOD_GPIO_1,
+                              SI_MODEM_MOD_SOURCE_DIRECT,
+                              modulation_type);
 
   si_trx_state_tx_tune();
 }
@@ -483,9 +501,9 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
  * Enables the radio and starts transmitting
  */
 void si_trx_on(uint8_t modulation_type, uint32_t frequency,
-               uint16_t deviation, uint8_t power)
+    uint16_t deviation, uint8_t power, enum si_filter_model filter)
 {
-  si_trx_reset(modulation_type, frequency, deviation, power);
+  si_trx_reset(modulation_type, frequency, deviation, power, filter);
   si_trx_start_tx(0);
 }
 /**

@@ -238,7 +238,8 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* Contestia: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER,
+                  SI_FILTER_DEFAULT);
         radio_on = 1;
         contestia_preamble();
       }
@@ -259,7 +260,8 @@ void telemetry_tick(void) {
 
       if (!radio_on) {
         /* RTTY: We use the modem offset to modulate */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER,
+                  SI_FILTER_DEFAULT);
         radio_on = 1;
         rtty_preamble();
       }
@@ -290,10 +292,9 @@ void telemetry_tick(void) {
         /* RSID: We PWM frequencies with the external pin */
         telemetry_gpio1_pwm_init();
 
-        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
+        si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER,
+                  SI_FILTER_RSID);
         radio_on = 1;
-
-        return;
       }
 
       /* Do Tx */
@@ -304,6 +305,7 @@ void telemetry_tick(void) {
         telemetry_gpio1_pwm_deinit();
         return;
       }
+
       break;
 
     case TELEMETRY_APRS: /* ---- ---- APRS */
@@ -313,8 +315,8 @@ void telemetry_tick(void) {
         if (aprs_start() && _aprs_frequency) {
 
           /* Radio on */
-          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency,
-                    AX25_DEVIATION, APRS_POWER);
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, _aprs_frequency, AX25_DEVIATION,
+                    APRS_POWER, SI_FILTER_APRS);
           radio_on = 1;
         } else {
           /* Stop immediately */
@@ -333,7 +335,8 @@ void telemetry_tick(void) {
 
       if (!radio_on) { /* Turn on */
         /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER);
+        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1, TELEMETRY_POWER,
+                  SI_FILTER_DEFAULT);
         radio_on = 1;
 
       } else { /* Turn off */
@@ -430,7 +433,7 @@ void telemetry_init(void)
   rtty_timer_count	= timer0_get_count_value(RTTY_BITRATE);
   pips_timer_count	= timer0_get_count_value(PIPS_FREQUENCY);
   ax25_timer_count      = timer0_get_count_value(AX25_TICK_RATE);
-  rsid_timer_count	= timer0_get_count_value(RSID_SYMBOL_RATE);
+  rsid_timer_count	= timer0_get_count_value(RSID_SYMBOL_RATE*2); /* 2x Subtick */
 }
 
 
