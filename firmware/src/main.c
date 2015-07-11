@@ -171,8 +171,10 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
   /* Update location */
   aprs_location_update(lon, lat, altitude);
 
+#if APRS_USE_GEOFENCE
   /* aprs okay here? */
   if (aprs_location_tx_allow()) {
+#endif
 
     /* Set location */
     aprs_set_datapoint(dp);
@@ -198,7 +200,10 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     while (telemetry_active()) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
+
+#if APRS_USE_GEOFENCE
   }
+#endif
 }
 /**
  * Pips telemetry
