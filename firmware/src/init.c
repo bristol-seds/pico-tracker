@@ -36,6 +36,7 @@
 #include "cron.h"
 #include "data.h"
 #include "memory.h"
+#include "telemetry.h"
 
 /**
  * Initialises the status LED. SHOULD TURN ON THE LED
