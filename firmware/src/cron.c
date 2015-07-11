@@ -40,7 +40,7 @@ struct tracker_time time = {0};
 struct tracker_datapoint* dp;
 
 /* Low Power Mode */
-#define LOW_POWER(d)	(d->solar < 0.2)
+#define LOW_POWER(d)	((d->solar < 0.2) || (d->solar < 1.1))
 
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
@@ -75,6 +75,40 @@ void read_gps_time(void)
 }
 
 /**
+ * Pars of cron job that handles telemetry
+ */
+void cron_telemetry(struct tracker_time* t)
+{
+  /* ---- Telemetry output ---- */
+  /* RTTY */
+  if (t->second == 0 && !LOW_POWER(dp)) {
+    rtty_telemetry(dp);
+
+    /* Contestia */
+  } else if (t->second == 30 && !LOW_POWER(dp)) {
+    contestia_telemetry(dp);
+
+    /* Low Power */
+  } else if (t->second == 0 && LOW_POWER(dp)) {
+    if ((t->minute % 2) == 0) {
+      rtty_telemetry(dp);
+    } else {
+      contestia_telemetry(dp);
+    }
+
+    /* Pip */
+  } else if ((t->second % 1) == 0) {
+    pips_telemetry();
+  }
+
+  /* APRS */
+#ifdef APRS_ENABLE
+  if ((t->minute % 2) == 0 && t->second == 0) {
+    aprs_telemetry(dp);
+  }
+#endif
+}
+/**
  * Cron job for the system.
  *
  * Run at the top of the second but may take longer than a second
@@ -93,38 +127,11 @@ void do_cron(void)
     collect_data_async();
   }
 
-
   /* ---- Telemetry output ---- */
-  /* RTTY */
-  if (t.second == 0 && !LOW_POWER(dp)) {
-    rtty_telemetry(dp);
-
-    /* Contestia */
-  } else if (t.second == 30 && !LOW_POWER(dp)) {
-    contestia_telemetry(dp);
-
-    /* Low Power */
-  } else if (t.second == 0 && LOW_POWER(dp)) {
-    if ((t.minute % 2) == 0) {
-      rtty_telemetry(dp);
-    } else {
-      contestia_telemetry(dp);
-    }
-
-    /* APRS */
-#ifdef APRS_ENABLE
-  } else if ((t.minute % 2) == 0 && t.second == 0) {
-    aprs_telemetry(dp);
-#endif
-
-    /* Pips */
-  } else if ((t.second % 1) == 0) {
-    pips_telemetry();
-
-  }
+  cron_telemetry(&t);
 
   /* ---- Record for backlog ---- */
-  if ((t.minute % 1 == 0) && (t.second == 0)) {
+  if ((t.minute == 0) && (t.second == 0)) { /* Once per hour */
 
     kick_the_watchdog();
 

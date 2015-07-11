@@ -112,10 +112,15 @@ void encode_backlog(char* str, tracker_datapoint* dp)
   char compressed_altitude[3];
   char telemetry[TELEMETRY_FIELD_LEN];
 
+  /* Process lat/lon/alt */
+  float lat = (float)dp->latitude / 10000000.0;  /* degrees */
+  float lon = (float)dp->longitude / 10000000.0; /* degrees */
+  uint32_t altitude = dp->altitude / 1000;       /* meters */
+
   /* Prepare the aprs position report */
-  encode_latitude(compressed_lat, dp->latitude);
-  encode_longitude(compressed_lon, dp->longitude);
-  encode_altitude(compressed_altitude, dp->altitude);
+  encode_latitude(compressed_lat, lat);
+  encode_longitude(compressed_lon, lon);
+  encode_altitude(compressed_altitude, altitude);
 
   /* Encode telemetry string */
   encode_telemetry(telemetry, dp);
@@ -168,6 +173,11 @@ uint8_t aprs_start(void)
   /* Don't run without a valid position */
   if (!_dp || (_dp->latitude == 0 && _dp->longitude == 0)) return 0;
 
+  /* Process lat/lon/alt */
+  float lat = (float)_dp->latitude / 10000000.0;  /* degrees */
+  float lon = (float)_dp->longitude / 10000000.0; /* degrees */
+  uint32_t altitude = _dp->altitude / 1000;       /* meters */
+
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
                                    "APRS", 0,
@@ -175,9 +185,9 @@ uint8_t aprs_start(void)
                                    "WIDE2", 1);
 
   /* Prepare the aprs position report */
-  encode_latitude(compressed_lat, _dp->latitude);
-  encode_longitude(compressed_lon, _dp->longitude);
-  uint32_t altitude_feet = _dp->altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
+  encode_latitude(compressed_lat, lat);
+  encode_longitude(compressed_lon, lon);
+  uint32_t altitude_feet = altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
 
   /* Encode telemetry string */
   encode_telemetry(telemetry, _dp);

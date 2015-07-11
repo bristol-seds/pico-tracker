@@ -119,12 +119,9 @@ int32_t aprs_location_frequency(void) {
 /**
  * Updates the aprs location based on the current lat/lon
  */
-void aprs_location_update(float lon, float lat, uint32_t altitude) {
+void aprs_location_update(float lon, float lat) {
 
   uint32_t z, outline;
-
-  /* Record altitude */
-  _altitude = altitude;
 
   /* Were we in an aprs zone last time? */
   if (current_aprs_zone >= 0 && current_aprs_zone_outline >= 0) {

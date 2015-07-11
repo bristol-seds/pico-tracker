@@ -166,10 +166,9 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
 
   float lat = (float)dp->latitude / 10000000.0;  /* degrees */
   float lon = (float)dp->longitude / 10000000.0; /* degrees */
-  uint32_t altitude = dp->altitude / 1000;       /* meters */
 
   /* Update location */
-  aprs_location_update(lon, lat, altitude);
+  aprs_location_update(lon, lat);
 
 #if APRS_USE_GEOFENCE
   /* aprs okay here? */
@@ -180,7 +179,7 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     aprs_set_datapoint(dp);
 
     /* Set comment */
-    if ((dp->time.hour % 2) == 0) {
+    if ((dp->time.minute % 4) == 0) {
       aprs_set_comment(APRS_COMMENT);
     } else {
       backlog_dp_ptr = get_backlog();
@@ -193,7 +192,11 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     }
 
     /* Set frequency */
+#if APRS_USE_GEOFENCE
     telemetry_aprs_set_frequency(aprs_location_frequency());
+#else
+    telemetry_aprs_set_frequency(144800000);
+#endif
 
     /* Transmit packet and wait */
     telemetry_start(TELEMETRY_APRS, 0xFFFF);
