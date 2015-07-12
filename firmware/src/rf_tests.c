@@ -94,9 +94,14 @@ void aprs_high_fm_tone(void)
  */
 void aprs_test(void)
 {
+  struct tracker_datapoint dp;
+  dp.latitude = APRS_TEST_LAT *10*1000*1000;
+  dp.longitude = APRS_TEST_LON *10*1000*1000;
+  dp.altitude = APRS_TEST_ALTITUDE *1000;
+
   while(1) {
     /* Set location */
-    aprs_set_location(APRS_TEST_LAT, APRS_TEST_LON, APRS_TEST_ALTITUDE);
+    aprs_set_datapoint(&dp);
 
     /* Set frequency */
     telemetry_aprs_set_frequency(APRS_TEST_FREQUENCY);
