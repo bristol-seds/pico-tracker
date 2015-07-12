@@ -128,7 +128,7 @@ void encode_backlog(char* str, tracker_datapoint* dp)
   /* Encode backlog string */
   sprintf(str,
           "%02d%02d%02dz%s%s%s%s",
-          dp->time.day, dp->time.hour, dp->time.second,
+          dp->time.day, dp->time.hour, dp->time.minute,
           compressed_lat, compressed_lon, compressed_altitude,
           telemetry
     );
