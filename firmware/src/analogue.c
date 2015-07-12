@@ -74,6 +74,8 @@ void adc_complete_callback(void) {
   float pin_v;
 
   adc_read(&result);
+  adc_disable();
+
   pin_v = (float)result / (ADC_GAINF_VAL * ADC_RESOLUTION_VAL);
 
   if (adc_phase == ADC_PHASE_CONVERT_BATTERY) {
