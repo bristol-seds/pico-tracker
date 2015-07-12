@@ -37,6 +37,7 @@
 #include "data.h"
 #include "memory.h"
 #include "telemetry.h"
+#include "init.h"
 
 /**
  * Initialises the status LED. SHOULD TURN ON THE LED
@@ -65,7 +66,7 @@ void powermananger_init(void)
  * Internal initialisation
  * =============================================================================
  */
-void init(timepulse_callback_t callback)
+void init(timepulse_callback_t callback, enum init_type init_t)
 {
   /**
    * Reset to get the system in a safe state
@@ -93,7 +94,9 @@ void init(timepulse_callback_t callback)
   system_extint_init();
 
   /* Watchdog */
-  watchdog_init();
+  if (init_t != INIT_TESTCASE) {
+    watchdog_init();
+  }
 
   /* Configure Sleep Mode */
   //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
@@ -113,15 +116,17 @@ void init(timepulse_callback_t callback)
   /* Enable the xosc on gclk1 */
   xosc_init();
 
-  /* Telemetry init depends on gclk */
-  telemetry_init();
+  if (init_t != INIT_TESTCASE) {
+    /* Telemetry init depends on gclk */
+    telemetry_init();
 
-  /* GPS init */
-  gps_init();
+    /* GPS init */
+    gps_init();
 
-  /* Enable timer interrupt and event channel */
-  timepulse_extint_init();
-  timepulse_set_callback(callback);
+    /* Enable timer interrupt and event channel */
+    timepulse_extint_init();
+    timepulse_set_callback(callback);
+  }
 
   /* Initialise Si4060 interface */
   si_trx_init();

@@ -50,6 +50,8 @@
 
 /******************************* tc_main ********************************/
 
+#include "init.h"
+
 typedef void (*tc_ptr_type)(void);
 volatile tc_ptr_type tc_ptr;
 
@@ -71,16 +73,13 @@ __verification__ void tc_main(void) {
   }
 }
 
-/* This is in the real main.c */
-void init(void);
-
 /**
  * Prelude to main loop
  */
 __verification__ void tc_prelude(void) {
 
   /* Initialise the board */
-  init();
+  init(NULL, INIT_TESTCASE);
 
   /* Proceed to main loop */
   tc_main();

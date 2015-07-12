@@ -131,11 +131,13 @@ void do_cron(void)
   cron_telemetry(&t);
 
   /* ---- Record for backlog ---- */
-  if ((t.minute == 0) && (t.second == 0)) { /* Once per hour */
+  if ((t.minute % 5 == 0) && (t.second == 0)) { /* Once per hour */
 
     kick_the_watchdog();
 
-    record_backlog(dp);
+    if (gps_is_locked()) { /* Don't bother with no GPS */
+      record_backlog(dp);
+    }
   }
 
   /* Update internal time from GPS */

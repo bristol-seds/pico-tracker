@@ -26,8 +26,14 @@
 #define INIT_H
 
 #include "samd20.h"
+#include "hw_config.h"
 #include "system/port.h"
 #include "timer.h"
+
+enum init_type {
+  INIT_NORMAL,
+  INIT_TESTCASE = 0xCC,
+};
 
 /**
  * Turns the status LED on
@@ -44,6 +50,6 @@ static inline void led_off(void)
   port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
 }
 
-void init(timepulse_callback_t callback);
+void init(timepulse_callback_t callback, enum init_type init_t);
 
 #endif /* INIT_H */

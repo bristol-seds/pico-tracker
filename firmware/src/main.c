@@ -245,7 +245,7 @@ void gps_tick(uint32_t sequence)
 int main(void)
 {
   /* Init */
-  init(gps_tick);
+  init(gps_tick, INIT_NORMAL);
 
   /* Maybe do some rf tests */
   rf_tests();
