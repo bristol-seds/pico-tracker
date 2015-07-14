@@ -36,6 +36,8 @@
 /* Internal time representation */
 struct tracker_time time = {0};
 
+uint8_t time_update_semaphore = 0;
+
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
 
@@ -61,6 +63,8 @@ void read_gps_time(void)
     idle(IDLE_WAIT_FOR_GPS);
   }
 
+  time_update_semaphore = 1;
+
   /* Time */
   struct ubx_nav_timeutc gt = gps_get_nav_timeutc();
   time.year = gt.payload.year;
@@ -72,6 +76,9 @@ void read_gps_time(void)
   time.valid = gt.payload.valid;
 
   /* TODO calculate epoch time here */
+
+
+  time_update_semaphore = 0;
 }
 
 /**
@@ -147,7 +154,7 @@ void do_cron(void)
 
     kick_the_watchdog();
 
-    read_gps_time();            /* TODO semaphore to stop mid-update increment */
+    read_gps_time();
   }
 }
 
@@ -156,15 +163,19 @@ void do_cron(void)
  */
 void cron_tick(void) {
 
-  /* Update time internally */
-  time.epoch++; time.second++;
-  if (time.second >= 60) {
-    time.second = 0; time.minute++;
-    if (time.minute >= 60) {
-      time.minute = 0; time.hour++;
-      if (time.hour >= 24) {
-        time.hour = 0;
+  if (time_update_semaphore == 0) {
+
+    /* Update time internally */
+    time.epoch++; time.second++;
+    if (time.second >= 60) {
+      time.second = 0; time.minute++;
+      if (time.minute >= 60) {
+        time.minute = 0; time.hour++;
+        if (time.hour >= 24) {
+          time.hour = 0;
+        }
       }
     }
+
   }
 }
