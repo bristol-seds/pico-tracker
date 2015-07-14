@@ -474,10 +474,9 @@ void gps_usart_init_enable(uint32_t baud_rate)
 	     true,	     /** Enable transmitter */
 	     false,	     /** Sample on the rising edge of XLCK */
 	     false,	     /** Use the external clock applied to the XCK pin. */
-
 	     0,		     /** External clock frequency in synchronous mode. */
 	     true,	     /** Run in standby */
-	     GCLK_GENERATOR_0,			/** GCLK generator source */
+	     GPS_GCLK,			/** GCLK generator source */
 	     GPS_SERCOM_MOGI_PINMUX, 		/** PAD0 pinmux */
 	     GPS_SERCOM_MIGO_PINMUX,		/** PAD1 pinmux */
 	     PINMUX_UNUSED,			/** PAD2 pinmux */

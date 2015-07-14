@@ -45,6 +45,7 @@
 #include "backlog_write_read.h"
 #include "mem_erase_all.h"
 #include "adc_battery_solar_read.h"
+#include "gps_baud_error.h"
 /* [new_tc] */
 
 

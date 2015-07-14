@@ -43,7 +43,7 @@
 ## Clock Layout
 
 ```
-[osc8m] --> [glck0] +--> [gps usart]
+[osc8m] --> [glck0] +
                     |--> [tc5]
                     |--> [adc]
                     |--> [extint]
@@ -55,7 +55,7 @@
                      | | --> [glck1] +--> [tc0, telemetry tick]
 tcxo --> [xosc] --> 1| |             |--> [tc2, count tcxo] <-- gps timepulse
                      |/              |--> [glck7] --> [tc5] --> si_gpio1
-                      |
+                      |              |--> [gps usart]
                  *USE_XOSC*
 
 
