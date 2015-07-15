@@ -546,7 +546,7 @@ void usart_loopback_test(void)
 	     false,	     /** Use the external clock applied to the XCK pin. */
 	     0,		     /** External clock frequency in synchronous mode. */
 	     false,	     /** Run in standby */
-	     GCLK_GENERATOR_0,		/** GCLK generator source */
+	     GPS_GCLK,		/** GCLK generator source */
 	     GPS_SERCOM_MOGI_PINMUX, 	/** PAD0 pinmux */
 	     GPS_SERCOM_MIGO_PINMUX,	/** PAD1 pinmux */
 	     PINMUX_UNUSED,		/** PAD2 pinmux */
