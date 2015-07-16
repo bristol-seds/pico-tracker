@@ -42,9 +42,9 @@ typedef enum {
  * Define how many iterations these loops are permitted before a reset
  * is triggered.
  */
-#define MAXIDLE_WAIT_FOR_GPS		0xFFFFFFFE
-#define MAXIDLE_WHILE_TELEMETRY_ACTIVE	0xFFFFFFFE
-#define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	0xFFFFFFFE
+#define MAXIDLE_WAIT_FOR_GPS		0x0000FFFF
+#define MAXIDLE_WHILE_TELEMETRY_ACTIVE	0x0000FFFF
+#define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	0x0000FFFF
 
 struct idle_counter {
   uint32_t wait_for_gps;
