@@ -49,6 +49,36 @@ void contestia_telemetry(struct tracker_datapoint* dp);
 void aprs_telemetry(struct tracker_datapoint* dp);
 void pips_telemetry(void);
 
+/**
+ * Number of days in month. This won't be used much but I guess I have
+ * to implement it. Sigh
+ *
+ * Assumes months start at 1 (ubx does do this, I checked)
+ */
+uint8_t days_in_month(struct tracker_time* t)
+{
+  switch (t->month) {
+    case 1:  return 31;         /* Janua */
+    case 2:
+      return (t->year % 4) ?
+        ((t->year % 100) ?
+         ((t->year % 400) ? 29  /* div 400, leap            */
+          : 28)                 /* div 100, not 400, common */
+         : 29)                  /* div 4, not 100, leap     */
+        : 28;                   /* Not div 4, common        */
+    case 3:  return 31;         /* March */
+    case 4:  return 30;         /* April */
+    case 5:  return 31;         /* May   */
+    case 6:  return 30;         /* June  */
+    case 7:  return 31;         /* July  */
+    case 8:  return 31;         /* Augus */
+    case 9:  return 30;         /* Septe */
+    case 10: return 31;         /* Octob */
+    case 11: return 30;         /* Novem */
+    case 12: return 31;         /* Decem */
+    default: return 31;         /* It's probably 31 */
+  }
+}
 
 /**
  * Reads current time from the GPS
@@ -130,7 +160,13 @@ void do_cron(void)
       if (time.minute >= 60) {
         time.minute = 0; time.hour++;
         if (time.hour >= 24) {
-          time.hour = 0;
+          time.hour = 0; time.day++;
+          if (time.day > days_in_month(&time)) {
+            time.day = 1; time.month++;
+            if (time.month > 12) {
+              time.month = 0; time.year++;
+            }
+          }
         }
       }
     }
