@@ -221,7 +221,7 @@ void pips_telemetry(void)
   }
 }
 
-uint8_t tick_flag = 0;
+volatile uint8_t tick_flag = 0;
 
 /**
  * Called at 1Hz by the GPS

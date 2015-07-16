@@ -36,7 +36,7 @@
 /* Internal time representation */
 struct tracker_time time = {0};
 
-uint8_t time_update_semaphore = 0;
+volatile uint32_t ticks = 0;
 
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
@@ -63,8 +63,6 @@ void read_gps_time(void)
     idle(IDLE_WAIT_FOR_GPS);
   }
 
-  time_update_semaphore = 1;
-
   /* Time */
   struct ubx_nav_timeutc gt = gps_get_nav_timeutc();
   time.year = gt.payload.year;
@@ -76,9 +74,6 @@ void read_gps_time(void)
   time.valid = gt.payload.valid;
 
   /* TODO calculate epoch time here */
-
-
-  time_update_semaphore = 0;
 }
 
 /**
@@ -123,48 +118,7 @@ void cron_telemetry(struct tracker_time* t)
 void do_cron(void)
 {
   /* ---- Local representation of the time ---- */
-  struct tracker_time t;
-  memcpy(&t, &time, sizeof(struct tracker_time));
-
-  /* ---- Data every 30 seconds ---- */
-  if ((t.second % 30) == 0) {
-    dp = collect_data();
-    memcpy(&dp->time, &time, sizeof(struct tracker_time));
-  } else if ((t.second % 30) == 20) {
-    collect_data_async();
-  }
-
-  /* ---- Telemetry output ---- */
-  cron_telemetry(&t);
-
-  /* ---- Record for backlog ---- */
-  if ((t.minute % 5 == 0) && (t.second == 0)) { /* Once per hour */
-
-    kick_the_watchdog();
-
-    if (gps_is_locked()) { /* Don't bother with no GPS */
-      record_backlog(dp);
-    }
-  }
-
-  /* Update internal time from GPS */
-  /* We do this just after midnight or if time is yet to set UTC exactly */
-  if (((t.hour == 0) && (t.minute == 0) && (t.second == 0)) ||
-      ((t.second == 0) && !(t.valid & UBX_TIMEUTC_VALID_UTC))) {
-
-    kick_the_watchdog();
-
-    read_gps_time();
-  }
-}
-
-/**
- * Called in an interrupt, increments internal time representation
- */
-void cron_tick(void) {
-
-  if (time_update_semaphore == 0) {
-
+  while (ticks--) {
     /* Update time internally */
     time.epoch++; time.second++;
     if (time.second >= 60) {
@@ -176,6 +130,43 @@ void cron_tick(void) {
         }
       }
     }
-
   }
+
+  /* ---- Data every 30 seconds ---- */
+  if ((time.second % 30) == 0) {
+    dp = collect_data();
+    memcpy(&dp->time, &time, sizeof(struct tracker_time));
+  } else if ((time.second % 30) == 20) {
+    collect_data_async();
+  }
+
+  /* ---- Telemetry output ---- */
+  cron_telemetry(&time);
+
+  /* ---- Record for backlog ---- */
+  if ((time.minute % 5 == 0) && (time.second == 0)) { /* Once per hour */
+
+    kick_the_watchdog();
+
+    if (gps_is_locked()) { /* Don't bother with no GPS */
+      record_backlog(dp);
+    }
+  }
+
+  /* Update internal time from GPS */
+  /* We do this just after midnight or if time is yet to set UTC exactly */
+  if (((time.hour == 0) && (time.minute == 0) && (time.second == 0)) ||
+      ((time.second == 0) && !(time.valid & UBX_TIMEUTC_VALID_UTC))) {
+
+    kick_the_watchdog();
+
+    read_gps_time();
+  }
+}
+
+/**
+ * Called in an interrupt, increments internal time representation
+ */
+void cron_tick(void) {
+  ticks++;
 }
