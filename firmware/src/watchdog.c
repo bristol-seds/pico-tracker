@@ -192,8 +192,6 @@ void watchdog_init(void)
 
 void WDT_Handler(void)
 {
-  Wdt *const hw = WDT;
-
   /* Bring the system into a safe state */
   si_trx_shutdown();
 

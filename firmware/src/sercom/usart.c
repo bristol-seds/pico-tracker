@@ -100,6 +100,11 @@ enum sercom_status_t usart_init(SercomUsart* const hw,
   /* Sanity check arguments */
   assert(hw);
 
+  /* Unused */
+  (void)encoding_format_enable;
+  (void)receive_pulse_length;
+  (void)collision_detection_enable;
+
   enum sercom_status_t status_code = SERCOM_STATUS_OK;
 
   uint32_t sercom_index = _sercom_get_sercom_inst_index((Sercom*)hw);

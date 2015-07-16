@@ -869,6 +869,7 @@ static void _spi_transceive_buffer(SercomSpi* const hw)
 static void _spi_read(SercomSpi* const hw)
 {
   uint16_t received_data = (hw->DATA.reg & SERCOM_SPI_DATA_MASK);
+  (void)received_data;
 
   /* Read value will be at least 8-bits long */
   /* *(module->rx_buffer_ptr) = received_data; */

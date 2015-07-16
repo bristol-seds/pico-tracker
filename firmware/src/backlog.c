@@ -45,7 +45,7 @@ uint8_t is_backlog_valid[BACKLOG_COUNT] = {};
 /**
  * The index at which we are currently writing backlog
  */
-extern uint16_t backlog_write_index = 0;
+uint16_t backlog_write_index = 0;
 uint8_t is_write_index_loaded = 0;
 /**
  * The index at which we are currently replaying backlog

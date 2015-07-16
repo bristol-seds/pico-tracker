@@ -34,7 +34,7 @@
 #include "telemetry.h"
 #include "watchdog.h"
 
-struct tracker_datapoint datapoint = {};
+struct tracker_datapoint datapoint = {.time={0}};
 
 void xosc_measure_callback(uint32_t result)
 {

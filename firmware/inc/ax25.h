@@ -87,6 +87,7 @@ enum ax25_state_t {
   AX25_IDLE,
 };
 
+void ax25_gpio1_pwm_init(void);
 
 void ax25_start(char* addresses, uint32_t addresses_len,
                 char* information, uint32_t information_len);

@@ -30,12 +30,83 @@
 #include "si_trx_defs.h"
 #include "hw_config.h"
 
-
 #define VCXO_FREQUENCY	SI4xxx_TCXO_FREQUENCY
+
+
+/**
+ * =============================================================================
+ *                         Helper Functions
+ * =============================================================================
+ */
+
+/**
+ * Convenience transfer functions
+ */
+static void _si_trx_set_property_8(uint8_t group, uint8_t property, uint8_t value)
+{
+  uint8_t buffer[5];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = group;
+  buffer[2] = 1;
+  buffer[3] = property;
+  buffer[4] = value;
+
+  _si_trx_transfer(5, 0, buffer);
+}
+static void _si_trx_set_property_16(uint8_t group, uint8_t property, uint16_t value)
+{
+  uint8_t buffer[6];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = group;
+  buffer[2] = 2;
+  buffer[3] = property;
+  buffer[4] = (value >> 8);
+  buffer[5] = (value);
+
+  _si_trx_transfer(6, 0, buffer);
+}
+static void _si_trx_set_property_24(uint8_t group, uint8_t property, uint32_t value)
+{
+  uint8_t buffer[8];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = group;
+  buffer[2] = 3;
+  buffer[3] = property;
+  buffer[4] = (value >> 16);
+  buffer[5] = (value >> 8);
+  buffer[6] = (value);
+
+  _si_trx_transfer(7, 0, buffer);
+}
+static void _si_trx_set_property_32(uint8_t group, uint8_t property, uint32_t value)
+{
+  uint8_t buffer[8];
+
+  buffer[0] = SI_CMD_SET_PROPERTY;
+  buffer[1] = group;
+  buffer[2] = 4;
+  buffer[3] = property;
+  buffer[4] = (value >> 24);
+  buffer[5] = (value >> 16);
+  buffer[6] = (value >> 8);
+  buffer[7] = (value);
+
+  _si_trx_transfer(8, 0, buffer);
+}
+
+
+
+
 
 
 void _si_trx_transfer_nocts(int tx_count, int rx_count, uint8_t *data)
 {
+  /* Unused */
+  (void)rx_count;
+
   /* Send command */
   _si_trx_cs_enable();
 

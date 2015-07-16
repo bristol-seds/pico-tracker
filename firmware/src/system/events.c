@@ -170,6 +170,9 @@ enum status_code events_attach_user(uint8_t channel, uint8_t user_id)
 
 enum status_code events_detach_user(uint8_t channel, uint8_t user_id)
 {
+  /* Unused */
+  (void)channel;
+
   /* Write 0 to the channel bit field to select no input */
   EVSYS->USER.reg = EVSYS_USER_USER(user_id);
 
