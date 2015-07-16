@@ -63,17 +63,21 @@ void read_gps_time(void)
     idle(IDLE_WAIT_FOR_GPS);
   }
 
-  /* Time */
-  struct ubx_nav_timeutc gt = gps_get_nav_timeutc();
-  time.year = gt.payload.year;
-  time.month = gt.payload.month;
-  time.day = gt.payload.day;
-  time.hour = gt.payload.hour;
-  time.minute = gt.payload.min;
-  time.second = gt.payload.sec;
-  time.valid = gt.payload.valid;
+  if (gps_get_error_state() == GPS_NOERROR) {
 
-  /* TODO calculate epoch time here */
+    /* Time */
+    struct ubx_nav_timeutc gt = gps_get_nav_timeutc();
+    time.year = gt.payload.year;
+    time.month = gt.payload.month;
+    time.day = gt.payload.day;
+    time.hour = gt.payload.hour;
+    time.minute = gt.payload.min;
+    time.second = gt.payload.sec;
+    time.valid = gt.payload.valid;
+
+    /* TODO calculate epoch time here */
+
+  }
 }
 
 /**

@@ -29,6 +29,7 @@
  * GPS Error types
  */
 enum gps_error_t {
+  GPS_NOERROR,
   GPS_ERROR_BAD_CHECKSUM,
   GPS_ERROR_INVALID_FRAME,
 };
@@ -37,6 +38,7 @@ void gps_update_time(void);
 void gps_update_position(void);
 int gps_update_time_pending(void);
 int gps_update_position_pending(void);
+enum gps_error_t gps_get_error_state(void);
 
 struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();

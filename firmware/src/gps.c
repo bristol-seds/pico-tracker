@@ -66,6 +66,8 @@ int32_t ubx_index = SFD_WAITING;
 uint16_t ubx_payload_length = 0;
 uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
 
+volatile enum gps_error_t gps_error_state;
+
 /**
  * UBX Messages
  */
@@ -98,9 +100,9 @@ volatile ubx_message_t* const ubx_messages[] = {
  * Platform specific handlers
  */
 #define _send_buffer(tx_data, length)			\
-  usart_write_buffer_wait(GPS_SERCOM, tx_data, length)
+  do { usart_write_buffer_wait(GPS_SERCOM, tx_data, length); } while (0)
 #define _error_handler(error_type)			\
-  /* TODO */
+  do { gps_error_state = error_type; } while (0)
 
 
 
@@ -241,6 +243,9 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
   /* Clear the message state */
   message->state = UBX_PACKET_WAITING;
 
+  /* Clear error state  */
+  gps_error_state = GPS_NOERROR;
+
   /* Copy little endian */
   memcpy(ubx_buffer, &ubx_header, 2); ubx_buffer += 2; 	/* Header	*/
   memcpy(ubx_buffer, &message->id, 2); ubx_buffer += 2;	/* Message Type	*/
@@ -254,12 +259,15 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
 /**
  * Polls the GPS for packets
  */
-void _ubx_poll(ubx_message_t* message) {
+enum gps_error_t _ubx_poll(ubx_message_t* message) {
   /* Send the message */
   _ubx_send_message(message, NULL, 0);
 
   /* Wait for acknoledge */
-  while (message->state == UBX_PACKET_WAITING);
+  while (message->state == UBX_PACKET_WAITING &&
+         gps_error_state == GPS_NOERROR);
+
+  return gps_error_state;
 }
 
 /**
@@ -305,16 +313,27 @@ void gps_update_position(void)
  */
 int gps_update_time_pending(void)
 {
-  return (ubx_nav_timeutc.state == UBX_PACKET_WAITING);
+  return (ubx_nav_timeutc.state == UBX_PACKET_WAITING &&
+    gps_error_state == GPS_NOERROR);
 }
 /**
  * Indicates a pending position update from the GPS
  */
 int gps_update_position_pending(void)
 {
-  return (ubx_nav_posllh.state == UBX_PACKET_WAITING) ||
-    (ubx_nav_sol.state == UBX_PACKET_WAITING);
+  return (((ubx_nav_posllh.state == UBX_PACKET_WAITING) ||
+          (ubx_nav_sol.state == UBX_PACKET_WAITING)) &&
+          gps_error_state == GPS_NOERROR);
+
   //(ubx_nav_status.state == UBX_PACKET_WAITING);
+}
+/**
+ * Gets the current error state of the GPS to check validity of last
+ * request
+ */
+enum gps_error_t gps_get_error_state(void)
+{
+  return gps_error_state;
 }
 /**
  * Return the latest received messages
@@ -347,7 +366,7 @@ uint8_t gps_is_locked(void)
  */
 void gps_set_platform_model(void)
 {
-  /* Send the poll request */
+  /* Poll for the current settings */
   _ubx_poll((ubx_message_t*)&ubx_cfg_nav5);
 
   /* If we need to update */
@@ -366,7 +385,7 @@ void gps_set_platform_model(void)
  */
 void gps_set_timepulse_five(uint32_t frequency)
 {
-  /* Send the Request */
+  /* Poll for the current settings */
   _ubx_poll((ubx_message_t*)&ubx_cfg_tp5);
 
   /* Define the settings we want */
@@ -391,7 +410,7 @@ void gps_set_timepulse_five(uint32_t frequency)
  */
 void gps_set_gnss(void)
 {
-  /* Read the current settings */
+  /* Poll for the current settings */
   _ubx_poll((ubx_message_t*)&ubx_cfg_gnss);
 
   switch (ubx_cfg_gnss.payload.msgVer) {

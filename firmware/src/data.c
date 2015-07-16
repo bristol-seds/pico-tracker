@@ -76,6 +76,9 @@ struct tracker_datapoint* collect_data(void)
     idle(IDLE_WAIT_FOR_GPS);
   }
 
+  /* At this point the gps could be in an error state */
+  /* We still use the old values however. */
+
   /* GPS Status */
   struct ubx_nav_sol sol = gps_get_nav_sol();
   datapoint.satillite_count = sol.payload.numSV;
@@ -87,10 +90,10 @@ struct tracker_datapoint* collect_data(void)
     datapoint.latitude = pos.payload.lat;
     datapoint.longitude = pos.payload.lon;
     datapoint.altitude = pos.payload.height;
-}
+  }
 
   /* GPS Powersave */
   gps_set_powersave_auto();
 
-return &datapoint;
+  return &datapoint;
 }
