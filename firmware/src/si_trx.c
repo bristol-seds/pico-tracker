@@ -428,60 +428,65 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 
 
 /**
- * Set the synthesiser to the given frequency.
+ * Pre-calculates sythesiser paramters for use with si_trx_set_frequency
+ * Might be called before module is initialised, so should just contain math
  *
  * frequency: Floating-point value for the frequency
- * deviation: FSK-mode deviation, in channels. Usually 1
- *
- * Returns the LSB tuning resolution of the frac-n pll synthesiser.
  */
-static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
+void si_trx_get_frequency_configuration(struct si_frequency_configuration* config,
+                                        uint32_t frequency)
 {
-  uint8_t outdiv, band, nprescaler;
-
   /* Higher frequency resolution, but also higher power (~+200µA) */
-  nprescaler = 2;
-
+  config->nprescaler = 2;
 
   if (frequency < 705000000UL) {
-    outdiv = 6;  band = SI_MODEM_CLKGEN_FVCO_DIV_6;
+    config->outdiv = 6;		config->band = SI_MODEM_CLKGEN_FVCO_DIV_6;
   }
   if (frequency < 525000000UL) {
-    outdiv = 8;  band = SI_MODEM_CLKGEN_FVCO_DIV_8;
+    config->outdiv = 8;		config->band = SI_MODEM_CLKGEN_FVCO_DIV_8;
   }
   if (frequency < 353000000UL) {
-    outdiv = 12; band = SI_MODEM_CLKGEN_FVCO_DIV_12;
+    config->outdiv = 12;	config->band = SI_MODEM_CLKGEN_FVCO_DIV_12;
   }
   if (frequency < 239000000UL) {
-    outdiv = 16; band = SI_MODEM_CLKGEN_FVCO_DIV_16;
+    config->outdiv = 16;	config->band = SI_MODEM_CLKGEN_FVCO_DIV_16;
   }
   if (frequency < 177000000UL) {
-    outdiv = 24; band = SI_MODEM_CLKGEN_FVCO_DIV_24;
+    config->outdiv = 24;	config->band = SI_MODEM_CLKGEN_FVCO_DIV_24;
   }
 
-  float f_pfd = nprescaler * VCXO_FREQUENCY / outdiv;
+  float f_pfd = config->nprescaler * VCXO_FREQUENCY / config->outdiv;
 
-  uint16_t n = ((uint16_t)(frequency / f_pfd)) - 1;
+  config->n = ((uint16_t)(frequency / f_pfd)) - 1;
 
   float ratio = (float)frequency / f_pfd;
-  float rest  = ratio - (float)n;
+  float rest  = ratio - (float)config->n;
 
-  uint32_t m = (uint32_t)(rest * (float)(1 << 19));
-
+  config->m = (uint32_t)(rest * (float)(1 << 19));
 
   /* Check n and m are in valid ranges, halt otherwise */
-  if (n > 0x7f || m > 0xfffff) while (1);
+  if (config->n > 0x7f || config->m > 0xfffff) while (1);
 
+  /* Calculate the LSB tuning resolution of the frac-n pll synthesiser. */
+  config->lsb_tuning_resolution = f_pfd / (float)(1 << 19);
+}
 
+/**
+ * Writes a pre-calculated frequency configuration to the si
+ * synthesiser. Also sets deviation
+ */
+static void si_trx_set_frequency(struct si_frequency_configuration* config,
+                                 uint16_t deviation)
+{
   /* Set the frac-n PLL output divider */
-  if (nprescaler == 4) { /* Prescaler */
-    si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_0);
+  if (config->nprescaler == 4) { /* Prescaler */
+    si_trx_frequency_control_set_band(config->band, SI_MODEM_CLKGEN_SY_SEL_0);
   } else { /* Default Mode */
-    si_trx_frequency_control_set_band(band, SI_MODEM_CLKGEN_SY_SEL_1);
+    si_trx_frequency_control_set_band(config->band, SI_MODEM_CLKGEN_SY_SEL_1);
   }
 
   /* Set the frac-n PLL divisior */
-  si_trx_frequency_control_set_divider(n, m);
+  si_trx_frequency_control_set_divider(config->n, config->m);
 
   /* Set the modem dsm control word. Allow even deviation values */
   si_trx_modem_set_dsm_ctrl(SI_MODEM_DSM_CTRL_NOFORCE_DSM_LSB |
@@ -489,15 +494,12 @@ static float si_trx_set_frequency(uint32_t frequency, uint16_t deviation)
 
   /* Set the modem frequency deviation (for the external pin)*/
   si_trx_modem_set_deviation(deviation);
-
-  /* Return the LSB tuning resolution of the frac-n pll synthesiser. */
-  return f_pfd / (float)(1 << 19);
 }
 
 /**
  * Resets the transceiver
  */
-void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
+void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
                   uint16_t deviation, uint8_t power, enum si_filter_model filter)
 {
   _si_trx_sdn_enable();  /* active high shutdown = reset */
@@ -506,10 +508,9 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
   _si_trx_sdn_disable();   /* booting */
   for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
 
-
-  uint16_t part_number = si_trx_get_part_info();
-
-  while (part_number != 17512);
+  /* Check part number */
+  /* uint16_t part_number = si_trx_get_part_info(); */
+  /* while (part_number != 17512); */
 
   /* Power Up */
   si_trx_power_up(SI_POWER_UP_TCXO, VCXO_FREQUENCY);
@@ -527,7 +528,7 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
 
-  si_trx_set_frequency(frequency, deviation);
+  si_trx_set_frequency(fconfig, deviation);
   si_trx_set_tx_power(power);
 
   /* Modem tx filter coefficients */
@@ -558,8 +559,7 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
       break;
   }
 
-
-  /* RTTY from GPIO1 */
+  /* Set modulation type */
   si_trx_modem_set_modulation(SI_MODEM_MOD_DIRECT_MODE_SYNC, // ASYNC
                               SI_MODEM_MOD_GPIO_1,
                               SI_MODEM_MOD_SOURCE_DIRECT,
@@ -571,10 +571,10 @@ void si_trx_reset(uint8_t modulation_type, uint32_t frequency,
 /**
  * Enables the radio and starts transmitting
  */
-void si_trx_on(uint8_t modulation_type, uint32_t frequency,
+void si_trx_on(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
     uint16_t deviation, uint8_t power, enum si_filter_model filter)
 {
-  si_trx_reset(modulation_type, frequency, deviation, power, filter);
+  si_trx_reset(modulation_type, fconfig, deviation, power, filter);
   si_trx_start_tx(0);
 }
 /**

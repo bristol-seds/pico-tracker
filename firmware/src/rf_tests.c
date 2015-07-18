@@ -38,13 +38,16 @@
 
 void telemetry_tone(void)
 {
+  struct si_frequency_configuration fconfig;
+  si_trx_get_frequency_configuration(&fconfig, TELEMETRY_FREQUENCY);
+
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 36, SI_FILTER_DEFAULT);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 36, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 0, 0x7f, SI_FILTER_DEFAULT);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
@@ -53,13 +56,16 @@ void telemetry_tone(void)
 }
 void aprs_tone(void)
 {
+  struct si_frequency_configuration fconfig;
+  si_trx_get_frequency_configuration(&fconfig, APRS_TEST_FREQUENCY);
+
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 36, SI_FILTER_DEFAULT);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 36, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, APRS_TEST_FREQUENCY, 0, 0x7f, SI_FILTER_DEFAULT);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT);
     for (int i = 0; i < 200*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
@@ -72,6 +78,9 @@ void aprs_tone(void)
  */
 void aprs_high_fm_tone(void)
 {
+  struct si_frequency_configuration fconfig;
+  si_trx_get_frequency_configuration(&fconfig, APRS_TEST_FREQUENCY);
+
   ax25_gpio1_pwm_init();
 
   /* Space */
@@ -82,7 +91,7 @@ void aprs_high_fm_tone(void)
                              false,		/* Run in standby	*/
                              false);		/* Output Pin Enable	*/
 
-  si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, APRS_TEST_FREQUENCY,
+  si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &fconfig,
             AX25_DEVIATION, APRS_POWER, SI_FILTER_APRS);
   while (1) {
     idle(IDLE_TELEMETRY_ACTIVE);
@@ -123,7 +132,7 @@ void rsid_test(void)
 
    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
 
-//    Sleep wait for RSID
+   // Sleep wait for RSID
    while (telemetry_active()) {
      idle(IDLE_TELEMETRY_ACTIVE);
    }

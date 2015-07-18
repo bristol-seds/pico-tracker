@@ -27,6 +27,12 @@
 
 #include "samd20.h"
 
+struct si_frequency_configuration {
+  uint8_t outdiv, band, nprescaler;
+  uint32_t m; uint16_t n;
+  float lsb_tuning_resolution;
+};
+
 enum si_filter_model {
   SI_FILTER_DEFAULT,
   SI_FILTER_APRS,
@@ -37,7 +43,10 @@ float si_trx_get_temperature(void);
 
 void si_trx_modem_set_deviation(uint32_t deviation);
 
-void si_trx_on(uint8_t modulation_type, uint32_t frequency,
+void si_trx_get_frequency_configuration(struct si_frequency_configuration* config,
+                                        uint32_t frequency);
+
+void si_trx_on(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
                  uint16_t deviation, uint8_t power, enum si_filter_model filter);
 void si_trx_off(void);
 
