@@ -502,15 +502,15 @@ static void si_trx_set_frequency(struct si_frequency_configuration* config,
 void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
                   uint16_t deviation, uint8_t power, enum si_filter_model filter)
 {
+  /* We expect to already be shutdown  */
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
-  for (int i = 0; i < 15*1000; i++); /* Approx. 15 */
-  _si_trx_sdn_disable();   /* booting */
-  for (int i = 0; i < 15*1000; i++); /* Approx. 15ms */
+  for (int i = 0; i < 15; i++); /* a few microseconds */
 
-  /* Check part number */
-  /* uint16_t part_number = si_trx_get_part_info(); */
-  /* while (part_number != 17512); */
+  _si_trx_sdn_disable();   /* booting. expected to take 15ms */
+
+  /* Poll for part number */
+  while (si_trx_get_part_info() != 17512);
 
   /* Power Up */
   si_trx_power_up(SI_POWER_UP_TCXO, VCXO_FREQUENCY);

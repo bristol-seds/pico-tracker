@@ -30,7 +30,7 @@
  */
 
 #define PIPS_RATE	1
-#define PIPS_LENGTH_MS	200
+#define PIPS_LENGTH_MS	125
 #define PIPS_FREQUENCY	(1000 / PIPS_LENGTH_MS)
 
 #endif /* PIPS_H */
