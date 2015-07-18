@@ -23,7 +23,8 @@ struct gps_baud_error_tc_results {
   /* Result values should be populated here */
   uint32_t intended_baud;
   uint32_t peripheral_clock;
-  uint16_t calculated_baud;
+  uint16_t register_value;
+  uint32_t calculated_baud_milli;
 
 } gps_baud_error_tc_results;
 /* Function */
@@ -40,6 +41,9 @@ __verification__ void gps_baud_error_tc(void) {
   uint32_t gclk_index   = sercom_index + SERCOM0_GCLK_ID_CORE;
   uint32_t baudrate = GPS_BAUD_RATE;
   uint16_t baud;                /* The actual register value */
+  uint32_t calcuated_baud;
+
+  gps_usart_init_enable(baudrate);
 
   enum sercom_asynchronous_operation_mode mode = SERCOM_ASYNC_OPERATION_MODE_ARITHMETIC;
   enum sercom_asynchronous_sample_num sample_num = SERCOM_ASYNC_SAMPLE_NUM_16;
@@ -51,5 +55,11 @@ __verification__ void gps_baud_error_tc(void) {
 
   gps_baud_error_tc_results.intended_baud = baudrate;
   gps_baud_error_tc_results.peripheral_clock = peripheral_clock;
-  gps_baud_error_tc_results.calculated_baud = baud;
+  gps_baud_error_tc_results.register_value = baud;
+
+  /* Calculate baud according to Datasheet Table 23-2  */
+  calcuated_baud = 1000 * ((float)peripheral_clock / 16) * (1 - (float)baud/65536);
+
+
+  gps_baud_error_tc_results.calculated_baud_milli = calcuated_baud;
 }

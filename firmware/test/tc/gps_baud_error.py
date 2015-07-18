@@ -17,7 +17,7 @@ from random import randint
 class gps_baud_error_tc:
     def __init__(self):
         self.name = self.__class__.__name__
-        self.iterations = 20
+        self.iterations = 1
 
 
     def get_test(self):
@@ -37,11 +37,17 @@ class gps_baud_error_tc:
         Compare result and params here, decide sth.
         Can use print_info
         """
+        calc = int(result["calculated_baud_milli"])/1000.0
+        perip = result["peripheral_clock"]
+        intended = result["intended_baud"]
+        register = result["register_value"]
+        error = float(abs(calc-intended))
 
-        print_info("{} Hz on a {} MHz clock (Intended {} Hz)".format(
-            result["calculated_baud"],
-            result["peripheral_clock"],
-            result["intended_baud"]
-            )
+        print_info("""{:.3f} Hz on a {} MHz clock
+        (Intended {} Hz, register = {:#06x}, error = {:.3f} Hz)""".format(
+            calc, perip, intended, int(register), error))
 
-        return True
+        if (error < 1):
+            return True
+        else:
+            return False
