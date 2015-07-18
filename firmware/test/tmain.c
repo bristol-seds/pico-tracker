@@ -46,6 +46,7 @@
 #include "mem_erase_all.h"
 #include "adc_battery_solar_read.h"
 #include "gps_baud_error.h"
+#include "crc32_gen_buf.h"
 /* [new_tc] */
 
 
