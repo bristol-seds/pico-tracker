@@ -152,9 +152,9 @@ void cron_telemetry(struct tracker_time* t)
 void do_cron(void)
 {
   /* ---- Local representation of the time ---- */
-  while (ticks--) {
+  while (ticks) {
     /* Update time internally */
-    time.epoch++; time.second++;
+    ticks--; time.epoch++; time.second++;
     if (time.second >= 60) {
       time.second = 0; time.minute++;
       if (time.minute >= 60) {
