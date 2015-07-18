@@ -227,6 +227,23 @@ struct tracker_datapoint* read_check_backlog_item(uint16_t index)
   return (struct tracker_datapoint*)buffer;
 }
 /**
+ * Returns the number of backlogs indicated as valid in is_backlog_valid.
+ *
+ * Should correspond with the actual number of valid backlogs
+ */
+uint16_t is_backlog_valid_count(void)
+{
+  uint16_t i, count = 0;
+
+  for (i = 0; i < BACKLOG_COUNT; i++) {
+    if (is_backlog_valid[i] == BACKLOG_VALID_FLAG) {
+      count++;
+    }
+  }
+
+  return count;
+}
+/**
  * Gets a valid backlog item. Returns NULL if none available.
  */
 struct tracker_datapoint* get_backlog(void)
@@ -236,6 +253,11 @@ struct tracker_datapoint* get_backlog(void)
 
   if (is_backlog_valid_loaded == 0) {
     load_is_backlog_valid();
+  }
+
+  /* Return early if we haven't reached our replay threshold */
+  if (is_backlog_valid_count() < BACKLOG_REPLAY_THRESHOLD) {
+    return NULL;
   }
 
   for (i = 0; i < BACKLOG_COUNT; i++) {

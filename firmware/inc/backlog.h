@@ -45,6 +45,10 @@
  * Address offset in memory
  */
 #define BACKLOG_ADDRESS 0
+/**
+ * Defines the number of backlogs that should be valid before we start replaying
+ */
+#define BACKLOG_REPLAY_THRESHOLD	24    /* One day */
 
 void record_backlog(tracker_datapoint* dp);
 struct tracker_datapoint* get_backlog(void);
