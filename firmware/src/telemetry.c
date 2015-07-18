@@ -41,7 +41,7 @@
 #include "system/port.h"
 #include "tc/tc_driver.h"
 #include "hw_config.h"
-
+#include "watchdog.h"
 
 /**
  * CYCLIC REDUNDANCY CHECK (CRC)
@@ -418,6 +418,8 @@ void timer0_tick_deinit()
  */
 void TC0_Handler(void)
 {
+  awake_do_watchdog();
+
   while (tc_get_status(TC0) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC0, TC_STATUS_CHANNEL_0_MATCH);
 

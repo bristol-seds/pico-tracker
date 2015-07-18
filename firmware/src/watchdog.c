@@ -39,7 +39,7 @@ struct idle_counter idle_count, idle_count_max;
 
 idle_wait_t last_idle_t = IDLE_NONE;
 
-#define kick_external_watchdog()	  port_pin_toggle_output_level(WDT_WDI_PIN)
+#define kick_external_watchdog()	port_pin_toggle_output_level(WDT_WDI_PIN)
 
 /**
  * Increments the specified idle counter
@@ -89,6 +89,18 @@ void clear_idle_counters(void)
 }
 
 /**
+ * To be run when we wake from sleep
+ */
+void awake_do_watchdog(void)
+{
+#ifdef DEBUG_USE_INTWATCHDOG
+  wdt_reset_count();
+#endif
+
+  /* WDI high */
+  port_pin_set_output_level(WDT_WDI_PIN, 1);
+}
+/**
  * Kick
  */
 void kick_the_watchdog(void)
@@ -130,24 +142,18 @@ void idle(idle_wait_t idle_t)
   wdt_reset_count();
 #endif
 
+  /* WDI low */
   port_pin_set_output_level(WDT_WDI_PIN, 0);
 
   /* And sleep */
   system_sleep();
-
-  /* Same again when we wake from sleep */
-#ifdef DEBUG_USE_INTWATCHDOG
-  wdt_reset_count();
-#endif
-
-  port_pin_set_output_level(WDT_WDI_PIN, 1);
 }
 
 
 /**
  * The internal watchdog is used to bring the processor to a halt and
- * coredump to external memory.
- * 0.8s < t_early_w < 0.128s
+ * coredump to external memory (todo)
+ * 0.6s < t_early_w < 0.96s
  *
  * The external watchdog then hard resets the MCU and GPS to bring the
  * system back up in a clean state.
@@ -168,12 +174,12 @@ void watchdog_init(void)
   system_gclk_gen_set_config(WDT_GCLK,
         		     GCLK_SOURCE_OSCULP32K, /* Source 		*/
         		     false,		/* High When Disabled	*/
-        		     4,			/* Division Factor 1	*/
+        		     3,			/* Division Factor	*/
         		     false,		/* Run in standby	*/
         		     true);		/* Output Pin Enable	*/
   system_gclk_gen_enable(WDT_GCLK);
 
-  /* Set the watchdog timer. On 8kHz gclk  */
+  /* Set the watchdog timer. On ~11kHz gclk  */
   wdt_set_config(false,			/* Lock WDT		*/
                  true,			/* Enable WDT		*/
                  WDT_GCLK,		/* Clock Source		*/

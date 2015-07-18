@@ -48,6 +48,7 @@
 #include "system/system.h"
 #include "system/pinmux.h"
 #include "adc/adc.h"
+#include "watchdog.h"
 
 #define Assert assert
 
@@ -531,6 +532,8 @@ enum adc_status_code adc_init(Adc *hw,
 /** Interrupt handler for the ADC module. */
 void ADC_Handler(void)
 {
+  awake_do_watchdog();
+
   /* get interrupt flags and mask out enabled callbacks */
   uint32_t flags = module_inst.hw->INTFLAG.reg;
 

@@ -31,8 +31,9 @@
 #include "system/events.h"
 #include "system/interrupt.h"
 #include "system/port.h"
+#include "watchdog.h"
 
-uint32_t gps_timepulse_count = 0;
+volatile uint32_t gps_timepulse_count = 0;
 uint32_t timepulse_sequence = 0;
 
 timepulse_callback_t _timer_callback;
@@ -56,15 +57,15 @@ void timepulse_extint_init(void) {
   struct extint_chan_conf config;
   config.gpio_pin = GPS_TIMEPULSE_PIN;
   config.gpio_pin_mux = GPS_TIMEPULSE_PINMUX;
-  config.gpio_pin_pull = EXTINT_PULL_NONE; // ???
-  config.wake_if_sleeping = false; // ???
+  config.gpio_pin_pull = EXTINT_PULL_DOWN;
+  config.wake_if_sleeping = true;
   config.filter_input_signal = false;
-  config.detection_criteria = EXTINT_DETECT_RISING;
+  config.detection_criteria = EXTINT_DETECT_BOTH;
   extint_chan_set_config(GPS_TIMEPULSE_EXTINT, &config);
 
   /* We route this event to event channel 0 */
   events_allocate(0,
-                  EVENTS_EDGE_DETECT_NONE,
+                  EVENTS_EDGE_DETECT_NONE, /* Don't care for async path */
                   EVENTS_PATH_ASYNCHRONOUS,
                   0xC + GPS_TIMEPULSE_EXTINT, /* External Interrupt Number */
                   0);
@@ -83,14 +84,16 @@ void timepulse_set_callback(timepulse_callback_t callback) {
 /**
  * EIC Handler, triggered by the GPS at GPS_TIMEPULSE_FREQ Hz
  */
-void EIC_Handler(void) {
+void EIC_Handler(void)
+{
+  awake_do_watchdog();
 
   if (EIC->INTFLAG.reg & (1 << GPS_TIMEPULSE_EXTINT)) {
     EIC->INTFLAG.reg = (1 << GPS_TIMEPULSE_EXTINT);
 
     gps_timepulse_count++;
     /* Runs at 1Hz */
-    if (gps_timepulse_count >= GPS_TIMEPULSE_FREQ) {
+    if (gps_timepulse_count >= GPS_TIMEPULSE_FREQ * 2) { /* Both */
       gps_timepulse_count = 0;
 
       /* Make the callback if we have one */

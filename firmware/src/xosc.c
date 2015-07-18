@@ -34,7 +34,7 @@
 #include "tc/tc_driver.h"
 #include "hw_config.h"
 #include "xosc.h"
-
+#include "watchdog.h"
 
 enum measure_state_t {
   MEASURE_WAIT_FOR_FIRST_EVENT,
@@ -235,13 +235,14 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
   }
 }
 
-
 /**
  * Triggered on timer 2 capture
  */
 void TC2_Handler(void) {
   uint32_t capture_value;
   uint32_t source_freq;
+
+  awake_do_watchdog();
 
   if (tc_get_status(TC2) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC2, TC_STATUS_CHANNEL_0_MATCH);
