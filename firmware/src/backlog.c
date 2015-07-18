@@ -30,6 +30,7 @@
 #include "backlog.h"
 #include "data.h"
 #include "memory.h"
+#include "crc.h"
 
 uint8_t buffer[BACKLOG_ITEM_SIZE];
 
@@ -163,10 +164,13 @@ void load_write_index(void)
 void write_backlog_item(uint16_t index, tracker_datapoint* dp)
 {
   uint8_t* buffer_ptr = (uint8_t*)dp;
+  uint32_t crc;
 
   if (index >= BACKLOG_COUNT) { while (1); }
 
-  /* TODO Checksum */
+  /* Checksum */
+  crc = calculate_crc32(buffer_ptr, sizeof(tracker_datapoint));
+  put_crc32(buffer_ptr + sizeof(tracker_datapoint), crc);
 
   do {
     /* Write */
@@ -218,13 +222,21 @@ void record_backlog(tracker_datapoint* dp)
  */
 struct tracker_datapoint* read_check_backlog_item(uint16_t index)
 {
+  uint32_t crc_calc, crc_buffer;
+
   if (index >= BACKLOG_COUNT) { while (1); }
 
   mem_read_memory(ADDRESS(index), buffer, ACTUAL_BACKLOG_ITEM_SIZE);
 
-  /* TODO Check */
+  /* Checksum */
+  crc_calc = calculate_crc32(buffer, sizeof(tracker_datapoint));
+  crc_buffer = get_crc32(buffer + sizeof(tracker_datapoint));
 
-  return (struct tracker_datapoint*)buffer;
+  if (crc_calc == crc_buffer) {
+    return (struct tracker_datapoint*)buffer;
+  } else {
+    return NULL;
+  }
 }
 /**
  * Returns the number of backlogs indicated as valid in is_backlog_valid.
