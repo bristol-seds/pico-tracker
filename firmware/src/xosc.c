@@ -261,7 +261,7 @@ void TC2_Handler(void) {
         source_freq = capture_value * XOSC_GCLK1_DIVIDE;
         break;
       case XOSC_MEASURE_TIMEPULSE:
-        source_freq = capture_value * XOSC_GCLK1_DIVIDE * GPS_TIMEPULSE_FREQ;
+        source_freq = capture_value * XOSC_GCLK1_DIVIDE * GPS_TIMEPULSE_FREQ * 2;
         break;
       }
 
