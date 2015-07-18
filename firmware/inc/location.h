@@ -27,6 +27,8 @@
 
 #include <stdbool.h>
 
+#include "samd20.h"
+
 bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat);
 
 bool aprs_location_tx_allow(void);
