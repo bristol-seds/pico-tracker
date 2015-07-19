@@ -31,6 +31,8 @@
 #include "ax25.h"
 #include "data.h"
 
+uint16_t aprs_telemetry_sequence = 0;
+
 /**
  * USEFUL RESOURCES
  * =============================================================================
@@ -168,6 +170,7 @@ uint8_t aprs_start(void)
   char information[150];
   char compressed_lat[5];
   char compressed_lon[5];
+  char telemetry_sequence[3];
   char telemetry[TELEMETRY_FIELD_LEN];
 
   /* Don't run without a valid position */
@@ -190,12 +193,14 @@ uint8_t aprs_start(void)
   uint32_t altitude_feet = altitude * 3.2808; /* Oh yeah feet! Everyone loves feet */
 
   /* Encode telemetry string */
+  base91_encode(telemetry_sequence, 2, aprs_telemetry_sequence);
+  aprs_telemetry_sequence = (aprs_telemetry_sequence + 1) & 0x1FFF;
   encode_telemetry(telemetry, _dp);
 
   /* Encode the information field */
   /* Compressed Lat/Long position report, no timestamp */
   uint32_t information_len = sprintf(information,
-                                     "!%c%s%s%c%s%c/A=%06ld %s|%s|",
+                                     "!%c%s%s%c%s%c/A=%06ld %s|%s%s|",
                                      APRS_SYMBOL[0], /* Symbol Table ID */
                                      compressed_lat,
                                      compressed_lon,
@@ -204,7 +209,8 @@ uint8_t aprs_start(void)
                                      ' ',            /* Compression Type */
                                      altitude_feet,   /* Altitude */
                                      _comment ? _comment : "",
-                                     telemetry
+                                     telemetry_sequence, /* Telemetry Sequence */
+                                     telemetry           /* Telemetry */
     );
 
   /* Transmit the frame using ax25 */
