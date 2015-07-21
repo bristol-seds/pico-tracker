@@ -27,7 +27,7 @@
 #include "system/interrupt.h"
 #include "hw_config.h"
 
-float battery_v, solar_v;
+float battery_v = 0.0, solar_v = 0.0;
 
 #define ADC_GAINF		ADC_GAIN_FACTOR_DIV2
 #define ADC_GAINF_VAL		0.5

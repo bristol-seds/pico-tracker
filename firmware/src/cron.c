@@ -38,6 +38,10 @@ struct tracker_time time = {0};
 
 volatile uint32_t ticks = 0;
 
+/* Indicates telemetry wakeup hysteresis. We wait until 3.3V before transmitting */
+uint8_t has_telemetry_woken_up = 0;
+#define TELEMETRY_WAKEUP_TEST(d)	(d->battery > 3.3)
+
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
 
@@ -53,7 +57,7 @@ void pips_telemetry(void);
  * Number of days in month. This won't be used much but I guess I have
  * to implement it. Sigh
  *
- * Assumes months start at 1 (ubx does do this, I checked)
+ * Assumes days and months start at 1 (ubx does do this, I checked)
  */
 uint8_t days_in_month(struct tracker_time* t)
 {
@@ -113,7 +117,7 @@ void read_gps_time(void)
 /**
  * Pars of cron job that handles telemetry
  */
-void cron_telemetry(struct tracker_time* t)
+void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 {
   /* ---- Telemetry output ---- */
   /* RTTY */
@@ -181,7 +185,11 @@ void do_cron(void)
   }
 
   /* ---- Telemetry output ---- */
-  cron_telemetry(&time);
+  if (has_telemetry_woken_up > 0) {
+    cron_telemetry(&time, dp);
+  } else {
+    has_telemetry_woken_up = TELEMETRY_WAKEUP_TEST(dp) ? 0xF : 0;
+  }
 
   /* ---- Record for backlog ---- */
   if ((time.minute % 5 == 0) && (time.second == 0)) { /* Once per hour */
