@@ -26,14 +26,14 @@
 #define LOCATION_H
 
 #include <stdbool.h>
-
 #include "samd20.h"
 
-bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat);
+bool telemetry_location_tx_allow(void);
+void telemetry_location_update(float lon, float lat);
 
+bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat);
 bool aprs_location_tx_allow(void);
 int32_t aprs_location_frequency(void);
-
 void aprs_location_update(float lon, float lat);
 
 #endif /* LOCATION_H */

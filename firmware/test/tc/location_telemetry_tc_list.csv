@@ -1,0 +1,37 @@
+# name,?,lat,lon
+# Permitted
+UK,1,52,-1
+UK,1,52,0
+UK,1,52,1
+Wales,1,52,-4
+Lewis,1,58,-6.5
+NI,1,54.5,-6.5
+France,1,49,2
+Portugal,1,40,-8
+Italy,1,43,12
+Romania,1,46,24
+Sweden,1,58,12
+Stockholm,1,59.3,18
+Malmo,1,55.6,13
+Copenhagen,1,55.7,12.5
+Amsterdam,1,52.4,5.7
+Germany,1,52,9
+Poland,1,51,20
+Russia,1,55,37
+Mongolia,1,48,107
+Vladivostok,1,43,132
+Armenia,1,40,44
+Africa,1,9,2
+LA,1,34,-118
+New York,1,41,-74
+Canada,1,44,-76
+South Korea,1,37,128
+Japan,1,36,140
+Thailand,1,14,100
+
+# Not permitted
+West China,0,39,80
+Beijing,0,40,116
+Hong Kong,0,22.4,114.1
+Yemen,0,15,44
+NK,0,39,126

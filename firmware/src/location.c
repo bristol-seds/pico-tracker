@@ -28,9 +28,11 @@
 
 #include "samd20.h"
 #include "geofence_aprs.h"
+#include "geofence_telemetry.h"
 
 int32_t current_aprs_zone = -2, current_aprs_zone_outline = -2;
-uint32_t _altitude = 0;
+
+int32_t current_no_telem_outline = -1;
 
 #define polyX(i)	(poly[(i*2)+0])
 #define polyY(i)	(poly[(i*2)+1])
@@ -49,8 +51,8 @@ uint32_t _altitude = 0;
  * Note that division by zero is avoided because the division is
  * protected by the "if" clause which surrounds it.
  */
-bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y) {
-
+bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y)
+{
   uint32_t i, j = points-1;
   bool oddNodes = false;
 
@@ -72,8 +74,8 @@ bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y
 /**
  * Returns if a latitude and longitude is in a polygon
  */
-bool latlon_in_polygon(const int32_t* poly, uint32_t points, float lon, float lat) {
-
+bool latlon_in_polygon(const int32_t* poly, uint32_t points, float lon, float lat)
+{
   int32_t x = (int32_t)round(lon * 1000 * 1000); // longitude: µdegrees
   int32_t y = (int32_t)round(lat * 1000 * 1000); // latitude:  µdegrees
 
@@ -81,23 +83,78 @@ bool latlon_in_polygon(const int32_t* poly, uint32_t points, float lon, float la
 }
 
 
+/**
+ * ============================== Telemetry ============================
+ */
+
+
+/**
+ * Returns if a latitude and longitude is in a given no telem outline
+ */
+bool latlon_in_no_telem_zone(int32_t no_telem_outline, float lon, float lat)
+{
+  return latlon_in_polygon(
+    no_telem_outlines[no_telem_outline],
+    no_telem_outline_lengths[no_telem_outline],
+    lon, lat);
+}
+/**
+ * Return if telemetry should be transmitted in the current zone
+ */
+bool telemetry_location_tx_allow(void)
+{
+  /* Outside no telem zone */
+  return (current_no_telem_outline == -1);
+}
+/**
+ * Updates the current telemetry location based on the current lat/lon
+ */
+void telemetry_location_update(float lon, float lat)
+{
+  uint32_t outline;
+
+  /* Were we in a telemetry outline last time? */
+  if (current_no_telem_outline >= 0) {
+
+    /* Are we still in this outline? */
+    if (latlon_in_no_telem_zone(current_no_telem_outline, lon, lat)) {
+      return; /* Still in this outline */
+    }
+  }
+
+  /* Check all the no telemetry outlines */
+  while (sizeof(no_telem_outlines)/sizeof(int32_t*) != 6);
+  for (outline = 0; outline < sizeof(no_telem_outlines) / sizeof(int32_t*); outline++) {
+
+    if (latlon_in_no_telem_zone(outline, lon, lat)) { /* If we're in this zone */
+
+      /* Record the current outline */
+      current_no_telem_outline = outline;
+
+      return;                 /* Go home. We return the first outline we match */
+    }
+  }
+}
+
+/**
+ * ============================== APRS =================================
+ */
 
 /**
  * Returns if a latitude and longitude is in a given aprs zone outline
  */
-bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat) {
+bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat)
+{
   return latlon_in_polygon(
     aprs_zones[aprs_zone].outlines[aprs_zone_outline],
     aprs_zones[aprs_zone].outline_lengths[aprs_zone_outline],
     lon, lat);
 }
-
-
 /**
  * Returns if aprs should be transmitted in the current zone
  */
-bool aprs_location_tx_allow(void) {
-
+bool aprs_location_tx_allow(void)
+{
   /* Not in any zone, or in a zone other than Alpha */
   return (current_aprs_zone == -1) || (current_aprs_zone > 0);
 }
@@ -106,21 +163,19 @@ bool aprs_location_tx_allow(void) {
  *
  * Where aprs is not allowed this function is unspecified
  */
-int32_t aprs_location_frequency(void) {
-
+int32_t aprs_location_frequency(void)
+{
   if (current_aprs_zone >= 0) {
     return aprs_zones[current_aprs_zone].frequency;
   }
 
   return 144800000;
 }
-
-
 /**
  * Updates the aprs location based on the current lat/lon
  */
-void aprs_location_update(float lon, float lat) {
-
+void aprs_location_update(float lon, float lat)
+{
   uint32_t z, outline;
 
   /* Were we in an aprs zone last time? */

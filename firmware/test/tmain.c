@@ -39,6 +39,7 @@
 #include "times_two.h"
 #include "osc8m_calib.h"
 #include "location_aprs.h"
+#include "location_telemetry.h"
 #include "mem_write_page.h"
 #include "mem_write_all.h"
 #include "location_aprs_file.h"
