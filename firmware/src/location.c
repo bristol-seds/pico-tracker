@@ -108,10 +108,14 @@ bool telemetry_location_tx_allow(void)
 }
 /**
  * Updates the current telemetry location based on the current lat/lon
+ *
+ * lat_i, lon_i in 100 nanodeg
  */
-void telemetry_location_update(float lon, float lat)
+void telemetry_location_update(int32_t lon_i, int32_t lat_i)
 {
   uint32_t outline;
+  float lat = lat_i / 10000000.0; /* degrees */
+  float lon = lon_i / 10000000.0; /* degrees */
 
   /* Were we in a telemetry outline last time? */
   if (current_no_telem_outline >= 0) {
@@ -173,10 +177,14 @@ int32_t aprs_location_frequency(void)
 }
 /**
  * Updates the aprs location based on the current lat/lon
+ *
+ * lat_i, lon_i in 100 nanodeg
  */
-void aprs_location_update(float lon, float lat)
+void aprs_location_update(int32_t lat_i, int32_t lon_i)
 {
   uint32_t z, outline;
+  float lat = lat_i / 10000000.0; /* degrees */
+  float lon = lon_i / 10000000.0; /* degrees */
 
   /* Were we in an aprs zone last time? */
   if (current_aprs_zone >= 0 && current_aprs_zone_outline >= 0) {

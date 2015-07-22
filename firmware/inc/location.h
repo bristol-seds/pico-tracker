@@ -29,11 +29,11 @@
 #include "samd20.h"
 
 bool telemetry_location_tx_allow(void);
-void telemetry_location_update(float lon, float lat);
+void telemetry_location_update(int32_t lon_i, int32_t lat_i);
 
 bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline, float lon, float lat);
 bool aprs_location_tx_allow(void);
 int32_t aprs_location_frequency(void);
-void aprs_location_update(float lon, float lat);
+void aprs_location_update(int32_t lon_i, int32_t lat_i);
 
 #endif /* LOCATION_H */

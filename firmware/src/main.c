@@ -164,11 +164,8 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
 
   if (!gps_is_locked()) return; /* Don't bother with no GPS */
 
-  float lat = (float)dp->latitude / 10000000.0;  /* degrees */
-  float lon = (float)dp->longitude / 10000000.0; /* degrees */
-
   /* Update location */
-  aprs_location_update(lon, lat);
+  aprs_location_update(dp->longitude, dp->latitude);
 
 #if APRS_USE_GEOFENCE
   /* aprs okay here? */

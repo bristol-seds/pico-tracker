@@ -158,10 +158,7 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 
     if (gps_is_locked()) { /* Don't bother with no GPS */
 
-      float lat = (float)dp->latitude / 10000000.0;  /* degrees */
-      float lon = (float)dp->longitude / 10000000.0; /* degrees */
-
-      telemetry_location_update(lon, lat);
+      telemetry_location_update(dp->longitude, dp->latitude);
     }
   }
 }
