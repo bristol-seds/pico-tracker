@@ -32,6 +32,7 @@
 #include "hw_config.h"
 #include "watchdog.h"
 #include "backlog.h"
+#include "location.h"
 
 /* Internal time representation */
 struct tracker_time time = {0};
@@ -120,25 +121,29 @@ void read_gps_time(void)
 void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 {
   /* ---- Telemetry output ---- */
-  /* RTTY */
-  if (t->second == 0 && !LOW_POWER(dp)) {
-    rtty_telemetry(dp);
+  if (telemetry_location_tx_allow()) {
 
-    /* Contestia */
-  } else if (t->second == 30 && !LOW_POWER(dp)) {
-    contestia_telemetry(dp);
-
-    /* Low Power */
-  } else if (t->second == 0 && LOW_POWER(dp)) {
-    if ((t->minute % 2) == 0) {
+    /* RTTY */
+    if (t->second == 0 && !LOW_POWER(dp)) {
       rtty_telemetry(dp);
-    } else {
+
+      /* Contestia */
+    } else if (t->second == 30 && !LOW_POWER(dp)) {
       contestia_telemetry(dp);
+
+      /* Low Power */
+    } else if (t->second == 0 && LOW_POWER(dp)) {
+      if ((t->minute % 2) == 0) {
+        rtty_telemetry(dp);
+      } else {
+        contestia_telemetry(dp);
+      }
+
+      /* Pip */
+    } else if ((t->second % 1) == 0) {
+      pips_telemetry();
     }
 
-    /* Pip */
-  } else if ((t->second % 1) == 0) {
-    pips_telemetry();
   }
 
   /* APRS */
@@ -147,6 +152,18 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
     aprs_telemetry(dp);
   }
 #endif
+
+  /* ---- Update telemetry geofence ---- */
+  if ((t->minute % 5 == 0) && (t->second == 0)) { /* Every 5 minutes */
+
+    if (gps_is_locked()) { /* Don't bother with no GPS */
+
+      float lat = (float)dp->latitude / 10000000.0;  /* degrees */
+      float lon = (float)dp->longitude / 10000000.0; /* degrees */
+
+      telemetry_location_update(lon, lat);
+    }
+  }
 }
 /**
  * Cron job for the system.
