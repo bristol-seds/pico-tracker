@@ -24,6 +24,7 @@
 
 #include "samd20.h"
 #include "hw_config.h"
+#include "rf_tests.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "telemetry.h"

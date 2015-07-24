@@ -25,14 +25,13 @@
 #ifndef APRS_H
 #define APRS_H
 
-#include "rf_tests.h"
 #include "data.h"
 
 /**
  * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
  */
-
-#if RF_TEST != RF_TEST_APRS
+#define APRS_TESTING_PARAMS
+#ifdef APRS_TESTING_PARAMS
 
 /**
  * This should be a full licensed callsign you own. Not mine plz k thx bai
@@ -48,6 +47,8 @@
 #define APRS_SYMBOL     "/O"    /* Balloon */
 
 #else /* ----------- Parameters for testing */
+
+#warning Using APRS test parameters
 
 #define APRS_CALLSIGN	"M0SBU"
 #define APRS_SSID	2
