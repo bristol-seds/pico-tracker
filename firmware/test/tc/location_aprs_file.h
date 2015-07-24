@@ -26,7 +26,11 @@ struct location_aprs_file_tc_results {
 /* Function */
 __verification__ void location_aprs_file_tc(void) {
 
-  aprs_location_update(location_aprs_file_tc_params.lon, location_aprs_file_tc_params.lat);
+  /* Supply co-ords in units of 100 nanodeg */
+  aprs_location_update(
+    (int32_t)(location_aprs_file_tc_params.lon * 10 * 1000 * 1000),
+    (int32_t)(location_aprs_file_tc_params.lat * 10 * 1000 * 1000)
+    );
 
   location_aprs_file_tc_results.tx_allow = aprs_location_tx_allow();
   location_aprs_file_tc_results.frequency = aprs_location_frequency();
