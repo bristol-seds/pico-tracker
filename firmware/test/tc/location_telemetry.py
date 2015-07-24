@@ -62,6 +62,6 @@ class location_telemetry_tc:
         else:
             print_info("{} ({:.1f}, {:.1f}): Expected {}, Geofence {}".format(
                 name, params.lat, params.lon,
-                "Permitted" if expeced_tx_allow else "Not Permitted",
+                "Permitted" if expected_tx_allow else "Not Permitted",
                 "Permitted" if tx_allow else "Not Permitted"))
             return False
