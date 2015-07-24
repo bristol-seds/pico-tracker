@@ -17,7 +17,7 @@ from random import randint
 class location_aprs_file_tc:
     def __init__(self):
         self.name = self.__class__.__name__
-        self.iterations = 2000
+        self.iterations = 500
 
         self.locations = []
 
@@ -38,8 +38,8 @@ class location_aprs_file_tc:
         """
         Assign input parameters here
         """
-        params.lon = float(randint(-12000,24000))/1000
-        params.lat = float(randint(45000,65000))/1000
+        params.lon = float(randint(10000,13000))/1000
+        params.lat = float(randint(56000,59000))/1000
 
         return params
 
