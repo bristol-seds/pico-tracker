@@ -92,7 +92,7 @@ struct tracker_datapoint* collect_data(void)
 
     /* In the case of a error or timeout keep retrying up to 5
      * times */
-  } while (((gps_get_error_state() == GPS_NOERROR) ||
+  } while (((gps_get_error_state() != GPS_NOERROR) ||
             (cron_current_job_ticks() - ticks_delta_start) > 3)
            && gps_retries++ < GPS_POSITION_RETRIES);
 
