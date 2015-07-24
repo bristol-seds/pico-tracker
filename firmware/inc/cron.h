@@ -32,6 +32,7 @@ typedef struct tracker_time {
   uint8_t valid;
 } tracker_time;
 
+uint32_t cron_current_job_ticks(void);
 void do_cron(void);
 void cron_tick(void);
 

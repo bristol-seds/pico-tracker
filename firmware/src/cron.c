@@ -55,6 +55,11 @@ void aprs_telemetry(struct tracker_datapoint* dp);
 void pips_telemetry(void);
 
 /**
+ * For GPS time timeout
+ */
+uint32_t ticks_delta_start;
+
+/**
  * Number of days in month. This won't be used much but I guess I have
  * to implement it. Sigh
  *
@@ -86,19 +91,36 @@ uint8_t days_in_month(struct tracker_time* t)
 }
 
 /**
+ * Returns the number of ticks the current cron job has been running for
+ *
+ * ticks = seconds. Can be used for timeouts etc.
+ */
+uint32_t cron_current_job_ticks(void)
+{
+  return ticks;
+}
+
+/**
  * Reads current time from the GPS
  */
 void read_gps_time(void)
 {
+  /* Record current ticks */
+  ticks_delta_start = cron_current_job_ticks();
+
   /* GPS Time */
   gps_update_time();
 
-  /* Sleep Wait */
-  while (gps_update_time_pending()) {
+  /* Sleep Wait. Timeout after 3 ticks */
+  while (gps_update_time_pending() &&
+         (cron_current_job_ticks() - ticks_delta_start) <= 3) {
+
     idle(IDLE_WAIT_FOR_GPS);
   }
 
-  if (gps_get_error_state() == GPS_NOERROR) {
+  /* If no error and no timeout */
+  if ((gps_get_error_state() == GPS_NOERROR) &&
+      (cron_current_job_ticks() - ticks_delta_start) <= 3) {
 
     /* Time */
     struct ubx_nav_timeutc gt = gps_get_nav_timeutc();

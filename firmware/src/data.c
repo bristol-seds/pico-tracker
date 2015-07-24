@@ -34,6 +34,12 @@
 #include "telemetry.h"
 #include "watchdog.h"
 
+/**
+ * GPS timeout and retries
+ */
+#define GPS_POSITION_RETRIES	5
+uint32_t ticks_delta_start;
+
 struct tracker_datapoint datapoint = {.time={0}};
 
 void xosc_measure_callback(uint32_t result)
@@ -58,6 +64,8 @@ void collect_data_async(void)
  */
 struct tracker_datapoint* collect_data(void)
 {
+  uint8_t gps_retries = 0;
+
   /**
    * ---- Analogue ----
    */
@@ -69,15 +77,27 @@ struct tracker_datapoint* collect_data(void)
   /**
    * ---- GPS ----
    */
-  gps_update_position();
+  do {
+    /* Record current ticks */
+    ticks_delta_start = cron_current_job_ticks();
 
-  /* Wait for the gps update */
-  while (gps_update_position_pending()) {
-    idle(IDLE_WAIT_FOR_GPS);
-  }
+    gps_update_position();
 
-  /* At this point the gps could be in an error state */
-  /* We still use the old values however. */
+    /* Wait for the gps update. Timeout after 3 ticks */
+    while (gps_update_position_pending() &&
+           (cron_current_job_ticks() - ticks_delta_start) <= 3) {
+
+      idle(IDLE_WAIT_FOR_GPS);
+    }
+
+    /* In the case of a error or timeout keep retrying up to 5
+     * times */
+  } while (((gps_get_error_state() == GPS_NOERROR) ||
+            (cron_current_job_ticks() - ticks_delta_start) > 3)
+           && gps_retries++ < GPS_POSITION_RETRIES);
+
+  /* Halt and wait for hw watchdog */
+  if (gps_retries >= GPS_POSITION_RETRIES) { while (1); }
 
   /* GPS Status */
   struct ubx_nav_sol sol = gps_get_nav_sol();
