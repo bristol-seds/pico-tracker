@@ -228,7 +228,7 @@ void do_cron(void)
   }
 
   /* ---- Record for backlog ---- */
-  if ((time.minute % 5 == 0) && (time.second == 0)) { /* Once per hour */
+  if ((time.minute == 0) && (time.second == 0)) { /* Once per hour */
 
     kick_the_watchdog();
 
