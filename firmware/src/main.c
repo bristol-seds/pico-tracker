@@ -42,7 +42,7 @@
 #include "backlog.h"
 #include "pips.h"
 
-#define CALLSIGN	"UBSEDSx"
+#define CALLSIGN	"UBSEDS9"
 #define APRS_COMMENT	"RTTY/434.6U8N2"
 
 /**

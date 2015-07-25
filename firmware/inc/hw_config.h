@@ -150,7 +150,7 @@
 /**
  * XOSC
  */
-#define USE_XOSC
+#define USE_XOSC		1
 #define XOSC_FREQUENCY		16369000
 #define XOSC_GCLK1_DIVIDE	2
 
@@ -164,7 +164,7 @@
  * APRS
  */
 #define APRS_ENABLE		1
-#define APRS_USE_GEOFENCE	0
+#define APRS_USE_GEOFENCE	1
 #define APRS_POWER		RF_POWER_14dBm
 
 /**
@@ -173,7 +173,7 @@
  * There is a performance penalty to using the watchdog - you must
  * wait up to 1/16kHz when kicking to sync with it. Disable when not in use
  */
-#define DEBUG_USE_INTWATCHDOG	1
+#define DEBUG_USE_INTWATCHDOG	0
 #define WDT_GCLK		GCLK_GENERATOR_4
 
 /**

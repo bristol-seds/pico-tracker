@@ -14,3 +14,9 @@
     testing. These define how many sleep cycles are permitted in that
     state before we stop kicking the watchdog. 0xFFFF seems like a
     good conservative value, but you may want to be more agressive.
+
+- In `aprs.h`
+  - Set callsign and symbol
+
+- In `main.c`
+  - Set callsign

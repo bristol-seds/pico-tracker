@@ -43,9 +43,9 @@ typedef enum {
  * is triggered. Values defined to be well above values encountered in
  * normal operation.
  */
-#define MAXIDLE_WAIT_FOR_GPS		1800
+#define MAXIDLE_WAIT_FOR_GPS		2400
 #define MAXIDLE_WHILE_TELEMETRY_ACTIVE	60000
-#define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	7200
+#define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	30000
 
 struct idle_counter {
   uint32_t wait_for_gps;
