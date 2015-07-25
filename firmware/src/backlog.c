@@ -287,10 +287,17 @@ struct tracker_datapoint* get_backlog(void)
 
     /* Check this */
     dp = read_check_backlog_item(reverse_index(backlog_read_index));
-    INC_INDEX(backlog_read_index);
 
     /* Return if it's good */
-    if (dp) return dp;
+    if (dp != NULL) {
+      INC_INDEX(backlog_read_index);
+      return dp;
+
+    } else {
+      /* Otherwise invalidate and continue */
+      is_backlog_valid[reverse_index(backlog_read_index)] = 0;
+      INC_INDEX(backlog_read_index);
+    }
   }
 
   return NULL;
