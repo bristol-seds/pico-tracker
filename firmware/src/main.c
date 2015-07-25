@@ -181,7 +181,7 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     } else {
       backlog_dp_ptr = get_backlog();
 
-      if (backlog_dp_ptr) {     /* Backlog comment if we can */
+      if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
         aprs_set_backlog_comment(backlog_dp_ptr);
       } else {
         aprs_set_comment(APRS_COMMENT);
