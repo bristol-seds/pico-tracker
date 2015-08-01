@@ -14,3 +14,4 @@ firmware/test/.testcommand
 
 *.d
 *.i
+/firmware/tools/aprs-equations/aprs_id
