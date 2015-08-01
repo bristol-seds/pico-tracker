@@ -12,6 +12,7 @@ else will be ignored.
 
 import re
 import sys
+from ukhas_format import *
 from datetime import datetime
 from math import log, exp
 
@@ -135,4 +136,5 @@ with open(file_name, 'r') as data_file:
 
     # Print data
     for datum in data:
+        ukhas_format(datum)
         print "%s: %s, %s" % ((str(datum['time']),) + datum['coords'][:2])
