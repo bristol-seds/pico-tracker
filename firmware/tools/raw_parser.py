@@ -30,7 +30,7 @@ Default year and month are 2015 and July
 def extract_time(line):
     # Capture a 6 digit string
     p = re.compile(r'(\d{6})z\S{18}')
-    match = p.match(line) 
+    match = p.match(line)
 
     if match == None:
         return None
@@ -104,11 +104,10 @@ def extract_raw_data(line):
 
 #-------------------------------------------------------------------------------
 
-if len(sys.argv) != 2:
-    print 'Usage: python raw_parser.py rawdata.txt'
-    sys.exit()
-
-file_name = sys.argv[1]
+if len(sys.argv) == 2:
+    file_name = sys.argv[1]
+else:
+    file_name = raw_input("File to read (rawdata.txt): ") or "rawdata.txt"
 
 with open(file_name, 'r') as data_file:
     data = []
@@ -137,4 +136,3 @@ with open(file_name, 'r') as data_file:
     # Print data
     for datum in data:
         print "%s: %s, %s" % ((str(datum['time']),) + datum['coords'][:2])
-
