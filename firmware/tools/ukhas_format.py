@@ -5,15 +5,15 @@ Expects to be passed a dict, with keys 'time', 'coords',
 'battery', 'solar', 'temperature' and 'satellites'.
 """
 
-import crc16
 from datetime import datetime
+import crcmod
 
 """
 Builds ukhas string from supplied datum
 """
 def ukhas_format(datum):
 
-    callsign = "UBSEDSX"
+    callsign = "UBSEDS9"
 
     # Time
     time_str = "{:02}:{:02}:{:02}".format(
@@ -30,6 +30,7 @@ def ukhas_format(datum):
         datum['battery'], datum['solar'], datum['temperature']);
 
     # Checksum
-    checksum =  "{:04X}".format(crc16.crc16xmodem(ukhas_str))
+    crc16 = crcmod.mkCrcFun(0x11021, 0xFFFF, False, 0x0000)
+    checksum =  "{:04X}".format(crc16(ukhas_str))
 
     return "$${}*{}".format(ukhas_str, checksum)
