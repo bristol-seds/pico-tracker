@@ -10,17 +10,21 @@ from datetime import datetime
 couch = couchdb.Server('http://habitat.habhub.org/')
 db = couch['habitat']
 
-def habitat_upload(packet_string):
+def habitat_upload(rx_time, packet_string):
 
     print packet_string
-    packet_base64 = base64.standard_b64encode(packet_string+"\n")
-    print packet_base64
-    packet_sha256 = hashlib.sha256(packet_base64).hexdigest()
-    print packet_sha256
 
+    # Packet ID
+    packet_base64 = base64.standard_b64encode(packet_string+"\n")
+    packet_sha256 = hashlib.sha256(packet_base64).hexdigest()
+
+    # Time Created = backlog time
+    time_created = rx_time.replace(microsecond=0).isoformat()+"+00:00"
+    print time_created
+
+    # Time Uploaded = now
     now = datetime.utcnow()
     time_uploaded = now.replace(microsecond=0).isoformat()+"+00:00"
-    print time_uploaded
 
     print db.save({
         "type":"payload_telemetry",
@@ -30,8 +34,8 @@ def habitat_upload(packet_string):
         },
         "receivers": {
             "BACKLOG": {
-                "time_created": time_uploaded,
-                "time_uploaded": time_uploaded
+                "time_created": time_created,
+                "time_uploaded": time_created,
             }
         }
     })
