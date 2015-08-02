@@ -140,6 +140,10 @@ with open(file_name, 'r') as data_file:
         print "%s: %s, %s" % ((str(datum['time']),) + datum['coords'][:2])
 
     # Upload data to habitat
-    datum = data[2]
-    ukhas_str = ukhas_format(datum)
-    habitat_upload(datum['time'], ukhas_str)
+    for datum in data[3:]:
+        ukhas_str = ukhas_format(datum)
+        try:
+            print ukhas_str
+            print habitat_upload(datum['time'], ukhas_str)
+        except:
+            None
