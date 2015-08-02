@@ -18,7 +18,7 @@ ifdef name
 	@$(SED) -i "s/\/\* \[new_tc\] \*\//\#include \"$(name).h\"\n\/\* \[new_tc\] \*\//" tmain.c
 	@$(ECHO) "Done!"
 	@$(ECHO)
-	@$(ECHO) "Your testcase is at tc/$(name)_tc.{py,h}"
+	@$(ECHO) "Your testcase is at tc/$(name).{py,h}"
 	@$(ECHO)
 else
 	@$(ECHO) "Please specify a name for the test case!! Like 'make name=new'"
