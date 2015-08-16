@@ -9,6 +9,9 @@ gdbscript-custom
 # The output directory
 out/
 
+# Intermediate compilation files
+*.o
+
 # Atmel Developement Kit
 xdk*
 
