@@ -14,28 +14,19 @@
 2405790 2 U5, U6 TCXO Si4xxx, SE880
 1755607 595-TPS3123J8DBVT 1 U7 watchdog
 1470880 595-SN74LVC1G32DCKR 1 U8 or-gate, watchdog subsystem
-| SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U9
-2467859 1 Y1 32.786kHz xtal Se880
+1898600 U9 Solar Energy Boost Converter
+2308325 U10 2.3V LDO regulator
+1135388 U11 1.8V LDO regulator
+1525484 D1, D2, D3, D4 Small signal schotty diode
+1431112 D5 Dual common-cathode schotty diode
 ----
 
-#### Active (Solar)
-
-| Part | Description | Supplier | Quantity Required | Notes
-| ---  | ---         | ---       | ---               | ---
-511-SPV1040T 1 MPPT U10
-2102610 1 Li-ion charge controller U11
-2400648 595-TPS62243DRVT 2 Buck Converter DRVT = SON-6 TPS62243 U12, U13
-595-TPS3808G25DRVR 1 Vth = 2.33, DRVR = SON-6 U14
-1631683 771-74LVC1G04GW-G 1 Inverter U15
-8734593 771-BAT760-T/R 2 D3, D4
-----
 
 ### Passives
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-2289091 1 L1A 10µH XAL6060
-2408024 1 L1B 10µH LPS3015
+2408024 1 L11 10µH LPS3015
 2285640 1 L2 220nH radio
 1343091 1 L3 56nH rf filter
 1865775 1 L4, L5 18nH rf filter
