@@ -7768,7 +7768,7 @@ Typical applications:&lt;p&gt;
 <part name="C17" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$78" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
-<part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="22kΩ"/>
+<part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="U$56" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U4" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
 <part name="FRAME4" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
@@ -7788,9 +7788,7 @@ Typical applications:&lt;p&gt;
 <part name="U$4" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U9" library="SparkFun-Sensors" deviceset="BMP180" device=""/>
 <part name="GND13" library="SparkFun" deviceset="GND" device=""/>
-<part name="C19" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="C20" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
-<part name="GND14" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
@@ -7822,6 +7820,10 @@ Typical applications:&lt;p&gt;
 <part name="C29" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$63" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="D4" library="RB161M" deviceset="RB161M" device=""/>
+<part name="R6" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
+<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$47" library="microbuilder_v3" deviceset="1.8V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7852,8 +7854,8 @@ DOPO: 0x0)</text>
 <text x="149.86" y="25.4" size="6.4516" layer="94" font="vector" ratio="11">Flight</text>
 <text x="99.06" y="74.168" size="1.27" layer="97" font="vector" ratio="11">(EXTINT[5])</text>
 <text x="187.96" y="94.488" size="1.27" layer="97" font="vector" ratio="11">(0.8V p-p min)</text>
-<text x="96.52" y="81.788" size="1.27" layer="97" font="vector" ratio="11">(AIN[0])</text>
-<text x="96.52" y="76.708" size="1.27" layer="97" font="vector" ratio="11">(AIN[4])</text>
+<text x="88.9" y="81.788" size="1.27" layer="97" font="vector" ratio="11">(AIN[0])</text>
+<text x="88.9" y="76.708" size="1.27" layer="97" font="vector" ratio="11">(AIN[4])</text>
 <wire x1="110.236" y1="87.884" x2="110.236" y2="83.312" width="0.1524" layer="97"/>
 <text x="109.22" y="86.614" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM1)</text>
 <text x="33.02" y="-108.712" size="1.27" layer="97" font="vector" ratio="11">!SHDN! is pulled high internally, so
@@ -7864,10 +7866,11 @@ solar cells at -25ºC</text>
 <text x="172.72" y="-136.652" size="1.27" layer="97" font="vector" ratio="11">Vf = 300mV @ -25ºC, 500mA</text>
 <text x="12.7" y="-65.532" size="1.27" layer="97" font="vector" ratio="11">0.8V - 1V from solar array</text>
 <text x="106.68" y="-65.532" size="1.27" layer="97" font="vector" ratio="11">MPPT output set to 2.5V</text>
-<text x="154.94" y="-42.672" size="1.27" layer="97" font="vector" ratio="11">Vf = 500mV @ 100mA</text>
+<text x="121.92" y="-57.912" size="1.27" layer="97" font="vector" ratio="11">Vf = 500mV @ 100mA</text>
 <text x="106.68" y="-19.812" size="1.27" layer="97" font="vector" ratio="11">2.3V LDO</text>
-<text x="55.88" y="-24.892" size="1.27" layer="97" font="vector" ratio="11">Single 3V primary lithium cell</text>
-<text x="177.8" y="-80.772" size="1.27" layer="97" font="vector" ratio="11">Vldo = 20mV @ 100mA</text>
+<text x="53.34" y="-24.892" size="1.27" layer="97" font="vector" ratio="11">Single 3V primary lithium cell
+(non rechargeable)</text>
+<text x="187.96" y="-80.772" size="1.27" layer="97" font="vector" ratio="11">Vldo = 20mV @ 100mA</text>
 <text x="81.28" y="-108.712" size="1.27" layer="97" font="vector" ratio="11">LDO output is set to 2.2V by default.
 Must be less that Vout.</text>
 </plain>
@@ -7980,9 +7983,7 @@ Must be less that Vout.</text>
 <instance part="U$4" gate="G$1" x="12.7" y="180.34" rot="MR0"/>
 <instance part="U9" gate="G$1" x="81.28" y="-167.64"/>
 <instance part="GND13" gate="1" x="101.6" y="-180.34"/>
-<instance part="C19" gate="G$1" x="111.76" y="-175.26"/>
 <instance part="C20" gate="G$1" x="124.46" y="-175.26"/>
-<instance part="GND14" gate="1" x="111.76" y="-180.34"/>
 <instance part="GND20" gate="1" x="124.46" y="-180.34"/>
 <instance part="R3" gate="G$1" x="48.26" y="-154.94" rot="R90"/>
 <instance part="R2" gate="G$1" x="40.64" y="-154.94" rot="R90"/>
@@ -8004,16 +8005,20 @@ Must be less that Vout.</text>
 <instance part="U$54" gate="G$1" x="71.12" y="-48.26"/>
 <instance part="U$55" gate="G$1" x="124.46" y="-48.26"/>
 <instance part="C25" gate="G$1" x="124.46" y="-40.64"/>
-<instance part="U$59" gate="G$1" x="223.52" y="-45.72" rot="MR0"/>
-<instance part="U11" gate="A" x="200.66" y="-58.42"/>
-<instance part="C26" gate="G$1" x="160.02" y="-63.5"/>
-<instance part="U$60" gate="G$1" x="180.34" y="-73.66"/>
-<instance part="U$61" gate="G$1" x="160.02" y="-73.66"/>
-<instance part="U$62" gate="G$1" x="223.52" y="-73.66"/>
-<instance part="C28" gate="G$1" x="223.52" y="-63.5"/>
-<instance part="C29" gate="G$1" x="170.18" y="-68.58"/>
-<instance part="U$63" gate="G$1" x="170.18" y="-73.66"/>
+<instance part="U$59" gate="G$1" x="233.68" y="-45.72" rot="MR0"/>
+<instance part="U11" gate="A" x="210.82" y="-58.42"/>
+<instance part="C26" gate="G$1" x="170.18" y="-63.5"/>
+<instance part="U$60" gate="G$1" x="190.5" y="-73.66"/>
+<instance part="U$61" gate="G$1" x="170.18" y="-73.66"/>
+<instance part="U$62" gate="G$1" x="233.68" y="-73.66"/>
+<instance part="C28" gate="G$1" x="233.68" y="-63.5"/>
+<instance part="C29" gate="G$1" x="180.34" y="-68.58"/>
+<instance part="U$63" gate="G$1" x="180.34" y="-73.66"/>
 <instance part="D4" gate="A" x="185.42" y="-129.54"/>
+<instance part="R6" gate="G$1" x="157.48" y="-63.5" rot="R90"/>
+<instance part="R7" gate="G$1" x="66.04" y="71.12" rot="R90"/>
+<instance part="U$36" gate="G$1" x="66.04" y="63.5"/>
+<instance part="U$47" gate="G$1" x="66.04" y="91.44" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -8220,10 +8225,6 @@ Must be less that Vout.</text>
 <wire x1="101.6" y1="-172.72" x2="101.6" y2="-177.8" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C19" gate="G$1" pin="P$2"/>
-<pinref part="GND14" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="C20" gate="G$1" pin="P$2"/>
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
@@ -8255,22 +8256,26 @@ Must be less that Vout.</text>
 <segment>
 <pinref part="U11" gate="A" pin="GND"/>
 <pinref part="U$60" gate="G$1" pin="GND"/>
-<wire x1="182.88" y1="-68.58" x2="180.34" y2="-68.58" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="-68.58" x2="180.34" y2="-71.12" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="-68.58" x2="190.5" y2="-68.58" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="-68.58" x2="190.5" y2="-71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C26" gate="G$1" pin="P$2"/>
 <pinref part="U$61" gate="G$1" pin="GND"/>
-<wire x1="160.02" y1="-66.04" x2="160.02" y2="-71.12" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="-66.04" x2="170.18" y2="-71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C28" gate="G$1" pin="P$2"/>
 <pinref part="U$62" gate="G$1" pin="GND"/>
-<wire x1="223.52" y1="-66.04" x2="223.52" y2="-71.12" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="-66.04" x2="233.68" y2="-71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$63" gate="G$1" pin="GND"/>
 <pinref part="C29" gate="G$1" pin="P$2"/>
+</segment>
+<segment>
+<pinref part="R7" gate="G$1" pin="1"/>
+<pinref part="U$36" gate="G$1" pin="GND"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -8413,25 +8418,27 @@ Must be less that Vout.</text>
 <wire x1="101.6" y1="-162.56" x2="101.6" y2="-152.4" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="-167.64" x2="101.6" y2="-162.56" width="0.1524" layer="91"/>
 <junction x="101.6" y="-162.56"/>
-<pinref part="C19" gate="G$1" pin="P$1"/>
-<wire x1="101.6" y1="-167.64" x2="111.76" y2="-167.64" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="-167.64" x2="111.76" y2="-170.18" width="0.1524" layer="91"/>
 <pinref part="C20" gate="G$1" pin="P$1"/>
 <wire x1="101.6" y1="-162.56" x2="124.46" y2="-162.56" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="-162.56" x2="124.46" y2="-170.18" width="0.1524" layer="91"/>
 <pinref part="U9" gate="G$1" pin="VDDIO"/>
 <wire x1="96.52" y1="-167.64" x2="101.6" y2="-167.64" width="0.1524" layer="91"/>
-<junction x="101.6" y="-167.64"/>
 <pinref part="U$35" gate="G$1" pin="1.8V"/>
 </segment>
 <segment>
 <pinref part="C28" gate="G$1" pin="P$1"/>
 <pinref part="U$59" gate="G$1" pin="1.8V"/>
-<wire x1="223.52" y1="-58.42" x2="223.52" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="-58.42" x2="233.68" y2="-53.34" width="0.1524" layer="91"/>
 <pinref part="U11" gate="A" pin="OUT"/>
-<wire x1="223.52" y1="-53.34" x2="223.52" y2="-48.26" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="-53.34" x2="223.52" y2="-53.34" width="0.1524" layer="91"/>
-<junction x="223.52" y="-53.34"/>
+<wire x1="233.68" y1="-53.34" x2="233.68" y2="-48.26" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="-53.34" x2="233.68" y2="-53.34" width="0.1524" layer="91"/>
+<junction x="233.68" y="-53.34"/>
+</segment>
+<segment>
+<pinref part="U$47" gate="G$1" pin="1.8V"/>
+<wire x1="66.04" y1="88.9" x2="66.04" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="83.82" x2="30.48" y2="83.82" width="0.1524" layer="91"/>
+<label x="33.02" y="83.82" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="VDD_CORE" class="0">
@@ -8866,22 +8873,6 @@ Must be less that Vout.</text>
 <label x="170.18" y="88.9" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="VBATT_SENSE" class="0">
-<segment>
-<pinref part="R5" gate="G$1" pin="2"/>
-<pinref part="R8" gate="G$1" pin="1"/>
-<wire x1="236.22" y1="127" x2="236.22" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="129.54" x2="236.22" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="129.54" x2="198.12" y2="129.54" width="0.1524" layer="91"/>
-<label x="208.28" y="129.54" size="1.778" layer="95"/>
-<junction x="236.22" y="129.54"/>
-</segment>
-<segment>
-<pinref part="U1" gate="G$1" pin="PA02"/>
-<wire x1="127" y1="81.28" x2="104.14" y2="81.28" width="0.1524" layer="91"/>
-<label x="109.22" y="81.28" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="SDA" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="PA00"/>
@@ -8908,21 +8899,6 @@ Must be less that Vout.</text>
 <label x="53.34" y="-170.18" size="1.778" layer="95"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="40.64" y1="-170.18" x2="40.64" y2="-160.02" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="BATTERY" class="0">
-<segment>
-<pinref part="R8" gate="G$1" pin="2"/>
-<wire x1="236.22" y1="142.24" x2="236.22" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="144.78" x2="198.12" y2="144.78" width="0.1524" layer="91"/>
-<label x="208.28" y="144.78" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CHG_CONTROL" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA03"/>
-<wire x1="127" y1="78.74" x2="104.14" y2="78.74" width="0.1524" layer="91"/>
-<label x="109.22" y="78.74" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF_TANK" class="0">
@@ -8975,8 +8951,8 @@ Must be less that Vout.</text>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA04"/>
-<wire x1="127" y1="76.2" x2="104.14" y2="76.2" width="0.1524" layer="91"/>
-<label x="109.22" y="76.2" size="1.778" layer="95"/>
+<wire x1="127" y1="76.2" x2="96.52" y2="76.2" width="0.1524" layer="91"/>
+<label x="99.06" y="76.2" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="PANEL_1" class="0">
@@ -9083,6 +9059,10 @@ Must be less that Vout.</text>
 <wire x1="129.54" y1="-73.66" x2="149.86" y2="-73.66" width="0.1524" layer="91"/>
 <pinref part="D5" gate="G$1" pin="A1"/>
 <wire x1="149.86" y1="-73.66" x2="149.86" y2="-58.42" width="0.1524" layer="91"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="149.86" y1="-73.66" x2="157.48" y2="-73.66" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="-73.66" x2="157.48" y2="-68.58" width="0.1524" layer="91"/>
+<junction x="149.86" y="-73.66"/>
 </segment>
 </net>
 <net name="BATTERY_P" class="0">
@@ -9099,6 +9079,12 @@ Must be less that Vout.</text>
 <wire x1="83.82" y1="-35.56" x2="81.28" y2="-35.56" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="-35.56" x2="81.28" y2="-30.48" width="0.1524" layer="91"/>
 <junction x="81.28" y="-30.48"/>
+</segment>
+<segment>
+<pinref part="R8" gate="G$1" pin="2"/>
+<wire x1="236.22" y1="142.24" x2="236.22" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="144.78" x2="198.12" y2="144.78" width="0.1524" layer="91"/>
+<label x="208.28" y="144.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BATTERY_LDO_OUT" class="0">
@@ -9117,25 +9103,29 @@ Must be less that Vout.</text>
 <net name="SCHOTTY_COMB_OUT" class="0">
 <segment>
 <pinref part="U11" gate="A" pin="EN"/>
-<wire x1="182.88" y1="-58.42" x2="180.34" y2="-58.42" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="-58.42" x2="180.34" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="-58.42" x2="190.5" y2="-58.42" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="-58.42" x2="190.5" y2="-53.34" width="0.1524" layer="91"/>
 <pinref part="U11" gate="A" pin="IN"/>
-<wire x1="180.34" y1="-53.34" x2="182.88" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="-53.34" x2="193.04" y2="-53.34" width="0.1524" layer="91"/>
 <pinref part="D5" gate="G$1" pin="C"/>
-<wire x1="152.4" y1="-53.34" x2="160.02" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="-53.34" x2="157.48" y2="-53.34" width="0.1524" layer="91"/>
 <pinref part="C26" gate="G$1" pin="P$1"/>
-<wire x1="160.02" y1="-53.34" x2="180.34" y2="-53.34" width="0.1524" layer="91"/>
-<wire x1="160.02" y1="-53.34" x2="160.02" y2="-58.42" width="0.1524" layer="91"/>
-<junction x="160.02" y="-53.34"/>
-<junction x="180.34" y="-53.34"/>
-<label x="154.94" y="-53.34" size="1.778" layer="95"/>
+<wire x1="157.48" y1="-53.34" x2="170.18" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="-53.34" x2="190.5" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="-53.34" x2="170.18" y2="-58.42" width="0.1524" layer="91"/>
+<junction x="170.18" y="-53.34"/>
+<junction x="190.5" y="-53.34"/>
+<label x="165.1" y="-53.34" size="1.778" layer="95"/>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="157.48" y1="-58.42" x2="157.48" y2="-53.34" width="0.1524" layer="91"/>
+<junction x="157.48" y="-53.34"/>
 </segment>
 </net>
 <net name="NR" class="0">
 <segment>
 <pinref part="C29" gate="G$1" pin="P$1"/>
 <pinref part="U11" gate="A" pin="NR/FB"/>
-<wire x1="170.18" y1="-63.5" x2="182.88" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="-63.5" x2="193.04" y2="-63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PANEL_4" class="0">
@@ -9150,6 +9140,34 @@ Must be less that Vout.</text>
 <wire x1="160.02" y1="-127" x2="160.02" y2="-129.54" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="-127" x2="157.48" y2="-129.54" width="0.1524" layer="91"/>
 <label x="162.56" y="-129.54" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="EXT_THERMISTOR_SENSE" class="0">
+<segment>
+<pinref part="R7" gate="G$1" pin="2"/>
+<wire x1="66.04" y1="76.2" x2="66.04" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="78.74" x2="66.04" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="81.28" x2="30.48" y2="81.28" width="0.1524" layer="91"/>
+<label x="33.02" y="81.28" size="1.778" layer="95"/>
+<pinref part="U1" gate="G$1" pin="PA03"/>
+<wire x1="66.04" y1="78.74" x2="127" y2="78.74" width="0.1524" layer="91"/>
+<junction x="66.04" y="78.74"/>
+</segment>
+</net>
+<net name="BATTERY_P_SENSE" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="PA02"/>
+<wire x1="127" y1="81.28" x2="96.52" y2="81.28" width="0.1524" layer="91"/>
+<label x="99.06" y="81.28" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="236.22" y1="127" x2="236.22" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="129.54" x2="236.22" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="129.54" x2="198.12" y2="129.54" width="0.1524" layer="91"/>
+<label x="208.28" y="129.54" size="1.778" layer="95"/>
+<junction x="236.22" y="129.54"/>
 </segment>
 </net>
 </nets>
