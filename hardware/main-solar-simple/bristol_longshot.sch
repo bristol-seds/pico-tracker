@@ -7678,7 +7678,7 @@ Typical applications:&lt;p&gt;
 <part name="U4" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
 <part name="FRAME4" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 <part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
-<part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="86kΩ"/>
+<part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="68kΩ"/>
 <part name="U$33" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C34" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1µF"/>
 <part name="U$38" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -7746,7 +7746,7 @@ DOPO: 0x0)</text>
 <text x="274.32" y="71.12" size="2.54" layer="97" font="vector" ratio="11">MAX8C GPS</text>
 <text x="294.64" y="172.72" size="2.54" layer="97" font="vector" ratio="11">Si4060 Transmitter</text>
 <text x="269.24" y="119.888" size="1.27" layer="97" font="vector" ratio="11" distance="100">Tuned for 434MHz</text>
-<text x="134.62" y="170.18" size="6.4516" layer="97" font="vector" ratio="11">CPU + Mem + Power</text>
+<text x="134.62" y="170.18" size="6.4516" layer="97" font="vector" ratio="11">CPU + Mem</text>
 <text x="259.08" y="175.26" size="6.4516" layer="97" font="vector" ratio="11">Comms</text>
 <text x="403.86" y="25.4" size="6.4516" layer="94" font="vector" ratio="11">Flight</text>
 <text x="149.86" y="25.4" size="6.4516" layer="94" font="vector" ratio="11">Flight</text>
@@ -7770,6 +7770,9 @@ Must be less that Vout.</text>
 lithium AAA at 0ºC to -25ºC</text>
 <text x="175.26" y="-83.312" size="1.27" layer="97" font="vector" ratio="11">This net is GND by default, but may
 be disconnected to form a solar midpoint connection</text>
+<text x="30.48" y="-20.32" size="2.54" layer="97" font="vector" ratio="11">LTC3105 Boost Converter</text>
+<text x="38.1" y="-132.08" size="2.54" layer="97" font="vector" ratio="11">BMP180 Pressure Sensor</text>
+<text x="10.16" y="-12.7" size="6.4516" layer="97" font="vector" ratio="11">Power + Sensor</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>

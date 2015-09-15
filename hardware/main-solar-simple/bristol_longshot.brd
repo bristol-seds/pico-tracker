@@ -5449,7 +5449,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="C17" library="microbuilder_v3" package="_0402" value="100nF" x="11.5" y="24.375"/>
 <element name="U4" library="fbri" package="USON-8" value="SST25WF040BT-40I/NP" x="3" y="20.125"/>
 <element name="R12" library="microbuilder_v3" package="_0402" value="82kΩ" x="2.25" y="33.875" rot="R270"/>
-<element name="R11" library="microbuilder_v3" package="_0402" value="86kΩ" x="2.25" y="32" rot="R270"/>
+<element name="R11" library="microbuilder_v3" package="_0402" value="68kΩ" x="2.25" y="32" rot="R270"/>
 <element name="C34" library="microbuilder_v3" package="_0402" value="1µF" x="2.25" y="35.875" rot="R270"/>
 <element name="C27" library="microbuilder_v3" package="_0402" value="4.7µF" x="3.5" y="31.25" rot="R270"/>
 <element name="C24" library="resistor" package="C0603K" value="10µF" x="8.75" y="38.25"/>
