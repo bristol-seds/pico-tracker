@@ -7666,8 +7666,8 @@ Typical applications:&lt;p&gt;
 <part name="U$26" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="R1" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="U$29" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R9" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
-<part name="R10" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="R6" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$30" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$32" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="C18" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
@@ -7680,9 +7680,9 @@ Typical applications:&lt;p&gt;
 <part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
 <part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="68kΩ"/>
 <part name="U$33" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C34" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1µF"/>
+<part name="C20" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1µF"/>
 <part name="U$38" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C27" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C23" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$104" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$105" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C24" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
@@ -7693,7 +7693,7 @@ Typical applications:&lt;p&gt;
 <part name="U$4" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U9" library="SparkFun-Sensors" deviceset="BMP180" device=""/>
 <part name="GND13" library="SparkFun" deviceset="GND" device=""/>
-<part name="C20" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C22" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
@@ -7703,14 +7703,14 @@ Typical applications:&lt;p&gt;
 <part name="D3" library="RB161M" deviceset="RB161M" device=""/>
 <part name="D2" library="RB161M" deviceset="RB161M" device=""/>
 <part name="D1" library="RB161M" deviceset="RB161M" device=""/>
-<part name="L1B1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
-<part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
+<part name="L1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
+<part name="R10" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
 <part name="U$48" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C22" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C25" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U$51" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$59" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="D4" library="RB161M" deviceset="RB161M" device=""/>
-<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$47" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="D5" library="RB161M" deviceset="RB161M" device=""/>
@@ -7720,7 +7720,7 @@ Typical applications:&lt;p&gt;
 <part name="C19" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="SJ1" library="microbuilder_v3" deviceset="SOLDERJUMPER" device="REFLOW"/>
-<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω"/>
+<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω"/>
 <part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -7766,7 +7766,7 @@ solar cells at 0ºC to -25ºC</text>
 <text x="147.32" y="-29.972" size="1.27" layer="97" font="vector" ratio="11">MPPT output set to 1.85V</text>
 <text x="99.06" y="-75.692" size="1.27" layer="97" font="vector" ratio="11">LDO output is set to 1.7V.
 Must be less that Vout.</text>
-<text x="142.24" y="-136.652" size="1.27" layer="97" font="vector" ratio="11">1.05V - 1.45V expected from primary
+<text x="142.24" y="-136.652" size="1.27" layer="97" font="vector" ratio="11">1.2V - 1.4V expected from primary
 lithium AAA at 0ºC to -25ºC</text>
 <text x="175.26" y="-83.312" size="1.27" layer="97" font="vector" ratio="11">This net is GND by default, but may
 be disconnected to form a solar midpoint connection</text>
@@ -7852,8 +7852,8 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="U$26" gate="G$1" x="48.26" y="142.24" rot="MR0"/>
 <instance part="R1" gate="G$1" x="66.04" y="124.46" rot="R90"/>
 <instance part="U$29" gate="G$1" x="66.04" y="114.3"/>
-<instance part="R9" gate="G$1" x="218.44" y="86.36" rot="R90"/>
-<instance part="R10" gate="G$1" x="218.44" y="101.6" rot="R90"/>
+<instance part="R5" gate="G$1" x="218.44" y="86.36" rot="R90"/>
+<instance part="R6" gate="G$1" x="218.44" y="101.6" rot="R90"/>
 <instance part="U$30" gate="G$1" x="218.44" y="78.74"/>
 <instance part="U$32" gate="G$1" x="218.44" y="109.22" rot="MR0"/>
 <instance part="C18" gate="G$1" x="226.06" y="93.98" rot="R90"/>
@@ -7867,9 +7867,9 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="R12" gate="G$1" x="160.02" y="-58.42" rot="R90"/>
 <instance part="R11" gate="G$1" x="160.02" y="-45.72" rot="R90"/>
 <instance part="U$33" gate="G$1" x="160.02" y="-66.04"/>
-<instance part="C34" gate="G$1" x="60.96" y="-60.96"/>
+<instance part="C20" gate="G$1" x="60.96" y="-60.96"/>
 <instance part="U$38" gate="G$1" x="60.96" y="-66.04"/>
-<instance part="C27" gate="G$1" x="134.62" y="-58.42"/>
+<instance part="C23" gate="G$1" x="134.62" y="-58.42"/>
 <instance part="U$104" gate="G$1" x="30.48" y="-66.04"/>
 <instance part="U$105" gate="G$1" x="134.62" y="-66.04"/>
 <instance part="C24" gate="G$1" x="30.48" y="-55.88"/>
@@ -7880,7 +7880,7 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="U$4" gate="G$1" x="12.7" y="180.34" rot="MR0"/>
 <instance part="U9" gate="G$1" x="81.28" y="-167.64"/>
 <instance part="GND13" gate="1" x="101.6" y="-180.34"/>
-<instance part="C20" gate="G$1" x="124.46" y="-175.26"/>
+<instance part="C22" gate="G$1" x="124.46" y="-175.26"/>
 <instance part="GND20" gate="1" x="124.46" y="-180.34"/>
 <instance part="R3" gate="G$1" x="48.26" y="-154.94" rot="R90"/>
 <instance part="R2" gate="G$1" x="40.64" y="-154.94" rot="R90"/>
@@ -7890,14 +7890,14 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="D3" gate="A" x="185.42" y="-121.92"/>
 <instance part="D2" gate="A" x="185.42" y="-114.3"/>
 <instance part="D1" gate="A" x="185.42" y="-106.68"/>
-<instance part="L1B1" gate="G$1" x="40.64" y="-48.26"/>
-<instance part="R4" gate="G$1" x="50.8" y="-58.42" rot="R90"/>
+<instance part="L1" gate="G$1" x="40.64" y="-48.26"/>
+<instance part="R10" gate="G$1" x="50.8" y="-58.42" rot="R90"/>
 <instance part="U$48" gate="G$1" x="50.8" y="-66.04"/>
-<instance part="C22" gate="G$1" x="172.72" y="-55.88"/>
+<instance part="C25" gate="G$1" x="172.72" y="-55.88"/>
 <instance part="U$51" gate="G$1" x="172.72" y="-66.04"/>
 <instance part="U$59" gate="G$1" x="195.58" y="-30.48" rot="MR0"/>
 <instance part="D4" gate="A" x="185.42" y="-129.54"/>
-<instance part="R7" gate="G$1" x="66.04" y="71.12" rot="R90"/>
+<instance part="R4" gate="G$1" x="66.04" y="71.12" rot="R90"/>
 <instance part="U$36" gate="G$1" x="66.04" y="63.5"/>
 <instance part="U$47" gate="G$1" x="66.04" y="91.44" rot="MR0"/>
 <instance part="D5" gate="A" x="185.42" y="-142.24"/>
@@ -7907,7 +7907,7 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="C19" gate="G$1" x="111.76" y="-175.26"/>
 <instance part="GND1" gate="1" x="111.76" y="-180.34"/>
 <instance part="SJ1" gate="1" x="142.24" y="-142.24"/>
-<instance part="R5" gate="G$1" x="185.42" y="-88.9"/>
+<instance part="R7" gate="G$1" x="185.42" y="-88.9"/>
 <instance part="U$52" gate="G$1" x="175.26" y="-88.9" rot="R270"/>
 </instances>
 <busses>
@@ -8057,7 +8057,7 @@ be disconnected to form a solar midpoint connection</text>
 <wire x1="66.04" y1="116.84" x2="66.04" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R9" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 <pinref part="U$30" gate="G$1" pin="GND"/>
 </segment>
 <segment>
@@ -8070,12 +8070,12 @@ be disconnected to form a solar midpoint connection</text>
 <pinref part="U$33" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C34" gate="G$1" pin="P$2"/>
+<pinref part="C20" gate="G$1" pin="P$2"/>
 <pinref part="U$38" gate="G$1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="U$105" gate="G$1" pin="GND"/>
-<pinref part="C27" gate="G$1" pin="P$2"/>
+<pinref part="C23" gate="G$1" pin="P$2"/>
 <wire x1="134.62" y1="-63.5" x2="134.62" y2="-60.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -8106,20 +8106,20 @@ be disconnected to form a solar midpoint connection</text>
 <wire x1="101.6" y1="-172.72" x2="101.6" y2="-177.8" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C20" gate="G$1" pin="P$2"/>
+<pinref part="C22" gate="G$1" pin="P$2"/>
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R4" gate="G$1" pin="1"/>
+<pinref part="R10" gate="G$1" pin="1"/>
 <pinref part="U$48" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C22" gate="G$1" pin="2"/>
+<pinref part="C25" gate="G$1" pin="2"/>
 <pinref part="U$51" gate="G$1" pin="GND"/>
 <wire x1="172.72" y1="-60.96" x2="172.72" y2="-63.5" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R7" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 <pinref part="U$36" gate="G$1" pin="GND"/>
 </segment>
 <segment>
@@ -8132,7 +8132,7 @@ be disconnected to form a solar midpoint connection</text>
 </segment>
 <segment>
 <pinref part="U$52" gate="G$1" pin="GND"/>
-<pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="R7" gate="G$1" pin="1"/>
 <wire x1="177.8" y1="-88.9" x2="180.34" y2="-88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -8246,7 +8246,7 @@ be disconnected to form a solar midpoint connection</text>
 <pinref part="U$26" gate="G$1" pin="1.8V"/>
 </segment>
 <segment>
-<pinref part="R10" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="2"/>
 <pinref part="U$32" gate="G$1" pin="1.8V"/>
 </segment>
 <segment>
@@ -8276,7 +8276,7 @@ be disconnected to form a solar midpoint connection</text>
 <wire x1="101.6" y1="-162.56" x2="101.6" y2="-152.4" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="-167.64" x2="101.6" y2="-162.56" width="0.1524" layer="91"/>
 <junction x="101.6" y="-162.56"/>
-<pinref part="C20" gate="G$1" pin="P$1"/>
+<pinref part="C22" gate="G$1" pin="P$1"/>
 <wire x1="101.6" y1="-162.56" x2="124.46" y2="-162.56" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="-162.56" x2="124.46" y2="-170.18" width="0.1524" layer="91"/>
 <pinref part="U9" gate="G$1" pin="VDDIO"/>
@@ -8294,7 +8294,7 @@ be disconnected to form a solar midpoint connection</text>
 <label x="33.02" y="83.82" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="C22" gate="G$1" pin="1"/>
+<pinref part="C25" gate="G$1" pin="1"/>
 <wire x1="172.72" y1="-38.1" x2="172.72" y2="-53.34" width="0.1524" layer="91"/>
 <label x="165.1" y="-38.1" size="1.778" layer="95"/>
 <wire x1="172.72" y1="-38.1" x2="195.58" y2="-38.1" width="0.1524" layer="91"/>
@@ -8720,8 +8720,8 @@ be disconnected to form a solar midpoint connection</text>
 </net>
 <net name="SAM_XOSC" class="0">
 <segment>
-<pinref part="R9" gate="G$1" pin="2"/>
-<pinref part="R10" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="1"/>
 <wire x1="218.44" y1="91.44" x2="218.44" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="PA14"/>
 <wire x1="218.44" y1="93.98" x2="218.44" y2="96.52" width="0.1524" layer="91"/>
@@ -8814,7 +8814,7 @@ be disconnected to form a solar midpoint connection</text>
 <pinref part="C24" gate="G$1" pin="1"/>
 <wire x1="73.66" y1="-33.02" x2="30.48" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="-33.02" x2="30.48" y2="-48.26" width="0.1524" layer="91"/>
-<pinref part="L1B1" gate="G$1" pin="1"/>
+<pinref part="L1" gate="G$1" pin="1"/>
 <wire x1="30.48" y1="-48.26" x2="30.48" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="-48.26" x2="30.48" y2="-48.26" width="0.1524" layer="91"/>
 <junction x="30.48" y="-48.26"/>
@@ -8871,7 +8871,7 @@ be disconnected to form a solar midpoint connection</text>
 <net name="MPPT_LDO" class="0">
 <segment>
 <pinref part="U6" gate="A" pin="LDO"/>
-<pinref part="C27" gate="G$1" pin="P$1"/>
+<pinref part="C23" gate="G$1" pin="P$1"/>
 <wire x1="109.22" y1="-33.02" x2="124.46" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="-33.02" x2="134.62" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="-33.02" x2="134.62" y2="-53.34" width="0.1524" layer="91"/>
@@ -8883,7 +8883,7 @@ be disconnected to form a solar midpoint connection</text>
 <net name="MPPT_SW" class="0">
 <segment>
 <pinref part="U6" gate="A" pin="SW"/>
-<pinref part="L1B1" gate="G$1" pin="2"/>
+<pinref part="L1" gate="G$1" pin="2"/>
 <wire x1="73.66" y1="-48.26" x2="45.72" y2="-48.26" width="0.1524" layer="91"/>
 <label x="55.88" y="-48.26" size="1.778" layer="95"/>
 </segment>
@@ -8891,7 +8891,7 @@ be disconnected to form a solar midpoint connection</text>
 <net name="MPPT_AUX" class="0">
 <segment>
 <pinref part="U6" gate="A" pin="AUX"/>
-<pinref part="C34" gate="G$1" pin="P$1"/>
+<pinref part="C20" gate="G$1" pin="P$1"/>
 <wire x1="73.66" y1="-50.8" x2="60.96" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="-50.8" x2="60.96" y2="-55.88" width="0.1524" layer="91"/>
 </segment>
@@ -8915,7 +8915,7 @@ be disconnected to form a solar midpoint connection</text>
 <segment>
 <pinref part="U6" gate="A" pin="MPPC"/>
 <wire x1="73.66" y1="-45.72" x2="50.8" y2="-45.72" width="0.1524" layer="91"/>
-<pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="R10" gate="G$1" pin="2"/>
 <wire x1="50.8" y1="-45.72" x2="50.8" y2="-53.34" width="0.1524" layer="91"/>
 <label x="55.88" y="-45.72" size="1.778" layer="95"/>
 </segment>
@@ -8936,7 +8936,7 @@ be disconnected to form a solar midpoint connection</text>
 </net>
 <net name="EXT_THERMISTOR_SENSE" class="0">
 <segment>
-<pinref part="R7" gate="G$1" pin="2"/>
+<pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="66.04" y1="76.2" x2="66.04" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="78.74" x2="66.04" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="81.28" x2="30.48" y2="81.28" width="0.1524" layer="91"/>
@@ -8979,7 +8979,7 @@ be disconnected to form a solar midpoint connection</text>
 </net>
 <net name="SOLAR_MID" class="0">
 <segment>
-<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="190.5" y1="-88.9" x2="218.44" y2="-88.9" width="0.1524" layer="91"/>
 <label x="193.04" y="-88.9" size="1.778" layer="95"/>
 </segment>
