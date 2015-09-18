@@ -31,6 +31,7 @@
 |ERA2AED104X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 100 kohm, 63 mW, Â± 0.5%, 25 V|[2324718](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324718)|1|R4 100k precise
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R5, R6 100k
 |RC0402JR-070RL|YAGEO (PHYCOMP) - Surface Mount Chip Resistor, Thick Film, RC Series, 0 ohm, 62.5 mW, Â± 5%, 50 V|[9232516](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=9232516)|1|R7 Bridge 0Ω
+| R8 | DNP ||| connect MPPT set when battery only is used
 |CRG0402F82K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 82 kohm, 63 mW, Â± 1%, 50 V|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|3|R10, R12, R14 LTC3105 82k
 |CRG0402F68K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 68 kohm, 63 mW, Â± 1%, 50 V|[2331557](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331557)|1|R11 LTC3105 FB 68k
 |MC00625W0402156K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 56 kohm, 62.5 mW, Â± 1%, 50 V|[1358089](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358089)|1|R13 LTC3105 LDOFB 56k

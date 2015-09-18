@@ -2680,7 +2680,7 @@
 <circle x="5.125" y="12.125" radius="0.1" width="0.2" layer="21"/>
 <rectangle x1="5.5" y1="0.25" x2="8.5" y2="5.5" layer="29"/>
 <rectangle x1="9.625" y1="59.875" x2="11.875" y2="63.625" layer="29"/>
-<text x="3" y="60.75" size="0.8" layer="21" font="vector" ratio="14">V0.985.0</text>
+<text x="3" y="60.75" size="0.8" layer="21" font="vector" ratio="14">V0.985.1</text>
 <polygon width="0.2" layer="29">
 <vertex x="0.375" y="4.75"/>
 <vertex x="0.75" y="5.125"/>
@@ -4609,7 +4609,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="D2" library="RB161M" package="RB161M" value="RB161M" x="8.875" y="43.5" rot="R90"/>
 <element name="D1" library="RB161M" package="RB161M" value="RB161M" x="8.875" y="45.25" rot="R90"/>
 <element name="L1" library="PecanFemto4" package="LPS3015" value="10uH LPS3015" x="5" y="39.375" rot="R180"/>
-<element name="R10" library="microbuilder_v3" package="_0402" value="82kΩ" x="6.25" y="33.875" rot="R270"/>
+<element name="R10" library="microbuilder_v3" package="_0402" value="82kΩ" x="6.25" y="33.125" rot="R90"/>
 <element name="C25" library="resistor" package="C0603K" value="10µF" x="2.5" y="39.375" rot="R90"/>
 <element name="D4" library="RB161M" package="RB161M" value="RB161M" x="8.875" y="40" rot="R90"/>
 <element name="R4" library="microbuilder_v3" package="_0402" value="100kΩ" x="4.125" y="25.5" rot="R270"/>
@@ -4619,6 +4619,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="C19" library="microbuilder_v3" package="_0402" value="100nF" x="5.875" y="30.75" rot="R180"/>
 <element name="SJ1" library="microbuilder_v3" package="SOLDERJUMPER_REFLOW" value="" x="1.25" y="57.5" rot="R270"/>
 <element name="R7" library="microbuilder_v3" package="_0402" value="0Ω" x="13.25" y="6.25" rot="R270"/>
+<element name="R8" library="microbuilder_v3" package="_0402" value="DNP" x="6.25" y="35.125" rot="R270"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -4779,7 +4780,6 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="2.25" y1="35.367" x2="3.383" y2="35.367" width="0.4" layer="1"/>
 <wire x1="3.383" y1="35.367" x2="3.5" y2="35.25" width="0.4" layer="1"/>
 <via x="10" y="46.625" extent="1-16" drill="0.3302"/>
-<via x="6.25" y="35.5" extent="1-16" drill="0.3302"/>
 <via x="9.125" y="39.5" extent="1-16" drill="0.3302"/>
 <via x="12" y="38.75" extent="1-16" drill="0.3302"/>
 <via x="3.125" y="18" extent="1-16" drill="0.3302"/>
@@ -4789,7 +4789,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="4" y="54" extent="1-16" drill="0.3302"/>
 <contactref element="R4" pad="1"/>
 <contactref element="R14" pad="1"/>
-<via x="6.25" y="32.5" extent="1-16" drill="0.3302"/>
+<via x="5.375" y="32.5" extent="1-16" drill="0.3302"/>
 <via x="2.5" y="41.5" extent="1-16" drill="0.3302"/>
 <via x="3" y="46" extent="1-16" drill="0.3302"/>
 <via x="6" y="46" extent="1-16" drill="0.3302"/>
@@ -5524,6 +5524,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="1.25" y1="52.225" x2="2.275" y2="52.225" width="0.4" layer="1"/>
 <wire x1="2.275" y1="52.225" x2="2.5" y2="52" width="0.4" layer="1"/>
 <wire x1="6.491484375" y1="38.197959375" x2="6.3977625" y2="38.1042375" width="0.2" layer="1"/>
+<contactref element="R8" pad="1"/>
+<wire x1="6.25" y1="35.633" x2="6.25" y2="36.625" width="0.4" layer="1"/>
 </signal>
 <signal name="PANEL_1">
 <contactref element="D1" pad="ANODE"/>
@@ -5610,8 +5612,10 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="MPPT_SET">
 <contactref element="U6" pad="5"/>
 <contactref element="R10" pad="2"/>
-<wire x1="5.2406" y1="33.4272" x2="6.1898" y2="33.4272" width="0.2" layer="1"/>
-<wire x1="6.1898" y1="33.4272" x2="6.25" y2="33.367" width="0.2" layer="1"/>
+<contactref element="R8" pad="2"/>
+<wire x1="6.25" y1="33.633" x2="6.25" y2="34.617" width="0.4" layer="1"/>
+<wire x1="5.2406" y1="33.4272" x2="5.4464" y2="33.633" width="0.2" layer="1"/>
+<wire x1="5.4464" y1="33.633" x2="6.25" y2="33.633" width="0.2" layer="1"/>
 </signal>
 <signal name="PANEL_4">
 <contactref element="D4" pad="ANODE"/>

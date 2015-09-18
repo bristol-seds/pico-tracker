@@ -7722,6 +7722,7 @@ Typical applications:&lt;p&gt;
 <part name="SJ1" library="microbuilder_v3" deviceset="SOLDERJUMPER" device="REFLOW"/>
 <part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω"/>
 <part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
 </parts>
 <sheets>
 <sheet>
@@ -7773,6 +7774,10 @@ be disconnected to form a solar midpoint connection</text>
 <text x="30.48" y="-20.32" size="2.54" layer="97" font="vector" ratio="11">LTC3105 Boost Converter</text>
 <text x="38.1" y="-132.08" size="2.54" layer="97" font="vector" ratio="11">BMP180 Pressure Sensor</text>
 <text x="10.16" y="-12.7" size="6.4516" layer="97" font="vector" ratio="11">Power + Sensor</text>
+<text x="7.62" y="-42.672" size="1.27" layer="97" font="vector" ratio="11">Populate R8 with
+0Ω resistor if
+SOLAR is connected
+directly to battery</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -7909,6 +7914,7 @@ be disconnected to form a solar midpoint connection</text>
 <instance part="SJ1" gate="1" x="142.24" y="-142.24"/>
 <instance part="R7" gate="G$1" x="185.42" y="-88.9"/>
 <instance part="U$52" gate="G$1" x="175.26" y="-88.9" rot="R270"/>
+<instance part="R8" gate="G$1" x="40.64" y="-40.64"/>
 </instances>
 <busses>
 </busses>
@@ -8813,12 +8819,16 @@ be disconnected to form a solar midpoint connection</text>
 <pinref part="U6" gate="A" pin="VIN"/>
 <pinref part="C24" gate="G$1" pin="1"/>
 <wire x1="73.66" y1="-33.02" x2="30.48" y2="-33.02" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="-33.02" x2="30.48" y2="-48.26" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-33.02" x2="30.48" y2="-40.64" width="0.1524" layer="91"/>
 <pinref part="L1" gate="G$1" pin="1"/>
+<wire x1="30.48" y1="-40.64" x2="30.48" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="-48.26" x2="30.48" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="-48.26" x2="30.48" y2="-48.26" width="0.1524" layer="91"/>
 <junction x="30.48" y="-48.26"/>
 <label x="33.02" y="-33.02" size="1.778" layer="95"/>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="35.56" y1="-40.64" x2="30.48" y2="-40.64" width="0.1524" layer="91"/>
+<junction x="30.48" y="-40.64"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA04"/>
@@ -8918,6 +8928,10 @@ be disconnected to form a solar midpoint connection</text>
 <pinref part="R10" gate="G$1" pin="2"/>
 <wire x1="50.8" y1="-45.72" x2="50.8" y2="-53.34" width="0.1524" layer="91"/>
 <label x="55.88" y="-45.72" size="1.778" layer="95"/>
+<pinref part="R8" gate="G$1" pin="2"/>
+<wire x1="45.72" y1="-40.64" x2="50.8" y2="-40.64" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="-40.64" x2="50.8" y2="-45.72" width="0.1524" layer="91"/>
+<junction x="50.8" y="-45.72"/>
 </segment>
 </net>
 <net name="PANEL_4" class="0">
