@@ -7374,161 +7374,6 @@ by exp-lbrs.ulp</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="SparkFun-Sensors">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-In this library you'll find sensors- accelerometers, gyros, compasses, magnetometers, light sensors, imagers, temp sensors, etc.&lt;br&gt;&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="BMP180">
-<smd name="1" x="1.5" y="1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="2" x="0" y="1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="3" x="-1.5" y="1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="4" x="-1.5" y="-1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="5" x="0" y="-1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="6" x="1.5" y="-1.45" dx="0.5" dy="0.6" layer="1" rot="R90"/>
-<smd name="7" x="1.5" y="0" dx="0.5" dy="0.6" layer="1" rot="R180"/>
-<wire x1="-1.9" y1="1.8" x2="-1.9" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="-1.9" y1="-1.8" x2="1.9" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="1.9" y1="-1.8" x2="1.9" y2="1.8" width="0.127" layer="51"/>
-<wire x1="1.9" y1="1.8" x2="-1.9" y2="1.8" width="0.127" layer="51"/>
-<circle x="0.75" y="0.75" radius="0.125" width="0.6096" layer="21"/>
-<wire x1="-1.5" y1="1" x2="-1.5" y2="-1" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="-1" x2="-1" y2="-1.5" width="0.127" layer="51" curve="90"/>
-<wire x1="-1" y1="-1.5" x2="1" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="1" y1="-1.5" x2="1.5" y2="-1" width="0.127" layer="51" curve="90"/>
-<wire x1="1.5" y1="-1" x2="1.5" y2="1" width="0.127" layer="51"/>
-<wire x1="1.5" y1="1" x2="1" y2="1.5" width="0.127" layer="51" curve="90"/>
-<wire x1="1" y1="1.5" x2="-1" y2="1.5" width="0.127" layer="51"/>
-<wire x1="-1" y1="1.5" x2="-1.5" y2="1" width="0.127" layer="51" curve="90"/>
-<wire x1="-2" y1="1.875" x2="-2" y2="-1.875" width="0.127" layer="21"/>
-<wire x1="-2" y1="-1.875" x2="2" y2="-1.875" width="0.127" layer="21"/>
-<wire x1="2" y1="-1.875" x2="2" y2="1.875" width="0.127" layer="21"/>
-<wire x1="2" y1="1.875" x2="-2" y2="1.875" width="0.127" layer="21"/>
-<circle x="0.75" y="0.75" radius="0.125" width="0.6096" layer="21"/>
-<text x="-2" y="2" size="1.27" layer="25">&gt;NAME</text>
-<text x="-2" y="-3.375" size="1.27" layer="27">&gt;VALUE</text>
-<circle x="0.75" y="0.75" radius="0.125" width="0.6096" layer="51"/>
-</package>
-</packages>
-<symbols>
-<symbol name="BMP180">
-<description>BOSCH BMP180 DIGITAL BAROMETRIC PRESSURE SENSOR&lt;p&gt;
-
-Web page: &lt;a href="http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp180_1/bmp180"&gt;http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp180_1/bmp180&lt;/a&gt;&lt;br&gt;
-Datasheet: &lt;a href="http://ae-bst.resource.bosch.com/media/products/dokumente/bmp180/BST-BMP180-DS000-09.pdf"&gt; http://ae-bst.resource.bosch.com/media/products/dokumente/bmp180/BST-BMP180-DS000-09.pdf&lt;/a&gt;&lt;p&gt;
-
-The BMP180 is the function compatible successor of the BMP085, a new generation of high
-precision digital pressure sensors for consumer applications.&lt;p&gt;
-The ultra-low power, low voltage electronics of the BMP180 is optimized for use in mobile phones,
-PDAs, GPS navigation devices and outdoor equipment. With a low altitude noise of merely 0.25m at
-fast conversion time, the BMP180 offers superior performance. The I2C interface allows for easy
-system integration with a microcontroller.&lt;p&gt;
-The BMP180 is based on piezo-resistive technology for EMC robustness, high accuracy and linearity as
-well as long term stability.&lt;p&gt;
-
-Key features:&lt;p&gt;
-
-- Temperature measurement included&lt;br&gt;
-- I2C interface&lt;br&gt;
-- Fully calibrated&lt;br&gt;
-- Pb-free, halogen-free and RoHS compliant,&lt;br&gt;
-- MSL 1&lt;p&gt;
-
-Basic specs:&lt;p&gt;
-
-Pressure range: 300 to 1100hPa (+9000m to -500m relating to sea level)&lt;br&gt;
-Supply voltage: 1.8 to 3.6V (VDD), 1.62V to 3.6V (VDDIO)&lt;br&gt;
-Package: LGA package with metal lid&lt;br&gt;
-Small footprint: 3.6mm x 3.8mm&lt;br&gt;
-Super-flat: 0.93mm height&lt;br&gt;
-Low power: 5μA at 1 sample / sec. in standard mode&lt;br&gt;
-Low noise: 0.06hPa (0.5m) in ultra low power mode, 0.02hPa (0.17m) advanced resolution mode&lt;p&gt;
-
-Typical applications:&lt;p&gt;
-
-- Enhancement of GPS navigation (dead-reckoning, slope detection, etc.)&lt;br&gt;
-- In- and out-door navigation&lt;br&gt;
-- Leisure and sports&lt;br&gt;
-- Weather forecast&lt;br&gt;
-- Vertical velocity indication (rise/sink speed)</description>
-<pin name="VDD" x="15.24" y="5.08" length="middle" direction="pwr" rot="R180"/>
-<pin name="VDDIO" x="15.24" y="0" length="middle" direction="pwr" rot="R180"/>
-<pin name="SCL" x="-15.24" y="-2.54" length="middle" direction="in"/>
-<pin name="SDA" x="-15.24" y="2.54" length="middle"/>
-<pin name="GND" x="15.24" y="-5.08" length="middle" direction="pwr" rot="R180"/>
-<wire x1="-10.16" y1="7.62" x2="-10.16" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="-7.62" x2="10.16" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
-<wire x1="10.16" y1="7.62" x2="-10.16" y2="7.62" width="0.254" layer="94"/>
-<text x="-10.16" y="8.255" size="1.778" layer="95">&gt;NAME</text>
-<text x="-10.16" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="BMP180" prefix="U">
-<description>BOSCH BMP180 DIGITAL BAROMETRIC PRESSURE SENSOR&lt;p&gt;
-
-Web page: &lt;a href="http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp180_1/bmp180"&gt;http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp180_1/bmp180&lt;/a&gt;&lt;br&gt;
-Datasheet: &lt;a href="http://ae-bst.resource.bosch.com/media/products/dokumente/bmp180/BST-BMP180-DS000-09.pdf"&gt; http://ae-bst.resource.bosch.com/media/products/dokumente/bmp180/BST-BMP180-DS000-09.pdf&lt;/a&gt;&lt;p&gt;
-
-The BMP180 is the function compatible successor of the BMP085, a new generation of high
-precision digital pressure sensors for consumer applications.&lt;p&gt;
-The ultra-low power, low voltage electronics of the BMP180 is optimized for use in mobile phones,
-PDAs, GPS navigation devices and outdoor equipment. With a low altitude noise of merely 0.25m at
-fast conversion time, the BMP180 offers superior performance. The I2C interface allows for easy
-system integration with a microcontroller.&lt;p&gt;
-The BMP180 is based on piezo-resistive technology for EMC robustness, high accuracy and linearity as
-well as long term stability.&lt;p&gt;
-
-Key features:&lt;p&gt;
-
-- Temperature measurement included&lt;br&gt;
-- I2C interface&lt;br&gt;
-- Fully calibrated&lt;br&gt;
-- Pb-free, halogen-free and RoHS compliant,&lt;br&gt;
-- MSL 1&lt;p&gt;
-
-Basic specs:&lt;p&gt;
-
-Pressure range: 300 to 1100hPa (+9000m to -500m relating to sea level)&lt;br&gt;
-Supply voltage: 1.8 to 3.6V (VDD), 1.62V to 3.6V (VDDIO)&lt;br&gt;
-Package: LGA package with metal lid&lt;br&gt;
-Small footprint: 3.6mm x 3.8mm&lt;br&gt;
-Super-flat: 0.93mm height&lt;br&gt;
-Low power: 5μA at 1 sample / sec. in standard mode&lt;br&gt;
-Low noise: 0.06hPa (0.5m) in ultra low power mode, 0.02hPa (0.17m) advanced resolution mode&lt;p&gt;
-
-Typical applications:&lt;p&gt;
-
-- Enhancement of GPS navigation (dead-reckoning, slope detection, etc.)&lt;br&gt;
-- In- and out-door navigation&lt;br&gt;
-- Leisure and sports&lt;br&gt;
-- Weather forecast&lt;br&gt;
-- Vertical velocity indication (rise/sink speed)</description>
-<gates>
-<gate name="G$1" symbol="BMP180" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="BMP180">
-<connects>
-<connect gate="G$1" pin="GND" pad="7"/>
-<connect gate="G$1" pin="SCL" pad="5"/>
-<connect gate="G$1" pin="SDA" pad="6"/>
-<connect gate="G$1" pin="VDD" pad="2"/>
-<connect gate="G$1" pin="VDDIO" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="RB161M">
 <packages>
 <package name="RB161M">
@@ -7572,6 +7417,78 @@ Typical applications:&lt;p&gt;
 <connects>
 <connect gate="A" pin="A" pad="ANODE"/>
 <connect gate="A" pin="C" pad="CATHODE"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="MS5607-02BA03">
+<packages>
+<package name="MS5607-02BA03">
+<smd name="1" x="-1.1" y="1.875" dx="1.1" dy="0.6" layer="1"/>
+<smd name="2" x="-1.1" y="0.625" dx="1.1" dy="0.6" layer="1"/>
+<smd name="3" x="-1.1" y="-0.625" dx="1.1" dy="0.6" layer="1"/>
+<smd name="4" x="-1.1" y="-1.875" dx="1.1" dy="0.6" layer="1"/>
+<smd name="5" x="1.1" y="-1.875" dx="1.1" dy="0.6" layer="1"/>
+<smd name="6" x="1.1" y="-0.625" dx="1.1" dy="0.6" layer="1"/>
+<smd name="7" x="1.1" y="0.625" dx="1.1" dy="0.6" layer="1"/>
+<smd name="8" x="1.1" y="1.875" dx="1.1" dy="0.6" layer="1"/>
+<wire x1="1.5" y1="2.5" x2="-1.5" y2="2.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="2.5" x2="-1.5" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="-2.5" x2="1.5" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-2.5" x2="1.5" y2="2.5" width="0.127" layer="21"/>
+<wire x1="1" y1="2.25" x2="-1" y2="2.25" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.25" x2="-1.25" y2="2" width="0.127" layer="21" curve="90"/>
+<wire x1="-1.25" y1="2" x2="-1.25" y2="-2" width="0.127" layer="21"/>
+<wire x1="-1.25" y1="-2" x2="-1" y2="-2.25" width="0.127" layer="21" curve="90"/>
+<wire x1="-1" y1="-2.25" x2="1" y2="-2.25" width="0.127" layer="21"/>
+<wire x1="1" y1="-2.25" x2="1.25" y2="-2" width="0.127" layer="21" curve="90"/>
+<wire x1="1.25" y1="-2" x2="1.25" y2="2" width="0.127" layer="21"/>
+<wire x1="1.25" y1="2" x2="1" y2="2.25" width="0.127" layer="21" curve="90"/>
+<circle x="0.75" y="1.75" radius="0.27950625" width="0.127" layer="21"/>
+<circle x="-0.75" y="-1.75" radius="0.27950625" width="0.127" layer="21"/>
+<text x="-1.5" y="3" size="0.6096" layer="25" font="vector" ratio="12">&gt;NAME</text>
+<text x="-1.5" y="-3.5" size="0.6096" layer="27" font="vector" ratio="12">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="MS5607-02BA03">
+<wire x1="-10.16" y1="10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
+<wire x1="10.16" y1="10.16" x2="10.16" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-12.7" x2="-10.16" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-12.7" x2="-10.16" y2="10.16" width="0.254" layer="94"/>
+<pin name="GND" x="-15.24" y="-10.16" length="middle"/>
+<pin name="VDD" x="-15.24" y="7.62" length="middle"/>
+<pin name="SDO" x="15.24" y="7.62" length="middle" rot="R180"/>
+<pin name="SDI/SDA" x="15.24" y="5.08" length="middle" rot="R180"/>
+<pin name="SCLK" x="15.24" y="2.54" length="middle" rot="R180"/>
+<pin name="CSB1" x="15.24" y="-2.54" length="middle" rot="R180"/>
+<pin name="CSB2" x="15.24" y="-5.08" length="middle" rot="R180"/>
+<pin name="PS" x="15.24" y="-10.16" length="middle" rot="R180"/>
+<text x="-10.16" y="12.7" size="1.6764" layer="95" ratio="21">&gt;NAME</text>
+<text x="-10.16" y="-17.78" size="1.6764" layer="96" ratio="21">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="MS5607-02BA03">
+<gates>
+<gate name="A" symbol="MS5607-02BA03" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="MS5607-02BA03">
+<connects>
+<connect gate="A" pin="CSB1" pad="4"/>
+<connect gate="A" pin="CSB2" pad="5"/>
+<connect gate="A" pin="GND" pad="3"/>
+<connect gate="A" pin="PS" pad="2"/>
+<connect gate="A" pin="SCLK" pad="8"/>
+<connect gate="A" pin="SDI/SDA" pad="7"/>
+<connect gate="A" pin="SDO" pad="6"/>
+<connect gate="A" pin="VDD" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -7691,8 +7608,6 @@ Typical applications:&lt;p&gt;
 <part name="U$22" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
 <part name="U$4" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="U9" library="SparkFun-Sensors" deviceset="BMP180" device=""/>
-<part name="GND13" library="SparkFun" deviceset="GND" device=""/>
 <part name="C22" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
@@ -7718,11 +7633,14 @@ Typical applications:&lt;p&gt;
 <part name="U$46" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R13" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="56kΩ"/>
 <part name="C19" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
-<part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="SJ1" library="microbuilder_v3" deviceset="SOLDERJUMPER" device="REFLOW"/>
 <part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω"/>
 <part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
+<part name="U$54" library="MS5607-02BA03" deviceset="MS5607-02BA03" device=""/>
+<part name="GND2" library="SparkFun" deviceset="GND" device=""/>
+<part name="U$55" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7772,7 +7690,7 @@ lithium AAA at 0ºC to -25ºC</text>
 <text x="175.26" y="-83.312" size="1.27" layer="97" font="vector" ratio="11">This net is GND by default, but may
 be disconnected to form a solar midpoint connection</text>
 <text x="30.48" y="-20.32" size="2.54" layer="97" font="vector" ratio="11">LTC3105 Boost Converter</text>
-<text x="38.1" y="-132.08" size="2.54" layer="97" font="vector" ratio="11">BMP180 Pressure Sensor</text>
+<text x="27.94" y="-116.84" size="2.54" layer="97" font="vector" ratio="11">MS5607 Pressure Sensor</text>
 <text x="10.16" y="-12.7" size="6.4516" layer="97" font="vector" ratio="11">Power + Sensor</text>
 <text x="7.62" y="-42.672" size="1.27" layer="97" font="vector" ratio="11">Populate R8 with
 0Ω resistor if
@@ -7883,15 +7801,13 @@ directly to battery</text>
 <instance part="U$22" gate="G$1" x="12.7" y="149.86"/>
 <instance part="JTAG1" gate="G$1" x="25.4" y="157.48"/>
 <instance part="U$4" gate="G$1" x="12.7" y="180.34" rot="MR0"/>
-<instance part="U9" gate="G$1" x="81.28" y="-167.64"/>
-<instance part="GND13" gate="1" x="101.6" y="-180.34"/>
-<instance part="C22" gate="G$1" x="124.46" y="-175.26"/>
-<instance part="GND20" gate="1" x="124.46" y="-180.34"/>
-<instance part="R3" gate="G$1" x="48.26" y="-154.94" rot="R90"/>
-<instance part="R2" gate="G$1" x="40.64" y="-154.94" rot="R90"/>
-<instance part="U$6" gate="G$1" x="40.64" y="-144.78" rot="MR0"/>
-<instance part="U$23" gate="G$1" x="48.26" y="-144.78" rot="MR0"/>
-<instance part="U$35" gate="G$1" x="101.6" y="-149.86" rot="MR0"/>
+<instance part="C22" gate="G$1" x="20.32" y="-152.4"/>
+<instance part="GND20" gate="1" x="20.32" y="-167.64"/>
+<instance part="R3" gate="G$1" x="91.44" y="-132.08" rot="R90"/>
+<instance part="R2" gate="G$1" x="83.82" y="-132.08" rot="R90"/>
+<instance part="U$6" gate="G$1" x="83.82" y="-121.92" rot="MR0"/>
+<instance part="U$23" gate="G$1" x="91.44" y="-121.92" rot="MR0"/>
+<instance part="U$35" gate="G$1" x="81.28" y="-160.02" rot="MR90"/>
 <instance part="D3" gate="A" x="185.42" y="-121.92"/>
 <instance part="D2" gate="A" x="185.42" y="-114.3"/>
 <instance part="D1" gate="A" x="185.42" y="-106.68"/>
@@ -7909,12 +7825,15 @@ directly to battery</text>
 <instance part="R14" gate="G$1" x="124.46" y="-58.42" rot="R90"/>
 <instance part="U$46" gate="G$1" x="124.46" y="-66.04"/>
 <instance part="R13" gate="G$1" x="124.46" y="-45.72" rot="R90"/>
-<instance part="C19" gate="G$1" x="111.76" y="-175.26"/>
-<instance part="GND1" gate="1" x="111.76" y="-180.34"/>
+<instance part="C19" gate="G$1" x="30.48" y="-152.4"/>
 <instance part="SJ1" gate="1" x="142.24" y="-142.24"/>
 <instance part="R7" gate="G$1" x="185.42" y="-88.9"/>
 <instance part="U$52" gate="G$1" x="175.26" y="-88.9" rot="R270"/>
 <instance part="R8" gate="G$1" x="40.64" y="-40.64"/>
+<instance part="U$54" gate="A" x="53.34" y="-149.86"/>
+<instance part="GND2" gate="1" x="30.48" y="-167.64"/>
+<instance part="U$55" gate="G$1" x="20.32" y="-129.54" rot="MR0"/>
+<instance part="GND1" gate="1" x="91.44" y="-154.94" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -8106,16 +8025,6 @@ directly to battery</text>
 <pinref part="JTAG1" gate="G$1" pin="5"/>
 </segment>
 <segment>
-<pinref part="U9" gate="G$1" pin="GND"/>
-<pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="96.52" y1="-172.72" x2="101.6" y2="-172.72" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-172.72" x2="101.6" y2="-177.8" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="C22" gate="G$1" pin="P$2"/>
-<pinref part="GND20" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="R10" gate="G$1" pin="1"/>
 <pinref part="U$48" gate="G$1" pin="GND"/>
 </segment>
@@ -8133,13 +8042,34 @@ directly to battery</text>
 <pinref part="U$46" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C19" gate="G$1" pin="P$2"/>
-<pinref part="GND1" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="U$52" gate="G$1" pin="GND"/>
 <pinref part="R7" gate="G$1" pin="1"/>
 <wire x1="177.8" y1="-88.9" x2="180.34" y2="-88.9" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$54" gate="A" pin="GND"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="38.1" y1="-160.02" x2="30.48" y2="-160.02" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-160.02" x2="30.48" y2="-165.1" width="0.1524" layer="91"/>
+<pinref part="C19" gate="G$1" pin="P$2"/>
+<wire x1="30.48" y1="-154.94" x2="30.48" y2="-160.02" width="0.1524" layer="91"/>
+<junction x="30.48" y="-160.02"/>
+<pinref part="C22" gate="G$1" pin="P$2"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+<wire x1="20.32" y1="-154.94" x2="20.32" y2="-160.02" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="-160.02" x2="20.32" y2="-165.1" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-160.02" x2="20.32" y2="-160.02" width="0.1524" layer="91"/>
+<junction x="20.32" y="-160.02"/>
+</segment>
+<segment>
+<pinref part="U$54" gate="A" pin="CSB1"/>
+<wire x1="68.58" y1="-152.4" x2="71.12" y2="-152.4" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="-152.4" x2="71.12" y2="-154.94" width="0.1524" layer="91"/>
+<pinref part="U$54" gate="A" pin="CSB2"/>
+<wire x1="71.12" y1="-154.94" x2="68.58" y2="-154.94" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="-154.94" x2="88.9" y2="-154.94" width="0.1524" layer="91"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<junction x="71.12" y="-154.94"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -8268,30 +8198,13 @@ directly to battery</text>
 </segment>
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="40.64" y1="-147.32" x2="40.64" y2="-149.86" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="-124.46" x2="83.82" y2="-127" width="0.1524" layer="91"/>
 <pinref part="U$6" gate="G$1" pin="1.8V"/>
 </segment>
 <segment>
 <pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="48.26" y1="-147.32" x2="48.26" y2="-149.86" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-124.46" x2="91.44" y2="-127" width="0.1524" layer="91"/>
 <pinref part="U$23" gate="G$1" pin="1.8V"/>
-</segment>
-<segment>
-<pinref part="U9" gate="G$1" pin="VDD"/>
-<wire x1="96.52" y1="-162.56" x2="101.6" y2="-162.56" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-162.56" x2="101.6" y2="-152.4" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-167.64" x2="101.6" y2="-162.56" width="0.1524" layer="91"/>
-<junction x="101.6" y="-162.56"/>
-<pinref part="C22" gate="G$1" pin="P$1"/>
-<wire x1="101.6" y1="-162.56" x2="124.46" y2="-162.56" width="0.1524" layer="91"/>
-<wire x1="124.46" y1="-162.56" x2="124.46" y2="-170.18" width="0.1524" layer="91"/>
-<pinref part="U9" gate="G$1" pin="VDDIO"/>
-<wire x1="96.52" y1="-167.64" x2="101.6" y2="-167.64" width="0.1524" layer="91"/>
-<pinref part="U$35" gate="G$1" pin="1.8V"/>
-<pinref part="C19" gate="G$1" pin="P$1"/>
-<wire x1="101.6" y1="-167.64" x2="111.76" y2="-167.64" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="-167.64" x2="111.76" y2="-170.18" width="0.1524" layer="91"/>
-<junction x="101.6" y="-167.64"/>
 </segment>
 <segment>
 <pinref part="U$47" gate="G$1" pin="1.8V"/>
@@ -8313,6 +8226,24 @@ directly to battery</text>
 <wire x1="160.02" y1="-40.64" x2="160.02" y2="-38.1" width="0.1524" layer="91"/>
 <junction x="160.02" y="-38.1"/>
 <junction x="172.72" y="-38.1"/>
+</segment>
+<segment>
+<pinref part="U$54" gate="A" pin="PS"/>
+<pinref part="U$35" gate="G$1" pin="1.8V"/>
+<wire x1="68.58" y1="-160.02" x2="78.74" y2="-160.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$54" gate="A" pin="VDD"/>
+<pinref part="C19" gate="G$1" pin="P$1"/>
+<wire x1="38.1" y1="-142.24" x2="30.48" y2="-142.24" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-142.24" x2="30.48" y2="-147.32" width="0.1524" layer="91"/>
+<pinref part="U$55" gate="G$1" pin="1.8V"/>
+<wire x1="30.48" y1="-142.24" x2="20.32" y2="-142.24" width="0.1524" layer="91"/>
+<pinref part="C22" gate="G$1" pin="P$1"/>
+<wire x1="20.32" y1="-132.08" x2="20.32" y2="-142.24" width="0.1524" layer="91"/>
+<junction x="20.32" y="-142.24"/>
+<wire x1="20.32" y1="-142.24" x2="20.32" y2="-147.32" width="0.1524" layer="91"/>
+<junction x="30.48" y="-142.24"/>
 </segment>
 </net>
 <net name="VDD_CORE" class="0">
@@ -8754,11 +8685,11 @@ directly to battery</text>
 <label x="114.3" y="86.36" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U9" gate="G$1" pin="SDA"/>
-<wire x1="66.04" y1="-165.1" x2="48.26" y2="-165.1" width="0.1524" layer="91"/>
-<label x="53.34" y="-165.1" size="1.778" layer="95"/>
-<pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="48.26" y1="-165.1" x2="48.26" y2="-160.02" width="0.1524" layer="91"/>
+<pinref part="U$54" gate="A" pin="SDI/SDA"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="68.58" y1="-144.78" x2="83.82" y2="-144.78" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="-144.78" x2="83.82" y2="-137.16" width="0.1524" layer="91"/>
+<label x="73.66" y="-144.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -8768,11 +8699,11 @@ directly to battery</text>
 <label x="114.3" y="83.82" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U9" gate="G$1" pin="SCL"/>
-<wire x1="66.04" y1="-170.18" x2="40.64" y2="-170.18" width="0.1524" layer="91"/>
-<label x="53.34" y="-170.18" size="1.778" layer="95"/>
-<pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="40.64" y1="-170.18" x2="40.64" y2="-160.02" width="0.1524" layer="91"/>
+<pinref part="U$54" gate="A" pin="SCLK"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="68.58" y1="-147.32" x2="91.44" y2="-147.32" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-147.32" x2="91.44" y2="-137.16" width="0.1524" layer="91"/>
+<label x="73.66" y="-147.32" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF_TANK" class="0">

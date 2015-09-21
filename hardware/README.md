@@ -12,3 +12,4 @@ Most hardware that has been built has a version number
 |v0.984.0|First attempt at internal balloon board|
 |v0.985.0|Solar Power/Primary AAA Lithium|
 |v0.985.1|Added DNP/0Ω between solar and MPPT set for use when only a battery is connected|
+|v0.985.2|BMP180 -> MS5607 Pressure / Temperature Sensor|

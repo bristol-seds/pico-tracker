@@ -12,9 +12,10 @@
 | UBLOX MAX-8C | GPS | [HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108) | 1 | U3
 2414758 579-25WF040BT-40I/NP 1 U4 memory 4Mbit
 2405790 1 U5 TCXO Si4xxx
+1898600 1 U6 Solar Energy Boost Converter
 1755607 595-TPS3123J8DBVT 1 U7 watchdog
 1470880 595-SN74LVC1G32DCKR 1 U8 or-gate, watchdog subsystem
-1898600 1 U9 Solar Energy Boost Converter
+2362660 1 U9 MS5607 Pressure / Temperature sensor
 1525484 5 D1, D2, D3, D4, D5 Small signal schotty diode
 ----
 
@@ -42,7 +43,7 @@
 1759380 9 C11, C12, C13, C14, C15, C16, C17, C18, C19 100nF
 2218855 1 C20 LTC3015 AUX 1µF
 2362088 1 C21 Radio Bypass 2.2µF
-2309027 2 C22, C23 BMP180 Bypass, LTC3105 LDO 4.7µF
+2309027 2 C22, C23 MS5607 Bypass, LTC3105 LDO 4.7µF
 1833804 2 C24, C25 LTC3105 in, out 10µF 0603
 
 ----

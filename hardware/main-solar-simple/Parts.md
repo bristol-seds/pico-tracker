@@ -12,9 +12,10 @@
 | UBLOX MAX-8C | GPS | [HAB Supplies](http://ava.upuaut.net/store/index.php?route=product/product&path=59_64&product_id=108) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory 4Mbit
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U5 TCXO Si4xxx
+|LTC3105EDD#PBF|LINEAR TECHNOLOGY - BOOST, 400MA, MPPC, 10DFN|[1898600](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1898600)|1|U6 Solar Energy Boost Converter
 |TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J8DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J8DBVT)|1|U7 watchdog
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate, watchdog subsystem
-|LTC3105EDD#PBF|LINEAR TECHNOLOGY - BOOST, 400MA, MPPC, 10DFN|[1898600](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1898600)|1|U9 Solar Energy Boost Converter
+|MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, QFN, 8, -40 Â°C, 85 Â°C, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
 |RB161M-20TR|ROHM - Small Signal Schottky Diode, Single, 25 V, 1 A, 350 mV, 30 A, 125 Â°C|[1525484](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1525484)|5|D1, D2, D3, D4, D5 Small signal schotty diode
 ----
 
@@ -42,7 +43,7 @@
 |MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|9|C11, C12, C13, C14, C15, C16, C17, C18, C19 100nF
 |GRM155R61E105KA12D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 1 ÂµF, Â± 10%, X5R, 25 V, 0402 [1005 Metric]|[2218855](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2218855)|1|C20 LTC3015 AUX 1µF
 |GRM155R60J225ME15D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 2.2 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2362088](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362088)|1|C21 Radio Bypass 2.2µF
-|C1005X5R0J475M050BC|TDK - SMD Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|C22, C23 BMP180 Bypass, LTC3105 LDO 4.7µF
+|C1005X5R0J475M050BC|TDK - SMD Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|2|C22, C23 MS5607 Bypass, LTC3105 LDO 4.7µF
 |06036D106MAT2A|AVX - SMD Multilayer Ceramic Capacitor, 10 ÂµF, Â± 20%, X5R, 6.3 V, 0603 [1608 Metric]|[1833804](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1833804)|2|C24, C25 LTC3105 in, out 10µF 0603
 
 ----
