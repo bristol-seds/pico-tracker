@@ -4608,7 +4608,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="SJ1" library="microbuilder_v3" package="SOLDERJUMPER_REFLOW" value="" x="1.25" y="57.5" rot="R270"/>
 <element name="R7" library="microbuilder_v3" package="_0402" value="0Ω" x="13.25" y="6.25" rot="R270"/>
 <element name="R8" library="microbuilder_v3" package="_0402" value="DNP" x="6.25" y="35.125" rot="R270"/>
-<element name="U$54" library="MS5607-02BA03" package="MS5607-02BA03" value="MS5607-02BA03" x="6.5" y="27.875" rot="R180"/>
+<element name="U9" library="MS5607-02BA03" package="MS5607-02BA03" value="MS5607-02BA03" x="6.5" y="27.875" rot="R180"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -4823,10 +4823,10 @@ Please make sure your boards conform to these design rules.</description>
 <vertex x="0" y="0"/>
 </polygon>
 <via x="7.625" y="63" extent="1-16" drill="0.3302"/>
-<contactref element="U$54" pad="3"/>
+<contactref element="U9" pad="3"/>
 <contactref element="C19" pad="2"/>
-<contactref element="U$54" pad="5"/>
-<contactref element="U$54" pad="4"/>
+<contactref element="U9" pad="5"/>
+<contactref element="U9" pad="4"/>
 <via x="7.625" y="30.625" extent="1-16" drill="0.3302"/>
 <via x="6.125" y="24.875" extent="1-16" drill="0.3302"/>
 <via x="4" y="29.875" extent="1-16" drill="0.3302"/>
@@ -4983,7 +4983,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="2.5" y="37.375" extent="1-16" drill="0.3302"/>
 <wire x1="2.5" y1="38.5" x2="2.5" y2="37.375" width="0.3" layer="1"/>
 <wire x1="2.5" y1="37.375" x2="0.875" y2="37.375" width="0.4" layer="16"/>
-<contactref element="U$54" pad="2"/>
+<contactref element="U9" pad="2"/>
 <wire x1="7.6" y1="27.25" x2="7.25" y2="27.25" width="0.4" layer="1"/>
 <wire x1="7.25" y1="27.25" x2="6.5" y2="28" width="0.4" layer="1"/>
 <wire x1="6.5" y1="28" x2="6.5" y2="29.125" width="0.4" layer="1"/>
@@ -5000,7 +5000,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="6.5" y1="29.125" x2="4.25" y2="29.125" width="0.2" layer="1"/>
 <wire x1="4.25" y1="29.125" x2="4.25" y2="29.008" width="0.2" layer="1"/>
 <contactref element="C19" pad="1"/>
-<contactref element="U$54" pad="1"/>
+<contactref element="U9" pad="1"/>
 <contactref element="C22" pad="1"/>
 <wire x1="6.383" y1="31.625" x2="6.383" y2="30.75" width="0.4" layer="1"/>
 <wire x1="6.383" y1="30.75" x2="6.5" y2="30.633" width="0.4" layer="1"/>
@@ -5367,7 +5367,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="U1" pad="1"/>
 <wire x1="9.375" y1="22.625" x2="9.375" y2="23.75" width="0.1524" layer="1"/>
 <wire x1="9.375" y1="23.75" x2="7.75" y2="25.375" width="0.1524" layer="1"/>
-<contactref element="U$54" pad="7"/>
+<contactref element="U9" pad="7"/>
 <contactref element="R2" pad="1"/>
 <wire x1="7.75" y1="25.375" x2="7" y2="25.375" width="0.1524" layer="1"/>
 <wire x1="7" y1="25.375" x2="6.75" y2="25.625" width="0.1524" layer="1"/>
@@ -5380,7 +5380,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="SCL">
 <contactref element="U1" pad="2"/>
-<contactref element="U$54" pad="8"/>
+<contactref element="U9" pad="8"/>
 <contactref element="R3" pad="1"/>
 <wire x1="8.875" y1="22.625" x2="8.875" y2="23.75" width="0.1524" layer="1"/>
 <wire x1="8.875" y1="23.75" x2="7.625" y2="25" width="0.1524" layer="1"/>

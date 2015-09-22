@@ -7637,7 +7637,7 @@ by exp-lbrs.ulp</description>
 <part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="0Ω"/>
 <part name="U$52" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R8" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="DNP"/>
-<part name="U$54" library="MS5607-02BA03" deviceset="MS5607-02BA03" device=""/>
+<part name="U9" library="MS5607-02BA03" deviceset="MS5607-02BA03" device=""/>
 <part name="GND2" library="SparkFun" deviceset="GND" device=""/>
 <part name="U$55" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
@@ -7830,7 +7830,7 @@ directly to battery</text>
 <instance part="R7" gate="G$1" x="185.42" y="-88.9"/>
 <instance part="U$52" gate="G$1" x="175.26" y="-88.9" rot="R270"/>
 <instance part="R8" gate="G$1" x="40.64" y="-40.64"/>
-<instance part="U$54" gate="A" x="53.34" y="-149.86"/>
+<instance part="U9" gate="A" x="53.34" y="-149.86"/>
 <instance part="GND2" gate="1" x="30.48" y="-167.64"/>
 <instance part="U$55" gate="G$1" x="20.32" y="-129.54" rot="MR0"/>
 <instance part="GND1" gate="1" x="91.44" y="-154.94" rot="R90"/>
@@ -8047,7 +8047,7 @@ directly to battery</text>
 <wire x1="177.8" y1="-88.9" x2="180.34" y2="-88.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="GND"/>
+<pinref part="U9" gate="A" pin="GND"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 <wire x1="38.1" y1="-160.02" x2="30.48" y2="-160.02" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="-160.02" x2="30.48" y2="-165.1" width="0.1524" layer="91"/>
@@ -8062,10 +8062,10 @@ directly to battery</text>
 <junction x="20.32" y="-160.02"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="CSB1"/>
+<pinref part="U9" gate="A" pin="CSB1"/>
 <wire x1="68.58" y1="-152.4" x2="71.12" y2="-152.4" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="-152.4" x2="71.12" y2="-154.94" width="0.1524" layer="91"/>
-<pinref part="U$54" gate="A" pin="CSB2"/>
+<pinref part="U9" gate="A" pin="CSB2"/>
 <wire x1="71.12" y1="-154.94" x2="68.58" y2="-154.94" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="-154.94" x2="88.9" y2="-154.94" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
@@ -8228,12 +8228,12 @@ directly to battery</text>
 <junction x="172.72" y="-38.1"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="PS"/>
+<pinref part="U9" gate="A" pin="PS"/>
 <pinref part="U$35" gate="G$1" pin="1.8V"/>
 <wire x1="68.58" y1="-160.02" x2="78.74" y2="-160.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="VDD"/>
+<pinref part="U9" gate="A" pin="VDD"/>
 <pinref part="C19" gate="G$1" pin="P$1"/>
 <wire x1="38.1" y1="-142.24" x2="30.48" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="-142.24" x2="30.48" y2="-147.32" width="0.1524" layer="91"/>
@@ -8685,7 +8685,7 @@ directly to battery</text>
 <label x="114.3" y="86.36" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="SDI/SDA"/>
+<pinref part="U9" gate="A" pin="SDI/SDA"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="68.58" y1="-144.78" x2="83.82" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="-144.78" x2="83.82" y2="-137.16" width="0.1524" layer="91"/>
@@ -8699,7 +8699,7 @@ directly to battery</text>
 <label x="114.3" y="83.82" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$54" gate="A" pin="SCLK"/>
+<pinref part="U9" gate="A" pin="SCLK"/>
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="68.58" y1="-147.32" x2="91.44" y2="-147.32" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="-147.32" x2="91.44" y2="-137.16" width="0.1524" layer="91"/>
