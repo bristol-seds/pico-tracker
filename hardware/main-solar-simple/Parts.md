@@ -13,7 +13,7 @@
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory 4Mbit
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U5 TCXO Si4xxx
 |LTC3105EDD#PBF|LINEAR TECHNOLOGY - BOOST, 400MA, MPPC, 10DFN|[1898600](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1898600)|1|U6 Solar Energy Boost Converter
-|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J8DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J8DBVT)|1|U7 watchdog
+|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7 watchdog
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate, watchdog subsystem
 |MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, QFN, 8, -40 Â°C, 85 Â°C, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
 |RB161M-20TR|ROHM - Small Signal Schottky Diode, Single, 25 V, 1 A, 350 mV, 30 A, 125 Â°C|[1525484](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1525484)|5|D1, D2, D3, D4, D5 Small signal schotty diode
@@ -23,20 +23,20 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|LPS3015-103MRB|COILCRAFT - Surface Mount Power Inductor, AEC-Q200 LPS3015 Series, 10 ÂµH, Â± 20%, Shielded, 0.44 ohm|[2408024](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2408024)|1|L11 10µH LPS3015
-|0402AF-221XJLU|COILCRAFT - Surface Mount High Frequency Inductor, 0402AF Series, 220 nH, Â± 5%, 0402 [1005 Metric]|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
+|LPS3015-103MRB|COILCRAFT - Surface Mount Power Inductor, AEC-Q200 LPS3015 Series, 10 ÂµH, Â± 20%, Shielded, 0.44 ohm, 550 mA|[2408024](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2408024)|1|L11 10µH LPS3015
+|0402AF-221XJLU|COILCRAFT - Surface Mount High Frequency Inductor, 0402AF Series, 220 nH, Â± 5%, 0402 [1005 Metric], 1.15 GHz|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
 |LQG15HN56NJ02D|MURATA - INDUCTOR, 0402 CASE, 56NHÂ±5%|[1343091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1343091)|1|L3 56nH rf filter
-|L-07C18NJV6T|JOHANSON TECHNOLOGY - Surface Mount High Frequency Inductor, L-07C Series, 18 nH, Â± 5%, 0402 [1005 Metric]|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH rf filter
+|L-07C18NJV6T|JOHANSON TECHNOLOGY - Surface Mount High Frequency Inductor, L-07C Series, 18 nH, Â± 5%, 0402 [1005 Metric], 0.65 ohm|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH rf filter
 | L6, L7 | DNP ||| si4xxx rx
 |MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|7|R1, R2, R3 10k
 |ERA2AED104X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 100 kohm, 63 mW, Â± 0.5%, 25 V|[2324718](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324718)|1|R4 100k precise
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R5, R6 100k
-|RC0402JR-070RL|YAGEO (PHYCOMP) - Surface Mount Chip Resistor, Thick Film, RC Series, 0 ohm, 62.5 mW, Â± 5%, 50 V|[9232516](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=9232516)|1|R7 Bridge 0Ω
+|RC0402JR-070RL|YAGEO (PHYCOMP) - Surface Mount Chip Resistor, Thick Film, RC Series, 0 ohm, 62.5 mW, Â± 5%, 50 V, 0402 [1005 Metric]|[9232516](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=9232516)|1|R7 Bridge 0Ω
 | R8 | DNP ||| connect MPPT set when battery only is used
-|CRG0402F82K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 82 kohm, 63 mW, Â± 1%, 50 V|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|3|R10, R12, R14 LTC3105 82k
-|CRG0402F68K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 68 kohm, 63 mW, Â± 1%, 50 V|[2331557](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331557)|1|R11 LTC3105 FB 68k
+|CRG0402F82K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 82 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331569](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331569)|3|R10, R12, R14 LTC3105 82k
+|CRG0402F68K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 68 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331557](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331557)|1|R11 LTC3105 FB 68k
 |MC00625W0402156K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 56 kohm, 62.5 mW, Â± 1%, 50 V|[1358089](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358089)|1|R13 LTC3105 LDOFB 56k
-|GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
+|GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
 |MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
 | C5, C6 | DNP ||| si4xxx rx
 |MC0402N101J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF

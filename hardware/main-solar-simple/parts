@@ -13,7 +13,7 @@
 2414758 579-25WF040BT-40I/NP 1 U4 memory 4Mbit
 2405790 1 U5 TCXO Si4xxx
 1898600 1 U6 Solar Energy Boost Converter
-1755607 595-TPS3123J8DBVT 1 U7 watchdog
+1755607 595-TPS3123J18DBVT 1 U7 watchdog
 1470880 595-SN74LVC1G32DCKR 1 U8 or-gate, watchdog subsystem
 2362660 1 U9 MS5607 Pressure / Temperature sensor
 1525484 5 D1, D2, D3, D4, D5 Small signal schotty diode

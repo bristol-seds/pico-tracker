@@ -7660,7 +7660,7 @@ DOPO: 0x0)</text>
 <text x="109.22" y="71.374" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(SERCOM0)</text>
 <wire x1="110.236" y1="72.644" x2="110.236" y2="68.072" width="0.1524" layer="97"/>
 <text x="109.22" y="68.834" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">(TX: PAD2, TXPO: 0x1)</text>
-<text x="73.66" y="45.72" size="2.54" layer="97" font="vector" ratio="11">S25FS128 128 MBit SPI Flash</text>
+<text x="73.66" y="45.72" size="2.54" layer="97" font="vector" ratio="11">SST25WF04 4 MBit SPI Flash</text>
 <text x="76.2" y="8.128" size="1.27" layer="97" font="vector" ratio="11" distance="100">Variant is S25FS128SAGNFI101</text>
 <text x="274.32" y="71.12" size="2.54" layer="97" font="vector" ratio="11">MAX8C GPS</text>
 <text x="294.64" y="172.72" size="2.54" layer="97" font="vector" ratio="11">Si4060 Transmitter</text>
