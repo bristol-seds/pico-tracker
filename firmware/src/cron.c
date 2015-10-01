@@ -142,8 +142,10 @@ void read_gps_time(void)
  */
 void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 {
+#ifdef TELEMETRY_USE_GEOFENCE
   /* ---- Telemetry output ---- */
   if (telemetry_location_tx_allow()) {
+#endif
 
     /* RTTY */
     if (t->second == 0 && !LOW_POWER(dp)) {
@@ -166,7 +168,9 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
       pips_telemetry();
     }
 
+#ifdef TELEMETRY_USE_GEOFENCE
   }
+#endif
 
   /* APRS */
 #ifdef APRS_ENABLE

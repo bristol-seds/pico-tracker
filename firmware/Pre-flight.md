@@ -5,6 +5,7 @@
     somewhat inaccurate.
   - `APRS_ENABLE` is set if APRS is to be used on the flight
   - `APRS_USE_GEOFENCE` is set
+  - `TELEMETRY_USE_GEOFENCE` is set
   - `DEBUG_USE_INTWATCHDOG` can be disabled during flight. This saves some power
   - Check interrupts are regular enough to kick the hardware
     watchdog.
