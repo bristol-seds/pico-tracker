@@ -38,4 +38,11 @@ class pressure_temperature_tc:
         Can use print_info
         """
 
+        pressure = result['pressure']
+        temperature = result['temperature']
+
+        print_info("Pressure: {:.1f} Pa, Temperature: {:.2f} degC".format(
+            float(pressure), float(temperature)))
+
+
         return True
