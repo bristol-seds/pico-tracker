@@ -27,7 +27,7 @@
 
 #include "samd20.h"
 #include "bmp180.h"
-#include "sercom/i2c_master.h"
+#include "sercom/i2c.h"
 
 
 #define BMP180_ADDRESS		0xEE
@@ -93,41 +93,6 @@ void delay_us(uint16_t microseconds) {
   while(i--);
 }
 
-
-void master_transfer(uint16_t address, uint8_t* data, uint16_t data_length,
-                     uint8_t read_not_write)
-{
-  uint32_t timeout = 0;
-  struct i2c_master_packet packet = {
-    .address     = address,
-    .data_length = data_length,
-    .data        = data,
-    .ten_bit_address = false,
-    .high_speed      = false,
-    .hs_master_code  = 0x0,
-  };
-
-  if (read_not_write) {
-    while (i2c_master_read_packet_wait(&packet) !=
-           I2C_STATUS_OK) {
-      /* Increment timeout counter and check if timed out. */
-      if (timeout++ > 1000) {
-        break;
-      }
-    }
-  } else {
-
-    while (i2c_master_write_packet_wait(&packet) !=
-           I2C_STATUS_OK) {
-      /* Increment timeout counter and check if timed out. */
-      if (timeout++ > 1000) {
-        break;
-      }
-    }
-
-  }
-}
-
 /**
  * Utility function to read from a 8-bit register
  */
@@ -136,10 +101,10 @@ uint8_t read_8(char address) {
   buffer[0] = address;
 
   /* Set regsiter to read */
-  master_transfer(BMP180_ADDRESS >> 1, buffer, 1, false);
+  i2c_master_write(BMP180_ADDRESS, buffer, 1);
 
   /* Read it */
-  master_transfer(BMP180_ADDRESS >> 1, buffer, 1, true);
+  i2c_master_read(BMP180_ADDRESS, buffer, 1);
 
   return buffer[0];
 }
@@ -151,10 +116,10 @@ uint16_t read_16(char address) {
   buffer[0] = address;
 
   /* Set regsiter to read */
-  master_transfer(BMP180_ADDRESS, buffer, 1, false);
+  i2c_master_write(BMP180_ADDRESS, buffer, 1);
 
   /* Read it */
-  master_transfer(BMP180_ADDRESS | 1, buffer, 2, true);
+  i2c_master_read(BMP180_ADDRESS, buffer, 2);
 
   return (buffer[0] << 8) | buffer[1];
 }
@@ -184,7 +149,7 @@ void write_command(bmp085_command command) {
   buffer[1] = command;
 
   /* Write to command register */
-  master_transfer(BMP180_ADDRESS, buffer, 2, true);
+  i2c_master_write(BMP180_ADDRESS, buffer, 2);
 }
 
 
@@ -207,14 +172,13 @@ int32_t get_up(void) {
 
   delay_us(PRESSURE_DELAY);
 
-
   buffer[0] = BMP180_REG_DATA;
 
   /* Set regsiter to read */
-  master_transfer(BMP180_ADDRESS, buffer, 1, false);
+  i2c_master_write(BMP180_ADDRESS, buffer, 1);
 
   /* Read it */
-  master_transfer(BMP180_ADDRESS | 1, buffer, 3, true);
+  i2c_master_read(BMP180_ADDRESS | 1, buffer, 3);
 
   return ((buffer[0] << 16) | (buffer[1] << 8) |
           buffer[2]) >> (8 - oversampling());
@@ -294,10 +258,18 @@ struct barometer* get_barometer(void)
  */
 void bmp180_init(void)
 {
-  /* Read and check id */
+  /* Read ID */
   uint8_t id = read_8(BMP180_REG_ID);
-  if (id != 0x55) while (1);
+
+  /* Check ID */
+  switch(id) {
+    case 0x85:                  /* BMP085 */
+    case 0x55:                  /* BMP180 */
+      break;
+    default:                    /* ?????? */
+      while(1);
+  }
 
   /* Get the calibration parameters */
-  //get_cal_param(&calibration);
+  get_cal_param(&calibration);
 }

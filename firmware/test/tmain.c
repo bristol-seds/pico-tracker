@@ -50,6 +50,7 @@
 #include "gps_baud_error.h"
 #include "crc32_gen_buf.h"
 #include "barometric_altitude.h"
+#include "pressure_temperature.h"
 /* [new_tc] */
 
 
