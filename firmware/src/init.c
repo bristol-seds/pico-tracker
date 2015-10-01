@@ -28,6 +28,7 @@
 #include "system/port.h"
 #include "system/events.h"
 #include "system/extint.h"
+#include "sercom/i2c.h"
 #include "gps.h"
 #include "si_trx.h"
 #include "watchdog.h"
@@ -37,6 +38,7 @@
 #include "data.h"
 #include "memory.h"
 #include "telemetry.h"
+#include "bmp180.h"
 #include "init.h"
 
 /**
@@ -115,6 +117,12 @@ void init(timepulse_callback_t callback, enum init_type init_t)
 
   /* Enable the xosc on gclk1 */
   xosc_init();
+
+  /* i2c */
+  i2c_init();
+
+  /* barometer */
+  bmp180_init();
 
   if (init_t != INIT_TESTCASE) {
     /* Telemetry init depends on gclk */
