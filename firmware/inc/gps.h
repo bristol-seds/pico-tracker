@@ -47,6 +47,7 @@ struct ubx_nav_timeutc gps_get_nav_timeutc();
 uint8_t gps_is_locked(void);
 void gps_set_powersave_auto(void);
 
+void gps_usart_init_enable(uint32_t baud_rate);
 void gps_init(void);
 void usart_loopback_test(void);
 

@@ -10,6 +10,7 @@
 
 #include "backlog.h"
 #include "data.h"
+#include "aprs.h"
 
 /* Parameters in */
 struct backlog_read_tc_params {

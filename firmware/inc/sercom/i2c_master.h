@@ -44,6 +44,7 @@
 #ifndef I2C_MASTER_H_INCLUDED
 #define I2C_MASTER_H_INCLUDED
 
+#include "samd20.h"
 #include "sercom/i2c_common.h"
 #include <sercom/sercom.h>
 #include <system/pinmux.h>

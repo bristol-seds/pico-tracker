@@ -9,6 +9,7 @@
 #include "hw_config.h"
 #include "sercom/sercom.h"
 #include "sercom/usart.h"
+#include "gps.h"
 
 /* Parameters in */
 struct gps_baud_error_tc_params {
