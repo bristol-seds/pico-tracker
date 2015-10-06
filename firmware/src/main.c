@@ -42,8 +42,8 @@
 #include "backlog.h"
 #include "pips.h"
 
-#define CALLSIGN	"UBSEDS9"
-#define APRS_COMMENT	"RTTY/434.6U8N2"
+#define CALLSIGN	"UBSEDS10"
+#define APRS_COMMENT	"CONTESTIA/434.6"
 
 /**
  * Formats a UKHAS telemetry string for the given datapoint
