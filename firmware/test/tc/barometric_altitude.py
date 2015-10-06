@@ -19,6 +19,12 @@ class barometric_altitude_tc:
         self.name = self.__class__.__name__
         self.iterations = 25
 
+        # Maybe use test data from Wolfram Alpha
+        self.test_pressures = [102500, 101300, 89880, 70120, 41110, 22700,
+                               12110, 5529, 2549, 1197, 575, 287]
+        self.test_altitudes = [-100, 0, 1000, 3000, 7000, 11000, 15000,
+                               20000, 25000, 30000, 35000, 40000]
+
 
     def get_test(self):
         """Returns some suitable test parameters"""
