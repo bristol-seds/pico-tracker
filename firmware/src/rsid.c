@@ -48,7 +48,7 @@
 /**
  * Constants used in the Reed-Solomon encoding
  */
-const int rsid_squares[] = {
+const uint8_t rsid_squares[] = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,
   0, 2, 4, 6, 8,10,12,14, 9,11,13,15, 1, 3, 5, 7,
@@ -66,7 +66,7 @@ const int rsid_squares[] = {
   0,14, 5,11,10, 4,15, 1,13, 3, 8, 6, 7, 9, 2,12,
   0,15, 7, 8,14, 1, 9, 6, 5,10, 2,13,11, 4,12, 3
 };
-const int rsid_indices[] = {
+const uint8_t rsid_indices[] = {
   2, 4, 8, 9, 11, 15, 7, 14, 5, 10, 13, 3
 };
 
