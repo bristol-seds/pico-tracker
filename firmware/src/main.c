@@ -68,9 +68,10 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 
   /* sprintf - full string */
   len += sprintf(telemetry_string + len,
-                 "%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.2f,%.1f,%ld",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.2f,%.1f,%ld",
                  CALLSIGN,
                  dp->time.hour, dp->time.minute, dp->time.second,
+                 dp->time.year%100, dp->time.month, dp->time.day,
                  lat_fmt, lon_fmt, altitude, dp->satillite_count,
                  dp->battery, dp->solar, dp->temperature, dp->xosc_error);
 
