@@ -24,7 +24,6 @@
 
 #include "samd20.h"
 #include "si_trx.h"
-#include "semihosting.h"
 #include "system/port.h"
 #include "spi_bitbang.h"
 #include "si_trx_defs.h"

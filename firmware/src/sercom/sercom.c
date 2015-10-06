@@ -41,7 +41,6 @@
 
 #include "samd20.h"
 
-#include "semihosting.h"
 #include "sercom/sercom.h"
 #include "util/mrecursion.h"
 
@@ -75,9 +74,9 @@ uint8_t _sercom_get_sercom_inst_index(Sercom *const sercom_instance)
 /** Error callback for unregistered sercom interrupt handlers */
 void sercom_unregistered_handler(Sercom* const sercom_instance, uint8_t instance_index) {
   (void)sercom_instance;
+  (void)instance_index;
 
-  /* Print error message */
-  semihost_printf("Unregisted Handler for Sercom %d called! HALT", instance_index);
+  /* Unregisted Handler for Sercom %d called! HALT */
 
   while (1);
 }

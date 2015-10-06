@@ -42,7 +42,6 @@
  */
 
 #include "samd20.h"
-#include "semihosting.h"
 
 /* Initialize segments */
 extern uint32_t __fixed_start;

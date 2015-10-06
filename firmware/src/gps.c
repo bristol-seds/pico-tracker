@@ -26,7 +26,6 @@
 
 #include "samd20.h"
 
-#include "semihosting.h"
 #include "hw_config.h"
 #include "system/system.h"
 #include "system/interrupt.h"
