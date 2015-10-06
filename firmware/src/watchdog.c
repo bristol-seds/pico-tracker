@@ -47,9 +47,6 @@ idle_wait_t last_idle_t = IDLE_NONE;
 void increment_idle_counter(idle_wait_t idle_t)
 {
   switch (idle_t) {
-    case IDLE_WAIT_FOR_GPS:
-      idle_count.wait_for_gps++;
-      break;
     case IDLE_TELEMETRY_ACTIVE:
       idle_count.while_telemetry_active++;
       break;
@@ -66,8 +63,7 @@ void increment_idle_counter(idle_wait_t idle_t)
  */
 void check_idle_counters(void)
 {
-  if ((idle_count.wait_for_gps > MAXIDLE_WAIT_FOR_GPS) ||
-      (idle_count.while_telemetry_active > MAXIDLE_WHILE_TELEMETRY_ACTIVE) ||
+  if ((idle_count.while_telemetry_active > MAXIDLE_WHILE_TELEMETRY_ACTIVE) ||
       (idle_count.wait_for_next_telemetry > MAXIDLE_WAIT_FOR_NEXT_TELEMETRY)) {
     /* Oh dear. Let's die here */
     while (1);
@@ -80,7 +76,6 @@ void check_idle_counters(void)
  */
 void clear_idle_counters(void)
 {
-  SET_COUNT_MAX(wait_for_gps);
   SET_COUNT_MAX(while_telemetry_active);
   SET_COUNT_MAX(wait_for_next_telemetry);
 
@@ -118,8 +113,7 @@ void kick_the_watchdog(void)
 void idle(idle_wait_t idle_t)
 {
   /* Check valid */
-  if ((idle_t != IDLE_WAIT_FOR_GPS) &&
-      (idle_t != IDLE_TELEMETRY_ACTIVE) &&
+  if ((idle_t != IDLE_TELEMETRY_ACTIVE) &&
       (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY)) {
     /* Oh dear */
     while (1);

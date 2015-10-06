@@ -34,12 +34,6 @@
 #include "telemetry.h"
 #include "watchdog.h"
 
-/**
- * GPS timeout and retries
- */
-#define GPS_POSITION_RETRIES	5
-uint32_t ticks_delta_start;
-
 struct tracker_datapoint datapoint = {.time={0}};
 
 void xosc_measure_callback(uint32_t result)
@@ -49,10 +43,13 @@ void xosc_measure_callback(uint32_t result)
 
 
 /**
- * Collect data asynchronously
+ * Collect data asynchronously. Should be run a few seconds before the collect_data routine
  */
 void collect_data_async(void)
 {
+  /* Ask GPS for latest fix */
+  gps_update_position();
+
   /* Measure XOSC against gps timepulse */
   measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
 
@@ -60,12 +57,10 @@ void collect_data_async(void)
   start_adc_conversion_sequence();
 }
 /**
- * Collect Data synchronously and return datapoint
+ * Collects data synchronously and return datapoint
  */
 struct tracker_datapoint* collect_data(void)
 {
-  uint8_t gps_retries = 0;
-
   /**
    * ---- Analogue ----
    */
@@ -73,47 +68,34 @@ struct tracker_datapoint* collect_data(void)
   datapoint.solar = get_solar();     /* Will return zero by default */
   datapoint.temperature = telemetry_si_temperature();
 
-
   /**
    * ---- GPS ----
    */
-  do {
-    /* Record current ticks */
-    ticks_delta_start = cron_current_job_ticks();
+  if (gps_update_position_pending() || (gps_get_error_state() != GPS_NOERROR)) {
+    /* Error updating GPS position */
 
-    gps_update_position();
+    /* TODO: Hit reset on the GPS? */
+    /* In the meantime just wait for the watchdog */
+    while (1);
 
-    /* Wait for the gps update. Timeout after 3 ticks */
-    while (gps_update_position_pending() &&
-           (cron_current_job_ticks() - ticks_delta_start) <= 3) {
+  } else {                      /* GPS position updated correctly */
 
-      idle(IDLE_WAIT_FOR_GPS);
+    /* GPS Status */
+    struct ubx_nav_sol sol = gps_get_nav_sol();
+    datapoint.satillite_count = sol.payload.numSV;
+
+    /* GPS Position */
+    if (gps_is_locked()) {
+      struct ubx_nav_posllh pos = gps_get_nav_posllh();
+
+      datapoint.latitude = pos.payload.lat;
+      datapoint.longitude = pos.payload.lon;
+      datapoint.altitude = pos.payload.height;
     }
 
-    /* In the case of a error or timeout keep retrying up to 5
-     * times */
-  } while (((gps_get_error_state() != GPS_NOERROR) ||
-            (cron_current_job_ticks() - ticks_delta_start) > 3)
-           && gps_retries++ < GPS_POSITION_RETRIES);
-
-  /* Halt and wait for hw watchdog */
-  if (gps_retries >= GPS_POSITION_RETRIES) { while (1); }
-
-  /* GPS Status */
-  struct ubx_nav_sol sol = gps_get_nav_sol();
-  datapoint.satillite_count = sol.payload.numSV;
-
-  /* GPS Position */
-  if (gps_is_locked()) {
-    struct ubx_nav_posllh pos = gps_get_nav_posllh();
-
-    datapoint.latitude = pos.payload.lat;
-    datapoint.longitude = pos.payload.lon;
-    datapoint.altitude = pos.payload.height;
+    /* GPS Powersave */
+    gps_set_powersave_auto();
   }
-
-  /* GPS Powersave */
-  gps_set_powersave_auto();
 
   return &datapoint;
 }

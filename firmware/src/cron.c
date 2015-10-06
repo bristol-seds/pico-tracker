@@ -115,7 +115,7 @@ void read_gps_time(void)
   while (gps_update_time_pending() &&
          (cron_current_job_ticks() - ticks_delta_start) <= 3) {
 
-    idle(IDLE_WAIT_FOR_GPS);
+    idle(IDLE_WAIT_FOR_NEXT_TELEMETRY);
   }
 
   /* If no error and no timeout */
@@ -220,7 +220,7 @@ void do_cron(void)
   if ((time.second % 30) == 0) {
     dp = collect_data();
     memcpy(&dp->time, &time, sizeof(struct tracker_time));
-  } else if ((time.second % 30) == 20) {
+  } else if ((time.second % 30) == 25) {
     collect_data_async();
   }
 
