@@ -28,12 +28,6 @@
 #include "mfsk.h"
 #include "math/fwht.h"
 
-//#define OLIVIA_MFSK_ENCODE_TEST
-#ifdef OLIVIA_MFSK_ENCODE_TEST
-#include <stdint.h>
-#endif
-
-
 static const uint64_t scrambler_olivia		= 0xE257E6D0291574ECLL;
 static const uint64_t scrambler_contestia	= 0xEDB88320LL;
 
@@ -159,26 +153,3 @@ void contestia_mfsk_encode_block(char* block, int8_t* tones)
 
   mfsk_encode_block(block, tones, 32, bits_per_symbol, scrambler_contestia, 5);
 }
-
-
-#ifdef OLIVIA_MFSK_ENCODE_TEST
-void main(void)
-{
-  /* Define a test string */
-  char test_string[6];
-  test_string = "HELLO";
-
-  /* Define a buffer for the tones produced */
-  int8_t tones[64];
-
-
-  olivia_mfsk_encode_block(test_string, tones);
-
-
-  /* Debug printout */
-  for (int i = 0; i < sizeof(tones)/sizeof(int8_t); i++) {
-    printf("%d ", tones[i]);
-  }
-  printf("\n");
-}
-#endif
