@@ -140,6 +140,8 @@ void read_gps_time(void)
 /**
  * Pars of cron job that handles telemetry
  */
+#define TELEM_TOM	0       /* Telemetry on the 0th second */
+
 void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 {
 #ifdef TELEMETRY_USE_GEOFENCE
@@ -147,21 +149,9 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
   if (telemetry_location_tx_allow()) {
 #endif
 
-    /* RTTY */
-    if (t->second == 0 && !LOW_POWER(dp)) {
-      rtty_telemetry(dp);
-
       /* Contestia */
-    } else if (t->second == 30 && !LOW_POWER(dp)) {
+    if (t->second == TELEM_TOM) {
       contestia_telemetry(dp);
-
-      /* Low Power */
-    } else if (t->second == 0 && LOW_POWER(dp)) {
-      if ((t->minute % 2) == 0) {
-        rtty_telemetry(dp);
-      } else {
-        contestia_telemetry(dp);
-      }
 
       /* Pip */
     } else if ((t->second % 1) == 0) {
@@ -174,7 +164,7 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 
   /* APRS */
 #ifdef APRS_ENABLE
-  if ((t->minute % 2) == 0 && t->second == 0) {
+  if ((t->minute % 2) == 0 && t->second == TELEM_TOM) {
     aprs_telemetry(dp);
   }
 #endif
