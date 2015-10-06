@@ -2,29 +2,30 @@
 #define __verification__
 #endif
 
-/****************************//* adc_battery_solar_read_tc *//****************************/
+/****************************//* analogue_read_tc *//****************************/
 /**
  * Write a description of your test case here
  */
 #include "analogue.h"
 
 /* Parameters in */
-struct adc_battery_solar_read_tc_params {
+struct analogue_read_tc_params {
 
   /* Input paramters to your test case go here */
   uint32_t dummy;
 
-} adc_battery_solar_read_tc_params;
+} analogue_read_tc_params;
 /* Results out */
-struct adc_battery_solar_read_tc_results {
+struct analogue_read_tc_results {
 
   /* Result values should be populated here */
   float battery;
+  float thermistor;
   float solar;
 
-} adc_battery_solar_read_tc_results;
+} analogue_read_tc_results;
 /* Function */
-__verification__ void adc_battery_solar_read_tc(void) {
+__verification__ void analogue_read_tc(void) {
 
   /**
    * The main body of the test case goes here.
@@ -33,9 +34,10 @@ __verification__ void adc_battery_solar_read_tc(void) {
    * results structure at the end
    */
 
-  start_adc_conversion_sequence();
-  while (!is_adc_conversion_done());
+  start_adc_sequence();
+  while (!is_adc_sequence_done());
 
-  adc_battery_solar_read_tc_results.battery = get_battery();
-  adc_battery_solar_read_tc_results.solar = get_solar();
+  analogue_read_tc_results.battery = get_battery();
+  analogue_read_tc_results.thermistor = get_thermistor();
+  analogue_read_tc_results.solar = get_solar();
 }

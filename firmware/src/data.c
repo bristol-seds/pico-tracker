@@ -54,7 +54,7 @@ void collect_data_async(void)
   measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
 
   /* Analogue Measurements */
-  start_adc_conversion_sequence();
+  start_adc_sequence();
 }
 /**
  * Collects data synchronously and return datapoint

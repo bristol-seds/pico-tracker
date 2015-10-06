@@ -14,7 +14,7 @@ from random import randint
 # Test Script
 # ------------------------------------------------------------------------------
 
-class adc_battery_solar_read_tc:
+class analogue_read_tc:
     def __init__(self):
         self.name = self.__class__.__name__
         self.iterations = 20
@@ -22,7 +22,7 @@ class adc_battery_solar_read_tc:
 
     def get_test(self):
         """Returns some suitable test parameters"""
-        params = main.struct_adc_battery_solar_read_tc_params()
+        params = main.struct_analogue_read_tc_params()
 
         """
         Assign input parameters here

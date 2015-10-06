@@ -27,17 +27,25 @@
 #include "system/interrupt.h"
 #include "hw_config.h"
 
-float battery_v = 0.0, solar_v = 0.0;
+float battery_v = 0.0, thermistor_v = 0.0, solar_v = 0.0;
 
 #define ADC_GAINF		ADC_GAIN_FACTOR_DIV2
 #define ADC_GAINF_VAL		0.5
 #define ADC_RESOLUTION		ADC_RESOLUTION_12BIT
 #define ADC_RESOLUTION_VAL	4096
 
-enum {
+enum adc_phase_t {
   ADC_PHASE_NONE,
+  ADC_PHASE_START,
+#if BATTERY_ADC
   ADC_PHASE_CONVERT_BATTERY,
+#endif
+#if THERMISTOR_ADC
+  ADC_PHASE_CONVERT_THERMISTOR,
+#endif
+#if SOLAR_ADC
   ADC_PHASE_CONVERT_SOLAR,
+#endif
   ADC_PHASE_DONE,
 } adc_phase = ADC_PHASE_NONE;
 
@@ -66,11 +74,64 @@ void configure_adc(enum adc_positive_input input)
   irq_register_handler(ADC_IRQn, ADC_INT_PRIO);
 }
 
+
+
+
+/**
+ * Gets the channel to sample in the current phase
+ */
+enum adc_positive_input adc_get_channel(enum adc_phase_t phase)
+{
+  switch (phase) {
+#if BATTERY_ADC
+    case ADC_PHASE_CONVERT_BATTERY:	return BATTERY_ADC_CHANNEL;
+#endif
+#if THERMISTOR_ADC
+    case ADC_PHASE_CONVERT_THERMISTOR:	return THERMISTOR_ADC_CHANNEL;
+#endif
+#if SOLAR_ADC
+    case ADC_PHASE_CONVERT_SOLAR: 	return SOLAR_ADC_CHANNEL;
+#endif
+    default:	return SOLAR_ADC_CHANNEL;
+  }
+}
+/**
+ * Assigns the value for the current phase
+ */
+void assign_adc_value(enum adc_phase_t phase, float pin_v)
+{
+  switch (phase) {
+#if BATTERY_ADC
+    case ADC_PHASE_CONVERT_BATTERY:
+      battery_v = pin_v / BATTERY_ADC_CHANNEL_DIV;
+      break;
+#endif
+#if THERMISTOR_ADC
+    case ADC_PHASE_CONVERT_THERMISTOR:
+      thermistor_v = pin_v / THERMISTOR_ADC_CHANNEL_DIV;
+      break;
+#endif
+#if SOLAR_ADC
+    case ADC_PHASE_CONVERT_SOLAR:
+      solar_v = pin_v / SOLAR_ADC_CHANNEL_DIV;
+      break;
+#endif
+    default:
+      break;
+  }
+}
+/**
+ * Is the ADC sequence done?
+ */
+uint8_t is_adc_sequence_done(void) {
+  return (adc_phase == ADC_PHASE_DONE);
+}
+
 /**
  * Called on a ADC result ready event
  */
 void adc_complete_callback(void) {
-  uint16_t result;
+  uint16_t result = 0;
   float pin_v;
 
   adc_read(&result);
@@ -78,60 +139,44 @@ void adc_complete_callback(void) {
 
   pin_v = (float)result / (ADC_GAINF_VAL * ADC_RESOLUTION_VAL);
 
-  if (adc_phase == ADC_PHASE_CONVERT_BATTERY) {
-    /* Battery */
-
-    /* Calcuate the battery votage */
-    battery_v = pin_v / BATTERY_ADC_CHANNEL_DIV;
-
-    /* Next up: Solar */
-    configure_adc(SOLAR_ADC_CHANNEL);
-    adc_start_conversion();
-  } else {
-
-    /* Solar */
-
-    /* Calculate the solar voltage */
-    solar_v = pin_v / SOLAR_ADC_CHANNEL_DIV;
-  }
+  /* Assign this value to the correct channel */
+  assign_adc_value(adc_phase, pin_v);
 
   adc_phase++;
+  if (!is_adc_sequence_done()) { /* Another channel still to do.. */
+
+    /* Start conversion on this channel */
+    configure_adc(adc_get_channel(adc_phase));
+    adc_start_conversion();
+  }
 }
 
-void start_adc_conversion_sequence(void)
+/**
+ * Called to start the ADC sequence
+ */
+void start_adc_sequence(void)
 {
-  /* First up: Battery */
-  configure_adc(BATTERY_ADC_CHANNEL);
+  /* Move to the first sampling phase */
+  adc_phase = ADC_PHASE_START;
+  adc_phase++;
+
+  /* Start conversion on this channel */
+  configure_adc(adc_get_channel(adc_phase));
   adc_start_conversion();
-  adc_phase = ADC_PHASE_CONVERT_BATTERY;
 }
-uint8_t is_adc_conversion_done(void) {
-  return (adc_phase == ADC_PHASE_DONE);
-}
+
+/**
+ * Getters
+ */
 float get_battery(void)
 {
   return battery_v;
+}
+float get_thermistor(void)
+{
+  return thermistor_v;
 }
 float get_solar(void)
 {
   return solar_v;
 }
-
-/* float get_temperature(void) */
-/* { */
-/*   configure_adc(TEMP_ADC); */
-/*   adc_start_conversion(&adc_instance); */
-
-/*   uint16_t result; */
-
-/*   do { */
-/*     /\* Wait for conversion to be done and read out result *\/ */
-/*     } while (adc_read(&adc_instance, &result) == ADC_STATUS_BUSY); */
-
-/*   /\* 12-bit, 1V ref, div 2 *\/ */
-/*   float voltage = (float)(result * 2) / 4096; */
-/*   float millivolt_offset = (voltage - 0.667) * 1000; */
-
-/*   /\* Temperature? Uncalibrated.. *\/ */
-/*   return 25 + (millivolt_offset / 2.4); */
-/* } */
