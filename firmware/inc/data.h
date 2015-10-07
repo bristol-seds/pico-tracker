@@ -31,7 +31,7 @@
 /**
  * Structure for all the information in each datapoint.
  *
- * Size is approx 40 bytes
+ * Size is approx 52 bytes
  */
 typedef struct tracker_datapoint {
   /* Time */
@@ -46,7 +46,10 @@ typedef struct tracker_datapoint {
   /* Sensors */
   float battery;                /* Volts */
   float solar;                  /* Volts */
-  float temperature;            /* ºC */
+  float main_pressure;          /* Pa */
+  float thermistor_temperature; /* ºC */
+  float bmp180_temperature;     /* ºC */
+  float radio_die_temperature;  /* ºC */
   uint32_t xosc_error;          /* Hertz */
 
 } tracker_datapoint;

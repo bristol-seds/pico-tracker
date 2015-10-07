@@ -58,22 +58,24 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   uint32_t altitude = 0;
   uint16_t len;
 
-  lat_fmt = (double)dp->latitude / 10000000.0;  /* degrees */
-  lon_fmt = (double)dp->longitude / 10000000.0; /* degrees */
-  altitude = dp->altitude / 1000;               /* meters */
+  lat_fmt = (double)dp->latitude / 10000000.0;  /* hundred nanodeg -> degrees */
+  lon_fmt = (double)dp->longitude / 10000000.0; /* hundred nanodeg -> degrees */
+  altitude = dp->altitude / 1000;               /* mm -> meters */
 
   /* sprintf - preamble */
   memset(string, '$', dollars);
   len = dollars;
 
-  /* sprintf - full string */
+  /* sprintf - full string (approx 80 chars) */
   len += sprintf(telemetry_string + len,
-                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.2f,%.1f,%ld",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.0f,%.1f,%.1f,%.1f,%ld",
                  CALLSIGN,
                  dp->time.hour, dp->time.minute, dp->time.second,
                  dp->time.year%100, dp->time.month, dp->time.day,
                  lat_fmt, lon_fmt, altitude, dp->satillite_count,
-                 dp->battery, dp->solar, dp->temperature, dp->xosc_error);
+                 dp->solar, dp->main_pressure,
+                 dp->thermistor_temperature, dp->bmp180_temperature,
+                 dp->radio_die_temperature, dp->xosc_error);
 
   if (reduce_char_set) {
     /* Reduce character set */
@@ -85,8 +87,8 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 		 "*%04X\r",
 		 crc_checksum(telemetry_string + dollars));
 
-  /* Length should be no more than 100 characters!! */
-  if (len <= 100) {
+  /* Length should be no more than 120 characters!! */
+  if (len <= 120) {
     return len;
   }
 
