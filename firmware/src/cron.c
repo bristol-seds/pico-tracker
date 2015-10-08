@@ -207,10 +207,10 @@ void do_cron(void)
   }
 
   /* ---- Data every 30 seconds ---- */
-  if ((time.second % 30) == 0) {
+  if (time.second == TELEM_TOM) {
     dp = collect_data();
     memcpy(&dp->time, &time, sizeof(struct tracker_time));
-  } else if ((time.second % 30) == 25) {
+  } else if (time.second == ((TELEM_TOM + 55)%60)) { /* 5 seconds for async things */
     collect_data_async();
   }
 

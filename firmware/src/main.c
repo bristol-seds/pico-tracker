@@ -66,16 +66,17 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   memset(string, '$', dollars);
   len = dollars;
 
-  /* sprintf - full string (approx 80 chars) */
+  /* sprintf - full string (approx 90 chars) */
   len += sprintf(telemetry_string + len,
                  "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.0f,%.1f,%.1f,%.1f,%ld",
-                 CALLSIGN,
-                 dp->time.hour, dp->time.minute, dp->time.second,
-                 dp->time.year%100, dp->time.month, dp->time.day,
-                 lat_fmt, lon_fmt, altitude, dp->satillite_count,
-                 dp->solar, dp->main_pressure,
-                 dp->thermistor_temperature, dp->bmp180_temperature,
-                 dp->radio_die_temperature, dp->xosc_error);
+                 CALLSIGN,      /* 2+6+2+1=11 */
+                 dp->time.hour, dp->time.minute, dp->time.second, /* 2+1+2+1+2+1=9 */
+                 dp->time.year%100, dp->time.month, dp->time.day, /* 2+2+2+1=7 */
+                 lat_fmt, lon_fmt, altitude, dp->satillite_count, /* 3+1+5+1 + 4+1+5+1 + 5+1 + 2+1 = 30 */
+                 dp->solar, dp->main_pressure, /* 1+1+2+1 + 5+1 = 11 */
+                 dp->thermistor_temperature, dp->bmp180_temperature, /* 3+1+1+1 + 3+1+1+1 = 12 */
+                 dp->radio_die_temperature, dp->xosc_error); /* 3+1+1+1 + 4 = 10 */
+                 /* sum = 90 (must be less than or equal to 114) */
 
   if (reduce_char_set) {
     /* Reduce character set */
@@ -87,7 +88,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 		 "*%04X\r",
 		 crc_checksum(telemetry_string + dollars));
 
-  /* Length should be no more than 120 characters!! */
+  /* Length should be no more than 120 characters!! (24 seconds transmission time) */
   if (len <= 120) {
     return len;
   }
