@@ -120,7 +120,7 @@ void init(timepulse_callback_t callback, enum init_type init_t)
   xosc_init();
 
   /* i2c */
-  i2c_init();
+  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
 
   /* barometer */
   bmp180_init();

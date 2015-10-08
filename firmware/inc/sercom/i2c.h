@@ -89,22 +89,22 @@ static void i2c_master_read(uint8_t address, uint8_t* data, uint16_t data_length
 /**
  * I2C bus master.
  */
-static void i2c_init(void)
+static void i2c_init(SercomI2cm* sercom, uint32_t pad0_pinmux, uint32_t pad1_pinmux)
 {
   struct i2c_master_config config_i2c_master;
   i2c_master_get_config_defaults(&config_i2c_master);
 
   /* Config */
   config_i2c_master.buffer_timeout = 10000;
-  config_i2c_master.baud_rate = 10;
+  config_i2c_master.baud_rate = 100; /* 100 kBaud */
 
   /* Pinmux */
-  config_i2c_master.pinmux_pad0 = PINMUX_PA04D_SERCOM0_PAD0;
-  config_i2c_master.pinmux_pad1 = PINMUX_PA05D_SERCOM0_PAD1;
+  config_i2c_master.pinmux_pad0 = pad0_pinmux;
+  config_i2c_master.pinmux_pad1 = pad1_pinmux;
 
   /* Initialize and enable device with config. */
-   i2c_master_init(&i2c_master_instance, SERCOM0, &config_i2c_master);
-   i2c_master_enable(&i2c_master_instance);
+  i2c_master_init(&i2c_master_instance, sercom, &config_i2c_master);
+  i2c_master_enable(&i2c_master_instance);
 }
 
 #endif /* I2C_H */
