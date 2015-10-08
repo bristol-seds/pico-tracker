@@ -52,9 +52,10 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|20021121-00010C4LF.|FCI - Board-To-Board Connector, Minitek127 20021121 Series, Surface Mount, Header, 10, 1.27 mm, Gold|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
+|20021121-00010C4LF.|FCI - Board-To-Board Connector, Minitek127 20021121 Series, Surface Mount, Header, 10, 1.27 mm|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
 |742792731|WURTH ELEKTRONIK - FERRITE BEAD, 0.09OHM, 1.2A, 0402|[1961698](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1961698)|2|FB1, FB2
 |CG0603MLC-05LE|BOURNS - ESD Protection Device, 25 V, 5 V, 0603, 2|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|0|ESD1, ESD2
+|B57861S0103F040|EPCOS - THERMISTOR, 10K, 1%, NTC, RAD|[679446](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=679446)|1|External Thermistor
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
 | | Energizer Ultimate Lithium AAA | [datasheet](http://data.energizer.com/PDFs/l92.pdf) | 1 | ~1200mAh
 

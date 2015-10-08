@@ -358,6 +358,18 @@ chip</description>
 <wire x1="0.245" y1="-0.174" x2="-0.245" y2="-0.174" width="0.1016" layer="51"/>
 <smd name="1" x="-0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
 <smd name="2" x="0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
+<text x="-0.9525" y="0.5" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-0.9525" y="-0.88" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.0794" y1="-0.2381" x2="0.0794" y2="0.2381" layer="35"/>
+<rectangle x1="0.25" y1="-0.25" x2="0.5" y2="0.25" layer="51"/>
+<rectangle x1="-0.5" y1="-0.25" x2="-0.25" y2="0.25" layer="51"/>
+</package>
+<package name="_0402@1">
+<description>&lt;b&gt; 0402&lt;/b&gt;</description>
+<wire x1="-0.245" y1="0.174" x2="0.245" y2="0.174" width="0.1016" layer="51"/>
+<wire x1="0.245" y1="-0.174" x2="-0.245" y2="-0.174" width="0.1016" layer="51"/>
+<smd name="1" x="-0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
+<smd name="2" x="0.508" y="0" dx="0.6" dy="0.6" layer="1"/>
 <text x="-0.9525" y="0.7939" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
 <text x="-0.9525" y="-1.3336" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
 <rectangle x1="-0.0794" y1="-0.2381" x2="0.0794" y2="0.2381" layer="35"/>
@@ -987,6 +999,36 @@ chip</description>
 </polygon>
 <rectangle x1="-1.4605" y1="-0.8255" x2="1.4605" y2="0.8255" layer="29"/>
 </package>
+<package name="0201">
+<wire x1="-0.145" y1="0.124" x2="0.145" y2="0.124" width="0.1" layer="51"/>
+<wire x1="0.145" y1="-0.124" x2="-0.145" y2="-0.124" width="0.1" layer="51"/>
+<wire x1="-0.7866" y1="0.29" x2="0.7866" y2="0.29" width="0.0508" layer="39"/>
+<wire x1="0.7866" y1="0.29" x2="0.7866" y2="-0.29" width="0.0508" layer="39"/>
+<wire x1="0.7866" y1="-0.29" x2="-0.7866" y2="-0.29" width="0.0508" layer="39"/>
+<wire x1="-0.7866" y1="-0.29" x2="-0.7866" y2="0.29" width="0.0508" layer="39"/>
+<wire x1="-0.762" y1="-0.381" x2="-0.762" y2="0.381" width="0.1" layer="21"/>
+<wire x1="-0.762" y1="0.381" x2="0.762" y2="0.381" width="0.1" layer="21"/>
+<wire x1="0.762" y1="0.381" x2="0.762" y2="-0.381" width="0.1" layer="21"/>
+<wire x1="0.762" y1="-0.381" x2="-0.762" y2="-0.381" width="0.1" layer="21"/>
+<smd name="1" x="-0.33" y="0" dx="0.42" dy="0.54" layer="1"/>
+<smd name="2" x="0.33" y="0" dx="0.42" dy="0.54" layer="1"/>
+<text x="0.897" y="-0.0405" size="0.4064" layer="25" ratio="18">&gt;NAME</text>
+<text x="0.897" y="-0.285" size="0.2032" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.12" y1="-0.16" x2="0.12" y2="0.16" layer="35"/>
+<rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
+<rectangle x1="-0.3" y1="-0.15" x2="-0.15" y2="0.15" layer="51"/>
+</package>
+<package name="_0201">
+<wire x1="-0.245" y1="0.1044" x2="0.245" y2="0.1044" width="0.06" layer="51"/>
+<wire x1="0.245" y1="-0.1044" x2="-0.245" y2="-0.1044" width="0.06" layer="51"/>
+<smd name="1" x="-0.3048" y="0" dx="0.36" dy="0.36" layer="1"/>
+<smd name="2" x="0.3048" y="0" dx="0.36" dy="0.36" layer="1"/>
+<text x="-0.5525" y="0.35" size="0.4096" layer="25" ratio="18">&gt;NAME</text>
+<text x="-0.5525" y="-0.55" size="0.2032" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.045840625" y1="-0.142859375" x2="0.045840625" y2="0.142859375" layer="35"/>
+<rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
+<rectangle x1="-0.3" y1="-0.15" x2="-0.15" y2="0.15" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="GND">
@@ -1222,7 +1264,7 @@ chip</description>
 <technology name=""/>
 </technologies>
 </device>
-<device name="_0402" package="_0402">
+<device name="_0402" package="_0402@1">
 <connects>
 <connect gate="G$1" pin="P$1" pad="1"/>
 <connect gate="G$1" pin="P$2" pad="2"/>
@@ -1391,7 +1433,7 @@ chip</description>
 <technology name=""/>
 </technologies>
 </device>
-<device name="_0402" package="_0402">
+<device name="_0402" package="_0402@1">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
@@ -1482,7 +1524,7 @@ chip</description>
 <technology name=""/>
 </technologies>
 </device>
-<device name="_0402" package="_0402">
+<device name="_0402" package="_0402@1">
 <connects>
 <connect gate="G$1" pin="P$1" pad="1"/>
 <connect gate="G$1" pin="P$2" pad="2"/>
@@ -1726,6 +1768,24 @@ chip</description>
 </technologies>
 </device>
 <device name="_0805MP" package="_0805MP">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0201" package="0201">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0201" package="_0201">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
@@ -7389,7 +7449,7 @@ by exp-lbrs.ulp</description>
 <text x="-0.5" y="0.2" size="0.5" layer="21" font="vector" ratio="15" rot="SR270">72</text>
 <text x="0.3" y="0.4" size="0.254" layer="21" font="vector" ratio="12" rot="R270">xxxxx</text>
 <text x="-1.1" y="-2" size="0.4064" layer="25" font="vector" ratio="12" rot="R90">&gt;NAME</text>
-<text x="1.5" y="-2" size="0.4064" layer="27" font="vector" ratio="12" rot="R90">&gt;VALUES</text>
+<text x="1.5" y="-2" size="0.4064" layer="27" font="vector" ratio="12" rot="R90">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>

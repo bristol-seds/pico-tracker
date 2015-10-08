@@ -55,6 +55,7 @@
 1865279 649-202112100010C4LF 1 JTAG1
 1961698 2 FB1, FB2
 1828732 0 ESD1, ESD2
+679446 1 External Thermistor
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
 | | Energizer Ultimate Lithium AAA | [datasheet](http://data.energizer.com/PDFs/l92.pdf) | 1 | ~1200mAh
 
