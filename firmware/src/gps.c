@@ -28,6 +28,7 @@
 
 #include "hw_config.h"
 #include "system/system.h"
+#include "system/port.h"
 #include "system/interrupt.h"
 #include "sercom/sercom.h"
 #include "sercom/usart.h"
@@ -504,10 +505,41 @@ void gps_usart_init_enable(uint32_t baud_rate)
 }
 
 /**
+ * GPS reset pin
+ */
+void gps_reset_on(void)
+{
+#ifdef GPS_RESET_PIN
+  port_pin_set_output_level(GPS_RESET_PIN, 0); /* active low */
+#endif
+}
+void gps_reset_off(void)
+{
+#ifdef GPS_RESET_PIN
+  port_pin_set_output_level(GPS_RESET_PIN, 1); /* active low */
+#endif
+}
+/**
+ * Reset. Places the GPS in a RESET state
+ */
+void gps_reset(void)
+{
+#ifdef GPS_RESET_PIN
+  port_pin_set_config(GPS_RESET_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  port_pin_set_output_level(GPS_RESET_PIN, 0);	/* active low */
+#endif
+}
+/**
  * Init
  */
 void gps_init(void)
 {
+  /* Bring GPS out of reset */
+  gps_reset_on();
+
   /* Enable usart */
   gps_usart_init_enable(GPS_BAUD_RATE);
 

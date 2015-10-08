@@ -75,6 +75,7 @@ void init(timepulse_callback_t callback, enum init_type init_t)
    * --------------------------------------------------------------------------
    */
   led_reset();
+  gps_reset();
   si_trx_shutdown();
 
   /**
