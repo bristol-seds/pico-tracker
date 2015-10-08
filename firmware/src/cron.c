@@ -39,9 +39,9 @@ struct tracker_time time = {0};
 
 volatile uint32_t ticks = 0;
 
-/* Indicates telemetry wakeup hysteresis. We wait until 3.3V before transmitting */
+/* Indicates telemetry wakeup hysteresis. We wake up immediately */
 uint8_t has_telemetry_woken_up = 0;
-#define TELEMETRY_WAKEUP_TEST(d)	(d->battery > 3.3)
+#define TELEMETRY_WAKEUP_TEST(d)	(1)
 
 /* Pointer to latest datapoint */
 struct tracker_datapoint* dp;
