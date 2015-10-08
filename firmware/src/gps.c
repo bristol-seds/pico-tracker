@@ -538,7 +538,7 @@ void gps_reset(void)
 void gps_init(void)
 {
   /* Bring GPS out of reset */
-  gps_reset_on();
+  gps_reset_off();
 
   /* Enable usart */
   gps_usart_init_enable(GPS_BAUD_RATE);
