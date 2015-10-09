@@ -29,6 +29,7 @@
 #include "xosc.h"
 #include "hw_config.h"
 #include "analogue.h"
+#include "bmp180.h"
 #include "gps.h"
 #include "ubx_messages.h"
 #include "telemetry.h"
@@ -67,6 +68,13 @@ struct tracker_datapoint* collect_data(void)
   datapoint.battery = get_battery(); /* Will return zero by default */
   datapoint.solar = get_solar();     /* Will return zero by default */
   datapoint.radio_die_temperature = telemetry_si_temperature();
+
+  /**
+   * ---- Barometer ----
+   */
+  struct barometer* b = get_barometer();
+  datapoint.main_pressure = b->pressure;
+  datapoint.bmp180_temperature = (float)b->temperature;
 
   /**
    * ---- GPS ----

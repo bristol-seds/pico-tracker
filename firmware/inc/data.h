@@ -46,7 +46,7 @@ typedef struct tracker_datapoint {
   /* Sensors */
   float battery;                /* Volts */
   float solar;                  /* Volts */
-  float main_pressure;          /* Pa */
+  int32_t main_pressure;        /* Pa */
   float thermistor_temperature; /* ºC */
   float bmp180_temperature;     /* ºC */
   float radio_die_temperature;  /* ºC */

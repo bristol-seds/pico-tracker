@@ -68,7 +68,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 
   /* sprintf - full string (approx 90 chars) */
   len += sprintf(telemetry_string + len,
-                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%.0f,%.1f,%.1f,%.1f,%ld",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%d,%.1f,%.1f,%.1f,%ld",
                  CALLSIGN,      /* 2+6+2+1=11 */
                  dp->time.hour, dp->time.minute, dp->time.second, /* 2+1+2+1+2+1=9 */
                  dp->time.year%100, dp->time.month, dp->time.day, /* 2+2+2+1=7 */
