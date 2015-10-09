@@ -678,5 +678,5 @@ void spi_loopback_test(void)
   uint8_t data = spi_bitbang_transfer(0x34);
 
   /* Print result */
-  semihost_printf("Rx'ed: 0x%02x\n", data);
+  //semihost_printf("Rx'ed: 0x%02x\n", data);
 }
