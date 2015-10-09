@@ -134,6 +134,8 @@ void read_gps_time(void)
 
     /* TODO calculate epoch time here */
 
+    /* Zero out ticks as we have just set the correct time */
+    ticks = 0;
   }
 }
 
