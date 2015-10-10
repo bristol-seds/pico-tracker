@@ -30,8 +30,8 @@
 /**
  * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
  */
-#define APRS_TESTING_PARAMS
-#ifdef APRS_TESTING_PARAMS
+#define APRS_FLIGHT_PARAMS
+#ifdef APRS_FLIGHT_PARAMS /* ----------- Parameters for flight */
 
 /**
  * This should be a full licensed callsign you own. Not mine plz k thx bai

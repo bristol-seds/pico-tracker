@@ -18,6 +18,7 @@
 
 - In `aprs.h`
   - Set callsign and symbol
+  - Make sure `APRS_FLIGHT_PARAMS` is defined
 
 - In `main.c`
   - Set callsign
