@@ -7,6 +7,7 @@
  * Write a description of your test case here
  */
 #include "analogue.h"
+#include "thermistor.h"
 
 /* Parameters in */
 struct analogue_read_tc_params {
@@ -38,6 +39,6 @@ __verification__ void analogue_read_tc(void) {
   while (!is_adc_sequence_done());
 
   analogue_read_tc_results.battery = get_battery();
-  analogue_read_tc_results.thermistor = get_thermistor();
+  analogue_read_tc_results.thermistor = thermistor_voltage_to_temperature(get_thermistor());
   analogue_read_tc_results.solar = get_solar();
 }

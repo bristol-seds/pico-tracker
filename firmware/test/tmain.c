@@ -51,6 +51,7 @@
 #include "crc32_gen_buf.h"
 #include "barometric_altitude.h"
 #include "pressure_temperature.h"
+#include "thermistor_equation.h"
 /* [new_tc] */
 
 

@@ -33,6 +33,7 @@
 #include "gps.h"
 #include "ubx_messages.h"
 #include "telemetry.h"
+#include "thermistor.h"
 #include "watchdog.h"
 
 struct tracker_datapoint datapoint = {.time={0}};
@@ -68,6 +69,7 @@ struct tracker_datapoint* collect_data(void)
   datapoint.battery = get_battery(); /* Will return zero by default */
   datapoint.solar = get_solar();     /* Will return zero by default */
   datapoint.radio_die_temperature = telemetry_si_temperature();
+  datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor());
 
   /**
    * ---- Barometer ----

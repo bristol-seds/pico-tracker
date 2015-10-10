@@ -37,7 +37,8 @@ class analogue_read_tc:
         Compare result and params here, decide sth.
         Can use print_info
         """
-        print_info("Battery: {}V".format(result["battery"]))
-        print_info("Solar:   {}V".format(result["solar"]))
+        print_info("Battery:     {}V".format(result["battery"]))
+        print_info("Solar:       {}V".format(result["solar"]))
+        print_info("Thermistor:  {}degC".format(result["thermistor"]))
 
         return True
