@@ -241,8 +241,11 @@ void init_memory(void)
   /* Enable */
   spi_enable(FLASH_SERCOM);
 
+  /* Read JEDEC chip ID */
+  uint32_t jedec = mem_read_jedec_id();
+
   /* Check it's the chip we're expecting */
-  if (mem_read_jedec_id() != SST25WF040B_JEDEC_ID) {
+  if (jedec != SST25WF040B_JEDEC_ID) {
     /* Memory JEDIC ID wrong!! */
     while (1);
   }
