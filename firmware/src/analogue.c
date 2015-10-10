@@ -60,9 +60,10 @@ void configure_adc(enum adc_positive_input input)
   config_adc.reference = ADC_REFERENCE_INT1V;
   config_adc.clock_prescaler = ADC_CLOCK_PRESCALER_DIV64;
   config_adc.resolution = ADC_RESOLUTION;
-  config_adc.gain_factor = ADC_GAIN_FACTOR_DIV2;
+  config_adc.gain_factor = ADC_GAINF;
   config_adc.positive_input = input;
-  config_adc.accumulate_samples = ADC_ACCUMULATE_DISABLE;
+  config_adc.sample_length = 15; /* len = 15+1 = 16 */
+  config_adc.accumulate_samples = ADC_ACCUMULATE_SAMPLES_16;
   config_adc.run_in_standby = true;
 
   adc_init(ADC, &config_adc);
