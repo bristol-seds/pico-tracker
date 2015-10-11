@@ -142,7 +142,7 @@ void read_gps_time(void)
 /**
  * Pars of cron job that handles telemetry
  */
-#define TELEM_TOM	0       /* Telemetry on the 0th second */
+#define TELEM_TOM	30       /* Telemetry on the 30th second */
 
 void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 {

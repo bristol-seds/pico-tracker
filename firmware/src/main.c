@@ -42,7 +42,7 @@
 #include "backlog.h"
 #include "pips.h"
 
-#define CALLSIGN	"UBSEDS10"
+#define CALLSIGN	"UBSEDS11"
 #define APRS_COMMENT	"CONTESTIA/434.6"
 
 /**
