@@ -176,7 +176,7 @@
  * APRS
  */
 #define APRS_ENABLE		1
-#define APRS_USE_GEOFENCE	0
+#define APRS_USE_GEOFENCE	1
 #define APRS_POWER		RF_POWER_14dBm
 
 /**

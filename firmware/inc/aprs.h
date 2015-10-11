@@ -39,7 +39,7 @@
  * Max. 6 characters
  */
 #define APRS_CALLSIGN	"M0SBU"
-#define APRS_SSID	11
+#define APRS_SSID	10
 
 /**
  * APRS Map Symbol.  See Appendix 2: APRS Symbol Tables
