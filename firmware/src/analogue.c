@@ -63,7 +63,7 @@ void configure_adc(enum adc_positive_input input)
   config_adc.gain_factor = ADC_GAINF;
   config_adc.positive_input = input;
   config_adc.sample_length = 15; /* len = 15+1 = 16 */
-  config_adc.accumulate_samples = ADC_ACCUMULATE_SAMPLES_16;
+  config_adc.accumulate_samples = ADC_ACCUMULATE_DISABLE;
   config_adc.run_in_standby = true;
 
   adc_init(ADC, &config_adc);
