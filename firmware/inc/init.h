@@ -49,6 +49,13 @@ static inline void led_off(void)
 {
   port_pin_set_output_level(LED0_PIN, 1);	/* LED is active low */
 }
+/**
+ * Toggles the status LED
+ */
+static inline void led_toggle(void)
+{
+  port_pin_toggle_output_level(LED0_PIN);
+}
 
 void init(timepulse_callback_t callback, enum init_type init_t);
 
