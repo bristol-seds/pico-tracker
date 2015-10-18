@@ -48,7 +48,7 @@ measurement_result_t _callback;
  * connects it to GLCK1.
  */
 void xosc_init(void) {
-#ifdef USE_XOSC
+#if USE_XOSC
   system_clock_source_xosc_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
                                       SYSTEM_XOSC_STARTUP_1,
                                       true,
@@ -62,7 +62,7 @@ void xosc_init(void) {
 
   /* Configure GCLK1 to XOSC */
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
-#ifdef USE_XOSC
+#if USE_XOSC
         		     GCLK_SOURCE_XOSC,	/* Source 		*/
 #else
                              GCLK_SOURCE_OSC8M,	/* Source 		*/
