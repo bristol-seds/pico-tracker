@@ -158,6 +158,19 @@ __PACKED__ struct ubx_cfg_prt {
   } payload;
 };
 /**
+ * UBX CFG PWR Put receiver in a defined power state
+ */
+__PACKED__ struct ubx_cfg_pwr {
+  ubx_message_id_t id;
+  enum ubx_packet_state state;
+  struct {
+    uint8_t messageVersion;
+    uint8_t res0;
+    uint16_t res1;
+    uint32_t state;
+  } payload;
+};
+/**
  * UBX CFG RXM Set powersave mode
  */
 __PACKED__ struct ubx_cfg_rxm {
@@ -192,6 +205,13 @@ enum {
   UBX_GNSS_BEIDOU	= 3,
   UBX_GNSS_QZSS		= 5,
   UBX_GNSS_GLONASS	= 6,
+};
+/**
+ * UBX PWR Power States
+ */
+enum {
+  UBX_PWR_STATE_GNSS_RUNNING = 0x52554E20,
+  UBX_PWR_STATE_GNSS_STOPPED = 0x53544F50,
 };
 /**
  * UBX Powersave Modes

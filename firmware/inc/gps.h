@@ -25,6 +25,9 @@
 #ifndef GPS_H
 #define GPS_H
 
+#include "samd20.h"
+#include "hw_config.h"
+
 /**
  * GPS Error types
  */
@@ -45,6 +48,10 @@ struct ubx_nav_sol gps_get_nav_sol();
 struct ubx_nav_timeutc gps_get_nav_timeutc();
 
 uint8_t gps_is_locked(void);
+
+void gps_set_powersave(bool powersave_on);
+void gps_set_power_state(bool gnss_running);
+
 void gps_set_powersave_auto(void);
 
 void gps_usart_init_enable(uint32_t baud_rate);

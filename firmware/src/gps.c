@@ -76,6 +76,7 @@ volatile struct ubx_cfg_gnss ubx_cfg_gnss       = { .id = (UBX_CFG | (0x3E << 8)
 volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
+volatile struct ubx_cfg_pwr ubx_cfg_pwr		= { .id = (UBX_CFG | (0x57 << 8)) };
 volatile struct ubx_cfg_rxm ubx_cfg_rxm		= { .id = (UBX_CFG | (0x11 << 8)) };
 volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
 volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
@@ -90,6 +91,7 @@ volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_nav5,
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
+  (ubx_message_t*)&ubx_cfg_pwr,
   (ubx_message_t*)&ubx_cfg_rxm,
   (ubx_message_t*)&ubx_nav_posllh,
   (ubx_message_t*)&ubx_nav_timeutc,
@@ -446,6 +448,19 @@ void gps_set_powersave(bool powersave_on)
   _ubx_send_message((ubx_message_t*)&ubx_cfg_rxm,
 		    (uint8_t*)&ubx_cfg_rxm.payload,
 		    sizeof(ubx_cfg_rxm.payload));
+}
+/**
+ * Sets the PWR power state
+ */
+void gps_set_power_state(bool gnss_running)
+{
+  ubx_cfg_pwr.payload.messageVersion = 1;
+  ubx_cfg_pwr.payload.state = (gnss_running ? UBX_PWR_STATE_GNSS_RUNNING : UBX_PWR_STATE_GNSS_STOPPED);
+
+  /* Write the new settings */
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_pwr,
+		    (uint8_t*)&ubx_cfg_pwr.payload,
+		    sizeof(ubx_cfg_pwr.payload));
 }
 /**
  * Sets the powersave mode automatically based on if we're locked.
