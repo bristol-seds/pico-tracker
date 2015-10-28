@@ -14,3 +14,4 @@ Most hardware that has been built has a version number
 |v0.985.1|Added DNP/0Ω between solar and MPPT set for use when only a battery is connected|
 |v0.985.2|BMP180 -> MS5607 Pressure / Temperature Sensor|
 |v0.985.3|Smaller holes for external thermistor|
+|v0.986.0|Low Power with side mounting GPS chip antenna|
