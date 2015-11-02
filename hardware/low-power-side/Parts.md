@@ -12,7 +12,7 @@
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|2|U5, U6 TCXO Si4xxx, SE880
 |TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7 watchdog
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate, watchdog subsystem
-|MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, QFN, 8, -40 Â°C|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
+|MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
 |ADP1607ACPZN-R7|ANALOG DEVICES - BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
 |TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U11 LDO for TXCO, TPS73118
 |ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz XTAL SE880 ABS05
@@ -29,7 +29,7 @@
 | L6, L7 | DNP ||| si4xxx rx
 |EPL2010-681MLB|COILCRAFT - Surface Mount Power Inductor, EPL2010 Series, 680 nH, Â± 20%, Shielded, 0.07 ohm, 1.94 A|[2287364](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2287364)|1|L8 SE880 EPL2010-681
 |EPL2010-222MLB|COILCRAFT - Surface Mount Power Inductor, EPL2010 Series, 2.2 ÂµH, Â± 20%, Shielded, 0.222 ohm, 978 mA|[2287369](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2287369)|1|L9 SE880 EPL2010-22222
-|MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|4|R1, R2, R3, R4 10k
+|MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|6|R1, R2, R3, R4, R10, R11 10k
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R5, R6 100k
 |CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|2|R7, R9 100k 0.1%
 |ERA2AEB433X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 43 kohm, 63 mW, Â± 0.1%, 25 V|[2324785](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324785)|1|R8 43k 0.1%

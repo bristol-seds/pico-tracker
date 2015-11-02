@@ -7803,6 +7803,10 @@ Metric Code Size 5664</description>
 <part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$47" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$53" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="R10" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
+<part name="U$48" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="U$54" library="microbuilder_v3" deviceset="1.8V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8001,6 +8005,10 @@ Specified 1.76V - 1.85V</text>
 <instance part="R7" gate="G$1" x="40.64" y="127" rot="R90"/>
 <instance part="U$47" gate="G$1" x="40.64" y="119.38"/>
 <instance part="U$53" gate="G$1" x="40.64" y="147.32" rot="MR0"/>
+<instance part="R10" gate="G$1" x="256.54" y="45.72" rot="R90"/>
+<instance part="R11" gate="G$1" x="266.7" y="45.72" rot="R90"/>
+<instance part="U$48" gate="G$1" x="256.54" y="53.34" rot="MR0"/>
+<instance part="U$54" gate="G$1" x="266.7" y="53.34" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -8454,6 +8462,14 @@ Specified 1.76V - 1.85V</text>
 <wire x1="40.64" y1="139.7" x2="5.08" y2="139.7" width="0.1524" layer="91"/>
 <label x="7.62" y="139.7" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="R10" gate="G$1" pin="2"/>
+<pinref part="U$48" gate="G$1" pin="1.8V"/>
+</segment>
+<segment>
+<pinref part="R11" gate="G$1" pin="2"/>
+<pinref part="U$54" gate="G$1" pin="1.8V"/>
+</segment>
 </net>
 <net name="VDD_CORE" class="0">
 <segment>
@@ -8888,8 +8904,10 @@ Specified 1.76V - 1.85V</text>
 </segment>
 <segment>
 <pinref part="U9" gate="A" pin="SDI/SDA"/>
-<wire x1="233.68" y1="38.1" x2="248.92" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="38.1" x2="256.54" y2="38.1" width="0.1524" layer="91"/>
 <label x="238.76" y="38.1" size="1.778" layer="95"/>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="256.54" y1="38.1" x2="256.54" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -8900,8 +8918,10 @@ Specified 1.76V - 1.85V</text>
 </segment>
 <segment>
 <pinref part="U9" gate="A" pin="SCLK"/>
-<wire x1="233.68" y1="35.56" x2="248.92" y2="35.56" width="0.1524" layer="91"/>
 <label x="238.76" y="35.56" size="1.778" layer="95"/>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="233.68" y1="35.56" x2="266.7" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="35.56" x2="266.7" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RF_TANK" class="0">

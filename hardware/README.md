@@ -15,4 +15,5 @@ Most hardware that has been built has a version number
 |v0.985.2|BMP180 -> MS5607 Pressure / Temperature Sensor|
 |v0.985.3|Smaller holes for external thermistor|
 |v0.986.0|Low Power with side mounting GPS chip antenna|
+|v0.986.1|Low Power. Add 10k i2c pull ups|
 |v0.986.9|Low Power. 80x80mm Breakout|
