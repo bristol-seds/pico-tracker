@@ -40,16 +40,16 @@
  */
 typedef enum {
   MS5607_RESET			= 0x1E,
-  MS5607_CONVERT_D1_OSR_256	= 0x40,
-  MS5607_CONVERT_D1_OSR_512	= 0x42,
-  MS5607_CONVERT_D1_OSR_1024	= 0x44,
-  MS5607_CONVERT_D1_OSR_2048	= 0x46,
-  MS5607_CONVERT_D1_OSR_4096	= 0x48,
-  MS5607_CONVERT_D2_OSR_256	= 0x50,
-  MS5607_CONVERT_D2_OSR_512	= 0x52,
-  MS5607_CONVERT_D2_OSR_1024	= 0x54,
-  MS5607_CONVERT_D2_OSR_2048	= 0x56,
-  MS5607_CONVERT_D2_OSR_4096	= 0x58,
+  MS5607_CONVERT_D1_OSR_256	= 0x40, /* (delay   900us) */
+  MS5607_CONVERT_D1_OSR_512	= 0x42, /* (delay  3000us) */
+  MS5607_CONVERT_D1_OSR_1024	= 0x44, /* (delay  4000us) */
+  MS5607_CONVERT_D1_OSR_2048	= 0x46, /* (delay  6000us) */
+  MS5607_CONVERT_D1_OSR_4096	= 0x48, /* (delay 10000us) */
+  MS5607_CONVERT_D2_OSR_256	= 0x50, /* (delay   900us) */
+  MS5607_CONVERT_D2_OSR_512	= 0x52, /* (delay  3000us) */
+  MS5607_CONVERT_D2_OSR_1024	= 0x54, /* (delay  4000us) */
+  MS5607_CONVERT_D2_OSR_2048	= 0x56, /* (delay  6000us) */
+  MS5607_CONVERT_D2_OSR_4096	= 0x58, /* (delay 10000us) */
   MS5607_ADC_READ		= 0x00,
   MS5607_PROM_READ_BASE	= 0xA0,
 } ms5607_command;
@@ -58,7 +58,9 @@ typedef enum {
  * Commands to use
  */
 #define D1_COMMAND	MS5607_CONVERT_D1_OSR_4096
+#define D1_DELAY_US	10000
 #define D2_COMMAND	MS5607_CONVERT_D2_OSR_4096
+#define D2_DELAY_US	10000
 
 
 /**
@@ -67,11 +69,17 @@ typedef enum {
 struct barometer barometer;
 
 /**
+ * Check initialised correctly
+ */
+uint8_t ms5607_init_success = 0;
+
+/**
  * Calibration Values read from PROM
  */
 struct calibration {
   uint16_t manufacturer_data;
   uint16_t C1, C2, C3, C4, C5, C6;
+  uint16_t checksum;            /* need to read all 16-bits for checksum */
 } calibration;
 
 
@@ -149,12 +157,57 @@ void get_cal_param(struct calibration *c) {
   c->manufacturer_data = read_16(MS5607_PROM_READ_BASE);
 
   /* Calibration */
-  c->C1 = read_16(MS5607_PROM_READ_BASE+1);
-  c->C2 = read_16(MS5607_PROM_READ_BASE+2);
-  c->C3 = read_16(MS5607_PROM_READ_BASE+3);
-  c->C4 = read_16(MS5607_PROM_READ_BASE+4);
-  c->C5 = read_16(MS5607_PROM_READ_BASE+5);
-  c->C6 = read_16(MS5607_PROM_READ_BASE+6);
+  c->C1 = read_16(MS5607_PROM_READ_BASE+2);
+  c->C2 = read_16(MS5607_PROM_READ_BASE+4);
+  c->C3 = read_16(MS5607_PROM_READ_BASE+6);
+  c->C4 = read_16(MS5607_PROM_READ_BASE+8);
+  c->C5 = read_16(MS5607_PROM_READ_BASE+10);
+  c->C6 = read_16(MS5607_PROM_READ_BASE+12);
+
+  /* Checksum */
+  c->checksum = read_16(MS5607_PROM_READ_BASE+14);
+}
+
+
+/**
+ * Calculates the checksum of a calibration struct
+ */
+uint16_t checksum_nrem_part(uint16_t n_rem, uint16_t data)
+{
+  n_rem ^= (data >> 8);
+  for (uint8_t n_bit = 8; n_bit > 0; n_bit--) {
+    if (n_rem & (0x8000)) {
+      n_rem = (n_rem << 1) ^ 0x3000;
+    } else {
+      n_rem = (n_rem << 1);
+    }
+  }
+
+  n_rem ^= (data & 0x00FF);
+  for (uint8_t n_bit = 8; n_bit > 0; n_bit--) {
+    if (n_rem & (0x8000)) {
+      n_rem = (n_rem << 1) ^ 0x3000;
+    } else {
+      n_rem = (n_rem << 1);
+    }
+  }
+
+  return n_rem;
+}
+uint8_t calibration_checksum(struct calibration *c)
+{
+  uint16_t n_rem = 0;
+
+  n_rem = checksum_nrem_part(n_rem, c->manufacturer_data);
+  n_rem = checksum_nrem_part(n_rem, c->C1);
+  n_rem = checksum_nrem_part(n_rem, c->C2);
+  n_rem = checksum_nrem_part(n_rem, c->C3);
+  n_rem = checksum_nrem_part(n_rem, c->C4);
+  n_rem = checksum_nrem_part(n_rem, c->C5);
+  n_rem = checksum_nrem_part(n_rem, c->C6);
+  n_rem = checksum_nrem_part(n_rem, c->checksum & 0xFF00);
+
+  return (0x000F & (n_rem >> 12));
 }
 
 
@@ -166,7 +219,8 @@ uint32_t get_d1(void) {
   /* Write command */
   command(D1_COMMAND);
 
-  /* Wait?? */
+  /* Wait */
+  delay_us(D1_DELAY_US);
 
   /* Read value */
   return read_24(MS5607_ADC_READ);
@@ -179,7 +233,8 @@ uint32_t get_d2(void) {
   /* Write command */
   command(D2_COMMAND);
 
-  /* Wait?? */
+  /* Wait */
+  delay_us(D2_DELAY_US);
 
   /* Read value */
   return read_24(MS5607_ADC_READ);
@@ -191,45 +246,53 @@ uint32_t get_d2(void) {
 
 struct barometer* get_barometer(void)
 {
-  uint32_t D1 = get_d1();
-  uint32_t D2 = get_d2();
-  struct calibration* c = &calibration;
+  if (ms5607_init_success) {
+
+    uint32_t D1 = get_d1();
+    uint32_t D2 = get_d2();
+    struct calibration* c = &calibration;
 
 
-  /* Difference between actual and reference temperature */
-  int32_t dT = D2 - (c->C5 * (1 << 8));
+    /* Difference between actual and reference temperature */
+    int32_t dT = D2 - (c->C5 * (1 << 8));
 
-  /* Actual temperature (-40 85°C with 0.01°C resolution) */
-  int32_t TEMP = 2000 + (int32_t)(dT * ((double)c->C6 / (1<<23)));
+    /* Actual temperature (-40 85°C with 0.01°C resolution) */
+    int32_t TEMP = 2000 + (int32_t)(dT * ((double)c->C6 / (1<<23)));
 
 
-  /* Offset at actual temperature */
-  int64_t OFF = (c->C2 * (1<<17)) * (((double)c->C4*dT) / (1<<6));
+    /* Offset at actual temperature */
+    double OFF = ((double)c->C2 * (1<<17)) + (((double)c->C4*dT) / (1<<6));
 
-  /* Sensitivity at actual temperature */
-  int64_t SENS = (c->C1 * (1<<16)) + ((c->C3 * dT) / (1<<7));
+    /* Sensitivity at actual temperature */
+    double SENS = ((double)c->C1 * (1<<16)) + (((double)c->C3*dT) / (1<<7));
 
-  /* Second order temperature correction */
-  if (TEMP < 2000) {          /* Less than 20ºC */
+    /* Second order temperature correction */
+    if (TEMP < 2000) {          /* Less than 20ºC */
 
-    TEMP -= ((uint64_t)dT*dT / (1<<31));
-    OFF  -= 61 * ((TEMP - 2000)*(TEMP - 2000)) / (1<<4);
-    SENS -= 2 * ((TEMP - 2000)*(TEMP - 2000));
+      TEMP -= ((uint64_t)dT*dT / (1<<31));
+      OFF  -= 61 * ((double)(TEMP - 2000)*(TEMP - 2000)) / (1<<4);
+      SENS -= 2  * ((double)(TEMP - 2000)*(TEMP - 2000));
 
-    if (TEMP < -1500) {         /* Less than -15ºC */
+      if (TEMP < -1500) {         /* Less than -15ºC */
 
-      OFF  -= 15 * ((TEMP + 1500)*(TEMP + 1500));
-      SENS -=  8 * ((TEMP + 1500)*(TEMP + 1500));
+        OFF  -= 15 * ((double)(TEMP + 1500)*(TEMP + 1500));
+        SENS -=  8 * ((double)(TEMP + 1500)*(TEMP + 1500));
+      }
     }
+
+    /* Temperature compensated pressure (10 1200mbar with 0.01mbar resolution) */
+    double P = (((D1 * SENS) / (1<<21)) - OFF) / (1<<15);
+
+    barometer.temperature	= (double)TEMP / 100; /* degC */
+    barometer.pressure	= P/2;                        /* Pa. DIVIDE BY 2 FOR MS5611 ONLY */
+    barometer.valid	= 1;
+
+  } else {                      /* Barometer not initialised correctly */
+
+    barometer.temperature = 0;
+    barometer.pressure = 0;
+    barometer.valid = 0;
   }
-
-  /* Temperature compensated pressure (10 1200mbar with 0.01mbar resolution) */
-  double P = (((double)D1 * ((double)SENS / (1<<21))) - OFF) / (1<<15);
-
-
-  barometer.temperature	= (double)TEMP / 100;
-  barometer.pressure	= P / 100;
-  barometer.valid	= 1;
 
   return &barometer;
 }
@@ -241,6 +304,10 @@ void barometer_init(void)
 {
   /* Get the calibration parameters */
   get_cal_param(&calibration);
+
+  if ((calibration.checksum & 0xF) == calibration_checksum(&calibration)) {
+    ms5607_init_success = 1;
+  }
 }
 
 #endif
