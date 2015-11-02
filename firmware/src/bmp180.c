@@ -26,9 +26,12 @@
 #include <stdint.h>
 
 #include "samd20.h"
-#include "bmp180.h"
-#include "sercom/i2c.h"
+#include "hw_config.h"
 
+#if BAROMETER_TYPE_BMP180
+
+#include "barometer.h"
+#include "sercom/i2c.h"
 
 #define BMP180_ADDRESS		0xEE
 #define BMP180_REG_ID		0xD0
@@ -256,7 +259,7 @@ struct barometer* get_barometer(void)
 /**
  * Assume twi_master_init has already been called
  */
-void bmp180_init(void)
+void barometer_init(void)
 {
   /* Read ID */
   uint8_t id = read_8(BMP180_REG_ID);
@@ -273,3 +276,5 @@ void bmp180_init(void)
   /* Get the calibration parameters */
   get_cal_param(&calibration);
 }
+
+#endif

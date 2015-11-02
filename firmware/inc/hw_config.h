@@ -103,6 +103,12 @@
 #define I2C_SERCOM_SCL_PINMUX	PINMUX_PA01D_SERCOM1_PAD1
 
 /**
+ * Barometer
+ */
+#define BAROMETER_TYPE_BMP180 0
+#define BAROMETER_TYPE_MS5607 1
+
+/**
  * Battery ADC
  */
 #define BATTERY_ADC		0

@@ -1,5 +1,5 @@
 /*
- * BMP180 (also BMP085)
+ * Header for Barometer
  * Copyright (C) 2014  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -22,8 +22,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef BMP180_H
-#define BMP180_H
+#ifndef BAROMETER_H
+#define BAROMETER_H
 
 #include "samd20.h"
 
@@ -37,6 +37,6 @@ struct barometer {
 };
 
 struct barometer* get_barometer(void);
-void bmp180_init(void);
+void barometer_init(void);
 
-#endif /* BMP180_H */
+#endif /* BAROMETER_H */

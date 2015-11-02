@@ -29,7 +29,7 @@
 #include "xosc.h"
 #include "hw_config.h"
 #include "analogue.h"
-#include "bmp180.h"
+#include "barometer.h"
 #include "gps.h"
 #include "ubx_messages.h"
 #include "telemetry.h"
