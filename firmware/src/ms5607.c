@@ -26,7 +26,11 @@
 #include <stdint.h>
 
 #include "samd20.h"
-#include "ms5607.h"
+#include "hw_config.h"
+
+#if BAROMETER_TYPE_MS5607
+
+#include "barometer.h"
 #include "sercom/i2c.h"
 
 #define MS5607_ADDRESS		0xEE
@@ -160,7 +164,7 @@ void get_cal_param(struct calibration *c) {
 uint32_t get_d1(void) {
 
   /* Write command */
-  write_command(D1_COMMAND);
+  command(D1_COMMAND);
 
   /* Wait?? */
 
@@ -173,7 +177,7 @@ uint32_t get_d1(void) {
 uint32_t get_d2(void) {
 
   /* Write command */
-  write_command(D2_COMMAND);
+  command(D2_COMMAND);
 
   /* Wait?? */
 
@@ -238,3 +242,5 @@ void ms5607_init(void)
   /* Get the calibration parameters */
   get_cal_param(&calibration);
 }
+
+#endif

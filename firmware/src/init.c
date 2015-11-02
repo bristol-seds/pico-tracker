@@ -38,7 +38,7 @@
 #include "data.h"
 #include "memory.h"
 #include "telemetry.h"
-#include "bmp180.h"
+#include "barometer.h"
 #include "init.h"
 
 /**

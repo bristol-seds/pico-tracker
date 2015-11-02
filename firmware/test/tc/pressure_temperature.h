@@ -3,7 +3,7 @@
 #endif
 
 #include "samd20.h"
-#include "bmp180.h"
+#include "barometer.h"
 
 /****************************//* pressure_temperature_tc *//****************************/
 /**
