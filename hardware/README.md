@@ -17,4 +17,5 @@ Most hardware that has been built has a version number
 |v0.986.0|Low Power with side mounting GPS chip antenna|
 |v0.986.1|Low Power. Add 10k i2c pull ups|
 |v0.986.1|Low Power. Rearranged matching network|
+|v0.986.3|Low Power. Added L0'-C0' tank in paralell. Might work, should test|
 |v0.986.9|Low Power. 80x80mm Breakout|
