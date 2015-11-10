@@ -5,7 +5,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
+|ATSAMD20E17A-MU|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 128 KB, 16 KB, 32, QFN|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
 |SI4468-A2A-IM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462639](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462639) [634-SI4468-A2A-IM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4468-A2A-IM)|1|U2
 | Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory 4Mbit
@@ -13,8 +13,9 @@
 |TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7 watchdog
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate, watchdog subsystem
 |MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
-|ADP1607ACPZN-R7|ANALOG DEVICES - BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
+|ADP1607ACPZN-R7|ANALOG DEVICES - DC-DC Switching Boost Step Up Regulator, Adjustable, 800mV-3.3Vin, 1.8V-3.3Vout, 1Aout, LFCSP-6|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
 |TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U11 LDO for TXCO, TPS73118
+|LIS2DH|STMICROELECTRONICS - MEMS Accelerometer, 3-Axis, Digital, X, Y, Z, Â± 2g, Â± 4g, Â± 8g, Â± 16g, 1.71 V, 3.6 V, LGA|[2462671](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462671)|1|U12 3-axis accel I2C. Optional
 |ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz XTAL SE880 ABS05
 ----
 

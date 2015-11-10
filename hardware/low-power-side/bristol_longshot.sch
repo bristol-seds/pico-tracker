@@ -2041,6 +2041,29 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <wire x1="-0.15" y1="0.6" x2="0.15" y2="0.6" width="0.05" layer="21"/>
 <wire x1="-0.15" y1="-0.6" x2="0.15" y2="-0.6" width="0.05" layer="21"/>
 </package>
+<package name="LIS2DH">
+<wire x1="-1" y1="1" x2="1" y2="1" width="0.1" layer="21"/>
+<wire x1="1" y1="1" x2="1" y2="-1" width="0.1" layer="21"/>
+<wire x1="1" y1="-1" x2="-1" y2="-1" width="0.1" layer="21"/>
+<wire x1="-1" y1="-1" x2="-1" y2="1" width="0.1" layer="21"/>
+<smd name="3" x="-0.8125" y="-0.175" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="2" x="-0.8125" y="0.175" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="1" x="-0.8125" y="0.525" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="4" x="-0.8125" y="-0.525" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="11" x="0.8125" y="0.525" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="10" x="0.8125" y="0.175" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="9" x="0.8125" y="-0.175" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="8" x="0.8125" y="-0.525" dx="0.325" dy="0.1976" layer="1"/>
+<smd name="6" x="0" y="-0.8125" dx="0.325" dy="0.1976" layer="1" rot="R90"/>
+<smd name="7" x="0.35" y="-0.8125" dx="0.325" dy="0.1976" layer="1" rot="R90"/>
+<smd name="5" x="-0.35" y="-0.8125" dx="0.325" dy="0.1976" layer="1" rot="R90"/>
+<smd name="14" x="-0.35" y="0.8125" dx="0.325" dy="0.1976" layer="1" rot="R270"/>
+<smd name="13" x="0" y="0.8125" dx="0.325" dy="0.1976" layer="1" rot="R270"/>
+<smd name="12" x="0.35" y="0.8125" dx="0.325" dy="0.1976" layer="1" rot="R270"/>
+<circle x="-0.8" y="0.8" radius="0.1" width="0.1" layer="23"/>
+<text x="-1" y="1.2" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-1" y="-1.6" size="0.4064" layer="27">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="SAM_D20E">
@@ -2217,6 +2240,28 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <text x="-5.08" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="1" x="-5.08" y="0" visible="pad" length="short" direction="pas" swaplevel="1"/>
+</symbol>
+<symbol name="LIS2DH">
+<wire x1="-12.7" y1="15.24" x2="-12.7" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-15.24" x2="12.7" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-15.24" x2="12.7" y2="15.24" width="0.254" layer="94"/>
+<wire x1="12.7" y1="15.24" x2="-12.7" y2="15.24" width="0.254" layer="94"/>
+<pin name="GND" x="-2.54" y="-20.32" length="middle" rot="R90"/>
+<pin name="GND1" x="0" y="-20.32" length="middle" rot="R90"/>
+<pin name="GND2" x="2.54" y="-20.32" length="middle" rot="R90"/>
+<pin name="RES2" x="17.78" y="-10.16" length="middle" rot="R180"/>
+<pin name="RES1" x="17.78" y="-7.62" length="middle" rot="R180"/>
+<pin name="RES" x="17.78" y="-5.08" length="middle" rot="R180"/>
+<pin name="VDD" x="-2.54" y="20.32" length="middle" rot="R270"/>
+<pin name="VDD_IO" x="2.54" y="20.32" length="middle" rot="R270"/>
+<pin name="SCL/SPC" x="-17.78" y="5.08" length="middle"/>
+<pin name="SDA/SDI/SDO" x="-17.78" y="2.54" length="middle"/>
+<pin name="SDO/SA0" x="-17.78" y="0" length="middle"/>
+<pin name="CS" x="-17.78" y="-2.54" length="middle"/>
+<pin name="INT1" x="17.78" y="5.08" length="middle" rot="R180"/>
+<pin name="INT2" x="17.78" y="2.54" length="middle" rot="R180"/>
+<text x="-12.7" y="25.4" size="1.778" layer="95">&gt;NAME</text>
+<text x="-12.7" y="-27.94" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -2400,6 +2445,34 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <connects>
 <connect gate="A" pin="1" pad="1"/>
 <connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="LIS2DH">
+<gates>
+<gate name="G$1" symbol="LIS2DH" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="LIS2DH">
+<connects>
+<connect gate="G$1" pin="CS" pad="4"/>
+<connect gate="G$1" pin="GND" pad="9"/>
+<connect gate="G$1" pin="GND1" pad="10"/>
+<connect gate="G$1" pin="GND2" pad="11"/>
+<connect gate="G$1" pin="INT1" pad="6"/>
+<connect gate="G$1" pin="INT2" pad="5"/>
+<connect gate="G$1" pin="RES" pad="12"/>
+<connect gate="G$1" pin="RES1" pad="13"/>
+<connect gate="G$1" pin="RES2" pad="14"/>
+<connect gate="G$1" pin="SCL/SPC" pad="1"/>
+<connect gate="G$1" pin="SDA/SDI/SDO" pad="2"/>
+<connect gate="G$1" pin="SDO/SA0" pad="3"/>
+<connect gate="G$1" pin="VDD" pad="8"/>
+<connect gate="G$1" pin="VDD_IO" pad="7"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -7807,6 +7880,12 @@ Metric Code Size 5664</description>
 <part name="U$54" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="L0'" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="56nH"/>
 <part name="C0'" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="15pF"/>
+<part name="U12" library="fbri" deviceset="LIS2DH" device=""/>
+<part name="GND3" library="SparkFun" deviceset="GND" device=""/>
+<part name="GND4" library="SparkFun" deviceset="GND" device=""/>
+<part name="GND5" library="SparkFun" deviceset="GND" device=""/>
+<part name="U$66" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="U$69" library="microbuilder_v3" deviceset="1.8V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7858,6 +7937,7 @@ Using 0.1% resistors most of
 the variablity is in V_FB
 
 Specified 1.76V - 1.85V</text>
+<text x="281.94" y="99.06" size="2.54" layer="97" font="vector" ratio="11">LIS2D 3-axis accelerometer</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="147.32" y="139.7"/>
@@ -8009,6 +8089,12 @@ Specified 1.76V - 1.85V</text>
 <instance part="U$54" gate="G$1" x="266.7" y="53.34" rot="MR0"/>
 <instance part="L0'" gate="G$1" x="571.5" y="157.48"/>
 <instance part="C0'" gate="G$1" x="581.66" y="157.48" rot="R90"/>
+<instance part="U12" gate="G$1" x="317.5" y="58.42"/>
+<instance part="GND3" gate="1" x="314.96" y="35.56"/>
+<instance part="GND4" gate="1" x="317.5" y="35.56"/>
+<instance part="GND5" gate="1" x="320.04" y="35.56"/>
+<instance part="U$66" gate="G$1" x="314.96" y="88.9" rot="MR0"/>
+<instance part="U$69" gate="G$1" x="292.1" y="55.88" rot="MR270"/>
 </instances>
 <busses>
 </busses>
@@ -8300,6 +8386,18 @@ Specified 1.76V - 1.85V</text>
 <pinref part="R7" gate="G$1" pin="1"/>
 <pinref part="U$47" gate="G$1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="GND"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="GND1"/>
+<pinref part="GND4" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="GND2"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="SWDIO" class="0">
 <segment>
@@ -8463,6 +8561,26 @@ Specified 1.76V - 1.85V</text>
 <segment>
 <pinref part="R11" gate="G$1" pin="2"/>
 <pinref part="U$54" gate="G$1" pin="1.8V"/>
+</segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="VDD"/>
+<pinref part="U$66" gate="G$1" pin="1.8V"/>
+<wire x1="314.96" y1="78.74" x2="314.96" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="U12" gate="G$1" pin="VDD_IO"/>
+<wire x1="314.96" y1="83.82" x2="314.96" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="320.04" y1="78.74" x2="320.04" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="320.04" y1="83.82" x2="314.96" y2="83.82" width="0.1524" layer="91"/>
+<junction x="314.96" y="83.82"/>
+</segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="CS"/>
+<wire x1="299.72" y1="55.88" x2="297.18" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="U$69" gate="G$1" pin="1.8V"/>
+<pinref part="U12" gate="G$1" pin="SDO/SA0"/>
+<wire x1="297.18" y1="55.88" x2="294.64" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="299.72" y1="58.42" x2="297.18" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="297.18" y1="58.42" x2="297.18" y2="55.88" width="0.1524" layer="91"/>
+<junction x="297.18" y="55.88"/>
 </segment>
 </net>
 <net name="VDD_CORE" class="0">
@@ -8910,6 +9028,11 @@ Specified 1.76V - 1.85V</text>
 <pinref part="R10" gate="G$1" pin="1"/>
 <wire x1="256.54" y1="38.1" x2="256.54" y2="40.64" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="SDA/SDI/SDO"/>
+<wire x1="299.72" y1="60.96" x2="279.4" y2="60.96" width="0.1524" layer="91"/>
+<label x="281.94" y="60.96" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -8923,6 +9046,11 @@ Specified 1.76V - 1.85V</text>
 <pinref part="R11" gate="G$1" pin="1"/>
 <wire x1="233.68" y1="35.56" x2="266.7" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="35.56" x2="266.7" y2="40.64" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U12" gate="G$1" pin="SCL/SPC"/>
+<wire x1="299.72" y1="63.5" x2="279.4" y2="63.5" width="0.1524" layer="91"/>
+<label x="281.94" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF_TANK" class="0">
