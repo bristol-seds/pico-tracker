@@ -9,6 +9,7 @@ sys.path.append("./test")
 import main
 
 from random import randint
+import datetime
 
 # ------------------------------------------------------------------------------
 # Test Script
@@ -17,8 +18,8 @@ from random import randint
 class pressure_temperature_tc:
     def __init__(self):
         self.name = self.__class__.__name__
-        self.iterations = 20
-
+        self.iterations = 20000000
+        self.i = 0
 
     def get_test(self):
         """Returns some suitable test parameters"""
@@ -41,8 +42,8 @@ class pressure_temperature_tc:
         pressure = result['pressure']
         temperature = result['temperature']
 
-        print_info("Pressure: {:.1f} Pa, Temperature: {:.2f} degC".format(
-            float(pressure), float(temperature)))
+        print_info("Pressure: {:.1f} Pa, Temperature: {:.2f} degC   {}".format(
+            float(pressure), float(temperature), datetime.datetime.now().time()))
 
 
         return True
