@@ -9,6 +9,9 @@ gdbscript-custom
 # The output directory
 out/
 
+# things
+tools/
+
 # Intermediate compilation files
 *.o
 
@@ -23,3 +26,6 @@ tools/verification/ctypesgen
 
 # Compiled python
 *.pyc
+
+# Compile commands
+compile_commands.json
