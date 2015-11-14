@@ -29,6 +29,8 @@
 #include "samd20.h"
 #include "adc/adc.h"
 
+#define V0986
+
 /*
  * Convenience definitions for available GPIO modules
  */
@@ -54,7 +56,11 @@
 #ifdef XPLAINED
 #define LED0_PIN		PIN_PA14
 #else
+#ifdef V0986
+#define LED0_PIN		PIN_PA15
+#else
 #define LED0_PIN		PIN_PA16
+#endif
 #endif
 
 /**
@@ -67,6 +73,18 @@
 #define GPS_SERCOM_MIGO_PINMUX	PINMUX_PA07D_SERCOM0_PAD3
 #define GPS_SERCOM_MUX		USART_RX_3_TX_2_XCK_3
 #define GPS_GCLK		GCLK_GENERATOR_1
+
+#ifdef V0986
+#define GPS_TYPE_OSP
+#define GPS_BAUD_RATE		115200
+#define GPS_TIMEPULSE_PIN	PIN_PA04
+#define GPS_TIMEPULSE_PINMUX	PINMUX_PA04A_EIC_EXTINT4
+#define GPS_TIMEPULSE_FREQ      1
+#define GPS_TIMEPULSE_EXTINT	4
+#define GPS_SE_ON_OFF_PIN	PIN_PA05
+
+#else
+#define GPS_TYPE_UBX
 #define GPS_BAUD_RATE		9600
 #define GPS_PLATFORM_MODEL	UBX_PLATFORM_MODEL_AIRBORNE_1G
 #define GPS_TIMEPULSE_PIN	PIN_PA05
@@ -74,6 +92,9 @@
 #define GPS_TIMEPULSE_FREQ      1
 #define GPS_TIMEPULSE_EXTINT	5
 #define GPS_RESET_PIN		PIN_PA15
+
+#endif
+
 
 /**
  * USART Loopback Testing
@@ -129,8 +150,13 @@
 /**
  * Solar ADC
  */
+#ifdef V0986
+#define SOLAR_ADC		0
+#define SOLAR_ADC_PIN		PIN_PA02
+#else
 #define SOLAR_ADC		1
 #define SOLAR_ADC_PIN		PIN_PA04
+#endif
 #define SOLAR_ADC_PINMUX	PINMUX_PA04B_ADC_AIN4
 #define SOLAR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN4
 #define SOLAR_ADC_CHANNEL_DIV	1
@@ -154,6 +180,10 @@
 #define SI4xxx_GPIO1_PIN	PIN_PA25
 #define SI4xxx_GPIO1_PINMUX	PINMUX_PA25F_TC5_WO1
 #define SI4xxx_TCXO_FREQUENCY	16369000
+#ifdef V0986
+#define SI4xxx_TCXO_REG_EN_PIN	PIN_PA16
+#endif
+
 
 /**
  * RF Power @ 1.8V
