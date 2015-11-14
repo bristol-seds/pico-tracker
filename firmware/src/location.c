@@ -97,10 +97,11 @@ bool latlon_in_polygon(const int32_t* poly, uint32_t points, int32_t lon_hn, int
  */
 bool latlon_in_no_telem_zone(int32_t no_telem_outline, int32_t lon_hn, int32_t lat_hn)
 {
-  return latlon_in_polygon(
-    no_telem_outlines[no_telem_outline],
-    no_telem_outline_lengths[no_telem_outline],
-    lon_hn, lat_hn);
+  /* return latlon_in_polygon( */
+  /*   //no_telem_outlines[no_telem_outline], */
+  /*   no_telem_outline_lengths[no_telem_outline], */
+  /*   lon_hn, lat_hn); */
+  return false;
 }
 /**
  * Return if telemetry should be transmitted in the current zone
@@ -129,17 +130,17 @@ void telemetry_location_update(int32_t lon_hn, int32_t lat_hn)
   }
 
   /* Check all the no telemetry outlines */
-  while (sizeof(no_telem_outlines)/sizeof(int32_t*) != 6);
-  for (outline = 0; outline < sizeof(no_telem_outlines) / sizeof(int32_t*); outline++) {
+  /* while (sizeof(no_telem_outlines)/sizeof(int32_t*) != 6); */
+  /* for (outline = 0; outline < sizeof(no_telem_outlines) / sizeof(int32_t*); outline++) { */
 
-    if (latlon_in_no_telem_zone(outline, lon_hn, lat_hn)) { /* If we're in this zone */
+  /*   if (latlon_in_no_telem_zone(outline, lon_hn, lat_hn)) { /\* If we're in this zone *\/ */
 
-      /* Record the current outline */
-      current_no_telem_outline = outline;
+  /*     /\* Record the current outline *\/ */
+  /*     current_no_telem_outline = outline; */
 
-      return;                 /* Go home. We return the first outline we match */
-    }
-  }
+  /*     return;                 /\* Go home. We return the first outline we match *\/ */
+  /*   } */
+  /* } */
 }
 
 /**
