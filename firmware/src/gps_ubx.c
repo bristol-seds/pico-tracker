@@ -23,10 +23,11 @@
  */
 
 #include <string.h>
-
 #include "samd20.h"
-
 #include "hw_config.h"
+
+#ifdef GPS_TYPE_UBX
+
 #include "system/system.h"
 #include "system/port.h"
 #include "system/interrupt.h"
@@ -624,3 +625,5 @@ void usart_loopback_test(void)
 
   usart_disable(GPS_SERCOM);
 }
+
+#endif /* GPS_TYPE_UBX */

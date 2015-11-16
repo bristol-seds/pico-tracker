@@ -123,6 +123,7 @@ void read_gps_time(void)
       (cron_current_job_ticks() - ticks_delta_start) <= 3) {
 
     /* Time */
+#ifdef GPS_TYPE_UBX
     struct ubx_nav_timeutc gt = gps_get_nav_timeutc();
     time.year = gt.payload.year;
     time.month = gt.payload.month;
@@ -131,6 +132,7 @@ void read_gps_time(void)
     time.minute = gt.payload.min;
     time.second = gt.payload.sec;
     time.valid = gt.payload.valid;
+#endif
 
     /* TODO calculate epoch time here */
 

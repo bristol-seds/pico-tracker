@@ -91,6 +91,7 @@ struct tracker_datapoint* collect_data(void)
   } else {                      /* GPS position updated correctly */
 
     /* GPS Status */
+#ifdef GPS_TYPE_UBX
     struct ubx_nav_sol sol = gps_get_nav_sol();
     datapoint.satillite_count = sol.payload.numSV;
 
@@ -105,6 +106,7 @@ struct tracker_datapoint* collect_data(void)
 
     /* GPS Powersave */
     gps_set_powersave_auto();
+#endif  /* GPS_TYPE_UBX */
   }
 
   return &datapoint;

@@ -35,7 +35,21 @@ enum gps_error_t {
   GPS_NOERROR,
   GPS_ERROR_BAD_CHECKSUM,
   GPS_ERROR_INVALID_FRAME,
+
 };
+
+/**
+ * GPS Data
+ */
+struct gps_data_t {
+  int32_t latitude, longitude;  /* hndeg */
+  int32_t altitude;             /* mm */
+  uint8_t satillite_count;
+  uint8_t is_locked;            /* 1 = locked, 0 = not locked */
+};
+
+/* UBX ------------------------------------------------------------- */
+#ifdef GPS_TYPE_UBX
 
 void gps_update_time(void);
 void gps_update_position(void);
@@ -54,6 +68,30 @@ void gps_set_power_state(bool gnss_running);
 
 void gps_set_powersave_auto(void);
 
+#endif  /* GPS_TYPE_UBX */
+
+
+/* OSP ------------------------------------------------------------- */
+#ifdef GPS_TYPE_OSP
+
+static void gps_update_time(void){}
+static void gps_update_position(void){}
+static int gps_update_time_pending(void){return 0;}
+static int gps_update_position_pending(void){return 0;}
+enum gps_error_t gps_get_error_state(void);
+
+struct gps_data_t gps_get_data(void);
+
+static uint8_t gps_is_locked(void){return 0;}
+
+static void gps_set_power_state(bool gnss_running){}
+
+void gps_service(void);
+
+#endif  /* GPS_TYPE_OSP */
+
+
+/* Both ------------------------------------------------------------ */
 void gps_usart_init_enable(uint32_t baud_rate);
 void gps_reset(void);
 void gps_init(void);
