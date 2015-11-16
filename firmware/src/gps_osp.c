@@ -95,6 +95,11 @@ volatile struct osp_out_geodetic_navigation_data osp_out_geodetic_navigation_dat
   .state	= OSP_PACKET_WAITING,
   .max_payload_size = sizeof(osp_out_geodetic_navigation_data.payload)
 };
+volatile struct osp_out_1pps_time osp_out_1pps_time = {
+  .id		= OSP_OUT_1PPS_TIME_ID,
+  .state	= OSP_PACKET_WAITING,
+  .max_payload_size = sizeof(osp_out_1pps_time.payload)
+};
 volatile struct osp_out_gpio_state osp_out_gpio_state = {
   .id		= OSP_OUT_GPIO_STATE_ID,
   .state	= OSP_PACKET_WAITING,
@@ -125,6 +130,7 @@ volatile osp_message_t* const osp_out_messages[] = {
   (osp_message_t*)&osp_out_ephemeris_data,
   (osp_message_t*)&osp_out_oktosend,
   (osp_message_t*)&osp_out_geodetic_navigation_data,
+  (osp_message_t*)&osp_out_1pps_time,
   (osp_message_t*)&osp_out_gpio_state,
   (osp_message_t*)&osp_out_hw_config_req,
   (osp_message_t*)&osp_out_aiding_request,

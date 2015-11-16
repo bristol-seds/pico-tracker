@@ -461,6 +461,34 @@ enum osp_oktosend {
   } __PACKED__ payload;
 };
 
+
+/**
+ * 6.42 OSP 1PPS Time
+ */
+#define OSP_OUT_1PPS_TIME_ID 52
+ struct osp_out_1pps_time {
+  osp_message_id_t id;
+  enum osp_packet_state state;
+  uint16_t max_payload_size;
+  struct {
+    uint8_t hour;
+    uint8_t minute;
+    uint8_t second;
+    uint8_t day;
+    uint8_t month;
+    uint16_t year;
+    int16_t utc_offset_int;     /* s. gps offset from utc  */
+    uint32_t utc_offset_frac;   /* ns */
+    uint8_t status;             /* enum osp_1pps_status */
+  } __PACKED__ payload;
+};
+enum osp_1pps_status {
+  OSP_1PPS_VALID	= (1<<0),
+  OSP_1PPS_IS_UTCTIME	= (1<<1), /* otherwise gps time */
+  OSP_1PPS_OFFSET_VALID	= (1<<2),
+};
+
+
 /**
  * 6.55 OSP GPIO State
  */
