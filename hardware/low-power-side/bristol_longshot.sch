@@ -7721,6 +7721,73 @@ Metric Code Size 5664</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="TS3006">
+<packages>
+<package name="TDFN33-8">
+<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.1" layer="21"/>
+<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.1" layer="21"/>
+<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.25" width="0.1" layer="21"/>
+<wire x1="-1.5" y1="1.25" x2="-1.25" y2="1.5" width="0.1" layer="21"/>
+<wire x1="-1.25" y1="1.5" x2="1.5" y2="1.5" width="0.1" layer="21"/>
+<smd name="PAD" x="0" y="0" dx="2" dy="1.5" layer="1" rot="R270" cream="no"/>
+<smd name="3" x="-1.3" y="-0.325" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="2" x="-1.3" y="0.325" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="1" x="-1.3" y="0.975" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="4" x="-1.3" y="-0.975" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="5" x="1.3" y="-0.975" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="6" x="1.3" y="-0.325" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="7" x="1.3" y="0.325" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<smd name="8" x="1.3" y="0.975" dx="0.3" dy="0.5" layer="1" rot="R270"/>
+<rectangle x1="-0.65" y1="-0.65" x2="0.65" y2="0.65" layer="31" rot="R270"/>
+<text x="-1.625" y="1.95" size="0.6096" layer="25" font="vector" ratio="12">&gt;NAME</text>
+<text x="-1.625" y="-2.6" size="0.6096" layer="27" font="vector" ratio="12">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="TS3006">
+<wire x1="-10.16" y1="10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
+<wire x1="10.16" y1="10.16" x2="10.16" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-10.16" x2="-10.16" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-10.16" x2="-10.16" y2="10.16" width="0.254" layer="94"/>
+<pin name="GND" x="-5.08" y="-15.24" length="middle" rot="R90"/>
+<pin name="GND1" x="-2.54" y="-15.24" length="middle" rot="R90"/>
+<pin name="GND2" x="0" y="-15.24" length="middle" rot="R90"/>
+<pin name="GND3" x="2.54" y="-15.24" length="middle" rot="R90"/>
+<pin name="N/C" x="-15.24" y="0" length="middle"/>
+<pin name="RSET" x="15.24" y="0" length="middle" rot="R180"/>
+<pin name="FOUT" x="15.24" y="7.62" length="middle" rot="R180"/>
+<pin name="VDD" x="-15.24" y="7.62" length="middle"/>
+<text x="-10.16" y="12.7" size="2.54" layer="95" ratio="12">&gt;NAME</text>
+<text x="-10.16" y="-22.86" size="2.54" layer="96" ratio="12">&gt;VALUE</text>
+<pin name="GND4" x="5.08" y="-15.24" length="middle" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TS3006">
+<gates>
+<gate name="G$1" symbol="TS3006" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TDFN33-8">
+<connects>
+<connect gate="G$1" pin="FOUT" pad="1"/>
+<connect gate="G$1" pin="GND" pad="PAD"/>
+<connect gate="G$1" pin="GND1" pad="3"/>
+<connect gate="G$1" pin="GND2" pad="4"/>
+<connect gate="G$1" pin="GND3" pad="5"/>
+<connect gate="G$1" pin="GND4" pad="6"/>
+<connect gate="G$1" pin="N/C" pad="2"/>
+<connect gate="G$1" pin="RSET" pad="8"/>
+<connect gate="G$1" pin="VDD" pad="7"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -7766,8 +7833,6 @@ Metric Code Size 5664</description>
 <part name="U$50" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C8" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$57" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C7" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="15pF"/>
-<part name="U$58" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C9" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$3" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="L6" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="DNP"/>
@@ -7886,6 +7951,15 @@ Metric Code Size 5664</description>
 <part name="GND5" library="SparkFun" deviceset="GND" device=""/>
 <part name="U$66" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$69" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="U13" library="TS3006" deviceset="TS3006" device=""/>
+<part name="U$72" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$74" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$76" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$77" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$80" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="R12" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="4.32MΩ"/>
+<part name="U$81" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U$82" library="microbuilder_v3" deviceset="1.8V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7923,7 +7997,6 @@ DOPO: 0x0)</text>
 <text x="447.04" y="53.848" size="1.27" layer="97" font="vector" ratio="11">Set UART</text>
 <wire x1="489.204" y1="62.484" x2="489.204" y2="60.452" width="0.1524" layer="97"/>
 <wire x1="555.244" y1="72.644" x2="555.244" y2="68.072" width="0.1524" layer="97"/>
-<text x="109.22" y="139.954" size="1.27" layer="97" font="vector" ratio="11" rot="MR0">Internal pull-up</text>
 <text x="83.82" y="137.668" size="1.27" layer="97" font="vector" ratio="11">(AIN[0])</text>
 <wire x1="456.184" y1="57.404" x2="456.184" y2="52.832" width="0.1524" layer="97"/>
 <text x="477.52" y="61.468" size="1.27" layer="97" font="vector" ratio="11">Not used</text>
@@ -7938,6 +8011,10 @@ the variablity is in V_FB
 
 Specified 1.76V - 1.85V</text>
 <text x="281.94" y="99.06" size="2.54" layer="97" font="vector" ratio="11">LIS2D 3-axis accelerometer</text>
+<text x="190.5" y="122.428" size="1.27" layer="97" font="vector" ratio="11">(GCLK_IO[0])</text>
+<text x="287.02" y="175.26" size="2.54" layer="97" font="vector" ratio="11">TS3006 Low frequency clock</text>
+<text x="332.74" y="145.288" size="1.27" layer="97" font="vector" ratio="11" distance="100">Rset = 4.32MΩ
+for 25kHz output</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="147.32" y="139.7"/>
@@ -7975,8 +8052,6 @@ Specified 1.76V - 1.85V</text>
 <instance part="U$50" gate="G$1" x="561.34" y="203.2"/>
 <instance part="C8" gate="G$1" x="571.5" y="208.28"/>
 <instance part="U$57" gate="G$1" x="571.5" y="203.2"/>
-<instance part="C7" gate="G$1" x="581.66" y="208.28"/>
-<instance part="U$58" gate="G$1" x="581.66" y="203.2"/>
 <instance part="C9" gate="G$1" x="462.28" y="96.52"/>
 <instance part="U$3" gate="G$1" x="462.28" y="88.9"/>
 <instance part="L6" gate="G$1" x="571.5" y="182.88" rot="R90"/>
@@ -8095,6 +8170,15 @@ Specified 1.76V - 1.85V</text>
 <instance part="GND5" gate="1" x="320.04" y="35.56"/>
 <instance part="U$66" gate="G$1" x="314.96" y="88.9" rot="MR0"/>
 <instance part="U$69" gate="G$1" x="292.1" y="55.88" rot="MR270"/>
+<instance part="U13" gate="G$1" x="304.8" y="149.86"/>
+<instance part="U$72" gate="G$1" x="299.72" y="132.08"/>
+<instance part="U$74" gate="G$1" x="302.26" y="132.08"/>
+<instance part="U$76" gate="G$1" x="304.8" y="132.08"/>
+<instance part="U$77" gate="G$1" x="307.34" y="132.08"/>
+<instance part="U$80" gate="G$1" x="309.88" y="132.08"/>
+<instance part="R12" gate="G$1" x="327.66" y="139.7" rot="R90"/>
+<instance part="U$81" gate="G$1" x="327.66" y="132.08"/>
+<instance part="U$82" gate="G$1" x="287.02" y="165.1" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -8175,10 +8259,6 @@ Specified 1.76V - 1.85V</text>
 <segment>
 <pinref part="C8" gate="G$1" pin="P$2"/>
 <pinref part="U$57" gate="G$1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="C7" gate="G$1" pin="P$2"/>
-<pinref part="U$58" gate="G$1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="C9" gate="G$1" pin="P$2"/>
@@ -8398,6 +8478,30 @@ Specified 1.76V - 1.85V</text>
 <pinref part="U12" gate="G$1" pin="GND2"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="U13" gate="G$1" pin="GND"/>
+<pinref part="U$72" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U13" gate="G$1" pin="GND1"/>
+<pinref part="U$74" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U13" gate="G$1" pin="GND2"/>
+<pinref part="U$76" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U13" gate="G$1" pin="GND3"/>
+<pinref part="U$77" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U13" gate="G$1" pin="GND4"/>
+<pinref part="U$80" gate="G$1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R12" gate="G$1" pin="1"/>
+<pinref part="U$81" gate="G$1" pin="GND"/>
+</segment>
 </net>
 <net name="SWDIO" class="0">
 <segment>
@@ -8582,6 +8686,12 @@ Specified 1.76V - 1.85V</text>
 <wire x1="297.18" y1="58.42" x2="297.18" y2="55.88" width="0.1524" layer="91"/>
 <junction x="297.18" y="55.88"/>
 </segment>
+<segment>
+<pinref part="U$82" gate="G$1" pin="1.8V"/>
+<wire x1="287.02" y1="162.56" x2="287.02" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="U13" gate="G$1" pin="VDD"/>
+<wire x1="287.02" y1="157.48" x2="289.56" y2="157.48" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VDD_CORE" class="0">
 <segment>
@@ -8737,11 +8847,6 @@ Specified 1.76V - 1.85V</text>
 <wire x1="632.46" y1="185.42" x2="650.24" y2="185.42" width="0.1524" layer="91"/>
 <label x="635" y="185.42" size="1.778" layer="95" ratio="11"/>
 </segment>
-<segment>
-<pinref part="U1" gate="G$1" pin="PA27"/>
-<wire x1="167.64" y1="121.92" x2="182.88" y2="121.92" width="0.1524" layer="91"/>
-<label x="170.18" y="121.92" size="1.778" layer="95" ratio="11"/>
-</segment>
 </net>
 <net name="SI_GPIO1" class="0">
 <segment>
@@ -8772,18 +8877,14 @@ Specified 1.76V - 1.85V</text>
 <junction x="594.36" y="215.9"/>
 <pinref part="C25" gate="G$1" pin="P$1"/>
 <wire x1="561.34" y1="215.9" x2="571.5" y2="215.9" width="0.1524" layer="91"/>
-<wire x1="571.5" y1="215.9" x2="581.66" y2="215.9" width="0.1524" layer="91"/>
-<wire x1="581.66" y1="215.9" x2="594.36" y2="215.9" width="0.1524" layer="91"/>
+<wire x1="571.5" y1="215.9" x2="594.36" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="551.18" y1="215.9" x2="551.18" y2="213.36" width="0.1524" layer="91"/>
 <pinref part="C20" gate="G$1" pin="P$1"/>
 <wire x1="561.34" y1="215.9" x2="561.34" y2="213.36" width="0.1524" layer="91"/>
 <pinref part="C8" gate="G$1" pin="P$1"/>
 <wire x1="571.5" y1="215.9" x2="571.5" y2="213.36" width="0.1524" layer="91"/>
-<pinref part="C7" gate="G$1" pin="P$1"/>
-<wire x1="581.66" y1="215.9" x2="581.66" y2="213.36" width="0.1524" layer="91"/>
 <junction x="561.34" y="215.9"/>
 <junction x="571.5" y="215.9"/>
-<junction x="581.66" y="215.9"/>
 </segment>
 </net>
 <net name="RF_OUT" class="0">
@@ -9302,6 +9403,26 @@ Specified 1.76V - 1.85V</text>
 <segment>
 <pinref part="L0'" gate="G$1" pin="2"/>
 <pinref part="C0'" gate="G$1" pin="P$1"/>
+</segment>
+</net>
+<net name="LF_RSET" class="0">
+<segment>
+<pinref part="U13" gate="G$1" pin="RSET"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<wire x1="320.04" y1="149.86" x2="327.66" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="327.66" y1="149.86" x2="327.66" y2="144.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="LF_CLOCK" class="0">
+<segment>
+<pinref part="U13" gate="G$1" pin="FOUT"/>
+<wire x1="320.04" y1="157.48" x2="350.52" y2="157.48" width="0.1524" layer="91"/>
+<label x="325.12" y="157.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA27"/>
+<wire x1="167.64" y1="121.92" x2="187.96" y2="121.92" width="0.1524" layer="91"/>
+<label x="172.72" y="121.92" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

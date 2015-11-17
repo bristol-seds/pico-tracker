@@ -16,6 +16,7 @@
 |ADP1607ACPZN-R7|ANALOG DEVICES - DC-DC Switching Boost Step Up Regulator, Adjustable, 800mV-3.3Vin, 1.8V-3.3Vout, 1Aout, LFCSP-6|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
 |TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U11 LDO for TXCO, TPS73118
 |LIS2DH|STMICROELECTRONICS - MEMS Accelerometer, 3-Axis, Digital, X, Y, Z, Â± 2g, Â± 4g, Â± 8g, Â± 16g, 1.71 V, 3.6 V, LGA|[2462671](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462671)|1|U12 3-axis accel I2C. Optional
+| TS3006ITD833T | Precision Timer, 1.55 - 5.25 V, 8-pin TDFN | [RS Components](http://uk.rs-online.com/web/p/timer-circuits/7878172/) [Digikey](http://www.digikey.co.uk/product-detail/en/TS3006ITD833T/TS3006ITD833TCT-ND/3945111) | 1 | U13 lf clock
 |ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz XTAL SE880 ABS05
 ----
 
@@ -34,8 +35,9 @@
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R5, R6 100k
 |CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|2|R7, R9 100k 0.1%
 |ERA2AEB433X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 43 kohm, 63 mW, Â± 0.1%, 25 V|[2324785](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324785)|1|R8 43k 0.1%
+|CRCW04024M30FKED|VISHAY DRALORIC - Surface Mount Chip Resistor, Thick Film, AEC-Q200 CRCW Series, 4.3 Mohm, 63 mW, Â± 1%, 50 V|[2141118](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2141118)|1|R12 4.3M
 |GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
-|MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
+|MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|2|C2, C4 15pF
 | C5, C6 | DNP ||| si4xxx rx
 |MC0402N101J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF
 |MC0402B102K500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 1000 pF, Â± 10%, X7R, 50 V, 0402 [1005 Metric]|[1758991](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758991)|1|C11 1nF
