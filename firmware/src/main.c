@@ -33,7 +33,6 @@
 #include "mfsk.h"
 #include "watchdog.h"
 #include "telemetry.h"
-#include "timer.h"
 #include "contestia.h"
 #include "aprs.h"
 #include "location.h"
@@ -246,7 +245,7 @@ void gps_tick(uint32_t sequence)
 int main(void)
 {
   /* Init */
-  init(gps_tick, INIT_NORMAL);
+  init(INIT_NORMAL);
 
   /* Maybe do some rf tests */
   rf_tests();

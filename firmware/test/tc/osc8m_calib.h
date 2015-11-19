@@ -27,19 +27,19 @@ void osc8m_tc_xosc_measure_callback(uint32_t result) {
 
 /* Function */
 __verification__ void osc8m_calib_tc(void) {
-  struct osc8m_calibration_t calib;
+  /* struct osc8m_calibration_t calib; */
 
-  calib.process = 9;
-  calib.temperature = 28;
-  osc8m_set_calibration(calib);
+  /* calib.process = 9; */
+  /* calib.temperature = 28; */
+  /* osc8m_set_calibration(calib, 0x1); */
 
-  _result = 0;
-  measure_xosc(XOSC_MEASURE_TIMEPULSE, osc8m_tc_xosc_measure_callback);
+  /* _result = 0; */
+  /* measure_xosc(XOSC_MEASURE_TIMEPULSE, osc8m_tc_xosc_measure_callback); */
 
-  while (_result == 0);
-  osc8m_calib_tc_results.result = _result;
+  /* while (_result == 0); */
+  /* osc8m_calib_tc_results.result = _result; */
 
-  calib = osc8m_get_calibration();
-  osc8m_calib_tc_results.c_process = calib.process;
-  osc8m_calib_tc_results.c_temp = calib.temperature;
+  /* calib = osc8m_get_calibration(); */
+  /* osc8m_calib_tc_results.c_process = calib.process; */
+  /* osc8m_calib_tc_results.c_temp = calib.temperature; */
 }

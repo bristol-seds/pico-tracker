@@ -28,6 +28,7 @@
 #include "system/clock.h"
 #include "system/gclk.h"
 #include "system/interrupt.h"
+#include "system/port.h"
 #include "system/pinmux.h"
 #include "system/events.h"
 #include "system/extint.h"
@@ -44,11 +45,37 @@ enum xosc_measurement_t _measurement_t;
 measurement_result_t _callback;
 
 /**
- * Configures external oscillator, waits for it to stabilise, and
- * connects it to GLCK1.
+ * =============================================================================
+ * HF Clock              =======================================================
+ * =============================================================================
  */
-void xosc_init(void) {
+
+/**
+ * Init hf clock
+ */
+void hf_clock_init(void)
+{
+#ifdef SI4xxx_TCXO_REG_EN_PIN   /* TCXO enable/disable pin */
+  port_pin_set_config(SI4xxx_TCXO_REG_EN_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 1); /* Enable by default */
+#endif
+}
+/**
+ * Enables a high frequency clock for the system, either XOSC or OSC8M
+ */
+void hf_clock_enable(void)
+{
 #if USE_XOSC
+
+  /* Enable TCXO if required */
+#ifdef SI4xxx_TCXO_REG_EN_PIN
+  port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 1);
+#endif
+
+  /* Setup XOSC  */
   system_clock_source_xosc_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
                                       SYSTEM_XOSC_STARTUP_1,
                                       true,
@@ -57,10 +84,58 @@ void xosc_init(void) {
                                       false);
   system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC);
 
+  /* Wait for it to stabilise */
   while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC));
+
+#else
+
+  /* Setup OSC8M */
+  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_2, /* Prescaler */
+				       false,		   /* Run in Standby */
+				       false);		   /* Run on Demand */
+  system_clock_source_enable(SYSTEM_CLOCK_SOURCE_OSC8M);
+
+  /* Wait for it to stabilise */
+  while(!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_OSC8M));
+
+#endif
+}
+/**
+ * Disables the high frequency clock for the system, either XOSC or OSC8M
+ */
+void hf_clock_disable(void)
+{
+#if USE_XOSC
+
+  /* Enable XOSC */
+  system_clock_source_disable(SYSTEM_CLOCK_SOURCE_XOSC);
+
+  /* Disable TCXO to save power */
+#ifdef SI4xxx_TCXO_REG_EN_PIN
+  port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 1);
 #endif
 
-  /* Configure GCLK1 to XOSC */
+#else
+
+  /* Disable OSC8M */
+  system_clock_source_disable(SYSTEM_CLOCK_SOURCE_OSC8M);
+
+#endif
+}
+
+
+/**
+ * =============================================================================
+ * GCLK0                 =======================================================
+ * =============================================================================
+ */
+
+/**
+ * Switches GLCK0 to the HF clock
+ */
+void glck0_to_hf_clock(void)
+{
+  /* Configure GCLK0 to XOSC / OSC8M */
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
 #if USE_XOSC
         		     GCLK_SOURCE_XOSC,	/* Source 		*/
@@ -68,29 +143,80 @@ void xosc_init(void) {
                              GCLK_SOURCE_OSC8M,	/* Source 		*/
 #endif
         		     false,		/* High When Disabled	*/
-        		     XOSC_GCLK1_DIVIDE, /* Division Factor	*/
+#if USE_XOSC
+        		     XOSC_GCLK_DIVIDE, /* Division Factor	*/
+#else
+                             OSC8M_GCLK_DIVIDE,               /* Division Factor */
+#endif
         		     false,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
+}
+/**
+ * Switches GCLK0 to the LF clock
+ */
+void gclk0_to_lf_clock(void)
+{
+  /* Configure GCLK0 to GCLK_IO[0] / OSCULP32K */
+  system_gclk_gen_set_config(GCLK_GENERATOR_0,
+#if USE_LFTIMER
+                             GCLK_SOURCE_GCLKIN,	/* Source 		*/
+#else
+                             GCLK_SOURCE_OSCULP32K,	/* Source 		*/
+#endif
+        		     false,		/* High When Disabled	*/
+                             1,                 /* Division Factor */
+        		     false,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
+}
 
+/**
+ * =============================================================================
+ * GCLK1                 =======================================================
+ * =============================================================================
+ */
+
+/**
+ * Enables GCLK1. The appropriate source should have been disabled already
+ */
+void gclk1_enable(void)
+{
+  /* Configure GCLK1 */
+  system_gclk_gen_set_config(GCLK_GENERATOR_1,
+#if USE_XOSC
+        		     GCLK_SOURCE_XOSC,	/* Source 		*/
+#else
+                             GCLK_SOURCE_OSC8M,	/* Source 		*/
+#endif
+        		     false,		/* High When Disabled	*/
+#if USE_XOSC
+        		     XOSC_GCLK_DIVIDE, /* Division Factor	*/
+#else
+                             OSC8M_GCLK_DIVIDE,/* Division Factor */
+#endif
+        		     false,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
 
   /* Enable GCLK1 */
   system_gclk_gen_enable(GCLK_GENERATOR_1);
 }
 
-struct osc8m_calibration_t osc8m_get_calibration(void) {
-  uint16_t calib_word = SYSCTRL->OSC8M.bit.CALIB;
-  struct osc8m_calibration_t calib;
-
-  calib.temperature	= (calib_word >> 6) & 0x3F;
-  calib.process		= (calib_word >> 0) & 0x3F;
-
-  return calib;
+/**
+ * Disable GCLK1
+ */
+void gclk1_disable(void)
+{
+  system_gclk_gen_disable(GCLK_GENERATOR_1);
 }
-void osc8m_set_calibration(struct osc8m_calibration_t calib) {
-  uint16_t calib_word = ((calib.temperature & 0x3F) << 6) | (calib.process & 0x3F);
 
-  system_clock_source_write_calibration(SYSTEM_CLOCK_SOURCE_OSC8M, calib_word, 0x1);
-}
+
+/**
+ * =============================================================================
+ * Measurement           =======================================================
+ * =============================================================================
+ */
+
+
+
 
 
 
@@ -99,7 +225,7 @@ void osc8m_set_calibration(struct osc8m_calibration_t calib) {
  */
 /* void osc8m_event_source(void) { */
 
-/*   /\* Timer 4 runs on GCLK0 (4MHz) *\/ */
+/*   /\* Timer 4 runs on GCLK0 *\/ */
 /*   bool t4_capture_channel_enables[]    = {false, false}; */
 /*   uint32_t t4_compare_channel_values[] = {15625, 0x0000}; */
 /*   /\* Divide by 256*15625 = 1Hz events *\/ */
@@ -154,11 +280,35 @@ void osc8m_set_calibration(struct osc8m_calibration_t calib) {
 /**
  * Configure the timepulse extint to generate events
  */
-void timepulse_extint_event_source(void) {
-  /* Nothing to do: event should be already in place */
+void timepulse_extint_event_source(void)
+{
+  /* Enable extint events for timepulse */
+  struct extint_events events;
+  memset(&events, 0, sizeof(struct extint_events));
+  events.generate_event_on_detect[GPS_TIMEPULSE_EXTINT] = true;
+  extint_enable_events(&events);
+
+  /* Configure extinit channel */
+  struct extint_chan_conf config;
+  config.gpio_pin = GPS_TIMEPULSE_PIN;
+  config.gpio_pin_mux = GPS_TIMEPULSE_PINMUX;
+  config.gpio_pin_pull = EXTINT_PULL_DOWN;
+  config.wake_if_sleeping = true;
+  config.filter_input_signal = false;
+  config.detection_criteria = EXTINT_DETECT_RISING;
+  extint_chan_set_config(GPS_TIMEPULSE_EXTINT, &config);
+
+  /* We route this event to event channel 0 */
+  events_allocate(0,
+                  EVENTS_EDGE_DETECT_NONE, /* Don't care for async path */
+                  EVENTS_PATH_ASYNCHRONOUS,
+                  0xC + GPS_TIMEPULSE_EXTINT, /* External Interrupt Number */
+                  0);
+
+  extint_enable();
 }
 void timepulse_extint_event_source_disable(void) {
-  /* Nothing to do here */
+  extint_disable();
 }
 
 /**
@@ -173,7 +323,7 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
   _measurement_t = measurement_t;
   _callback = callback;
 
-  /* Timer 2 runs on GLCK1: XOSC */
+  /* Timer 2 runs on GLCK1 */
   bool t2_capture_channel_enables[]    = {true, true};
   uint32_t t2_compare_channel_values[] = {0x0000, 0x0000};
 
@@ -211,7 +361,7 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
 
   /* Configure an event source */
   switch (measurement_t) {
-  case XOSC_MEASURE_OSC8M:
+  case XOSC_MEASURE_GCLK0:
 //    osc8m_event_source();     // osc8m issues events
     break;
   case XOSC_MEASURE_TIMEPULSE:
@@ -226,7 +376,7 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
   tc_disable(TC2);
 
   switch (measurement_t) {
-  case XOSC_MEASURE_OSC8M:
+  case XOSC_MEASURE_GCLK0:
 //    osc8m_event_source_disable();
     break;
   case XOSC_MEASURE_TIMEPULSE:
@@ -235,14 +385,14 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
   }
 }
 
+
+
 /**
  * Triggered on timer 2 capture
  */
 void TC2_Handler(void) {
   uint32_t capture_value;
   uint32_t source_freq;
-
-  awake_do_watchdog();
 
   if (tc_get_status(TC2) & TC_STATUS_CHANNEL_0_MATCH) {
     tc_clear_status(TC2, TC_STATUS_CHANNEL_0_MATCH);
@@ -255,13 +405,13 @@ void TC2_Handler(void) {
       /* Measurement done. Read off data */
       capture_value = tc_get_capture_value(TC2, 0);
 
-      /* Calcuate the frequency of XOSC relative to this source */
+      /* Calcuate the frequency of GLCK1 relative to this source */
       switch (_measurement_t) {
-      case XOSC_MEASURE_OSC8M:
-        source_freq = capture_value * XOSC_GCLK1_DIVIDE;
+      case XOSC_MEASURE_GCLK0:
+        source_freq = capture_value * XOSC_GCLK_DIVIDE;
         break;
       case XOSC_MEASURE_TIMEPULSE:
-        source_freq = capture_value * XOSC_GCLK1_DIVIDE * GPS_TIMEPULSE_FREQ * 2;
+        source_freq = capture_value * XOSC_GCLK_DIVIDE * GPS_TIMEPULSE_FREQ;
         break;
       }
 

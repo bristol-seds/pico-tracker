@@ -28,19 +28,27 @@
 #include "samd20.h"
 
 enum xosc_measurement_t {
-  XOSC_MEASURE_OSC8M,
+  XOSC_MEASURE_GCLK0,
   XOSC_MEASURE_TIMEPULSE,
-};
-struct osc8m_calibration_t {
-  uint8_t temperature;
-  uint8_t process;
 };
 
 typedef void (*measurement_result_t)(uint32_t result);
 
-void xosc_init(void);
-struct osc8m_calibration_t osc8m_get_calibration(void);
-void osc8m_set_calibration(struct osc8m_calibration_t calib);
+
+/** HF Clock */
+void hf_clock_init(void);
+void hf_clock_enable(void);
+void hf_clock_disable(void);
+
+/** GCLK0 */
+void glck0_to_hf_clock(void);
+void gclk0_to_lf_clock(void);
+
+/** GCLK1 */
+void gclk1_enable(void);
+void gclk1_disable(void);
+
+/** Measurement */
 void measure_xosc(enum xosc_measurement_t measurement_t, measurement_result_t callback);
 
 #endif /* XOSC_H */

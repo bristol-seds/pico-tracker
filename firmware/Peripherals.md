@@ -42,22 +42,46 @@
 
 ## Clock Layout
 
+### At startup
+
 ```
-[osc8m] --> [glck0] +
-                    |--> [tc5]
-                    |--> [adc]
-                    |--> [extint]
-                    |--> [cm0+, apbs etc.]
+[osc8m] --> [glck0] -> [core]
+```
+
+### Once configured
+
+```
+
+                           |\
+          [osculp32k] --> 0| |
+                           | | ------+ (22-42kHz)
+lftimer -> [glck_io0] --> 1| |       |
+                           |/        |
+                            |        |
+                      *USE_LFTIMER*  |     |\
+                                     +--> 0| |
+                                           | | --> [gclk0] +--> [core]
+                                     +--> 1| |             |--> [tc4, wakeup, measure gclk0]
+                                     |     |/
+                                     |      |
+                           |\        |   awake?
+               [osc8m]--> 0| |       |
+                           | | ------+ (8MHz/16.369MHz)
+      tcxo --> [xosc] --> 1| |
+                           |/
+                            |
+                       *USE_XOSC*
 
 
-                     |\
-         [osc8m]--> 0| |
-                     | | --> [glck1] +--> [tc0, telemetry tick]
-tcxo --> [xosc] --> 1| |             |--> [tc2, count tcxo] <-- gps timepulse
-                     |/              |--> [glck7] --> [tc5] --> si_gpio1
-                      |              |--> [gps usart]
-                 *USE_XOSC*
 
 
-[osculp32k] --> [gclk4] --> [wdt]
+                               |\
+                     |\       0| |
+         [osc8m]--> 0| |       | | ---> [glck1] +--> [tc0, telemetry tick]
+                     | | ---> 1| |              |--> [tc2, count tcxo]
+tcxo --> [xosc] --> 1| |       |/               |--> [glck7] --> [tc5, aprs carrier] --> si_gpio1
+                     |/         |               |--> [adc]
+                      |      awake?             |--> [extint]
+                 *USE_XOSC*                     |--> [sercoms]
+
 ```

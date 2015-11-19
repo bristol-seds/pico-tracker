@@ -33,7 +33,6 @@
 #include "si_trx.h"
 #include "watchdog.h"
 #include "xosc.h"
-#include "timer.h"
 #include "cron.h"
 #include "data.h"
 #include "memory.h"
@@ -68,7 +67,7 @@ void powermananger_init(void)
  * Internal initialisation
  * =============================================================================
  */
-void init(timepulse_callback_t callback, enum init_type init_t)
+void init(enum init_type init_t)
 {
   /**
    * Reset to get the system in a safe state
@@ -131,10 +130,6 @@ void init(timepulse_callback_t callback, enum init_type init_t)
 
     /* GPS init */
     gps_init();
-
-    /* Enable timer interrupt and event channel */
-    timepulse_extint_init();
-    timepulse_set_callback(callback);
   }
 
   /* Initialise Si4060 interface */

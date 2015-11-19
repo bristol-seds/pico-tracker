@@ -195,11 +195,17 @@
 #define RF_POWER_8dBm		36
 
 /**
- * XOSC
+ * LF Clock
+ */
+#define USE_LFTIMER		0
+
+/**
+ * HF Clock
  */
 #define USE_XOSC		1
 #define XOSC_FREQUENCY		16369000
-#define XOSC_GCLK1_DIVIDE	2
+#define XOSC_GCLK_DIVIDE	2         /* ~8MHz on GCLK*/
+#define OSC8M_GCLK_DIVIDE	1         /* ~8MHz on GCLK */
 
 /**
  * Telemetry

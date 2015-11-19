@@ -28,7 +28,6 @@
 #include "samd20.h"
 #include "hw_config.h"
 #include "system/port.h"
-#include "timer.h"
 
 enum init_type {
   INIT_NORMAL,
@@ -57,6 +56,6 @@ static inline void led_toggle(void)
   port_pin_toggle_output_level(LED0_PIN);
 }
 
-void init(timepulse_callback_t callback, enum init_type init_t);
+void init(enum init_type init_t);
 
 #endif /* INIT_H */
