@@ -40,9 +40,11 @@
 #include "data.h"
 #include "backlog.h"
 #include "pips.h"
+#include "xosc.h"
+#include "sequencer.h"
 
-#define CALLSIGN	"UBSEDS11"
-#define APRS_COMMENT	"CONTESTIA/434.6"
+#define CALLSIGN	"UBSEDSX"
+#define APRS_COMMENT	""
 
 /**
  * Formats a UKHAS telemetry string for the given datapoint
@@ -179,16 +181,12 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
     aprs_set_datapoint(dp);
 
     /* Set comment */
-    if ((dp->time.minute % 4) == 0) {
-      aprs_set_comment(APRS_COMMENT);
-    } else {
-      backlog_dp_ptr = get_backlog();
+    backlog_dp_ptr = get_backlog();
 
-      if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
-        aprs_set_backlog_comment(backlog_dp_ptr);
-      } else {
-        aprs_set_comment(APRS_COMMENT);
-      }
+    if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
+      aprs_set_backlog_comment(backlog_dp_ptr);
+    } else {
+      aprs_set_comment(APRS_COMMENT);
     }
 
     /* Set frequency */
@@ -213,29 +211,30 @@ void aprs_telemetry(struct tracker_datapoint* dp) {
  */
 void pips_telemetry(void)
 {
-  /* Pips */
-  telemetry_start(TELEMETRY_PIPS, 0xFFFF);
+  /* Pips - 10 seconds */
+  telemetry_start(TELEMETRY_PIPS, 10);
 
   while (telemetry_active()) {
     idle(IDLE_TELEMETRY_ACTIVE);
   }
 }
 
-volatile uint8_t tick_flag = 0;
 
+
+volatile uint8_t run_flag = 1;  /* run immediately after init */
 /**
- * Called at 1Hz by the GPS
+ * Called on each tick of the low frequency clock
  */
-void gps_tick(uint32_t sequence)
+void lf_tick(uint32_t tick)
 {
-  /* Sequence not used */
-  (void)sequence;
+  /*  When we're due to run again */
+  if (tick >= 20) {
+    /* Stop */
+    lf_tick_stop();
 
-  /* Update internal time representation */
-  cron_tick();
-
-  /* Raise the tick flag */
-  tick_flag = 1;
+    /* Raise the run flag */
+    run_flag = 1;
+  }
 }
 
 /**
@@ -244,6 +243,8 @@ void gps_tick(uint32_t sequence)
  */
 int main(void)
 {
+  uint32_t n = 1;
+
   /* Init */
   init(INIT_NORMAL);
 
@@ -253,10 +254,29 @@ int main(void)
   /* Turn off LED to show we've initialised correctly */
   led_off();
 
+  /* Clocks off */
+  gclk0_to_lf_clock();
+  hf_clock_disable();
+
   while (1) {
-    /* Run cron job */
-    if (tick_flag) {
-      tick_flag = 0; do_cron();
+    /* Run sequence */
+    if (run_flag) {
+      run_flag = 0;
+
+      /* Clocks on */
+      hf_clock_enable();
+      gclk0_to_hf_clock();
+
+      /* Run */
+      //run_sequencer(n++);
+      for (int i = 0; i < 100*1000; i++);
+
+      /* Clocks off */
+      gclk0_to_lf_clock();
+      hf_clock_disable();
+
+      /* LF timing */
+      lf_tick_start();
     }
 
     /* Idle */

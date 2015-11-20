@@ -70,6 +70,13 @@ void powermananger_init(void)
 void init(enum init_type init_t)
 {
   /**
+   * OSC8M should be considered unstable due to the temperature range. Therefore
+   * we need to switch to a stable low frequency clock right away.
+   * --------------------------------------------------------------------------
+   */
+  gclk0_to_lf_clock();
+
+  /**
    * Reset to get the system in a safe state
    * --------------------------------------------------------------------------
    */
@@ -82,13 +89,14 @@ void init(enum init_type init_t)
    * ---------------------------------------------------------------------------
    */
 
+  /* Switch to high frequency clock */
+  hf_clock_init();
+  hf_clock_enable();
+  gclk0_to_hf_clock();
+  gclk1_init();
+
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
-
-  /* Up the clock rate to 4MHz */
-  system_clock_source_osc8m_set_config(SYSTEM_OSC8M_DIV_2, /* Prescaler */
-				       false,		   /* Run in Standby */
-				       false);		   /* Run on Demand */
 
   /* Restart the GCLK Module */
   system_gclk_init();

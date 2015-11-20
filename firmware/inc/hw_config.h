@@ -256,6 +256,8 @@
 
 #define TC2_INT_PRIO		3 /* XOSC Measure Timer */
 
+#define TC4_INT_PRIO		3 /* LF timer */
+
 #define ADC_INT_PRIO		3 /* ADC */
 
 #endif /* HW_CONFIG_H */

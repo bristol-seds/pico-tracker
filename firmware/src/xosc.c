@@ -112,7 +112,7 @@ void hf_clock_disable(void)
 
   /* Disable TCXO to save power */
 #ifdef SI4xxx_TCXO_REG_EN_PIN
-  port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 1);
+  port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 0);
 #endif
 
 #else
@@ -133,10 +133,10 @@ void hf_clock_disable(void)
 /**
  * Switches GLCK0 to the HF clock
  */
-void glck0_to_hf_clock(void)
+void gclk0_to_hf_clock(void)
 {
   /* Configure GCLK0 to XOSC / OSC8M */
-  system_gclk_gen_set_config(GCLK_GENERATOR_1,
+  system_gclk_gen_set_config(GCLK_GENERATOR_0,
 #if USE_XOSC
         		     GCLK_SOURCE_XOSC,	/* Source 		*/
 #else
@@ -148,7 +148,7 @@ void glck0_to_hf_clock(void)
 #else
                              OSC8M_GCLK_DIVIDE,               /* Division Factor */
 #endif
-        		     false,		/* Run in standby	*/
+        		     true,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
 }
 /**
@@ -165,7 +165,7 @@ void gclk0_to_lf_clock(void)
 #endif
         		     false,		/* High When Disabled	*/
                              1,                 /* Division Factor */
-        		     false,		/* Run in standby	*/
+        		     true,		/* Run in standby	*/
         		     false);		/* Output Pin Enable	*/
 }
 
@@ -176,9 +176,9 @@ void gclk0_to_lf_clock(void)
  */
 
 /**
- * Enables GCLK1. The appropriate source should have been disabled already
+ * Inits GCLK1. The appropriate source should have been enabled already
  */
-void gclk1_enable(void)
+void gclk1_init(void)
 {
   /* Configure GCLK1 */
   system_gclk_gen_set_config(GCLK_GENERATOR_1,
@@ -199,15 +199,6 @@ void gclk1_enable(void)
   /* Enable GCLK1 */
   system_gclk_gen_enable(GCLK_GENERATOR_1);
 }
-
-/**
- * Disable GCLK1
- */
-void gclk1_disable(void)
-{
-  system_gclk_gen_disable(GCLK_GENERATOR_1);
-}
-
 
 /**
  * =============================================================================
@@ -423,5 +414,59 @@ void TC2_Handler(void) {
       /* Disable measurement system */
       measure_xosc_disable(_measurement_t);
     }
+  }
+}
+
+
+
+/**
+ * =============================================================================
+ * LF Tick               =======================================================
+ * =============================================================================
+ */
+void lf_tick(uint32_t tick);
+uint32_t lf_tick_count;
+
+void lf_tick_start(void) {
+
+  /* Timer 4 runs on GCLK0 */
+  bool t4_capture_channel_enables[]    = {false, false};
+  uint32_t t4_compare_channel_values[] = {64, 0x0000};
+  /* Divide by 64*256 = 16384 */
+  tc_init(TC4,
+	  GCLK_GENERATOR_0,
+	  TC_COUNTER_SIZE_16BIT,
+	  TC_CLOCK_PRESCALER_DIV256,
+	  TC_WAVE_GENERATION_MATCH_FREQ,
+	  TC_RELOAD_ACTION_GCLK,
+	  TC_COUNT_DIRECTION_UP,
+	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
+	  false,			/* Oneshot  */
+	  true,				/* Run in standby */
+	  0x0000,			/* Initial value */
+	  0x0000,			/* Top value */
+	  t4_capture_channel_enables,	/* Capture Channel Enables */
+	  t4_compare_channel_values);	/* Compare Channels Values */
+
+
+  /* Enable Interrupt */
+  TC4->COUNT16.INTENSET.reg = TC_INTENSET_MC0;
+  irq_register_handler(TC4_IRQn, TC4_INT_PRIO); /* Low Priority */
+
+  tc_enable(TC4);
+  tc_start_counter(TC4);
+
+  lf_tick_count = 1;
+}
+void lf_tick_stop(void) {
+  tc_stop_counter(TC4);
+  tc_disable(TC4);
+}
+void TC4_Handler(void)
+{
+  if (tc_get_status(TC4) & TC_STATUS_CHANNEL_0_MATCH) {
+    tc_clear_status(TC4, TC_STATUS_CHANNEL_0_MATCH);
+
+    lf_tick(lf_tick_count++);
   }
 }

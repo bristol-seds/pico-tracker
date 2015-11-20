@@ -1,6 +1,6 @@
 /*
- * Functions for controlling and calibrating against the external oscillator
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Data collection and transmission sequence
+ * Copyright (C) 2015  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,37 +21,11 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-#ifndef XOSC_H
-#define XOSC_H
+#ifndef SEQUENCER_H
+#define SEQUENCER_H
 
 #include "samd20.h"
 
-enum xosc_measurement_t {
-  XOSC_MEASURE_GCLK0,
-  XOSC_MEASURE_TIMEPULSE,
-};
+void run_sequencer(uint32_t n);
 
-typedef void (*measurement_result_t)(uint32_t result);
-
-
-/** HF Clock */
-void hf_clock_init(void);
-void hf_clock_enable(void);
-void hf_clock_disable(void);
-
-/** GCLK0 */
-void gclk0_to_hf_clock(void);
-void gclk0_to_lf_clock(void);
-
-/** GCLK1 */
-void gclk1_init(void);
-
-/** Measurement */
-void measure_xosc(enum xosc_measurement_t measurement_t, measurement_result_t callback);
-
-/** LF Timer */
-void lf_tick_start(void);
-void lf_tick_stop(void);
-
-#endif /* XOSC_H */
+#endif /* SEQUENCER_H */
