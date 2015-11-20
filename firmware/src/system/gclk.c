@@ -138,6 +138,7 @@ void system_gclk_gen_set_config(const uint8_t generator,
   cpu_irq_enter_critical();
 
   /* Select the correct generator */
+  *((uint8_t*)&GCLK->GENCTRL.reg) = generator;
   *((uint8_t*)&GCLK->GENDIV.reg) = generator;
 
   /* Write the new generator configuration */
