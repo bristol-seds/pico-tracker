@@ -178,7 +178,7 @@ void cron_telemetry(struct tracker_time* t, struct tracker_datapoint* dp)
 
     if (gps_is_locked()) { /* Don't bother with no GPS */
 
-      telemetry_location_update(dp->longitude, dp->latitude);
+      telemetry_location_update(dp->latitude, dp->longitude);
     }
   }
 }

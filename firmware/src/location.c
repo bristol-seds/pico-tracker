@@ -108,7 +108,7 @@ bool latlon_in_telemetry(int32_t telemetry_outline, int32_t lat_hn, int32_t lon_
   return latlon_in_polygon(
     telemetry_outlines[telemetry_outline],
     telemetry_outline_lengths[telemetry_outline],
-    lon_hn, lat_hn);
+    lat_hn, lon_hn);
 }
 /**
  * Updates the current telemetry location based on the current lat/lon
@@ -123,7 +123,7 @@ void location_telemetry_update(int32_t lat_hn, int32_t lon_hn)
   if (current_telemetry_outline >= 0) {
 
     /* Are we still in this outline? */
-    if (latlon_in_telemetry(current_telemetry_outline, lon_hn, lat_hn)) {
+    if (latlon_in_telemetry(current_telemetry_outline, lat_hn, lon_hn)) {
       return; /* Still in this outline */
     }
   }
@@ -131,7 +131,7 @@ void location_telemetry_update(int32_t lat_hn, int32_t lon_hn)
   /* Check all the telemetry outlines */
   for (outline = 0; outline < sizeof(telemetry_outlines) / sizeof(int32_t*); outline++) {
 
-    if (latlon_in_telemetry(outline, lon_hn, lat_hn)) { /* If we're in this zone */
+    if (latlon_in_telemetry(outline, lat_hn, lon_hn)) { /* If we're in this zone */
 
       /* Record the current outline */
       current_telemetry_outline = outline;
@@ -159,7 +159,7 @@ bool latlon_in_aprs_zone(int32_t aprs_zone, int32_t aprs_zone_outline,
   return latlon_in_polygon(
     aprs_zones[aprs_zone].outlines[aprs_zone_outline],
     aprs_zones[aprs_zone].outline_lengths[aprs_zone_outline],
-    lon_hn, lat_hn);
+    lat_hn, lon_hn);
 }
 /**
  * Updates the aprs location based on the current lat/lon
@@ -176,7 +176,7 @@ void location_aprs_zone_update(int32_t lat_hn, int32_t lon_hn)
     /* Are we still in the outline? */
     if (latlon_in_aprs_zone(current_aprs_zone,
                             current_aprs_zone_outline,
-                            lon_hn, lat_hn)) {                    /* Still in outline */
+                            lat_hn, lon_hn)) {                    /* Still in outline */
       return;
     }
   }
@@ -186,7 +186,7 @@ void location_aprs_zone_update(int32_t lat_hn, int32_t lon_hn)
 
     for (outline = 0; outline < aprs_zones[z].outline_count; outline++) {
 
-      if (latlon_in_aprs_zone(z, outline, lon_hn, lat_hn)) { /* If we're in this zone */
+      if (latlon_in_aprs_zone(z, outline, lat_hn, lon_hn)) { /* If we're in this zone */
 
         /* Record the current zone */
         current_aprs_zone = z;
@@ -215,7 +215,7 @@ bool latlon_in_no_aprs(int32_t no_aprs_outline, int32_t lat_hn, int32_t lon_hn)
   return latlon_in_polygon(
     no_aprs_outlines[no_aprs_outline],
     no_aprs_outline_lengths[no_aprs_outline],
-    lon_hn, lat_hn);
+    lat_hn, lon_hn);
 }
 /**
  * Updates the current no_aprs location based on the current lat/lon
@@ -230,7 +230,7 @@ void location_no_aprs_update(int32_t lat_hn, int32_t lon_hn)
   if (current_no_aprs_outline >= 0) {
 
     /* Are we still in this outline? */
-    if (latlon_in_no_aprs(current_no_aprs_outline, lon_hn, lat_hn)) {
+    if (latlon_in_no_aprs(current_no_aprs_outline, lat_hn, lon_hn)) {
       return; /* Still in this outline */
     }
   }
@@ -238,7 +238,7 @@ void location_no_aprs_update(int32_t lat_hn, int32_t lon_hn)
   /* Check all the no_aprs outlines */
   for (outline = 0; outline < sizeof(no_aprs_outlines) / sizeof(int32_t*); outline++) {
 
-    if (latlon_in_no_aprs(outline, lon_hn, lat_hn)) { /* If we're in this zone */
+    if (latlon_in_no_aprs(outline, lat_hn, lon_hn)) { /* If we're in this zone */
 
       /* Record the current outline */
       current_no_aprs_outline = outline;

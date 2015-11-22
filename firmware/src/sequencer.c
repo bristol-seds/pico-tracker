@@ -46,8 +46,8 @@ void pips_telemetry(void);
 void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 {
   /* Always update geofence */
-  location_telemetry_update(dp->longitude, dp->latitude);
-  location_aprs_update(dp->longitude, dp->latitude);
+  location_telemetry_update(dp->latitude, dp->longitude);
+  location_aprs_update(dp->latitude, dp->longitude);
 
   /* Telemetry */
 #if TELEMETRY_ENABLE
