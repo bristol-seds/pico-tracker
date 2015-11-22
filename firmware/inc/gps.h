@@ -82,16 +82,9 @@ void gps_set_powersave_auto(void);
 /* OSP ------------------------------------------------------------- */
 #ifdef GPS_TYPE_OSP
 
-static void gps_update_time(void){}
-static void gps_update_position(void){}
-static int gps_update_time_pending(void){return 0;}
-static int gps_update_position_pending(void){return 0;}
 enum gps_error_t gps_get_error_state(void);
 
 struct gps_data_t gps_get_data(void);
-
-static uint8_t gps_is_locked(void){return 0;}
-
 
 void gps_setup(void);
 

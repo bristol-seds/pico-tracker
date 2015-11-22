@@ -119,26 +119,13 @@ void init(enum init_type init_t)
    */
 
   /* Memory */
-  //init_memory();
-
-  /* Timepulse_Pin */
-  port_pin_set_config(GPS_TIMEPULSE_PIN,
-		      PORT_PIN_DIR_INPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-
-
-
-
-
-
-
+  init_memory();
 
   /* i2c */
-//  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
+  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
 
   /* barometer */
-//  bmp180_init();
+  barometer_init();
 
   if (init_t != INIT_TESTCASE) {
     /* Telemetry init depends on gclk */

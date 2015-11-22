@@ -305,6 +305,7 @@ void barometer_init(void)
   /* Get the calibration parameters */
   get_cal_param(&calibration);
 
+  /* Confirm checksum */
   if ((calibration.checksum & 0xF) == calibration_checksum(&calibration)) {
     ms5607_init_success = 1;
   }

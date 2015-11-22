@@ -52,6 +52,7 @@
 #include "barometric_altitude.h"
 #include "pressure_temperature.h"
 #include "thermistor_equation.h"
+#include "gps_poll.h"
 /* [new_tc] */
 
 
@@ -86,7 +87,7 @@ __verification__ void tc_main(void) {
 __verification__ void tc_prelude(void) {
 
   /* Initialise the board */
-  init(NULL, INIT_TESTCASE);
+  init(INIT_TESTCASE);
 
   /* Proceed to main loop */
   tc_main();

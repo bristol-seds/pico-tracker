@@ -953,6 +953,14 @@ void gps_reset(void)
 #endif
 }
 
+void gps_init_timepulse_pin(void) {
+  /* Timepulse_Pin */
+  port_pin_set_config(GPS_TIMEPULSE_PIN,
+		      PORT_PIN_DIR_INPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+}
+
 /**
  * Init
  */
@@ -960,6 +968,9 @@ void gps_init(void)
 {
   /* Bring GPS out of reset */
   gps_reset_off();
+
+  /* Timepulse pin - does that go here? */
+  gps_init_timepulse_pin();
 
   /* Enable usart */
   gps_usart_init_enable(GPS_BAUD_RATE);
@@ -972,6 +983,7 @@ void gps_init(void)
   /* Close any currently running session. Doesn't do anything unless debugging */
   osp_reset_initialise();
 
+  /* Setup sequence */
   gps_setup();
 }
 

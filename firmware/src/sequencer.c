@@ -67,7 +67,6 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 
 
 
-
   /* APRS */
 #ifdef APRS_ENABLE
 
@@ -83,16 +82,16 @@ void run_sequencer(uint32_t n)
   struct tracker_datapoint* dp;
 
   /* Async data */
-  //collect_data_async();
+  collect_data_async();
 
   /* Data */
   dp = collect_data();
 
   /* Telemetry  */
-  //telemetry_sequence(dp, n);
+  telemetry_sequence(dp, n);
 
   /* Backlog */
   if ((n % 60) == 10) {         /* Every hour, start ten minutes */
-  //record_backlog(dp);
+    record_backlog(dp);
   }
 }

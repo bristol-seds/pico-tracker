@@ -49,11 +49,14 @@ void xosc_measure_callback(uint32_t result)
  */
 void collect_data_async(void)
 {
+#ifdef GPS_TYPE_UBX
   /* Ask GPS for latest fix */
   gps_update_position();
+#endif  /* GPS_TYPE_UBX */
 
   /* Measure XOSC against gps timepulse */
-  measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+  //measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+  /* NOT IN USE CURRENTLY */
 
   /* Analogue Measurements */
   start_adc_sequence();
@@ -80,20 +83,20 @@ struct tracker_datapoint* collect_data(void)
 #endif /* GPS_TYPE_OSP */
 
 
-  /* /\** */
-  /*  * ---- Analogue ---- */
-  /*  *\/ */
-  /* datapoint.battery = get_battery(); /\* Will return zero by default *\/ */
-  /* datapoint.solar = get_solar();     /\* Will return zero by default *\/ */
-  /* datapoint.radio_die_temperature = telemetry_si_temperature(); */
-  /* datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor()); */
+  /**
+   * ---- Analogue ----
+   */
+  datapoint.battery = get_battery(); /* Will return zero by default */
+  datapoint.solar = get_solar();     /* Will return zero by default */
+  datapoint.radio_die_temperature = telemetry_si_temperature();
+  datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor());
 
-  /* /\** */
-  /*  * ---- Barometer ---- */
-  /*  *\/ */
-  /* struct barometer* b = get_barometer(); */
-  /* datapoint.main_pressure = b->pressure; */
-  /* datapoint.bmp180_temperature = (float)b->temperature; */
+  /**
+   * ---- Barometer ----
+   */
+  struct barometer* b = get_barometer();
+  datapoint.main_pressure = b->pressure;
+  datapoint.bmp180_temperature = (float)b->temperature;
 
 #ifdef GPS_TYPE_UBX
   /**

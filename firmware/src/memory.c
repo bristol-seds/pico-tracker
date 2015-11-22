@@ -51,6 +51,11 @@ enum memory_status_register {
 #define SST25WF040B_JEDEC_ID	0x00131662
 
 /**
+ * Check initialised correctly
+ */
+uint8_t memory_init_success = 0;
+
+/**
  * Chip Select. Active Low (High = Inactive, Low = Active)
  */
 #define _mem_cs_enable()			\
@@ -61,12 +66,12 @@ enum memory_status_register {
 /**
  * Transfers `length` bytes
  */
-#define _mem_transfer(tx_data, rx_data, length)		\
+#define _mem_transfer(tx_data, rx_data, length)                         \
   spi_transceive_buffer_wait(FLASH_SERCOM, tx_data, rx_data, length)
 /**
  * Reads `length` bytes
  */
-#define _mem_read(rx_data, length)			\
+#define _mem_read(rx_data, length)                              \
   spi_read_buffer_wait(FLASH_SERCOM, rx_data, length, 0xFF)
 /**
  * Writes `length` bytes
@@ -107,21 +112,6 @@ void _mem_wait_for_done(void)
 }
 
 /**
- * Simple Commands
- */
-void mem_chip_erase(void)
-{
-  _mem_single_command(MEM_OP_WRITE_ENABLE);
-
-  _mem_single_command(MEM_OP_CHIP_ERASE);
-
-  /* Wait */
-  _mem_wait_for_done();
-
-  _mem_single_command(MEM_OP_WRITE_DISABLE);
-}
-
-/**
  * JEDEC ID
  */
 uint32_t mem_read_jedec_id(void)
@@ -138,6 +128,31 @@ uint32_t mem_read_jedec_id(void)
 
   return rx_data_32;
 }
+
+
+/**
+ * =============================================================================
+ * Public Methods ==============================================================
+ * =============================================================================
+ */
+
+/**
+ * Simple Commands
+ */
+void mem_chip_erase(void)
+{
+  if (memory_init_success) {
+    _mem_single_command(MEM_OP_WRITE_ENABLE);
+
+    _mem_single_command(MEM_OP_CHIP_ERASE);
+
+    /* Wait */
+    _mem_wait_for_done();
+
+    _mem_single_command(MEM_OP_WRITE_DISABLE);
+  }
+}
+
 /**
  * Read memory
  */
@@ -145,16 +160,18 @@ void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length)
 {
   uint8_t tx_data[4];
 
-  address &= MEMORY_MASK;
+  if (memory_init_success) {
+    address &= MEMORY_MASK;
 
-  tx_data[0] = MEM_OP_READ;
-  tx_data[1] = (address >> 16) & 0xFF;
-  tx_data[2] = (address >> 8) & 0xFF;
-  tx_data[3] = (address >> 0) & 0xFF;
+    tx_data[0] = MEM_OP_READ;
+    tx_data[1] = (address >> 16) & 0xFF;
+    tx_data[2] = (address >> 8) & 0xFF;
+    tx_data[3] = (address >> 0) & 0xFF;
 
-  _mem_cs_enable();
-  _mem_write(tx_data, 4); _mem_read(buffer, length);
-  _mem_cs_disable();
+    _mem_cs_enable();
+    _mem_write(tx_data, 4); _mem_read(buffer, length);
+    _mem_cs_disable();
+  }
 }
 /**
  * Write 256-byte page. Address should be page aligned
@@ -163,51 +180,57 @@ void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
 {
   uint8_t tx_data[4];
 
-  _mem_single_command(MEM_OP_WRITE_ENABLE);
+  if (memory_init_success) {
+    _mem_single_command(MEM_OP_WRITE_ENABLE);
 
-  address &= PAGE_MASK;
+    address &= PAGE_MASK;
 
-  tx_data[0] = MEM_OP_PAGE_PROGRAM;
-  tx_data[1] = (address >> 16) & 0xFF;
-  tx_data[2] = (address >> 8) & 0xFF;
-  tx_data[3] = (address >> 0) & 0xFF;
+    tx_data[0] = MEM_OP_PAGE_PROGRAM;
+    tx_data[1] = (address >> 16) & 0xFF;
+    tx_data[2] = (address >> 8) & 0xFF;
+    tx_data[3] = (address >> 0) & 0xFF;
 
-  _mem_cs_enable();
-  _mem_write(tx_data, 4); _mem_write(buffer, length);
-  _mem_cs_disable();
+    _mem_cs_enable();
+    _mem_write(tx_data, 4); _mem_write(buffer, length);
+    _mem_cs_disable();
 
-  /* Wait */
-  _mem_wait_for_done();
+    /* Wait */
+    _mem_wait_for_done();
 
-  _mem_single_command(MEM_OP_WRITE_DISABLE);
+    _mem_single_command(MEM_OP_WRITE_DISABLE);
+  }
 }
 /**
  * Erase sector
-na */
+ */
 void mem_erase_sector(uint32_t address)
 {
   uint8_t tx_data[4];
 
-  _mem_single_command(MEM_OP_WRITE_ENABLE);
+  if (memory_init_success) {
+    _mem_single_command(MEM_OP_WRITE_ENABLE);
 
-  address &= SECTOR_MASK;
+    address &= SECTOR_MASK;
 
-  tx_data[0] = MEM_OP_ERASE_4KB_SECTOR;
-  tx_data[1] = (address >> 16) & 0xFF;
-  tx_data[2] = (address >> 8) & 0xFF;
-  tx_data[3] = (address >> 0) & 0xFF;
+    tx_data[0] = MEM_OP_ERASE_4KB_SECTOR;
+    tx_data[1] = (address >> 16) & 0xFF;
+    tx_data[2] = (address >> 8) & 0xFF;
+    tx_data[3] = (address >> 0) & 0xFF;
 
-  _mem_cs_enable();
-  _mem_write(tx_data, 4);
-  _mem_cs_disable();
+    _mem_cs_enable();
+    _mem_write(tx_data, 4);
+    _mem_cs_disable();
 
-  /* Wait */
-  _mem_wait_for_done();
+    /* Wait */
+    _mem_wait_for_done();
 
-  _mem_single_command(MEM_OP_WRITE_DISABLE);
+    _mem_single_command(MEM_OP_WRITE_DISABLE);
+  }
 }
 
-
+/**
+ * Initialise
+ */
 void init_memory(void)
 {
   /* Configure the SPI select pin */
@@ -238,15 +261,20 @@ void init_memory(void)
   	   FLASH_SERCOM_SCK_PINMUX,	/** Pinmux */
   	   PINMUX_UNUSED);		/** Pinmux */
 
-  /* Enable */
   spi_enable(FLASH_SERCOM);
 
-  /* Read JEDEC chip ID */
-  uint32_t jedec = mem_read_jedec_id();
+  /* Make 3 attempts to read JEDEC chip ID */
+  for (int i = 0; i < 3; i++) {
 
-  /* Check it's the chip we're expecting */
-  if (jedec != SST25WF040B_JEDEC_ID) {
-    /* Memory JEDIC ID wrong!! */
-    while (1);
+    uint32_t jedec = mem_read_jedec_id();
+
+    /* Check it's the chip we're expecting */
+    if (jedec == SST25WF040B_JEDEC_ID) {
+      /* Correct ID */
+      memory_init_success = 1;
+      return;
+    }
   }
+
+  /* Memory failed to initialise correctly */
 }
