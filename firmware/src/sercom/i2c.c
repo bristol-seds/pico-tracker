@@ -49,7 +49,7 @@ void i2c_master_write(uint8_t address, uint8_t* data, uint16_t data_length)
   while (i2c_master_write_packet_wait(&i2c_master_instance, &packet) !=
          STATUS_OK) {
     /* Increment timeout counter and check if timed out. */
-    if (timeout++ > 1000) {
+    if (timeout++ > 20) {
       break;
     }
   }
@@ -76,7 +76,7 @@ void i2c_master_read(uint8_t address, uint8_t* data, uint16_t data_length)
   while (i2c_master_read_packet_wait(&i2c_master_instance, &packet) !=
          STATUS_OK) {
     /* Increment timeout counter and check if timed out. */
-    if (timeout++ > 1000) {
+    if (timeout++ > 20) {
       break;
     }
   }
