@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 #include "samd20.h"
-#include "geofence_aprs.h"
+#include "geofence_aprs_zones.h"
 
 
 /* Longitude,  Latitude */

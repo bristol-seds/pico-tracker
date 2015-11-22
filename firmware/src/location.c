@@ -27,12 +27,15 @@
 #include <math.h>
 
 #include "samd20.h"
-#include "geofence_aprs.h"
+#include "geofence_aprs_zones.h"
 #include "geofence_telemetry.h"
+#include "geofence_no_aprs.h"
+
+int32_t current_no_telem_outline = -1;
 
 int32_t current_aprs_zone = -2, current_aprs_zone_outline = -2;
 
-int32_t current_no_telem_outline = -1;
+
 
 #define polyX(i)	(poly[(i*2)+0])
 #define polyY(i)	(poly[(i*2)+1])
