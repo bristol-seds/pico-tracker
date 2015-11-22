@@ -20,4 +20,5 @@ Most hardware that has been built has a version number
 |v0.986.3|Low Power. Added L0'-C0' tank in paralell. Might work, should test|
 |v0.986.4|Low Power. Added LIS2D accelerometer. Optional|
 |v0.986.5|Low Power. Added TS3006 low power lf clock|
+|v0.986.6|Low Power. Added LDO for GPS, LF TCXO for GPS|
 |v0.986.9|Low Power. 80x80mm Breakout|
