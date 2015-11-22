@@ -15,8 +15,7 @@
 2362660 1 U9 MS5607 Pressure / Temperature sensor
 2254940 1 U10 Boost Reg ADP1607
 1135388 2 U11, U12 LDO for TXCO, GPS TPS73118
-| TS3006ITD833T | Precision Timer, 1.55 - 5.25 V, 8-pin TDFN | [RS Components](http://uk.rs-online.com/web/p/timer-circuits/7878172/) [Digikey](http://www.digikey.co.uk/product-detail/en/TS3006ITD833T/TS3006ITD833TCT-ND/3945111) | 1 | U13 lf clock
-| SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 1 | U14 gps lf tcxo clock
+| SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U13, U14 lf clock, gps lf tcxo clock
 2462671 1 U15 3-axis accel I2C. Optional
 ----
 
@@ -35,7 +34,7 @@
 2331442 2 R5, R6 100k
 2483832 2 R7, R9 100k 0.1%
 2324785 1 R8 43k 0.1%
-2141118 1 R12 4.3M
+9232516 1 R12 0R
 1828874 2 C1, C3 8.2pF
 1758945 2 C2, C4 15pF
 | C5, C6 | DNP ||| si4xxx rx
