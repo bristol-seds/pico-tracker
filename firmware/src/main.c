@@ -77,7 +77,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
                  dp->solar, dp->main_pressure, /* 1+1+2+1 + 5+1 = 11 */
                  dp->thermistor_temperature, dp->bmp180_temperature, /* 3+1+1+1 + 3+1+1+1 = 12 */
                  dp->radio_die_temperature, dp->xosc_error); /* 3+1+1+1 + 4 = 10 */
-                 /* sum = 90 (must be less than or equal to 114) */
+  /* sum = 90 (must be less than or equal to 114) */
 
   if (reduce_char_set) {
     /* Reduce character set */
@@ -122,7 +122,8 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
  * RTTY telemetry. Uses 5 dollar symbols
  */
 #define RTTY_DOLLARS 5
-void rtty_telemetry(struct tracker_datapoint* dp) {
+void rtty_telemetry(struct tracker_datapoint* dp)
+{
   uint16_t len;
 
   len = format_telemetry_string(telemetry_string, dp, RTTY_DOLLARS, 0);
@@ -139,7 +140,8 @@ void rtty_telemetry(struct tracker_datapoint* dp) {
  * Contestia telemetry. Uses 2 dollar symbols
  */
 #define CONTESTIA_DOLLARS 2
-void contestia_telemetry(struct tracker_datapoint* dp) {
+void contestia_telemetry(struct tracker_datapoint* dp)
+{
   uint16_t len;
 
   len = format_telemetry_string(telemetry_string, dp, CONTESTIA_DOLLARS, 1);
@@ -163,48 +165,32 @@ void contestia_telemetry(struct tracker_datapoint* dp) {
 /**
  * APRS telemetry if required
  */
-void aprs_telemetry(struct tracker_datapoint* dp) {
-
+void aprs_telemetry(struct tracker_datapoint* dp)
+{
   struct tracker_datapoint* backlog_dp_ptr;
 
   if (!gps_is_locked()) return; /* Don't bother with no GPS */
 
-  /* Update location */
-  aprs_location_update(dp->longitude, dp->latitude);
+  /* Set location */
+  aprs_set_datapoint(dp);
 
-#if APRS_USE_GEOFENCE
-  /* aprs okay here? */
-  if (aprs_location_tx_allow()) {
-#endif
+  /* Set comment */
+  backlog_dp_ptr = get_backlog();
 
-    /* Set location */
-    aprs_set_datapoint(dp);
-
-    /* Set comment */
-    backlog_dp_ptr = get_backlog();
-
-    if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
-      aprs_set_backlog_comment(backlog_dp_ptr);
-    } else {
-      aprs_set_comment(APRS_COMMENT);
-    }
-
-    /* Set frequency */
-#if APRS_USE_GEOFENCE
-    telemetry_aprs_set_frequency(aprs_location_frequency());
-#else
-    telemetry_aprs_set_frequency(144800000);
-#endif
-
-    /* Transmit packet and wait */
-    telemetry_start(TELEMETRY_APRS, 0xFFFF);
-    while (telemetry_active()) {
-      idle(IDLE_TELEMETRY_ACTIVE);
-    }
-
-#if APRS_USE_GEOFENCE
+  if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
+    aprs_set_backlog_comment(backlog_dp_ptr);
+  } else {
+    aprs_set_comment(APRS_COMMENT);
   }
-#endif
+
+  /* Set frequency */
+  telemetry_aprs_set_frequency(location_aprs_frequency());
+
+  /* Transmit packet and wait */
+  telemetry_start(TELEMETRY_APRS, 0xFFFF);
+  while (telemetry_active()) {
+    idle(IDLE_TELEMETRY_ACTIVE);
+  }
 }
 /**
  * Pips telemetry

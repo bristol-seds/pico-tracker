@@ -28,11 +28,16 @@
 #include <stdbool.h>
 #include "samd20.h"
 
-bool telemetry_location_tx_allow(void);
-void telemetry_location_update(int32_t lon_hn, int32_t lat_hn);
 
-bool aprs_location_tx_allow(void);
-int32_t aprs_location_frequency(void);
-void aprs_location_update(int32_t lon_hn, int32_t lat_hn);
+/* Update */
+void location_telemetry_update(int32_t lon_hn, int32_t lat_hn);
+void location_aprs_update(int32_t lon_hn, int32_t lat_hn);
+
+
+/* Decisions */
+bool location_telemetry_active(void);
+bool location_aprs_active(void);
+int32_t location_aprs_frequency(void);
+
 
 #endif /* LOCATION_H */

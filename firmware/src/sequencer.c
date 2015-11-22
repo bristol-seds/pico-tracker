@@ -46,30 +46,38 @@ void pips_telemetry(void);
 void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 {
   /* Always update geofence */
-  telemetry_location_update(dp->longitude, dp->latitude);
+  location_telemetry_update(dp->longitude, dp->latitude);
+  location_aprs_update(dp->longitude, dp->latitude);
 
-#ifdef TELEMETRY_USE_GEOFENCE
-  if (telemetry_location_tx_allow()) {
+  /* Telemetry */
+#if TELEMETRY_ENABLE
+#if TELEMETRY_USE_GEOFENCE
+  if (location_telemetry_active()) {
 #endif
 
-      /* Contestia */
-    /* if (t->second == TELEM_TOM) { */
+    /* Pips */
+    /*   pips_telemetry(); */
+
+    /* Contestia */
     /*   contestia_telemetry(dp); */
 
-    /*   /\* Pip *\/ */
-    /* } else if ((t->second % 1) == 0) { */
-    /*   pips_telemetry(); */
-    /* } */
-
-#ifdef TELEMETRY_USE_GEOFENCE
+#if TELEMETRY_USE_GEOFENCE
   }
 #endif
-
-
+#endif
 
   /* APRS */
-#ifdef APRS_ENABLE
+#if APRS_ENABLE
+#if APRS_USE_GEOFENCE
+  if (location_aprs_active()) {
+#endif
 
+    /* APRS */
+    /* aprs_telemetry(dp); */
+
+#if APRS_USE_GEOFENCE
+  }
+#endif
 #endif
 }
 

@@ -21,10 +21,10 @@ struct location_telemetry_tc_results {
 __verification__ void location_telemetry_tc(void) {
 
   /* Supply co-ords in units of 100 nanodeg */
-  telemetry_location_update(
+  location_telemetry_update(
     (int32_t)(location_telemetry_tc_params.lon * 10 * 1000 * 1000),
     (int32_t)(location_telemetry_tc_params.lat * 10 * 1000 * 1000)
     );
 
-  location_telemetry_tc_results.tx_allow = telemetry_location_tx_allow();
+  location_telemetry_tc_results.tx_allow = location_telemetry_active();
 }

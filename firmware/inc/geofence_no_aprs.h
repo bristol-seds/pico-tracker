@@ -10,7 +10,7 @@
 
 #include "samd20.h"
 
-const int32_t* no_aprs_outlines[36];
-const uint32_t no_aprs_outline_lengths[36];
+const int32_t* no_aprs_outlines[30];
+const uint32_t no_aprs_outline_lengths[30];
 
 #endif /* GEOFENCE_NO_APRS_H */

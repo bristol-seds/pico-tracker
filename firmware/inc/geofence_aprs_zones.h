@@ -16,7 +16,7 @@
  */
 struct aprs_zone_t {
   const int32_t** outlines;
-  const int32_t outline_count;
+  const uint32_t outline_count;
   const uint32_t* outline_lengths;
   int32_t frequency, deviation;
   char* name;
