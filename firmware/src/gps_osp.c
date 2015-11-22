@@ -58,8 +58,19 @@ uint8_t osp_irq_buffer[OSP_BUFFER_LEN];
 
 volatile enum gps_error_t gps_error_state;
 
-/* Temp??? */
-uint8_t gps_make_oktosend = 0;
+/**
+ * GPS Active?
+ */
+enum gps_power_state_t {
+  GPS_HIBERNATE	= 0,
+  GPS_ACTIVE	= 1,
+};
+enum gps_power_state_t gps_power_state = GPS_HIBERNATE;
+
+/**
+ * Flight State
+ */
+enum gps_flight_state_t gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 
 /**
  * OSP Output Ack/Nack
@@ -105,6 +116,11 @@ volatile struct osp_out_gpio_state osp_out_gpio_state = {
   .state	= OSP_PACKET_WAITING,
   .max_payload_size = sizeof(osp_out_gpio_state.payload)
 };
+volatile struct osp_out_position_response osp_out_position_response = {
+  .id		= OSP_OUT_POSITION_RESPONSE_ID,
+  .state	= OSP_PACKET_WAITING,
+  .max_payload_size = sizeof(osp_out_position_response.payload)
+};
 volatile struct osp_out_hw_config_req osp_out_hw_config_req = {
   .id		= OSP_OUT_HW_CONFIG_REQ_ID,
   .state	= OSP_PACKET_WAITING,
@@ -132,18 +148,37 @@ volatile osp_message_t* const osp_out_messages[] = {
   (osp_message_t*)&osp_out_geodetic_navigation_data,
   (osp_message_t*)&osp_out_1pps_time,
   (osp_message_t*)&osp_out_gpio_state,
+  (osp_message_t*)&osp_out_position_response,
   (osp_message_t*)&osp_out_hw_config_req,
   (osp_message_t*)&osp_out_aiding_request,
   (osp_message_t*)&osp_out_cw_controller_output,
 };
+/**
+ * OSP Output Post Processing functions
+ * ** same order as above **
+ */
+const osp_post_func osp_out_post_functions[] = {
+  osp_out_measure_navigation_data_out_post,
+  osp_out_clock_status_data_post,
+  osp_out_ephemeris_data_post,
+  osp_out_oktosend_post,
+  osp_out_geodetic_navigation_data_post,
+  osp_out_1pps_time_post,
+  osp_out_gpio_state_post,
+  osp_out_position_response_post,
+  osp_out_hw_config_req_post,
+  osp_out_aiding_request_post,
+  osp_out_cw_controller_output_post,
+};
+
 
 /**
  * OSP Input Messages
  *
  * Instances are of the generic type (no payload) to save ram
  */
-volatile osp_message_t osp_in_advanced_power_measurement = {
-  .id		= OSP_IN_ADVANCED_POWER_MEASUREMENT_ID,
+volatile osp_message_t osp_in_advanced_power_management = {
+  .id		= OSP_IN_ADVANCED_POWER_MANAGEMENT_ID,
   .state	= OSP_PACKET_WAITING
 };
 volatile osp_message_t osp_in_initialise_data_source = {
@@ -174,6 +209,10 @@ volatile osp_message_t osp_in_set_low_power_acquisition_parameters = {
   .id		= OSP_IN_SET_LOW_POWER_ACQUISITION_PARAMETERS_ID,
   .state	= OSP_PACKET_WAITING
 };
+volatile osp_message_t osp_in_set_position_request = {
+  .id		= OSP_IN_POSITION_REQUEST_ID,
+  .state	= OSP_PACKET_WAITING
+};
 volatile osp_message_t osp_in_session_request = {
   .id		= OSP_IN_SESSION_REQUEST_ID,
   .state	= OSP_PACKET_WAITING
@@ -186,6 +225,10 @@ volatile osp_message_t osp_in_approximate_ms_position_response = {
   .id		= OSP_IN_APPROXIMATE_MS_POSITION_RESPONSE_ID,
   .state	= OSP_PACKET_WAITING
 };
+volatile osp_message_t osp_in_reject = {
+  .id		= OSP_IN_REJECT_ID,
+  .state	= OSP_PACKET_WAITING
+};
 volatile osp_message_t osp_in_power_mode_request = {
   .id		= OSP_IN_POWER_MODE_REQUEST_ID,
   .state	= OSP_PACKET_WAITING
@@ -196,7 +239,7 @@ volatile osp_message_t osp_in_power_mode_request = {
  * OSP Input Messages
  */
 volatile osp_message_t* const osp_in_messages[] = {
-  &osp_in_advanced_power_measurement,
+  &osp_in_advanced_power_management,
   &osp_in_initialise_data_source,
   &osp_in_mode_control,
   &osp_in_elevation_mask,
@@ -305,14 +348,19 @@ void osp_process_frame(uint8_t* frame, uint16_t payload_length)
         /* (less than for various subfields which have different lengths) */
         if (payload_length_less_message_id <= osp_out_messages[i]->max_payload_size) {
 
+          /* Reject measurement response for the moment */
+          if (message_id == OSP_OUT_POSITION_RESPONSE_ID && (frame+2+1)[0] != 1) {
+            break;
+          }
+
           /* Populate struct. Ignore message ID */
           memcpy((void*)(osp_out_messages[i]+1), frame+2+1, payload_length_less_message_id);
 
           /* Set the message state */
           osp_out_messages[i]->state = OSP_PACKET_UPDATED;
 
-          if(message_id==41){led_toggle();}
-
+          /* Call post function for this message */
+          osp_out_post_functions[i](osp_out_messages[i]);
         }
 
 	return;
@@ -413,13 +461,69 @@ void _osp_send_message(osp_message_t* message, uint8_t* payload, uint16_t length
 }
 
 
+
+/**
+ * =============================================================================
+ * Flight State  ================================================================
+ * =============================================================================
+ */
+
+/**
+ * Returns current flight state
+ */
+enum gps_flight_state_t gps_get_flight_state(void)
+{
+  return gps_flight_state;
+}
+
+/**
+ * Sets flight state
+ *
+ * altitude in mm
+ */
+void gps_set_flight_state(int32_t altitude)
+{
+  if (altitude > GPS_FLIGHT_STATE_THREASHOLD_M*1000) {
+    gps_flight_state = GPS_FLIGHT_STATE_FLOAT;
+  } else {
+    gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
+  }
+}
+
+
+/**
+ * =============================================================================
+ * Power State  ================================================================
+ * =============================================================================
+ */
+
+/**
+ * Puts the GPS into hibernate state
+ */
+void gps_make_active(void)
+{
+  if (gps_power_state == GPS_HIBERNATE) {
+    gps_se_on_off_pulse();
+    gps_power_state = GPS_ACTIVE;
+  }
+}
+/**
+ * Puts the GPS into hibernate state
+ */
+void gps_make_hibernate(void)
+{
+  if (gps_power_state == GPS_ACTIVE) {
+    gps_se_on_off_pulse();
+    gps_power_state = GPS_HIBERNATE;
+  }
+}
+
+
 /**
  * =============================================================================
  * Getters   ===================================================================
  * =============================================================================
  */
-
-
 
 /**
  * Gets the current error state of the GPS to check validity of last
@@ -431,21 +535,117 @@ enum gps_error_t gps_get_error_state(void)
 }
 
 /**
- * Returns the most recent datapint from the gps
+ * Powers up the GPS, waits up to 60 seconds for a fix
  *
  * Uses the Geodetic Navigation Data frame.
  */
 struct gps_data_t gps_get_data(void)
 {
   struct gps_data_t data;
+  uint32_t i;
 
-  data.is_locked = (osp_out_geodetic_navigation_data.payload.nav_type == 0)?1:0; /* nav_valid = 0? */
-  data.latitude = osp_out_geodetic_navigation_data.payload.latitude; /* hndeg */
-  data.longitude = osp_out_geodetic_navigation_data.payload.longitude; /* hndeg */
-  data.altitude = osp_out_geodetic_navigation_data.payload.altitude_from_msl*10; /* cm -> mm */
-  data.satillite_count = osp_out_geodetic_navigation_data.payload.svs_in_fix;
+  /* Clear status */
+  osp_out_geodetic_navigation_data.state = OSP_PACKET_WAITING;
+
+  /* Take the GPS out of hibernate*/
+  gps_make_active();
+
+  for (i = 0; i < 3*2; i++) {
+
+    while (osp_out_geodetic_navigation_data.state != OSP_PACKET_UPDATED) {
+      /* idle */
+      idle(IDLE_WAIT_FOR_GPS);
+    }
+
+    /* Clear status */
+    osp_out_geodetic_navigation_data.state = OSP_PACKET_WAITING;
+
+    /* Got packet */
+    if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
+      led_toggle();
+    }
+
+    /* Check nav */
+    if ((osp_out_geodetic_navigation_data.payload.nav_valid == 0) &&        /* Valid fix */
+        ((osp_out_geodetic_navigation_data.payload.nav_type & 0x7) != 0) && /* Currently have this fix */
+        (osp_out_geodetic_navigation_data.payload.estimated_vertical_position_error < 100*100)) /* < 100m error */
+    {
+      /* GPS back to hibernate */
+      gps_make_hibernate();
+
+      data.is_locked = 1; /* valid fix */
+      data.latitude = osp_out_geodetic_navigation_data.payload.latitude; /* hndeg */
+      data.longitude = osp_out_geodetic_navigation_data.payload.longitude; /* hndeg */
+      data.altitude = osp_out_geodetic_navigation_data.payload.altitude_from_msl*10; /* cm -> mm */
+      data.satillite_count = osp_out_geodetic_navigation_data.payload.svs_in_fix;
+      data.time_to_first_fix = i+1; /* number of geo nav packets this took */
+
+      gps_set_flight_state(data.altitude);
+
+      return data;
+    }
+  }
+
+  /* GPS back to hibernate */
+  gps_make_hibernate();
+
+  data.is_locked = 0;   /* invalid */
+  data.latitude = 0;
+  data.longitude = 0;
+  data.altitude = 0;
+  data.satillite_count = 0;
+  data.time_to_first_fix = i;
 
   return data;
+}
+
+
+/**
+ * =============================================================================
+ * Low Power ===================================================================
+ * =============================================================================
+ */
+
+/**
+ * Request Full power mode
+ */
+void osp_session_request_close(void)
+{
+  /* session request #213 */
+  struct osp_in_session_request config;
+  memset(&config, 0, sizeof(struct osp_in_session_request));
+  config.id = OSP_IN_SESSION_REQUEST_ID;
+
+  /* values */
+  config.payload.sub_id = OSP_SESSION_REQUEST_CLOSE;
+  config.payload.info = 0;      /* Session close requested */
+
+  /* send */
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
+}
+
+/**
+ * Enter push-to-fix mode
+ */
+void osp_enter_push_to_fix_mode(void)
+{
+  /* set tricklepower parameters #151 */
+  struct osp_in_set_tricklepower_parameters config;
+  memset(&config, 0, sizeof(struct osp_in_set_tricklepower_parameters));
+  config.id = OSP_IN_SET_TRICKLEPOWER_PARAMETERS_ID;
+
+  /* values */
+  config.payload.pushtofix_mode = 1; /* Enable push-to-fix */
+  config.payload.on_time = 200;      /* 200 ms (minimum) */
+  config.payload.duty_cycle = 10;    /* 1% */
+
+  /* send */
+  osp_in_set_tricklepower_parameters_pre(&config);
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
 }
 
 
@@ -511,16 +711,59 @@ void osp_send_hw_config_resp(void)
     OSP_HW_CONFIG_FREQUENCY_REFCLK_OFF
     );
   config.payload.nominal_frequency_high = 0;
-  config.payload.nominal_frequency_low = __REV(1*1000); /* 1Hz?? */
+  config.payload.nominal_frequency_low = 1*1000; /* 1Hz */
   config.payload.network_enhancement_type = 0;   /* No enhancement */
 
+  osp_in_hardware_configuration_response_pre(&config);
   _osp_send_message((osp_message_t*)&config,
                     (uint8_t*)&config.payload,
                     sizeof(config.payload));
 }
 
 /**
- * Respond to position aiding request
+ * Reset Initialise
+ */
+void osp_reset_initialise(void)
+{
+  /* initialise data source #128 */
+  struct osp_in_initialise_data_source config;
+  memset(&config, 0, sizeof(struct osp_in_initialise_data_source));
+  config.id = OSP_IN_INITIALISE_DATA_SOURCE_ID;
+
+  /* values */
+  /* All zeros */
+
+  /* send */
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
+}
+
+/**
+ * Send reject message NOT AVAILABLE
+ */
+void osp_send_reject_not_available(uint8_t message_id_to_reject,
+                                   uint8_t message_sub_id_to_reject)
+{
+  /* reject #216 */
+  struct osp_in_reject config;
+  memset(&config, 0, sizeof(struct osp_in_reject));
+  config.id = OSP_IN_REJECT_ID;
+
+  /* values */
+  config.payload.sub_id = 2;
+  config.payload.rejected_message_id = message_id_to_reject;
+  config.payload.rejected_message_sub_id = message_sub_id_to_reject;
+  config.payload.rejected_message_reason = OSP_REJECTED_MESSAGE_NOT_AVAILABLE;
+
+  /* send */
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
+}
+
+/**
+ * Respond to approximate ms request
  */
 void osp_send_approximate_ms_postion(void)
 {
@@ -539,68 +782,105 @@ void osp_send_approximate_ms_postion(void)
   config.payload.use_alt_aiding = 0;  /* don't even use the altitude */
 
   /* send */
+  osp_in_approximate_ms_position_response_pre(&config);
   _osp_send_message((osp_message_t*)&config,
                     (uint8_t*)&config.payload,
                     sizeof(config.payload));
+}
 
+/**
+ * Place a position request
+ */
+void osp_send_position_request(void)
+{
+  /* approximate ms position */
+  struct osp_in_position_request config;
+  memset(&config, 0, sizeof(struct osp_in_position_request));
+  config.id = OSP_IN_POSITION_REQUEST_ID;
+
+  /* values */
+  config.payload.pos_request_id = 0;
+  config.payload.num_fixes = 1; /* Just one fix */
+  config.payload.time_between_fixes = 0;
+  config.payload.horizontal_error_max = 100; /* 100m horizonal error */
+  config.payload.vertical_error_max = OSP_MAX_ERROR_80_METER; /* 80m vertical error */
+  config.payload.response_time_max = 0;                       /* any time */
+  config.payload.time_acc_priority = OSP_TIME_ACC_PRIORITY_NONE;
+  config.payload.location_method = 0; /* ???? */
+
+  /* send */
+  osp_in_position_request_pre(&config);
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
 }
 
 
 /**
  * =============================================================================
- * Serivce   ===================================================================
+ * Setup     ===================================================================
  * =============================================================================
  */
 
 /**
- * Handle connection-orientated messages from the GPS that need servicing
+ * GPS configuration
  */
-void gps_service(void)
+void gps_setup(void)
 {
-  /* We received the hw config req */
-  if (osp_out_hw_config_req.state == OSP_PACKET_UPDATED) {
-    /* send response */
-    osp_send_hw_config_resp();
+  /* Attempt to turn on GPS */
+  gps_se_on_off_pulse();
 
-    /* clear state */
-    osp_out_hw_config_req.state = OSP_PACKET_WAITING;
-  }
+  while (1) {           /* TODO: timeout */
 
-  /* aiding request */
-  if (osp_out_aiding_request.state == OSP_PACKET_UPDATED) {
+    /* We received the hw config req */
+    if (osp_out_hw_config_req.state == OSP_PACKET_UPDATED) {
+      /* send response */
+      osp_send_hw_config_resp();
 
-    if (osp_out_aiding_request.payload.subid ==
-        OSP_AIDING_REQUEST_SUBID_APPROXIMATE_MS_POSITION) {
-      /* send response to approximate ms position request */
-      osp_send_approximate_ms_postion();
-
-      osp_set_messages();
-
-      gps_make_oktosend = 0;  /* all done */
+      /* clear state */
+      osp_out_hw_config_req.state = OSP_PACKET_WAITING;
     }
 
-    /* clear state */
-    osp_out_aiding_request.state = OSP_PACKET_WAITING;
-  }
+    /* aiding request */
+    if (osp_out_aiding_request.state == OSP_PACKET_UPDATED) {
 
+      if (osp_out_aiding_request.payload.subid ==
+          OSP_AIDING_REQUEST_SUBID_APPROXIMATE_MS_POSITION) {
+        /* send response to approximate ms position request */
+        osp_send_reject_not_available(OSP_OUT_AIDING_REQUEST_ID,
+                                      OSP_AIDING_REQUEST_SUBID_APPROXIMATE_MS_POSITION);
 
-  /* We're trying to make it oktosend */
-  if (gps_make_oktosend == 1) {
-    /* And we've had an oktosend packet */
+        /* Set message formats */
+        osp_set_messages();
+
+        /* Check these get ack'd? */
+
+        /* Otherwise we're done */
+        break;
+      }
+
+      /* clear state */
+      osp_out_aiding_request.state = OSP_PACKET_WAITING;
+    }
+
+    /* oktosend packet */
     if (osp_out_oktosend.state == OSP_PACKET_UPDATED) {
 
       /* was this an enable or disable packet? */
       if (osp_out_oktosend.payload.oktosend == OSP_OKTOSEND_YES) {
-        /* all done */
+        /* we're now active */
+        gps_power_state = GPS_ACTIVE;
       } else {
         gps_se_on_off_pulse();  /* send another on_off pulse */
+        gps_power_state = GPS_HIBERNATE;
       }
 
       /* clear state */
       osp_out_oktosend.state = OSP_PACKET_WAITING;
     }
-  }
 
+    idle(IDLE_WAIT_FOR_GPS);
+  }
 }
 
 /**
@@ -634,7 +914,7 @@ void gps_usart_init_enable(uint32_t baud_rate)
 	     false,	     /** Sample on the rising edge of XLCK */
 	     false,	     /** Use the external clock applied to the XCK pin. */
 	     0,		     /** External clock frequency in synchronous mode. */
-	     true,	     /** Run in standby */
+	     false,	     /** Run in standby */
 	     GPS_GCLK,			/** GCLK generator source */
 	     GPS_SERCOM_MOGI_PINMUX, 		/** PAD0 pinmux */
 	     GPS_SERCOM_MIGO_PINMUX,		/** PAD1 pinmux */
@@ -689,13 +969,10 @@ void gps_init(void)
 
   /* ---- GPS Configuration ---- */
 
-  /* Bring up the GPS */
-  gps_make_oktosend = 1;
-  gps_se_on_off_pulse();
+  /* Close any currently running session. Doesn't do anything unless debugging */
+  osp_reset_initialise();
 
-  while (gps_make_oktosend == 1) {
-    gps_service();
-  }
+  gps_setup();
 }
 
 

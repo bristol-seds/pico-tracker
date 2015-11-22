@@ -99,7 +99,6 @@ void init(enum init_type init_t)
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
 
   /* Restart the GCLK Module */
-  system_gclk_init();
   system_events_init();
   system_extint_init();
 
@@ -109,8 +108,7 @@ void init(enum init_type init_t)
   }
 
   /* Configure Sleep Mode */
-  //system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY);
-  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Disable CPU, AHB and APB */
+  system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Lowest power */
 
   /* Configure the Power Manager */
   powermananger_init();
@@ -121,20 +119,33 @@ void init(enum init_type init_t)
    */
 
   /* Memory */
-  init_memory();
+  //init_memory();
 
-  /* Enable the xosc on gclk1 */
-  xosc_init();
+  /* Timepulse_Pin */
+  port_pin_set_config(GPS_TIMEPULSE_PIN,
+		      PORT_PIN_DIR_INPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+
+
+
+
+
+
+
 
   /* i2c */
-  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
+//  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
 
   /* barometer */
-  bmp180_init();
+//  bmp180_init();
 
   if (init_t != INIT_TESTCASE) {
     /* Telemetry init depends on gclk */
     telemetry_init();
+
+    /* We need to wait for the GPS 32kHz clock to start (~300ms). TODO: more robust method for this */
+    for (int i = 0; i < 1*1000*1000; i++);
 
     /* GPS init */
     gps_init();

@@ -63,23 +63,41 @@ void collect_data_async(void)
  */
 struct tracker_datapoint* collect_data(void)
 {
+#ifdef GPS_TYPE_OSP
   /**
-   * ---- Analogue ----
+   * ---- GPS OSP ----
    */
-  datapoint.battery = get_battery(); /* Will return zero by default */
-  datapoint.solar = get_solar();     /* Will return zero by default */
-  datapoint.radio_die_temperature = telemetry_si_temperature();
-  datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor());
 
-  /**
-   * ---- Barometer ----
-   */
-  struct barometer* b = get_barometer();
-  datapoint.main_pressure = b->pressure;
-  datapoint.bmp180_temperature = (float)b->temperature;
+  struct gps_data_t data = gps_get_data();
 
+  if (data.is_locked) {                 /* valid? */
+    datapoint.latitude = data.latitude; /* hndeg */
+    datapoint.longitude = data.longitude; /* hdeg */
+    datapoint.altitude = data.altitude;   /* mm */
+    datapoint.satillite_count = data.satillite_count;
+    datapoint.time_to_first_fix = data.time_to_first_fix; /* seconds / counts */
+  }
+#endif /* GPS_TYPE_OSP */
+
+
+  /* /\** */
+  /*  * ---- Analogue ---- */
+  /*  *\/ */
+  /* datapoint.battery = get_battery(); /\* Will return zero by default *\/ */
+  /* datapoint.solar = get_solar();     /\* Will return zero by default *\/ */
+  /* datapoint.radio_die_temperature = telemetry_si_temperature(); */
+  /* datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor()); */
+
+  /* /\** */
+  /*  * ---- Barometer ---- */
+  /*  *\/ */
+  /* struct barometer* b = get_barometer(); */
+  /* datapoint.main_pressure = b->pressure; */
+  /* datapoint.bmp180_temperature = (float)b->temperature; */
+
+#ifdef GPS_TYPE_UBX
   /**
-   * ---- GPS ----
+   * ---- GPS UBX ----
    */
   if (gps_update_position_pending() || (gps_get_error_state() != GPS_NOERROR)) {
     /* Error updating GPS position */
@@ -91,9 +109,10 @@ struct tracker_datapoint* collect_data(void)
   } else {                      /* GPS position updated correctly */
 
     /* GPS Status */
-#ifdef GPS_TYPE_UBX
+
     struct ubx_nav_sol sol = gps_get_nav_sol();
     datapoint.satillite_count = sol.payload.numSV;
+    datapoint.time_to_first_fix = 0;
 
     /* GPS Position */
     if (gps_is_locked()) {
@@ -106,8 +125,8 @@ struct tracker_datapoint* collect_data(void)
 
     /* GPS Powersave */
     gps_set_powersave_auto();
-#endif  /* GPS_TYPE_UBX */
   }
+#endif  /* GPS_TYPE_UBX */
 
   return &datapoint;
 }

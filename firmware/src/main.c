@@ -228,7 +228,7 @@ volatile uint8_t run_flag = 1;  /* run immediately after init */
 void lf_tick(uint32_t tick)
 {
   /*  When we're due to run again */
-  if (tick >= 20) {
+  if (tick >= 10) {
     /* Stop */
     lf_tick_stop();
 
@@ -254,24 +254,22 @@ int main(void)
   /* Turn off LED to show we've initialised correctly */
   led_off();
 
-  /* Clocks off */
-  gclk0_to_lf_clock();
-  hf_clock_disable();
 
   while (1) {
-    /* Run sequence */
+    /* Run sequence - starts immediately on first iteration */
     if (run_flag) {
       run_flag = 0;
 
       /* Clocks on */
       hf_clock_enable();
       gclk0_to_hf_clock();
+      system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Low power */
 
       /* Run */
-      //run_sequencer(n++);
-      for (int i = 0; i < 100*1000; i++);
+      run_sequencer(n++);
 
       /* Clocks off */
+      system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
       gclk0_to_lf_clock();
       hf_clock_disable();
 

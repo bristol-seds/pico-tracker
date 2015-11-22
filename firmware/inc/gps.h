@@ -35,7 +35,14 @@ enum gps_error_t {
   GPS_NOERROR,
   GPS_ERROR_BAD_CHECKSUM,
   GPS_ERROR_INVALID_FRAME,
+};
 
+/**
+ * GPS Flight State
+ */
+enum gps_flight_state_t {
+  GPS_FLIGHT_STATE_LAUNCH,
+  GPS_FLIGHT_STATE_FLOAT,
 };
 
 /**
@@ -46,6 +53,7 @@ struct gps_data_t {
   int32_t altitude;             /* mm */
   uint8_t satillite_count;
   uint8_t is_locked;            /* 1 = locked, 0 = not locked */
+  uint8_t time_to_first_fix;    /* seconds / counts */
 };
 
 /* UBX ------------------------------------------------------------- */
@@ -84,14 +92,15 @@ struct gps_data_t gps_get_data(void);
 
 static uint8_t gps_is_locked(void){return 0;}
 
-static void gps_set_power_state(bool gnss_running){}
 
-void gps_service(void);
+void gps_setup(void);
 
 #endif  /* GPS_TYPE_OSP */
 
 
 /* Both ------------------------------------------------------------ */
+enum gps_flight_state_t gps_get_flight_state(void);
+
 void gps_usart_init_enable(uint32_t baud_rate);
 void gps_reset(void);
 void gps_init(void);

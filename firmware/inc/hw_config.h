@@ -72,7 +72,7 @@
 #define GPS_SERCOM_MIGO_PIN	PIN_PA07
 #define GPS_SERCOM_MIGO_PINMUX	PINMUX_PA07D_SERCOM0_PAD3
 #define GPS_SERCOM_MUX		USART_RX_3_TX_2_XCK_3
-#define GPS_GCLK		GCLK_GENERATOR_1
+#define GPS_GCLK		GCLK_GENERATOR_0
 
 #ifdef V0986
 #define GPS_TYPE_OSP
@@ -94,6 +94,8 @@
 #define GPS_RESET_PIN		PIN_PA15
 
 #endif
+
+#define GPS_FLIGHT_STATE_THREASHOLD_M	1000
 
 
 /**
@@ -204,7 +206,7 @@
  */
 #define USE_XOSC		1
 #define XOSC_FREQUENCY		16369000
-#define XOSC_GCLK_DIVIDE	2         /* ~8MHz on GCLK*/
+#define XOSC_GCLK_DIVIDE	2         /* ~8MHz on GCLK */
 #define OSC8M_GCLK_DIVIDE	1         /* ~8MHz on GCLK */
 
 /**

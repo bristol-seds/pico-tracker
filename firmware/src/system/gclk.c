@@ -247,9 +247,10 @@ uint32_t system_gclk_gen_get_hz(const uint8_t generator)
   /* Select the appropriate generator */
   *((uint8_t*)&GCLK->GENCTRL.reg) = generator;
   GCLK_WAIT_FOR_SYNC();
+  enum system_clock_source src = (enum system_clock_source)GCLK->GENCTRL.bit.SRC;
+
   /* Get the frequency of the source connected to the GCLK generator */
-  uint32_t gen_input_hz = system_clock_source_get_hz(
-    (enum system_clock_source)GCLK->GENCTRL.bit.SRC);
+  uint32_t gen_input_hz = system_clock_source_get_hz(src);
 
   *((uint8_t*)&GCLK->GENCTRL.reg) = generator;
 

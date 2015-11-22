@@ -82,22 +82,17 @@ void run_sequencer(uint32_t n)
 {
   struct tracker_datapoint* dp;
 
-  /* Trigger GPS */
-
   /* Async data */
-  collect_data_async();
-
-  /* Wait for GPS  */
-
+  //collect_data_async();
 
   /* Data */
   dp = collect_data();
 
   /* Telemetry  */
-  telemetry_sequence(dp, n);
+  //telemetry_sequence(dp, n);
 
   /* Backlog */
   if ((n % 60) == 10) {         /* Every hour, start ten minutes */
-    record_backlog(dp);
+  //record_backlog(dp);
   }
 }

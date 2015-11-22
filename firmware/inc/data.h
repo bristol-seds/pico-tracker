@@ -42,6 +42,7 @@ typedef struct tracker_datapoint {
   int32_t longitude;           	/* 100 nanodeg */
   int32_t altitude;            	/* mm */
   uint8_t satillite_count;      /*  */
+  uint8_t time_to_first_fix;    /* seconds / counts */
 
   /* Sensors */
   float battery;                /* Volts */

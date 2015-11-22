@@ -113,31 +113,31 @@ void kick_the_watchdog(void)
 void idle(idle_wait_t idle_t)
 {
   /* Check valid */
-  if ((idle_t != IDLE_TELEMETRY_ACTIVE) &&
-      (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY)) {
-    /* Oh dear */
-    while (1);
-  }
+/*   if ((idle_t != IDLE_TELEMETRY_ACTIVE) && */
+/*       (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY)) { */
+/*     /\* Oh dear *\/ */
+/*     while (1); */
+/*   } */
 
-  /* Maybe clear */
-  if (idle_t != last_idle_t) {
-    clear_idle_counters();
-    last_idle_t = idle_t;
-  }
+/*   /\* Maybe clear *\/ */
+/*   if (idle_t != last_idle_t) { */
+/*     clear_idle_counters(); */
+/*     last_idle_t = idle_t; */
+/*   } */
 
-  /* Increment the idle counter */
-  increment_idle_counter(idle_t);
+/*   /\* Increment the idle counter *\/ */
+/*   increment_idle_counter(idle_t); */
 
-  /* Check idle counter is still okay */
-  check_idle_counters();
+/*   /\* Check idle counter is still okay *\/ */
+/*   check_idle_counters(); */
 
-  /* Kick the watchdog */
-#ifdef DEBUG_USE_INTWATCHDOG
-  wdt_reset_count();
-#endif
+/*   /\* Kick the watchdog *\/ */
+/* #ifdef DEBUG_USE_INTWATCHDOG */
+/*   wdt_reset_count(); */
+/* #endif */
 
-  /* WDI low */
-  port_pin_set_output_level(WDT_WDI_PIN, 0);
+  /* WDI toggle */
+  port_pin_toggle_output_level(WDT_WDI_PIN);
 
   /* And sleep */
   system_sleep();
