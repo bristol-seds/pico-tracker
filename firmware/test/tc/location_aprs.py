@@ -56,6 +56,15 @@ class location_aprs_tc:
         # What frequency did we return?
         freq = float(result['frequency']) / (1000*1000)
 
+        if str(result['tx_allow']).startswith('false'): # No APRS
+            if int(expected_freq) is 0:
+                print_info("{}: NO APRS".format(name, freq))
+                return True
+            else:
+                print_info("{} ({:.1f}, {:.1f}): Expected {:.9f}, Geofence NO APRS".format(
+                    name, params.lat, params.lon, expected_freq))
+                return False
+
         if freq == expected_freq:
             print_info("{}: {:.3f} MHz".format(name, freq))
             return True

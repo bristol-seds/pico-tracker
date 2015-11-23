@@ -182,7 +182,8 @@ void location_aprs_zone_update(int32_t lat_hn, int32_t lon_hn)
   }
 
   /* Find which aprs zone we are in and save it */
-  for (z = 0; z < 12; z++) { /* For each zone */
+  uint32_t n_zones = sizeof(aprs_zones) / sizeof(struct aprs_zone_t);
+  for (z = 0; z < n_zones; z++) { /* For each zone */
 
     for (outline = 0; outline < aprs_zones[z].outline_count; outline++) {
 

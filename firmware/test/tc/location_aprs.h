@@ -16,15 +16,15 @@ struct location_aprs_tc_params {
 /* Results out */
 struct location_aprs_tc_results {
   bool tx_allow;
-  float frequency;
+  double frequency;
 } location_aprs_tc_results;
 /* Function */
 __verification__ void location_aprs_tc(void) {
 
   /* Supply co-ords in units of 100 nanodeg */
   location_aprs_update(
-    (int32_t)(location_aprs_tc_params.lon * 10 * 1000 * 1000),
-    (int32_t)(location_aprs_tc_params.lat * 10 * 1000 * 1000)
+    (int32_t)(location_aprs_tc_params.lat * 10 * 1000 * 1000),
+    (int32_t)(location_aprs_tc_params.lon * 10 * 1000 * 1000)
     );
 
   location_aprs_tc_results.tx_allow = location_aprs_active();

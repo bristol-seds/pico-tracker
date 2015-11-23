@@ -51,12 +51,18 @@ class location_aprs_file_tc:
         Can use print_info
         """
         freq = float(result['frequency']) / (1000*1000)
+        tx_allow = str(result['tx_allow'])
 
-        print_info("({:.1f}, {:.1f}): {:.3f} MHz".format(
-            params.lat, params.lon, freq))
+        if str(result['tx_allow']).startswith('false'): # No APRS
+            print_info("({:.1f}, {:.1f}): NO APRS".format(
+                params.lat, params.lon))
+        else:
+            print_info("({:.1f}, {:.1f}): {:.3f} MHz".format(
+                params.lat, params.lon, freq))
 
         self.locations.append({
             'freq': freq,
+            'tx_allow': tx_allow,
             'lat': params.lat,
             'lon': params.lon
         })
