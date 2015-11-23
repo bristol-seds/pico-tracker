@@ -580,6 +580,13 @@ struct gps_data_t gps_get_data(void)
       data.satillite_count = osp_out_geodetic_navigation_data.payload.svs_in_fix;
       data.time_to_first_fix = i+1; /* number of geo nav packets this took */
 
+      data.year = osp_out_geodetic_navigation_data.payload.utc_year;
+      data.month = osp_out_geodetic_navigation_data.payload.utc_month;
+      data.day = osp_out_geodetic_navigation_data.payload.utc_day;
+      data.hour = osp_out_geodetic_navigation_data.payload.utc_hour;
+      data.minute = osp_out_geodetic_navigation_data.payload.utc_minute;
+      data.second = (osp_out_geodetic_navigation_data.payload.utc_second+500)/1000; /* ms -> s */
+
       gps_set_flight_state(data.altitude);
 
       return data;

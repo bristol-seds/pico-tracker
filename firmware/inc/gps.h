@@ -45,6 +45,9 @@ enum gps_flight_state_t {
   GPS_FLIGHT_STATE_FLOAT,
 };
 
+/* UBX ------------------------------------------------------------- */
+#ifdef GPS_TYPE_UBX
+
 /**
  * GPS Data
  */
@@ -53,11 +56,7 @@ struct gps_data_t {
   int32_t altitude;             /* mm */
   uint8_t satillite_count;
   uint8_t is_locked;            /* 1 = locked, 0 = not locked */
-  uint8_t time_to_first_fix;    /* seconds / counts */
 };
-
-/* UBX ------------------------------------------------------------- */
-#ifdef GPS_TYPE_UBX
 
 void gps_update_time(void);
 void gps_update_position(void);
@@ -82,8 +81,21 @@ void gps_set_powersave_auto(void);
 /* OSP ------------------------------------------------------------- */
 #ifdef GPS_TYPE_OSP
 
-enum gps_error_t gps_get_error_state(void);
+/**
+ * GPS Data
+ */
+struct gps_data_t {
+  uint16_t year;                /* years */
+  uint8_t month, day, hour, minute, second; /* months, days, hours, minutes, seconds */
+  int32_t latitude, longitude;  /* hndeg */
+  int32_t altitude;             /* mm */
+  uint8_t satillite_count;
+  uint8_t is_locked;            /* 1 = locked, 0 = not locked */
+  uint8_t time_to_first_fix;    /* seconds / counts */
+};
 
+
+enum gps_error_t gps_get_error_state(void);
 struct gps_data_t gps_get_data(void);
 
 void gps_setup(void);

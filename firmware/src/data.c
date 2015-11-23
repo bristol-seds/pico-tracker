@@ -79,7 +79,16 @@ struct tracker_datapoint* collect_data(void)
     datapoint.altitude = data.altitude;   /* mm */
     datapoint.satillite_count = data.satillite_count;
     datapoint.time_to_first_fix = data.time_to_first_fix; /* seconds / counts */
+
+    datapoint.time.year = data.year;
+    datapoint.time.month = data.month;
+    datapoint.time.day = data.day;
+    datapoint.time.hour = data.hour;
+    datapoint.time.minute = data.minute;
+    datapoint.time.second = data.second; /* seconds */
   }
+
+
 #endif /* GPS_TYPE_OSP */
 
 
