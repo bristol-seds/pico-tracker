@@ -117,11 +117,10 @@ void init(enum init_type init_t)
    * ---------------------------------------------------------------------------
    */
 
-  /* Memory */
-  init_memory();
-
   /* i2c */
   i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
+
+  kick_the_watchdog();
 
   /* barometer */
   barometer_init();
@@ -131,11 +130,13 @@ void init(enum init_type init_t)
     telemetry_init();
 
     /* We need to wait for the GPS 32kHz clock to start (~300ms). TODO: more robust method for this */
-    for (int i = 0; i < 1*1000*1000; i++);
+    for (int i = 0; i < 300*1000; i++);
 
     /* GPS init */
     gps_init();
   }
+
+  kick_the_watchdog();
 
   /* Initialise Si4060 interface */
   si_trx_init();
