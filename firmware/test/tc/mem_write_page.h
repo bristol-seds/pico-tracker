@@ -33,7 +33,7 @@ __verification__ void mem_write_page_tc(void) {
    * results structure at the end
    */
 
-  init_memory();
+  mem_power_on();
 
   mem_erase_sector(mem_write_page_tc_params.address);
 

@@ -129,6 +129,21 @@ uint32_t mem_read_jedec_id(void)
   return rx_data_32;
 }
 
+/**
+ * Enter Deep Power Down
+ */
+void mem_enter_deep_power_down(void)
+{
+  _mem_single_command(MEM_OP_POWER_DOWN);
+}
+/**
+ * Exit Deep Power Down
+ */
+void  mem_exit_deep_power_down(void)
+{
+  _mem_single_command(MEM_OP_POWER_UP);
+}
+
 
 /**
  * =============================================================================
@@ -229,9 +244,11 @@ void mem_erase_sector(uint32_t address)
 }
 
 /**
- * Initialise
+ * Initialise and Power on Memory Interface
+ *
+ * Returns 1 on success, 0 on failute
  */
-void init_memory(void)
+uint8_t mem_power_on(void)
 {
   /* Configure the SPI select pin */
   port_pin_set_config(FLASH_CSN_PIN,
@@ -263,6 +280,9 @@ void init_memory(void)
 
   spi_enable(FLASH_SERCOM);
 
+  /* Release from power down */
+  mem_exit_deep_power_down();
+
   /* Make 3 attempts to read JEDEC chip ID */
   for (int i = 0; i < 3; i++) {
 
@@ -272,9 +292,48 @@ void init_memory(void)
     if (jedec == SST25WF040B_JEDEC_ID) {
       /* Correct ID */
       memory_init_success = 1;
-      return;
+      return 1;
     }
   }
 
   /* Memory failed to initialise correctly */
+  return 0;
+}
+/**
+ * Return memory to lowest power state
+ */
+void mem_power_off(void)
+{
+  if (memory_init_success) {
+    /* Place memory in deep power down */
+    mem_enter_deep_power_down();
+
+    /* Disable SPI interface */
+    spi_disable(FLASH_SERCOM);
+
+    /* Return pins to default state (lowest power) */
+    system_pinmux_pin_set_config(FLASH_CSN_PIN,
+                                 SYSTEM_PINMUX_GPIO,
+                                 SYSTEM_PINMUX_PIN_DIR_OUTPUT,
+                                 SYSTEM_PINMUX_PIN_PULL_NONE,
+                                 true);
+    system_pinmux_pin_set_config(FLASH_SERCOM_MOSI_PIN,
+                                 SYSTEM_PINMUX_GPIO,
+                                 SYSTEM_PINMUX_PIN_DIR_OUTPUT,
+                                 SYSTEM_PINMUX_PIN_PULL_NONE,
+                                 true);
+    system_pinmux_pin_set_config(FLASH_SERCOM_MISO_PIN,
+                                 SYSTEM_PINMUX_GPIO,
+                                 SYSTEM_PINMUX_PIN_DIR_OUTPUT,
+                                 SYSTEM_PINMUX_PIN_PULL_NONE,
+                                 true);
+    system_pinmux_pin_set_config(FLASH_SERCOM_SCK_PIN,
+                                 SYSTEM_PINMUX_GPIO,
+                                 SYSTEM_PINMUX_PIN_DIR_OUTPUT,
+                                 SYSTEM_PINMUX_PIN_PULL_NONE,
+                                 true);
+
+    /* memory is no longer initialised */
+    memory_init_success = 0;
+  }
 }

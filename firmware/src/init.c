@@ -35,7 +35,6 @@
 #include "xosc.h"
 #include "cron.h"
 #include "data.h"
-#include "memory.h"
 #include "telemetry.h"
 #include "barometer.h"
 #include "init.h"

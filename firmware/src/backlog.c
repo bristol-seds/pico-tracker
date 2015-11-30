@@ -191,23 +191,30 @@ void write_backlog_item(uint16_t index, tracker_datapoint* dp)
  */
 void record_backlog(tracker_datapoint* dp)
 {
-  if (is_backlog_valid_loaded == 0) {
-    load_is_backlog_valid();
+  if (mem_power_on()) {         /* Attempt to power on memory */
+
+    if (is_backlog_valid_loaded == 0) {
+      load_is_backlog_valid();
+    }
+
+    /* Load write index by finding highest epoch */
+    if (is_write_index_loaded == 0) {
+      load_write_index();
+    }
+
+    /* Erase old records if need be */
+    if (is_backlog_valid[backlog_write_index] == BACKLOG_VALID_FLAG) {
+      erase_backlog_item(backlog_write_index);
+    }
+
+    /* Write */
+    write_backlog_item(backlog_write_index, dp);
+    INC_INDEX(backlog_write_index);
+
   }
 
-  /* Load write index by finding highest epoch */
-  if (is_write_index_loaded == 0) {
-    load_write_index();
-  }
-
-  /* Erase old records if need be */
-  if (is_backlog_valid[backlog_write_index] == BACKLOG_VALID_FLAG) {
-    erase_backlog_item(backlog_write_index);
-  }
-
-  /* Write */
-  write_backlog_item(backlog_write_index, dp);
-  INC_INDEX(backlog_write_index);
+  /* memory off */
+  mem_power_off();
 }
 
 
@@ -258,7 +265,7 @@ uint16_t is_backlog_valid_count(void)
 /**
  * Gets a valid backlog item. Returns NULL if none available.
  */
-struct tracker_datapoint* get_backlog(void)
+struct tracker_datapoint* get_backlog_lookup(void)
 {
   uint32_t i;
   struct tracker_datapoint* dp;
@@ -301,4 +308,24 @@ struct tracker_datapoint* get_backlog(void)
   }
 
   return NULL;
+}
+
+
+/**
+ * Gets a valid backlog item. Returns NULL if none available.
+ *
+ * WRAPPER for get_backlog_lookup. Handles memory power
+ */
+struct tracker_datapoint* get_backlog(void)
+{
+  struct tracker_datapoint* dp;
+
+  if (mem_power_on()) {         /* Attempt to power on memory */
+    dp = get_backlog_lookup();
+  }
+
+  /* power off memory */
+  mem_power_off();
+
+  return dp;
 }

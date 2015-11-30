@@ -32,5 +32,7 @@ __verification__ void mem_erase_all_tc(void) {
    * results structure at the end
    */
 
+  mem_power_on();
+
   mem_chip_erase();
 }

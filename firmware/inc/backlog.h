@@ -50,6 +50,9 @@
  */
 #define BACKLOG_REPLAY_THRESHOLD	24    /* One day */
 
+
+
+/** NOTE: Public methods must power on memory */
 void record_backlog(tracker_datapoint* dp);
 struct tracker_datapoint* get_backlog(void);
 

@@ -56,6 +56,8 @@ void mem_chip_erase(void);
 void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
 void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length);
 void mem_erase_sector(uint32_t address);
-void init_memory(void);
+
+uint8_t mem_power_on();
+void mem_power_off();
 
 #endif

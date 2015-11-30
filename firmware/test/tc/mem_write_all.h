@@ -36,7 +36,7 @@ __verification__ void mem_write_all_tc(void) {
   uint8_t page_read[0x100];
   uint32_t i, j;
 
-  init_memory();
+  mem_power_on();
   mem_chip_erase();
 
   for (i = 0; i < TOTAL_PAGES; i++) {
