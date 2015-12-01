@@ -5,7 +5,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|ATSAMD20E17A-MU|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 128 KB, 16 KB, 32, QFN|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006)|1|U1
+|ATSAMD20E18A-MN|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 256 KB, 32 KB, 32, QFN|[2460535](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2460535)|1|U1
 |SI4468-A2A-IM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462639](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462639)|1|U2
 | Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758)|1|U4 memory 4Mbit
@@ -14,7 +14,8 @@
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880)|1|U8 or-gate, watchdog subsystem
 |MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
 |ADP1607ACPZN-R7|ANALOG DEVICES - DC-DC Switching Boost Step Up Regulator, Adjustable, 800mV-3.3Vin, 1.8V-3.3Vout, 1Aout, LFCSP-6|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
-|TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|2|U11, U12 LDO for TXCO, GPS TPS73118
+|TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U11 LDO for TXCO
+|MIC94310-GYM5 TR|MICREL SEMICONDUCTOR - Fixed LDO Voltage Regulator, 1.8V to 3.6V, 40mV Dropout, 1.8Vout, 200mAout, SOT-23-5|[2451765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2451765)|1|U12 LDO for GPS MIC94310-GYM5
 | SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U13, U14 lf clock, gps lf tcxo clock
 |LIS2DH|STMICROELECTRONICS - MEMS Accelerometer, 3-Axis, Digital, X, Y, Z, Â± 2g, Â± 4g, Â± 8g, Â± 16g, 1.71 V, 3.6 V, LGA|[2462671](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462671)|1|U15 3-axis accel I2C. Optional
 ----
@@ -40,9 +41,10 @@
 | C5, C6 | DNP ||| si4xxx rx
 |MC0402N101J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|C8, C9, C10 100pF
 |MC0402B102K500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 1000 pF, Â± 10%, X7R, 50 V, 0402 [1005 Metric]|[1758991](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758991)|1|C11 1nF
-|GRM155R71E103KA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 0.01 ÂµF, Â± 10%, X7R, 25 V, 0402 [1005 Metric]|[8819734](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=8819734)|2|C11, C12 10nF LDO NR bypass
-|MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|10|C13, C14, C15, C16, C17, C18, C19, C20, C21, C22 100nF
-|GRM155R61E105KA12D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 1 ÂµF, Â± 10%, X5R, 25 V, 0402 [1005 Metric]|[2218855](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2218855)|2|C23, C24, C28 1µF
+|GRM155R71E103KA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 0.01 ÂµF, Â± 10%, X7R, 25 V, 0402 [1005 Metric]|[8819734](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=8819734)|1|C11 10nF LDO NR bypass
+| C12 | DNP ||| LDO NC
+|MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|9|C13, C14, C15, C16, C17, C18, C19, C20, C21 100nF
+|GRM155R61E105KA12D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 1 ÂµF, Â± 10%, X5R, 25 V, 0402 [1005 Metric]|[2218855](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2218855)|3|C22, C23, C24, C28 1µF
 |GRM155R60J225ME15D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 2.2 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2362088](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362088)|1|C25 Radio Bypass 2.2µF
 |C1005X5R0J475M050BC|TDK - SMD Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|1|C26 MS5607 Bypass 4.7µF
 |MC0402B102K500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 1000 pF, Â± 10%, X7R, 50 V, 0402 [1005 Metric]|[1758991](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758991)|1|C27 1nF

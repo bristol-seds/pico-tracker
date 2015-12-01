@@ -2510,24 +2510,6 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <text x="-1" y="1.15" size="0.254" layer="25">&gt;NAME</text>
 <text x="-1" y="-1.4" size="0.254" layer="27">&gt;VALUE</text>
 </package>
-<package name="USON-8">
-<smd name="3" x="0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<wire x1="-1" y1="1.5" x2="1" y2="1.5" width="0.05" layer="21"/>
-<wire x1="1" y1="1.5" x2="1" y2="-1.5" width="0.05" layer="21"/>
-<wire x1="1" y1="-1.5" x2="-0.75" y2="-1.5" width="0.05" layer="21"/>
-<wire x1="-0.75" y1="-1.5" x2="-1" y2="-1.25" width="0.05" layer="21"/>
-<wire x1="-1" y1="-1.25" x2="-1" y2="1.5" width="0.05" layer="21"/>
-<smd name="4" x="0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="2" x="-0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="1" x="-0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="8" x="-0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="7" x="-0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="6" x="0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="5" x="0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$9" x="0" y="0" dx="1.8" dy="0.4" layer="1" cream="no"/>
-<text x="-1.25" y="-1.5" size="0.5" layer="25" font="vector" rot="R90">&gt;NAME</text>
-<text x="1.75" y="-1.625" size="0.5" layer="27" font="vector" rot="R90">&gt;VALUE</text>
-</package>
 <package name="SE880">
 <smd name="5" x="-1.925" y="0" dx="0.45" dy="0.2" layer="1"/>
 <smd name="6" x="-1.925" y="-0.4" dx="0.45" dy="0.2" layer="1"/>
@@ -2605,6 +2587,23 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <wire x1="0.77" y1="0.42" x2="-0.77" y2="0.42" width="0.06" layer="21"/>
 <text x="-0.75" y="0.5" size="0.4064" layer="25" font="vector" ratio="12">&gt;NAME</text>
 <text x="-0.75" y="-1" size="0.4064" layer="27" font="vector" ratio="12">&gt;VALUE</text>
+</package>
+<package name="USON-8">
+<smd name="3" x="0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<wire x1="-1" y1="1.5" x2="1" y2="1.5" width="0.05" layer="21"/>
+<wire x1="1" y1="1.5" x2="1" y2="-1.5" width="0.05" layer="21"/>
+<wire x1="1" y1="-1.5" x2="-0.75" y2="-1.5" width="0.05" layer="21"/>
+<wire x1="-0.75" y1="-1.5" x2="-1" y2="-1.25" width="0.05" layer="21"/>
+<wire x1="-1" y1="-1.25" x2="-1" y2="1.5" width="0.05" layer="21"/>
+<smd name="4" x="0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="2" x="-0.25" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="1" x="-0.75" y="-1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="8" x="-0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="7" x="-0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="6" x="0.25" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<smd name="5" x="0.75" y="1.25" dx="0.5" dy="0.3" layer="1" rot="R90"/>
+<text x="-1.25" y="-1.5" size="0.5" layer="25" font="vector" rot="R90">&gt;NAME</text>
+<text x="1.75" y="-1.625" size="0.5" layer="27" font="vector" rot="R90">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -2712,23 +2711,6 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <pin name="OUT" x="10.16" y="0" visible="pad" length="short" direction="out" rot="R180"/>
 <pin name="NC" x="10.16" y="5.08" visible="pad" length="short" direction="nc" rot="R180"/>
 </symbol>
-<symbol name="SST25WF040BT">
-<pin name="VDD" x="-20.32" y="7.62" length="middle" direction="pwr"/>
-<pin name="!WP" x="20.32" y="-2.54" length="middle" direction="out" rot="R180"/>
-<pin name="SCK" x="20.32" y="2.54" length="middle" direction="in" rot="R180"/>
-<pin name="SO/SIO1" x="20.32" y="5.08" length="middle" direction="out" rot="R180"/>
-<pin name="SI/SIO0" x="20.32" y="7.62" length="middle" rot="R180"/>
-<pin name="!CE" x="20.32" y="-5.08" length="middle" direction="in" rot="R180"/>
-<pin name="!HOLD" x="-20.32" y="2.54" length="middle" direction="out"/>
-<pin name="GND_PAD" x="-20.32" y="-7.62" length="middle" direction="pwr"/>
-<pin name="VSS" x="-20.32" y="-5.08" length="middle" direction="pwr"/>
-<wire x1="-15.24" y1="-10.16" x2="15.24" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="15.24" y1="-10.16" x2="15.24" y2="10.16" width="0.254" layer="94"/>
-<wire x1="15.24" y1="10.16" x2="-15.24" y2="10.16" width="0.254" layer="94"/>
-<wire x1="-15.24" y1="10.16" x2="-15.24" y2="-10.16" width="0.254" layer="94"/>
-<text x="-15.24" y="11.43" size="1.524" layer="95" font="vector">&gt;NAME</text>
-<text x="-15.24" y="-12.7" size="1.524" layer="96" font="vector">&gt;VALUE</text>
-</symbol>
 <symbol name="SE880">
 <wire x1="-17.78" y1="27.94" x2="17.78" y2="27.94" width="0.254" layer="94"/>
 <wire x1="17.78" y1="27.94" x2="17.78" y2="-27.94" width="0.254" layer="94"/>
@@ -2825,6 +2807,22 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <pin name="VCC" x="-10.16" y="5.08" visible="pad" length="short" direction="pwr"/>
 <pin name="OUT" x="10.16" y="0" visible="pad" length="short" direction="out" rot="R180"/>
 <pin name="GND1" x="-10.16" y="-2.54" visible="pad" length="short" direction="pwr"/>
+</symbol>
+<symbol name="SST25WF040BT">
+<pin name="VDD" x="-20.32" y="7.62" length="middle" direction="pwr"/>
+<pin name="!WP" x="20.32" y="-2.54" length="middle" direction="out" rot="R180"/>
+<pin name="SCK" x="20.32" y="2.54" length="middle" direction="in" rot="R180"/>
+<pin name="SO/SIO1" x="20.32" y="5.08" length="middle" direction="out" rot="R180"/>
+<pin name="SI/SIO0" x="20.32" y="7.62" length="middle" rot="R180"/>
+<pin name="!CE" x="20.32" y="-5.08" length="middle" direction="in" rot="R180"/>
+<pin name="!HOLD" x="-20.32" y="2.54" length="middle" direction="out"/>
+<pin name="VSS" x="-20.32" y="-5.08" length="middle" direction="pwr"/>
+<wire x1="-15.24" y1="-10.16" x2="15.24" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-10.16" x2="15.24" y2="10.16" width="0.254" layer="94"/>
+<wire x1="15.24" y1="10.16" x2="-15.24" y2="10.16" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="10.16" x2="-15.24" y2="-10.16" width="0.254" layer="94"/>
+<text x="-15.24" y="11.43" size="1.524" layer="95" font="vector">&gt;NAME</text>
+<text x="-15.24" y="-12.7" size="1.524" layer="96" font="vector">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -2928,29 +2926,6 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 </device>
 </devices>
 </deviceset>
-<deviceset name="SST25WF040BT-40I/NP">
-<gates>
-<gate name="G$1" symbol="SST25WF040BT" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="USON-8">
-<connects>
-<connect gate="G$1" pin="!CE" pad="1"/>
-<connect gate="G$1" pin="!HOLD" pad="7"/>
-<connect gate="G$1" pin="!WP" pad="3"/>
-<connect gate="G$1" pin="GND_PAD" pad="P$9"/>
-<connect gate="G$1" pin="SCK" pad="6"/>
-<connect gate="G$1" pin="SI/SIO0" pad="5"/>
-<connect gate="G$1" pin="SO/SIO1" pad="2"/>
-<connect gate="G$1" pin="VDD" pad="8"/>
-<connect gate="G$1" pin="VSS" pad="4"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="SE880">
 <gates>
 <gate name="A" symbol="SE880" x="0" y="0"/>
@@ -3038,6 +3013,28 @@ This standard 0.05" 10-pin connector is for use with the Cortex M0/M3's native S
 <connect gate="G$1" pin="GND1" pad="4"/>
 <connect gate="G$1" pin="OUT" pad="2"/>
 <connect gate="G$1" pin="VCC" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="SST25WF040BT-40I/NP">
+<gates>
+<gate name="G$1" symbol="SST25WF040BT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="USON-8">
+<connects>
+<connect gate="G$1" pin="!CE" pad="1"/>
+<connect gate="G$1" pin="!HOLD" pad="7"/>
+<connect gate="G$1" pin="!WP" pad="3"/>
+<connect gate="G$1" pin="SCK" pad="6"/>
+<connect gate="G$1" pin="SI/SIO0" pad="5"/>
+<connect gate="G$1" pin="SO/SIO1" pad="2"/>
+<connect gate="G$1" pin="VDD" pad="8"/>
+<connect gate="G$1" pin="VSS" pad="4"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -8363,7 +8360,6 @@ Metric Code Size 5664</description>
 <part name="U$73" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="C17" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$78" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U4" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
 <part name="U$22" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
 <part name="C26" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
@@ -8414,7 +8410,7 @@ Metric Code Size 5664</description>
 <part name="U$17" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="L9" library="Coilcraft_XAL" deviceset="EPL2010" device="" value="EPL2010-2.2µH"/>
 <part name="C27" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
-<part name="C22" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
+<part name="C14" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="C31" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
 <part name="U11" library="TPS73118DVBT" deviceset="TPS73118DBVT" device=""/>
 <part name="U$23" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -8447,12 +8443,12 @@ Metric Code Size 5664</description>
 <part name="U$58" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U14" library="fbri" deviceset="SIT1552" device=""/>
 <part name="U$71" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U12" library="TPS73118DVBT" deviceset="TPS73118DBVT" device=""/>
+<part name="U12" library="TPS73118DVBT" deviceset="TPS73118DBVT" device="" value="MIC94310-GYM5"/>
 <part name="U$70" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="C11" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="10nF"/>
+<part name="C11" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
 <part name="U$84" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$85" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C14" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
+<part name="C22" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$65" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U16" library="fbri" deviceset="SIT1552" device=""/>
 <part name="U$83" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -8467,6 +8463,7 @@ Metric Code Size 5664</description>
 <part name="CBO2" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1µF"/>
 <part name="U$76" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$77" library="microbuilder_v3" deviceset="1.8V" device=""/>
+<part name="U$80" library="fbri" deviceset="SST25WF040BT-40I/NP" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8529,6 +8526,10 @@ cycle power on failure,
 also for power conditioning</text>
 <text x="256.54" y="122.428" size="1.27" layer="97" font="vector" ratio="11" distance="100">C15 in close
 proximity</text>
+<text x="27.94" y="66.548" size="1.27" layer="97" font="vector" ratio="11" distance="100">XFL4020 is better than
+VLF302512MT-2R2M used for
+datasheet efficiency
+measurements</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="147.32" y="139.7"/>
@@ -8598,7 +8599,6 @@ proximity</text>
 <instance part="U$73" gate="G$1" x="208.28" y="172.72" rot="MR0"/>
 <instance part="C17" gate="G$1" x="20.32" y="172.72"/>
 <instance part="U$78" gate="G$1" x="20.32" y="165.1"/>
-<instance part="U4" gate="G$1" x="226.06" y="83.82"/>
 <instance part="U$22" gate="G$1" x="55.88" y="213.36" rot="MR0"/>
 <instance part="JTAG1" gate="G$1" x="43.18" y="226.06" rot="MR0"/>
 <instance part="C26" gate="G$1" x="185.42" y="30.48"/>
@@ -8649,7 +8649,7 @@ proximity</text>
 <instance part="U$17" gate="G$1" x="762" y="88.9" rot="R90"/>
 <instance part="L9" gate="G$1" x="706.12" y="106.68"/>
 <instance part="C27" gate="G$1" x="726.44" y="91.44"/>
-<instance part="C22" gate="G$1" x="739.14" y="91.44"/>
+<instance part="C14" gate="G$1" x="739.14" y="91.44"/>
 <instance part="C31" gate="G$1" x="751.84" y="93.98"/>
 <instance part="U11" gate="A" x="492.76" y="208.28"/>
 <instance part="U$23" gate="G$1" x="472.44" y="182.88"/>
@@ -8687,7 +8687,7 @@ proximity</text>
 <instance part="C11" gate="G$1" x="492.76" y="83.82"/>
 <instance part="U$84" gate="G$1" x="502.92" y="76.2"/>
 <instance part="U$85" gate="G$1" x="492.76" y="76.2"/>
-<instance part="C14" gate="G$1" x="459.74" y="88.9"/>
+<instance part="C22" gate="G$1" x="459.74" y="88.9"/>
 <instance part="U$65" gate="G$1" x="459.74" y="76.2"/>
 <instance part="U16" gate="G$1" x="241.3" y="121.92" rot="MR0"/>
 <instance part="U$83" gate="G$1" x="254" y="111.76"/>
@@ -8702,6 +8702,7 @@ proximity</text>
 <instance part="CBO2" gate="G$1" x="134.62" y="226.06"/>
 <instance part="U$76" gate="G$1" x="134.62" y="213.36" rot="MR0"/>
 <instance part="U$77" gate="G$1" x="134.62" y="254" rot="MR0"/>
+<instance part="U$80" gate="G$1" x="228.6" y="83.82"/>
 </instances>
 <busses>
 </busses>
@@ -8741,20 +8742,16 @@ proximity</text>
 </segment>
 <segment>
 <pinref part="U$39" gate="G$1" pin="GND"/>
-<wire x1="205.74" y1="78.74" x2="195.58" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="78.74" x2="195.58" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="195.58" y1="78.74" x2="185.42" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="78.74" x2="185.42" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="76.2" x2="185.42" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="205.74" y1="76.2" x2="185.42" y2="76.2" width="0.1524" layer="91"/>
-<junction x="185.42" y="76.2"/>
+<wire x1="185.42" y1="78.74" x2="185.42" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C21" gate="G$1" pin="P$2"/>
 <wire x1="185.42" y1="78.74" x2="185.42" y2="81.28" width="0.1524" layer="91"/>
 <junction x="185.42" y="78.74"/>
-<pinref part="U4" gate="G$1" pin="VSS"/>
-<pinref part="U4" gate="G$1" pin="GND_PAD"/>
 <pinref part="C10" gate="G$1" pin="P$2"/>
 <wire x1="195.58" y1="81.28" x2="195.58" y2="78.74" width="0.1524" layer="91"/>
 <junction x="195.58" y="78.74"/>
+<pinref part="U$80" gate="G$1" pin="VSS"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="P$2"/>
@@ -8947,7 +8944,7 @@ proximity</text>
 <pinref part="C27" gate="G$1" pin="P$2"/>
 <wire x1="726.44" y1="88.9" x2="739.14" y2="88.9" width="0.1524" layer="91"/>
 <junction x="726.44" y="88.9"/>
-<pinref part="C22" gate="G$1" pin="P$2"/>
+<pinref part="C14" gate="G$1" pin="P$2"/>
 <wire x1="739.14" y1="88.9" x2="751.84" y2="88.9" width="0.1524" layer="91"/>
 <junction x="739.14" y="88.9"/>
 <pinref part="C31" gate="G$1" pin="2"/>
@@ -9019,7 +9016,7 @@ proximity</text>
 <wire x1="492.76" y1="81.28" x2="492.76" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C14" gate="G$1" pin="P$2"/>
+<pinref part="C22" gate="G$1" pin="P$2"/>
 <pinref part="U$65" gate="G$1" pin="GND"/>
 <wire x1="459.74" y1="86.36" x2="459.74" y2="78.74" width="0.1524" layer="91"/>
 </segment>
@@ -9117,9 +9114,9 @@ proximity</text>
 </net>
 <net name="MEM_MOSI" class="0">
 <segment>
-<wire x1="246.38" y1="91.44" x2="264.16" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="91.44" x2="264.16" y2="91.44" width="0.1524" layer="91"/>
 <label x="251.46" y="91.44" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="SI/SIO0"/>
+<pinref part="U$80" gate="G$1" pin="SI/SIO0"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA08"/>
@@ -9129,9 +9126,9 @@ proximity</text>
 </net>
 <net name="MEM_CSN" class="0">
 <segment>
-<wire x1="264.16" y1="78.74" x2="246.38" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="264.16" y1="78.74" x2="248.92" y2="78.74" width="0.1524" layer="91"/>
 <label x="251.46" y="78.74" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="!CE"/>
+<pinref part="U$80" gate="G$1" pin="!CE"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA10"/>
@@ -9141,9 +9138,9 @@ proximity</text>
 </net>
 <net name="MEM_WPN" class="0">
 <segment>
-<wire x1="246.38" y1="81.28" x2="264.16" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="81.28" x2="264.16" y2="81.28" width="0.1524" layer="91"/>
 <label x="251.46" y="81.28" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="!WP"/>
+<pinref part="U$80" gate="G$1" pin="!WP"/>
 </segment>
 </net>
 <net name="GIMO" class="0">
@@ -9172,9 +9169,9 @@ proximity</text>
 </net>
 <net name="MEM_SCK" class="0">
 <segment>
-<wire x1="246.38" y1="86.36" x2="264.16" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="86.36" x2="264.16" y2="86.36" width="0.1524" layer="91"/>
 <label x="251.46" y="86.36" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="SCK"/>
+<pinref part="U$80" gate="G$1" pin="SCK"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA09"/>
@@ -9184,9 +9181,9 @@ proximity</text>
 </net>
 <net name="MEM_MISO" class="0">
 <segment>
-<wire x1="246.38" y1="88.9" x2="264.16" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="88.9" x2="264.16" y2="88.9" width="0.1524" layer="91"/>
 <label x="251.46" y="88.9" size="1.778" layer="95" ratio="11"/>
-<pinref part="U4" gate="G$1" pin="SO/SIO1"/>
+<pinref part="U$80" gate="G$1" pin="SO/SIO1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA11"/>
@@ -9732,7 +9729,7 @@ proximity</text>
 <wire x1="726.44" y1="106.68" x2="726.44" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="726.44" y1="99.06" x2="739.14" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="739.14" y1="99.06" x2="751.84" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="C22" gate="G$1" pin="P$1"/>
+<pinref part="C14" gate="G$1" pin="P$1"/>
 <wire x1="739.14" y1="96.52" x2="739.14" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="C27" gate="G$1" pin="P$1"/>
 <wire x1="726.44" y1="96.52" x2="726.44" y2="99.06" width="0.1524" layer="91"/>
@@ -9842,21 +9839,21 @@ proximity</text>
 </segment>
 <segment>
 <pinref part="U$40" gate="G$1" pin="1.8V"/>
-<wire x1="205.74" y1="91.44" x2="203.2" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="91.44" x2="203.2" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="91.44" x2="195.58" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="195.58" y1="91.44" x2="185.42" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="185.42" y1="91.44" x2="185.42" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="C21" gate="G$1" pin="P$1"/>
 <wire x1="185.42" y1="88.9" x2="185.42" y2="91.44" width="0.1524" layer="91"/>
 <junction x="185.42" y="91.44"/>
-<pinref part="U4" gate="G$1" pin="VDD"/>
-<pinref part="U4" gate="G$1" pin="!HOLD"/>
-<wire x1="205.74" y1="86.36" x2="203.2" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="86.36" x2="203.2" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="86.36" x2="203.2" y2="91.44" width="0.1524" layer="91"/>
 <junction x="203.2" y="91.44"/>
 <pinref part="C10" gate="G$1" pin="P$1"/>
 <wire x1="195.58" y1="91.44" x2="195.58" y2="88.9" width="0.1524" layer="91"/>
 <junction x="195.58" y="91.44"/>
+<pinref part="U$80" gate="G$1" pin="VDD"/>
+<pinref part="U$80" gate="G$1" pin="!HOLD"/>
 </segment>
 <segment>
 <pinref part="FB1" gate="G$1" pin="P$2"/>
@@ -9973,7 +9970,7 @@ proximity</text>
 <pinref part="U$70" gate="G$1" pin="1.8V"/>
 <wire x1="505.46" y1="101.6" x2="459.74" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="459.74" y1="101.6" x2="459.74" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="C14" gate="G$1" pin="P$1"/>
+<pinref part="C22" gate="G$1" pin="P$1"/>
 <wire x1="459.74" y1="101.6" x2="459.74" y2="93.98" width="0.1524" layer="91"/>
 <junction x="459.74" y="101.6"/>
 </segment>

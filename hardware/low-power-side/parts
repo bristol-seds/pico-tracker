@@ -5,7 +5,7 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-2361006 1 U1
+2460535 1 U1
 2462639 1 U2
 | Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
 2414758 1 U4 memory 4Mbit
@@ -14,7 +14,8 @@
 1470880 1 U8 or-gate, watchdog subsystem
 2362660 1 U9 MS5607 Pressure / Temperature sensor
 2254940 1 U10 Boost Reg ADP1607
-1135388 2 U11, U12 LDO for TXCO, GPS TPS73118
+1135388 1 U11 LDO for TXCO
+2451765 1 U12 LDO for GPS MIC94310-GYM5
 | SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U13, U14 lf clock, gps lf tcxo clock
 2462671 1 U15 3-axis accel I2C. Optional
 ----
@@ -40,9 +41,10 @@
 | C5, C6 | DNP ||| si4xxx rx
 1758969 3 C8, C9, C10 100pF
 1758991 1 C11 1nF
-8819734 2 C11, C12 10nF LDO NR bypass
-1759380 10 C13, C14, C15, C16, C17, C18, C19, C20, C21, C22 100nF
-2218855 2 C23, C24, C28 1µF
+8819734 1 C11 10nF LDO NR bypass
+| C12 | DNP ||| LDO NC
+1759380 9 C13, C14, C15, C16, C17, C18, C19, C20, C21 100nF
+2218855 3 C22, C23, C24, C28 1µF
 2362088 1 C25 Radio Bypass 2.2µF
 2309027 1 C26 MS5607 Bypass 4.7µF
 1758991 1 C27 1nF
