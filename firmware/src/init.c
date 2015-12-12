@@ -74,6 +74,7 @@ void init(enum init_type init_t)
    * --------------------------------------------------------------------------
    */
   gclk0_to_lf_clock();
+  system_clock_source_disable(SYSTEM_CLOCK_SOURCE_OSC8M);
 
   /**
    * Reset to get the system in a safe state
