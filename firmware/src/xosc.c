@@ -156,6 +156,15 @@ void gclk0_to_hf_clock(void)
  */
 void gclk0_to_lf_clock(void)
 {
+#if USE_LFTIMER
+  /* Configure GCLK_IO[0] pin */
+  system_pinmux_pin_set_config(LFTIMER_GCLKIO_0_PINMUX >> 16,
+                               LFTIMER_GCLKIO_0_PINMUX & 0xFFFF,
+                               SYSTEM_PINMUX_PIN_DIR_INPUT,
+                               SYSTEM_PINMUX_PIN_PULL_NONE,
+                               true);
+#endif
+
   /* Configure GCLK0 to GCLK_IO[0] / OSCULP32K */
   system_gclk_gen_set_config(GCLK_GENERATOR_0,
 #if USE_LFTIMER
