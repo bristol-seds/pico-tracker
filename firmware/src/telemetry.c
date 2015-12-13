@@ -128,6 +128,7 @@ int telemetry_active(void) {
 
 uint32_t contestia_timer_count, rtty_timer_count;
 uint32_t pips_timer_count, ax25_timer_count, rsid_timer_count;
+uint32_t pips_tick;
 
 struct si_frequency_configuration telemetry_fconfig, aprs_fconfig;
 
@@ -153,6 +154,7 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
       timer0_tick_init(rtty_timer_count);
       break;
     case TELEMETRY_PIPS:
+      pips_tick = 0;
       timer0_tick_init(pips_timer_count);
       break;
     case TELEMETRY_APRS:
@@ -338,17 +340,26 @@ void telemetry_tick(void) {
 
     case TELEMETRY_PIPS: /* ---- ---- A pips mode! */
 
-      if (!radio_on) { /* Turn on */
-        /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, &telemetry_fconfig, 1, TELEMETRY_POWER,
-                  SI_FILTER_DEFAULT);
-        radio_on = 1;
-
-      } else { /* Turn off */
-
+      if (pips_tick == 0) {  /* Turn on */
+        if (!radio_on) {
+          /* Pips: Cw */
+          si_trx_on(SI_MODEM_MOD_TYPE_CW, &telemetry_fconfig, 1, TELEMETRY_POWER,
+                    SI_FILTER_DEFAULT);
+          radio_on = 1;
+        }
+      } else if (pips_tick == 1) { /* Turn off */
         si_trx_off(); radio_on = 0;
-        telemetry_stop();
+
+        /* next pip */
+        telemetry_index++;
+
+        /* Maybe the transmission is finished */
+        if (is_telemetry_finished()) return;
+
+      } else if (pips_tick == PIPS_FREQUENCY-1) {
+        pips_tick = 0; break;
       }
+      pips_tick++;
 
       break;
     }

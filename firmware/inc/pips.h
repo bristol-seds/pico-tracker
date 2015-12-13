@@ -26,7 +26,7 @@
 #define PIPS_H
 
 /**
- * 50ms pips, once per second
+ * 125ms pips, once per second
  */
 
 #define PIPS_RATE	1
