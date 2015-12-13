@@ -147,7 +147,7 @@ void contestia_telemetry(struct tracker_datapoint* dp)
   len = format_telemetry_string(telemetry_string, dp, CONTESTIA_DOLLARS, 1);
 
   /* RSID */
-  telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+  telemetry_start_rsid(RSID_CONTESTIA_16_1000);
 
   /* Sleep Wait for RSID */
   while (telemetry_active()) {
