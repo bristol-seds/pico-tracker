@@ -618,11 +618,6 @@ void si_trx_init(void)
   _si_trx_cs_disable();
 
   /* Configure the GPIO pins */
-  port_pin_set_config(SI4xxx_GPIO0_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
-  port_pin_set_output_level(SI4xxx_GPIO0_PIN, 0);
   port_pin_set_config(SI4xxx_GPIO1_PIN,
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
