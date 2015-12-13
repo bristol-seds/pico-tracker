@@ -509,7 +509,10 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
   _si_trx_sdn_disable();   /* booting. expected to take 15ms */
 
   /* Poll for part number */
-  while (si_trx_get_part_info() != 17512);
+  uint16_t part = 0;
+  while (part != 0x4468) {
+    part = si_trx_get_part_info();
+  }
 
   /* Power Up */
   si_trx_power_up(SI_POWER_UP_TCXO, VCXO_FREQUENCY);
