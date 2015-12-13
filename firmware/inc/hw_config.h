@@ -231,7 +231,7 @@
  * There is a performance penalty to using the watchdog - you must
  * wait up to 1/16kHz when kicking to sync with it. Disable when not in use
  */
-#define DEBUG_USE_INTWATCHDOG	0
+//#define DEBUG_USE_INTWATCHDOG	0
 #define WDT_GCLK		GCLK_GENERATOR_4
 
 /**
