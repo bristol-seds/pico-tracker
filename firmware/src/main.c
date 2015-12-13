@@ -208,13 +208,29 @@ void pips_telemetry(void)
 
 
 volatile uint8_t run_flag = 1;  /* run immediately after init */
+uint32_t hibernate_time_s = 1;
+/**
+ * Sets the hibernate time in seconds
+ */
+void set_hibernate_time(void)
+{
+  if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
+    hibernate_time_s = 10;
+  } else {
+    hibernate_time_s = 120;     /* 120 seconds */
+  }
+
+  /* TESTING */
+  hibernate_time_s = 2;
+}
 /**
  * Called on each tick of the low frequency clock
  */
 void lf_tick(uint32_t tick)
 {
-  /*  When we're due to run again */
-  if (tick >= 10) {
+  /* When we're due to run again */
+  /* Called at 2Hz */
+  if (tick >= 2*hibernate_time_s) {
     /* Stop */
     lf_tick_stop();
 
@@ -256,10 +272,18 @@ int main(void)
 
       /* Clocks off */
       system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
+
+      /* Disable to save power??? */
+      system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
+                                  PM_APBAMASK_EIC |
+                                  PM_APBAMASK_PAC0 |
+                                  PM_APBAMASK_WDT);
+
       gclk0_to_lf_clock();
       hf_clock_disable();
 
       /* LF timing */
+      set_hibernate_time();
       lf_tick_start();
     }
 
