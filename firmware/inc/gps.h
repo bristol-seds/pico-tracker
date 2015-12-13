@@ -103,6 +103,31 @@ void gps_setup(void);
 #endif  /* GPS_TYPE_OSP */
 
 
+/* Dummy ------------------------------------------------------------- */
+#ifdef GPS_TYPE_DUMMY
+
+/**
+ * GPS Data
+ */
+struct gps_data_t {
+  uint16_t year;                /* years */
+  uint8_t month, day, hour, minute, second; /* months, days, hours, minutes, seconds */
+  int32_t latitude, longitude;  /* hndeg */
+  int32_t altitude;             /* mm */
+  uint8_t satillite_count;
+  uint8_t is_locked;            /* 1 = locked, 0 = not locked */
+  uint8_t time_to_first_fix;    /* seconds / counts */
+};
+
+uint8_t gps_is_locked(void);
+
+enum gps_error_t gps_get_error_state(void);
+struct gps_data_t gps_get_data(void);
+
+void gps_setup(void);
+
+#endif  /* GPS_TYPE_DUMMY */
+
 /* Both ------------------------------------------------------------ */
 enum gps_flight_state_t gps_get_flight_state(void);
 

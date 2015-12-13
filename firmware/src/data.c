@@ -66,7 +66,7 @@ void collect_data_async(void)
  */
 struct tracker_datapoint* collect_data(void)
 {
-#ifdef GPS_TYPE_OSP
+#if defined(GPS_TYPE_OSP) || defined(GPS_TYPE_DUMMY)
   /**
    * ---- GPS OSP ----
    */
