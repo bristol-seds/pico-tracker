@@ -43,7 +43,7 @@
 #include "xosc.h"
 #include "sequencer.h"
 
-#define CALLSIGN	"UBSEDSX"
+#define CALLSIGN	"UBSEDSXX"
 #define APRS_COMMENT	""
 
 /**
@@ -69,15 +69,15 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 
   /* sprintf - full string (approx 90 chars) */
   len += sprintf(telemetry_string + len,
-                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%.2f,%ld,%.1f,%.1f,%.1f,%ld",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.5f,%03.5f,%ld,%u,%u,%ld,%.1f,%.1f,%.1f",
                  CALLSIGN,      /* 2+6+2+1=11 */
                  dp->time.hour, dp->time.minute, dp->time.second, /* 2+1+2+1+2+1=9 */
                  dp->time.year%100, dp->time.month, dp->time.day, /* 2+2+2+1=7 */
                  lat_fmt, lon_fmt, altitude, dp->satillite_count, /* 3+1+5+1 + 4+1+5+1 + 5+1 + 2+1 = 30 */
-                 dp->solar, dp->main_pressure, /* 1+1+2+1 + 5+1 = 11 */
+                 dp->time_to_first_fix, dp->main_pressure, /* 2+1 + 5+1 = 9 */
                  dp->thermistor_temperature, dp->bmp180_temperature, /* 3+1+1+1 + 3+1+1+1 = 12 */
-                 dp->radio_die_temperature, dp->xosc_error); /* 3+1+1+1 + 4 = 10 */
-  /* sum = 90 (must be less than or equal to 114) */
+                 dp->radio_die_temperature); /* 3+1+1+1 = 6 */
+  /* sum = 84 (must be less than or equal to 114) */
 
   if (reduce_char_set) {
     /* Reduce character set */

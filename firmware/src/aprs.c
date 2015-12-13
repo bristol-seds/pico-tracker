@@ -98,9 +98,11 @@ void encode_altitude(char* str, uint32_t altitude_meters) {
 void encode_telemetry(char* str, tracker_datapoint* dp)
 {
   base91_encode(str+0, 2, (dp->battery * 1000)); /* Battery never > 8V */
-  base91_encode(str+2, 2, (dp->solar * 1000));   /* Solar never > 8V */
-  base91_encode(str+4, 2, ((dp->radio_die_temperature+273.2)*10)); /* Temp never > 526º! */
+  /* base91_encode(str+2, 2, (dp->solar * 1000));   /\* Solar never > 8V *\/ */
+  base91_encode(str+2, 2, ((dp->thermistor_temperature+273.2)*10)); /* Temp never > 526º! */
+  base91_encode(str+4, 2, ((dp->bmp180_temperature+273.2)*10)); /* Temp never > 526º! */
   base91_encode(str+6, 2, dp->satillite_count);        /* Small! */
+  base91_encode(str+8, 2, dp->time_to_first_fix);      /* Small! */
 }
 
 /**
