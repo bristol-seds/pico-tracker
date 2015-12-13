@@ -25,6 +25,21 @@
 #ifndef CONTESTIA_H
 #define CONTESTIA_H
 
+
+/* /\** */
+/*  * Contestia 8/1000 */
+/*  *\/ */
+/* #define CONTESTIA_NUMBER_OF_TONES 8 */
+/* #define CONTESTIA_CHARACTERS_PER_BLOCK 3 */
+/* #define CONTESTIA_CHANNEL_SPACING 16 // Corresponds to 124.88 Hz */
+/* #define CONTESTIA_SYMBOL_RATE 125 */
+/* /\** */
+/*  * Contestia 16/1000 */
+/*  *\/ */
+/* #define CONTESTIA_NUMBER_OF_TONES 16 */
+/* #define CONTESTIA_CHARACTERS_PER_BLOCK 4 */
+/* #define CONTESTIA_CHANNEL_SPACING 8 // Corresponds to 62.44 Hz */
+/* #define CONTESTIA_SYMBOL_RATE 62.5 */
 /**
  * Contestia 32/1000
  */

@@ -27,10 +27,12 @@
 #include "samd20.h"
 #include "mfsk.h"
 #include "math/fwht.h"
+#include "contestia.h"
 
 static const uint64_t scrambler_olivia		= 0xE257E6D0291574ECLL;
 static const uint64_t scrambler_contestia	= 0xEDB88320LL;
-
+static const uint16_t shift_olivia		= 13;
+static const uint16_t shift_contestia		= 5;
 /**
  * USEFUL RESOURES =============================================================
  *
@@ -110,7 +112,8 @@ void olivia_mfsk_encode_block(char* block, int8_t* tones)
 {
   size_t bits_per_symbol = 5; /* That is, there are 2^5=32 tones */
 
-  mfsk_encode_block(block, tones, 64, bits_per_symbol, scrambler_olivia, 13);
+  mfsk_encode_block(block, tones, 64, bits_per_symbol,
+                    scrambler_olivia, shift_olivia);
 }
 /**
  * This function encodes a single block of Contestia MFSK
@@ -120,7 +123,7 @@ void olivia_mfsk_encode_block(char* block, int8_t* tones)
  */
 void contestia_mfsk_encode_block(char* block, int8_t* tones)
 {
-  size_t bits_per_symbol = 5; /* That is, there are 2^5=32 tones */
+  size_t bits_per_symbol = CONTESTIA_CHARACTERS_PER_BLOCK; /* That is, there are 2^x tones */
 
   for (uint8_t c_index = 0; c_index < bits_per_symbol; c_index++) {
     char character = block[c_index];
@@ -151,5 +154,6 @@ void contestia_mfsk_encode_block(char* block, int8_t* tones)
   }
 
 
-  mfsk_encode_block(block, tones, 32, bits_per_symbol, scrambler_contestia, 5);
+  mfsk_encode_block(block, tones, 32, bits_per_symbol,
+                    scrambler_contestia, shift_contestia);
 }

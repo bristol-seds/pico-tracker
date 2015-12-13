@@ -35,7 +35,7 @@
 /**
  * Current output tones
  */
-int8_t contestia_tones[CONTESTIA_NUMBER_OF_TONES];
+int8_t contestia_tones[32];
 /**
  * Where we are in the current output tones
  */
@@ -80,7 +80,7 @@ uint8_t contestia_tick(void) {
     return 1;
   }
 
-  if (contestia_tone_index < CONTESTIA_NUMBER_OF_TONES) {
+  if (contestia_tone_index < 32) {
     uint8_t binary_code;
     uint8_t grey_code;
 
@@ -97,7 +97,7 @@ uint8_t contestia_tick(void) {
 
   contestia_tone_index++;
 
-  if (contestia_tone_index < CONTESTIA_NUMBER_OF_TONES) {
+  if (contestia_tone_index < 32) {
     return 1;
   }
 
