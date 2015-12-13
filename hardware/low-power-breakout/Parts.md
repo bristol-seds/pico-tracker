@@ -5,15 +5,15 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|ATSAMD20E17A-MU|ATMEL - MCU, 32BIT, CORTEX-M0+, 48MHZ, QFN-32|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
+|ATSAMD20E17A-MU|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 128 KB, 16 KB, 32, QFN|[2361006](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2361006) [556-ATSAMD20E17A-MU](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=556-ATSAMD20E17A-MU)|1|U1
 |SI4468-A2A-IM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462639](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462639) [634-SI4468-A2A-IM](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=634-SI4468-A2A-IM)|1|U2
 | Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758) [579-25WF040BT-40I/NP](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=579-25WF040BT-40I/NP)|1|U4 memory 4Mbit
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|2|U5, U6 TCXO Si4xxx, SE880
-|TPS3123J18DBVT|TEXAS INSTRUMENTS - IC, 1.62V SUPPLY MONITOR SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7 watchdog
+|TPS3123J18DBVT|TEXAS INSTRUMENTS - 1.62V Supply Monitor, Manual Reset, Active-Low Reset, 0.85V-3.3Vin, SOT-23-5|[1755607](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1755607) [595-TPS3123J18DBVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS3123J18DBVT)|1|U7 watchdog
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - IC, SINGLE 2 INPUT OR GATE, SMD|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880) [595-SN74LVC1G32DCKR](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-SN74LVC1G32DCKR)|1|U8 or-gate, watchdog subsystem
-|MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, QFN, 8, -40 Â°C|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
-|ADP1607ACPZN-R7|ANALOG DEVICES - BOOST, 0.8-3.3V, 2MHZ, 1.8-3.3V, 6LFCSP|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
+|MS560702BA03-50|MEASUREMENT SPECIALTIES - Pressure Sensor, Barometric, 10 mbar, 1200 mbar, 1.8 V, 3.6 V|[2362660](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2362660)|1|U9 MS5607 Pressure / Temperature sensor
+|ADP1607ACPZN-R7|ANALOG DEVICES - DC-DC Switching Boost Step Up Regulator, Adjustable, 800mV-3.3Vin, 1.8V-3.3Vout, 1Aout, LFCSP-6|[2254940](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2254940)|1|U10 Boost Reg ADP1607
 |TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|8|U11 [7xbreak] LDO for TXCO, TPS73118
 |ABS05-32.768KHZ-T|ABRACON - CRYSTAL, 32.768KHZ, 12.5PF, 1.6 X 1MM|[2467859](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2467859)|1|Y1 32.786kHz XTAL SE880 ABS05
 ----
@@ -31,7 +31,7 @@
 |EPL2010-222MLB|COILCRAFT - Surface Mount Power Inductor, EPL2010 Series, 2.2 ÂµH, Â± 20%, Shielded, 0.222 ohm, 978 mA|[2287369](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2287369)|1|L9 SE880 EPL2010-22222
 |MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|4|R1, R2, R3, R4 10k
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|2|R5, R6 100k
-|CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|2|R7, R9 100k 0.1%
+|ERA2AEB104X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Thin Film, AEC-Q200 ERA Series, 100 kohm, 63 mW, Â± 0.1%, 25 V|[1577723](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1577723)|2|R7, R9 100k 0.1%
 |ERA2AEB433X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 43 kohm, 63 mW, Â± 0.1%, 25 V|[2324785](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324785)|1|R8 43k 0.1%
 |GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
 |MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C7 15pF
