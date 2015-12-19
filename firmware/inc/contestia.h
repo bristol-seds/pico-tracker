@@ -25,13 +25,28 @@
 #ifndef CONTESTIA_H
 #define CONTESTIA_H
 
+
+/* /\** */
+/*  * Contestia 8/1000 */
+/*  *\/ */
+/* #define CONTESTIA_NUMBER_OF_TONES 8 */
+/* #define CONTESTIA_CHARACTERS_PER_BLOCK 3 */
+/* #define CONTESTIA_CHANNEL_SPACING 16 // Corresponds to 124.88 Hz */
+/* #define CONTESTIA_SYMBOL_RATE 125 */
 /**
- * Contestia 32/1000
+ * Contestia 16/1000
  */
-#define CONTESTIA_NUMBER_OF_TONES 32
-#define CONTESTIA_CHARACTERS_PER_BLOCK 5
-#define CONTESTIA_CHANNEL_SPACING 4 // Corresponds to 31.22 Hz
-#define CONTESTIA_SYMBOL_RATE 31.25
+#define CONTESTIA_NUMBER_OF_TONES 16
+#define CONTESTIA_CHARACTERS_PER_BLOCK 4
+#define CONTESTIA_CHANNEL_SPACING 8 // Corresponds to 62.44 Hz
+#define CONTESTIA_SYMBOL_RATE 62.5
+/* /\** */
+/*  * Contestia 32/1000 */
+/*  *\/ */
+/* #define CONTESTIA_NUMBER_OF_TONES 32 */
+/* #define CONTESTIA_CHARACTERS_PER_BLOCK 5 */
+/* #define CONTESTIA_CHANNEL_SPACING 4 // Corresponds to 31.22 Hz */
+/* #define CONTESTIA_SYMBOL_RATE 31.25 */
 
 
 void contestia_start(char* data);

@@ -52,7 +52,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDS6"
+#define CALLSIGN	"UBSEDS12"
 
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);
@@ -223,7 +223,7 @@ void output_telemetry_string(enum telemetry_t type)
   /* RSID */
   /* start - SI NOW BELONGS TO TELEMETRY, WE CANNOT ACCESS */
   if (type == TELEMETRY_CONTESTIA) {
-    telemetry_start_rsid(RSID_CONTESTIA_32_1000);
+    telemetry_start_rsid(RSID_CONTESTIA_16_1000);
   }
 
   /* Sleep Wait for RSID */
@@ -391,16 +391,14 @@ int main(void)
     //wdt_reset_count();
 
     /* Send the next packet */
-    output_telemetry_string((telemetry_alternate++ & 1) ?
-                            TELEMETRY_CONTESTIA :
-                            TELEMETRY_RTTY);
+    output_telemetry_string(TELEMETRY_CONTESTIA);
 
 
     /* Maybe aprs? */
-    if (aprs_trigger_flag) {
-      aprs_telemetry();
-    }
-    aprs_trigger_flag = 0;
+    /* if (aprs_trigger_flag) { */
+    /*   aprs_telemetry(); */
+    /* } */
+    /* aprs_trigger_flag = 0; */
 
 
     /* Pips */
