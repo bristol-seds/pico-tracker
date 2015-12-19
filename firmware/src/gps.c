@@ -36,6 +36,8 @@
 #include "ubx_messages.h"
 #include "gps.h"
 
+#include "ext_watchdog.h"
+
 /**
  * UBX Constants
  */
@@ -502,8 +504,12 @@ void gps_init(void)
   /* Reset the GPS */
   gps_cfg_rst();
 
+  kick_ext_watchdog();
+
   /* We use ubx protocol */
   gps_disable_nmea();
+
+  kick_ext_watchdog();
 
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
@@ -511,11 +517,17 @@ void gps_init(void)
   /* Set the platform model */
   gps_set_platform_model();
 
+  kick_ext_watchdog();
+
   /* Set which GNSS constellation we'd like to use */
   gps_set_gnss();
 
+  kick_ext_watchdog();
+
   /* Exit powersave mode to start */
   gps_set_powersave(false);
+
+  kick_ext_watchdog();
 
   /* Set the timepulse */
   gps_set_timepulse_five(GPS_TIMEPULSE_FREQ);

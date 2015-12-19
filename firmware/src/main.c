@@ -59,6 +59,20 @@ void timepulse_callback(uint32_t sequence);
 
 int32_t _xosc_error = 0;
 
+void ext_watchdog_init(void)
+{
+  port_pin_set_config(WDT_WDI_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+  port_pin_set_output_level(WDT_WDI_PIN, 1);	/*  */
+
+}
+void kick_ext_watchdog(void)
+{
+  port_pin_toggle_output_level(WDT_WDI_PIN);
+}
+
 /**
  * Initialises the status LED
  */
@@ -140,13 +154,19 @@ void output_telemetry_string(enum telemetry_t type)
   float battery = get_battery();
   float temperature = telemetry_si_temperature();
 
+  kick_ext_watchdog();
+
   /* GPS Time */
   gps_update_time();
+
+  kick_ext_watchdog();
 
   /* Sleep Wait */
   while (gps_update_time_pending()) {
     system_sleep();
   }
+
+  kick_ext_watchdog();
 
   /* Time */
   struct ubx_nav_timeutc time = gps_get_nav_timeutc();
@@ -162,10 +182,14 @@ void output_telemetry_string(enum telemetry_t type)
     led_off();
   }
 
+  kick_ext_watchdog();
+
   /* Wait for the gps update */
   while (gps_update_position_pending()) {
     system_sleep();
   }
+
+  kick_ext_watchdog();
 
   if (gps_is_locked()) {
     led_off();
@@ -187,6 +211,8 @@ void output_telemetry_string(enum telemetry_t type)
 
   /* GPS Powersave */
   gps_set_powersave_auto();
+
+  kick_ext_watchdog();
 
   /**
    * Format
@@ -214,7 +240,7 @@ void output_telemetry_string(enum telemetry_t type)
 		 "*%04X\r",
 		 crc_checksum(telemetry_string + dollars));
 
-
+  kick_ext_watchdog();
 
 /**
  * Starting up the radio blocks on high-prio interrupt for ~100ms: todo fixme
@@ -229,6 +255,7 @@ void output_telemetry_string(enum telemetry_t type)
   /* Sleep Wait for RSID */
   while (telemetry_active()) {
     system_sleep();
+    kick_ext_watchdog();
   }
 
   /* Main telemetry */
@@ -237,6 +264,7 @@ void output_telemetry_string(enum telemetry_t type)
   /* Sleep Wait for main telemetry */
   while (telemetry_active()) {
     system_sleep();
+    kick_ext_watchdog();
   }
 }
 
@@ -314,18 +342,27 @@ void init(void)
   //wdt_init();
   //wdt_reset_count();
 
+  ext_watchdog_init();
+  kick_ext_watchdog();
+
   /* Enables the xosc on gclk1 */
   xosc_init();
 
   led_init();
   gps_init();
 
+  kick_ext_watchdog();
+
   /* Enable timer interrupt and event channel */
   timepulse_extint_init();
   timepulse_set_callback(timepulse_callback);
 
+  kick_ext_watchdog();
+
   /* Initialise Si4060 interface */
   si_trx_init();
+
+  kick_ext_watchdog();
 }
 
 
@@ -378,6 +415,7 @@ int main(void)
     /* Sleep wait for next telemetry */
     while (telemetry_trigger_flag == 0) {
       system_sleep();
+      kick_ext_watchdog();
     }
     telemetry_trigger_flag = 0;
 
@@ -385,6 +423,7 @@ int main(void)
     telemetry_start(TELEMETRY_PIPS, 10);
     while (telemetry_active()) {
       system_sleep();
+      kick_ext_watchdog();
     }
 
     /* Send the next packet */
