@@ -30,7 +30,7 @@
 #include "si_trx.h"
 #include "mfsk.h"
 
-#define PREAMBLE_LENGTH CONTESTIA_NUMBER_OF_TONES
+#define PREAMBLE_LENGTH 32
 
 /**
  * Current output tones
@@ -71,7 +71,7 @@ uint8_t contestia_tick(void) {
   if (contestia_preamble_index) {
     contestia_preamble_index--;
 
-    if (contestia_preamble_index & (CONTESTIA_NUMBER_OF_TONES/4)) {
+    if (contestia_preamble_index & (PREAMBLE_LENGTH/4)) {
       contestia_set_tone(CONTESTIA_NUMBER_OF_TONES - 1);
     } else {
       contestia_set_tone(0);
