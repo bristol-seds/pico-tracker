@@ -78,6 +78,7 @@ volatile struct ubx_cfg_nav5 ubx_cfg_nav5	= { .id = (UBX_CFG | (0x24 << 8)) };
 volatile struct ubx_cfg_tp5 ubx_cfg_tp5		= { .id = (UBX_CFG | (0x31 << 8)) };
 volatile struct ubx_cfg_prt ubx_cfg_prt		= { .id = (UBX_CFG | (0x00 << 8)) };
 volatile struct ubx_cfg_pwr ubx_cfg_pwr		= { .id = (UBX_CFG | (0x57 << 8)) };
+volatile struct ubx_cfg_rst ubx_cfg_rst		= { .id = (UBX_CFG | (0x04 << 8)) };
 volatile struct ubx_cfg_rxm ubx_cfg_rxm		= { .id = (UBX_CFG | (0x11 << 8)) };
 volatile struct ubx_nav_posllh ubx_nav_posllh	= { .id = (UBX_NAV | (0x02 << 8)) };
 volatile struct ubx_nav_timeutc ubx_nav_timeutc	= { .id = (UBX_NAV | (0x21 << 8)) };
@@ -93,6 +94,7 @@ volatile ubx_message_t* const ubx_messages[] = {
   (ubx_message_t*)&ubx_cfg_tp5,
   (ubx_message_t*)&ubx_cfg_prt,
   (ubx_message_t*)&ubx_cfg_pwr,
+  (ubx_message_t*)&ubx_cfg_rst,
   (ubx_message_t*)&ubx_cfg_rxm,
   (ubx_message_t*)&ubx_nav_posllh,
   (ubx_message_t*)&ubx_nav_timeutc,
@@ -293,6 +295,23 @@ void gps_set_io_config(uint32_t baud_rate)
 
   for (int i = 0; i < 1000*100; i++);
 }
+
+/**
+ * Reset the uBlox
+ */
+void gps_cfg_rst(void)
+{
+  ubx_cfg_rst.payload.navBbrMask = 0xFFFF; /* Cold start */
+  ubx_cfg_rst.payload.resetMode = 0;       /* Immediate hardware reset */
+  ubx_cfg_rst.payload.reserved1 = 0;
+
+  _ubx_send_message((ubx_message_t*)&ubx_cfg_rst,
+		    (uint8_t*)&ubx_cfg_rst.payload,
+		    sizeof(ubx_cfg_rst.payload));
+
+  for (int i = 0; i < 1000*100*2; i++);
+}
+
 
 /**
  * Sends messages to the GPS to update the time
@@ -560,6 +579,9 @@ void gps_init(void)
   gps_usart_init_enable(GPS_BAUD_RATE);
 
   kick_the_watchdog();
+
+  /* Reset the GPS */
+  gps_cfg_rst();
 
   /* We use ubx protocol */
   gps_set_io_config(GPS_BAUD_RATE);

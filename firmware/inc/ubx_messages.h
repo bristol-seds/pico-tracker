@@ -171,6 +171,18 @@ __PACKED__ struct ubx_cfg_pwr {
   } payload;
 };
 /**
+ * UBX CFG RST Reset Receiver
+ */
+__PACKED__ struct ubx_cfg_rst {
+  ubx_message_id_t id;
+  enum ubx_packet_state state;
+  struct {
+    uint16_t navBbrMask;
+    uint8_t resetMode;
+    uint8_t reserved1;
+  } payload;
+};
+/**
  * UBX CFG RXM Set powersave mode
  */
 __PACKED__ struct ubx_cfg_rxm {
