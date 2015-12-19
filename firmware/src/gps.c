@@ -299,7 +299,7 @@ void gps_cfg_rst(void)
 		    (uint8_t*)&ubx_cfg_rst.payload,
 		    sizeof(ubx_cfg_rst.payload));
 
-  for (int i = 0; i < 1000*100*2; i++);
+  for (int i = 0; i < 1000*100; i++);
 }
 
 
@@ -508,6 +508,11 @@ void gps_init(void)
 
   /* We use ubx protocol */
   gps_disable_nmea();
+
+  kick_ext_watchdog();
+
+  /* Reset the GPS */
+  gps_cfg_rst();
 
   kick_ext_watchdog();
 
