@@ -58,7 +58,7 @@ void contestia_set_tone(uint8_t tone) {
   /* Align this to a channel */
   int16_t channel = tone - (CONTESTIA_NUMBER_OF_TONES / 2);
 
-  si_trx_switch_channel(channel * CONTESTIA_CHANNEL_SPACING);
+  si_trx_switch_channel((channel * CONTESTIA_CHANNEL_SPACING)+(CONTESTIA_CHANNEL_SPACING/2));
 }
 
 /**
