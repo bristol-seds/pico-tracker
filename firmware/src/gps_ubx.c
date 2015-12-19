@@ -309,7 +309,7 @@ void gps_cfg_rst(void)
 		    (uint8_t*)&ubx_cfg_rst.payload,
 		    sizeof(ubx_cfg_rst.payload));
 
-  for (int i = 0; i < 1000*100*2; i++);
+  for (int i = 0; i < 1000*100; i++);
 }
 
 
@@ -585,6 +585,11 @@ void gps_init(void)
 
   /* We use ubx protocol */
   gps_set_io_config(GPS_BAUD_RATE);
+
+  /* Reset the GPS */
+  gps_cfg_rst();
+
+  kick_ext_watchdog();
 
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
