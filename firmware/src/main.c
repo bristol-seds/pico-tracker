@@ -381,14 +381,11 @@ int main(void)
     }
     telemetry_trigger_flag = 0;
 
-    /* End pips */
-    telemetry_stop();
+    /* Pips */
+    telemetry_start(TELEMETRY_PIPS, 10);
     while (telemetry_active()) {
       system_sleep();
     }
-
-    /* Watchdog */
-    //wdt_reset_count();
 
     /* Send the next packet */
     output_telemetry_string(TELEMETRY_CONTESTIA);
@@ -401,8 +398,6 @@ int main(void)
     /* aprs_trigger_flag = 0; */
 
 
-    /* Pips */
-    telemetry_start(TELEMETRY_PIPS, 0xFFFF);
 
     /* Measure XOSC against gps timepulse */
     measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);

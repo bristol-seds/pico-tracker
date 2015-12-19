@@ -123,6 +123,8 @@ float _si_temperature = 128.0;
  */
 int32_t _aprs_frequency = 0;
 
+uint32_t pips_tick;
+
 /**
  * Returns 1 if we're currently outputting.
  */
@@ -153,7 +155,8 @@ int telemetry_start(enum telemetry_t type, int32_t length) {
       timer0_tick_init(RTTY_BITRATE);
       break;
     case TELEMETRY_PIPS:
-      timer0_tick_init(PIPS_OFF_FREQUENCY);
+      pips_tick = 0;
+      timer0_tick_init(PIPS_FREQUENCY);
       break;
     case TELEMETRY_APRS:
       timer0_tick_init(AX25_TICK_RATE);
@@ -340,18 +343,27 @@ void telemetry_tick(void) {
 
     case TELEMETRY_PIPS: /* ---- ---- A pips mode! */
 
-      if (!radio_on) { /* Turn on */
-        /* Pips: Cw */
-        si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1); radio_on = 1;
-        timer0_tick_frequency(PIPS_ON_FREQUENCY);
+      if (pips_tick == 0) {     /* Turn on */
 
-      } else { /* Turn off */
+        if (!radio_on) { /* Turn on */
+          /* Pips: Cw */
+          si_trx_on(SI_MODEM_MOD_TYPE_CW, TELEMETRY_FREQUENCY, 1); radio_on = 1;
+        }
+      } else if (pips_tick == 1) { /* Turn off */
         si_trx_off(); radio_on = 0;
-        timer0_tick_frequency(PIPS_OFF_FREQUENCY);
 
+        /* next pip */
         telemetry_index++;
+
+        /* Maybe finished */
         if (is_telemetry_finished()) return;
+
+
+      } else if (pips_tick == PIPS_FREQUENCY-1) {
+        pips_tick = 0; break;
       }
+      pips_tick++;
+
       break;
     }
   }
