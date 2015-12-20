@@ -550,7 +550,7 @@ struct gps_data_t gps_get_data(void)
   /* Take the GPS out of hibernate*/
   gps_make_active();
 
-  for (i = 0; i < 3*2; i++) {
+  for (i = 0; i < 60; i++) {    /* 60 seconds */
 
     while (osp_out_geodetic_navigation_data.state != OSP_PACKET_UPDATED) {
       /* idle */
