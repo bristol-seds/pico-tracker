@@ -596,11 +596,8 @@ struct gps_data_t gps_get_data(void)
   /* GPS back to hibernate */
   gps_make_hibernate();
 
-  data.is_locked = 0;   /* invalid */
-  data.latitude = 0;
-  data.longitude = 0;
-  data.altitude = 0;
-  data.satillite_count = 0;
+  /* invalid */
+  memset(&data, 0, sizeof(struct gps_data_t));
   data.time_to_first_fix = i;
 
   return data;
