@@ -635,7 +635,40 @@ void si_trx_init(void)
 		   SI4xxx_SERCOM_MISO_PIN,
 		   SI4xxx_SERCOM_SCK_PIN);
 }
+/* void si_trx_deinit(void) */
+/* { */
+/*   system_pinmux_pin_set_config(SI4xxx_SEL_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(SI4xxx_GPIO1_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(SI4xxx_SERCOM_MISO_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(SI4xxx_SERCOM_MOSI_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(SI4xxx_SERCOM_SCK_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(SI4xxx_SDN_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
 
+/* } */
 
 
 

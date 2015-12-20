@@ -927,6 +927,31 @@ void gps_usart_init_enable(uint32_t baud_rate)
 
   usart_enable(GPS_SERCOM);
 }
+/* void gps_usart_init_disable(void) */
+/* { */
+/*   usart_disable(GPS_SERCOM); */
+
+/*   system_pinmux_pin_set_config(GPS_SERCOM_MOGI_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(GPS_SERCOM_MIGO_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(GPS_TIMEPULSE_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/*   system_pinmux_pin_set_config(GPS_SE_ON_OFF_PIN, */
+/*                                SYSTEM_PINMUX_GPIO, */
+/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
+/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
+/*                                true); */
+/* } */
 
 /**
  * GPS reset pin
