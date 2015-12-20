@@ -21,18 +21,18 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|0402AF-221XJLU|COILCRAFT - INDUCTOR, RF, 220NH, 5%,1.15GHZ, SMD|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
+|0402AF-221XJLU|COILCRAFT - Surface Mount High Frequency Inductor, 0402AF Series, 220 nH, Â± 5%, 0402 [1005 Metric], 1.15 GHz|[2285640](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2285640)|1|L2 220nH radio
 |LQG15HN56NJ02D|MURATA - INDUCTOR, 0402 CASE, 56NHÂ±5%|[1343091](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1343091)|1|L3 56nH filter
-|L-07C18NJV6T|JOHANSON TECHNOLOGY - INDUCTOR RF, 0402, 18NH, 5%|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH filter
+|L-07C18NJV6T|JOHANSON TECHNOLOGY - Surface Mount High Frequency Inductor, L-07C Series, 18 nH, Â± 5%, 0402 [1005 Metric], 0.65 ohm|[1865775](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865775)|1|L4, L5 18nH filter
 | L6, L7 | DNP ||| si4xxx rx
-|MC00625W0402110K|MULTICOMP - SMD Current Sense Resistors, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|4|R1, R2, R3, R7 10k
-|CRG0402F22K|TE CONNECTIVITY - Surface Mount Thick Film Resistor, CRG Series, 22 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331489](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331489)|1|R8 22k
-|GRM1555C1H8R2CA01D|MURATA - Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
-|MC0402N150J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|5|C2, C4, C7, C9, C10 rf, xtal load 15pF
+|MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|4|R1, R2, R3, R7 10k
+|CRG0402F22K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 22 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331489](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331489)|1|R8 22k
+|GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
+|MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|5|C2, C4, C7, C9, C10 rf, xtal load 15pF
 | C5, C6 | DNP ||| si4xxx rx
-|MC0402N101J500CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|1|C8 100pF
-|MC0402X104K100CT|MULTICOMP - Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|8|C11, C12, C15, C16, C17 100nF
-|C1005X5R0J475M050BC|TDK - Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|1|C18 pressure sens 4.7µF
+|MC0402N101J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|1|C8 100pF
+|MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|8|C11, C12, C15, C16, C17 100nF
+|C1005X5R0J475M050BC|TDK - SMD Multilayer Ceramic Capacitor, C Series, 4.7 ÂµF, Â± 20%, X5R, 6.3 V, 0402 [1005 Metric]|[2309027](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2309027)|1|C18 pressure sens 4.7µF
 
 ----
 
@@ -40,8 +40,8 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|M52-040023V0545|HARWIN - HEADER, THT, VERTICAL, 1.27MM, 5WAY|[1099560](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1099560) [855-M52-040023V0545](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=855-M52-040023V0545)|1|JTAG1
-|CR-2032/BN|PANASONIC ELECTRONIC COMPONENTS - Non-rechargeable Battery, Lithium Manganese Dioxide, 220 mAh, 3 V, 2032, Pressure Contact|[5219590](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=5219590)|1|2032 coin cell LMnO2 220mAh
+|M52-040023V0545|HARWIN - Board-To-Board Connector, Vertical, Archer M52 Series, Through Hole, Header, 5, 1.27 mm|[1099560](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1099560) [855-M52-040023V0545](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=855-M52-040023V0545)|1|JTAG1
+|CR-2032/BN|PANASONIC ELECTRONIC COMPONENTS - Non-rechargeable Battery, Lithium Manganese Dioxide, 220 mAh, 3 V, 2032, Pressure Contact, 20 mm|[5219590](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=5219590)|1|2032 coin cell LMnO2 220mAh
 |BC-2001|MULTICOMP - RETAINER CLIP, 20MM, SMT|[2064713](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2064713)|1|J2 Coin Cell Connector 2032
 |BLM15BB100SN1D|MURATA - FERRITE BEAD, 0.1OHM, 300MA, 0402|[1515765](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1515765)|1|FB1
 
