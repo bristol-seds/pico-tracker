@@ -196,6 +196,13 @@
 #define RF_POWER_8dBm		36
 
 /**
+ * RF Enable
+ *
+ * Disable this when there's no antenna connected
+ */
+#define RF_TX_ENABLE		1
+
+/**
  * LF Clock
  */
 #define USE_LFTIMER		0

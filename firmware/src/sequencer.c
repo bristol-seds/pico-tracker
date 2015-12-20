@@ -52,6 +52,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   location_aprs_update(dp->latitude, dp->longitude);
 
   /* Telemetry */
+#if RF_TX_ENABLE
 #if TELEMETRY_ENABLE
 #if TELEMETRY_USE_GEOFENCE
   if (location_telemetry_active()) {
@@ -79,6 +80,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 
 #if APRS_USE_GEOFENCE
   }
+#endif
 #endif
 #endif
 }
