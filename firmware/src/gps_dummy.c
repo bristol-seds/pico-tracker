@@ -35,7 +35,7 @@
 #include "sercom/usart.h"
 #include "gps.h"
 #include "watchdog.h"
-
+#include "init.h"
 
 volatile enum gps_error_t gps_error_state;
 
@@ -107,6 +107,13 @@ struct gps_data_t gps_get_data(void)
   struct gps_data_t data;
 
   float lat_deg, lon_deg;
+
+  for(int i = 0; i < 6; i++) {
+    for(int j = 0; j < 1000*150; j++);
+    led_toggle();
+    kick_the_watchdog();
+  }
+  led_off();
 
   switch(dummy_seq) {
 
