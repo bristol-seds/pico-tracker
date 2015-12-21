@@ -24,3 +24,4 @@ Most hardware that has been built has a version number
 |v0.986.7|Low Power. Changed low power lf clock, added vreg on breakout for optional power testing|
 |v0.986.8|Low Power. Changed memory pads, GPS LDO and specified SAMD20E18A-MN with more flash and higher grade packaging|x|
 |v0.986.9|Low Power. 80x80mm Breakout|
+|v0.987.0|Low Power. Added 32kHz TCXO RC filters, replaced GPS LDO with MOSFET, remove IMU, vreg on b/out, update SE880 footprint, Watchdog, Radio, filter design
