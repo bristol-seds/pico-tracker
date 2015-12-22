@@ -25,3 +25,4 @@ Most hardware that has been built has a version number
 |v0.986.8|Low Power. Changed memory pads, GPS LDO and specified SAMD20E18A-MN with more flash and higher grade packaging|x|
 |v0.986.9|Low Power. 80x80mm Breakout|
 |v0.987.0|Low Power. Added 32kHz TCXO RC filters, replaced GPS LDO with MOSFET, remove IMU, vreg on b/out, update SE880 footprint, Watchdog, Radio, filter design
+|v0.987.1|Low Power. Switch LF Clock to XOSC32K pin from GCLK_IO[0]. Allows feed to any GCLK. Bit-bang i2c instead|
