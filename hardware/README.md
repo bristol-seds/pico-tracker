@@ -26,3 +26,4 @@ Most hardware that has been built has a version number
 |v0.986.9|Low Power. 80x80mm Breakout|
 |v0.987.0|Low Power. Added 32kHz TCXO RC filters, replaced GPS LDO with MOSFET, remove IMU, vreg on b/out, update SE880 footprint, Watchdog, Radio, filter design
 |v0.987.1|Low Power. Switch LF Clock to XOSC32K pin from GCLK_IO[0]. Allows feed to any GCLK. Bit-bang i2c instead|
+|v0.987.2|Low Power. Adjusted 100µF cap from 1210 to 1206

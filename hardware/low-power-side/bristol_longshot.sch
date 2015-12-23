@@ -8545,8 +8545,6 @@ Metric Code Size 5664</description>
 <part name="C12" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="10nF"/>
 <part name="U$34" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$36" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C32" library="resistor" deviceset="C-EU" device="C1210K" value="100µF"/>
-<part name="U$32" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C10" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="R11" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$47" library="microbuilder_v3" deviceset="GND" device=""/>
@@ -8589,6 +8587,8 @@ Metric Code Size 5664</description>
 <part name="U$72" library="microbuilder_v3" deviceset="1.2V" device=""/>
 <part name="R16" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1MΩ"/>
 <part name="U$74" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="C32" library="resistor" deviceset="C-EU" device="C1206K" value="100µF"/>
+<part name="U$32" library="microbuilder_v3" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8669,6 +8669,9 @@ t_RP = 140-280ms
 t_WD = 1.12-2.4s</text>
 <text x="88.9" y="218.948" size="1.27" layer="97" font="vector" ratio="11" distance="100">t_WD is 0.93x nominal at -40ºC</text>
 <text x="162.56" y="165.608" size="1.27" layer="97" font="vector" ratio="11">XOSC32K_IN</text>
+<text x="93.98" y="191.008" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 5µA nominal at 1.8V</text>
+<text x="152.4" y="191.008" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 10µA max</text>
+<text x="469.9" y="61.468" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 10µA max</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="213.36" y="162.56"/>
@@ -8797,8 +8800,6 @@ t_WD = 1.12-2.4s</text>
 <instance part="C12" gate="G$1" x="464.82" y="193.04"/>
 <instance part="U$34" gate="G$1" x="464.82" y="182.88"/>
 <instance part="U$36" gate="G$1" x="454.66" y="182.88"/>
-<instance part="C32" gate="G$1" x="124.46" y="43.18"/>
-<instance part="U$32" gate="G$1" x="124.46" y="30.48"/>
 <instance part="C10" gate="G$1" x="297.18" y="48.26"/>
 <instance part="R11" gate="G$1" x="137.16" y="132.08" rot="R90"/>
 <instance part="U$47" gate="G$1" x="137.16" y="124.46"/>
@@ -8841,6 +8842,8 @@ t_WD = 1.12-2.4s</text>
 <instance part="U$72" gate="G$1" x="45.72" y="22.86"/>
 <instance part="R16" gate="G$1" x="132.08" y="198.12" rot="R90"/>
 <instance part="U$74" gate="G$1" x="132.08" y="187.96"/>
+<instance part="C32" gate="G$1" x="124.46" y="43.18"/>
+<instance part="U$32" gate="G$1" x="124.46" y="30.48"/>
 </instances>
 <busses>
 </busses>
@@ -9106,11 +9109,6 @@ t_WD = 1.12-2.4s</text>
 <wire x1="454.66" y1="190.5" x2="454.66" y2="185.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C32" gate="G$1" pin="2"/>
-<pinref part="U$32" gate="G$1" pin="GND"/>
-<wire x1="124.46" y1="38.1" x2="124.46" y2="33.02" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="R11" gate="G$1" pin="1"/>
 <pinref part="U$47" gate="G$1" pin="GND"/>
 </segment>
@@ -9174,6 +9172,11 @@ t_WD = 1.12-2.4s</text>
 <pinref part="R16" gate="G$1" pin="1"/>
 <pinref part="U$74" gate="G$1" pin="GND"/>
 <wire x1="132.08" y1="193.04" x2="132.08" y2="190.5" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C32" gate="G$1" pin="2"/>
+<pinref part="U$32" gate="G$1" pin="GND"/>
+<wire x1="124.46" y1="33.02" x2="124.46" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -10004,9 +10007,9 @@ t_WD = 1.12-2.4s</text>
 <wire x1="111.76" y1="55.88" x2="111.76" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="55.88" x2="111.76" y2="55.88" width="0.1524" layer="91"/>
 <junction x="111.76" y="55.88"/>
-<pinref part="C32" gate="G$1" pin="1"/>
 <wire x1="111.76" y1="55.88" x2="124.46" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="55.88" x2="124.46" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="C32" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="R9" gate="G$1" pin="2"/>
