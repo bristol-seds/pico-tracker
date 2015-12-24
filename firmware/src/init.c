@@ -28,7 +28,7 @@
 #include "system/port.h"
 #include "system/events.h"
 #include "system/extint.h"
-#include "sercom/i2c.h"
+#include "i2c_bb.h"
 #include "gps.h"
 #include "si_trx.h"
 #include "watchdog.h"
@@ -119,7 +119,8 @@ void init(enum init_type init_t)
    */
 
   /* i2c */
-  i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
+  //i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
+  i2c_bb_init();
 
   kick_the_watchdog();
 

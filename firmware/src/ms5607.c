@@ -31,7 +31,8 @@
 #if BAROMETER_TYPE_MS5607
 
 #include "barometer.h"
-#include "sercom/i2c.h"
+//#include "sercom/i2c.h"
+#include "i2c_bb.h"
 
 #define MS5607_ADDRESS		0xEE
 
@@ -100,7 +101,7 @@ void command(uint8_t command) {
   buffer[0] = command;
 
   /* Write command */
-  i2c_master_write(MS5607_ADDRESS, buffer, 1);
+  i2c_bb_write(MS5607_ADDRESS, buffer, 1);
 }
 /**
  * Reads an 8-bit value
@@ -110,10 +111,10 @@ uint8_t read_8(uint8_t command) {
   buffer[0] = command;
 
   /* Write command */
-  i2c_master_write(MS5607_ADDRESS, buffer, 1);
+  i2c_bb_write(MS5607_ADDRESS, buffer, 1);
 
   /* Read it */
-  i2c_master_read(MS5607_ADDRESS, buffer, 1);
+  i2c_bb_read(MS5607_ADDRESS, buffer, 1);
 
   return buffer[0];
 }
@@ -125,10 +126,10 @@ uint16_t read_16(uint8_t command) {
   buffer[0] = command;
 
   /* Write command */
-  i2c_master_write(MS5607_ADDRESS, buffer, 1);
+  i2c_bb_write(MS5607_ADDRESS, buffer, 1);
 
   /* Read it */
-  i2c_master_read(MS5607_ADDRESS, buffer, 2);
+  i2c_bb_read(MS5607_ADDRESS, buffer, 2);
 
   return (buffer[0] << 8) | buffer[1];
 }
@@ -140,10 +141,10 @@ uint32_t read_24(uint8_t command) {
   buffer[0] = command;
 
   /* Write command */
-  i2c_master_write(MS5607_ADDRESS, buffer, 1);
+  i2c_bb_write(MS5607_ADDRESS, buffer, 1);
 
   /* Read it */
-  i2c_master_read(MS5607_ADDRESS, buffer, 3);
+  i2c_bb_read(MS5607_ADDRESS, buffer, 3);
 
   return (buffer[0] << 16) | (buffer[1] << 8) | buffer[2];
 }
@@ -298,7 +299,7 @@ struct barometer* get_barometer(void)
 }
 
 /**
- * Assume twi_master_init has already been called
+ * Assume i2c_bb_init has already been called
  */
 void barometer_init(void)
 {
