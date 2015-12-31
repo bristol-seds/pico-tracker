@@ -42,7 +42,7 @@ idle_wait_t last_idle_t = IDLE_NONE;
 #define kick_external_watchdog()	do { port_pin_set_output_level(WDT_WDI_PIN, 1); \
     __NOP();                      /* > 50ns high */                     \
     port_pin_set_output_level(WDT_WDI_PIN, 0);                          \
-  } while(1)
+  } while(0)
 
 /**
  * Increments the specified idle counter
