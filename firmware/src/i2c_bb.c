@@ -34,11 +34,11 @@
  */
 static inline void i2c_bb_claim_pin(uint32_t pin, uint8_t value)
 {
+  port_pin_set_output_level(pin, value);
   port_pin_set_config(pin,
                       SYSTEM_PINMUX_PIN_DIR_OUTPUT_WITH_READBACK, /* Direction */
                       SYSTEM_PINMUX_PIN_PULL_NONE,  /* Pull */
                       false);                       /* Powersave */
-  port_pin_set_output_level(pin, value);
 }
 static inline void i2c_bb_release_pin(uint32_t pin)
 {
@@ -137,7 +137,7 @@ void i2c_bb_get_ack(void)
 {
   i2c_bb_write_pin(SCL, 1);
 
-//  while (i2c_bb_read_pin(SDA)); /* wait for SDA=0 */
+  while (i2c_bb_read_pin(SDA)); /* wait for SDA=0 */
 
   i2c_bb_write_pin(SCL, 0);
 }
