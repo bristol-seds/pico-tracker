@@ -30,6 +30,7 @@
 #include "adc/adc.h"
 
 #define V0986
+#define V0987
 
 /*
  * Convenience definitions for available GPIO modules
@@ -120,8 +121,12 @@
  * I2C Bus
  */
 #define I2C_SERCOM		(SercomI2cm*)SERCOM1
+#ifdef V0987
+#define I2C_SERCOM_SDA_PIN	PIN_PA27
+#else
 #define I2C_SERCOM_SDA_PIN	PIN_PA00
 #define I2C_SERCOM_SDA_PINMUX	PINMUX_PA00D_SERCOM1_PAD0
+#endif
 #define I2C_SERCOM_SCL_PIN	PIN_PA01
 #define I2C_SERCOM_SCL_PINMUX	PINMUX_PA01D_SERCOM1_PAD1
 
@@ -206,8 +211,12 @@
  * LF Clock
  */
 #define USE_LFTIMER		0
+#ifdef V0987
+#define LFTIMER_XOSC32K
+#else
 #define LFTIMER_GCLKIO_0_PIN	PIN_PA27
 #define LFTIMER_GCLKIO_0_PINMUX	PINMUX_PA27H_GCLK_IO0
+#endif
 
 /**
  * HF Clock
