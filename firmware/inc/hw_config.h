@@ -95,7 +95,7 @@
 
 #endif
 
-#define GPS_FLIGHT_STATE_THREASHOLD_M	1000
+#define GPS_FLIGHT_STATE_THREASHOLD_M	8000 /* 8km altitude */
 
 
 /**

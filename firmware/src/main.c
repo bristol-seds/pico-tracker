@@ -215,13 +215,13 @@ uint32_t hibernate_time_s = 1;
 void set_hibernate_time(void)
 {
   if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
-    hibernate_time_s = 10;
+    hibernate_time_s = 60-20;      /* approx every minute */
   } else {
-    hibernate_time_s = 120;     /* 120 seconds */
+    hibernate_time_s = 240-20;     /* approx every 4 minutes  */
   }
 
   /* TESTING */
-  hibernate_time_s = 2;
+  hibernate_time_s = 10;
 }
 /**
  * Called on each tick of the low frequency clock
