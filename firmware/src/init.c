@@ -119,7 +119,6 @@ void init(enum init_type init_t)
    */
 
   /* i2c */
-  //i2c_init(I2C_SERCOM, I2C_SERCOM_SDA_PINMUX, I2C_SERCOM_SCL_PINMUX);
   i2c_bb_init();
 
   kick_the_watchdog();
