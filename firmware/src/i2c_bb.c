@@ -25,6 +25,7 @@
 #include "samd20.h"
 #include "hw_config.h"
 #include "system/port.h"
+#include "i2c_bb.h"
 
 #define SDA I2C_SERCOM_SDA_PIN
 #define SCL I2C_SERCOM_SCL_PIN
@@ -133,13 +134,23 @@ void i2c_bb_ack(void)
 /**
  * Waits to receive a slave ack. SDA is already released
  */
-void i2c_bb_get_ack(void)
+i2c_bb_result_t i2c_bb_get_ack(void)
 {
+  uint8_t i;
+
   i2c_bb_write_pin(SCL, 1);
 
-  while (i2c_bb_read_pin(SDA)); /* wait for SDA=0 */
+  for (i = 0; i < 10; i++) {                  /* 10 attempts to */
+    if (i2c_bb_read_pin(SDA) == 0) { break; } /* wait for SDA=0 */
+  }
 
   i2c_bb_write_pin(SCL, 0);
+
+  if (i == 10) {                /* fail */
+    return I2C_BB_SLAVE_NO_ACK; /* no ack */
+  }
+
+  return I2C_BB_SUCCESS;
 }
 
 /**
@@ -147,13 +158,17 @@ void i2c_bb_get_ack(void)
  *
  * address is the full read address like 0xEF
  */
-void i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length)
+i2c_bb_result_t i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length)
 {
+  i2c_bb_result_t result;
+
   address |= 1;                 /* set read flag */
 
   i2c_bb_start();               /* start. claim both */
   i2c_bb_put_byte(address);     /* address. claim and relase SDA */
-  i2c_bb_get_ack();             /* slave acks */
+  if ((result = i2c_bb_get_ack()) != I2C_BB_SUCCESS) { /* slave acks */
+    return result;
+  }
 
   for (uint8_t n = 0; n < data_length; n++) {
 
@@ -164,27 +179,37 @@ void i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length)
   }
 
   i2c_bb_stop();                /* stop. release both */
+
+  return I2C_BB_SUCCESS;
 }
 /**
  * I2C Write.
  *
  * address is the full write address like 0xEE
  */
-void i2c_bb_write(uint8_t address, uint8_t* data, uint8_t data_length)
+i2c_bb_result_t i2c_bb_write(uint8_t address, uint8_t* data, uint8_t data_length)
 {
+  i2c_bb_result_t result;
+
   address &= ~1;                /* clear read flag */
 
   i2c_bb_start();               /* start. claim both */
   i2c_bb_put_byte(address);     /* address. claim and release SDA */
-  i2c_bb_get_ack();             /* slave acks */
+  if ((result = i2c_bb_get_ack()) != I2C_BB_SUCCESS) { /* slave acks */
+    return result;
+  }
 
   for (uint8_t n = 0; n < data_length; n++) {
     i2c_bb_put_byte(data[n]);   /* data. claim and release SDA */
-    i2c_bb_get_ack();           /* slave acks */
+    if ((result = i2c_bb_get_ack()) != I2C_BB_SUCCESS) { /* slave acks */
+      return result;
+    }
   }
 
   i2c_bb_claim_pin(SDA, 0);     /* claim SDA again */
   i2c_bb_stop();                /* stop */
+
+  return I2C_BB_SUCCESS;
 }
 
 

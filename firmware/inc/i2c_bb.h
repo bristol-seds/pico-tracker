@@ -27,8 +27,13 @@
 
 #include "samd20.h"
 
-void i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length);
-void i2c_bb_write(uint8_t address, uint8_t* data, uint8_t data_length);
+typedef enum {
+  I2C_BB_SUCCESS,
+  I2C_BB_SLAVE_NO_ACK,
+} i2c_bb_result_t;
+
+i2c_bb_result_t i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length);
+i2c_bb_result_t i2c_bb_write(uint8_t address, uint8_t* data, uint8_t data_length);
 void i2c_bb_init(void);
 
 #endif /* I2C_BB_H */
