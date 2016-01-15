@@ -31,7 +31,6 @@
 #if BAROMETER_TYPE_MS5607
 
 #include "barometer.h"
-//#include "sercom/i2c.h"
 #include "i2c_bb.h"
 
 #define MS5607_ADDRESS		0xEE
