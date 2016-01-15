@@ -157,6 +157,23 @@ void gclk0_to_hf_clock(void)
 void gclk0_to_lf_clock(void)
 {
 #if USE_LFTIMER
+
+#ifdef LFTIMER_XOSC32K
+  /* Setup XOSC  */
+  system_clock_source_xosc32k_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
+                                         SYSTEM_XOSC32K_STARTUP_16384, /* ~500ms startup*/
+                                         false,
+                                         false,
+                                         true,
+                                         true,
+                                         false,
+                                         false); /* write lock */
+  system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC32K);
+
+  /* Wait for it to stabilise */
+  while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC32K));
+
+#else
   /* Configure GCLK_IO[0] pin */
   system_pinmux_pin_set_config(LFTIMER_GCLKIO_0_PINMUX >> 16,
                                LFTIMER_GCLKIO_0_PINMUX & 0xFFFF,
@@ -164,13 +181,18 @@ void gclk0_to_lf_clock(void)
                                SYSTEM_PINMUX_PIN_PULL_NONE,
                                true);
 #endif
+#endif
 
   /* Configure GCLK0 to GCLK_IO[0] / OSCULP32K */
   system_gclk_gen_set_config(GCLK_GENERATOR_0,
 #if USE_LFTIMER
-                             GCLK_SOURCE_GCLKIN,	/* Source 		*/
+#ifdef LFTIMER_XOSC32K
+                             GCLK_SOURCE_XOSC32K, /* Source             */
 #else
-                             GCLK_SOURCE_OSCULP32K,	/* Source 		*/
+                             GCLK_SOURCE_GCLKIN, /* Source 		*/
+#endif
+#else
+                             GCLK_SOURCE_OSCULP32K, /* Source 		*/
 #endif
         		     false,		/* High When Disabled	*/
                              1,                 /* Division Factor */
