@@ -45,10 +45,12 @@ typedef enum {
  */
 #define MAXIDLE_WHILE_TELEMETRY_ACTIVE	60000
 #define MAXIDLE_WAIT_FOR_NEXT_TELEMETRY	30000
+#define MAXIDLE_WAIT_FOR_GPS		1000
 
 struct idle_counter {
   uint32_t while_telemetry_active;
   uint32_t wait_for_next_telemetry;
+  uint32_t wait_for_gps;
 };
 
 void awake_do_watchdog(void);

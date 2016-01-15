@@ -57,6 +57,8 @@ void increment_idle_counter(idle_wait_t idle_t)
     case IDLE_WAIT_FOR_NEXT_TELEMETRY:
       idle_count.wait_for_next_telemetry++;
       break;
+    case IDLE_WAIT_FOR_GPS:
+      idle_count.wait_for_gps++;
     default:
       /* Oh no no no. Let's die here */
       while(1);
@@ -68,7 +70,8 @@ void increment_idle_counter(idle_wait_t idle_t)
 void check_idle_counters(void)
 {
   if ((idle_count.while_telemetry_active > MAXIDLE_WHILE_TELEMETRY_ACTIVE) ||
-      (idle_count.wait_for_next_telemetry > MAXIDLE_WAIT_FOR_NEXT_TELEMETRY)) {
+      (idle_count.wait_for_next_telemetry > MAXIDLE_WAIT_FOR_NEXT_TELEMETRY) ||
+      (idle_count.wait_for_next_telemetry > MAXIDLE_WAIT_FOR_GPS)) {
     /* Oh dear. Let's die here */
     while (1);
   }
@@ -82,6 +85,7 @@ void clear_idle_counters(void)
 {
   SET_COUNT_MAX(while_telemetry_active);
   SET_COUNT_MAX(wait_for_next_telemetry);
+  SET_COUNT_MAX(wait_for_gps);
 
   /* Zero out counter */
   memset(&idle_count, 0, sizeof(struct idle_counter));
@@ -117,28 +121,29 @@ void kick_the_watchdog(void)
 void idle(idle_wait_t idle_t)
 {
   /* Check valid */
-/*   if ((idle_t != IDLE_TELEMETRY_ACTIVE) && */
-/*       (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY)) { */
-/*     /\* Oh dear *\/ */
-/*     while (1); */
-/*   } */
+  if ((idle_t != IDLE_TELEMETRY_ACTIVE) &&
+      (idle_t != IDLE_WAIT_FOR_NEXT_TELEMETRY) &&
+      (idle_t != IDLE_WAIT_FOR_GPS)) {
+    /* Oh dear */
+    while (1);
+  }
 
-/*   /\* Maybe clear *\/ */
-/*   if (idle_t != last_idle_t) { */
-/*     clear_idle_counters(); */
-/*     last_idle_t = idle_t; */
-/*   } */
+  /* Maybe clear */
+  if (idle_t != last_idle_t) {
+    clear_idle_counters();
+    last_idle_t = idle_t;
+  }
 
-/*   /\* Increment the idle counter *\/ */
-/*   increment_idle_counter(idle_t); */
+  /* Increment the idle counter */
+  increment_idle_counter(idle_t);
 
-/*   /\* Check idle counter is still okay *\/ */
-/*   check_idle_counters(); */
+  /* Check idle counter is still okay */
+  check_idle_counters();
 
-/*   /\* Kick the watchdog *\/ */
-/* #ifdef DEBUG_USE_INTWATCHDOG */
-/*   wdt_reset_count(); */
-/* #endif */
+  /* Kick the watchdog */
+#ifdef DEBUG_USE_INTWATCHDOG
+  wdt_reset_count();
+#endif
 
   /* WDI toggle */
   port_pin_toggle_output_level(WDT_WDI_PIN);
