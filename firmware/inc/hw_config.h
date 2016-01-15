@@ -211,7 +211,7 @@
 /**
  * LF Clock
  */
-#define USE_LFTIMER		0
+#define USE_LFTIMER		1
 #ifdef V0987
 #define LFTIMER_XOSC32K
 #else
