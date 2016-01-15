@@ -324,7 +324,8 @@ void gps_setup(void)
   ;
 }
 
-uint8_t gps_is_locked(void) {
+uint8_t gps_is_locked(void)
+{
   return 1;                     /* locked */
 }
 

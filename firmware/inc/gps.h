@@ -68,8 +68,6 @@ struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();
 struct ubx_nav_timeutc gps_get_nav_timeutc();
 
-uint8_t gps_is_locked(void);
-
 void gps_set_powersave(bool powersave_on);
 void gps_set_power_state(bool gnss_running);
 
@@ -119,8 +117,6 @@ struct gps_data_t {
   uint8_t time_to_first_fix;    /* seconds / counts */
 };
 
-uint8_t gps_is_locked(void);
-
 enum gps_error_t gps_get_error_state(void);
 struct gps_data_t gps_get_data(void);
 
@@ -128,8 +124,9 @@ void gps_setup(void);
 
 #endif  /* GPS_TYPE_DUMMY */
 
-/* Both ------------------------------------------------------------ */
+/* All ------------------------------------------------------------ */
 enum gps_flight_state_t gps_get_flight_state(void);
+uint8_t gps_is_locked(void);
 
 void gps_usart_init_enable(uint32_t baud_rate);
 void gps_reset(void);

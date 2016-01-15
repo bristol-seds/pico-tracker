@@ -73,6 +73,11 @@ enum gps_power_state_t gps_power_state = GPS_HIBERNATE;
 enum gps_flight_state_t gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 
 /**
+ * Lock State
+ */
+uint8_t gps_is_locked_priv = 0;
+
+/**
  * OSP Output Ack/Nack
  */
 #define OSP_OUT_ACK_ID  11      /* Command Acknowledgement */
@@ -518,6 +523,19 @@ void gps_make_hibernate(void)
   }
 }
 
+/**
+ * =============================================================================
+ * Lock State ==================================================================
+ * =============================================================================
+ */
+
+/**
+ * Lock state. Set by gps_get_data
+ */
+uint8_t gps_is_locked(void)
+{
+  return gps_is_locked_priv;
+}
 
 /**
  * =============================================================================
@@ -574,6 +592,7 @@ struct gps_data_t gps_get_data(void)
       gps_make_hibernate();
 
       data.is_locked = 1; /* valid fix */
+      gps_is_locked_priv = 1;
       data.latitude = osp_out_geodetic_navigation_data.payload.latitude; /* hndeg */
       data.longitude = osp_out_geodetic_navigation_data.payload.longitude; /* hndeg */
       data.altitude = osp_out_geodetic_navigation_data.payload.altitude_from_msl*10; /* cm -> mm */
@@ -600,6 +619,7 @@ struct gps_data_t gps_get_data(void)
 
   /* invalid */
   memset(&data, 0, sizeof(struct gps_data_t));
+  gps_is_locked_priv = 0;       /* not locked */
   data.time_to_first_fix = i;
 
   return data;
