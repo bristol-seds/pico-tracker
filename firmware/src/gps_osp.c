@@ -596,6 +596,8 @@ struct gps_data_t gps_get_data(void)
   /* GPS back to hibernate */
   gps_make_hibernate();
 
+  led_off();
+
   /* invalid */
   memset(&data, 0, sizeof(struct gps_data_t));
   data.time_to_first_fix = i;
