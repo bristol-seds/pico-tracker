@@ -608,6 +608,9 @@ struct gps_data_t gps_get_data(void)
 
       gps_set_flight_state(data.altitude);
 
+      /* turn the led off! */
+      led_off();
+
       return data;
     }
   }
@@ -615,6 +618,7 @@ struct gps_data_t gps_get_data(void)
   /* GPS back to hibernate */
   gps_make_hibernate();
 
+  /* turn the led off! */
   led_off();
 
   /* invalid */
