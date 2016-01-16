@@ -620,7 +620,15 @@ struct gps_data_t gps_get_data(void)
   /* invalid */
   memset(&data, 0, sizeof(struct gps_data_t));
   gps_is_locked_priv = 0;       /* not locked */
+
+  /* We can still return some data */
   data.time_to_first_fix = i;
+  data.year = osp_out_geodetic_navigation_data.payload.utc_year;
+  data.month = osp_out_geodetic_navigation_data.payload.utc_month;
+  data.day = osp_out_geodetic_navigation_data.payload.utc_day;
+  data.hour = osp_out_geodetic_navigation_data.payload.utc_hour;
+  data.minute = osp_out_geodetic_navigation_data.payload.utc_minute;
+  data.second = (osp_out_geodetic_navigation_data.payload.utc_second+500)/1000; /* ms -> s */
 
   return data;
 }
