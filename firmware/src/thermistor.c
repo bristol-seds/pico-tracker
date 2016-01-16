@@ -25,15 +25,14 @@
 #include <stdio.h>
 #include <math.h>
 
-#define SERIES_RESISTOR 100000
-#define ADC_MAX_VALUE (1.85)
+#define SERIES_RESISTOR 100000  /* 100k */
 
 /**
  * Calculate the temperature corresponding to the voltage read from the potential divider.
  * Note: Uses full Steinhart–Hart equation
- * Parameters: volatge = raw ADC value from 0 - ADC_MAX_VALUE
+ * Parameters: ratio - divider voltage over supply voltage, 0 - 1
  */
-float thermistor_voltage_to_temperature(float voltage)
+float thermistor_ratio_to_temperature(float ratio)
 {
   float resistance;
 
@@ -43,7 +42,7 @@ float thermistor_voltage_to_temperature(float voltage)
   float C = 0.00000008763737806081768;
 
   /* convert the value to resistance */
-  resistance = (SERIES_RESISTOR * ADC_MAX_VALUE) / voltage;
+  resistance = SERIES_RESISTOR / ratio;
   resistance -= SERIES_RESISTOR;
 
   float logR = log(resistance);

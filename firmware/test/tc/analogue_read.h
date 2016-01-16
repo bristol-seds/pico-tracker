@@ -39,6 +39,6 @@ __verification__ void analogue_read_tc(void) {
   while (!is_adc_sequence_done());
 
   analogue_read_tc_results.battery = get_battery();
-  analogue_read_tc_results.thermistor = thermistor_voltage_to_temperature(get_thermistor());
+  analogue_read_tc_results.thermistor = thermistor_ratio_to_temperature(get_thermistor());
   analogue_read_tc_results.solar = get_solar();
 }

@@ -96,7 +96,7 @@ struct tracker_datapoint* collect_data(void)
   datapoint.battery = get_battery(); /* Will return zero by default */
   datapoint.solar = get_solar();     /* Will return zero by default */
   datapoint.radio_die_temperature = telemetry_si_temperature();
-  datapoint.thermistor_temperature = thermistor_voltage_to_temperature(get_thermistor());
+  datapoint.thermistor_temperature = thermistor_ratio_to_temperature(get_thermistor());
 
   /**
    * ---- Barometer ----

@@ -27,7 +27,7 @@
 #include "system/interrupt.h"
 #include "hw_config.h"
 
-float battery_v = 0.0, thermistor_v = 0.0, solar_v = 0.0;
+float battery_v = 0.0, thermistor_ratio = 0.0, solar_v = 0.0;
 
 #define ADC_GAINF		ADC_GAIN_FACTOR_DIV2
 #define ADC_GAINF_VAL		0.5
@@ -51,13 +51,13 @@ enum adc_phase_t {
 
 void adc_complete_callback(void);
 
-void configure_adc(enum adc_positive_input input)
+void configure_adc(enum adc_positive_input input, enum adc_reference reference)
 {
   struct adc_config config_adc;
   adc_get_config_defaults(&config_adc);
 
   config_adc.clock_source = GCLK_GENERATOR_0;
-  config_adc.reference = ADC_REFERENCE_INT1V;
+  config_adc.reference = reference;
   config_adc.clock_prescaler = ADC_CLOCK_PRESCALER_DIV64;
   config_adc.resolution = ADC_RESOLUTION;
   config_adc.gain_factor = ADC_GAINF;
@@ -97,6 +97,24 @@ enum adc_positive_input adc_get_channel(enum adc_phase_t phase)
   }
 }
 /**
+ * Gets the reference to use in the current phase
+ */
+enum adc_reference adc_get_reference(enum adc_phase_t phase)
+{
+  switch (phase) {
+#if BATTERY_ADC
+    case ADC_PHASE_CONVERT_BATTERY:	return BATTERY_ADC_REFERENCE;
+#endif
+#if THERMISTOR_ADC
+    case ADC_PHASE_CONVERT_THERMISTOR:	return THERMISTOR_ADC_REFERENCE;
+#endif
+#if SOLAR_ADC
+    case ADC_PHASE_CONVERT_SOLAR: 	return SOLAR_ADC_REFERENCE;
+#endif
+    default:	return SOLAR_ADC_CHANNEL;
+  }
+}
+/**
  * Assigns the value for the current phase
  */
 void assign_adc_value(enum adc_phase_t phase, float pin_v)
@@ -109,7 +127,7 @@ void assign_adc_value(enum adc_phase_t phase, float pin_v)
 #endif
 #if THERMISTOR_ADC
     case ADC_PHASE_CONVERT_THERMISTOR:
-      thermistor_v = pin_v / THERMISTOR_ADC_CHANNEL_DIV;
+      thermistor_ratio = pin_v / THERMISTOR_ADC_CHANNEL_DIV;
       break;
 #endif
 #if SOLAR_ADC
@@ -147,7 +165,7 @@ void adc_complete_callback(void) {
   if (!is_adc_sequence_done()) { /* Another channel still to do.. */
 
     /* Start conversion on this channel */
-    configure_adc(adc_get_channel(adc_phase));
+    configure_adc(adc_get_channel(adc_phase), adc_get_reference(adc_phase));
     adc_start_conversion();
   }
 }
@@ -162,7 +180,7 @@ void start_adc_sequence(void)
   adc_phase++;
 
   /* Start conversion on this channel */
-  configure_adc(adc_get_channel(adc_phase));
+  configure_adc(adc_get_channel(adc_phase), adc_get_reference(adc_phase));
   adc_start_conversion();
 }
 
@@ -175,7 +193,7 @@ float get_battery(void)
 }
 float get_thermistor(void)
 {
-  return thermistor_v;
+  return thermistor_ratio;
 }
 float get_solar(void)
 {

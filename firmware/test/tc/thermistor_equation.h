@@ -34,5 +34,5 @@ __verification__ void thermistor_equation_tc(void) {
    */
 
   thermistor_equation_tc_results.temperature =
-    thermistor_voltage_to_temperature(thermistor_equation_tc_params.value);
+    thermistor_ratio_to_temperature(thermistor_equation_tc_params.value);
 }

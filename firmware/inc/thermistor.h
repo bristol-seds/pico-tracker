@@ -25,6 +25,6 @@
 #ifndef THERMISTOR_H
 #define THERMISTOR_H
 
-float thermistor_voltage_to_temperature(float voltage);
+float thermistor_ratio_to_temperature(float ratio);
 
 #endif /* THERMISTOR_H */
