@@ -115,7 +115,9 @@ uint8_t i2c_bb_get_byte(void)
     i2c_bb_write_pin(SCL, 0);
 
     b |= (bit?1:0);             /* write msb first */
-    b = b << 1;
+    if (i < 7) {                /* all except last bit */
+      b = b << 1;
+    }
   }
 
   return b;
@@ -130,6 +132,15 @@ void i2c_bb_ack(void)
   i2c_bb_write_pin(SCL, 1);     /* clock out */
   i2c_bb_write_pin(SCL, 0);
   i2c_bb_write_pin(SDA, 1);
+}
+/**
+ * Issues i2c not acknoledge
+ */
+void i2c_bb_nack(void)
+{
+  i2c_bb_claim_pin(SDA, 1);
+  i2c_bb_write_pin(SCL, 1);     /* clock out */
+  i2c_bb_write_pin(SCL, 0);
 }
 /**
  * Waits to receive a slave ack. SDA is already released
@@ -175,6 +186,8 @@ i2c_bb_result_t i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length)
     data[n] = i2c_bb_get_byte(); /* read byte. release SDA */
     if (n+1 < data_length) {     /* if not last byte */
       i2c_bb_ack();              /* ack. claim SDA */
+    } else {
+      i2c_bb_nack();            /* nack. claim SDA */
     }
   }
 
