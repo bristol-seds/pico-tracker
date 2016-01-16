@@ -28,7 +28,7 @@
 #include "samd20.h"
 #include "hw_config.h"
 
-#if BAROMETER_TYPE_MS5607
+#if (BAROMETER_TYPE_MS5607 || BAROMETER_TYPE_MS5611)
 
 #include "barometer.h"
 #include "i2c_bb.h"
@@ -284,7 +284,11 @@ struct barometer* get_barometer(void)
     double P = (((D1 * SENS) / (1<<21)) - OFF) / (1<<15);
 
     barometer.temperature	= (double)TEMP / 100; /* degC */
+#if BAROMETER_TYPE_MS5611
     barometer.pressure	= P/2;                        /* Pa. DIVIDE BY 2 FOR MS5611 ONLY */
+#else
+    barometer.pressure  = P;
+#endif
     barometer.valid	= 1;
 
   } else {                      /* Barometer not initialised correctly */

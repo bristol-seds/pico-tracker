@@ -135,6 +135,7 @@
  */
 #define BAROMETER_TYPE_BMP180 0
 #define BAROMETER_TYPE_MS5607 1
+#define BAROMETER_TYPE_MS5611 0
 
 /**
  * Battery ADC
