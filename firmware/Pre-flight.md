@@ -9,7 +9,7 @@
   - `TELEMETRY_USE_GEOFENCE` is set
   - `DEBUG_USE_INTWATCHDOG` can be disabled during flight. This saves some power
   - Check interrupts are regular enough to kick the hardware
-    watchdog.
+    watchdog under all conditions.
 
 - In `watchdog.h`
   - Set the various `MAXIDLE` values to values determined during
@@ -20,6 +20,14 @@
 - In `aprs.h`
   - Set callsign and symbol
   - Make sure `APRS_FLIGHT_PARAMS` is defined
+
+- Check memory works and is erased
+  - `make test tc=backlog_write_read` Run this more than once to check functionality of a non-blank memory
+  - `make test tc=mem_erase`
+
+- Check geofences are in order. Run
+  - `make test tc=location_aprs`
+  - `make test tc=location_telemetry`
 
 - In `main.c`
   - Set callsign
