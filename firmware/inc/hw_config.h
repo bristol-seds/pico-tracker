@@ -211,10 +211,11 @@
 /**
  * LF Clock
  */
-#define USE_LFTIMER		1
 #ifdef V0987
+#define USE_LFTIMER		1
 #define LFTIMER_XOSC32K
 #else
+#define USE_LFTIMER		0
 #define LFTIMER_GCLKIO_0_PIN	PIN_PA27
 #define LFTIMER_GCLKIO_0_PINMUX	PINMUX_PA27H_GCLK_IO0
 #endif
