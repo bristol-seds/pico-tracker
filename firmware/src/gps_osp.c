@@ -665,6 +665,28 @@ void osp_session_request_close(void)
 }
 
 /**
+ * Enter APM mode.
+ *
+ * Enable APM, other parameters are don't care, as per section 7.8.1
+ */
+void osp_set_apm_mode(void)
+{
+  /* Advanced power management #53 */
+  struct osp_in_advanced_power_management config;
+  memset(&config, 0, sizeof(struct osp_in_advanced_power_management));
+  config.id = OSP_IN_ADVANCED_POWER_MANAGEMENT_ID;
+
+  config.payload.apm_enabled = 1;
+  config.payload.power_duty_cycle = 1;
+  config.payload.time_duty_cycle = 1;
+
+  osp_in_advanced_power_management_pre(&config);
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
+}
+
+/**
  * Enter push-to-fix mode
  */
 void osp_enter_push_to_fix_mode(void)
