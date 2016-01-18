@@ -56,6 +56,7 @@ struct idle_counter {
 void awake_do_watchdog(void);
 void kick_the_watchdog(void);
 void idle(idle_wait_t idle_t);
+void external_watchdog_safe(void);
 void watchdog_init(void);
 
 #endif /* WATCHDOG_H */

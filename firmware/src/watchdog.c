@@ -153,7 +153,19 @@ void idle(idle_wait_t idle_t)
   system_sleep();
 }
 
-
+/**
+ * Put the external watchdog is a safe state where it will trigger if
+ * watchdog_init is not called within tout
+ */
+void external_watchdog_safe(void)
+{
+  port_pin_set_output_level(WDT_WDI_PIN, 0);
+  /* Setup the external watchdog interrupt pin */
+  port_pin_set_config(WDT_WDI_PIN,
+		      PORT_PIN_DIR_OUTPUT,	/* Direction */
+		      PORT_PIN_PULL_NONE,	/* Pull */
+		      false);			/* Powersave */
+}
 /**
  * The internal watchdog is used to bring the processor to a halt and
  * coredump to external memory (todo)
@@ -163,7 +175,6 @@ void idle(idle_wait_t idle_t)
  * system back up in a clean state.
  * 1.2s < tout < 2.4s (ADM6823 Table 1.)
  */
-
 void watchdog_init(void)
 {
   /* Setup the external watchdog interrupt pin */

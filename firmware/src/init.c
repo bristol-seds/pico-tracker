@@ -69,11 +69,17 @@ void powermananger_init(void)
 void init(enum init_type init_t)
 {
   /**
+   * Make the external watchdog safely armed, ready to trigger if we don't call watchdog_init.
+   * (hw v0.987.3 adds an external resistor for this, this call can be removed then)
+   */
+  external_watchdog_safe();
+
+  /**
    * OSC8M should be considered unstable due to the temperature range. Therefore
    * we need to switch to a stable low frequency clock right away.
    * --------------------------------------------------------------------------
    */
-  gclk0_to_lf_clock();
+  gclk0_to_lf_clock();          /* ~500ms startup */
   system_clock_source_disable(SYSTEM_CLOCK_SOURCE_OSC8M);
 
   /**
@@ -85,13 +91,21 @@ void init(enum init_type init_t)
   si_trx_shutdown();
 
   /**
+   * Watchdog bringup, includes first kick
+   * --------------------------------------------------------------------------
+   */
+  if (init_t != INIT_TESTCASE) {
+    watchdog_init();
+  }
+
+  /**
    * Internal initialisation
    * ---------------------------------------------------------------------------
    */
 
   /* Switch to high frequency clock */
-  hf_clock_init();
-  hf_clock_enable();
+  hf_clock_init();              /* TCXO powered on */
+  hf_clock_enable();            /* TCXO startup time.. */
   gclk0_to_hf_clock();
   gclk1_init();
 
@@ -102,16 +116,14 @@ void init(enum init_type init_t)
   system_events_init();
   system_extint_init();
 
-  /* Watchdog */
-  if (init_t != INIT_TESTCASE) {
-    watchdog_init();
-  }
-
   /* Configure Sleep Mode */
   system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Lowest power */
 
   /* Configure the Power Manager */
   powermananger_init();
+
+  /* We've done good things, kick wdt */
+  kick_the_watchdog();
 
   /**
    * System initialisation
@@ -120,8 +132,6 @@ void init(enum init_type init_t)
 
   /* i2c */
   i2c_bb_init();
-
-  kick_the_watchdog();
 
   /* barometer */
   barometer_init();
