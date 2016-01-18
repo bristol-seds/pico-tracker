@@ -161,7 +161,7 @@ void idle(idle_wait_t idle_t)
  *
  * The external watchdog then hard resets the MCU and GPS to bring the
  * system back up in a clean state.
- * 0.8s < tout < 2.1s
+ * 1.2s < tout < 2.4s (ADM6823 Table 1.)
  */
 
 void watchdog_init(void)
