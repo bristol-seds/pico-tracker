@@ -243,7 +243,13 @@ uint32_t get_d2(void) {
 /* -----------------------------------------------------------------------------
  * Calculations
  */
+void barometer_init(void);
 
+/**
+ * Gets barometer readings, or attempts to initiaise if this has previously failed
+ *
+ * Assumes i2c_bb_init has already been called
+ */
 struct barometer* get_barometer(void)
 {
   if (ms5607_init_success) {
@@ -296,6 +302,9 @@ struct barometer* get_barometer(void)
     barometer.temperature = 0;
     barometer.pressure = 0;
     barometer.valid = 0;
+
+    /* try again to init */
+    barometer_init();
   }
 
   return &barometer;
