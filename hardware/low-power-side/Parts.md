@@ -36,7 +36,7 @@
 |ERA2AEB433X|PANASONIC ELECTRONIC COMPONENTS - Surface Mount Chip Resistor, Metal Film, AEC-Q200 ERA Series, 43 kohm, 63 mW, Â± 0.1%, 25 V|[2324785](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2324785)|1|R9 43k 0.1%
 |CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|2|R10, R11 100k 0.1%
 |CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|3|R12, R13, R14 100k
-|MCWR04X1004FTL|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MCWR Series, 1 Mohm, 62.5 mW, Â± 1%, 50 V|[2447127](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2447127)|2|R15, R16 1M
+|MCWR04X1004FTL|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MCWR Series, 1 Mohm, 62.5 mW, Â± 1%, 50 V|[2447127](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2447127)|3|R15, R16, R17 1M
 |GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|C1, C3 8.2pF
 |MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|3|C2, C4, C11 15pF
 | C5, C6 | DNP ||| si4xxx rx

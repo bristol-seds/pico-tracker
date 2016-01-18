@@ -8589,6 +8589,8 @@ Metric Code Size 5664</description>
 <part name="U$74" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C32" library="resistor" deviceset="C-EU" device="C1206K" value="100µF"/>
 <part name="U$32" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="R17" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1MΩ"/>
+<part name="U$76" library="microbuilder_v3" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8672,6 +8674,9 @@ t_WD = 1.12-2.4s</text>
 <text x="93.98" y="191.008" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 5µA nominal at 1.8V</text>
 <text x="152.4" y="191.008" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 10µA max</text>
 <text x="469.9" y="61.468" size="1.27" layer="97" font="vector" ratio="11" distance="100">Icc = 10µA max</text>
+<text x="50.8" y="193.548" size="1.27" layer="97" font="vector" ratio="11" distance="100">Pull-down to ensure
+watchdog bites if WDI
+left floating pre-init</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="213.36" y="162.56"/>
@@ -8844,6 +8849,8 @@ t_WD = 1.12-2.4s</text>
 <instance part="U$74" gate="G$1" x="132.08" y="187.96"/>
 <instance part="C32" gate="G$1" x="124.46" y="43.18"/>
 <instance part="U$32" gate="G$1" x="124.46" y="30.48"/>
+<instance part="R17" gate="G$1" x="78.74" y="195.58" rot="R90"/>
+<instance part="U$76" gate="G$1" x="78.74" y="187.96"/>
 </instances>
 <busses>
 </busses>
@@ -9177,6 +9184,10 @@ t_WD = 1.12-2.4s</text>
 <pinref part="C32" gate="G$1" pin="2"/>
 <pinref part="U$32" gate="G$1" pin="GND"/>
 <wire x1="124.46" y1="33.02" x2="124.46" y2="38.1" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R17" gate="G$1" pin="1"/>
+<pinref part="U$76" gate="G$1" pin="GND"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -9553,8 +9564,12 @@ t_WD = 1.12-2.4s</text>
 <net name="WDI" class="0">
 <segment>
 <pinref part="U7" gate="A" pin="WDI"/>
-<wire x1="88.9" y1="203.2" x2="73.66" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="203.2" x2="78.74" y2="203.2" width="0.1524" layer="91"/>
 <label x="76.2" y="203.2" size="1.778" layer="95"/>
+<pinref part="R17" gate="G$1" pin="2"/>
+<wire x1="78.74" y1="203.2" x2="73.66" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="203.2" x2="78.74" y2="200.66" width="0.1524" layer="91"/>
+<junction x="78.74" y="203.2"/>
 </segment>
 <segment>
 <wire x1="248.92" y1="142.24" x2="233.68" y2="142.24" width="0.1524" layer="91"/>
