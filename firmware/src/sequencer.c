@@ -106,7 +106,8 @@ void run_sequencer(uint32_t n)
   telemetry_sequence(dp, n);
 
   /* Backlog */
-  if ((n % 60) == 10) {         /* Every hour, start ten minutes */
+  if (((n % 15) == 10) &&         /* Once per hour with 4 minute wakeup */
+      gps_is_locked()) {          /* And the gps is locked */
     record_backlog(dp);
   }
 }
