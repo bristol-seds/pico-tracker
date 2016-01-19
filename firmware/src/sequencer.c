@@ -55,7 +55,8 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #if RF_TX_ENABLE
 #if TELEMETRY_ENABLE
 #if TELEMETRY_USE_GEOFENCE
-  if (location_telemetry_active()) {
+  if (location_telemetry_active() ||      /* in geofence */
+      (gps_is_locked() == GPS_NO_LOCK)) { /* or no lock  */
 #endif
 
     /* Pips */
@@ -106,8 +107,8 @@ void run_sequencer(uint32_t n)
   telemetry_sequence(dp, n);
 
   /* Backlog */
-  if (((n % 15) == 10) &&         /* Once per hour with 4 minute wakeup */
-      gps_is_locked()) {          /* And the gps is locked */
+  if (((n % 15) == 10) &&     /* Once per hour with 4 minute wakeup */
+      gps_is_locked() == GPS_LOCKED) { /* And the gps is locked */
     record_backlog(dp);
   }
 }

@@ -56,26 +56,26 @@ int32_t osp_index = SFD_WAITING;
 uint16_t osp_payload_length = 0;
 uint8_t osp_irq_buffer[OSP_BUFFER_LEN];
 
-volatile enum gps_error_t gps_error_state;
+volatile enum gps_error gps_error_state;
 
 /**
  * GPS Active?
  */
-enum gps_power_state_t {
+enum gps_power_state {
   GPS_HIBERNATE	= 0,
   GPS_ACTIVE	= 1,
 };
-enum gps_power_state_t gps_power_state = GPS_HIBERNATE;
+enum gps_power_state gps_power_state = GPS_HIBERNATE;
 
 /**
  * Flight State
  */
-enum gps_flight_state_t gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
+enum gps_flight_state gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 
 /**
  * Lock State
  */
-uint8_t gps_is_locked_priv = 0;
+enum gps_lock_state gps_is_locked_priv = GPS_NO_LOCK;
 
 /**
  * OSP Output Ack/Nack
@@ -476,7 +476,7 @@ void _osp_send_message(osp_message_t* message, uint8_t* payload, uint16_t length
 /**
  * Returns current flight state
  */
-enum gps_flight_state_t gps_get_flight_state(void)
+enum gps_flight_state gps_get_flight_state(void)
 {
   return gps_flight_state;
 }
@@ -532,7 +532,7 @@ void gps_make_hibernate(void)
 /**
  * Lock state. Set by gps_get_data
  */
-uint8_t gps_is_locked(void)
+enum gps_lock_state gps_is_locked(void)
 {
   return gps_is_locked_priv;
 }
@@ -547,7 +547,7 @@ uint8_t gps_is_locked(void)
  * Gets the current error state of the GPS to check validity of last
  * request
  */
-enum gps_error_t gps_get_error_state(void)
+enum gps_error gps_get_error_state(void)
 {
   return gps_error_state;
 }

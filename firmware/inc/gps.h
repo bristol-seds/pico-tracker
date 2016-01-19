@@ -31,7 +31,7 @@
 /**
  * GPS Error types
  */
-enum gps_error_t {
+enum gps_error {
   GPS_NOERROR,
   GPS_ERROR_BAD_CHECKSUM,
   GPS_ERROR_INVALID_FRAME,
@@ -40,9 +40,17 @@ enum gps_error_t {
 /**
  * GPS Flight State
  */
-enum gps_flight_state_t {
+enum gps_flight_state {
   GPS_FLIGHT_STATE_LAUNCH,
   GPS_FLIGHT_STATE_FLOAT,
+};
+
+/**
+ * GPS Lock State
+ */
+enum gps_lock_state {
+  GPS_NO_LOCK = 0,
+  GPS_LOCKED  = 1,
 };
 
 /* UBX ------------------------------------------------------------- */
@@ -93,7 +101,7 @@ struct gps_data_t {
 };
 
 
-enum gps_error_t gps_get_error_state(void);
+enum gps_error gps_get_error_state(void);
 struct gps_data_t gps_get_data(void);
 
 void gps_setup(void);
@@ -117,7 +125,7 @@ struct gps_data_t {
   uint8_t time_to_first_fix;    /* seconds / counts */
 };
 
-enum gps_error_t gps_get_error_state(void);
+enum gps_error gps_get_error_state(void);
 struct gps_data_t gps_get_data(void);
 
 void gps_setup(void);
@@ -125,8 +133,8 @@ void gps_setup(void);
 #endif  /* GPS_TYPE_DUMMY */
 
 /* All ------------------------------------------------------------ */
-enum gps_flight_state_t gps_get_flight_state(void);
-uint8_t gps_is_locked(void);
+enum gps_flight_state gps_get_flight_state(void);
+enum gps_lock_state gps_is_locked(void);
 
 void gps_usart_init_enable(uint32_t baud_rate);
 void gps_reset(void);

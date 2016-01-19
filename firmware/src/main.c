@@ -170,7 +170,7 @@ void aprs_telemetry(struct tracker_datapoint* dp)
 {
   struct tracker_datapoint* backlog_dp_ptr;
 
-  if (!gps_is_locked()) return; /* Don't bother with no GPS */
+  if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
 
   /* Set location */
   aprs_set_datapoint(dp);
@@ -215,10 +215,14 @@ uint32_t hibernate_time_s = 1;
  */
 void set_hibernate_time(void)
 {
-  if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
-    hibernate_time_s = 60-20;      /* approx every minute */
+  if (gps_is_locked() == GPS_NO_LOCK) {   /* no lock  */
+    hibernate_time_s = 0;       /* shortest hibernate */
+
+  } else if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
+    hibernate_time_s = 60-20;   /* approx every minute */
+
   } else {
-    hibernate_time_s = 240-20;     /* approx every 4 minutes  */
+    hibernate_time_s = 240-20;  /* approx every 4 minutes  */
   }
 }
 /**
