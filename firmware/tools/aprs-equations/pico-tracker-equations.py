@@ -61,7 +61,7 @@ def attempt_read_aprs_id():
 # eqn_packets = ["PARM.Battery,Solar,Internal Temperature,GPS Satellites",
 #                "UNIT.Volts,Volts,Celsius",
 #                "EQNS.0,.001,0,0,.001,0,0,.1,-273.2"]
-eqn_packets = ["PARM.Battery,External Temperature,Internal Temperature,GPS Satellites,GPS TTF",
+eqn_packets = ["PARM.Battery,External Temperature,Internal Temperature,GPS Satellites,GPS TTFF",
                "UNIT.Volts,Celsius,Celcius",
                "EQNS.0,.001,0,0,.1,-273.2,0,.1,-273.2"]
 
