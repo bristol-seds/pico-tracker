@@ -43,7 +43,7 @@
 #include "xosc.h"
 #include "sequencer.h"
 
-#define CALLSIGN	"UBSEDSXX"
+#define CALLSIGN	"UBSEDS13"
 #define APRS_COMMENT	""
 
 /**
@@ -220,9 +220,6 @@ void set_hibernate_time(void)
   } else {
     hibernate_time_s = 240-20;     /* approx every 4 minutes  */
   }
-
-  /* TESTING */
-  hibernate_time_s = 10;
 }
 /**
  * Called on each tick of the low frequency clock
