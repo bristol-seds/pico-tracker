@@ -24,7 +24,7 @@
 
 - Check memory works and is erased
   - `make test tc=backlog_write_read` Run this more than once to check functionality of a non-blank memory
-  - `make test tc=mem_erase`
+  - `make test tc=mem_erase_all`
 
 - Check geofences are in order. Run
   - `make test tc=location_aprs`
