@@ -109,7 +109,7 @@ void encode_telemetry(char* str, tracker_datapoint* dp)
  * Comment string for backlog
  */
 #define BACKLOG_COMMENT_LEN	(7 + (2 * 4) + 2 + (4 * 2) + 1)
-void encode_backlog(char* str, tracker_datapoint* dp)
+void encode_backlog(char* str, tracker_datapoint* dp, char* prefix)
 {
   char compressed_lat[5];
   char compressed_lon[5];
@@ -131,7 +131,7 @@ void encode_backlog(char* str, tracker_datapoint* dp)
 
   /* Encode backlog string */
   sprintf(str,
-          "%02d%02d%02dz%s%s%s%s",
+          "%s%02d%02d%02dz%s%s%s%s", prefix,
           dp->time.day, dp->time.hour, dp->time.minute,
           compressed_lat, compressed_lon, compressed_altitude,
           telemetry
@@ -145,15 +145,15 @@ void encode_backlog(char* str, tracker_datapoint* dp)
 
 struct tracker_datapoint* _dp = NULL;
 char* _comment = NULL;
-char backlog_comment[BACKLOG_COMMENT_LEN];
+char backlog_comment[BACKLOG_COMMENT_LEN+100]; /* TEMP */
 void aprs_set_datapoint(tracker_datapoint* dp) {
   _dp = dp;
 }
 void aprs_set_comment(char* comment) {
   _comment = comment;
 }
-void aprs_set_backlog_comment(tracker_datapoint* log_dp) {
-  encode_backlog(backlog_comment, log_dp);
+void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix) {
+  encode_backlog(backlog_comment, log_dp, prefix);
   _comment = backlog_comment;
 }
 

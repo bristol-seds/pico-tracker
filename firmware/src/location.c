@@ -30,9 +30,12 @@
 #include "geofence_no_aprs.h"
 #include "geofence_aprs_zones.h"
 #include "geofence_telemetry.h"
+#include "geofence_prefix.h"
 
 int32_t current_no_aprs_outline = -1;
 int32_t current_aprs_zone = -2, current_aprs_zone_outline = -2;
+
+int32_t current_prefix = -2, current_prefix_outline = -2;
 
 int32_t current_telemetry_outline = -1;
 
@@ -203,6 +206,64 @@ void location_aprs_zone_update(int32_t lat_hn, int32_t lon_hn)
 }
 
 /**
+ * ============================== APRS Zones ================================
+ */
+
+/**
+ * Returns if a latitude and longitude is in a given aprs zone outline
+ *
+ * lat_hn, lon_hn in 100 nanodeg
+ */
+bool latlon_in_prefix(int32_t prefix, int32_t prefix_outline,
+                         int32_t lat_hn, int32_t lon_hn)
+{
+  return latlon_in_polygon(
+    prefixs[prefix].outlines[prefix_outline],
+    prefixs[prefix].outline_lengths[prefix_outline],
+    lat_hn, lon_hn);
+}
+/**
+ * Updates the aprs location based on the current lat/lon
+ *
+ * lat_hn, lon_hn in 100 nanodeg
+ */
+void location_prefix_update(int32_t lat_hn, int32_t lon_hn)
+{
+  uint32_t z, outline;
+
+  /* Were we in an aprs zone last time? */
+  if (current_prefix >= 0 && current_prefix_outline >= 0) {
+
+    /* Are we still in the outline? */
+    if (latlon_in_prefix(current_prefix,
+                            current_prefix_outline,
+                            lat_hn, lon_hn)) {                    /* Still in outline */
+      return;
+    }
+  }
+
+  /* Find which prefix we are in and save it */
+  uint32_t n_zones = sizeof(prefixs) / sizeof(struct prefix_t);
+  for (z = 0; z < n_zones; z++) { /* For each zone */
+
+    for (outline = 0; outline < prefixs[z].outline_count; outline++) {
+
+      if (latlon_in_prefix(z, outline, lat_hn, lon_hn)) { /* If we're in this zone */
+
+        /* Record the current zone */
+        current_prefix = z;
+        current_prefix_outline = outline;
+
+        return;                 /* Go home. We return the first zone we match */
+      }
+    }
+  }
+
+  /* We're not in a zone */
+  current_prefix = -1;
+}
+
+/**
  * ============================== No APRS ============================
  */
 
@@ -304,4 +365,17 @@ int32_t location_aprs_frequency(void)
   }
 
   return 144800000;
+}
+
+char blankk[] = "";
+
+/**
+ * Returns the current prefix
+ */
+char* location_prefix(void) {
+  if (current_prefix >= 0) {
+    return prefixs[current_prefix].prefix;
+  }
+
+  return blankk;
 }

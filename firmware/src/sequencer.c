@@ -50,6 +50,9 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   /* Always update geofence */
   location_telemetry_update(dp->latitude, dp->longitude);
   location_aprs_update(dp->latitude, dp->longitude);
+  kick_the_watchdog();          /* might take time */
+  location_prefix_update(dp->latitude, dp->longitude);
+  kick_the_watchdog();
 
   /* Telemetry */
 #if RF_TX_ENABLE

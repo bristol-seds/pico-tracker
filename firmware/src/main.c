@@ -172,6 +172,8 @@ void aprs_telemetry(struct tracker_datapoint* dp)
 
   if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
 
+  char* prefix = location_prefix();
+
   /* Set location */
   aprs_set_datapoint(dp);
 
@@ -179,9 +181,9 @@ void aprs_telemetry(struct tracker_datapoint* dp)
   backlog_dp_ptr = get_backlog();
 
   if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
-    aprs_set_backlog_comment(backlog_dp_ptr);
+    aprs_set_backlog_comment(backlog_dp_ptr, prefix);
   } else {
-    aprs_set_comment(APRS_COMMENT);
+    aprs_set_comment(prefix);
   }
 
   /* Set frequency */

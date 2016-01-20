@@ -32,12 +32,13 @@
 /* Update */
 void location_telemetry_update(int32_t lon_hn, int32_t lat_hn);
 void location_aprs_update(int32_t lon_hn, int32_t lat_hn);
+void location_prefix_update(int32_t lon_hn, int32_t lat_hn);
 
 
 /* Decisions */
 bool location_telemetry_active(void);
 bool location_aprs_active(void);
 int32_t location_aprs_frequency(void);
-
+char* location_prefix(void);
 
 #endif /* LOCATION_H */

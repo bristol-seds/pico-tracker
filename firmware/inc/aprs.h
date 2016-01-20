@@ -56,11 +56,11 @@
 
 #endif
 
-void encode_backlog(char* str, tracker_datapoint* dp);
+void encode_backlog(char* str, tracker_datapoint* dp, char* prefix);
 
 void aprs_set_datapoint(tracker_datapoint* dp);
 void aprs_set_comment(char* comment);
-void aprs_set_backlog_comment(tracker_datapoint* log_dp);
+void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix);
 
 uint8_t aprs_start(void);
 uint8_t aprs_tick(void);

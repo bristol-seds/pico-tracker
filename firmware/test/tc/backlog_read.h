@@ -43,7 +43,7 @@ __verification__ void backlog_read_tc(void) {
   dp_ptr = get_backlog();
 
   if (dp_ptr != NULL) {
-    encode_backlog(backlog_read_tc_results.aprs_backlog_str, dp_ptr);
+    encode_backlog(backlog_read_tc_results.aprs_backlog_str, dp_ptr, "");
     backlog_read_tc_results.returned_null = 0;
   } else {
     backlog_read_tc_results.returned_null = 1;
