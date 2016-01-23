@@ -27,20 +27,27 @@ def base91_decode(enc_str):
 
 """
 Takes a parsed telemetry line and returns a datetime
-Default year and month are 2015 and July
+Assumes data is from the last month, as per the current machine's time
 """
 def extract_time(line):
     # Capture a 6 digit string
-    p = re.compile(r'(\d{6})z\S{18}')
+    p = re.compile(r'(\d{6})z\S{20}')
     match = p.match(line)
 
     if match == None:
         return None
     else:
-        date_str = '201507' + match.group(1)
+        # Get a datetime object
+        dt = datetime.strptime(match.group(1), '%d%H%M')
+        now = datetime.now()
 
-        # Return a datetime object
-        return datetime.strptime(date_str, '%Y%m%d%H%M')
+        if dt.day > now.day: # from last month
+            now = now - timedelta(months = 1)
+
+        # fill in month and year
+        dt = dt.replace(year=now.year, month=now.month)
+
+        return dt
 
 """
 Takes a parsed telemetry line and returns latitude, longitude and
@@ -48,7 +55,7 @@ altitude. It decodes from base 91 along the way
 """
 def extract_lat_long_alt(line):
     # Capture a 4 char encoded latitude
-    p = re.compile(r'\d{6}z(\S{4})(\S{4})(\S{2})\S{8}')
+    p = re.compile(r'\d{6}z(\S{4})(\S{4})(\S{2})\S{10}')
     match = p.match(line)
 
     if match == None:
@@ -64,13 +71,13 @@ def extract_lat_long_alt(line):
         return (latitude, longitude, altitude)
 
 """
-Takes a parsed telemetry line and returns readings on battery, solar
-temperature and satellite count. It decodes from base91 along the
-way
+Takes a parsed telemetry line and returns readings on battery,
+temperature_external, temperature_internal, satellites and ttff.
+It decodes from base91 along the way
 """
 def extract_telemetry(line):
-    # Capture an 8 char encoded telemetry segment
-    p = re.compile(r'\d{6}z\S{10}(\S{8})')
+    # Capture an 10 char encoded telemetry segment
+    p = re.compile(r'\d{6}z\S{10}(\S{10})')
     match = p.match(line)
 
     if match == None:
@@ -79,24 +86,25 @@ def extract_telemetry(line):
         tel = match.group(1)
 
         # Split into 2 char chunks
-        parts = [tel[i:i+2] for i in range(0, 8, 2)]
-        batt_enc, sol_enc, temp_enc, sat_enc = tuple(parts)
+        parts = [tel[i:i+2] for i in range(0, 10, 2)]
+        batt_enc, temp_e_enc, temp_i_enc, sat_enc, ttff_enc = tuple(parts)
 
-        # Reverse Richard's conversions
+        # Reverse aprs conversions
         battery = base91_decode(batt_enc) / 1000.0
-        solar   = base91_decode(sol_enc) / 1000.0
-        temperature = (base91_decode(temp_enc) / 10) - 273.2
+        temperature_e = (base91_decode(temp_e_enc) / 10) - 273.2
+        temperature_i = (base91_decode(temp_i_enc) / 10) - 273.2
         satellite_count = base91_decode(sat_enc)
+        ttff = base91_decode(ttff_enc)
 
-        return (battery, solar, temperature, satellite_count)
+        return (battery, temperature_e, temperature_i, satellite_count, ttff)
 
 """
-Exracts the 'raw data' segment from a line of data; this is the 25
-character section after /A={6 digits}
+Exracts the 'raw data' segment from a line of data; this is the 20
+character section after \d{6}z
 """
 def extract_raw_data(line):
     # Capture the raw data segment
-    p = re.compile(r'/A=\d{6} (\S{25})\|\S{11}$')
+    p = re.compile(r'(\d{6}z\S{20})\|')
     match = p.search(line)
 
     if match == None:
@@ -105,11 +113,22 @@ def extract_raw_data(line):
         return match.group(1)
 
 #-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
-if len(sys.argv) == 2:
+# Get the name of the input file
+if len(sys.argv) >= 2:
     file_name = sys.argv[1]
 else:
     file_name = raw_input("File to read (rawdata.txt): ") or "rawdata.txt"
+
+# Get the flight number
+if len(sys.argv) >= 3:
+    flight_number = sys.argv[2]
+else:
+    flight_number = raw_input("Flight Number (xx): ") or "xx"
+
+# Callsign
+callsign = "UBSEDS"+flight_number
 
 with open(file_name, 'r') as data_file:
     data = []
@@ -123,25 +142,33 @@ with open(file_name, 'r') as data_file:
         else:
             tele = extract_telemetry(raw)
 
-            data.append({
+            datum = {
                 'time': extract_time(raw),
                 'coords': extract_lat_long_alt(raw),
                 'battery': tele[0],
-                'solar': tele[1],
-                'temperature': tele[2],
-                'satellites': tele[3]
-            })
+                'temperature_e': tele[1],
+                'temperature_i': tele[2],
+                'satellites': tele[3],
+                'ttff': tele[4]
+            }
+
+            if datum not in data: # unique values only
+                data.append(datum)
 
     # Sort data lines by time
     data = sorted(data, key=lambda x: x['time'])
 
     # Print data
     for datum in data:
-        print "%s: %s, %s" % ((str(datum['time']),) + datum['coords'][:2])
+        print "{}: {:.6f} {:.6f}, {}m {}V {}C {}C sats {} ttff {}".format(
+            str(datum['time']),
+            datum['coords'][0], datum['coords'][1], int(round(datum['coords'][2])),
+            datum['battery'], datum['temperature_e'], datum['temperature_i'],
+            datum['satellites'], datum['ttff'])
 
     # Upload data to habitat
-    for datum in data[3:]:
-        ukhas_str = ukhas_format(datum)
+    for datum in data:
+        ukhas_str = ukhas_format(datum, callsign)
         try:
             print ukhas_str
             print habitat_upload(datum['time'], ukhas_str)
