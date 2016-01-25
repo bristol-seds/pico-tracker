@@ -9,11 +9,11 @@ gdbscript-custom
 # The output directory
 out/
 
-# things
-tools/
-
 # Intermediate compilation files
 *.o
+
+# raw backlog data
+tools/*rawdata.txt
 
 # Atmel Developement Kit
 xdk*
