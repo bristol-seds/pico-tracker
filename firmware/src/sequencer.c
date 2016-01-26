@@ -71,7 +71,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #if TELEMETRY_USE_GEOFENCE
   }
 #endif
-#endif
+#endif  /* TELEMETRY_ENABLE */
 
   /* APRS */
 #if APRS_ENABLE
@@ -88,8 +88,8 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #if APRS_USE_GEOFENCE
   }
 #endif
-#endif
-#endif
+#endif  /* APRS_ENABLE */
+#endif  /* RF_TX_ENABLE */
 }
 
 
