@@ -5510,7 +5510,7 @@ const uint32_t put_outline_lengths[] = {
 };
 
 
-const struct prefix_t prefixs[] = {
+const struct prefix_t prefixes[] = {
                                                   /* -----------------Albania */
   { .outlines = pza_outlines, .outline_count = 1, .outline_lengths = pza_outline_lengths,
     .prefix = "ZA" },

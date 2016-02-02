@@ -218,8 +218,8 @@ bool latlon_in_prefix(int32_t prefix, int32_t prefix_outline,
                          int32_t lat_hn, int32_t lon_hn)
 {
   return latlon_in_polygon(
-    prefixs[prefix].outlines[prefix_outline],
-    prefixs[prefix].outline_lengths[prefix_outline],
+    prefixes[prefix].outlines[prefix_outline],
+    prefixes[prefix].outline_lengths[prefix_outline],
     lat_hn, lon_hn);
 }
 /**
@@ -243,10 +243,10 @@ void location_prefix_update(int32_t lat_hn, int32_t lon_hn)
   }
 
   /* Find which prefix we are in and save it */
-  uint32_t n_zones = sizeof(prefixs) / sizeof(struct prefix_t);
+  uint32_t n_zones = sizeof(prefixes) / sizeof(struct prefix_t);
   for (z = 0; z < n_zones; z++) { /* For each zone */
 
-    for (outline = 0; outline < prefixs[z].outline_count; outline++) {
+    for (outline = 0; outline < prefixes[z].outline_count; outline++) {
 
       if (latlon_in_prefix(z, outline, lat_hn, lon_hn)) { /* If we're in this zone */
 
@@ -374,7 +374,7 @@ char blankk[] = "";
  */
 char* location_prefix(void) {
   if (current_prefix >= 0) {
-    return prefixs[current_prefix].prefix;
+    return prefixes[current_prefix].prefix;
   }
 
   return blankk;

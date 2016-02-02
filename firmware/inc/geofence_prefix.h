@@ -22,6 +22,6 @@ struct prefix_t {
 };
 
 
-const struct prefix_t prefixs[46];
+const struct prefix_t prefixes[46];
 
 #endif /* GEOFENCE_PREFIX_H */
