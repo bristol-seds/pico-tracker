@@ -145,6 +145,7 @@ void encode_backlog(char* str, tracker_datapoint* dp, char* prefix)
 
 struct tracker_datapoint* _dp = NULL;
 char* _comment = NULL;
+char* _callsign = NULL;
 char backlog_comment[BACKLOG_COMMENT_LEN+100]; /* TEMP */
 void aprs_set_datapoint(tracker_datapoint* dp) {
   _dp = dp;
@@ -156,7 +157,9 @@ void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix) {
   encode_backlog(backlog_comment, log_dp, prefix);
   _comment = backlog_comment;
 }
-
+void aprs_set_callsign(char* call) {
+  _callsign = aprs_callsign(call);
+}
 
 /**
  * START / TICK
@@ -183,10 +186,15 @@ uint8_t aprs_start(void)
   float lon = (float)_dp->longitude / 10000000.0; /* degrees */
   uint32_t altitude = _dp->altitude / 1000;       /* meters */
 
+  /* Ensure callsign is set */
+  if (!_callsign) {
+    _callsign = aprs_callsign("xxxxxx");
+  }
+
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
                                    "APRS", 0,
-                                   APRS_CALLSIGN, APRS_SSID,
+                                   _callsign, APRS_SSID,
                                    "WIDE2", 1);
 
   /* Prepare the aprs position report */

@@ -10,7 +10,7 @@
 
 #include "samd20.h"
 
-const int32_t* telemetry_outlines[8];
-const uint32_t telemetry_outline_lengths[8];
+const int32_t* telemetry_outlines[10];
+const uint32_t telemetry_outline_lengths[10];
 
 #endif /* GEOFENCE_TELEMETRY_H */

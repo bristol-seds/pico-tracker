@@ -34,11 +34,19 @@
 #ifdef APRS_FLIGHT_PARAMS /* ----------- Parameters for flight */
 
 /**
- * This should be a full licensed callsign you own. Not mine plz k thx bai
+ * This should return a full licensed callsign you own.
  *
  * Max. 6 characters
  */
-#define APRS_CALLSIGN	"M0SBU"
+static inline char* aprs_callsign(char* call) {
+  (void)call;
+
+  return "QQQ";
+}
+
+/**
+ * SSID. Usually 11 for balloons
+ */
 #define APRS_SSID	11
 
 /**
@@ -50,7 +58,11 @@
 
 #warning Using APRS test parameters
 
-#define APRS_CALLSIGN	"M0SBU"
+static inline char* aprs_callsign(char* call) {
+  (void)call;
+
+  return "QQQ";
+}
 #define APRS_SSID	2
 #define APRS_SYMBOL	"/2"
 
@@ -61,6 +73,7 @@ void encode_backlog(char* str, tracker_datapoint* dp, char* prefix);
 void aprs_set_datapoint(tracker_datapoint* dp);
 void aprs_set_comment(char* comment);
 void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix);
+void aprs_set_callsign(char* call);
 
 uint8_t aprs_start(void);
 uint8_t aprs_tick(void);

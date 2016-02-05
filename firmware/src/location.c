@@ -367,7 +367,18 @@ int32_t location_aprs_frequency(void)
   return 144800000;
 }
 
-char blankk[] = "";
+char blank_string[] = "";
+/**
+ * Returns the call to use in the current zone
+ */
+char* location_aprs_call(void) {
+  if (current_aprs_zone >= 0) {
+    return aprs_zones[current_aprs_zone].call;
+  }
+
+  return blank_string;
+}
+
 
 /**
  * Returns the current prefix
@@ -377,5 +388,5 @@ char* location_prefix(void) {
     return prefixes[current_prefix].prefix;
   }
 
-  return blankk;
+  return blank_string;
 }

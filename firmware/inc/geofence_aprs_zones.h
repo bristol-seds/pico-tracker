@@ -18,11 +18,13 @@ struct aprs_zone_t {
   const int32_t** outlines;
   const uint32_t outline_count;
   const uint32_t* outline_lengths;
-  int32_t frequency, deviation;
+  int32_t frequency;
+  int32_t deviation;
   char* name;
+  char* call;
 };
 
 
-const struct aprs_zone_t aprs_zones[11];
+const struct aprs_zone_t aprs_zones[12];
 
 #endif /* GEOFENCE_APRS_ZONES_H */
