@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 
 # ------------------------------------------------------------------------------
 # Imports
@@ -9,6 +10,7 @@ sys.path.append("./test")
 import main
 
 from random import randint
+from colorama import *
 
 # ------------------------------------------------------------------------------
 # Test Script
@@ -57,7 +59,8 @@ class location_telemetry_tc:
 
         if tx_allow == expected_tx_allow:
             print_info("{}: {}".format(name,
-                                       "Permitted" if tx_allow else "Not Permitted"))
+                                       "Permitted" + Fore.GREEN + " ✓" if tx_allow else
+                                       "Not Permitted " + Fore.RED + " ✗"))
             return True
         else:
             print_info("{} ({:.1f}, {:.1f}): Expected {}, Geofence {}".format(

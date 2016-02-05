@@ -28,15 +28,15 @@ class Tests():
 
     def print_info(self, string):
         """Prints an info line"""
-        self.printf(Fore.CYAN + "INFO    " + Fore.RESET + string)
+        self.printf(Fore.CYAN + "INFO    " + Fore.RESET + string + Fore.RESET)
 
     def print_good(self, string):
         """Prints an good line"""
-        self.printf(Fore.GREEN + "GOOD    " + Fore.RESET + string)
+        self.printf(Fore.GREEN + "GOOD    " + Fore.RESET + string + Fore.RESET)
 
     def print_error(self, string):
         """Prints an error line"""
-        self.printf(Fore.RED + "ERROR    " + Fore.RESET + string)
+        self.printf(Fore.RED + "ERROR    " + Fore.RESET + string + Fore.RESET)
 
     def print_centre(self, string):
         """Prints something in the centre of the line"""

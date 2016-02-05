@@ -13,12 +13,13 @@ Romania,0,46,24
 Sweden,0,58,12
 Stockholm,0,59.3,18
 Malmo,0,55.6,13
+Mexico City,0,19.5,-99
 Yemen,0,15,44
 NK,0,39,126
 
-# not allowed (144.39)
-LA,0,34,-118
-New York,0,41,-74
+# 144.39, allowed under US license
+LA,144.39,34,-118
+New York,144.39,41,-74
 
 # 144.8
 Copenhagen,144.8,55.7,12.5

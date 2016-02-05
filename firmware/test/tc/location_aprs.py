@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 
 # ------------------------------------------------------------------------------
 # Imports
@@ -7,8 +8,10 @@
 import sys
 sys.path.append("./test")
 import main
+import re
 
 from random import randint
+from colorama import *
 
 # ------------------------------------------------------------------------------
 # Test Script
@@ -55,7 +58,15 @@ class location_aprs_tc:
 
         # What frequency did we return?
         freq = float(result['frequency']) / (1000*1000)
-        prefix = result['prefix']
+
+        prefix_str = str(result['prefix'])
+        prefix = re.search('"(.*)"', prefix_str).group(1)
+        if prefix:
+            prefix = prefix + '/'
+
+        callsign_str = str(result['callsign'])
+        callsign = re.search('"(.*)"', callsign_str).group(1)
+
 
         if str(result['tx_allow']).startswith('false'): # No APRS
             if int(expected_freq) is 0:
@@ -67,7 +78,8 @@ class location_aprs_tc:
                 return False
 
         if freq == expected_freq:
-            print_info("{}[{}]: {:.3f} MHz".format(name, prefix, freq))
+            print_info("{} ".format(name) + Fore.YELLOW + "[{}]".format(prefix+callsign) +
+                       Fore.RESET + ": {:.3f} MHz".format(freq) + Fore.GREEN + "  ✓")
             return True
         else:
             print_info("{} ({:.1f}, {:.1f}): Expected {:.9f}, Geofence {:.9f}".format(

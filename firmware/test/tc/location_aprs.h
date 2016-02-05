@@ -7,6 +7,7 @@
 /* Checks the location is returning the right things etc. etc                 */
 
 #include "location.h"
+#include "aprs.h"
 
 /* Parameters in */
 struct location_aprs_tc_params {
@@ -18,6 +19,7 @@ struct location_aprs_tc_results {
   bool tx_allow;
   double frequency;
   char* prefix;
+  char* callsign;
 } location_aprs_tc_results;
 /* Function */
 __verification__ void location_aprs_tc(void) {
@@ -37,4 +39,5 @@ __verification__ void location_aprs_tc(void) {
   location_aprs_tc_results.tx_allow = location_aprs_active();
   location_aprs_tc_results.frequency = location_aprs_frequency();
   location_aprs_tc_results.prefix = location_prefix();
+  location_aprs_tc_results.callsign = aprs_callsign(location_aprs_call());
 }
