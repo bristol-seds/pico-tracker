@@ -25,6 +25,7 @@
 #ifndef APRS_H
 #define APRS_H
 
+#include <string.h>
 #include "data.h"
 
 /**
