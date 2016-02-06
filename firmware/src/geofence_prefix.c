@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #include "samd20.h"
+#include "hw_config.h"
 #include "geofence_prefix.h"
 
 
@@ -13150,6 +13151,7 @@ const uint32_t pz2_outline_lengths[] = {
 
 
 const struct prefix_t prefixes[] = {
+#if GEOFENCE_USE_PREFIX
                                                   /* -------------------Aruba */
   { .outlines = pp4_outlines, .outline_count = 1, .outline_lengths = pp4_outline_lengths,
     .prefix = "P4" },
@@ -13819,4 +13821,5 @@ const struct prefix_t prefixes[] = {
                                                   /* ----------------Zimbabwe */
   { .outlines = pz2_outlines, .outline_count = 1, .outline_lengths = pz2_outline_lengths,
     .prefix = "Z2" },
+#endif
 };

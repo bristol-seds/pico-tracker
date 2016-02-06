@@ -7,6 +7,7 @@
   - `APRS_ENABLE` is set if APRS is to be used on the flight
   - `APRS_USE_GEOFENCE` is set
   - `TELEMETRY_USE_GEOFENCE` is set
+  - `GEOFENCE_USE_PREFIX` is set
   - Check the correct barometer is defined, for instance `BAROMETER_TYPE_MS5607` is set.
   - `DEBUG_USE_INTWATCHDOG` can be disabled during flight. This saves some power
   - Check interrupts are regular enough to kick the hardware

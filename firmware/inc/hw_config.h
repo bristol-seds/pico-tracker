@@ -247,6 +247,11 @@
 #define APRS_POWER		RF_POWER_14dBm
 
 /**
+ * Prefix
+ */
+#define GEOFENCE_USE_PREFIX	1
+
+/**
  * Watchdog Timer
  *
  * There is a performance penalty to using the watchdog - you must
