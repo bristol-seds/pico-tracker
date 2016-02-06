@@ -10,6 +10,7 @@ France,0,49,2
 Portugal,0,40,-8
 Italy,0,43,12
 Romania,0,46,24
+Moldova,0,47.2,28.9
 Sweden,0,58,12
 Stockholm,0,59.3,18
 Malmo,0,55.6,13
@@ -18,8 +19,9 @@ Yemen,0,15,44
 NK,0,39,126
 
 # 144.39, allowed under US license
-LA,144.39,34,-118
+Los Angeles,144.39,34,-118
 New York,144.39,41,-74
+Anchorage,144.39,61.2,-149.9
 
 # 144.8
 Copenhagen,144.8,55.7,12.5
@@ -27,11 +29,13 @@ Amsterdam,144.8,52.4,5.7
 Reykjavik,144.8,64.27,-21.57
 Germany,144.8,52,9
 Poland,144.8,51,20
+Minsk,144.8,54,28.3
 Russia,144.8,55,37
 Mongolia,144.8,48,107
 Vladivostok,144.8,43,132
-Armenia,144.8,40,44
-Africa,144.8,9,2
+Armenia,144.8,40.5,44.7
+Ghana,144.8,9,-1
+Havana,144.8,23.1,-82.26
 
 # 144.39
 Canada,144.39,43.7,-79.5
