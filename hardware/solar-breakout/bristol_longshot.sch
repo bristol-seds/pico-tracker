@@ -7638,7 +7638,11 @@ by exp-lbrs.ulp</description>
 <text x="20.32" y="106.68" size="1.778" layer="97">Input voltage 2v - 2.4v
 from 4x solar panel</text>
 <text x="558.8" y="139.7" size="1.778" layer="97">We draw power from both Solar and Battery</text>
-<text x="157.48" y="73.66" size="1.778" layer="97">Vout set = 4.6V</text>
+<text x="157.48" y="63.5" size="1.778" layer="97">R5 = 220kΩ, R7 = 82kΩ
+Vout set = 4.6V
+
+R5 = 180kΩ, R7 = 71.5kΩ
+Vout set = 4.4V</text>
 <text x="20.32" y="71.12" size="1.778" layer="97">&gt;2V is enough
 to self-start conversion</text>
 <text x="375.92" y="73.66" size="1.778" layer="97">NTC not used
@@ -7664,6 +7668,27 @@ the MOSFETs cutoff battery charging first. </text>
 <text x="297.18" y="78.74" size="1.778" layer="97">Connect to enable battery charging</text>
 <text x="558.8" y="129.54" size="1.778" layer="97">Could use the body diode of the MOSFETs
 but Vf is lower this way</text>
+<text x="261.62" y="195.58" size="2.54" layer="97">EDIT: Not sure if standard cutoffs are useful. The internal resistance is too large.
+
+Discharge: Current pulses cutoff battery when plenty of charge remains.
+Other shutdown mechanism that operates only in quiescent state? 
+Vsolar &lt; Vcutt for 30s+?? Timer based on expected capacity? Just measure Vsolar before drawing significant current.
+
+Charge: Internal resistance increases charging voltage. TODO: Measure IR at 0ºC/-10ºC.
+Batt gets to -10ºC in the sun most days.</text>
+<text x="370.84" y="55.88" size="2.54" layer="97">EDIT: Low Batt Cuttoff
+= 2.7V on low-power-solar</text>
+<text x="261.62" y="157.48" size="2.54" layer="97">Current idea: Omit LTC4071 entirely. Requirement for 2.1V to drive diode+reg
+prevents v. deep discharge. This will be rare anyhow and should only occour 
+in the polar night.
+Limit SPV1040 to 4.4V instead. 60mA @ 3.2V, 10mA @ 4.2V
+
+How to limit charging during to first half hour while battery is still cold? Has to get to -10ºC to enable charging? (hysterisis at -20ºC?)
+Needs an IO line... Replace LED? Needs an npn transistor to pull low</text>
+<text x="266.7" y="40.64" size="2.54" layer="97">Replace LTC4071 with a 4.3V zener diode.
+Or replace with LTC4070 with float voltage = 4.1V. Pin 7 would be n/c
+
+Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.</text>
 </plain>
 <instances>
 <instance part="FRAME3" gate="G$1" x="0" y="0"/>
