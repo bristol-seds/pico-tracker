@@ -6,12 +6,12 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-511-SPV1040T U1 MPPT SPV1040T
-1839141 U2 Li-ion battery charger LTC4070 - replaces LTC4071, leave pin 7 floating
-2400648 595-TPS62243DRVT 2 U3 Buck Converter DRVT = SON-6 TPS62243
+511-SPV1040T 1 U1 MPPT SPV1040T
+1839141 1 U2 Li-ion battery charger LTC4070 - replaces LTC4071, leave pin 7 floating
+2400648 595-TPS62243DRVT 1 U3 Buck Converter DRVT = SON-6 TPS62243
 1829262 1 TVS diode for MPPT D1
 1525484 1 Small signal schottky RB161M D2
-
+1972673 2 BSS84 P-channel MOSFET Q1 Q2
 ## Passives
 
 | Part | Description | Supplier | Quantity Required | Notes

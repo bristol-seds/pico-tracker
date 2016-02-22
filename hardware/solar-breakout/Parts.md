@@ -6,12 +6,12 @@
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|SPV1040T|Voltage Regulators - Switching Regulators Hi efficiency solar battery charger|[511-SPV1040T](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=511-SPV1040T)|0|MPPT SPV1040T
-|LTC4070EMS8E#PBF|LINEAR TECHNOLOGY - BATTERY CHARGER, LIION/POLY, 8MSOP|[1839141](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1839141)|0|Li-ion battery charger LTC4070 - replaces LTC4071, leave pin 7 floating
-|TPS62243DRVT|TEXAS INSTRUMENTS - DC-DC CONV, BUCK, 0.3A, 2.25MHZ, SON-6|[2400648](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2400648) [595-TPS62243DRVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS62243DRVT)|2|U3 Buck Converter DRVT = SON-6 TPS62243
+|SPV1040T|Voltage Regulators - Switching Regulators Hi efficiency solar battery charger|[511-SPV1040T](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=511-SPV1040T)|1|U1 MPPT SPV1040T
+|LTC4070EMS8E#PBF|LINEAR TECHNOLOGY - BATTERY CHARGER, LIION/POLY, 8MSOP|[1839141](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1839141)|1|U2 Li-ion battery charger LTC4070 - replaces LTC4071, leave pin 7 floating
+|TPS62243DRVT|TEXAS INSTRUMENTS - DC-DC CONV, BUCK, 0.3A, 2.25MHZ, SON-6|[2400648](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2400648) [595-TPS62243DRVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS62243DRVT)|1|U3 Buck Converter DRVT = SON-6 TPS62243
 |PTVS5V0S1UR|NXP - Transient Voltage Suppressor, TVS, AEC-Q101 PTVS Series, Unidirectional, 5 V, SOD-123, 2, 6.4 V|[1829262](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1829262)|1|TVS diode for MPPT D1
 |RB161M-20TR|ROHM - Small Signal Schottky Diode, Single, 25 V, 1 A, 350 mV, 30 A, 125 Â°C|[1525484](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1525484)|1|Small signal schottky RB161M D2
-
+|BSS84AK|NXP - MOSFET Transistor, P Channel, -180 mA, -50 V, 4.5 ohm, -10 V, -1.6 V|[1972673](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1972673)|2|BSS84 P-channel MOSFET Q1 Q2
 ## Passives
 
 | Part | Description | Supplier | Quantity Required | Notes
