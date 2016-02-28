@@ -130,10 +130,10 @@ void init(enum init_type init_t)
    * ---------------------------------------------------------------------------
    */
 
+#if USE_BAROMETER
   /* i2c */
   i2c_bb_init();
 
-#if USE_BAROMETER
   /* barometer */
   barometer_init();
 #endif
