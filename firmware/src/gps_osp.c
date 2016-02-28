@@ -1012,16 +1012,16 @@ void gps_usart_init_enable(uint32_t baud_rate)
 /**
  * GPS reset pin
  */
-void gps_reset_on(void)
+void gps_reset_exit(void)
 {
 #ifdef GPS_RESET_PIN
-  port_pin_set_output_level(GPS_RESET_PIN, 0); /* active low */
+  port_pin_set_output_level(GPS_RESET_PIN, 0); /* gps in operation = low */
 #endif
 }
-void gps_reset_off(void)
+void gps_reset_enter(void)
 {
 #ifdef GPS_RESET_PIN
-  port_pin_set_output_level(GPS_RESET_PIN, 1); /* active low */
+  port_pin_set_output_level(GPS_RESET_PIN, 1); /* gps in reset = high */
 #endif
 }
 /**
@@ -1034,7 +1034,7 @@ void gps_reset(void)
 		      PORT_PIN_DIR_OUTPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
-  port_pin_set_output_level(GPS_RESET_PIN, 0);	/* active low */
+  port_pin_set_output_level(GPS_RESET_PIN, 1);	/* gps in reset = high */
 #endif
 }
 
@@ -1052,7 +1052,7 @@ void gps_init_timepulse_pin(void) {
 void gps_init(void)
 {
   /* Bring GPS out of reset */
-  gps_reset_off();
+  gps_reset_exit();
 
   /* Timepulse pin - does that go here? */
   gps_init_timepulse_pin();
@@ -1066,7 +1066,7 @@ void gps_init(void)
   /* ---- GPS Configuration ---- */
 
   /* Close any currently running session. Doesn't do anything unless debugging */
-  osp_reset_initialise();
+  //osp_reset_initialise();       /* hopefully don't need this now */
 
   /* Setup sequence */
   gps_setup();

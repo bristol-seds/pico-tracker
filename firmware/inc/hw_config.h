@@ -83,6 +83,7 @@
 #define GPS_TIMEPULSE_FREQ      1
 #define GPS_TIMEPULSE_EXTINT	4
 #define GPS_SE_ON_OFF_PIN	PIN_PA05
+#define GPS_RESET_PIN		PIN_PA01 /* Hacky resistor switch on the board */
 
 #else
 #define GPS_TYPE_UBX
