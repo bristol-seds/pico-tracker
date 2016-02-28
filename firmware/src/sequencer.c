@@ -32,6 +32,7 @@
 #include "watchdog.h"
 #include "backlog.h"
 #include "location.h"
+#include "accumulator.h"
 
 
 void rtty_telemetry(struct tracker_datapoint* dp);
@@ -109,9 +110,17 @@ void run_sequencer(uint32_t n)
   /* Telemetry  */
   telemetry_sequence(dp, n);
 
+  /* Accumulator for backlog */
+  accumulator_add(dp);
+
   /* Backlog */
   if (((n % 15) == 10) &&     /* Once per hour with 4 minute wakeup */
       gps_is_locked() == GPS_LOCKED) { /* And the gps is locked */
+
+    /* replace some values from this sample with averages */
+    accumulator_read(dp);
+
+
     record_backlog(dp);
   }
 }
