@@ -133,8 +133,10 @@ void init(enum init_type init_t)
   /* i2c */
   i2c_bb_init();
 
+#if USE_BAROMETER
   /* barometer */
   barometer_init();
+#endif
 
   if (init_t != INIT_TESTCASE) {
     /* Telemetry init depends on gclk */

@@ -101,9 +101,11 @@ struct tracker_datapoint* collect_data(void)
   /**
    * ---- Barometer ----
    */
+#if USE_BAROMETER
   struct barometer* b = get_barometer();
   datapoint.main_pressure = b->pressure;
   datapoint.bmp180_temperature = (float)b->temperature;
+#endif
 
 #ifdef GPS_TYPE_UBX
   /**
