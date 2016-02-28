@@ -7424,7 +7424,7 @@ by exp-lbrs.ulp</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="LTC4071_EMS8">
+<library name="LTC4070_EMS8">
 <packages>
 <package name="SOP65P490X110-9N">
 <smd name="1" x="-2.1844" y="0.9652" dx="1.397" dy="0.4318" layer="1"/>
@@ -7435,7 +7435,7 @@ by exp-lbrs.ulp</description>
 <smd name="6" x="2.1844" y="-0.3302" dx="1.397" dy="0.4318" layer="1"/>
 <smd name="7" x="2.1844" y="0.3302" dx="1.397" dy="0.4318" layer="1"/>
 <smd name="8" x="2.1844" y="0.9652" dx="1.397" dy="0.4318" layer="1"/>
-<smd name="9" x="0.0254" y="-0.0254" dx="1.6764" dy="1.8796" layer="1"/>
+<smd name="9" x="-0.1016" y="-0.0508" dx="1.8288" dy="2.0574" layer="1"/>
 <wire x1="-1.4986" y1="0.7874" x2="-1.4986" y2="1.1684" width="0" layer="51"/>
 <wire x1="-1.4986" y1="1.1684" x2="-2.5146" y2="1.1684" width="0" layer="51"/>
 <wire x1="-2.5146" y1="1.1684" x2="-2.5146" y2="0.7874" width="0" layer="51"/>
@@ -7477,61 +7477,57 @@ by exp-lbrs.ulp</description>
 <wire x1="0.3048" y1="1.4986" x2="-0.3048" y2="1.4986" width="0" layer="51" curve="-180"/>
 <text x="-3.0226" y="1.27" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
 <wire x1="-1.3716" y1="-1.4986" x2="1.3716" y2="-1.4986" width="0.1524" layer="21"/>
-<wire x1="1.3716" y1="1.4986" x2="0.3048" y2="1.4986" width="0.1524" layer="21"/>
-<wire x1="0.3048" y1="1.4986" x2="-0.3048" y2="1.4986" width="0.1524" layer="21"/>
-<wire x1="-0.3048" y1="1.4986" x2="-1.3716" y2="1.4986" width="0.1524" layer="21"/>
-<wire x1="0.3048" y1="1.4986" x2="0.2032" y2="1.27" width="0.1524" layer="21" curve="-48"/>
-<wire x1="-0.2032" y1="1.27" x2="-0.3048" y2="1.4986" width="0.1524" layer="21" curve="-48"/>
+<wire x1="1.3716" y1="1.4986" x2="-1.3716" y2="1.4986" width="0.1524" layer="21"/>
 <text x="-3.0226" y="1.27" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <text x="-3.4544" y="3.175" size="2.0828" layer="25" ratio="10" rot="SR0">&gt;NAME</text>
 <text x="-3.4544" y="-4.445" size="2.0828" layer="27" ratio="10" rot="SR0">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
-<symbol name="LTC4071EMS8EPBF">
-<pin name="VCC" x="-17.78" y="10.16" length="middle" direction="pwr"/>
-<pin name="BAT" x="17.78" y="5.08" length="middle" direction="in" rot="R180"/>
-<pin name="NTCBIAS" x="-17.78" y="5.08" length="middle" direction="in"/>
-<pin name="NTC" x="-17.78" y="2.54" length="middle" direction="in"/>
-<pin name="ADJ" x="-17.78" y="0" length="middle" direction="in"/>
-<pin name="LBSEL" x="-17.78" y="-2.54" length="middle" direction="in"/>
-<pin name="GND" x="-17.78" y="-7.62" length="middle" direction="pas"/>
-<pin name="EP" x="-17.78" y="-10.16" length="middle" direction="pas"/>
-<pin name="HBO" x="17.78" y="10.16" length="middle" direction="out" rot="R180"/>
-<wire x1="-12.7" y1="15.24" x2="-12.7" y2="-15.24" width="0.4064" layer="94"/>
-<wire x1="-12.7" y1="-15.24" x2="12.7" y2="-15.24" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="-15.24" x2="12.7" y2="15.24" width="0.4064" layer="94"/>
-<wire x1="12.7" y1="15.24" x2="-12.7" y2="15.24" width="0.4064" layer="94"/>
-<text x="-4.826" y="17.78" size="2.0828" layer="95" ratio="10" rot="SR0">&gt;NAME</text>
-<text x="-6.604" y="-20.0152" size="2.0828" layer="96" ratio="10" rot="SR0">&gt;VALUE</text>
+<symbol name="LTC4070EMS8EPBF">
+<pin name="VCC" x="-17.78" y="5.08" length="middle" direction="pwr"/>
+<pin name="NTCBIAS" x="-17.78" y="0" length="middle" direction="pwr"/>
+<pin name="NTC" x="-17.78" y="-2.54" length="middle" direction="in"/>
+<pin name="ADJ" x="-17.78" y="-5.08" length="middle" direction="in"/>
+<pin name="GND" x="-17.78" y="-10.16" length="middle" direction="pas"/>
+<pin name="EP" x="-17.78" y="-12.7" length="middle" direction="pas"/>
+<pin name="HBO" x="17.78" y="5.08" length="middle" direction="out" rot="R180"/>
+<pin name="LBO" x="17.78" y="2.54" length="middle" direction="out" rot="R180"/>
+<pin name="DRV" x="17.78" y="0" length="middle" direction="out" rot="R180"/>
+<wire x1="-12.7" y1="10.16" x2="-12.7" y2="-17.78" width="0.4064" layer="94"/>
+<wire x1="-12.7" y1="-17.78" x2="12.7" y2="-17.78" width="0.4064" layer="94"/>
+<wire x1="12.7" y1="-17.78" x2="12.7" y2="10.16" width="0.4064" layer="94"/>
+<wire x1="12.7" y1="10.16" x2="-12.7" y2="10.16" width="0.4064" layer="94"/>
+<text x="-5.334" y="12.065" size="2.0828" layer="95" ratio="10" rot="SR0">&gt;NAME</text>
+<text x="-4.7244" y="-20.8534" size="2.0828" layer="96" ratio="10" rot="SR0">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="LTC4071EMS8EPBF" prefix="U">
-<description>Li-Ion/Polymer Shunt Battery Charger System with Low Battery Disconnect</description>
+<deviceset name="LTC4070EMS8EPBF" prefix="U">
+<description>Li-Ion/Polymer Shunt Battery Charger System</description>
 <gates>
-<gate name="A" symbol="LTC4071EMS8EPBF" x="0" y="0"/>
+<gate name="A" symbol="LTC4070EMS8EPBF" x="0" y="0"/>
 </gates>
 <devices>
 <device name="" package="SOP65P490X110-9N">
 <connects>
 <connect gate="A" pin="ADJ" pad="3"/>
-<connect gate="A" pin="BAT" pad="7"/>
+<connect gate="A" pin="DRV" pad="7"/>
 <connect gate="A" pin="EP" pad="9"/>
-<connect gate="A" pin="GND" pad="6"/>
+<connect gate="A" pin="GND" pad="5"/>
 <connect gate="A" pin="HBO" pad="4"/>
-<connect gate="A" pin="LBSEL" pad="5"/>
+<connect gate="A" pin="LBO" pad="6"/>
 <connect gate="A" pin="NTC" pad="2"/>
 <connect gate="A" pin="NTCBIAS" pad="1"/>
 <connect gate="A" pin="VCC" pad="8"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="MPN" value="LTC4071EMS8E#PBF" constant="no"/>
-<attribute name="OC_FARNELL" value="1947919" constant="no"/>
-<attribute name="OC_NEWARK" value="13T8411" constant="no"/>
+<attribute name="MPN" value="LTC4070EMS8E#PBF" constant="no"/>
+<attribute name="OC_FARNELL" value="1839141" constant="no"/>
+<attribute name="OC_NEWARK" value="67R4287" constant="no"/>
 <attribute name="PACKAGE" value="MSOP-8" constant="no"/>
-<attribute name="SUPPLIER" value="LINEAR TECHNOLOGY" constant="no"/>
+<attribute name="SUPPLIER" value="Linear Technology" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -7550,21 +7546,21 @@ by exp-lbrs.ulp</description>
 </classes>
 <parts>
 <part name="FRAME3" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
-<part name="U4" library="TPS62243" deviceset="TPS62243" device=""/>
+<part name="U3" library="TPS62243" deviceset="TPS62243" device=""/>
 <part name="U$66" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U1" library="spv1040" deviceset="SPV1040" device=""/>
-<part name="R7" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
-<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="220kΩ"/>
+<part name="R3" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="82kΩ"/>
+<part name="R2" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="220kΩ"/>
 <part name="U$2" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$3" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C7" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
+<part name="C2" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
 <part name="U$4" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="FRAME1" library="SparkFun" deviceset="FRAME-LETTER" device=""/>
 <part name="U$10" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$12" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="L3" library="SparkFun" deviceset="INDUCTOR" device="1007" value="2.2µH"/>
+<part name="L2" library="SparkFun" deviceset="INDUCTOR" device="1007" value="2.2µH"/>
 <part name="U$14" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C5" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
+<part name="C1" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1nF"/>
 <part name="R1" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
 <part name="JP2" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="JP3" library="SparkFun" deviceset="M02" device="3.5MM_LOCK" value="PV1"/>
@@ -7574,24 +7570,24 @@ by exp-lbrs.ulp</description>
 <part name="U$18" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$21" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$22" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C11" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C3" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="1µF"/>
 <part name="U$40" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C15" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
+<part name="C4" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="4.7µF"/>
 <part name="U$49" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JTAG1" library="microbuilder_v3" deviceset="JTAG-CORTEXM3" device="SMT"/>
 <part name="U$32" library="microbuilder_v3" deviceset="1.8V" device=""/>
 <part name="U$35" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="D2" library="led" deviceset="LED" device="CHIPLED_0603" value="GREEN"/>
-<part name="R10" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="330Ω"/>
+<part name="D3" library="led" deviceset="LED" device="CHIPLED_0603" value="GREEN"/>
+<part name="R5" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="330Ω"/>
 <part name="U$24" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="D5" library="nxp" deviceset="DIODE[TVS]" device=""/>
+<part name="D1" library="nxp" deviceset="DIODE[TVS]" device=""/>
 <part name="U$28" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="L1" library="PecanFemto4" deviceset="IND-LPS3015" device="" value="10uH LPS3015"/>
-<part name="C30" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="C1" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="C2" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="C3" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
-<part name="D3" library="RB161M" deviceset="RB161M" device=""/>
+<part name="C7" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C5" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C6" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="C8" library="resistor" deviceset="C-EU" device="C0603K" value="10µF"/>
+<part name="D2" library="RB161M" deviceset="RB161M" device=""/>
 <part name="JP1" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$6" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP4" library="SparkFun" deviceset="M02" device="LOCK"/>
@@ -7600,16 +7596,15 @@ by exp-lbrs.ulp</description>
 <part name="U$11" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP8" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$5" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="C32" library="resistor" deviceset="C-EU" device="C1206K" value="100µF"/>
+<part name="C9" library="resistor" deviceset="C-EU" device="C1206K" value="100µF"/>
 <part name="U$13" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP9" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$16" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP10" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$17" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="U2" library="LTC4071_EMS8" deviceset="LTC4071EMS8EPBF" device=""/>
 <part name="U$19" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$1" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R15" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1MΩ"/>
+<part name="R4" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1MΩ"/>
 <part name="JP6" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$7" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP12" library="SparkFun" deviceset="M02" device="LOCK"/>
@@ -7618,10 +7613,11 @@ by exp-lbrs.ulp</description>
 <part name="U$23" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="JP14" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="U$25" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="Q1" library="nxp" deviceset="NX2301P" device="" value="BSS84"/>
 <part name="Q2" library="nxp" deviceset="NX2301P" device="" value="BSS84"/>
-<part name="Q3" library="nxp" deviceset="NX2301P" device="" value="BSS84"/>
 <part name="JP11" library="SparkFun" deviceset="M02" device="3.5MM_LOCK"/>
 <part name="U$8" library="microbuilder_v3" deviceset="GND" device=""/>
+<part name="U2" library="LTC4070_EMS8" deviceset="LTC4070EMS8EPBF" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7638,18 +7634,16 @@ by exp-lbrs.ulp</description>
 <text x="20.32" y="106.68" size="1.778" layer="97">Input voltage 2v - 2.4v
 from 4x solar panel</text>
 <text x="558.8" y="139.7" size="1.778" layer="97">We draw power from both Solar and Battery</text>
-<text x="157.48" y="63.5" size="1.778" layer="97">R5 = 220kΩ, R7 = 82kΩ
+<text x="157.48" y="63.5" size="1.778" layer="97">R2 = 220kΩ, R3 = 82kΩ
 Vout set = 4.6V
 
-R5 = 180kΩ, R7 = 71.5kΩ
+R2 = 180kΩ, R3 = 71.5kΩ
 Vout set = 4.4V</text>
 <text x="20.32" y="71.12" size="1.778" layer="97">&gt;2V is enough
 to self-start conversion</text>
 <text x="375.92" y="73.66" size="1.778" layer="97">NTC not used
-Float Voltage = 4.0V
-Low Batt. Cutoff = 3.2V</text>
-<text x="403.86" y="76.2" size="1.778" layer="97">Battery is cutoff when &lt; 3.2V.
-LTC4071 shunts current when battery &gt; 4.0V.</text>
+ADJ = GND -&gt; Float Voltage = 4.0V</text>
+<text x="403.86" y="78.74" size="1.778" layer="97">LTC4071 shunts current when battery &gt; 4.0V.</text>
 <text x="332.74" y="91.44" size="1.778" layer="97">Start of cycle:
 Vd = 4.6-3.2V = 1.4V
 I = 70mA
@@ -7666,7 +7660,7 @@ during normal operation. If solar voltage drops
 the MOSFETs cutoff battery charging first. </text>
 <text x="347.98" y="81.28" size="1.778" layer="97"></text>
 <text x="297.18" y="78.74" size="1.778" layer="97">Connect to enable battery charging</text>
-<text x="558.8" y="129.54" size="1.778" layer="97">Could use the body diode of the MOSFETs
+<text x="558.8" y="127" size="1.778" layer="97">Could use the body diode of the MOSFETs
 but Vf is lower this way</text>
 <text x="261.62" y="195.58" size="2.54" layer="97">EDIT: Not sure if standard cutoffs are useful. The internal resistance is too large.
 
@@ -7693,22 +7687,22 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <instances>
 <instance part="FRAME3" gate="G$1" x="0" y="0"/>
 <instance part="FRAME3" gate="G$2" x="144.78" y="0"/>
-<instance part="U4" gate="G$1" x="668.02" y="127"/>
+<instance part="U3" gate="G$1" x="668.02" y="127"/>
 <instance part="U$66" gate="G$1" x="716.28" y="144.78" rot="MR0"/>
 <instance part="U1" gate="G$1" x="124.46" y="101.6"/>
-<instance part="R7" gate="G$1" x="172.72" y="88.9" rot="R90"/>
-<instance part="R5" gate="G$1" x="172.72" y="99.06" rot="R90"/>
+<instance part="R3" gate="G$1" x="172.72" y="88.9" rot="R90"/>
+<instance part="R2" gate="G$1" x="172.72" y="99.06" rot="R90"/>
 <instance part="U$2" gate="G$1" x="93.98" y="104.14" rot="R270"/>
 <instance part="U$3" gate="G$1" x="172.72" y="81.28"/>
-<instance part="C7" gate="G$1" x="162.56" y="86.36"/>
+<instance part="C2" gate="G$1" x="162.56" y="86.36"/>
 <instance part="U$4" gate="G$1" x="162.56" y="81.28"/>
 <instance part="FRAME1" gate="G$1" x="505.46" y="0"/>
 <instance part="FRAME1" gate="G$2" x="650.24" y="0"/>
 <instance part="U$10" gate="G$1" x="652.78" y="111.76"/>
 <instance part="U$12" gate="G$1" x="716.28" y="111.76"/>
-<instance part="L3" gate="G$1" x="690.88" y="134.62" rot="R90"/>
+<instance part="L2" gate="G$1" x="690.88" y="134.62" rot="R90"/>
 <instance part="U$14" gate="G$1" x="99.06" y="119.38" rot="R90"/>
-<instance part="C5" gate="G$1" x="88.9" y="119.38" rot="R270"/>
+<instance part="C1" gate="G$1" x="88.9" y="119.38" rot="R270"/>
 <instance part="R1" gate="G$1" x="76.2" y="109.22"/>
 <instance part="JP2" gate="G$1" x="226.06" y="93.98" rot="MR90"/>
 <instance part="JP3" gate="G$1" x="22.86" y="99.06" rot="MR180"/>
@@ -7719,24 +7713,24 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <instance part="U$18" gate="G$1" x="50.8" y="81.28"/>
 <instance part="U$21" gate="G$1" x="457.2" y="86.36"/>
 <instance part="U$22" gate="G$1" x="447.04" y="86.36"/>
-<instance part="C11" gate="G$1" x="363.22" y="101.6"/>
+<instance part="C3" gate="G$1" x="363.22" y="101.6"/>
 <instance part="U$40" gate="G$1" x="363.22" y="86.36"/>
-<instance part="C15" gate="G$1" x="642.62" y="119.38"/>
+<instance part="C4" gate="G$1" x="642.62" y="119.38"/>
 <instance part="U$49" gate="G$1" x="642.62" y="111.76"/>
 <instance part="JTAG1" gate="G$1" x="703.58" y="50.8" rot="MR0"/>
 <instance part="U$32" gate="G$1" x="716.28" y="68.58" rot="MR0"/>
 <instance part="U$35" gate="G$1" x="716.28" y="40.64"/>
-<instance part="D2" gate="G$1" x="431.8" y="96.52"/>
-<instance part="R10" gate="G$1" x="431.8" y="104.14" rot="R90"/>
+<instance part="D3" gate="G$1" x="431.8" y="96.52"/>
+<instance part="R5" gate="G$1" x="431.8" y="104.14" rot="R90"/>
 <instance part="U$24" gate="G$1" x="182.88" y="81.28"/>
-<instance part="D5" gate="G$1" x="215.9" y="93.98" rot="R90"/>
+<instance part="D1" gate="G$1" x="215.9" y="93.98" rot="R90"/>
 <instance part="U$28" gate="G$1" x="215.9" y="81.28"/>
 <instance part="L1" gate="G$1" x="81.28" y="99.06"/>
-<instance part="C30" gate="G$1" x="447.04" y="101.6"/>
-<instance part="C1" gate="G$1" x="50.8" y="91.44"/>
-<instance part="C2" gate="G$1" x="182.88" y="93.98"/>
-<instance part="C3" gate="G$1" x="716.28" y="124.46"/>
-<instance part="D3" gate="A" x="586.74" y="134.62"/>
+<instance part="C7" gate="G$1" x="447.04" y="101.6"/>
+<instance part="C5" gate="G$1" x="50.8" y="91.44"/>
+<instance part="C6" gate="G$1" x="182.88" y="93.98"/>
+<instance part="C8" gate="G$1" x="716.28" y="124.46"/>
+<instance part="D2" gate="A" x="586.74" y="134.62"/>
 <instance part="JP1" gate="G$1" x="22.86" y="160.02" rot="MR180"/>
 <instance part="U$6" gate="G$1" x="33.02" y="157.48" rot="R90"/>
 <instance part="JP4" gate="G$1" x="22.86" y="147.32" rot="MR180"/>
@@ -7745,16 +7739,15 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <instance part="U$11" gate="G$1" x="177.8" y="144.78" rot="R90"/>
 <instance part="JP8" gate="G$1" x="22.86" y="134.62" rot="MR180"/>
 <instance part="U$5" gate="G$1" x="33.02" y="132.08" rot="R90"/>
-<instance part="C32" gate="G$1" x="195.58" y="93.98"/>
+<instance part="C9" gate="G$1" x="195.58" y="93.98"/>
 <instance part="U$13" gate="G$1" x="195.58" y="81.28"/>
 <instance part="JP9" gate="G$1" x="167.64" y="134.62" rot="MR180"/>
 <instance part="U$16" gate="G$1" x="177.8" y="132.08" rot="R90"/>
 <instance part="JP10" gate="G$1" x="690.88" y="165.1" rot="MR180"/>
 <instance part="U$17" gate="G$1" x="701.04" y="162.56" rot="R90"/>
-<instance part="U2" gate="A" x="398.78" y="109.22"/>
 <instance part="U$19" gate="G$1" x="378.46" y="86.36"/>
 <instance part="U$1" gate="G$1" x="431.8" y="86.36"/>
-<instance part="R15" gate="G$1" x="314.96" y="111.76"/>
+<instance part="R4" gate="G$1" x="314.96" y="111.76"/>
 <instance part="JP6" gate="G$1" x="314.96" y="93.98" rot="MR180"/>
 <instance part="U$7" gate="G$1" x="325.12" y="86.36"/>
 <instance part="JP12" gate="G$1" x="365.76" y="139.7" rot="MR180"/>
@@ -7763,21 +7756,22 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <instance part="U$23" gate="G$1" x="434.34" y="137.16" rot="R90"/>
 <instance part="JP14" gate="G$1" x="609.6" y="165.1" rot="MR180"/>
 <instance part="U$25" gate="G$1" x="619.76" y="162.56" rot="R90"/>
-<instance part="Q2" gate="A" x="327.66" y="119.38" rot="R90"/>
-<instance part="Q3" gate="A" x="347.98" y="119.38" rot="R90"/>
+<instance part="Q1" gate="A" x="327.66" y="119.38" rot="R90"/>
+<instance part="Q2" gate="A" x="347.98" y="119.38" rot="R90"/>
 <instance part="JP11" gate="G$1" x="739.14" y="134.62" rot="R180"/>
 <instance part="U$8" gate="G$1" x="728.98" y="111.76"/>
+<instance part="U2" gate="A" x="398.78" y="114.3"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="R7" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="1"/>
 <pinref part="U$3" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C7" gate="G$1" pin="P$2"/>
+<pinref part="C2" gate="G$1" pin="P$2"/>
 <pinref part="U$4" gate="G$1" pin="GND"/>
 </segment>
 <segment>
@@ -7786,21 +7780,21 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <wire x1="96.52" y1="104.14" x2="99.06" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U4" gate="G$1" pin="GND"/>
+<pinref part="U3" gate="G$1" pin="GND"/>
 <pinref part="U$10" gate="G$1" pin="GND"/>
 <wire x1="655.32" y1="121.92" x2="652.78" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="652.78" y1="121.92" x2="652.78" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="U4" gate="G$1" pin="GND2"/>
+<pinref part="U3" gate="G$1" pin="GND2"/>
 <wire x1="652.78" y1="119.38" x2="652.78" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="655.32" y1="119.38" x2="652.78" y2="119.38" width="0.1524" layer="91"/>
 <junction x="652.78" y="119.38"/>
-<pinref part="U4" gate="G$1" pin="MODE"/>
+<pinref part="U3" gate="G$1" pin="MODE"/>
 <wire x1="655.32" y1="127" x2="652.78" y2="127" width="0.1524" layer="91"/>
 <wire x1="652.78" y1="127" x2="652.78" y2="121.92" width="0.1524" layer="91"/>
 <junction x="652.78" y="121.92"/>
 </segment>
 <segment>
-<pinref part="C5" gate="G$1" pin="P$1"/>
+<pinref part="C1" gate="G$1" pin="P$1"/>
 <pinref part="U$14" gate="G$1" pin="GND"/>
 <wire x1="93.98" y1="119.38" x2="96.52" y2="119.38" width="0.1524" layer="91"/>
 </segment>
@@ -7813,7 +7807,7 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <segment>
 <pinref part="U$18" gate="G$1" pin="GND"/>
 <wire x1="50.8" y1="83.82" x2="50.8" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="C5" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="JP5" gate="G$1" pin="2"/>
@@ -7824,15 +7818,15 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <segment>
 <pinref part="U$22" gate="G$1" pin="GND"/>
 <wire x1="447.04" y1="88.9" x2="447.04" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="C30" gate="G$1" pin="2"/>
+<pinref part="C7" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="U$40" gate="G$1" pin="GND"/>
-<pinref part="C11" gate="G$1" pin="P$2"/>
+<pinref part="C3" gate="G$1" pin="P$2"/>
 <wire x1="363.22" y1="88.9" x2="363.22" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C15" gate="G$1" pin="P$2"/>
+<pinref part="C4" gate="G$1" pin="P$2"/>
 <pinref part="U$49" gate="G$1" pin="GND"/>
 <wire x1="642.62" y1="116.84" x2="642.62" y2="114.3" width="0.1524" layer="91"/>
 </segment>
@@ -7849,15 +7843,15 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <segment>
 <pinref part="U$24" gate="G$1" pin="GND"/>
 <wire x1="182.88" y1="88.9" x2="182.88" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="C6" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="D5" gate="G$1" pin="1"/>
+<pinref part="D1" gate="G$1" pin="1"/>
 <pinref part="U$28" gate="G$1" pin="GND"/>
 <wire x1="215.9" y1="91.44" x2="215.9" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="C8" gate="G$1" pin="2"/>
 <pinref part="U$12" gate="G$1" pin="GND"/>
 <wire x1="716.28" y1="119.38" x2="716.28" y2="114.3" width="0.1524" layer="91"/>
 </segment>
@@ -7878,7 +7872,7 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <pinref part="U$5" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C32" gate="G$1" pin="2"/>
+<pinref part="C9" gate="G$1" pin="2"/>
 <pinref part="U$13" gate="G$1" pin="GND"/>
 <wire x1="195.58" y1="88.9" x2="195.58" y2="83.82" width="0.1524" layer="91"/>
 </segment>
@@ -7891,25 +7885,21 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <pinref part="U$17" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U2" gate="A" pin="GND"/>
 <pinref part="U$19" gate="G$1" pin="GND"/>
 <wire x1="381" y1="101.6" x2="378.46" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="101.6" x2="378.46" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="U2" gate="A" pin="EP"/>
-<wire x1="378.46" y1="99.06" x2="378.46" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="381" y1="99.06" x2="378.46" y2="99.06" width="0.1524" layer="91"/>
-<junction x="378.46" y="99.06"/>
-<pinref part="U2" gate="A" pin="ADJ"/>
+<wire x1="378.46" y1="101.6" x2="378.46" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="381" y1="109.22" x2="378.46" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="109.22" x2="378.46" y2="106.68" width="0.1524" layer="91"/>
 <junction x="378.46" y="101.6"/>
-<pinref part="U2" gate="A" pin="LBSEL"/>
-<wire x1="378.46" y1="106.68" x2="378.46" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="381" y1="106.68" x2="378.46" y2="106.68" width="0.1524" layer="91"/>
-<junction x="378.46" y="106.68"/>
+<wire x1="378.46" y1="109.22" x2="378.46" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="U2" gate="A" pin="ADJ"/>
+<pinref part="U2" gate="A" pin="EP"/>
+<pinref part="U2" gate="A" pin="GND"/>
+<wire x1="378.46" y1="104.14" x2="378.46" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="381" y1="104.14" x2="378.46" y2="104.14" width="0.1524" layer="91"/>
+<junction x="378.46" y="104.14"/>
 </segment>
 <segment>
-<pinref part="D2" gate="G$1" pin="C"/>
+<pinref part="D3" gate="G$1" pin="C"/>
 <wire x1="431.8" y1="88.9" x2="431.8" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="GND"/>
 </segment>
@@ -7947,12 +7937,12 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 </segment>
 <segment>
 <pinref part="U$66" gate="G$1" pin="1.8V"/>
-<pinref part="C3" gate="G$1" pin="1"/>
+<pinref part="C8" gate="G$1" pin="1"/>
 <wire x1="716.28" y1="142.24" x2="716.28" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="L3" gate="G$1" pin="2"/>
+<pinref part="L2" gate="G$1" pin="2"/>
 <wire x1="716.28" y1="134.62" x2="716.28" y2="127" width="0.1524" layer="91"/>
 <wire x1="698.5" y1="134.62" x2="703.58" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="U4" gate="G$1" pin="FB"/>
+<pinref part="U3" gate="G$1" pin="FB"/>
 <wire x1="703.58" y1="127" x2="680.72" y2="127" width="0.1524" layer="91"/>
 <wire x1="703.58" y1="127" x2="703.58" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="703.58" y1="134.62" x2="716.28" y2="134.62" width="0.1524" layer="91"/>
@@ -7974,15 +7964,37 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <pinref part="JP5" gate="G$1" pin="1"/>
 <wire x1="447.04" y1="114.3" x2="462.28" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="447.04" y1="104.14" x2="447.04" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="C30" gate="G$1" pin="1"/>
-<pinref part="U2" gate="A" pin="BAT"/>
-<wire x1="416.56" y1="114.3" x2="447.04" y2="114.3" width="0.1524" layer="91"/>
-<junction x="447.04" y="114.3"/>
+<pinref part="C7" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="JP13" gate="G$1" pin="1"/>
 <wire x1="431.8" y1="139.7" x2="454.66" y2="139.7" width="0.1524" layer="91"/>
 <label x="439.42" y="139.7" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="381" y1="119.38" x2="378.46" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="119.38" x2="363.22" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="381" y1="111.76" x2="378.46" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="111.76" x2="378.46" y2="119.38" width="0.1524" layer="91"/>
+<junction x="378.46" y="119.38"/>
+<label x="360.68" y="119.38" size="1.778" layer="95"/>
+<pinref part="C3" gate="G$1" pin="P$1"/>
+<wire x1="353.06" y1="119.38" x2="363.22" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="119.38" x2="363.22" y2="106.68" width="0.1524" layer="91"/>
+<junction x="363.22" y="119.38"/>
+<pinref part="Q2" gate="A" pin="D"/>
+<pinref part="U2" gate="A" pin="VCC"/>
+<pinref part="U2" gate="A" pin="NTC"/>
+</segment>
+<segment>
+<pinref part="D2" gate="A" pin="A"/>
+<wire x1="584.2" y1="134.62" x2="561.34" y2="134.62" width="0.1524" layer="91"/>
+<label x="563.88" y="134.62" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP12" gate="G$1" pin="1"/>
+<wire x1="373.38" y1="139.7" x2="396.24" y2="139.7" width="0.1524" layer="91"/>
+<label x="378.46" y="139.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="LX" class="0">
@@ -8018,7 +8030,7 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <wire x1="50.8" y1="93.98" x2="50.8" y2="99.06" width="0.1524" layer="91"/>
 <junction x="50.8" y="99.06"/>
 <pinref part="L1" gate="G$1" pin="1"/>
-<pinref part="C1" gate="G$1" pin="1"/>
+<pinref part="C5" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="JP1" gate="G$1" pin="1"/>
@@ -8038,13 +8050,13 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <wire x1="152.4" y1="99.06" x2="152.4" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="104.14" x2="172.72" y2="104.14" width="0.1524" layer="91"/>
 <junction x="152.4" y="104.14"/>
-<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 <junction x="172.72" y="104.14"/>
 <wire x1="172.72" y1="104.14" x2="182.88" y2="104.14" width="0.1524" layer="91"/>
 <label x="157.48" y="104.14" size="1.778" layer="95"/>
 <wire x1="182.88" y1="96.52" x2="182.88" y2="104.14" width="0.1524" layer="91"/>
 <junction x="182.88" y="104.14"/>
-<pinref part="D5" gate="G$1" pin="2"/>
+<pinref part="D1" gate="G$1" pin="2"/>
 <wire x1="182.88" y1="104.14" x2="195.58" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="195.58" y1="104.14" x2="215.9" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="215.9" y1="104.14" x2="215.9" y2="93.98" width="0.1524" layer="91"/>
@@ -8055,8 +8067,8 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <wire x1="215.9" y1="104.14" x2="226.06" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="226.06" y1="104.14" x2="226.06" y2="101.6" width="0.1524" layer="91"/>
 <junction x="215.9" y="104.14"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<pinref part="C32" gate="G$1" pin="1"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<pinref part="C9" gate="G$1" pin="1"/>
 <wire x1="195.58" y1="104.14" x2="195.58" y2="96.52" width="0.1524" layer="91"/>
 <junction x="195.58" y="104.14"/>
 </segment>
@@ -8070,7 +8082,7 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <segment>
 <pinref part="U1" gate="G$1" pin="MPP-SET"/>
 <wire x1="83.82" y1="109.22" x2="99.06" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="C5" gate="G$1" pin="P$2"/>
+<pinref part="C1" gate="G$1" pin="P$2"/>
 <wire x1="86.36" y1="119.38" x2="83.82" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="119.38" x2="83.82" y2="109.22" width="0.1524" layer="91"/>
 <junction x="83.82" y="109.22"/>
@@ -8086,10 +8098,10 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 </net>
 <net name="SPV_VCTRL" class="0">
 <segment>
-<pinref part="C7" gate="G$1" pin="P$1"/>
+<pinref part="C2" gate="G$1" pin="P$1"/>
 <wire x1="162.56" y1="93.98" x2="162.56" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="R7" gate="G$1" pin="2"/>
-<pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="162.56" y1="93.98" x2="172.72" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="VCTRL"/>
 <wire x1="149.86" y1="93.98" x2="162.56" y2="93.98" width="0.1524" layer="91"/>
@@ -8105,8 +8117,8 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 </net>
 <net name="CHG_LED" class="0">
 <segment>
-<pinref part="D2" gate="G$1" pin="A"/>
-<pinref part="R10" gate="G$1" pin="1"/>
+<pinref part="D3" gate="G$1" pin="A"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="SOLAR" class="0">
@@ -8117,27 +8129,27 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 <label x="233.68" y="104.14" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="Q2" gate="A" pin="S"/>
+<pinref part="Q1" gate="A" pin="S"/>
 <wire x1="322.58" y1="119.38" x2="304.8" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="119.38" x2="304.8" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="124.46" x2="289.56" y2="124.46" width="0.1524" layer="91"/>
-<pinref part="R15" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="309.88" y1="111.76" x2="304.8" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="111.76" x2="304.8" y2="119.38" width="0.1524" layer="91"/>
 <junction x="304.8" y="119.38"/>
 <label x="292.1" y="124.46" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U4" gate="G$1" pin="EN"/>
+<pinref part="U3" gate="G$1" pin="EN"/>
 <wire x1="655.32" y1="132.08" x2="652.78" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="U4" gate="G$1" pin="VIN"/>
+<pinref part="U3" gate="G$1" pin="VIN"/>
 <wire x1="655.32" y1="134.62" x2="652.78" y2="134.62" width="0.1524" layer="91"/>
 <label x="637.54" y="134.62" size="1.778" layer="95"/>
-<pinref part="C15" gate="G$1" pin="P$1"/>
+<pinref part="C4" gate="G$1" pin="P$1"/>
 <wire x1="652.78" y1="134.62" x2="642.62" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="642.62" y1="134.62" x2="642.62" y2="124.46" width="0.1524" layer="91"/>
 <junction x="642.62" y="134.62"/>
-<pinref part="D3" gate="A" pin="C"/>
+<pinref part="D2" gate="A" pin="C"/>
 <wire x1="589.28" y1="134.62" x2="642.62" y2="134.62" width="0.1524" layer="91"/>
 <label x="607.06" y="134.62" size="1.778" layer="95"/>
 <wire x1="652.78" y1="132.08" x2="652.78" y2="134.62" width="0.1524" layer="91"/>
@@ -8151,54 +8163,27 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 </net>
 <net name="N$7" class="0">
 <segment>
-<pinref part="U4" gate="G$1" pin="SW"/>
-<pinref part="L3" gate="G$1" pin="1"/>
+<pinref part="U3" gate="G$1" pin="SW"/>
+<pinref part="L2" gate="G$1" pin="1"/>
 <wire x1="680.72" y1="134.62" x2="683.26" y2="134.62" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="BATTERY_VCC" class="0">
-<segment>
-<pinref part="U2" gate="A" pin="VCC"/>
-<wire x1="381" y1="119.38" x2="378.46" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="U2" gate="A" pin="NTC"/>
-<wire x1="378.46" y1="119.38" x2="363.22" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="381" y1="111.76" x2="378.46" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="111.76" x2="378.46" y2="119.38" width="0.1524" layer="91"/>
-<junction x="378.46" y="119.38"/>
-<label x="360.68" y="119.38" size="1.778" layer="95"/>
-<pinref part="C11" gate="G$1" pin="P$1"/>
-<wire x1="353.06" y1="119.38" x2="363.22" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="363.22" y1="119.38" x2="363.22" y2="106.68" width="0.1524" layer="91"/>
-<junction x="363.22" y="119.38"/>
-<pinref part="Q3" gate="A" pin="D"/>
-</segment>
-<segment>
-<pinref part="D3" gate="A" pin="A"/>
-<wire x1="584.2" y1="134.62" x2="561.34" y2="134.62" width="0.1524" layer="91"/>
-<label x="563.88" y="134.62" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="JP12" gate="G$1" pin="1"/>
-<wire x1="373.38" y1="139.7" x2="396.24" y2="139.7" width="0.1524" layer="91"/>
-<label x="378.46" y="139.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="HBO" class="0">
 <segment>
-<pinref part="R10" gate="G$1" pin="2"/>
-<pinref part="U2" gate="A" pin="HBO"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="416.56" y1="119.38" x2="431.8" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="431.8" y1="119.38" x2="431.8" y2="109.22" width="0.1524" layer="91"/>
 <label x="419.1" y="119.38" size="1.778" layer="95"/>
+<pinref part="U2" gate="A" pin="HBO"/>
 </segment>
 </net>
 <net name="BATT_MOSFET_CTRL" class="0">
 <segment>
-<pinref part="Q3" gate="A" pin="G"/>
-<wire x1="345.44" y1="114.3" x2="345.44" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="Q2" gate="A" pin="G"/>
+<wire x1="345.44" y1="114.3" x2="345.44" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="Q1" gate="A" pin="G"/>
 <wire x1="325.12" y1="114.3" x2="325.12" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="R15" gate="G$1" pin="2"/>
+<pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="320.04" y1="111.76" x2="325.12" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="111.76" x2="325.12" y2="111.76" width="0.1524" layer="91"/>
 <junction x="325.12" y="111.76"/>
@@ -8209,8 +8194,8 @@ Bump up SPV output voltage to 4.7V nom (4.8V max) for 20mA termination current.<
 </net>
 <net name="BATTERY_MOSFET_1" class="0">
 <segment>
-<pinref part="Q2" gate="A" pin="D"/>
-<pinref part="Q3" gate="A" pin="S"/>
+<pinref part="Q1" gate="A" pin="D"/>
+<pinref part="Q2" gate="A" pin="S"/>
 <wire x1="332.74" y1="119.38" x2="342.9" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>

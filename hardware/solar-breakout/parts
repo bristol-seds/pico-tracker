@@ -7,7 +7,7 @@
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
 511-SPV1040T 1 U1 MPPT SPV1040T
-1839141 1 U2 Li-ion battery charger LTC4070 - replaces LTC4071, leave pin 7 floating
+1839141 1 U2 Li-ion battery charger LTC4070
 2400648 595-TPS62243DRVT 1 U3 Buck Converter DRVT = SON-6 TPS62243
 1829262 1 TVS diode for MPPT D1
 1525484 1 Small signal schottky RB161M D2
@@ -19,7 +19,8 @@
 2408024 1 L1 Lx for MPPT LPS3015
 2428203 1 Inductor for Buck L2
 2320765 2 C1, C2 1nF Mpp-set, vctrl
-2309027 2 C3, C4 4.7uF
+2218855 1 C3 1uF
+2309027 1 C4 4.7uF
 1833804 4 C5, C6, C7, C8 10µF 0603
 1735535 1 C9 100µF 1206 optional
 2331474 1 R1 1k Mpp-set
