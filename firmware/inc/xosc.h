@@ -40,12 +40,18 @@ void hf_clock_init(void);
 void hf_clock_enable(void);
 void hf_clock_disable(void);
 
+/** LF Clock */
+void lf_clock_startup(void);
+
 /** GCLK0 */
 void gclk0_to_hf_clock(void);
 void gclk0_to_lf_clock(void);
 
 /** GCLK1 */
 void gclk1_init(void);
+
+/** GLCK2 */
+void gclk2_init(void);
 
 /** Measurement */
 void measure_xosc(enum xosc_measurement_t measurement_t, measurement_result_t callback);

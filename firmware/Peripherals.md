@@ -3,9 +3,10 @@
 | Type | Peripheral | Function | Notes
 | --- | --- | --- | ---
 |*GLCK*|
-||gclk0|main clock, internal osc8m|4 MHz
-||gclk1|tcxo clock, fed from xosc OR osc8m
-||gclk7|aprs clock, fed from gclk1, div 6 / 11
+||gclk0|main clock|fed from xosc/osc8m when awake, xosc32k/osculp32k when not awake.
+||gclk1|tcxo clock|fed from xosc/osc8m. stopped when not awake.
+||glck2|lf clock  |fed from xosc32k/osculp32k. always running. divided by 32 so 1024Hz nominal.
+||gclk7|aprs clock|fed from gclk1, div 6 / 11
 |
 |*TC*||
 ||tc0|telemetry tick timer. 32-bit. glck1

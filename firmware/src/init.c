@@ -79,7 +79,8 @@ void init(enum init_type init_t)
    * we need to switch to a stable low frequency clock right away.
    * --------------------------------------------------------------------------
    */
-  gclk0_to_lf_clock();          /* ~500ms startup */
+  lf_clock_startup();              /* ~500ms startup */
+  gclk0_to_lf_clock();          /* switch, clocking at 32kHz now */
   system_clock_source_disable(SYSTEM_CLOCK_SOURCE_OSC8M);
 
   /**
@@ -106,8 +107,9 @@ void init(enum init_type init_t)
   /* Switch to high frequency clock */
   hf_clock_init();              /* TCXO powered on */
   hf_clock_enable();            /* TCXO startup time.. */
-  gclk0_to_hf_clock();
+  gclk0_to_hf_clock();          /* and switch, clock at 8MHz */
   gclk1_init();
+  gclk2_init();
 
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);

@@ -123,6 +123,35 @@ void hf_clock_disable(void)
 #endif
 }
 
+/**
+ * =============================================================================
+ * LF Clock              =======================================================
+ * =============================================================================
+ */
+
+/**
+ * Startup lf clock
+ */
+void lf_clock_startup(void)
+{
+#if USE_LFTIMER
+  /* Setup XOSC  */
+  system_clock_source_xosc32k_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
+                                         SYSTEM_XOSC32K_STARTUP_16384, /* ~500ms startup*/
+                                         false,
+                                         false,
+                                         true,
+                                         true,
+                                         false,
+                                         false); /* write lock */
+  system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC32K);
+
+  /* Wait for it to stabilise */
+  while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC32K));
+#else
+/* OSCULP32K is always enabled, nothing to do here */
+#endif
+}
 
 /**
  * =============================================================================
@@ -156,23 +185,7 @@ void gclk0_to_hf_clock(void)
  */
 void gclk0_to_lf_clock(void)
 {
-#if USE_LFTIMER
-  /* Setup XOSC  */
-  system_clock_source_xosc32k_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
-                                         SYSTEM_XOSC32K_STARTUP_16384, /* ~500ms startup*/
-                                         false,
-                                         false,
-                                         true,
-                                         true,
-                                         false,
-                                         false); /* write lock */
-  system_clock_source_enable(SYSTEM_CLOCK_SOURCE_XOSC32K);
-
-  /* Wait for it to stabilise */
-  while (!system_clock_source_is_ready(SYSTEM_CLOCK_SOURCE_XOSC32K));
-#endif
-
-  /* Configure GCLK0 to GCLK_IO[0] / OSCULP32K */
+  /* Configure GCLK0 to XOSC32K / OSCULP32K */
   system_gclk_gen_set_config(GCLK_GENERATOR_0,
 #if USE_LFTIMER
                              GCLK_SOURCE_XOSC32K, /* Source             */
@@ -215,6 +228,33 @@ void gclk1_init(void)
   /* Enable GCLK1 */
   system_gclk_gen_enable(GCLK_GENERATOR_1);
 }
+/**
+ * =============================================================================
+ * GCLK1                 =======================================================
+ * =============================================================================
+ */
+
+/**
+ * Inits GCLK2. The appropriate source should have been enabled already using lf_clock_init
+ */
+void gclk2_init(void)
+{
+  /* Configure GCLK2 */
+  system_gclk_gen_set_config(GCLK_GENERATOR_2,
+#if USE_LFTIMER
+        		     GCLK_SOURCE_XOSC32K, /* Source 		*/
+#else
+                             GCLK_SOURCE_OSCULP32K, /* Source 		*/
+#endif
+        		     false,		/* High When Disabled	*/
+                             32,                /* GLCK2 is 1024Hz nom. */
+        		     true,		/* Run in standby	*/
+        		     false);		/* Output Pin Enable	*/
+
+  /* Enable GCLK2 */
+  system_gclk_gen_enable(GCLK_GENERATOR_2);
+}
+
 
 /**
  * =============================================================================
