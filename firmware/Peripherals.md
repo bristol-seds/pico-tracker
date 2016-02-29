@@ -17,16 +17,16 @@
 ||tc5|telemetry pwm 16-bit glck0, ALSO aprs carrier 16-bit gclk7
 |
 |*EXTINT*|
-||extint[5]|gps timepulse
+||extint[4]|gps timepulse
 |
 |*event channels*|
 ||0|event source for timer 2 xosc measurement
 ||1|tc4 retrigger
 |
 |*SERCOM*||
-||sercom0|spi flash
-||sercom1|ublox gps
-||sercom2|
+||sercom0|gps
+||sercom1|i2c if used
+||sercom2|spi flash
 ||sercom3|radio|currently bitbanged as required pin layout broken in sercom
 
 ## SAM D20 Interrupts usage
@@ -55,7 +55,7 @@
 
                            |\
           [osculp32k] --> 0| |
-                           | | ------+ (22-42kHz)
+                           | | ------+ (22-42kHz) --> [gclk2]
 lftimer -> [glck_io0] --> 1| |       |
                            |/        |
                             |        |
