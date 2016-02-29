@@ -218,7 +218,6 @@
  */
 #ifdef V0987
 #define USE_LFTIMER		1
-#define LFTIMER_XOSC32K
 #else
 #define USE_LFTIMER		0
 #define LFTIMER_GCLKIO_0_PIN	PIN_PA27
