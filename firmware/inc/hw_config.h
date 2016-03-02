@@ -175,6 +175,13 @@
 #define SOLAR_ADC_REFERENCE	ADC_REFERENCE_INT1V
 
 /**
+ * Cold out
+ */
+#define COLD_OUT_TEMPERATURE	(-60.0)
+#define COLD_OUT_SECONDS	(15*60)
+
+
+/**
  * Radio
  */
 #define SI4xxx_SERCOM		(SercomSpi*)SERCOM3

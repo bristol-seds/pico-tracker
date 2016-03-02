@@ -143,9 +143,6 @@ void init(enum init_type init_t)
   if (init_t != INIT_TESTCASE) {
     /* Telemetry init depends on gclk */
     telemetry_init();
-
-    /* GPS init */
-    gps_init();
   }
 
   kick_the_watchdog();

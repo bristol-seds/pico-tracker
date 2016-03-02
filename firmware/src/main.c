@@ -38,6 +38,7 @@
 #include "location.h"
 #include "rf_tests.h"
 #include "data.h"
+#include "analogue.h"
 #include "backlog.h"
 #include "pips.h"
 #include "xosc.h"
@@ -211,25 +212,36 @@ void pips_telemetry(void)
   }
 }
 
-
+/**
+ * Timing helpers
+ * =============================================================================
+ */
 
 volatile uint8_t run_flag = 1;  /* run immediately after init */
 uint32_t hibernate_time_s = 1;
+
+uint8_t in_cold_out = 1;        /* test temperature immediately after init */
+
 /**
  * Sets the hibernate time in seconds
  */
-void set_hibernate_time(void)
+void set_hibernate_time(uint8_t cold_out)
 {
-  if (gps_is_locked() == GPS_NO_LOCK) {   /* no lock  */
-    hibernate_time_s = 0;       /* shortest hibernate */
+  if (cold_out == 0) {                  /* Normal operations */
+    if (gps_is_locked() == GPS_NO_LOCK) {   /* no lock  */
+      hibernate_time_s = 0;       /* shortest hibernate */
 
-  } else if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
-    hibernate_time_s = 60-20;   /* approx every minute */
+    } else if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
+      hibernate_time_s = 60-20;   /* approx every minute */
 
-  } else {
-    hibernate_time_s = 240-20;  /* approx every 4 minutes  */
+    } else {
+      hibernate_time_s = 240-20;  /* approx every 4 minutes  */
+    }
+  } else {                      /* cold out */
+    hibernate_time_s = COLD_OUT_SECONDS;
   }
 }
+
 /**
  * Called on each tick of the low frequency clock
  */
@@ -263,7 +275,6 @@ int main(void)
   /* Turn off LED to show we've initialised correctly */
   led_off();
 
-
   while (1) {
     /* Run sequence - starts immediately on first iteration */
     if (run_flag) {
@@ -274,13 +285,26 @@ int main(void)
       gclk0_to_hf_clock();
       system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Low power */
 
-      /* Run */
-      run_sequencer(n++);
+      /* Check temperature sensor */
+      if (in_cold_out == 1) {
+        start_adc_sequence();
+        while (is_adc_sequence_done() == 0); /* wait for adc */
+
+        if (get_thermistor() < COLD_OUT_TEMPERATURE) {
+          in_cold_out = 1;            /* cold */
+        } else {
+          in_cold_out = 0;            /* ready to go! */
+          gps_init();                 /* init the gps! */
+          run_sequencer(n++);         /* run for the first time! */
+        }
+      } else {
+        run_sequencer(n++); /* Run */
+      }
 
       /* Clocks off */
       system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
 
-      /* Disable to save power??? */
+      /* Disable to save power */
       system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
                                   PM_APBAMASK_EIC |
                                   PM_APBAMASK_PAC0 |
@@ -290,7 +314,7 @@ int main(void)
       hf_clock_disable();
 
       /* LF timing */
-      set_hibernate_time();
+      set_hibernate_time(in_cold_out);
       lf_tick_start();
     }
 

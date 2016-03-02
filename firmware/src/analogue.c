@@ -51,6 +51,9 @@ enum adc_phase_t {
 
 void adc_complete_callback(void);
 
+/**
+ * Configures ADC for a given channel
+ */
 void configure_adc(enum adc_positive_input input, enum adc_reference reference)
 {
   struct adc_config config_adc;
@@ -74,8 +77,6 @@ void configure_adc(enum adc_positive_input input, enum adc_reference reference)
 
   irq_register_handler(ADC_IRQn, ADC_INT_PRIO);
 }
-
-
 
 
 /**
