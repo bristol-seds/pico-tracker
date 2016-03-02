@@ -662,17 +662,20 @@ uint8_t gd_nolock_count = 0;
 /* Invalid if position is outside the range we expect */
 uint8_t gd_invalid_count = 0;
 #define GD_INVALID_COUNT_MAX	(3)
-#define GD_INVALID_50M_ALITUDE	(50*1000) /* mm */
-#define GD_INVALID_20KM_ALTITUDE (20*1000*1000) /* mm */
+#define GD_INVALID_ALITUDE_50M	(50*1000) /* mm */
+#define GD_INVALID_ALTITUDE_20KM (20*1000*1000) /* mm */
+
+#define GD_INVALID_ALTITUDE_MIN (0) /* testing */
+#define GD_INVALID_ALTITUDE_MAX (1000*1000)
 
 /**
  * gps_get_data, but with re-initialisation as required
  */
 struct gps_data_t gps_get_data_wrapped(void)
 {
-  if ((gd_count > GD_COUNT_MAX) ||
-      (gd_nolock_count > GD_NOLOCK_COUNT_MAX) ||
-      (gd_invalid_count > GD_INVALID_COUNT_MAX)) {
+  if ((gd_count >= GD_COUNT_MAX) ||
+      (gd_nolock_count >= GD_NOLOCK_COUNT_MAX) ||
+      (gd_invalid_count >= GD_INVALID_COUNT_MAX)) {
     /* reinitialise */
     gps_reinit();
     /* and reset this */
@@ -691,13 +694,13 @@ struct gps_data_t gps_get_data_wrapped(void)
     gd_nolock_count++;
   } else {
     gd_nolock_count = 0;
-  }
 
-  /* Invalid */
-  if ((data.altitude < GD_INVALID_50M_ALITUDE) || (data.altitude > GD_INVALID_20KM_ALTITUDE)) {
-    gd_invalid_count++;
-  } else {
-    gd_invalid_count = 0;
+    /* if we do have a lock, might still be invalid */
+    if ((data.altitude < GD_INVALID_ALTITUDE_MIN) || (data.altitude > GD_INVALID_ALTITUDE_MAX)) {
+      gd_invalid_count++;
+    } else {
+      gd_invalid_count = 0;
+    }
   }
 
   return data;
