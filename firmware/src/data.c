@@ -93,8 +93,9 @@ struct tracker_datapoint* collect_data(void)
   /**
    * ---- Analogue ----
    */
-  datapoint.battery = get_battery(); /* Will return zero by default */
-  datapoint.solar = get_solar();     /* Will return zero by default */
+  while (is_adc_sequence_done() == 0); /* wait for adc */
+  datapoint.battery = get_battery(); /* will return zero by default */
+  datapoint.solar = get_solar();     /* will return zero by default */
   datapoint.radio_die_temperature = telemetry_si_temperature();
   datapoint.thermistor_temperature = thermistor_ratio_to_temperature(get_thermistor());
 
