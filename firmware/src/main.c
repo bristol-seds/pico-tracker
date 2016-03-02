@@ -221,6 +221,7 @@ volatile uint8_t run_flag = 1;  /* run immediately after init */
 uint32_t hibernate_time_s = 1;
 
 uint8_t in_cold_out = 1;        /* test temperature immediately after init */
+uint32_t cold_out_count = 0;
 
 /**
  * Sets the hibernate time in seconds
@@ -290,8 +291,10 @@ int main(void)
         start_adc_sequence();
         while (is_adc_sequence_done() == 0); /* wait for adc */
 
-        if (get_thermistor() < COLD_OUT_TEMPERATURE) {
+        if ((get_thermistor() < COLD_OUT_TEMPERATURE) &&
+            (cold_out_count++ < COLD_OUT_COUNT_MAX)) {
           in_cold_out = 1;            /* cold */
+
         } else {
           in_cold_out = 0;            /* ready to go! */
           gps_init();                 /* init the gps! */
