@@ -696,7 +696,8 @@ struct gps_data_t gps_get_data_wrapped(void)
     gd_nolock_count = 0;
 
     /* if we do have a lock, might still be invalid */
-    if ((data.altitude < GD_INVALID_ALTITUDE_MIN) || (data.altitude > GD_INVALID_ALTITUDE_MAX)) {
+    if ((data.altitude < GD_INVALID_ALTITUDE_MIN) ||
+        (data.altitude > GD_INVALID_ALTITUDE_MAX)) {
       gd_invalid_count++;
     } else {
       gd_invalid_count = 0;
