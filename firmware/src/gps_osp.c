@@ -37,6 +37,7 @@
 #include "osp_messages.h"
 #include "gps.h"
 #include "watchdog.h"
+#include "init.h"               /* leds etc */
 
 /**
  * Internal buffers and things
@@ -314,7 +315,6 @@ void osp_process_ack(osp_message_id_t message_id, enum osp_packet_state state)
     }
   }
 }
-#include "init.h"
 /**
  * Process a single osp frame. Runs in the IRQ so should be short and sweet.
  */
@@ -568,6 +568,8 @@ struct gps_data_t gps_get_data(void)
   /* Take the GPS out of hibernate*/
   gps_make_active();
 
+  int j = 0;
+
   for (i = 0; i < 60; i++) {    /* 60 seconds */
 
     while (osp_out_geodetic_navigation_data.state != OSP_PACKET_UPDATED) {
@@ -588,6 +590,10 @@ struct gps_data_t gps_get_data(void)
         ((osp_out_geodetic_navigation_data.payload.nav_type & 0x7) != 0) && /* Currently have this fix */
         (osp_out_geodetic_navigation_data.payload.estimated_vertical_position_error < 100*100)) /* < 100m error */
     {
+      j++;
+    }
+
+    if (j > 10) {
       /* GPS back to hibernate */
       gps_make_hibernate();
 
@@ -637,6 +643,65 @@ struct gps_data_t gps_get_data(void)
   return data;
 }
 
+
+/**
+ * =============================================================================
+ * Wrapped get data ============================================================
+ * =============================================================================
+ */
+
+/* Number of times called */
+uint8_t gd_count = 0;
+//#define GD_COUNT_MAX (360)      /* GPS is good for about a day @15 per hour */
+#define GD_COUNT_MAX (10)       /* testing */
+
+/* No lock */
+uint8_t gd_nolock_count = 0;
+#define GD_NOLOCK_COUNT_MAX (10)
+
+/* Invalid if position is outside the range we expect */
+uint8_t gd_invalid_count = 0;
+#define GD_INVALID_COUNT_MAX	(3)
+#define GD_INVALID_50M_ALITUDE	(50*1000) /* mm */
+#define GD_INVALID_20KM_ALTITUDE (20*1000*1000) /* mm */
+
+/**
+ * gps_get_data, but with re-initialisation as required
+ */
+struct gps_data_t gps_get_data_wrapped(void)
+{
+  if ((gd_count > GD_COUNT_MAX) ||
+      (gd_nolock_count > GD_NOLOCK_COUNT_MAX) ||
+      (gd_invalid_count > GD_INVALID_COUNT_MAX)) {
+    /* reinitialise */
+    gps_reinit();
+    /* and reset this */
+    gd_count = 0;
+    gd_nolock_count = 0;
+    gd_invalid_count = 0;
+  }
+
+  struct gps_data_t data = gps_get_data();
+
+  /* Always increment count */
+  gd_count++;
+
+  /* No lock */
+  if (data.is_locked == 0) {
+    gd_nolock_count++;
+  } else {
+    gd_nolock_count = 0;
+  }
+
+  /* Invalid */
+  if ((data.altitude < GD_INVALID_50M_ALITUDE) || (data.altitude > GD_INVALID_20KM_ALTITUDE)) {
+    gd_invalid_count++;
+  } else {
+    gd_invalid_count = 0;
+  }
+
+  return data;
+}
 
 /**
  * =============================================================================
@@ -747,6 +812,14 @@ void osp_set_messages(void)
   _osp_send_message((osp_message_t*)&config,
                     (uint8_t*)&config.payload,
                     sizeof(config.payload));
+
+  /* Enable 1pps time */
+  config.payload.mode = OSP_SET_MESSAGE_RATE_ONE;
+  config.payload.message_id = OSP_OUT_1PPS_TIME_ID;
+  config.payload.update_rate = 1; /* Once per second */
+  _osp_send_message((osp_message_t*)&config,
+                    (uint8_t*)&config.payload,
+                    sizeof(config.payload));
 }
 
 /**
@@ -771,7 +844,7 @@ void osp_send_hw_config_resp(void)
     OSP_HW_CONFIG_FREQUENCY_REFCLK_OFF
     );
   config.payload.nominal_frequency_high = 0;
-  config.payload.nominal_frequency_low = 1*1000; /* 1Hz */
+  config.payload.nominal_frequency_low = 0;//1*1000; /* 1Hz */
   config.payload.network_enhancement_type = 0;   /* No enhancement */
 
   osp_in_hardware_configuration_response_pre(&config);
@@ -983,31 +1056,10 @@ void gps_usart_init_enable(uint32_t baud_rate)
 
   usart_enable(GPS_SERCOM);
 }
-/* void gps_usart_init_disable(void) */
-/* { */
-/*   usart_disable(GPS_SERCOM); */
-
-/*   system_pinmux_pin_set_config(GPS_SERCOM_MOGI_PIN, */
-/*                                SYSTEM_PINMUX_GPIO, */
-/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
-/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
-/*                                true); */
-/*   system_pinmux_pin_set_config(GPS_SERCOM_MIGO_PIN, */
-/*                                SYSTEM_PINMUX_GPIO, */
-/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
-/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
-/*                                true); */
-/*   system_pinmux_pin_set_config(GPS_TIMEPULSE_PIN, */
-/*                                SYSTEM_PINMUX_GPIO, */
-/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
-/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
-/*                                true); */
-/*   system_pinmux_pin_set_config(GPS_SE_ON_OFF_PIN, */
-/*                                SYSTEM_PINMUX_GPIO, */
-/*                                SYSTEM_PINMUX_PIN_DIR_OUTPUT, */
-/*                                SYSTEM_PINMUX_PIN_PULL_NONE, */
-/*                                true); */
-/* } */
+void gps_usart_init_disable(void)
+{
+  usart_disable(GPS_SERCOM);
+}
 
 /**
  * GPS reset pin
@@ -1065,13 +1117,32 @@ void gps_init(void)
 
   /* ---- GPS Configuration ---- */
 
+  /* We need to wait for the GPS 32kHz clock to start (~300ms). TODO: more robust method for this */
+  for (int i = 0; i < 300*1000; i++);
+
   /* Close any currently running session. Doesn't do anything unless debugging */
   //osp_reset_initialise();       /* hopefully don't need this now */
 
   /* Setup sequence */
   gps_setup();
 }
+/**
+ * Re-initialise
+ */
+void gps_reinit(void)
+{
+  /* Place GPS in reset */
+  gps_reset_enter();
 
+  /* Wait for about 3 seconds, kicking the watchdog along the way. TODO: more robust method for this */
+  for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < 300*1000; i++);
+    kick_the_watchdog();
+  }
+
+  /* Initialise as normal */
+  gps_init();
+}
 
 /**
  * Quick and dirty loopback test. Should print 0x34

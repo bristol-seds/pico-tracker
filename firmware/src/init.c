@@ -144,9 +144,6 @@ void init(enum init_type init_t)
     /* Telemetry init depends on gclk */
     telemetry_init();
 
-    /* We need to wait for the GPS 32kHz clock to start (~300ms). TODO: more robust method for this */
-    for (int i = 0; i < 300*1000; i++);
-
     /* GPS init */
     gps_init();
   }
