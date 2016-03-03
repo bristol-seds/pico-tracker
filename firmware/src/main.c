@@ -43,6 +43,7 @@
 #include "pips.h"
 #include "xosc.h"
 #include "sequencer.h"
+#include "thermistor.h"
 
 #define CALLSIGN	"UBSEDS14"
 #define APRS_COMMENT	""
@@ -266,6 +267,7 @@ void lf_tick(uint32_t tick)
 int main(void)
 {
   uint32_t n = 1;
+  float external_temperature;
 
   /* Init */
   init(INIT_NORMAL);
@@ -291,8 +293,9 @@ int main(void)
         start_adc_sequence();
         while (is_adc_sequence_done() == 0); /* wait for adc */
 
-        if ((get_thermistor() < COLD_OUT_TEMPERATURE) &&
-            (cold_out_count++ < COLD_OUT_COUNT_MAX)) {
+        external_temperature = thermistor_ratio_to_temperature(get_thermistor()); /* read */
+        if ((external_temperature < COLD_OUT_TEMPERATURE) && /* check temperature */
+            (cold_out_count++ < COLD_OUT_COUNT_MAX)) {       /* and max iterations */
           in_cold_out = 1;            /* cold */
 
         } else {
