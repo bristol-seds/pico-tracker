@@ -435,6 +435,8 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 void si_trx_get_frequency_configuration(struct si_frequency_configuration* config,
                                         uint32_t frequency)
 {
+  config->frequency = frequency;
+
   /* Higher frequency resolution, but also higher power (~+200µA) */
   config->nprescaler = 2;
 

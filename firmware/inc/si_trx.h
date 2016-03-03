@@ -28,6 +28,7 @@
 #include "samd20.h"
 
 struct si_frequency_configuration {
+  uint32_t frequency;
   uint8_t outdiv, band, nprescaler;
   uint32_t m; uint16_t n;
   float lsb_tuning_resolution;
