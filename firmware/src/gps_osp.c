@@ -568,8 +568,6 @@ struct gps_data_t gps_get_data(void)
   /* Take the GPS out of hibernate*/
   gps_make_active();
 
-  int j = 0;
-
   for (i = 0; i < 60; i++) {    /* 60 seconds */
 
     while (osp_out_geodetic_navigation_data.state != OSP_PACKET_UPDATED) {
@@ -590,10 +588,6 @@ struct gps_data_t gps_get_data(void)
         ((osp_out_geodetic_navigation_data.payload.nav_type & 0x7) != 0) && /* Currently have this fix */
         (osp_out_geodetic_navigation_data.payload.estimated_vertical_position_error < 100*100)) /* < 100m error */
     {
-      j++;
-    }
-
-    if (j > 10) {
       /* GPS back to hibernate */
       gps_make_hibernate();
 
@@ -1137,6 +1131,9 @@ void gps_reinit(void)
 {
   /* Place GPS in reset */
   gps_reset_enter();
+
+  /* Disable usart */
+  gps_usart_init_disable();
 
   /* Wait for about 3 seconds, kicking the watchdog along the way. TODO: more robust method for this */
   for (int j = 0; j < 10; j++) {
