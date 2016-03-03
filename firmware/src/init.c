@@ -33,6 +33,7 @@
 #include "si_trx.h"
 #include "watchdog.h"
 #include "xosc.h"
+#include "rtc.h"
 #include "cron.h"
 #include "data.h"
 #include "telemetry.h"
@@ -58,7 +59,7 @@ void powermananger_init(void)
 {
   system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
 //			      PM_APBAMASK_EIC | /* EIC is used now */
-			      PM_APBAMASK_RTC |
+//			      PM_APBAMASK_RTC | /* RTC is used now */
     0);
 }
 
@@ -110,6 +111,7 @@ void init(enum init_type init_t)
   gclk0_to_hf_clock();          /* and switch, clock at 8MHz */
   gclk1_init();
   gclk2_init();
+  rtc_init();
 
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);
