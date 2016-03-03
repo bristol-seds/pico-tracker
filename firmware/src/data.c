@@ -71,7 +71,7 @@ struct tracker_datapoint* collect_data(void)
    * ---- GPS OSP ----
    */
 
-  struct gps_data_t data = gps_get_data();
+  struct gps_data_t data = gps_get_data_wrapped(); /* use wrapped function that re-inits GPS as needed */
 
   datapoint.latitude = data.latitude; /* hndeg */
   datapoint.longitude = data.longitude; /* hdeg */
