@@ -80,11 +80,8 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   if (location_aprs_active()) {
 #endif
 
-    if (gps_get_flight_state() == GPS_FLIGHT_STATE_FLOAT || /* once every 4 minutes at float */
-        (n % 2)) {                                          /* once every 2 before */
-      /* APRS */
-      aprs_telemetry(dp);
-    }
+    /* APRS */
+    aprs_telemetry(dp);
 
 #if APRS_USE_GEOFENCE
   }
