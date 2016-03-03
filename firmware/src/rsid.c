@@ -151,7 +151,7 @@ void rsid_tone(uint8_t tone)
 
   float duty_cycle = 0.5 + deviation;
 
-  si_trx_switch_channel(channel-2); /* -2 offset to line up with contestia signal */
+  si_trx_switch_channel(channel);
   telemetry_gpio1_pwm_duty(duty_cycle);
 }
 
