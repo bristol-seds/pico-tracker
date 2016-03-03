@@ -955,6 +955,11 @@ void osp_send_position_request(void)
  */
 void gps_setup(void)
 {
+  /* clear state. these may have been updated but not serviced since the last time this ran */
+  osp_out_hw_config_req.state = OSP_PACKET_WAITING;
+  osp_out_aiding_request.state = OSP_PACKET_WAITING;
+  osp_out_oktosend.state = OSP_PACKET_WAITING;
+
   /* Attempt to turn on GPS */
   gps_se_on_off_pulse();
 
