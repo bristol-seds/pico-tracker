@@ -55,10 +55,12 @@ void contestia_preamble(void) {
 }
 
 void contestia_set_tone(uint8_t tone) {
+  /* Centre the tone */
+  int16_t centred_tone = tone - (CONTESTIA_NUMBER_OF_TONES / 2);
   /* Align this to a channel */
-  int16_t channel = tone - (CONTESTIA_NUMBER_OF_TONES / 2);
+  int16_t channel = (centred_tone * CONTESTIA_CHANNEL_SPACING)+(CONTESTIA_CHANNEL_SPACING/2);
 
-  si_trx_switch_channel((channel * CONTESTIA_CHANNEL_SPACING)+(CONTESTIA_CHANNEL_SPACING/2));
+  si_trx_switch_channel(channel);
 }
 
 /**
