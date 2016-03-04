@@ -111,7 +111,6 @@ void init(enum init_type init_t)
   gclk0_to_hf_clock();          /* and switch, clock at 8MHz */
   gclk1_init();
   gclk2_init();
-  rtc_init();
 
   /* Clock up to 14MHz with 0 wait states */
   system_flash_set_waitstates(SYSTEM_WAIT_STATE_1_8V_14MHZ);

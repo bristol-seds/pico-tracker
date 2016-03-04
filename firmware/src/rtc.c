@@ -46,7 +46,7 @@ void rtc_init(void)
   for (uint8_t i = 0; i < RTC_NUM_OF_COMP16; i++) {
     config_events.generate_event_on_compare[i] = false;
   }
-  for (uint8_t i = 0; i < 7; i++) {
+  for (uint8_t i = 0; i < 8; i++) {
     config_events.generate_event_on_periodic[i] = false;
   }
   config_events.generate_event_on_periodic[7] = true;

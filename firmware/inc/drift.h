@@ -1,6 +1,6 @@
 /*
- * Functions for controlling and calibrating against the external oscillator
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Monitors xosc drift while transmitting
+ * Copyright (C) 2016  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,43 +22,15 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef XOSC_H
-#define XOSC_H
+#ifndef DRIFT_H
+#define DRIFT_H
 
 #include "samd20.h"
+#include "si_trx.h"
 
-enum xosc_measurement_t {
-  XOSC_MEASURE_TIMEPULSE,
-  XOSC_MEASURE_LFTIMER,
-};
+int16_t drift_get_channel_offset(void);
+void drift_set_fconfig(struct si_frequency_configuration* config);
+void drift_measure_start(void);
+void drift_measure_stop(void);
 
-typedef void (*measurement_result_t)(uint32_t result);
-
-
-/** HF Clock */
-void hf_clock_init(void);
-void hf_clock_enable(void);
-void hf_clock_disable(void);
-
-/** LF Clock */
-void lf_clock_startup(void);
-
-/** GCLK0 */
-void gclk0_to_hf_clock(void);
-void gclk0_to_lf_clock(void);
-
-/** GCLK1 */
-void gclk1_init(void);
-
-/** GLCK2 */
-void gclk2_init(void);
-
-/** Measurement */
-void measure_xosc(enum xosc_measurement_t measurement_t, measurement_result_t callback, uint8_t oneshot);
-void measure_xosc_disable(enum xosc_measurement_t measurement_t);
-
-/** LF Timer */
-void lf_tick_start(void);
-void lf_tick_stop(void);
-
-#endif /* XOSC_H */
+#endif  /* DRIFT_H */

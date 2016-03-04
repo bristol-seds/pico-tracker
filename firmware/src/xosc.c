@@ -35,6 +35,7 @@
 #include "tc/tc_driver.h"
 #include "hw_config.h"
 #include "xosc.h"
+#include "rtc.h"
 #include "watchdog.h"
 
 enum measure_state_t {
@@ -42,6 +43,7 @@ enum measure_state_t {
   MEASURE_MEASUREMENT,
 } measure_state = MEASURE_WAIT_FOR_FIRST_EVENT;
 enum xosc_measurement_t _measurement_t;
+uint8_t _measurement_oneshot;
 measurement_result_t _callback;
 
 /**
@@ -359,16 +361,37 @@ void timepulse_extint_event_source_disable(void) {
 }
 
 /**
+ * Configure 1Hz events from the LF Timer
+ */
+void lftimer_event_source(void)
+{
+  /* Start the RTC */
+  rtc_init();
+
+  /* Route the RTC PER7 event to event channel 0 */
+  events_allocate(0,
+                  EVENTS_EDGE_DETECT_NONE, /* Don't care for async path */
+                  EVENTS_PATH_ASYNCHRONOUS,
+                  0xB, /* RTC PER7 event */
+                  0);
+}
+void lftimer_event_source_disable(void) {
+}
+
+
+
+/**
  * Triggers a measurements the number of cycles on XOSC
  *
  * A callback from the timer interrupt is available. Obviously don't dwell here too long.
  */
 void measure_xosc(enum xosc_measurement_t measurement_t,
-                  measurement_result_t callback) {
+                  measurement_result_t callback, uint8_t oneshot) {
 
   measure_state = MEASURE_WAIT_FOR_FIRST_EVENT;
   _measurement_t = measurement_t;
   _callback = callback;
+  _measurement_oneshot = oneshot;
 
   /* Timer 2 runs on GLCK1 */
   bool t2_capture_channel_enables[]    = {true, true};
@@ -408,11 +431,11 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
 
   /* Configure an event source */
   switch (measurement_t) {
-  case XOSC_MEASURE_GCLK0:
-//    osc8m_event_source();     // osc8m issues events
-    break;
   case XOSC_MEASURE_TIMEPULSE:
-    timepulse_extint_event_source(); // timepulse issues events
+    timepulse_extint_event_source(); /* timepulse issues events at 1Hz */
+    break;
+  case XOSC_MEASURE_LFTIMER:
+    lftimer_event_source();     /* lftier issues events at 1Hz */
     break;
   }
 
@@ -423,11 +446,11 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
   tc_disable(TC2);
 
   switch (measurement_t) {
-  case XOSC_MEASURE_GCLK0:
-//    osc8m_event_source_disable();
-    break;
   case XOSC_MEASURE_TIMEPULSE:
     timepulse_extint_event_source_disable();
+    break;
+  case XOSC_MEASURE_LFTIMER:
+    lftimer_event_source_disable();
     break;
   }
 }
@@ -449,16 +472,16 @@ void TC2_Handler(void) {
       measure_state = MEASURE_MEASUREMENT; /* Start measurement */
       break;
     case MEASURE_MEASUREMENT:
-      /* Measurement done. Read off data */
+      /* Measurement made. Read off data */
       capture_value = tc_get_capture_value(TC2, 0);
 
       /* Calcuate the frequency of GLCK1 relative to this source */
       switch (_measurement_t) {
-      case XOSC_MEASURE_GCLK0:
-        source_freq = capture_value * XOSC_GCLK_DIVIDE;
-        break;
       case XOSC_MEASURE_TIMEPULSE:
         source_freq = capture_value * XOSC_GCLK_DIVIDE * GPS_TIMEPULSE_FREQ;
+        break;
+      case XOSC_MEASURE_LFTIMER:
+        source_freq = capture_value * XOSC_GCLK_DIVIDE;
         break;
       }
 
@@ -467,8 +490,10 @@ void TC2_Handler(void) {
         _callback(source_freq);
       }
 
-      /* Disable measurement system */
-      measure_xosc_disable(_measurement_t);
+      if (_measurement_oneshot != 0) { /* single shot */
+        /* Disable measurement system */
+        measure_xosc_disable(_measurement_t);
+      }
     }
   }
 }

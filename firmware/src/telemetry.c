@@ -33,6 +33,7 @@
 #include "aprs.h"
 #include "ax25.h"
 #include "pips.h"
+#include "drift.h"
 #include "si_trx.h"
 #include "si_trx_defs.h"
 #include "system/gclk.h"
@@ -455,6 +456,9 @@ void telemetry_init(void)
 
   /* Setup fconfig for telemetry. This is static */
   si_trx_get_frequency_configuration(&telemetry_fconfig, TELEMETRY_FREQUENCY);
+
+  /* We only compensate drift for telemetry, set fconfig for this */
+  drift_set_fconfig(&telemetry_fconfig);
 }
 
 

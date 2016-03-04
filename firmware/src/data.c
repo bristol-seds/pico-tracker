@@ -55,8 +55,9 @@ void collect_data_async(void)
 #endif  /* GPS_TYPE_UBX */
 
   /* Measure XOSC against gps timepulse */
-  //measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback);
+  /* single shot, ongoing until two rising edges on GPS TIMEPULSE */
   /* NOT IN USE CURRENTLY */
+  //measure_xosc(XOSC_MEASURE_TIMEPULSE, xosc_measure_callback, 1);
 
   /* Analogue Measurements */
   start_adc_sequence();
