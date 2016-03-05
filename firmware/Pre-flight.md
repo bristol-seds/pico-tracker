@@ -23,6 +23,9 @@
   - Set callsign and symbol
   - Make sure `APRS_FLIGHT_PARAMS` is defined
 
+- In `gps_osp.c`
+  - Check reinit parameters for `gps_get_data_wrapped` are reasonable.
+
 - Check memory works and is erased
   - `make test tc=backlog_write_read` Run this more than once to check functionality of a non-blank memory
   - `make test tc=mem_erase_all`
