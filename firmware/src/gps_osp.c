@@ -641,23 +641,26 @@ struct gps_data_t gps_get_data(void)
  * =============================================================================
  */
 
-/* Number of times called */
+/* Number of re-inits made without normal operation */
+uint8_t gd_reinit_count = 0;
+#define GD_REINIT_COUNT_MAX (3)     /* 3 reinits before we give up and go to the watchdog */
+
+/* Number of times gps_get_data called */
 uint8_t gd_count = 0;
-//#define GD_COUNT_MAX (360)      /* GPS is good for about a day @15 per hour */
-#define GD_COUNT_MAX (10)       /* testing */
+#define GD_COUNT_MAX (360) /* GPS is good for about a day @15 per hour */
 
 /* No lock */
 uint8_t gd_nolock_count = 0;
-#define GD_NOLOCK_COUNT_MAX (10)
+#define GD_NOLOCK_COUNT_MAX (10) /* 10 minutes will always be enough to get a lock */
 
 /* Invalid if position is outside the range we expect */
 uint8_t gd_invalid_count = 0;
-#define GD_INVALID_COUNT_MAX	(3)
-#define GD_INVALID_ALITUDE_50M	(50*1000) /* mm */
-#define GD_INVALID_ALTITUDE_20KM (20*1000*1000) /* mm */
+#define GD_INVALID_COUNT_MAX	(5)
+#define GD_ALTITUDE_50M		(50*1000)       /* mm */
+#define GD_ALTITUDE_20KM	(20*1000*1000)  /* mm */
 
-#define GD_INVALID_ALTITUDE_MIN (0) /* testing */
-#define GD_INVALID_ALTITUDE_MAX (1000*1000)
+#define GD_INVALID_ALTITUDE_MIN GD_ALTITUDE_50M
+#define GD_INVALID_ALTITUDE_MAX GD_ALTITUDE_20KM
 
 /**
  * gps_get_data, but with re-initialisation as required
@@ -667,12 +670,19 @@ struct gps_data_t gps_get_data_wrapped(void)
   if ((gd_count >= GD_COUNT_MAX) ||
       (gd_nolock_count >= GD_NOLOCK_COUNT_MAX) ||
       (gd_invalid_count >= GD_INVALID_COUNT_MAX)) {
-    /* reinitialise */
-    gps_reinit();
-    /* and reset this */
-    gd_count = 0;
-    gd_nolock_count = 0;
-    gd_invalid_count = 0;
+
+    /* do something to reset the GPS */
+    if (gd_reinit_count >= GD_REINIT_COUNT_MAX) {
+      while(1);                 /* wait for watchdog */
+    } else {
+      /* reinitialise */
+      gps_reinit();
+      gd_reinit_count++;
+      /* and reset this */
+      gd_count = 0;
+      gd_nolock_count = 0;
+      gd_invalid_count = 0;
+    }
   }
 
   struct gps_data_t data = gps_get_data();
@@ -691,7 +701,9 @@ struct gps_data_t gps_get_data_wrapped(void)
         (data.altitude > GD_INVALID_ALTITUDE_MAX)) {
       gd_invalid_count++;
     } else {
+      /* everything is working well */
       gd_invalid_count = 0;
+      gd_reinit_count = 0;
     }
   }
 
