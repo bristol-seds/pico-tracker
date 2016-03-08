@@ -10,6 +10,7 @@ Uses lz1dev's aprslib
 import re
 import sys
 import aprslib
+import arrow
 from ukhas_format import *
 from habitat_upload import *
 from extract_backlog import *
@@ -55,8 +56,10 @@ def extract_and_upload(packet, aprs_call, ssid):
 
         # Save to raw data file
         rawdata_filename = "rawdata-{}.txt".format(callsign.lower())
+        utcnow = arrow.utcnow()
+        current_utc = utcnow.format('YYYY-MM-DD HH:mm:ss') + " GMT: " # UTC and GMT are basically the same right..
         with open(rawdata_filename, 'a') as rawdata_file:
-            rawdata_file.write(packet+'\n')
+            rawdata_file.write(current_utc+packet+'\n')
 
             print Fore.GREEN + "(wrote to {})".format(rawdata_filename) + Fore.RESET
 
