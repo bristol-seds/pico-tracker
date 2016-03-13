@@ -83,10 +83,11 @@ def extract_and_upload(packet, aprs_call, ssid):
         ukhas_str = ukhas_format(datum, callsign)
         print ukhas_str
         try:
-            print Fore.CYAN + habitat_upload(datum['time'], ukhas_str) + " ✓" + Fore.RESET
+            print Fore.CYAN + str(habitat_upload(datum['time'], ukhas_str)) + " ✓" + Fore.RESET
             print
-        except:
+        except Exception,e:
             print Fore.YELLOW + "Not accepted by habitat (duplicate?)" + Fore.RESET
+            print "Error was " + str(e)
             print
 
 
