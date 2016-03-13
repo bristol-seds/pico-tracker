@@ -25,6 +25,6 @@ struct aprs_zone_t {
 };
 
 
-const struct aprs_zone_t aprs_zones[12];
+const struct aprs_zone_t aprs_zones[11];
 
 #endif /* GEOFENCE_APRS_ZONES_H */
