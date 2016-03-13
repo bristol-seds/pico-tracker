@@ -29,7 +29,7 @@ def ukhas_format(datum, callsign):
         coords[0], coords[1], int(round(coords[2])))
 
     # Everything
-    ukhas_str = "{},{},{},{},{},{},-1,{},{},{},-1".format(
+    ukhas_str = "{},{},{},{},{},{},{},{},{}".format(
         callsign, time_str, date_str, location_str,
         datum['satellites'], datum['ttff'],
         datum['battery'], datum['temperature_e'], datum['temperature_i']);
