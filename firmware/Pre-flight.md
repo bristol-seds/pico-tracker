@@ -1,3 +1,12 @@
+## Updating Datapoints returned
+
+- UKHAS String
+  - Update `format_telemetry_string` in `src/main.c`
+  - Update `ukhas_format` in `tools/ukhas_format.py` so the aprs daemon can assemble valid backlog strings.
+- APRS telemetry
+  - `encode_telemetry` in `src/aprs.c`. This same format is re-used in backlog.
+  - `extract_telemetry` in `tools/extract_backlog.py` needs to be updated to parse this backlog.
+
 ## Pre-Flight Checklist ##
 
 - In `hw_config.h`

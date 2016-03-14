@@ -28,11 +28,14 @@ def ukhas_format(datum, callsign):
     location_str = "{:.6f},{:.6f},{}".format(
         coords[0], coords[1], int(round(coords[2])))
 
-    # Everything
-    ukhas_str = "{},{},{},{},{},{},{},{},{}".format(
-        callsign, time_str, date_str, location_str,
-        datum['satellites'], datum['ttff'],
-        datum['battery'], datum['temperature_e'], datum['temperature_i']);
+    if callsign == 'UBSEDS14': # Telemetry string for flight UBESDS14
+        ukhas_str = "{},{},{},{},{},{},{},{},{}".format(
+            callsign, time_str, date_str, location_str,
+            datum['satellites'], datum['ttff'],
+            datum['battery'], datum['temperature_e'], datum['temperature_i']);
+
+    else: # Unknown callsign!
+         raise ValueException('ukhas_format.py does not know about callsign '+callsign)
 
     # Checksum
     crc16 = crcmod.mkCrcFun(0x11021, 0xFFFF, False, 0x0000)
