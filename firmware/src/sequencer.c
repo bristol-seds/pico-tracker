@@ -107,17 +107,17 @@ void run_sequencer(uint32_t n)
   /* Telemetry  */
   telemetry_sequence(dp, n);
 
-  /* Accumulator for backlog */
-  accumulator_add(dp);
+  if (gps_is_locked() == GPS_LOCKED) { /* gps is locked. we can use this data */
+    /* Accumulator for backlog */
+    accumulator_add(dp);
 
-  /* Backlog */
-  if (((n % 15) == 10) &&     /* Once per hour with 4 minute wakeup */
-      gps_is_locked() == GPS_LOCKED) { /* And the gps is locked */
+    /* Backlog */
+    if ((n % 15) == 10) {    /* Once per hour with 4 minute wakeup */
 
-    /* replace some values from this sample with averages */
-    accumulator_read(dp);
+      /* replace some values from this sample with averages */
+      accumulator_read(dp);
 
-
-    record_backlog(dp);
+      record_backlog(dp);
+    }
   }
 }
