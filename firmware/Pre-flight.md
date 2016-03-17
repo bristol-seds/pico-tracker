@@ -6,6 +6,9 @@
 - APRS telemetry
   - `encode_telemetry` in `src/aprs.c`. This same format is re-used in backlog.
   - `extract_telemetry` in `tools/extract_backlog.py` needs to be updated to parse this backlog.
+  - APRS Equations
+    - describe new equations in `tools/aprs-equations/pico-tracker-equations.py`
+    - run `./pico-tracker-equations.py`. This is an interactive script, you'll need to run it once for each callsign used. ('M0SBU-11', ...)
 
 ## Pre-Flight Checklist ##
 
