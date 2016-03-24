@@ -36,7 +36,7 @@ __verification__ void location_aprs_tc(void) {
     );
 
 
-  location_aprs_tc_results.tx_allow = location_aprs_active();
+  location_aprs_tc_results.tx_allow = location_aprs_could_tx();
   location_aprs_tc_results.frequency = location_aprs_frequency();
   location_aprs_tc_results.prefix = location_prefix();
   location_aprs_tc_results.callsign = aprs_callsign(location_aprs_call());

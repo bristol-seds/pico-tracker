@@ -32,6 +32,6 @@ __verification__ void location_aprs_file_tc(void) {
     (int32_t)(location_aprs_file_tc_params.lon * 10 * 1000 * 1000)
     );
 
-  location_aprs_file_tc_results.tx_allow = location_aprs_active();
+  location_aprs_file_tc_results.tx_allow = location_aprs_could_tx();
   location_aprs_file_tc_results.frequency = location_aprs_frequency();
 }

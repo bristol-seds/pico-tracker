@@ -37,7 +37,8 @@ void location_prefix_update(int32_t lon_hn, int32_t lat_hn);
 
 /* Decisions */
 bool location_telemetry_active(void);
-bool location_aprs_active(void);
+bool location_aprs_could_tx(void);
+bool location_aprs_should_tx(void);
 int32_t location_aprs_frequency(void);
 char* location_aprs_call(void);
 char* location_prefix(void);

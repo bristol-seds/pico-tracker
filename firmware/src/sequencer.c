@@ -38,6 +38,7 @@
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
 void aprs_telemetry(struct tracker_datapoint* dp);
+void ariss_telemetry(struct tracker_datapoint* dp);
 void pips_telemetry(void);
 
 
@@ -74,10 +75,11 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #endif
 #endif  /* TELEMETRY_ENABLE */
 
+
   /* APRS */
 #if APRS_ENABLE
 #if APRS_USE_GEOFENCE
-  if (location_aprs_active()) {
+  if (location_aprs_should_tx()) { /* transmit only when we *should* */
 #endif
 
     /* APRS */
@@ -87,6 +89,29 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   }
 #endif
 #endif  /* APRS_ENABLE */
+
+
+  /* ARISS */
+#if ARISS_ENABLE
+#if ARISS_USE_PREDICT
+  if (true) {                   /* todo */
+#endif
+#if ARISS_USE_GEOFENCE
+    if (location_aprs_could_tx()) { /* transmit anywhere it's no disallowed */
+#endif
+
+      /* ARISS */
+      ariss_telemetry(dp);
+
+#if ARISS_USE_GEOFENCE
+    }
+#endif
+#if ARISS_USE_PREDICT
+  }
+#endif
+#endif  /* ARISS_ENABLE */
+
+
 #endif  /* RF_TX_ENABLE */
 }
 

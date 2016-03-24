@@ -340,10 +340,22 @@ bool location_telemetry_active(void)
   /* Are we in a telemetry zone? */
   return (current_telemetry_outline != -1);
 }
+
+
+/**
+ * Returns if aprs could be transmitted in the current location
+ */
+bool location_aprs_could_tx(void)
+{
+  /* true if aprs disallowed */
+  uint8_t no_aprs = (current_no_aprs_outline != -1);
+
+  return !no_aprs;
+}
 /**
  * Returns if aprs should be transmitted in the current location
  */
-bool location_aprs_active(void)
+bool location_aprs_should_tx(void)
 {
   /* true if aprs disallowed */
   uint8_t no_aprs = (current_no_aprs_outline != -1);
@@ -354,7 +366,7 @@ bool location_aprs_active(void)
   return in_zone && (!no_aprs);
 }
 /**
- * Returns the aprs frequency in the current zone.
+ * Returns the local aprs frequency in the current zone.
  *
  * Where aprs is inactive this function return 144.8MHz anyhow
  */

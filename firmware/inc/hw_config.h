@@ -255,6 +255,15 @@
 #define APRS_POWER		RF_POWER_14dBm
 
 /**
+ * ARISS APRS
+ * Geofence used is only "no aprs"
+ */
+#define ARISS_ENABLE		1
+#define ARISS_USE_PREDICT	0
+#define ARISS_USE_GEOFENCE	0
+#define ARISS_FREQUENCY		145825000
+
+/**
  * Prefix
  */
 #define GEOFENCE_USE_PREFIX	1

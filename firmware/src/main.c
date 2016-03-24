@@ -202,6 +202,43 @@ void aprs_telemetry(struct tracker_datapoint* dp)
   }
 }
 /**
+ * ARISS telemetry
+ */
+void ariss_telemetry(struct tracker_datapoint* dp)
+{
+  struct tracker_datapoint* backlog_dp_ptr;
+
+  if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
+
+  char* prefix = location_prefix();
+  char* call = location_aprs_call();
+
+  /* Set location */
+  aprs_set_datapoint(dp);
+
+  /* Set callsign and path */
+  aprs_set_callsign(call);
+  aprs_set_path(APRS_PATH_ARISS);
+
+  /* Set comment */
+  backlog_dp_ptr = get_backlog();
+
+  if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
+    aprs_set_backlog_comment(backlog_dp_ptr, prefix);
+  } else {
+    aprs_set_comment(prefix);
+  }
+
+  /* Set frequency */
+  telemetry_aprs_set_frequency(ARISS_FREQUENCY);
+
+  /* Transmit packet and wait */
+  telemetry_start(TELEMETRY_APRS, 0xFFFF);
+  while (telemetry_active()) {
+    idle(IDLE_TELEMETRY_ACTIVE);
+  }
+}
+/**
  * Pips telemetry
  */
 void pips_telemetry(void)
