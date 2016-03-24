@@ -69,12 +69,25 @@ static inline char* aprs_callsign(char* call) {
 
 #endif
 
+
+/**
+ * Path type
+ */
+enum aprs_path {
+  APRS_PATH_DEFAULT,
+  APRS_PATH_WIDE2_1,
+  APRS_PATH_ARISS,
+};
+
+
+
 void encode_backlog(char* str, tracker_datapoint* dp, char* prefix);
 
 void aprs_set_datapoint(tracker_datapoint* dp);
 void aprs_set_comment(char* comment);
 void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix);
 void aprs_set_callsign(char* call);
+void aprs_set_path(enum aprs_path path);
 
 uint8_t aprs_start(void);
 uint8_t aprs_tick(void);

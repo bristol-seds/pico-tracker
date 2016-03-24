@@ -179,8 +179,9 @@ void aprs_telemetry(struct tracker_datapoint* dp)
   /* Set location */
   aprs_set_datapoint(dp);
 
-  /* Set callsign */
+  /* Set callsign and path */
   aprs_set_callsign(call);
+  aprs_set_path(APRS_PATH_WIDE2_1);
 
   /* Set comment */
   backlog_dp_ptr = get_backlog();

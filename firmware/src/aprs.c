@@ -146,7 +146,13 @@ void encode_backlog(char* str, tracker_datapoint* dp, char* prefix)
 struct tracker_datapoint* _dp = NULL;
 char* _comment = NULL;
 char* _callsign = NULL;
+char* _path_str = NULL;
+uint8_t _path_id = 0;
 char backlog_comment[BACKLOG_COMMENT_LEN+100]; /* TEMP */
+
+char aprs_path_wide2[] = "WIDE2";
+char aprs_path_ariss[] = "ARISS";
+
 void aprs_set_datapoint(tracker_datapoint* dp) {
   _dp = dp;
 }
@@ -159,6 +165,19 @@ void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix) {
 }
 void aprs_set_callsign(char* call) {
   _callsign = aprs_callsign(call);
+}
+void aprs_set_path(enum aprs_path path) {
+  switch (path) {
+    default:                    /* WIDE2-1, this is the default */
+    case APRS_PATH_WIDE2_1:
+      _path_str = aprs_path_wide2;
+      _path_id = 1;
+      break;
+    case APRS_PATH_ARISS:       /* ARISS Path */
+      _path_str = aprs_path_ariss;
+      _path_id =0;
+      break;
+  }
 }
 
 /**
@@ -190,12 +209,16 @@ uint8_t aprs_start(void)
   if (!_callsign) {
     _callsign = aprs_callsign("xxxxxx");
   }
+  /* Ensure path is set */
+  if (!_path_str) {
+    aprs_set_path(APRS_PATH_DEFAULT);
+  }
 
   /* Encode the destination / source / path addresses */
   uint32_t addresses_len = sprintf(addresses, "%-6s%c%-6s%c%-6s%c",
                                    "APRS", 0,
                                    _callsign, APRS_SSID,
-                                   "WIDE2", 1);
+                                   _path_str, _path_id);
 
   /* Prepare the aprs position report */
   encode_latitude(compressed_lat, lat);
