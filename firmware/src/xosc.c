@@ -109,7 +109,7 @@ void hf_clock_disable(void)
 {
 #if USE_XOSC
 
-  /* Enable XOSC */
+  /* Disable XOSC */
   system_clock_source_disable(SYSTEM_CLOCK_SOURCE_XOSC);
 
   /* Disable TCXO to save power */
