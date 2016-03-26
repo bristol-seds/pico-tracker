@@ -1,0 +1,71 @@
+# Parts List
+
+----
+### Active
+
+| Part | Description | Supplier | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+2460535 1 U1
+2462636 1 U2 Si4461-C
+| Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
+2414758 1 U4 memory 4Mbit
+2405790 1 U5 TCXO Si4xxx and SE880
+2457340 1 U7 watchdog Vth = 1.67V, t_WDmin = 1.12s
+1470880 1 U8 or-gate, watchdog subsystem
+
+
+1135388 1 U11 LDO for TXCO
+| SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U13, U14 lf clock, gps lf tcxo clock
+1894738 1 Q1 P-type MOSFET for GPS switch
+
+2291481 1 Q5 Dual NPN
+
+1135383 2 U  TPS71533DCKR Fixed LDO 3.3V, 24Vin max, 50mA
+2069517 1 DZ1 5V6 500mW
+----
+
+### Passives
+
+| Part | Description | Supplier | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+2289216 1 L1 2.2µH Boost Converter XFL4020-222
+2285649 1 L2 470nH radio
+1265439 1 L3 56nH rf filter
+1865775 1 L4, L5 18nH rf filter
+| L6, L7 | DNP ||| si4xxx rx
+2287364 1 L8 SE880 EPL2010-681
+2287369 1 L9 SE880 EPL2010-22222
+1358069 6 R1, R2, R3, R4, R5, R6, R7, R8 10k
+2324785 1 R9 43k 0.1%
+2483832 2 R10, R11 100k 0.1%
+2331442 3 R12, R13, R14 100k
+2447127 3 R15, R16, R17 1M
+1828874 2 C1, C3 8.2pF
+1758945 3 C2, C4, C11 15pF
+| C5, C6 | DNP ||| si4xxx rx
+1758969 3 C8, C9, C10 100pF
+8819734 1 C12 10nF LDO NR bypass
+| C12 | DNP ||| LDO NC
+1759380 9 C13, C14, C15, C16, C17, C18, C19, C20, C21 100nF
+2218855 3 C22, C23, C24, C28 1µF
+2362088 1 C25 Radio Bypass 2.2µF
+2309027 1 C26 MS5607 Bypass 4.7µF
+1758991 1 C27 1nF
+1833804 3 C29, C30, C31 Boost in, out 10µF 0603
+1735535 1 C32 100µF optional
+| 1575AT43A40 | GPS Antenna | [Proto-pic](http://proto-pic.co.uk/antenna-gps-chip-scale/) | 1 | A1 1.575GHz
+
+----
+
+### Misc
+
+| Part | Description | Supplier | Quantity Required | Notes
+| ---  | ---         | ---       | ---               | ---
+1865279 649-202112100010C4LF 1 JTAG1
+1961698 3 FB1, FB2, FB3
+1828732 0 ESD1, ESD2
+679446 1 External Thermistor
+| | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
+| | Energizer Ultimate Lithium AAA | [datasheet](http://data.energizer.com/PDFs/l92.pdf) | 1 | ~1200mAh
+| | Energizer Ultimate Lithium AA | [datasheet](http://data.energizer.com/PDFs/l91.pdf) | 0 | ~3000mAh
+1667659 Ribbon 10way 1.27mm
