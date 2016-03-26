@@ -221,16 +221,15 @@ void ariss_telemetry(struct tracker_datapoint* dp)
   aprs_set_path(APRS_PATH_ARISS);
 
   /* Set comment */
-  backlog_dp_ptr = get_backlog();
-
-  if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
-    aprs_set_backlog_comment(backlog_dp_ptr, prefix);
-  } else {
-    aprs_set_comment(prefix);
-  }
+// NO BACKLOG VIA ARISS TO START WITH
+//  backlog_dp_ptr = get_backlog();
+//  if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
+//    aprs_set_backlog_comment(backlog_dp_ptr, prefix);
+//  } else {
+  aprs_set_comment(prefix);
 
   /* Set frequency */
-  telemetry_aprs_set_frequency(ARISS_FREQUENCY);
+  telemetry_aprs_set_frequency(ARISS_FREQUENCY); /* TODO correct for doppler here */
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);
