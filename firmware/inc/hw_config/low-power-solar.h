@@ -1,6 +1,6 @@
 /*
  * Hardware definitions and configuations
- * Copyright (C) 2014  Richard Meadows <richardeoin>
+ * Copyright (C) 2016  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -75,27 +75,10 @@
 #define GPS_SERCOM_MUX		USART_RX_3_TX_2_XCK_3
 #define GPS_GCLK		GCLK_GENERATOR_0
 
-#ifdef V0986
 #define GPS_TYPE_OSP
 #define GPS_BAUD_RATE		115200
-#define GPS_TIMEPULSE_PIN	PIN_PA04
-#define GPS_TIMEPULSE_PINMUX	PINMUX_PA04A_EIC_EXTINT4
-#define GPS_TIMEPULSE_FREQ      1
-#define GPS_TIMEPULSE_EXTINT	4
 #define GPS_SE_ON_OFF_PIN	PIN_PA05
-#define GPS_RESET_PIN		PIN_PA01 /* Hacky resistor switch on the board */
-
-#else
-#define GPS_TYPE_UBX
-#define GPS_BAUD_RATE		9600
-#define GPS_PLATFORM_MODEL	UBX_PLATFORM_MODEL_AIRBORNE_1G
-#define GPS_TIMEPULSE_PIN	PIN_PA05
-#define GPS_TIMEPULSE_PINMUX	PINMUX_PA05A_EIC_EXTINT5
-#define GPS_TIMEPULSE_FREQ      1
-#define GPS_TIMEPULSE_EXTINT	5
-#define GPS_RESET_PIN		PIN_PA15
-
-#endif
+#define GPS_RESET_PIN		PIN_PA01
 
 #define GPS_FLIGHT_STATE_THREASHOLD_M	8000 /* 8km altitude */
 
@@ -119,17 +102,8 @@
 #define FLASH_CSN_PIN		PIN_PA10
 
 /**
- * I2C Bus
+ * I2C Bus - NOT USED
  */
-#define I2C_SERCOM		(SercomI2cm*)SERCOM1
-#ifdef V0987
-#define I2C_SERCOM_SDA_PIN	PIN_PA27
-#else
-#define I2C_SERCOM_SDA_PIN	PIN_PA00
-#define I2C_SERCOM_SDA_PINMUX	PINMUX_PA00D_SERCOM1_PAD0
-#endif
-#define I2C_SERCOM_SCL_PIN	PIN_PA01
-#define I2C_SERCOM_SCL_PINMUX	PINMUX_PA01D_SERCOM1_PAD1
 
 /**
  * Barometer
@@ -143,43 +117,46 @@
  * Battery ADC
  */
 #define BATTERY_ADC		1
-#define BATTERY_ADC_PIN		PIN_PA02
-#define BATTERY_ADC_PINMUX	PINMUX_PA02B_ADC_AIN0
-#define BATTERY_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN0
-#define BATTERY_ADC_CHANNEL_DIV	1 /*0.3125*/
+#define BATTERY_ADC_PIN		PIN_PA04
+#define BATTERY_ADC_PINMUX	PINMUX_PA04B_ADC_AIN4
+#define BATTERY_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN4
+#define BATTERY_ADC_CHANNEL_DIV	0.23256 /* 33k,10k divider */
 #define BATTERY_ADC_REFERENCE	ADC_REFERENCE_INT1V
 
 /**
  * External Thermistor ADC
  */
 #define THERMISTOR_ADC		1
-#define THERMISTOR_ADC_PIN	PIN_PA03
-#define THERMISTOR_ADC_PINMUX	PINMUX_PA03
-#define THERMISTOR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN1
+#define THERMISTOR_ADC_PIN	PIN_PA02
+#define THERMISTOR_ADC_PINMUX	PINMUX_PA02B_ADC_AIN0
+#define THERMISTOR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN0
 #define THERMISTOR_ADC_CHANNEL_DIV 1.48
 #define THERMISTOR_ADC_REFERENCE ADC_REFERENCE_INTVCC0 /* internal 1/1.48 VCC reference */
 
 /**
  * Solar ADC
  */
-#ifdef V0986
-#define SOLAR_ADC		0
-#define SOLAR_ADC_PIN		PIN_PA02
-#else
 #define SOLAR_ADC		1
-#define SOLAR_ADC_PIN		PIN_PA04
-#endif
-#define SOLAR_ADC_PINMUX	PINMUX_PA04B_ADC_AIN4
-#define SOLAR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN4
-#define SOLAR_ADC_CHANNEL_DIV	1
+#define SOLAR_ADC_PIN		PIN_PA03
+#define SOLAR_ADC_PINMUX	PINMUX_PA03B_ADC_AIN1
+#define SOLAR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN1
+#define SOLAR_ADC_CHANNEL_DIV	0.23256 /* 33k,10k divider */
 #define SOLAR_ADC_REFERENCE	ADC_REFERENCE_INT1V
+
+/**
+ * Battery
+ */
+/* We enable charging when bus > battery */
+#define CHG_ENABLE_PIN		PIN_PA27
+#define CHG_ENABLE_HYSTERESIS	(1*15) /* up to 1 hour at once-per-four-minutes */
 
 /**
  * Cold out
  */
+#define COLD_OUT_VOLTAGE	(2.6) /* if both bus and battery are below this then cold */
 #define COLD_OUT_TEMPERATURE	(-58.0)
 #define COLD_OUT_SECONDS	(15*60) /* 15 minutes */
-#define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours */
+#define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours*/
 
 /**
  * Radio
@@ -199,10 +176,7 @@
 #define SI4xxx_GPIO1_PIN	PIN_PA25
 #define SI4xxx_GPIO1_PINMUX	PINMUX_PA25F_TC5_WO1
 #define SI4xxx_TCXO_FREQUENCY	16369000
-#ifdef V0986
 #define SI4xxx_TCXO_REG_EN_PIN	PIN_PA16
-#endif
-
 
 /**
  * RF Power @ 1.8V
@@ -224,13 +198,7 @@
 /**
  * LF Clock
  */
-#ifdef V0987
 #define USE_LFTIMER		1
-#else
-#define USE_LFTIMER		0
-#define LFTIMER_GCLKIO_0_PIN	PIN_PA27
-#define LFTIMER_GCLKIO_0_PINMUX	PINMUX_PA27H_GCLK_IO0
-#endif
 
 /**
  * HF Clock

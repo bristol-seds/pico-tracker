@@ -27,6 +27,10 @@
 #include "system/port.h"
 #include "i2c_bb.h"
 
+#ifdef I2C_SERCOM_SDA_PIN
+#ifdef I2C_SERCOM_SCL_PIN
+
+
 #define SDA I2C_SERCOM_SDA_PIN
 #define SCL I2C_SERCOM_SCL_PIN
 
@@ -234,3 +238,31 @@ void i2c_bb_init(void)
 
   i2c_bb_stop();                /* stop. release both */
 }
+
+#endif
+#else
+
+/**
+ * Dummy functions for if i2c pins are not defined.
+ */
+i2c_bb_result_t i2c_bb_read(uint8_t address, uint8_t* data, uint8_t data_length)
+{
+  (void)address;
+  (void)data;
+  (void)data_length;
+
+  return I2C_BB_SUCCESS;
+}
+/**
+ * Dummy functions for if i2c pins are not defined.
+ */
+i2c_bb_result_t i2c_bb_write(uint8_t address, uint8_t* data, uint8_t data_length)
+{
+  (void)address;
+  (void)data;
+  (void)data_length;
+
+  return I2C_BB_SUCCESS;
+}
+
+#endif

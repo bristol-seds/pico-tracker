@@ -331,6 +331,7 @@ void gclk2_init(void)
  */
 void timepulse_extint_event_source(void)
 {
+#ifdef GPS_TIMEPULSE_EXTINT
   /* Enable extint events for timepulse */
   struct extint_events events;
   memset(&events, 0, sizeof(struct extint_events));
@@ -355,9 +356,13 @@ void timepulse_extint_event_source(void)
                   0);
 
   extint_enable();
+#endif
 }
-void timepulse_extint_event_source_disable(void) {
+void timepulse_extint_event_source_disable(void)
+{
+#ifdef GPS_TIMEPULSE_EXTINT
   extint_disable();
+#endif
 }
 
 /**
@@ -386,7 +391,8 @@ void lftimer_event_source_disable(void) {
  * A callback from the timer interrupt is available. Obviously don't dwell here too long.
  */
 void measure_xosc(enum xosc_measurement_t measurement_t,
-                  measurement_result_t callback, uint8_t oneshot) {
+                  measurement_result_t callback, uint8_t oneshot)
+{
 
   measure_state = MEASURE_WAIT_FOR_FIRST_EVENT;
   _measurement_t = measurement_t;
@@ -441,8 +447,8 @@ void measure_xosc(enum xosc_measurement_t measurement_t,
 
   tc_enable(TC2);
 }
-void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
-
+void measure_xosc_disable(enum xosc_measurement_t measurement_t)
+{
   tc_disable(TC2);
 
   switch (measurement_t) {
@@ -460,7 +466,8 @@ void measure_xosc_disable(enum xosc_measurement_t measurement_t) {
 /**
  * Triggered on timer 2 capture
  */
-void TC2_Handler(void) {
+void TC2_Handler(void)
+{
   uint32_t capture_value;
   uint32_t source_freq;
 
@@ -478,7 +485,11 @@ void TC2_Handler(void) {
       /* Calcuate the frequency of GLCK1 relative to this source */
       switch (_measurement_t) {
       case XOSC_MEASURE_TIMEPULSE:
+#ifdef GPS_TIMEPULSE_FREQ
         source_freq = capture_value * XOSC_GCLK_DIVIDE * GPS_TIMEPULSE_FREQ;
+#else
+        source_freq = capture_value * XOSC_GCLK_DIVIDE;
+#endif
         break;
       case XOSC_MEASURE_LFTIMER:
         source_freq = capture_value * XOSC_GCLK_DIVIDE;

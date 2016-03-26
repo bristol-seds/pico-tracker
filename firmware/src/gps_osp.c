@@ -1103,11 +1103,13 @@ void gps_reset(void)
 }
 
 void gps_init_timepulse_pin(void) {
+#ifdef GPS_TIMEPULSE_PIN
   /* Timepulse_Pin */
   port_pin_set_config(GPS_TIMEPULSE_PIN,
 		      PORT_PIN_DIR_INPUT,	/* Direction */
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
+#endif
 }
 
 /**
