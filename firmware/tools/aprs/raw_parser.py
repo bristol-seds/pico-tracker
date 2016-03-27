@@ -23,12 +23,12 @@ else:
 
 # Get the flight number
 if len(sys.argv) >= 3:
-    flight_number = sys.argv[2]
+    flight_nr = sys.argv[2]
 else:
-    flight_number = raw_input("Flight Number (xx): ") or "xx"
+    flight_nr = raw_input("Flight Number (xx): ") or "xx"
 
 # Callsign
-callsign = "UBSEDS"+flight_number
+callsign = "UBSEDS"+str(flight_nr)
 
 with open(file_name, 'r') as data_file:
     data = []
@@ -49,7 +49,7 @@ with open(file_name, 'r') as data_file:
 
     # Upload data to habitat
     for datum in data:
-        ukhas_str = ukhas_format(datum, callsign)
+        ukhas_str = ukhas_format(datum, callsign, flight_nr)
         try:
             print ukhas_str
             print habitat_upload(datum['time'], ukhas_str)

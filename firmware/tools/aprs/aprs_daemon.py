@@ -23,11 +23,11 @@ from math import log, exp
 callsign_re = re.compile(r'(M0SBU|AD6AM)-(\d{1,2})')
 
 """
-Returns callsign for given SSID
+Returns flight number for given SSID
 """
-def callsign_from_ssid(ssid):
+def flight_nr_from_ssid(ssid):
     if ssid == '11':
-        return 'UBSEDS14'
+        return 15                # UBSEDS15
     else:
         return None
 
@@ -37,12 +37,13 @@ Attempts to extract a backlog frame and upload it
 def extract_and_upload(packet, aprs_call, ssid):
 
     # Callsign Lookup
-    callsign = callsign_from_ssid(ssid)
-    if callsign is None:
+    flight_nr = flight_nr_from_ssid(ssid)
+    if flight_nr is None:
         print Fore.RED + "No callsign match for {}-{}".format(aprs_call, ssid) + Fore.RESET
         print
         return
     else:
+        callsign = "UBSEDS"+str(flight_nr)
         print Fore.GREEN + "Packet from {} ({}-{}) ✓".format(callsign, aprs_call, ssid) + Fore.RESET
         print
 
@@ -55,7 +56,7 @@ def extract_and_upload(packet, aprs_call, ssid):
         # Identify duplicate packets from telemetry sequence
 
         # Save to raw data file
-        rawdata_filename = "rawdata-{}.txt".format(callsign.lower())
+        rawdata_filename = "rawdata/{}-rawdata.txt".format(callsign.lower())
         utcnow = arrow.utcnow()
         current_utc = utcnow.format('YYYY-MM-DD HH:mm:ss') + " GMT: " # UTC and GMT are basically the same right..
         with open(rawdata_filename, 'a') as rawdata_file:
@@ -69,7 +70,6 @@ def extract_and_upload(packet, aprs_call, ssid):
         print
 
 
-
     # Backlog
     datum = extract_backlog_datum(packet)
 
@@ -80,7 +80,7 @@ def extract_and_upload(packet, aprs_call, ssid):
         print Fore.RESET
 
         # Habitat upload
-        ukhas_str = ukhas_format(datum, callsign)
+        ukhas_str = ukhas_format(datum, callsign, flight_nr)
         print ukhas_str
         try:
             print Fore.CYAN + str(habitat_upload(datum['time'], ukhas_str)) + " ✓" + Fore.RESET
@@ -93,7 +93,9 @@ def extract_and_upload(packet, aprs_call, ssid):
 
 
 
-# Rx callback
+#
+# Called when a packet is received through APRS-IS
+#
 def callback(packet):
     print packet
 
@@ -104,8 +106,9 @@ def callback(packet):
         extract_and_upload(packet, match.group(1), match.group(2))
 
 
-
+#
 # Main
+#
 import logging
 logging.basicConfig(level=logging.DEBUG) # level=10
 

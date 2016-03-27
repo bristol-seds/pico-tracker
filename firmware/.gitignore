@@ -13,7 +13,10 @@ out/
 *.o
 
 # raw backlog data
-tools/*rawdata.txt
+tools/aprs/rawdata/*rawdata.txt
+
+# aprs-is id
+aprs_id
 
 # Atmel Developement Kit
 xdk*
