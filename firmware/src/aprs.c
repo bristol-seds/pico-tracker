@@ -39,6 +39,7 @@ uint16_t aprs_telemetry_sequence = 0;
  *
  * http://www.aprs.org/doc/APRS101.PDF
  * http://k9dci.home.comcast.net/~k9dci/APRS%20Beginner%20Guide%20-%20K9DCI%20Ver%205-1.pdf
+ * http://he.fi/doc/aprs-base91-comment-telemetry.txt
  */
 
 /**
@@ -92,7 +93,8 @@ void encode_altitude(char* str, uint32_t altitude_meters) {
 /**
  * String for telemetry
  *
- * String length should be >= 9
+ * - String length should be >= 9
+ * - Field values must be between 0-8280 inclusive
  */
 #define TELEMETRY_FIELD_LEN	((4 * 2) + 1)
 void encode_telemetry(char* str, tracker_datapoint* dp)

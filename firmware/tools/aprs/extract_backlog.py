@@ -7,6 +7,7 @@ else will be ignored.
 
 import re
 from datetime import datetime
+from telemetry_format import *
 from math import log, exp
 
 """
@@ -63,13 +64,12 @@ def extract_lat_long_alt(line):
         return (latitude, longitude, altitude)
 
 """
-Takes a parsed telemetry line and returns readings on battery,
-temperature_external, temperature_internal, satellites and ttff.
+Takes a telemetry line and returns telemetry readings
 It decodes from base91 along the way
 """
-def extract_telemetry(line):
-    # Capture an 10 char encoded telemetry segment
-    p = re.compile(r'\d{6}z\S{10}(\S{10})')
+def extract_telemetry(line, tf, length):
+    # Capture an encoded telemetry segment
+    p = re.compile(r'\d{6}z\S{10}(\S{'+str(length)+'})')
     match = p.match(line)
 
     if match == None:
@@ -78,25 +78,20 @@ def extract_telemetry(line):
         tel = match.group(1)
 
         # Split into 2 char chunks
-        parts = [tel[i:i+2] for i in range(0, 10, 2)]
-        batt_enc, temp_e_enc, temp_i_enc, sat_enc, ttff_enc = tuple(parts)
+        parts = [tel[i:i+2] for i in range(0, length, 2)]
 
-        # Reverse aprs conversions
-        battery = base91_decode(batt_enc) / 1000.0
-        temperature_e = (base91_decode(temp_e_enc) / 10) - 273.2
-        temperature_i = (base91_decode(temp_i_enc) / 10) - 273.2
-        satellite_count = base91_decode(sat_enc)
-        ttff = base91_decode(ttff_enc)
+        # Extract values from base 91
+        values = [base91_decode(enc) for enc in tuple(parts)]
 
-        return (battery, temperature_e, temperature_i, satellite_count, ttff)
+        return tf.decode_values(values)
 
 """
-Exracts the 'raw data' segment from a line of data; this is the 20
-character section after \d{6}z
+Exracts the 'raw data' segment from a line of data; this is the
+section after \d{6}z
 """
-def extract_raw_data(line):
+def extract_raw_data(line, length):
     # Capture the raw data segment
-    p = re.compile(r'(\d{6}z\S{20})\|')
+    p = re.compile(r'(\d{6}z\S{'+str(length)+'})\|')
     match = p.search(line)
 
     if match == None:
@@ -107,31 +102,31 @@ def extract_raw_data(line):
 """
 Returns a datum for the backlog in an APRS frame
 """
-def extract_backlog_datum(frame):
+def extract_backlog_datum(frame, tf):
+    # telemetry length
+    telem_len = tf.base91_encoded_len()
+
     # Extract raw data string
-    raw = extract_raw_data(frame)
+    raw = extract_raw_data(frame, 10+telem_len)
 
     if raw == None:
         return None
     else:
-        tele = extract_telemetry(raw)
+        telem = extract_telemetry(raw, tf, telem_len)
 
-        return {
+        data = {
             'time': extract_time(raw),
             'coords': extract_lat_long_alt(raw),
-            'battery': tele[0],
-            'temperature_e': tele[1],
-            'temperature_i': tele[2],
-            'satellites': tele[3],
-            'ttff': tele[4]
         }
+        data.update(telem)
+
+        return data
 
 """
 Prints a datum
 """
-def print_datum(datum):
-    print "{}: {:.6f} {:.6f}, {}m {}V {}C {}C sats {} ttff {}".format(
+def print_datum(datum, tf):
+    print "{}: {:.6f} {:.6f}, {}m {}".format(
         str(datum['time']),
         datum['coords'][0], datum['coords'][1], int(round(datum['coords'][2])),
-        datum['battery'], datum['temperature_e'], datum['temperature_i'],
-        datum['satellites'], datum['ttff'])
+        tf.stringify(datum))

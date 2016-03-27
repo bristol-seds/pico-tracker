@@ -1,17 +1,20 @@
+#!/usr/bin/python
+
 """
 This script extracts backlog data from raw aprs frames stored
 in file and uploads them to habitiat.
 
 At the very bottom the data is printed. Feel free to change
 the print statement to suit the data you're interested in.
-The parsed data is a list of dicts, with keys 'time', 'coords',
-'battery', 'solar', 'temperature' and 'satellites'.
+The parsed data is a list of dicts, with keys 'time',
+'coords', and telemetry values
 """
 
 import sys
 from extract_backlog import *
 from ukhas_format import *
 from habitat_upload import *
+from telemetry_format import *
 from datetime import datetime
 
 
@@ -27,15 +30,15 @@ if len(sys.argv) >= 3:
 else:
     flight_nr = raw_input("Flight Number (xx): ") or "xx"
 
-# Callsign
-callsign = "UBSEDS"+str(flight_nr)
+# Telemetry format for this flight
+tf = telemetry_format_flight(int(flight_nr))
 
 with open(file_name, 'r') as data_file:
     data = []
 
     # extract backlog
     for frame in data_file:
-        datum = extract_backlog_datum(frame)
+        datum = extract_backlog_datum(frame, tf)
         if datum:
             if datum not in data: # unique values only
                 data.append(datum)
@@ -45,11 +48,11 @@ with open(file_name, 'r') as data_file:
 
     # Print data
     for datum in data:
-        print_datum(datum)
+        print_datum(datum, tf)
 
     # Upload data to habitat
     for datum in data:
-        ukhas_str = ukhas_format(datum, callsign, flight_nr)
+        ukhas_str = ukhas_format(datum, tf)
         try:
             print ukhas_str
             print habitat_upload(datum['time'], ukhas_str)

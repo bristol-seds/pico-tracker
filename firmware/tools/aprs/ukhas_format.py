@@ -1,19 +1,18 @@
 """
 Formats ukhas telemetry strings for the pico tracker.
-Formats for ubseds13,14,15
 
 Expects to be passed a dict, with keys 'time',
-'coords', 'battery', 'temperature_external',
-'temperature_internal', 'satellites' and 'ttff'.
+'coords' and telemetry values
 """
 
 from datetime import datetime
+from telemetry_format import *
 import crcmod
 
 """
-Builds ukhas string from supplied datum
+Builds ukhas string from supplied datum and telemetry format
 """
-def ukhas_format(datum, callsign, flight_nr):
+def ukhas_format(datum, tf):
     # Time of Day
     time_str = "{:02}:{:02}:{:02}".format(
         datum['time'].hour, datum['time'].minute, datum['time'].second)
@@ -27,23 +26,14 @@ def ukhas_format(datum, callsign, flight_nr):
     location_str = "{:.6f},{:.6f},{}".format(
         coords[0], coords[1], int(round(coords[2])))
 
-    # UBESDS13,14
-    if flight_nr == 13 or flight_nr == 14:
-        ukhas_str = "{},{},{},{},{},{},{},{},{}".format(
-            callsign, time_str, date_str, location_str,
-            datum['satellites'], datum['ttff'],
-            datum['battery'], datum['temperature_e'], datum['temperature_i']);
+    # Telemetry
+    telemetry_str = tf.ukhas_format(datum)
 
-    # UBSEDS15 - INCLUDES SOLAR
-    elif flight_nr == 15:
-        ukhas_str = "{},{},{},{},{},{},{},{},{},{}".format(
-            callsign, time_str, date_str, location_str,
-            datum['satellites'], datum['ttff'],
-            datum['battery'], datum['solar'],
-            datum['temperature_e'], datum['temperature_i']);
 
-    else: # Unknown callsign!
-         raise ValueException('ukhas_format.py does not know about callsign '+callsign)
+    # All together
+    ukhas_str = "{},{},{},{},{}".format(
+        tf.callsign(), time_str, date_str, location_str, telemetry_str);
+
 
     # Checksum
     crc16 = crcmod.mkCrcFun(0x11021, 0xFFFF, False, 0x0000)

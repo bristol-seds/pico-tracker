@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # coding=utf-8
 
 """
@@ -14,6 +14,7 @@ import arrow
 from ukhas_format import *
 from habitat_upload import *
 from extract_backlog import *
+from telemetry_format import *
 
 from colorama import *
 from datetime import datetime
@@ -22,30 +23,25 @@ from math import log, exp
 # Regex for balloon callsign
 callsign_re = re.compile(r'(M0SBU|AD6AM)-(\d{1,2})')
 
-"""
-Returns flight number for given SSID
-"""
-def flight_nr_from_ssid(ssid):
-    if ssid == '11':
-        return 15                # UBSEDS15
-    else:
-        return None
 
 """
 Attempts to extract a backlog frame and upload it
 """
 def extract_and_upload(packet, aprs_call, ssid):
 
-    # Callsign Lookup
-    flight_nr = flight_nr_from_ssid(ssid)
-    if flight_nr is None:
+    # Attempt to match ssid
+    try:
+        tf = telemetry_format_ssid(ssid)
+    except ValueError:
         print Fore.RED + "No callsign match for {}-{}".format(aprs_call, ssid) + Fore.RESET
         print
         return
-    else:
-        callsign = "UBSEDS"+str(flight_nr)
-        print Fore.GREEN + "Packet from {} ({}-{}) ✓".format(callsign, aprs_call, ssid) + Fore.RESET
-        print
+
+
+    # Print callsign
+    callsign = tf.callsign()
+    print Fore.GREEN + "Packet from {} ({}-{}) ✓".format(callsign, aprs_call, ssid) + Fore.RESET
+    print
 
 
     # Attempt to parse with aprslib
@@ -71,7 +67,7 @@ def extract_and_upload(packet, aprs_call, ssid):
 
 
     # Backlog
-    datum = extract_backlog_datum(packet)
+    datum = extract_backlog_datum(packet, tf)
 
     if datum: # valid backlog
         print
@@ -80,7 +76,7 @@ def extract_and_upload(packet, aprs_call, ssid):
         print Fore.RESET
 
         # Habitat upload
-        ukhas_str = ukhas_format(datum, callsign, flight_nr)
+        ukhas_str = ukhas_format(datum, tf)
         print ukhas_str
         try:
             print Fore.CYAN + str(habitat_upload(datum['time'], ukhas_str)) + " ✓" + Fore.RESET

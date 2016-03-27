@@ -14,6 +14,7 @@
 
 import sys, time
 from socket import *
+from telemetry_format import *
 
 serverHost = 'second.aprs.net'
 serverPort = 20157
@@ -22,48 +23,39 @@ serverPort = 20157
 # Sends packet to second.aprs.net
 #
 def send_packet(callsign, password, packet):
-        # Create socket & connect to server
-        sSock = socket(AF_INET, SOCK_STREAM)
-        sSock.connect((serverHost, serverPort))
+    # Create socket & connect to server
+    sSock = socket(AF_INET, SOCK_STREAM)
+    sSock.connect((serverHost, serverPort))
 
-        # Login
-        sSock.send('user ' + callsign + ' pass ' + password + ' vers "Python Script" \n')
+    # Login
+    sSock.send('user ' + callsign + ' pass ' + password + ' vers "Python Script" \n')
 
-        # Send packet
-        sSock.send(packet + '\n')
-        print("Sent: " + packet)
+    # Send packet
+    sSock.send(packet + '\n')
+    print("Sent: " + packet)
 
-        # Close socket -- must be closed to avoid buffer overflow
-        sSock.shutdown(0)
-        sSock.close()
+    # Close socket -- must be closed to avoid buffer overflow
+    sSock.shutdown(0)
+    sSock.close()
 
 #
 # Attempt to read default callsign and password from a file called
 # aprs_id
 #
 def attempt_read_aprs_id():
-        try:
-                with open('aprs_id', 'r') as aprs_id:
-                        if aprs_id:
-                                print "( loaded aprs_id )"
-                                c = aprs_id.readline().strip()
-                                p = aprs_id.readline().strip()
-                                return c,p
-        except:
-                None
+    try:
+        with open('aprs_id', 'r') as aprs_id:
+            if aprs_id:
+                print "( loaded aprs_id )"
+                c = aprs_id.readline().strip()
+                p = aprs_id.readline().strip()
+                return c,p
+    except:
+        None
 
-        print "(no aprs_id found)"
-        return "",""
+    print "(no aprs_id found)"
+    return "",""
 
-#
-# Define packets
-#
-# eqn_packets = ["PARM.Battery,Solar,Internal Temperature,GPS Satellites",
-#                "UNIT.Volts,Volts,Celsius",
-#                "EQNS.0,.001,0,0,.001,0,0,.1,-273.2"]
-eqn_packets = ["PARM.Battery,External Temperature,Internal Temperature,GPS Satellites,GPS TTFF",
-               "UNIT.Volts,Celsius,Celcius",
-               "EQNS.0,.001,0,0,.1,-273.2,0,.1,-273.2"]
 
 
 #
@@ -77,39 +69,49 @@ default_callsign, default_password = attempt_read_aprs_id()
 #
 print
 callsign = raw_input("Please enter your callsign{}: ".format(
-        " ("+default_callsign+")")) or default_callsign
+    " ("+default_callsign+")")) or default_callsign
 if not callsign:
-        print "Bad callsign"
-        quit()
+    print "Bad callsign"
+    quit()
+
 password = raw_input("Please enter your password{}: ".format(
-        " ("+default_password+")")) or default_password
+    " ("+default_password+")")) or default_password
 if not password:
-        print "Bad password"
-        quit()
+    print "Bad password"
+    quit()
+
 print
-ssid =     raw_input("Which callsign to set eqns for? : ")
+ssid =     raw_input("Which callsign to set eqns for? (11): ") or '11'
 if not ssid:
-        print "Bad SSID"
-        quit()
+    print "Bad SSID"
+    quit()
 
-#
-# Start of the telemetry packet
-#
-header = ssid + '>APRS,TCPIP*::' + ssid.ljust(9) + ':'
 
-#
-# Print packets for approval
-#
-print
-for packet in eqn_packets:
+
+for dest in ["M0SBU", "AD6AM"]:
+    # Destination callsigns
+    dest_call = dest+"-"+ssid
+
+    # Get equations
+    tf = telemetry_format_ssid(ssid)
+    eqn_packets = tf.aprs_equations()
+
+    # Start of the telemetry packet
+    header = dest_call + '>APRS,TCPIP*::' + dest_call.ljust(9) + ':'
+
+    #
+    # Print packets for approval
+    print
+    for packet in eqn_packets:
         print header + packet
-print
-check = raw_input("Okay to send this? [y/n]: ").lower()
-print
 
-if check[0] == 'y':
+    print
+    check = raw_input("Okay to send this? [y/n]: ").lower()
+    print
+
+    if check[0] == 'y':
         for packet in eqn_packets:
-                send_packet(callsign, password, header+packet)
-else:
-        print "Quit..."
-        quit()
+            send_packet(callsign, password, header+packet)
+        else:
+            print "Quit..."
+            quit()
