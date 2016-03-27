@@ -245,7 +245,7 @@ void telemetry_tick(void) {
       if (!radio_on) {
         /* Contestia: We use the modem offset to modulate */
         si_trx_on(SI_MODEM_MOD_TYPE_CW, &telemetry_fconfig, 1, TELEMETRY_POWER,
-                  SI_FILTER_DEFAULT);
+                  SI_FILTER_DEFAULT, SI_RF_PATH_BYPASS);
         radio_on = 1;
         contestia_preamble();
       }
@@ -267,7 +267,7 @@ void telemetry_tick(void) {
       if (!radio_on) {
         /* RTTY: We use the modem offset to modulate */
         si_trx_on(SI_MODEM_MOD_TYPE_CW, &telemetry_fconfig, 1, TELEMETRY_POWER,
-                  SI_FILTER_DEFAULT);
+                  SI_FILTER_DEFAULT, SI_RF_PATH_BYPASS);
         radio_on = 1;
         rtty_preamble();
       }
@@ -299,7 +299,7 @@ void telemetry_tick(void) {
         telemetry_gpio1_pwm_init();
 
         si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &telemetry_fconfig, 1, TELEMETRY_POWER,
-                  SI_FILTER_RSID);
+                  SI_FILTER_RSID, SI_RF_PATH_BYPASS);
         radio_on = 1;
       }
 
@@ -323,8 +323,8 @@ void telemetry_tick(void) {
           /* Frequency config. Recalculate each time */
           si_trx_get_frequency_configuration(&aprs_fconfig, _aprs_frequency);
           /* Radio on */
-          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &aprs_fconfig, AX25_DEVIATION,
-                    APRS_POWER, SI_FILTER_APRS);
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &aprs_fconfig, AX25_DEVIATION, APRS_POWER,
+                    SI_FILTER_APRS, SI_RF_PATH_AMPLIFIER);
           radio_on = 1;
         } else {
           /* Stop immediately */
@@ -345,7 +345,7 @@ void telemetry_tick(void) {
         if (!radio_on) {
           /* Pips: Cw */
           si_trx_on(SI_MODEM_MOD_TYPE_CW, &telemetry_fconfig, 1, TELEMETRY_POWER,
-                    SI_FILTER_DEFAULT);
+                    SI_FILTER_DEFAULT, SI_RF_PATH_BYPASS);
           radio_on = 1;
         }
       } else if (pips_tick == 1) { /* Turn off */

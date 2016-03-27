@@ -34,11 +34,24 @@ struct si_frequency_configuration {
   float lsb_tuning_resolution;
 };
 
+/**
+ * Internal FIR filter
+ */
 enum si_filter_model {
   SI_FILTER_DEFAULT,
   SI_FILTER_APRS,
   SI_FILTER_RSID
 };
+/**
+ * External RF path
+ */
+enum si_rf_path {
+  SI_RF_PATH_NONE,
+  SI_RF_PATH_AMPLIFIER,
+  SI_RF_PATH_RX,
+  SI_RF_PATH_BYPASS
+};
+
 
 float si_trx_get_temperature(void);
 
@@ -48,7 +61,8 @@ void si_trx_get_frequency_configuration(struct si_frequency_configuration* confi
                                         uint32_t frequency);
 
 void si_trx_on(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
-                 uint16_t deviation, uint8_t power, enum si_filter_model filter);
+               uint16_t deviation, uint8_t power,
+               enum si_filter_model filter, enum si_rf_path path);
 void si_trx_off(void);
 
 void si_trx_modem_set_offset(int16_t channel);

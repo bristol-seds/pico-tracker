@@ -424,6 +424,39 @@ static void si_trx_set_tx_pa_duty_cycle(uint8_t pa_duty_cycle)
 {
   _si_trx_set_property_8(SI_PROPERTY_GROUP_PA, SI_PA_BIAS_CLKDUTY, pa_duty_cycle);
 }
+/**
+ * Sets the external RF path using GPIO0, GPIO2 and GPIO3
+ */
+static void si_trx_set_rf_path(enum si_rf_path path)
+{
+  si_gpio_t gpio0 = SI_GPIO_PIN_CFG_GPIO_MODE_INPUT; /* pulled low  externally */
+  si_gpio_t gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_INPUT; /* pulled high externally */
+  si_gpio_t gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_INPUT; /* pulled high externally */
+
+  switch (path) {
+    case SI_RF_PATH_AMPLIFIER:
+      gpio0 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* high to enable amplifier, first switch right*/
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* select J1 */
+      gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0;
+      break;
+    case SI_RF_PATH_RX:
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0; /* select J2 */
+      gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1;
+      break;
+    case SI_RF_PATH_BYPASS:
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0; /* select J3 */
+      gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0;
+      break;
+    default: break;             /* all inputs by default */
+  }
+
+  /* write config */
+  si_trx_set_gpio_configuration(gpio0,
+                                SI_GPIO_PIN_CFG_GPIO_MODE_DONOTHING,
+                                gpio2,
+                                gpio3,
+                                SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
+}
 
 
 /**
@@ -501,7 +534,8 @@ static void si_trx_set_frequency(struct si_frequency_configuration* config,
  * Resets the transceiver
  */
 void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
-                  uint16_t deviation, uint8_t power, enum si_filter_model filter)
+                  uint16_t deviation, uint8_t power,
+                  enum si_filter_model filter, enum si_rf_path path)
 {
   /* We expect to already be shutdown  */
   _si_trx_sdn_enable();  /* active high shutdown = reset */
@@ -531,6 +565,7 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT,
                                 SI_GPIO_PIN_CFG_GPIO_MODE_INPUT | SI_GPIO_PIN_CFG_PULL_ENABLE,
                                 SI_GPIO_PIN_CFG_DRV_STRENGTH_LOW);
+  si_trx_set_rf_path(path);     /* Sets GPIO0, GPIO2, GPIO3 */
 
   si_trx_set_frequency(fconfig, deviation);
   si_trx_set_tx_power(power);
@@ -576,9 +611,10 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
  * Enables the radio and starts transmitting
  */
 void si_trx_on(uint8_t modulation_type, struct si_frequency_configuration* fconfig,
-    uint16_t deviation, uint8_t power, enum si_filter_model filter)
+               uint16_t deviation, uint8_t power,
+               enum si_filter_model filter, enum si_rf_path path)
 {
-  si_trx_reset(modulation_type, fconfig, deviation, power, filter);
+  si_trx_reset(modulation_type, fconfig, deviation, power, filter, path);
   si_trx_start_tx(0);
 }
 /**

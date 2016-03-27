@@ -35,22 +35,25 @@
 #define APRS_TEST_LAT 51.47
 #define APRS_TEST_LON -2.58
 #define APRS_TEST_ALTITUDE	43
-#define APRS_TEST_FREQUENCY	144800000
+#define APRS_TEST_FREQUENCY	145825000
+#define APRS_TEST_RF_PATH	SI_RF_PATH_BYPASS
 
 void telemetry_tone(void)
 {
-  struct si_frequency_configuration fconfig;
-  si_trx_get_frequency_configuration(&fconfig, TELEMETRY_FREQUENCY);
+  struct si_frequency_configuration fconfig1;
+  struct si_frequency_configuration fconfig2;
+  si_trx_get_frequency_configuration(&fconfig1, TELEMETRY_FREQUENCY);
+  si_trx_get_frequency_configuration(&fconfig2, TELEMETRY_FREQUENCY+1000);
 
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 36, SI_FILTER_DEFAULT);
-    for (int i = 0; i < 200*1000; i++) {
-      idle(IDLE_TELEMETRY_ACTIVE);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig1, 0, 0x7f, SI_FILTER_DEFAULT, SI_RF_PATH_BYPASS);
+    for (int i = 0; i < 50*1000; i++) {
+      //idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT);
-    for (int i = 0; i < 200*1000; i++) {
-      idle(IDLE_TELEMETRY_ACTIVE);
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig2, 0, 0x7f, SI_FILTER_DEFAULT, SI_RF_PATH_BYPASS);
+    for (int i = 0; i < 50*1000; i++) {
+      //idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
   }
@@ -61,16 +64,27 @@ void aprs_tone(void)
   si_trx_get_frequency_configuration(&fconfig, APRS_TEST_FREQUENCY);
 
   while (1) {
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 36, SI_FILTER_DEFAULT);
-    for (int i = 0; i < 200*1000; i++) {
+    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT, APRS_TEST_RF_PATH);
+
+    for (int i = 0; i < 50*1000; i++) {
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-    si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT);
-    for (int i = 0; i < 200*1000; i++) {
-      idle(IDLE_TELEMETRY_ACTIVE);
-    }
-    si_trx_off();
+
+
+    /* while (1) { */
+
+    /*   system_sleep(); */
+
+    /*   //idle(IDLE_TELEMETRY_ACTIVE); */
+    /* } */
+
+
+    /* si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT); */
+    /* for (int i = 0; i < 200*1000; i++) { */
+    /*   idle(IDLE_TELEMETRY_ACTIVE); */
+    /* } */
+    /* si_trx_off(); */
   }
 }
 
@@ -93,7 +107,7 @@ void aprs_high_fm_tone(void)
                              false);		/* Output Pin Enable	*/
 
   si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &fconfig,
-            AX25_DEVIATION, APRS_POWER, SI_FILTER_APRS);
+            AX25_DEVIATION, APRS_POWER, SI_FILTER_APRS, APRS_TEST_RF_PATH);
   while (1) {
     idle(IDLE_TELEMETRY_ACTIVE);
   }
@@ -119,7 +133,10 @@ void aprs_test(void)
     /* Transmit packet and wait */
     telemetry_start(TELEMETRY_APRS, 0xFFFF);
     while (telemetry_active()) {
-      idle(IDLE_TELEMETRY_ACTIVE);
+
+      system_sleep();
+      //idle(IDLE_TELEMETRY_ACTIVE);
+
     }
   }
 }
@@ -154,7 +171,7 @@ void rf_tests(void)
     case RF_TEST_APRS_TONE:
       aprs_tone();
       break;
-    case RF_TEST_TELEMETRY_TONE:
+   case RF_TEST_TELEMETRY_TONE:
       telemetry_tone();
       break;
     case RF_TEST_RSID:
