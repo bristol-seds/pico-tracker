@@ -116,9 +116,10 @@ uint8_t radio_on = 0;
  */
 float _si_temperature = 128.0;
 /**
- * APRS frequency
+ * APRS parameters
  */
 int32_t _aprs_frequency = 0;
+enum si_rf_path _aprs_rf_path = SI_RF_PATH_BYPASS;
 
 /**
  * Returns 1 if we're currently outputting.
@@ -194,10 +195,13 @@ int telemetry_start_rsid(rsid_code_t rsid) {
   }
 }
 /**
- * Setter for the APRS frequency
+ * Setters for APRS
  */
 void telemetry_aprs_set_frequency(int32_t frequency) {
   _aprs_frequency = frequency;
+}
+void telemetry_aprs_set_rf_path(enum si_rf_path path) {
+  _aprs_rf_path = path;
 }
 
 /**
@@ -324,7 +328,7 @@ void telemetry_tick(void) {
           si_trx_get_frequency_configuration(&aprs_fconfig, _aprs_frequency);
           /* Radio on */
           si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &aprs_fconfig, AX25_DEVIATION, APRS_POWER,
-                    SI_FILTER_APRS, SI_RF_PATH_AMPLIFIER);
+                    SI_FILTER_APRS, _aprs_rf_path);
           radio_on = 1;
         } else {
           /* Stop immediately */

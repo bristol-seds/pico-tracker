@@ -33,6 +33,7 @@
 #include "mfsk.h"
 #include "watchdog.h"
 #include "telemetry.h"
+#include "si_trx.h"
 #include "contestia.h"
 #include "aprs.h"
 #include "location.h"
@@ -40,6 +41,7 @@
 #include "data.h"
 #include "analogue.h"
 #include "backlog.h"
+#include "battery.h"
 #include "pips.h"
 #include "xosc.h"
 #include "rtc.h"
@@ -198,6 +200,7 @@ void aprs_telemetry(struct tracker_datapoint* dp)
 
   /* Set frequency */
   telemetry_aprs_set_frequency(location_aprs_frequency());
+  telemetry_aprs_set_rf_path(SI_RF_PATH_BYPASS);
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);
@@ -213,6 +216,7 @@ void ariss_telemetry(struct tracker_datapoint* dp)
 //struct tracker_datapoint* backlog_dp_ptr;
 
   if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
+  if (get_battery_use_state() != BATTERY_GOOD) return; /* Don't try if battery can't help */
 
   char* prefix = location_prefix();
   char* call = location_aprs_call();
@@ -234,6 +238,7 @@ void ariss_telemetry(struct tracker_datapoint* dp)
 
   /* Set frequency */
   telemetry_aprs_set_frequency(ARISS_FREQUENCY); /* TODO correct for doppler here */
+  telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* Amplified output path */
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);

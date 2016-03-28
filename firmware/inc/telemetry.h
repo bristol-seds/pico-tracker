@@ -27,7 +27,7 @@
 
 uint16_t crc_checksum(char *string);
 
-#include "util/dbuffer.h"
+#include "si_trx.h"
 #include "rsid.h"
 
 enum telemetry_t {
@@ -48,6 +48,7 @@ int telemetry_active(void);
 int telemetry_start(enum telemetry_t type, int32_t length);
 int telemetry_start_rsid(rsid_code_t rsid);
 void telemetry_aprs_set_frequency(int32_t frequency);
+void telemetry_aprs_set_rf_path(enum si_rf_path path);
 float telemetry_si_temperature(void);
 
 void timer0_tick_init(uint32_t count);
