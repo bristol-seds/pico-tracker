@@ -287,7 +287,8 @@ void set_hibernate_time(uint8_t cold_out)
     if (gps_is_locked() == GPS_NO_LOCK) { /* no lock  */
       hibernate_time_s = 0;               /* shortest hibernate */
 
-    } else if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
+    } else if ((get_battery_charge_state() != BATTERY_DISCHARGING) || /* plenty of power */
+               (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH)) { /* or during launch */
       hibernate_time_s = CYCLE_TIME_FAST;
 
     } else {
