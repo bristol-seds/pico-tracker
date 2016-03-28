@@ -642,15 +642,15 @@ struct gps_data_t gps_get_data(void)
  */
 
 /* Number of re-inits made without normal operation */
-uint8_t gd_reinit_count = 0;
+uint32_t gd_reinit_count = 0;
 #define GD_REINIT_COUNT_MAX (3)     /* 3 reinits before we give up and go to the watchdog */
 
 /* Number of times gps_get_data called */
-uint8_t gd_count = 0;
+uint32_t gd_count = 0;
 #define GD_COUNT_MAX (360) /* GPS is good for about a day @15 per hour */
 
 /* No lock */
-uint8_t gd_nolock_count = 0;
+uint32_t gd_nolock_count = 0;
 #define GD_NOLOCK_COUNT_MAX (10) /* 10 minutes will always be enough to get a lock */
 
 /* Invalid if position is outside the range we expect */
