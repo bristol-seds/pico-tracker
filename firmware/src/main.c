@@ -210,7 +210,7 @@ void aprs_telemetry(struct tracker_datapoint* dp)
  */
 void ariss_telemetry(struct tracker_datapoint* dp)
 {
-  struct tracker_datapoint* backlog_dp_ptr;
+//struct tracker_datapoint* backlog_dp_ptr;
 
   if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
 
