@@ -37,7 +37,7 @@
 
 void rtty_telemetry(struct tracker_datapoint* dp);
 void contestia_telemetry(struct tracker_datapoint* dp);
-void aprs_telemetry(struct tracker_datapoint* dp);
+void aprs_telemetry(struct tracker_datapoint* dp, uint32_t n);
 void ariss_telemetry(struct tracker_datapoint* dp);
 void pips_telemetry(void);
 
@@ -47,8 +47,6 @@ void pips_telemetry(void);
  */
 void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 {
-  (void)n;                      /* unused */
-
   /* Always update geofence */
   location_telemetry_update(dp->latitude, dp->longitude);
   location_aprs_update(dp->latitude, dp->longitude);
@@ -83,7 +81,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #endif
 
     /* APRS */
-    aprs_telemetry(dp);
+    aprs_telemetry(dp, n);
 
 #if APRS_USE_GEOFENCE
   }
