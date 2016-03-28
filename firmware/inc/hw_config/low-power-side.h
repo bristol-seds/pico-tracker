@@ -175,11 +175,22 @@
 #define SOLAR_ADC_REFERENCE	ADC_REFERENCE_INT1V
 
 /**
+ * Battery
+ */
+#define RECHARGABLE_BATTERY	0
+
+/**
  * Cold out
  */
 #define COLD_OUT_TEMPERATURE	(-58.0)
 #define COLD_OUT_SECONDS	(15*60) /* 15 minutes */
 #define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours */
+
+/**
+ * Cycle Times
+ */
+#define CYCLE_TIME_FAST		(60)
+#define CYCLE_TIME_SLOW		(240)
 
 /**
  * Radio

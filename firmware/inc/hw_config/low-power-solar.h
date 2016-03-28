@@ -146,17 +146,22 @@
 /**
  * Battery
  */
-/* We enable charging when bus > battery */
+#define RECHARGABLE_BATTERY	1
 #define CHG_ENABLE_PIN		PIN_PA27
-#define CHG_ENABLE_HYSTERESIS	(1*15) /* up to 1 hour at once-per-four-minutes */
+#define RECHARGABLE_MIN_V	(2.6)
 
 /**
  * Cold out
  */
-#define COLD_OUT_VOLTAGE	(2.6) /* if both bus and battery are below this then cold */
 #define COLD_OUT_TEMPERATURE	(-58.0)
 #define COLD_OUT_SECONDS	(15*60) /* 15 minutes */
 #define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours*/
+
+/**
+ * Cycle Times
+ */
+#define CYCLE_TIME_FAST		(60)
+#define CYCLE_TIME_SLOW		(120)
 
 /**
  * Radio

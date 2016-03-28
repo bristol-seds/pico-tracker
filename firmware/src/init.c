@@ -38,6 +38,7 @@
 #include "data.h"
 #include "telemetry.h"
 #include "barometer.h"
+#include "battery.h"
 #include "init.h"
 
 /**
@@ -127,6 +128,9 @@ void init(enum init_type init_t)
 
   /* Start the RTC */
   rtc_init();
+
+  /* Battery control pins  */
+  battery_init();
 
   /* We've done good things, kick wdt */
   kick_the_watchdog();

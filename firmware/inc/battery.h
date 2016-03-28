@@ -1,0 +1,49 @@
+/*
+ * Functions related to the battery
+ * Copyright (C) 2014  Richard Meadows <richardeoin>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#ifndef BATTERY_H
+#define BATTERY_H
+
+#include "samd20.h"
+#include "data.h"
+#include "hw_config.h"
+
+enum battery_use_state {
+  BATTERY_GOOD,                 /* good to use */
+  BATTERY_VOLTAGE_TOO_LOW,      /* voltage too low */
+};
+
+enum battery_charge_state {
+  BATTERY_DISCHARGING,          /* discharging */
+  BATTERY_EXCESS,               /* power incomming, but not charging yet */
+  BATTERY_CHARGING,             /* charging */
+};
+
+enum battery_use_state get_battery_use_state(void);
+enum battery_charge_state get_battery_charge_state(void);
+
+void update_battery(struct tracker_datapoint *dp);
+void battery_init(void);
+
+#endif /* BATTERY_H */
