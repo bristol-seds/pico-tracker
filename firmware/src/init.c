@@ -125,6 +125,9 @@ void init(enum init_type init_t)
   /* Configure the Power Manager */
   powermananger_init();
 
+  /* Start the RTC */
+  rtc_init();
+
   /* We've done good things, kick wdt */
   kick_the_watchdog();
 

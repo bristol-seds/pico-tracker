@@ -42,6 +42,7 @@
 #include "backlog.h"
 #include "pips.h"
 #include "xosc.h"
+#include "rtc.h"
 #include "sequencer.h"
 #include "thermistor.h"
 
@@ -257,9 +258,7 @@ void pips_telemetry(void)
  * Timing helpers
  * =============================================================================
  */
-
 volatile uint8_t run_flag = 1;  /* run immediately after init */
-uint32_t hibernate_time_s = 1;
 
 uint8_t in_cold_out = 1;        /* test temperature immediately after init */
 uint32_t cold_out_count = 0;
@@ -269,35 +268,32 @@ uint32_t cold_out_count = 0;
  */
 void set_hibernate_time(uint8_t cold_out)
 {
-  if (cold_out == 0) {                  /* Normal operations */
-    if (gps_is_locked() == GPS_NO_LOCK) {   /* no lock  */
-      hibernate_time_s = 0;       /* shortest hibernate */
+  uint32_t hibernate_time_s;
+
+  if (cold_out == 0) {                    /* Normal operations */
+    if (gps_is_locked() == GPS_NO_LOCK) { /* no lock  */
+      hibernate_time_s = 0;               /* shortest hibernate */
 
     } else if (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH) {
-      hibernate_time_s = 60-20;   /* approx every minute */
+      hibernate_time_s = CYCLE_TIME_FAST;
 
     } else {
-      hibernate_time_s = 240-20;  /* approx every 4 minutes  */
+      hibernate_time_s = CYCLE_TIME_SLOW;
     }
   } else {                      /* cold out */
     hibernate_time_s = COLD_OUT_SECONDS;
   }
+
+  /* set this */
+  rtc_hibernate_time(hibernate_time_s);
 }
-
 /**
- * Called on each tick of the low frequency clock
+ * Called when it's time to run again
  */
-void lf_tick(uint32_t tick)
+void run_kick(void)
 {
-  /* When we're due to run again */
-  /* Called at 2Hz */
-  if (tick >= 2*hibernate_time_s) {
-    /* Stop */
-    lf_tick_stop();
-
-    /* Raise the run flag */
-    run_flag = 1;
-  }
+  /* Raise the run flag */
+  run_flag = 1;
 }
 
 /**
@@ -344,7 +340,7 @@ int main(void)
           run_sequencer(n++);         /* run for the first time! */
         }
       } else {
-        run_sequencer(n++); /* Run */
+        run_sequencer(n++);     /* Run */
       }
 
       /* Clocks off */
@@ -359,9 +355,8 @@ int main(void)
       gclk0_to_lf_clock();
       hf_clock_disable();
 
-      /* LF timing */
+      /* Hibernate timing */
       set_hibernate_time(in_cold_out);
-      lf_tick_start();
     }
 
     /* Idle */

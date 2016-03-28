@@ -54,13 +54,29 @@ void rtc_init(void)
 
   /* Enable interrupts */
   RTC->MODE1.INTENSET.reg |= RTC_MODE1_INTENSET_OVF; /* Overflow interrupt */
-  irq_register_handler(RTC_IRQn, RTC_INT_PRIO); /* Highest Priority */
+  irq_register_handler(RTC_IRQn, RTC_INT_PRIO); /* Lowest Priority */
 
   /* Enable */
   rtc_count_enable();
   rtc_count_set_period(0);      /* overflow on every tick */
 }
 
+/**
+ * Tick functions
+ * =============================================================================
+ */
+
+uint32_t tick = 0;
+uint32_t hibernate_time_s = 0;
+void run_kick(void);
+
+/**
+ * Set hibernate time
+ */
+void rtc_hibernate_time(uint32_t time_s)
+{
+  hibernate_time_s = time_s;
+}
 /**
  * Interrupt for RTC, called at 1Hz
  */
@@ -69,6 +85,16 @@ void RTC_Handler(void)
   if (RTC->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_OVF) {
     RTC->MODE1.INTFLAG.reg |= RTC_MODE1_INTFLAG_OVF; /* Clear flag */
 
-    /* Do something */
+    /* Check sleep time  */
+    if (tick >= hibernate_time_s) {
+      /* Zero tick */
+      tick = 0;
+
+      /* Do something */
+
+    } else {
+      /* Increment tick */
+      tick++;
+    }
   }
 }

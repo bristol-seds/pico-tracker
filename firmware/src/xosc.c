@@ -370,9 +370,6 @@ void timepulse_extint_event_source_disable(void)
  */
 void lftimer_event_source(void)
 {
-  /* Start the RTC */
-  rtc_init();
-
   /* Route the RTC PER7 event to event channel 0 */
   events_allocate(0,
                   EVENTS_EDGE_DETECT_NONE, /* Don't care for async path */
@@ -516,49 +513,50 @@ void TC2_Handler(void)
  * LF Tick               =======================================================
  * =============================================================================
  */
-void lf_tick(uint32_t tick);
-uint32_t lf_tick_count;
+/* All this currently runs in sleep */
+/* void lf_tick(uint32_t tick); */
+/* uint32_t lf_tick_count; */
 
-void lf_tick_start(void) {
+/* void lf_tick_start(void) { */
 
-  /* Timer 4 runs on GCLK0 */
-  bool t4_capture_channel_enables[]    = {false, false};
-  uint32_t t4_compare_channel_values[] = {64, 0x0000};
-  /* Divide by 64*256 = 16384 */
-  tc_init(TC4,
-	  GCLK_GENERATOR_0,
-	  TC_COUNTER_SIZE_16BIT,
-	  TC_CLOCK_PRESCALER_DIV256,
-	  TC_WAVE_GENERATION_MATCH_FREQ,
-	  TC_RELOAD_ACTION_GCLK,
-	  TC_COUNT_DIRECTION_UP,
-	  TC_WAVEFORM_INVERT_OUTPUT_NONE,
-	  false,			/* Oneshot  */
-	  true,				/* Run in standby */
-	  0x0000,			/* Initial value */
-	  0x0000,			/* Top value */
-	  t4_capture_channel_enables,	/* Capture Channel Enables */
-	  t4_compare_channel_values);	/* Compare Channels Values */
+/*   /\* Timer 4 runs on GCLK0 *\/ */
+/*   bool t4_capture_channel_enables[]    = {false, false}; */
+/*   uint32_t t4_compare_channel_values[] = {64, 0x0000}; */
+/*   /\* Divide by 64*256 = 16384 *\/ */
+/*   tc_init(TC4, */
+/* 	  GCLK_GENERATOR_0, */
+/* 	  TC_COUNTER_SIZE_16BIT, */
+/* 	  TC_CLOCK_PRESCALER_DIV256, */
+/* 	  TC_WAVE_GENERATION_MATCH_FREQ, */
+/* 	  TC_RELOAD_ACTION_GCLK, */
+/* 	  TC_COUNT_DIRECTION_UP, */
+/* 	  TC_WAVEFORM_INVERT_OUTPUT_NONE, */
+/* 	  false,			/\* Oneshot  *\/ */
+/* 	  true,				/\* Run in standby *\/ */
+/* 	  0x0000,			/\* Initial value *\/ */
+/* 	  0x0000,			/\* Top value *\/ */
+/* 	  t4_capture_channel_enables,	/\* Capture Channel Enables *\/ */
+/* 	  t4_compare_channel_values);	/\* Compare Channels Values *\/ */
 
 
-  /* Enable Interrupt */
-  TC4->COUNT16.INTENSET.reg = TC_INTENSET_MC0;
-  irq_register_handler(TC4_IRQn, TC4_INT_PRIO); /* Low Priority */
+/*   /\* Enable Interrupt *\/ */
+/*   TC4->COUNT16.INTENSET.reg = TC_INTENSET_MC0; */
+/*   irq_register_handler(TC4_IRQn, TC4_INT_PRIO); /\* Low Priority *\/ */
 
-  tc_enable(TC4);
-  tc_start_counter(TC4);
+/*   tc_enable(TC4); */
+/*   tc_start_counter(TC4); */
 
-  lf_tick_count = 1;
-}
-void lf_tick_stop(void) {
-  tc_stop_counter(TC4);
-  tc_disable(TC4);
-}
-void TC4_Handler(void)
-{
-  if (tc_get_status(TC4) & TC_STATUS_CHANNEL_0_MATCH) {
-    tc_clear_status(TC4, TC_STATUS_CHANNEL_0_MATCH);
+/*   lf_tick_count = 1; */
+/* } */
+/* void lf_tick_stop(void) { */
+/*   tc_stop_counter(TC4); */
+/*   tc_disable(TC4); */
+/* } */
+/* void TC4_Handler(void) */
+/* { */
+/*   if (tc_get_status(TC4) & TC_STATUS_CHANNEL_0_MATCH) { */
+/*     tc_clear_status(TC4, TC_STATUS_CHANNEL_0_MATCH); */
 
-    lf_tick(lf_tick_count++);
-  }
-}
+/*     lf_tick(lf_tick_count++); */
+/*   } */
+/* } */
