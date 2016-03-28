@@ -41,7 +41,7 @@
 /**
  * Convenience transfer functions
  */
-static void _si_trx_set_property_8(uint8_t group, uint8_t property, uint8_t value)
+static inline void _si_trx_set_property_8(uint8_t group, uint8_t property, uint8_t value)
 {
   uint8_t buffer[5];
 
@@ -53,7 +53,7 @@ static void _si_trx_set_property_8(uint8_t group, uint8_t property, uint8_t valu
 
   _si_trx_transfer(5, 0, buffer);
 }
-static void _si_trx_set_property_16(uint8_t group, uint8_t property, uint16_t value)
+static inline void _si_trx_set_property_16(uint8_t group, uint8_t property, uint16_t value)
 {
   uint8_t buffer[6];
 
@@ -66,7 +66,7 @@ static void _si_trx_set_property_16(uint8_t group, uint8_t property, uint16_t va
 
   _si_trx_transfer(6, 0, buffer);
 }
-static void _si_trx_set_property_24(uint8_t group, uint8_t property, uint32_t value)
+static inline void _si_trx_set_property_24(uint8_t group, uint8_t property, uint32_t value)
 {
   uint8_t buffer[8];
 
@@ -80,7 +80,7 @@ static void _si_trx_set_property_24(uint8_t group, uint8_t property, uint32_t va
 
   _si_trx_transfer(7, 0, buffer);
 }
-static void _si_trx_set_property_32(uint8_t group, uint8_t property, uint32_t value)
+static inline void _si_trx_set_property_32(uint8_t group, uint8_t property, uint32_t value)
 {
   uint8_t buffer[8];
 
@@ -174,6 +174,13 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data)
   }
 
   _si_trx_cs_disable();
+}
+/**
+ * Convenience function for 16-bit transfer functions
+ */
+void _si_trx_transfer_uint16(uint16_t value)
+{
+  _si_trx_transfer(2, 0, (uint8_t*)&value);
 }
 
 
@@ -569,6 +576,7 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
 
   si_trx_set_frequency(fconfig, deviation);
   si_trx_set_tx_power(power);
+  si_trx_set_tx_pa_duty_cycle(SI_PA_BIAS_CLKDUTY_DIFF_50);
 
   /* Modem tx filter coefficients */
   uint8_t rsid_si_coeff[] = {0x1, 0x4, 0x9, 0x11, 0x19, 0x22, 0x2a, 0x30, 0x31};
@@ -746,6 +754,10 @@ void spi_loopback_test(void)
   /* Test transfer */
   uint8_t data = spi_bitbang_transfer(0x34);
 
-  /* Print result */
   //semihost_printf("Rx'ed: 0x%02x\n", data);
+
+  /* check result */
+  if (data != 0x34) {
+    while(1);
+  }
 }

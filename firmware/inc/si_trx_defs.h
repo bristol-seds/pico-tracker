@@ -303,7 +303,7 @@ enum {
  * Generic SPI Send / Receive
  */
 void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data);
-
+void _si_trx_transfer_uint16(uint16_t value);
 /**
  * Chip Select. Active Low (High = Inactive, Low = Active)
  */
@@ -328,13 +328,6 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data);
 #define _si_trx_hf_clock_disable(void)		\
   /* NOT USED: Clock is always enabled */
 
-/**
- * Convenience function for 16-bit transfer functions
- */
-static void _si_trx_transfer_uint16(uint16_t value)
-{
-  _si_trx_transfer(2, 0, (uint8_t*)&value);
-}
 /**
  * State changes
  */
