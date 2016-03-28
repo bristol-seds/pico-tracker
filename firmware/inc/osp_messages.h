@@ -46,7 +46,7 @@ typedef struct {
 } osp_message_t;
 
 /** Function typedef for post-processing functions */
-typedef void (*osp_post_func)(osp_message_t* const);
+typedef void (*osp_post_func)(volatile osp_message_t* const);
 
 
 /**
@@ -78,7 +78,7 @@ struct osp_in_advanced_power_management {
     uint8_t spare2;
   } __PACKED__ payload;
 };
-static void osp_in_advanced_power_management_pre(struct osp_in_advanced_power_management* m)
+static inline void osp_in_advanced_power_management_pre(struct osp_in_advanced_power_management* m)
 {
   (void)m;
 }
@@ -112,7 +112,7 @@ enum osp_max_error_t {
     uint8_t reset_config_bitmap;
   } __PACKED__ payload;
 };
-static void osp_in_initialise_data_source_pre(struct osp_in_initialise_data_source* m)
+static inline void osp_in_initialise_data_source_pre(struct osp_in_initialise_data_source* m)
 {
   m->payload.x_position = __REV(m->payload.x_position);
   m->payload.y_position = __REV(m->payload.y_position);
@@ -144,7 +144,7 @@ static void osp_in_initialise_data_source_pre(struct osp_in_initialise_data_sour
     uint8_t measurement_and_track_smoothing;
   } __PACKED__ payload;
 };
-static void osp_in_mode_control_pre(struct osp_in_mode_control* m)
+static inline void osp_in_mode_control_pre(struct osp_in_mode_control* m)
 {
   m->payload.res1 = __REV16(m->payload.res1);
   m->payload.altitude = __REV16(m->payload.altitude);
@@ -175,7 +175,7 @@ enum osp_altitude_hold_mode {
     int16_t navigation_mask;    /* deg */
   } __PACKED__ payload;
 };
-static void osp_in_elevation_mask_pre(struct osp_in_elevation_mask* m)
+static inline void osp_in_elevation_mask_pre(struct osp_in_elevation_mask* m)
 {
   m->payload.tracking_mask = __REV16(m->payload.tracking_mask);
   m->payload.navigation_mask = __REV16(m->payload.navigation_mask);
@@ -194,7 +194,7 @@ static void osp_in_elevation_mask_pre(struct osp_in_elevation_mask* m)
     uint8_t navigation_mask;    /* dBHz */
   } __PACKED__ payload;
 };
-static void osp_in_power_mask_pre(struct osp_in_power_mask* m)
+static inline void osp_in_power_mask_pre(struct osp_in_power_mask* m)
 {
   (void)m;
 }
@@ -213,7 +213,7 @@ struct osp_in_set_tricklepower_parameters {
     int32_t on_time;            /* ms */
   } __PACKED__ payload;
 };
-static void osp_in_set_tricklepower_parameters_pre(struct osp_in_set_tricklepower_parameters* m)
+static inline void osp_in_set_tricklepower_parameters_pre(struct osp_in_set_tricklepower_parameters* m)
 {
   m->payload.pushtofix_mode = __REV16(m->payload.pushtofix_mode);
   m->payload.duty_cycle = __REV16(m->payload.duty_cycle);
@@ -238,7 +238,7 @@ static void osp_in_set_tricklepower_parameters_pre(struct osp_in_set_tricklepowe
     uint8_t res4;
   } __PACKED__ payload;
 };
-static void osp_in_set_message_rate_pre(struct osp_in_set_message_rate m)
+static inline void osp_in_set_message_rate_pre(struct osp_in_set_message_rate m)
 {
   (void)m;
 }
@@ -265,7 +265,7 @@ enum osp_message_rate {
     uint16_t adaptive_tricklepower;
   } __PACKED__ payload;
 };
-static void osp_in_set_low_power_acquisition_parameters_pre(struct osp_in_set_low_power_acquisition_parameters* m)
+static inline void osp_in_set_low_power_acquisition_parameters_pre(struct osp_in_set_low_power_acquisition_parameters* m)
 {
   m->payload.max_off_time = __REV(m->payload.max_off_time);
   m->payload.max_search_time = __REV(m->payload.max_search_time);
@@ -292,7 +292,7 @@ static void osp_in_set_low_power_acquisition_parameters_pre(struct osp_in_set_lo
     uint8_t location_method;      /* enum osp_location_method */
   } __PACKED__ payload;
 };
-static void osp_in_position_request_pre(struct osp_in_position_request* m)
+static inline void osp_in_position_request_pre(struct osp_in_position_request* m)
 {
   (void)m;
 }
@@ -324,7 +324,7 @@ enum osp_location_method {
     uint8_t info;
   } __PACKED__ payload;
 };
-static void osp_in_session_request_pre(struct osp_in_session_request* m)
+static inline void osp_in_session_request_pre(struct osp_in_session_request* m)
 {
   (void)m;
 }
@@ -348,7 +348,7 @@ struct osp_in_hardware_configuration_response {
     uint8_t network_enhancement_type;
   } __PACKED__ payload;
 };
-static void osp_in_hardware_configuration_response_pre(struct osp_in_hardware_configuration_response* m)
+static inline void osp_in_hardware_configuration_response_pre(struct osp_in_hardware_configuration_response* m)
 {
   m->payload.nominal_frequency_low = __REV(m->payload.nominal_frequency_low);
 }
@@ -390,7 +390,7 @@ struct osp_in_approximate_ms_position_response {
     uint8_t use_alt_aiding;
   } __PACKED__ payload;
 };
-static void osp_in_approximate_ms_position_response_pre(struct osp_in_approximate_ms_position_response* m)
+static inline void osp_in_approximate_ms_position_response_pre(struct osp_in_approximate_ms_position_response* m)
 {
   m->payload.lat = __REV(m->payload.lat);
   m->payload.lon = __REV(m->payload.lon);
@@ -485,7 +485,7 @@ struct osp_out_measure_navigation_data_out {
     uint8_t ch12_prn;
   } __PACKED__ payload;
 };
-static void osp_out_measure_navigation_data_out_post(osp_message_t* o)
+static void osp_out_measure_navigation_data_out_post(volatile osp_message_t* o)
 {
   struct osp_out_measure_navigation_data_out* m = (struct osp_out_measure_navigation_data_out*)o;
 
@@ -516,7 +516,7 @@ struct osp_out_clock_status_data {
     uint32_t extimated_gps_time; /* ms */
   } __PACKED__ payload;
 };
-static void osp_out_clock_status_data_post(osp_message_t* o)
+static void osp_out_clock_status_data_post(volatile osp_message_t* o)
 {
   struct osp_out_clock_status_data* m = (struct osp_out_clock_status_data*)o;
 
@@ -540,7 +540,7 @@ struct osp_out_ephemeris_data {
     uint16_t data[45];
   } __PACKED__ payload;
 };
-static void osp_out_ephemeris_data_post(osp_message_t* o)
+static void osp_out_ephemeris_data_post(volatile osp_message_t* o)
 {
   struct osp_out_ephemeris_data* m = (struct osp_out_ephemeris_data*)o;
 
@@ -561,7 +561,7 @@ struct osp_out_oktosend {
     uint8_t oktosend;
   } __PACKED__ payload;
 };
-static void osp_out_oktosend_post(osp_message_t* o)
+static void osp_out_oktosend_post(volatile osp_message_t* o)
 {
   (void)o;
 }
@@ -616,7 +616,7 @@ struct osp_out_geodetic_navigation_data {
     uint8_t additional_mode_info;
   } __PACKED__ payload;
 };
-static void osp_out_geodetic_navigation_data_post(osp_message_t* o)
+static void osp_out_geodetic_navigation_data_post(volatile osp_message_t* o)
 {
   struct osp_out_geodetic_navigation_data* m = (struct osp_out_geodetic_navigation_data*)o;
 
@@ -674,7 +674,7 @@ struct osp_out_1pps_time {
     uint8_t status;             /* enum osp_1pps_status */
   } __PACKED__ payload;
 };
-static void osp_out_1pps_time_post(osp_message_t* o)
+static void osp_out_1pps_time_post(volatile osp_message_t* o)
 {
   struct osp_out_1pps_time* m = (struct osp_out_1pps_time*)o;
 
@@ -702,7 +702,7 @@ struct osp_out_gpio_state {
     uint16_t gpio_state;        /* bitmapped */
   } __PACKED__ payload;
 };
-static void osp_out_gpio_state_post(osp_message_t* o)
+static void osp_out_gpio_state_post(volatile osp_message_t* o)
 {
   struct osp_out_gpio_state* m = (struct osp_out_gpio_state*)o;
 
@@ -760,7 +760,7 @@ struct osp_out_position_response {
     } svs[16];
   } __PACKED__ payload;
 };
-static void osp_out_position_response_post(osp_message_t* o)
+static void osp_out_position_response_post(volatile osp_message_t* o)
 {
   struct osp_out_position_response* m = (struct osp_out_position_response*)o;
 
@@ -800,7 +800,7 @@ struct osp_out_hw_config_req {
   struct {
   } __PACKED__ payload;
 };
-static void osp_out_hw_config_req_post(osp_message_t* o)
+static void osp_out_hw_config_req_post(volatile osp_message_t* o)
 {
   (void)o;
 }
@@ -822,7 +822,7 @@ struct osp_out_aiding_request {
     };
   } __PACKED__ payload;
 };
-static void osp_out_aiding_request_post(osp_message_t* o)
+static void osp_out_aiding_request_post(volatile osp_message_t* o)
 {
   (void)o;
 }
@@ -857,7 +857,7 @@ struct osp_out_cw_controller_output {
     };
   } __PACKED__ payload;
 };
-static void osp_out_cw_controller_output_post(osp_message_t* o)
+static void osp_out_cw_controller_output_post(volatile osp_message_t* o)
 {
   (void)o;
 }
@@ -875,7 +875,7 @@ struct osp_ { */
 
 /*   } __PACKED__ payload; */
 /* };
-static void osp__post(osp_message_t* o)
+static void osp__post(volatile osp_message_t* o)
 {
   struct osp_* m = (struct osp_*)o;
 
