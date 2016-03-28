@@ -139,7 +139,7 @@ void lf_clock_startup(void)
 #if USE_LFTIMER
   /* Setup XOSC  */
   system_clock_source_xosc32k_set_config(SYSTEM_CLOCK_EXTERNAL_CLOCK,
-                                         SYSTEM_XOSC32K_STARTUP_16384, /* ~500ms startup*/
+                                         SYSTEM_XOSC32K_STARTUP_4096, /* 100-200ms startup*/
                                          false,
                                          false,
                                          true,

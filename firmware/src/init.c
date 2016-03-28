@@ -81,8 +81,8 @@ void init(enum init_type init_t)
    * we need to switch to a stable low frequency clock right away.
    * --------------------------------------------------------------------------
    */
-  lf_clock_startup();              /* ~500ms startup */
-  gclk0_to_lf_clock();          /* switch, clocking at 32kHz now */
+  lf_clock_startup();              /* 100-200ms startup */
+  gclk0_to_lf_clock();             /* switch, clocking at 32kHz now */
   system_clock_source_disable(SYSTEM_CLOCK_SOURCE_OSC8M);
 
   /**
