@@ -141,16 +141,6 @@ static void _system_pinmux_config(PortGroup *const port,
   }
 }
 
-static void _system_pinmux_config_default(PortGroup *const port,
-					  const uint32_t pin_mask)
-{
-  _system_pinmux_config(port, pin_mask,
-			SYSTEM_PINMUX_GPIO,		/* Mux position */
-			SYSTEM_PINMUX_PIN_DIR_INPUT, 	/* Direction 	*/
-			SYSTEM_PINMUX_PIN_PULL_UP,	/* Pull-up/down */
-			false);				/* Powersave */
-}
-
 /**
  * Writes out a given configuration of a Port pin configuration to the hardware
  * module.
