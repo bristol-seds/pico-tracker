@@ -117,7 +117,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 /**
  * Run sequence n
  */
-void run_sequencer(uint32_t n)
+void run_sequencer(uint32_t n, uint32_t cycle_time_s)
 {
   struct tracker_datapoint* dp;
 
@@ -131,12 +131,15 @@ void run_sequencer(uint32_t n)
   telemetry_sequence(dp, n);
 
   /* Backlog */
-  if (gps_is_locked() == GPS_LOCKED) { /* gps is locked. we can use this data */
+  if ((gps_is_locked() == GPS_LOCKED) && /* gps is locked. we can use this data */
+      (cycle_time_s > 0)) {              /* and an actual cycle */
+
     /* Accumulator for backlog */
     accumulator_add(dp);
 
     /* Record */
-    if ((n % 15) == 10) {    /* Once per hour with 4 minute wakeup */
+    uint32_t rate = 3600 / cycle_time_s; /* once per hour */
+    if ((n % rate) == 0) {
 
       /* replace some values from this sample with averages */
       accumulator_read(dp);

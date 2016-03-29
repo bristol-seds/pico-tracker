@@ -26,6 +26,6 @@
 
 #include "samd20.h"
 
-void run_sequencer(uint32_t n);
+void run_sequencer(uint32_t n, uint32_t cycle_time_s);
 
 #endif /* SEQUENCER_H */

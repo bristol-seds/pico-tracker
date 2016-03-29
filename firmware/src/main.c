@@ -275,31 +275,30 @@ volatile uint8_t run_flag = 1;  /* run immediately after init */
 
 uint8_t in_cold_out = 1;        /* test temperature immediately after init */
 uint32_t cold_out_count = 0;
+uint32_t cycle_time_s = 0;
 
 /**
- * Sets the hibernate time in seconds
+ * Sets the cycle time in seconds
  */
-void set_hibernate_time(uint8_t cold_out)
+void set_cycle_time(uint8_t cold_out)
 {
-  uint32_t hibernate_time_s;
-
   if (cold_out == 0) {                    /* Normal operations */
     if (gps_is_locked() == GPS_NO_LOCK) { /* no lock  */
-      hibernate_time_s = 0;               /* shortest hibernate */
+      cycle_time_s = 0;               /* shortest hibernate */
 
     } else if ((get_battery_charge_state() != BATTERY_DISCHARGING) || /* plenty of power */
                (gps_get_flight_state() == GPS_FLIGHT_STATE_LAUNCH)) { /* or during launch */
-      hibernate_time_s = CYCLE_TIME_FAST;
+      cycle_time_s = CYCLE_TIME_FAST;
 
     } else {
-      hibernate_time_s = CYCLE_TIME_SLOW;
+      cycle_time_s = CYCLE_TIME_SLOW;
     }
   } else {                      /* cold out */
-    hibernate_time_s = COLD_OUT_SECONDS;
+    cycle_time_s = COLD_OUT_SECONDS;
   }
 
-  /* set this */
-  rtc_hibernate_time(hibernate_time_s);
+  /* hibernate until this time is up */
+  rtc_hibernate_time(cycle_time_s);
 }
 /**
  * Called when it's time to run again
@@ -349,12 +348,12 @@ int main(void)
           in_cold_out = 1;            /* cold */
 
         } else {
-          in_cold_out = 0;            /* ready to go! */
-          gps_init();                 /* init the gps! */
-          run_sequencer(n++);         /* run for the first time! */
+          in_cold_out = 0;                  /* ready to go! */
+          gps_init();                       /* init the gps! */
+          run_sequencer(n++, cycle_time_s); /* run for the first time! */
         }
       } else {
-        run_sequencer(n++);     /* Run */
+        run_sequencer(n++, cycle_time_s);   /* run */
       }
 
       /* Clocks off */
@@ -370,7 +369,7 @@ int main(void)
       hf_clock_disable();
 
       /* Hibernate timing */
-      set_hibernate_time(in_cold_out);
+      set_cycle_time(in_cold_out);
     }
 
     /* Idle */
