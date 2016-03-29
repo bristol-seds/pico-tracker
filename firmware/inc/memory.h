@@ -47,10 +47,10 @@
 #define BLOCK_SIZE	0x10000
 
 /**
- * Pages assigned to backlog. Currently 128 records
+ * Pages assigned to backlog. Currently 256 records
  */
 #define BACKLOG_START_PAGE	0x00
-#define BACKLOG_END_PAGE	0x7f
+#define BACKLOG_END_PAGE	0xff
 
 void mem_chip_erase(void);
 void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
