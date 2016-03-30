@@ -1,27 +1,35 @@
 # Parts List
 
+low-power-solar
+
 ----
 ### Active
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-|ATSAMD20E18A-MN|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 256 KB, 32 KB, 32, QFN|[2460535](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2460535)|1|U1
+|ATSAMD20E18A-MN|ATMEL - 32 Bit Microcontroller, SAM D Series, ARM Cortex-M0+, 48 MHz, 256 KB, 32 KB, 32 Pins, QFN|[2460535](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2460535)|1|U1
 |SI4461-C2A-GM|SILICON LABS - RF TRANSCEIVER, 0.142-1.05GHZ, HQFN-20|[2462636](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2462636)|1|U2 Si4461-C
 | Telit SE880 | GPS | [Sequoia](http://www.sequoia.co.uk/product.php?id=1761) [Digikey](http://www.digikey.co.uk/product-detail/en/SE880GPSR22R003/943-1028-1-ND/5050348) | 1 | U3
 |SST25WF040BT-40I/NP|MICROCHIP - FLASH, 4MBIT, 40MHZ, USON-8|[2414758](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2414758)|1|U4 memory 4Mbit
 |X1G0041310008 TG-5006CJ-17H 16.369MHZ|EPSON - CRYSTAL, TCXO, TG-5006CJ-17H, 16.369 MHZ|[2405790](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2405790)|1|U5 TCXO Si4xxx and SE880
+|TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U6 LDO for TXCO
 |ADM6823WYRJZ-RL7|ANALOG DEVICES - Supervisory Circuit, Manual Reset, Active-Low Reset, 1V-5.5Vin, SOT-23-5|[2457340](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2457340)|1|U7 watchdog Vth = 1.67V, t_WDmin = 1.12s
 |SN74LVC1G32DCKR|TEXAS INSTRUMENTS - OR Gate, LVC Family, 1 Gate, 2 Input, 32 mA, 1.65V to 5.5V, SC-70-5|[1470880](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1470880)|1|U8 or-gate, watchdog subsystem
+|TPS62243DRVT|TEXAS INSTRUMENTS - DC-DC CONV, BUCK, 0.3A, 2.25MHZ, SON-6|[2400648](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2400648) [595-TPS62243DRVT](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=595-TPS62243DRVT)|1|U9 Buck Converter DRVT = SON-6 TPS62243
+| SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U10, U11 lf clock, gps lf tcxo clock
+|LTC4070EMS8E#PBF|LINEAR TECHNOLOGY - BATTERY CHARGER, LIION/POLY, 8MSOP|[1839141](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1839141)|1|U12 Li-ion battery limit LTC4070
+|ADP1614ACPZ-1.3-R7|ANALOG DEVICES - DC-DC Switching Boost (Step Up) Regulator, Adjustable, 2.5V-5.5Vin, 3.6V-20Vout, 4Aout, LFCSP-10|[2191713](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2191713)|1|U13 ADP1614ACPZ-1.3 7.5V Boost Reg
+|TPS71533DCKR|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 3V to 24V, 415mV Dropout, 3.3Vout, 50mAout, SC-70-5|[1135383](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135383)|2|U14, U15 TPS71533DCKR Fixed LDO 3.3V, 24Vin max, 50mA
+|74LVC1G04GW,125|NXP - Inverter Gate, LVC Family, Ultra High Speed, 1 Input, 32 mA, 1.65V to 5.5V, TSSOP-5|[1631683](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1631683)|3|U16, U17, U18 Inverter
+|AS213-92LF|SKYWORKS SOLUTIONS - IC, SWITCH, RF, SPDT, 0.1-3.0GHZ|[1753766](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1753766)|1|U19 SPDT RF Switch 1.8V
+| SKY13373-460LF | 0.1-6.0 GHz SP3T Switch  | [Mouser](http://www.mouser.co.uk/ProductDetail/Skyworks-Solutions-Inc/SKY13373-460LF/) [Digikey](http://www.digikey.com/product-detail/en/skyworks-solutions-inc/SKY13373-460LF/863-1768-1-ND/) | 2 | U20 SP3T RF switch
 
 
-|TPS73118DBVT|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 1.7V to 5.5V, 30mV Dropout, 1.8Vout, 150mAout, SOT-23-5|[1135388](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135388)|1|U11 LDO for TXCO
-| SIT1552AI-JF-DCC-32.768 | 32.768kHz TCXO, 1.5 - 3.63 V, 1.5 x 0.8mm CSP  | [Mouser](http://www.mouser.co.uk/ProductDetail/SiTime/SIT1552AI-JE-DCC-32768E/?qs=sGAEpiMZZMt8oz%2fHeiymANsH3mGAL6UqdcmVNtl5EmRPF6ciZe04Kw%3d%3d) [Digikey](http://www.digikey.co.uk/product-detail/en/SIT1552AI-JF-DCC-32.768D/1473-1242-1-ND/5035517) | 2 | U13, U14 lf clock, gps lf tcxo clock
-|NX2301P|NXP - MOSFET Transistor, P Channel, -2 A, -20 V, 0.1 ohm, -4.5 V, -750 mV|[1894738](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1894738)|1|Q1 P-type MOSFET for GPS switch
-
+|NX2301P|NXP - MOSFET Transistor, P Channel, -2 A, -20 V, 0.1 ohm, -4.5 V, -750 mV|[1894738](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1894738)|2|Q1, Q2 NX2301 P-type MOSFET
 |PBSS4130PAN|NXP - Bipolar (BJT) Single Transistor, Dual NPN, 30 V, 165 MHz, 2 W, 1 A, 180|[2291481](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2291481)|1|Q5 Dual NPN
-
-|TPS71533DCKR|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 3V to 24V, 415mV Dropout, 3.3Vout, 50mAout, SC-70-5|[1135383](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135383)|2|U TPS71533DCKR Fixed LDO 3.3V, 24Vin max, 50mA
 |TDZ5V6J|NXP - Zener Single Diode, 5.6 V, 500 mW, SOD-323F, 2 %, 2 Pins, 150 Â°C|[2069517](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2069517)|1|DZ1 5V6 500mW
+
+
 ----
 
 ### Passives
@@ -63,7 +71,7 @@
 | ---  | ---         | ---       | ---               | ---
 |20021121-00010C4LF.|AMPHENOL FCI - Board-To-Board Connector, Right Angle, Minitek127 20021121 Series, Surface Mount, Header, 10|[1865279](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1865279) [649-202112100010C4LF](http://uk.mouser.com/Search/Refine.aspx?N=1323043&Keyword=649-202112100010C4LF)|1|JTAG1
 |742792731|WURTH ELEKTRONIK - FERRITE BEAD, 0.09OHM, 1.2A, 0402|[1961698](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1961698)|3|FB1, FB2, FB3
-|CG0603MLC-05LE|BOURNS - ESD Protection Device, 25 V, 5 V, 0603, 2 Pins|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|0|ESD1, ESD2
+|CG0603MLC-05LE|BOURNS - ESD Protection Device, 25 V, 0603, 2 Pins, 5 V|[1828732](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828732)|0|ESD1, ESD2
 |B57861S0103F040|EPCOS - THERMISTOR, 10K, 1%, NTC, RAD|[679446](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=679446)|1|External Thermistor
 | | Antenna Wire | [ebay](http://www.ebay.co.uk/itm/Ernie-Ball-Custom-Gauge-Guitar-Single-Strings-Electric-or-Acoustic-Pack-6-13-/360959212478 ) | 1 | Ernie Ball .013
 | | Energizer Ultimate Lithium AAA | [datasheet](http://data.energizer.com/PDFs/l92.pdf) | 1 | ~1200mAh
