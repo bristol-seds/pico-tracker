@@ -241,7 +241,7 @@
  * ARISS APRS
  * Geofence used is only "no aprs"
  */
-#define ARISS_ENABLE		1
+#define ARISS_ENABLE		0
 #define ARISS_USE_PREDICT	0
 #define ARISS_USE_GEOFENCE	0
 #define ARISS_FREQUENCY		145825000

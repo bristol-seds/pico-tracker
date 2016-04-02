@@ -202,13 +202,13 @@ void aprs_telemetry(struct tracker_datapoint* dp, uint32_t n)
   telemetry_aprs_set_frequency(location_aprs_frequency());
 
   /* Set rf path */
-  if ((get_battery_use_state() == BATTERY_GOOD) &&           /* battery good,       */
-      (get_battery_charge_state() != BATTERY_DISCHARGING) && /* plenty of power and */
-      ((n % 4) == 0)) {                                      /* one-in-four times   */
-    telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* try the amplified path */
-  } else {
+//  if ((get_battery_use_state() == BATTERY_GOOD) &&           /* battery good,       */
+//      (get_battery_charge_state() != BATTERY_DISCHARGING) && /* plenty of power and */
+//      ((n % 4) == 0)) {                                      /* one-in-four times   */
+//    telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* try the amplified path */
+//  } else {
     telemetry_aprs_set_rf_path(SI_RF_PATH_BYPASS);
-  }
+//  }
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);
