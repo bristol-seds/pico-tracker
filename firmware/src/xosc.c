@@ -74,7 +74,9 @@ void hf_clock_enable(void)
 
   /* Enable TCXO if required */
 #ifdef SI4xxx_TCXO_REG_EN_PIN
+#if XOSC_TCXO_SHUTDOWN_EN
   port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 1);
+#endif
 #endif
 
   /* Setup XOSC  */
@@ -114,7 +116,9 @@ void hf_clock_disable(void)
 
   /* Disable TCXO to save power */
 #ifdef SI4xxx_TCXO_REG_EN_PIN
+#if XOSC_TCXO_SHUTDOWN_EN
   port_pin_set_output_level(SI4xxx_TCXO_REG_EN_PIN, 0);
+#endif
 #endif
 
 #else

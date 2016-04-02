@@ -203,30 +203,31 @@
 /**
  * LF Clock
  */
-#define USE_LFTIMER		1
+#define USE_LFTIMER			1
 
 /**
  * HF Clock
  */
-#define USE_XOSC		1
-#define XOSC_FREQUENCY		16369000
-#define XOSC_GCLK_DIVIDE	2         /* ~8MHz on GCLK */
-#define OSC8M_GCLK_DIVIDE	1         /* ~8MHz on GCLK */
+#define USE_XOSC				1
+#define XOSC_TCXO_SHUTDOWN_EN	0
+#define XOSC_FREQUENCY			16369000
+#define XOSC_GCLK_DIVIDE		2         /* ~8MHz on GCLK */
+#define OSC8M_GCLK_DIVIDE		1         /* ~8MHz on GCLK */
 
 /**
  * Telemetry
  */
-#define TELEMETRY_ENABLE	1
+#define TELEMETRY_ENABLE		1
 #define TELEMETRY_USE_GEOFENCE	1
-#define TELEMETRY_FREQUENCY	434600000
-#define TELEMETRY_POWER		RF_POWER_8dBm
+#define TELEMETRY_FREQUENCY		434600000
+#define TELEMETRY_POWER			RF_POWER_8dBm
 
 /**
  * APRS
  */
-#define APRS_ENABLE		1
+#define APRS_ENABLE			1
 #define APRS_USE_GEOFENCE	1
-#define APRS_POWER		RF_POWER_14dBm
+#define APRS_POWER			RF_POWER_14dBm
 
 /**
  * ARISS APRS

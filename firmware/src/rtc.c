@@ -66,12 +66,14 @@ void rtc_init(void)
  * =============================================================================
  */
 
-uint32_t tick = 0;
-uint32_t hibernate_time_s = 0;
+#define HIBERNATE_TIME_MAX	(3600) /* Hibernate should always be set lower that this */
+volatile uint32_t hibernate_time_s = 0;
 void run_kick(void);
 
+uint32_t tick = 0;
+
 /**
- * Set hibernate time
+ * Set hibernate time. Must be called on every iteration of the timer
  */
 void rtc_hibernate_time(uint32_t time_s)
 {
@@ -87,11 +89,12 @@ void RTC_Handler(void)
 
     /* Check sleep time  */
     if (tick >= hibernate_time_s) {
-      /* Zero tick */
-      tick = 0;
+      /* Reset */
+      tick = 0;                              /* zero tick */
+      hibernate_time_s = HIBERNATE_TIME_MAX; /* set hibernate to max */
 
       /* Do something */
-
+      run_kick();
     } else {
       /* Increment tick */
       tick++;

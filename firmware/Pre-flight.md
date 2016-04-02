@@ -13,6 +13,7 @@
 - In `hw_config.h`
   - `USE_XOSC` is set. Otherwise the symbol timing frequency will be
     somewhat inaccurate.
+  - `XOSC_TCXO_SHUTDOWN_EN` should be set for lowest power if required
   - `RF_TX_ENABLE` is set
   - `APRS_ENABLE` is set if APRS is to be used on the flight
   - `APRS_USE_GEOFENCE` is set

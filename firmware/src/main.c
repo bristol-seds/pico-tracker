@@ -337,11 +337,14 @@ int main(void)
       gclk0_to_hf_clock();
       system_set_sleepmode(SYSTEM_SLEEPMODE_IDLE_2); /* Low power */
 
-      /* Check temperature sensor */
-      if (in_cold_out == 1) {
-        start_adc_sequence();
-        while (is_adc_sequence_done() == 0); /* wait for adc */
 
+
+      /* Check sensors */
+      start_adc_sequence();
+      while (is_adc_sequence_done() == 0); /* wait for adc */
+
+
+      if (in_cold_out == 1) {
         external_temperature = thermistor_ratio_to_temperature(get_thermistor()); /* read */
         if ((external_temperature < COLD_OUT_TEMPERATURE) && /* check temperature */
             (cold_out_count++ < COLD_OUT_COUNT_MAX)) {       /* and max iterations */
@@ -356,7 +359,11 @@ int main(void)
         run_sequencer(n++, cycle_time_s);   /* run */
       }
 
-      /* Clocks off */
+      /* Hibernate timing */
+      set_cycle_time(in_cold_out);
+
+
+
       system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
 
       /* Disable to save power */
@@ -364,12 +371,9 @@ int main(void)
                                   PM_APBAMASK_EIC |
                                   PM_APBAMASK_PAC0 |
                                   PM_APBAMASK_WDT);
-
+      /* Clocks off */
       gclk0_to_lf_clock();
       hf_clock_disable();
-
-      /* Hibernate timing */
-      set_cycle_time(in_cold_out);
     }
 
     /* Idle */
