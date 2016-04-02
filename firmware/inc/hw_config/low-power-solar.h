@@ -148,7 +148,15 @@
  */
 #define RECHARGABLE_BATTERY	1
 #define CHG_ENABLE_PIN		PIN_PA27
-#define RECHARGABLE_MIN_V	(2.6)
+#define RECHARGABLE_MIN_V	(2.7)
+
+/**
+ * Power Bus
+ * bus is currently called solar
+ */
+/* bus is low when <2.5V, which corresponds to ~2.7V battery voltage */
+/* usually evaluated with minimal load on the battery  */
+#define IS_BUS_LOW(dp)		(get_solar() < 2.5)
 
 /**
  * Cold out

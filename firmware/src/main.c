@@ -343,25 +343,31 @@ int main(void)
       start_adc_sequence();
       while (is_adc_sequence_done() == 0); /* wait for adc */
 
-
-      if (in_cold_out == 1) {
-        external_temperature = thermistor_ratio_to_temperature(get_thermistor()); /* read */
-        if ((external_temperature < COLD_OUT_TEMPERATURE) && /* check temperature */
-            (cold_out_count++ < COLD_OUT_COUNT_MAX)) {       /* and max iterations */
-          in_cold_out = 1;            /* cold */
-
-        } else {
-          in_cold_out = 0;                  /* ready to go! */
-          gps_init();                       /* init the gps! */
-          run_sequencer(n++, cycle_time_s); /* run for the first time! */
-        }
+#ifdef IS_BUS_LOW
+      if (IS_BUS_LOW()) {
+        set_cycle_time(1);      /* set cycle time for cold out */
       } else {
-        run_sequencer(n++, cycle_time_s);   /* run */
+#endif
+        if (in_cold_out == 1) {
+          external_temperature = thermistor_ratio_to_temperature(get_thermistor()); /* read */
+          if ((external_temperature < COLD_OUT_TEMPERATURE) && /* check temperature */
+              (cold_out_count++ < COLD_OUT_COUNT_MAX)) {       /* and max iterations */
+            in_cold_out = 1;    /* cold */
+
+          } else {
+            in_cold_out = 0;                  /* ready to go! */
+            gps_init();                       /* init the gps! */
+            run_sequencer(n++, cycle_time_s); /* run for the first time! */
+          }
+        } else {
+          run_sequencer(n++, cycle_time_s);   /* run */
+        }
+
+        set_cycle_time(in_cold_out); /* set cycle time as required */
+
+#ifdef IS_BUS_LOW
       }
-
-      /* Hibernate timing */
-      set_cycle_time(in_cold_out);
-
+#endif
 
 
       system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
