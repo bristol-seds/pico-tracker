@@ -2882,9 +2882,9 @@ Covered vias can be set in Masks (Limit).
 <element name="R27" library="microbuilder_v3" package="_0402" value="10kΩ" x="23.5" y="58" rot="R180"/>
 <element name="LED2" library="led" package="CHIPLED_0603" value="GREEN" x="12.75" y="65.5" rot="R180"/>
 <element name="R28" library="microbuilder_v3" package="_0402" value="330Ω" x="12.75" y="67.875" rot="R90"/>
-<element name="L12" library="microbuilder_v3" package="_0402@2" value="TBD" x="20" y="7.5"/>
-<element name="C4" library="microbuilder_v3" package="_0402" value="TBD" x="18" y="7.5" rot="R180"/>
-<element name="C48" library="microbuilder_v3" package="_0402" value="TBD" x="22" y="7.5"/>
+<element name="L12" library="microbuilder_v3" package="_0402@2" value="0Ω" x="20" y="7.5"/>
+<element name="C4" library="microbuilder_v3" package="_0402" value="DNP" x="18" y="7.5" rot="R180"/>
+<element name="C48" library="microbuilder_v3" package="_0402" value="DNP" x="22" y="7.5"/>
 <element name="R30" library="microbuilder_v3" package="_0402" value="10kΩ" x="28.75" y="69.75"/>
 <element name="DZ1" library="microbuilder_v3" package="SOD-323" value="5V6, 500mW" x="26" y="70.875"/>
 <element name="JP3" library="SparkFun" package="1X02_LOCK" value="" x="28" y="78" rot="R180"/>

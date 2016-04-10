@@ -9893,9 +9893,9 @@ Metric Code Size 5664</description>
 <part name="LED2" library="led" deviceset="LED" device="CHIPLED_0603" value="GREEN"/>
 <part name="R28" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="330Ω"/>
 <part name="U$115" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="L12" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="TBD"/>
-<part name="C4" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="TBD"/>
-<part name="C48" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="TBD"/>
+<part name="L12" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="0Ω"/>
+<part name="C4" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
+<part name="C48" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
 <part name="U$116" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$117" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="R30" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
