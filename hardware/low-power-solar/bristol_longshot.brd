@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.3.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -32,10 +32,10 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
@@ -2608,9 +2608,6 @@ Covered vias can be set in Masks (Limit).
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
-<param name="AutoGrid" value="1"/>
-<param name="Efforts" value="0"/>
-<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -2853,8 +2850,8 @@ Covered vias can be set in Masks (Limit).
 <attribute name="PACKAGE" value="SOT-5" x="13.625" y="32.625" size="1.016" layer="27" font="vector" ratio="12" rot="R90" display="off"/>
 <attribute name="SUPPLIER" value="NXP" x="13.625" y="32.625" size="1.016" layer="27" font="vector" ratio="12" rot="R90" display="off"/>
 </element>
-<element name="R20" library="microbuilder_v3" package="_0603MP" value="" x="18.125" y="25.625" rot="R90"/>
-<element name="R21" library="microbuilder_v3" package="_0603MP" value="" x="17.125" y="25.625" rot="R90"/>
+<element name="R20" library="microbuilder_v3" package="_0603MP" value="22Ω" x="18.125" y="25.625" rot="R90"/>
+<element name="R21" library="microbuilder_v3" package="_0603MP" value="22Ω" x="17.125" y="25.625" rot="R90"/>
 <element name="C49" library="microbuilder_v3" package="_0402" value="100nF" x="24" y="59.625" rot="R270"/>
 <element name="D4" library="RB161M" package="RB161M" value="RB161M" x="23.375" y="61.875" rot="R270"/>
 <element name="D5" library="RB161M" package="RB161M" value="RB161M" x="25.25" y="64.75"/>
@@ -2890,7 +2887,7 @@ Covered vias can be set in Masks (Limit).
 <element name="JP3" library="SparkFun" package="1X02_LOCK" value="" x="28" y="78" rot="R180"/>
 <element name="JP1" library="SparkFun" package="1X02_LOCK" value="BATTERY_TERMINAL" x="4" y="72" rot="R270"/>
 <element name="JP2" library="SparkFun" package="1X02_LOCK" value="SOLAR_TERMINAL" x="8" y="72" rot="R270"/>
-<element name="FB4" library="microbuilder_v3" package="_0603" value="" x="22.5" y="66"/>
+<element name="FB3" library="microbuilder_v3" package="_0603" value="" x="22.5" y="66"/>
 <element name="R31" library="microbuilder_v3" package="_0402" value="1kΩ" x="13.25" y="39.375" rot="R180"/>
 <element name="R32" library="microbuilder_v3" package="_0402" value="1kΩ" x="13.25" y="34.875" rot="R180"/>
 <element name="C34" library="microbuilder_v3" package="_0402" value="100nF" x="23.125" y="34.875" rot="R180"/>
@@ -3661,6 +3658,7 @@ Covered vias can be set in Masks (Limit).
 <wire x1="22.125" y1="38.383" x2="22.117" y2="38.375" width="0.4" layer="1"/>
 <wire x1="22.117" y1="38.375" x2="22.117" y2="38.427940625" width="0.4" layer="1"/>
 <wire x1="22.117" y1="38.427940625" x2="21.379" y2="36.939940625" width="0.4" layer="1" curve="-30"/>
+<wire x1="21.379" y1="36.939940625" x2="21.378996875" y2="36.939940625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FILTER2">
 <contactref element="L4" pad="1"/>
@@ -3905,7 +3903,7 @@ Covered vias can be set in Masks (Limit).
 <contactref element="R15" pad="2"/>
 <wire x1="19.5" y1="66.2" x2="19.8" y2="66.2" width="0.4" layer="1"/>
 <wire x1="19.8" y1="66.2" x2="20" y2="66" width="0.4" layer="1"/>
-<contactref element="FB4" pad="1"/>
+<contactref element="FB3" pad="1"/>
 <wire x1="21.738" y1="66" x2="20.5" y2="66" width="0.4" layer="1"/>
 <wire x1="20.5" y1="66" x2="20" y2="66" width="0.4" layer="1"/>
 <wire x1="20.5" y1="65.383" x2="20.5" y2="66" width="0.4" layer="1"/>
@@ -4045,7 +4043,7 @@ Covered vias can be set in Masks (Limit).
 <via x="12.75" y="46.125" extent="1-16" drill="0.3"/>
 <wire x1="12.75" y1="46.125" x2="12.5" y2="46.125" width="0.4" layer="16"/>
 <wire x1="12.75" y1="45.258" x2="12.75" y2="46.125" width="0.4" layer="1"/>
-<contactref element="FB4" pad="2"/>
+<contactref element="FB3" pad="2"/>
 <wire x1="25" y1="64.25" x2="23.387" y2="65.863" width="0.4" layer="1"/>
 <wire x1="29.0625" y1="62.1875" x2="29.125" y2="62.25" width="0.4" layer="1"/>
 <wire x1="29.125" y1="62.25" x2="26.625" y2="62.25" width="0.4" layer="1"/>

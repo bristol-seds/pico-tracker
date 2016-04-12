@@ -22,7 +22,7 @@ low-power-solar
 1135383 2 U14, U15  TPS71533DCKR Fixed LDO 3.3V, 24Vin max, 50mA
 1631683 3 U16, U17, U18 Inverter
 1753766 1 U19 SPDT RF Switch 1.8V
-| SKY13373-460LF | 0.1-6.0 GHz SP3T Switch  | [Mouser](http://www.mouser.co.uk/ProductDetail/Skyworks-Solutions-Inc/SKY13373-460LF/) [Digikey](http://www.digikey.com/product-detail/en/skyworks-solutions-inc/SKY13373-460LF/863-1768-1-ND/) | 2 | U20 SP3T RF switch
+| SKY13373-460LF | 0.1-6.0 GHz SP3T Switch  | [Mouser](http://www.mouser.co.uk/ProductDetail/Skyworks-Solutions-Inc/SKY13373-460LF/) [Digikey](http://www.digikey.com/product-detail/en/skyworks-solutions-inc/SKY13373-460LF/863-1768-1-ND/) | 1 | U20 SP3T RF switch
 1894738 2 Q1, Q2 NX2301 P-type MOSFET
 1972673 2 Q3, Q4 BSS84 P-channel MOSFET
 2291481 1 Q5 Dual NPN
@@ -61,15 +61,14 @@ low-power-solar
 2072757 1 20k
 1358083 2 33k
 2447215 1 75k
-2483832 2 100k 0.1%
-2331442 3 100k
+2483832 1 100k 0.1%
+2331442 4 100k
 2447127 3 1M
 
 ## Capacitors
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-
 1828874 2 8.2pF
 1758945 2 15pF
 1758953 1 27pF

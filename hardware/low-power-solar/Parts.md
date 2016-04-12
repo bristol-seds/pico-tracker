@@ -22,7 +22,7 @@ low-power-solar
 |TPS71533DCKR|TEXAS INSTRUMENTS - Fixed LDO Voltage Regulator, 3V to 24V, 415mV Dropout, 3.3Vout, 50mAout, SC-70-5|[1135383](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1135383)|2|U14, U15 TPS71533DCKR Fixed LDO 3.3V, 24Vin max, 50mA
 |74LVC1G04GW,125|NXP - Inverter Gate, LVC Family, Ultra High Speed, 1 Input, 32 mA, 1.65V to 5.5V, TSSOP-5|[1631683](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1631683)|3|U16, U17, U18 Inverter
 |AS213-92LF|SKYWORKS SOLUTIONS - IC, SWITCH, RF, SPDT, 0.1-3.0GHZ|[1753766](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1753766)|1|U19 SPDT RF Switch 1.8V
-| SKY13373-460LF | 0.1-6.0 GHz SP3T Switch  | [Mouser](http://www.mouser.co.uk/ProductDetail/Skyworks-Solutions-Inc/SKY13373-460LF/) [Digikey](http://www.digikey.com/product-detail/en/skyworks-solutions-inc/SKY13373-460LF/863-1768-1-ND/) | 2 | U20 SP3T RF switch
+| SKY13373-460LF | 0.1-6.0 GHz SP3T Switch  | [Mouser](http://www.mouser.co.uk/ProductDetail/Skyworks-Solutions-Inc/SKY13373-460LF/) [Digikey](http://www.digikey.com/product-detail/en/skyworks-solutions-inc/SKY13373-460LF/863-1768-1-ND/) | 1 | U20 SP3T RF switch
 |NX2301P|NXP - MOSFET Transistor, P Channel, -2 A, -20 V, 0.1 ohm, -4.5 V, -750 mV|[1894738](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1894738)|2|Q1, Q2 NX2301 P-type MOSFET
 |BSS84AK|NXP - MOSFET Transistor, P Channel, -180 mA, -50 V, 4.5 ohm, -10 V, -1.6 V|[1972673](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1972673)|2|Q3, Q4 BSS84 P-channel MOSFET
 |PBSS4130PAN|NXP - Bipolar (BJT) Single Transistor, Dual NPN, 30 V, 165 MHz, 2 W, 1 A, 180|[2291481](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2291481)|1|Q5 Dual NPN
@@ -58,18 +58,17 @@ low-power-solar
 |CRG0402F1K0|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 1 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331474](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331474)|4|1k
 |MCMR04X472 JTL|MULTICOMP - Surface Mount Chip Resistor, Ceramic, MCMR Series, 4.7 kohm, 62.5 mW, Â± 5%, 50 V|[2073069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2073069)|1|4.7k
 |MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|9|10k
-|MCMR04X203 JTL|MULTICOMP - Surface Mount Chip Resistor, Ceramic, MCMR Series, 20 kohm, 62.5 mW, Â± 5%, 50 V, 0402 [1005 Metric]|[2072757](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2072757)|1|20k
+|MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[2072757](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2072757)|1|20k
 |MC00625W0402133K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 33 kohm, 62.5 mW, Â± 1%, 50 V|[1358083](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358083)|2|33k
 |MCWR04X7502FTL|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MCWR Series, 75 kohm, 62.5 mW, Â± 1%, 50 V|[2447215](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2447215)|1|75k
-|CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|2|100k 0.1%
-|CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|3|100k
+|CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|1|100k 0.1%
+|CRG0402F100K|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 100 kohm, 63 mW, Â± 1%, 50 V|[2331442](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331442)|4|100k
 |MCWR04X1004FTL|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MCWR Series, 1 Mohm, 62.5 mW, Â± 1%, 50 V|[2447127](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2447127)|3|1M
 
 ## Capacitors
 
 | Part | Description | Supplier | Quantity Required | Notes
 | ---  | ---         | ---       | ---               | ---
-
 |GRM1555C1H8R2CA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 8.2 pF, Â± 0.25pF, C0G / NP0, 50 V, 0402 [1005 Metric]|[1828874](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1828874)|2|8.2pF
 |MC0402N150J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 15 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758945](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758945)|2|15pF
 |MC0402N270J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 27 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758953](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758953)|1|27pF

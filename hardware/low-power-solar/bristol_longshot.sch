@@ -9865,8 +9865,8 @@ Metric Code Size 5664</description>
 <part name="U18" library="74LVC1G04GW_inverter" deviceset="74LVC1G04GW" device=""/>
 <part name="U$110" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="U$111" library="microbuilder_v3" deviceset="1.8V" device=""/>
-<part name="R20" library="microbuilder_v3" deviceset="RESISTOR" device="_0603MP"/>
-<part name="R21" library="microbuilder_v3" deviceset="RESISTOR" device="_0603MP"/>
+<part name="R20" library="microbuilder_v3" deviceset="RESISTOR" device="_0603MP" value="22Ω"/>
+<part name="R21" library="microbuilder_v3" deviceset="RESISTOR" device="_0603MP" value="22Ω"/>
 <part name="C49" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
 <part name="U$112" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="D4" library="RB161M" deviceset="RB161M" device=""/>
@@ -9904,7 +9904,7 @@ Metric Code Size 5664</description>
 <part name="JP1" library="SparkFun" deviceset="M02" device="LOCK" value="BATTERY_TERMINAL"/>
 <part name="JP2" library="SparkFun" deviceset="M02" device="LOCK" value="SOLAR_TERMINAL"/>
 <part name="U$91" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="FB4" library="microbuilder_v3" deviceset="FERRITE" device="_0603"/>
+<part name="FB3" library="microbuilder_v3" deviceset="FERRITE" device="_0603"/>
 <part name="R31" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
 <part name="R32" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="1kΩ"/>
 <part name="U$118" library="microbuilder_v3" deviceset="1.8V" device=""/>
@@ -10312,7 +10312,7 @@ disable reg</text>
 <instance part="JP1" gate="G$1" x="35.56" y="17.78" rot="MR180"/>
 <instance part="JP2" gate="G$1" x="96.52" y="17.78" rot="MR180"/>
 <instance part="U$91" gate="G$1" x="106.68" y="292.1"/>
-<instance part="FB4" gate="G$1" x="472.44" y="88.9" rot="R90"/>
+<instance part="FB3" gate="G$1" x="472.44" y="88.9" rot="R90"/>
 <instance part="R31" gate="G$1" x="1066.8" y="236.22" rot="R90"/>
 <instance part="R32" gate="G$1" x="1066.8" y="193.04" rot="R90"/>
 <instance part="U$118" gate="G$1" x="1066.8" y="246.38" rot="MR0"/>
@@ -11380,7 +11380,7 @@ disable reg</text>
 <pinref part="R15" gate="G$1" pin="2"/>
 <wire x1="472.44" y1="78.74" x2="472.44" y2="81.28" width="0.1524" layer="91"/>
 <junction x="472.44" y="81.28"/>
-<pinref part="FB4" gate="G$1" pin="P$1"/>
+<pinref part="FB3" gate="G$1" pin="P$1"/>
 </segment>
 </net>
 <net name="SE_VBB" class="0">
@@ -11509,7 +11509,7 @@ disable reg</text>
 <segment>
 <pinref part="U$70" gate="G$1" pin="1.8V"/>
 <wire x1="472.44" y1="96.52" x2="472.44" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="FB4" gate="G$1" pin="P$2"/>
+<pinref part="FB3" gate="G$1" pin="P$2"/>
 </segment>
 <segment>
 <pinref part="JTAG1" gate="G$1" pin="1"/>
