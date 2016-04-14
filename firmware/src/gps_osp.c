@@ -653,11 +653,15 @@ uint32_t gd_count = 0;
 uint32_t gd_nolock_count = 0;
 #define GD_NOLOCK_COUNT_MAX (10) /* 10 minutes will always be enough to get a lock */
 
-/* Invalid if position is outside the range we expect */
+/* Position invalid */
 uint8_t gd_invalid_count = 0;
 #define GD_INVALID_COUNT_MAX	(5)
+/* It may be outside the rannge of altitudes we expect */
 #define GD_ALTITUDE_50M		(50*1000)       /* mm */
 #define GD_ALTITUDE_20KM	(20*1000*1000)  /* mm */
+/* Or it may be _exactly_ the same as the previous, which is unexpected */
+int32_t gd_last_latitude, gd_last_longitude;
+int32_t gd_last_altitude;
 
 #define GD_INVALID_ALTITUDE_MIN GD_ALTITUDE_50M
 #define GD_INVALID_ALTITUDE_MAX GD_ALTITUDE_20KM
@@ -697,15 +701,23 @@ struct gps_data_t gps_get_data_wrapped(void)
     gd_nolock_count = 0;
 
     /* if we do have a lock, might still be invalid */
-    if ((data.altitude < GD_INVALID_ALTITUDE_MIN) ||
-        (data.altitude > GD_INVALID_ALTITUDE_MAX)) {
+    if (((data.altitude < GD_INVALID_ALTITUDE_MIN) ||
+         (data.altitude > GD_INVALID_ALTITUDE_MAX)) || /* altitude out of range */
+        ((data.latitude  == gd_last_latitude ) &&
+         (data.longitude == gd_last_longitude) &&
+         (data.altitude  == gd_last_altitude))) { /* OR _all_ position values _exactly_ as before */
       gd_invalid_count++;
     } else {
       /* everything is working well */
       gd_invalid_count = 0;
-      gd_reinit_count = 0;
+      gd_reinit_count  = 0;
     }
   }
+
+  /* record values */
+  gd_last_latitude  = data.latitude;
+  gd_last_longitude = data.longitude;
+  gd_last_altitude  = data.altitude;
 
   return data;
 }
