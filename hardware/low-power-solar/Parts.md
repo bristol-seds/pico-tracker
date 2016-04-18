@@ -58,7 +58,7 @@ low-power-solar
 |CRG0402F1K0|TE CONNECTIVITY - Surface Mount Chip Resistor, Thick Film, CRG Series, 1 kohm, 63 mW, Â± 1%, 50 V, 0402 [1005 Metric]|[2331474](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2331474)|4|1k
 |MCMR04X472 JTL|MULTICOMP - Surface Mount Chip Resistor, Ceramic, MCMR Series, 4.7 kohm, 62.5 mW, Â± 5%, 50 V|[2073069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2073069)|1|4.7k
 |MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[1358069](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358069)|9|10k
-|MC00625W0402110K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 10 kohm, 62.5 mW, Â± 1%, 50 V|[2072757](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2072757)|1|20k
+|MCMR04X203 JTL|MULTICOMP - Surface Mount Chip Resistor, Ceramic, MCMR Series, 20 kohm, 62.5 mW, Â± 5%, 50 V, 0402 [1005 Metric]|[2072757](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2072757)|1|20k
 |MC00625W0402133K|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MC Series, 33 kohm, 62.5 mW, Â± 1%, 50 V|[1358083](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1358083)|2|33k
 |MCWR04X7502FTL|MULTICOMP - Surface Mount Chip Resistor, Thick Film, MCWR Series, 75 kohm, 62.5 mW, Â± 1%, 50 V|[2447215](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2447215)|1|75k
 |CPF-A-0402B100KE1|TE CONNECTIVITY - Surface Mount Chip Resistor, Thin Film, AEC-Q200 CPF-A Series, 100 kohm, 62.5 mW, Â± 0.1%, 25 V|[2483832](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2483832)|1|100k 0.1%
@@ -76,7 +76,7 @@ low-power-solar
 |MC0402N560J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 56 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758961](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758961)|2|56pF
 |MC0402N101J500CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 100 pF, Â± 5%, C0G / NP0, 50 V, 0402 [1005 Metric]|[1758969](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758969)|3|100pF
 |GRM155R71E103KA01D|MURATA - SMD Multilayer Ceramic Capacitor, GRM Series, 0.01 ÂµF, Â± 10%, X7R, 25 V, 0402 [1005 Metric]|[8819734](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=8819734)|6|10nF
-|0805B103K101CT|WALSIN - SMD Multilayer Ceramic Capacitor, 0.01 ÂµF, Â± 10%, X7R, 100 V, 0805 [2012 Metric]|[2496937](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2496937)|1|1nF 0805
+|0805B103K101CT|WALSIN - SMD Multilayer Ceramic Capacitor, 0.01 ÂµF, Â± 10%, X7R, 100 V, 0805 [2012 Metric]|[2496937](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=2496937)|1|10nF 0805
 |MC0402B183K160CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.018 ÂµF, Â± 10%, X7R, 16 V, 0402 [1005 Metric]|[1758889](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1758889)|1|18nF
 |MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|1|47nF
 |MC0402X104K100CT|MULTICOMP - SMD Multilayer Ceramic Capacitor, MC Series, 0.1 ÂµF, Â± 10%, X5R, 10 V, 0402 [1005 Metric]|[1759380](http://uk.farnell.com/webapp/wcs/stores/servlet/Search?st=1759380)|14|100nF
