@@ -47,7 +47,7 @@ class gps_baud_error_tc:
         (Intended {} Hz, register = {:#06x}, error = {:.3f} Hz)""".format(
             calc, perip, intended, int(register), error))
 
-        if (error < 1):
+        if (error < 10):
             return True
         else:
             return False
