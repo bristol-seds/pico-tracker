@@ -241,7 +241,7 @@ etags: $(TAGFILES)
 #
 .PHONY: emacs
 emacs:
-	@emacs $(TAGFILES) Makefile config.mk README.md
+	@emacs $(TAGFILES) Makefile config.mk README.md gdbscript-custom
 
 # Test
 #
