@@ -33,8 +33,8 @@ __verification__ void adc_battery_solar_read_tc(void) {
    * results structure at the end
    */
 
-  start_adc_conversion_sequence();
-  while (!is_adc_conversion_done());
+  start_adc_sequence();
+  while (!is_adc_sequence_done());
 
   adc_battery_solar_read_tc_results.battery = get_battery();
   adc_battery_solar_read_tc_results.solar = get_solar();

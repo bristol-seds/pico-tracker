@@ -47,6 +47,7 @@
 #include "backlog_read.h"
 #include "mem_erase_all.h"
 #include "analogue_read.h"
+#include "adc_battery_solar_read.h"
 #include "gps_baud_error.h"
 #include "crc32_gen_buf.h"
 #include "barometric_altitude.h"
