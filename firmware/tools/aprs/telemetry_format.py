@@ -97,8 +97,8 @@ class telemetry_format_ssid:
                     "sats {satellites} ttff {ttff}").format(**datum)
 
         elif self.flight_nr in [15]:
-            return ("{battery}V {temperature_e}C {temperature_i}C "
-                    "sats {satellites} ttff {ttff}").format(**datum)
+            return ("{battery}V {solar}V {temperature_e}C {temperature_i}C "
+                    "ttff {ttff}").format(**datum)
         else:
             raise ValueError("stringify does not know about this flight!")
 
