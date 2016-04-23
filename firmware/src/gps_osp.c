@@ -278,7 +278,7 @@ void gps_se_on_off_pulse(void)
 		      PORT_PIN_PULL_NONE,	/* Pull */
 		      false);			/* Powersave */
   port_pin_set_output_level(GPS_SE_ON_OFF_PIN, 1);	/* pulse high */
-  for (int i = 0; i < 90*4; i++);
+  for (int i = 0; i < 90*48; i++) { __NOP(); }       /* > 90us */
   port_pin_set_output_level(GPS_SE_ON_OFF_PIN, 0);
 }
 
