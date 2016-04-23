@@ -37,12 +37,12 @@
 #include "watchdog.h"
 #include "init.h"
 
-volatile enum gps_error_t gps_error_state;
+volatile enum gps_error gps_error_state;
 
 /**
  * Flight State
  */
-enum gps_flight_state_t gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
+enum gps_flight_state gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 
 
 /**
@@ -54,7 +54,7 @@ enum gps_flight_state_t gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 /**
  * Returns current flight state
  */
-enum gps_flight_state_t gps_get_flight_state(void)
+enum gps_flight_state gps_get_flight_state(void)
 {
   return gps_flight_state;
 }
@@ -91,7 +91,7 @@ void gps_set_flight_state(int32_t altitude)
  * Gets the current error state of the GPS to check validity of last
  * request
  */
-enum gps_error_t gps_get_error_state(void)
+enum gps_error gps_get_error_state(void)
 {
   return gps_error_state;
 }
@@ -307,6 +307,10 @@ struct gps_data_t gps_get_data(void)
   gps_set_flight_state(data.altitude);
 
   return data;
+}
+
+struct gps_data_t gps_get_data_wrapped(void) {
+  return gps_get_data();
 }
 
 

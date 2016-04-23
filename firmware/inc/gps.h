@@ -130,6 +130,7 @@ struct gps_data_t {
 
 enum gps_error gps_get_error_state(void);
 struct gps_data_t gps_get_data(void);
+struct gps_data_t gps_get_data_wrapped(void);
 
 void gps_setup(void);
 
