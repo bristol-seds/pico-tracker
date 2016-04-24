@@ -17,7 +17,10 @@
   - `RF_TX_ENABLE` is set
   - `APRS_ENABLE` is set if APRS is to be used on the flight
   - `APRS_USE_GEOFENCE` is set
+  - `TELEMETRY_ENABLE` is set
   - `TELEMETRY_USE_GEOFENCE` is set
+  - `ARISS_ENABLE` is set if ARISS is to be used on the flight
+  - `ARISS_USE_GEOFENCE` is set
   - `GEOFENCE_USE_PREFIX` is set
   - Check the `COLD_OUT` parameters. These prevent start-up spikes when the battery may not be viable.
   - Check the correct barometer is defined, for instance `BAROMETER_TYPE_MS5607` is set.

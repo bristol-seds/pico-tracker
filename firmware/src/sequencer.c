@@ -33,6 +33,7 @@
 #include "backlog.h"
 #include "location.h"
 #include "accumulator.h"
+#include "battery.h"
 
 
 void rtty_telemetry(struct tracker_datapoint* dp);
@@ -91,11 +92,11 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 
   /* ARISS */
 #if ARISS_ENABLE
-#if ARISS_USE_PREDICT
-  if (true) {                   /* todo */
-#endif
+  if ((get_battery_use_state() == BATTERY_GOOD) &&        /* battery good, */
+      (get_battery_charge_state() == BATTERY_CHARGING) && /* receiving power and */
+      ((n % 4) == 0)) {                                   /* one-in-four times */
 #if ARISS_USE_GEOFENCE
-    if (location_aprs_could_tx()) { /* transmit anywhere it's no disallowed */
+    if (location_aprs_could_tx()) { /* transmit anywhere it's not disallowed */
 #endif
 
       /* ARISS */
@@ -104,9 +105,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #if ARISS_USE_GEOFENCE
     }
 #endif
-#if ARISS_USE_PREDICT
   }
-#endif
 #endif  /* ARISS_ENABLE */
 
 
