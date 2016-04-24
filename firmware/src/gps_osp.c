@@ -615,8 +615,7 @@ struct gps_data_t gps_get_data(void)
     }
   }
 
-  /* GPS back to hibernate */
-  gps_make_hibernate();
+  /* Leave the GPS on to try to get a lock */
 
   /* turn the led off! */
   led_off();
