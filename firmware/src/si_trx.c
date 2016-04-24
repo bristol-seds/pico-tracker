@@ -443,16 +443,16 @@ static void si_trx_set_rf_path(enum si_rf_path path)
   switch (path) {
     case SI_RF_PATH_AMPLIFIER:
       gpio0 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* high to enable amplifier, first switch right*/
-      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* select J1 */
-      gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0;
-      break;
-    case SI_RF_PATH_RX:
-      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0; /* select J2 */
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0; /* select J1 */
       gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1;
       break;
-    case SI_RF_PATH_BYPASS:
-      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0; /* select J3 */
+    case SI_RF_PATH_RX:
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* select J2 */
       gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE0;
+      break;
+    case SI_RF_PATH_BYPASS:
+      gpio2 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1; /* select J3 */
+      gpio3 = SI_GPIO_PIN_CFG_GPIO_MODE_DRIVE1;
       break;
     default: break;             /* all inputs by default */
   }
