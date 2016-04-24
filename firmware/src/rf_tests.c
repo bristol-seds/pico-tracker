@@ -70,21 +70,6 @@ void aprs_tone(void)
       idle(IDLE_TELEMETRY_ACTIVE);
     }
     si_trx_off();
-
-
-    /* while (1) { */
-
-    /*   system_sleep(); */
-
-    /*   //idle(IDLE_TELEMETRY_ACTIVE); */
-    /* } */
-
-
-    /* si_trx_on(SI_MODEM_MOD_TYPE_CW, &fconfig, 0, 0x7f, SI_FILTER_DEFAULT); */
-    /* for (int i = 0; i < 200*1000; i++) { */
-    /*   idle(IDLE_TELEMETRY_ACTIVE); */
-    /* } */
-    /* si_trx_off(); */
   }
 }
 
