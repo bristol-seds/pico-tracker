@@ -31,6 +31,8 @@
 /* We wait for n cycles of continous power before charging */
 uint32_t excess_count = 0;
 #define EXCESS_COUNT_MAX	(60)
+uint32_t reset_excess_count_count = 0;
+#define RESET_EXCESS_COUNT	(5)
 
 /* Internal state */
 enum battery_use_state battery_use_state;
@@ -73,10 +75,17 @@ void update_charge_state(struct tracker_datapoint *dp)
       battery_charge_state = BATTERY_EXCESS;
       excess_count++;           /* count until we can charge */
     }
+    reset_excess_count_count = 0;
   } else {                      /* no power coming in */
     /* discharging */
     battery_charge_state = BATTERY_DISCHARGING;
-    excess_count = 0;
+
+    /* if there's no power coming in for RESET_EXCESS_COUNT cycles */
+    if (reset_excess_count_count >= RESET_EXCESS_COUNT) {
+      excess_count = 0;         /* reset the excess hysterisis */
+    } else {
+      reset_excess_count_count++;
+    }
   }
 
 #else  /* non-rechargable */
