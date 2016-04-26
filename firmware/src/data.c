@@ -30,7 +30,6 @@
 #include "hw_config.h"
 #include "analogue.h"
 #include "barometer.h"
-#include "battery.h"
 #include "gps.h"
 #include "ubx_messages.h"
 #include "telemetry.h"
@@ -109,11 +108,6 @@ struct tracker_datapoint* collect_data(void)
   datapoint.main_pressure = b->pressure;
   datapoint.bmp180_temperature = (float)b->temperature;
 #endif
-
-  /**
-   * ---- Battery ----
-   */
-  update_battery(&datapoint);
 
 #ifdef GPS_TYPE_UBX
   /**
