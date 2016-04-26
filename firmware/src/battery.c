@@ -29,10 +29,14 @@
 #include "data.h"
 
 /* We wait for n cycles of continous power before charging */
-uint32_t excess_count = 0;
+/* This n cycle wait will only be reset after continuous discharging */
+/* Set TRICKLE_COUNT_MAX less than RESET_EXCESS_COUNT */
+uint16_t excess_count = 0;
 #define EXCESS_COUNT_MAX	(60)
-uint32_t reset_excess_count_count = 0;
-#define RESET_EXCESS_COUNT	(5)
+uint16_t reset_excess_count_count = 0;
+#define RESET_EXCESS_COUNT	(60)
+uint16_t trickle_count = 0x9999;
+#define TRICKLE_COUNT_MAX	(10)
 
 /* Internal state */
 enum battery_use_state battery_use_state;
@@ -71,6 +75,7 @@ void update_charge_state(struct tracker_datapoint *dp)
     /* excess / charging */
     if (excess_count >= EXCESS_COUNT_MAX) { /* charge */
       battery_charge_state = BATTERY_CHARGING;
+      trickle_count = 0;        /* now we will trickle charge at the end*/
     } else {                    /* excess */
       battery_charge_state = BATTERY_EXCESS;
       excess_count++;           /* count until we can charge */
@@ -78,9 +83,14 @@ void update_charge_state(struct tracker_datapoint *dp)
     reset_excess_count_count = 0;
   } else {                      /* no power coming in */
     /* discharging */
-    battery_charge_state = BATTERY_DISCHARGING;
+    if (trickle_count >= TRICKLE_COUNT_MAX) {
+      battery_charge_state = BATTERY_DISCHARGING;
+    } else {                    /* still in trickle charging phase */
+      battery_charge_state = BATTERY_TRICKLE;
+      trickle_count++;
+    }
 
-    /* if there's no power coming in for RESET_EXCESS_COUNT cycles */
+    /* if we're discharging for RESET_EXCESS_COUNT cycles */
     if (reset_excess_count_count >= RESET_EXCESS_COUNT) {
       excess_count = 0;         /* reset the excess hysterisis */
     } else {
@@ -93,7 +103,8 @@ void update_charge_state(struct tracker_datapoint *dp)
 #endif
 
 #ifdef CHG_ENABLE_PIN           /* Set external pin */
-  if (battery_charge_state == BATTERY_CHARGING) {
+  if ((battery_charge_state == BATTERY_CHARGING) ||
+      (battery_charge_state == BATTERY_TRICKLE)) {
     port_pin_set_output_level(CHG_ENABLE_PIN, 1);	/* pin is active high */
   } else {
     port_pin_set_output_level(CHG_ENABLE_PIN, 0);	/* pin is active high */

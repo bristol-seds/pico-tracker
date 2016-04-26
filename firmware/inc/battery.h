@@ -35,9 +35,10 @@ enum battery_use_state {
 };
 
 enum battery_charge_state {
-  BATTERY_DISCHARGING,          /* discharging */
   BATTERY_EXCESS,               /* power incomming, but not charging yet */
   BATTERY_CHARGING,             /* charging */
+  BATTERY_TRICKLE,              /* trickle charging at end of charging cycle */
+  BATTERY_DISCHARGING,          /* discharging */
 };
 
 enum battery_use_state get_battery_use_state(void);
