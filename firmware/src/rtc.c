@@ -78,6 +78,7 @@ uint32_t tick = 0;
 void rtc_hibernate_time(uint32_t time_s)
 {
   hibernate_time_s = time_s;
+  tick = 20; /* start at t+20 seconds */
 }
 /**
  * Interrupt for RTC, called at 1Hz
