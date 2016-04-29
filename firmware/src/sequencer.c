@@ -55,6 +55,10 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   location_prefix_update(dp->latitude, dp->longitude);
   kick_the_watchdog();
 
+  /* DEATHWISH */
+  /* CEASE TRANSMISSIONS AT THE END OF 2016 */
+  if (dp->time.year > 2016) { return; }
+
   /* Telemetry */
 #if RF_TX_ENABLE
 #if TELEMETRY_ENABLE

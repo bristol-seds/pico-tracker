@@ -646,7 +646,7 @@ uint32_t gd_reinit_count = 0;
 
 /* Number of times gps_get_data called */
 uint32_t gd_count = 0;
-#define GD_COUNT_MAX (360) /* GPS is good for about a day @15 per hour */
+#define GD_COUNT_MAX (720) /* GPS is good for about a day @30 per hour */
 
 /* No lock */
 uint32_t gd_nolock_count = 0;

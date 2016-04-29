@@ -161,7 +161,7 @@
 /**
  * Cold out
  */
-#define COLD_OUT_TEMPERATURE	(-58.0)
+#define COLD_OUT_TEMPERATURE	(-70.0)
 #define COLD_OUT_SECONDS	(15*60) /* 15 minutes */
 #define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours*/
 
