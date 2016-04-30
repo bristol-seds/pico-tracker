@@ -112,6 +112,6 @@ for dest in ["M0SBU", "AD6AM"]:
     if check[0] == 'y':
         for packet in eqn_packets:
             send_packet(callsign, password, header+packet)
-        else:
-            print "Quit..."
-            quit()
+    else:
+        print "Quit..."
+        quit()
