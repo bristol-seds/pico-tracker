@@ -48,7 +48,7 @@
 #include "sequencer.h"
 #include "thermistor.h"
 
-#define CALLSIGN	"UBSEDS15"
+#define CALLSIGN	"UBSEDS16"
 #define APRS_COMMENT	""
 
 /**

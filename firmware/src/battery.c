@@ -71,7 +71,7 @@ void update_use_state(struct tracker_datapoint *dp)
 void update_charge_state(struct tracker_datapoint *dp)
 {
 #if RECHARGABLE_BATTERY
-  if (dp->solar > dp->battery) { /* power coming in */
+  if (dp->solar > 4.0) { /* power coming in */
     /* excess / charging */
     if (excess_count >= EXCESS_COUNT_MAX) { /* charge */
       battery_charge_state = BATTERY_CHARGING;
