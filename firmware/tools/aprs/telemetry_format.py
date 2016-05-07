@@ -5,7 +5,7 @@
 
 class telemetry_format_ssid:
     def __init__(self, ssid):
-        if ssid is '11':
+        if ssid == '11':
             self.flight_nr = 15
         else:
             raise ValueError("Telemetry format does not know about this ssid!")

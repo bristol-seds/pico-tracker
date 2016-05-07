@@ -72,7 +72,7 @@ def extract_and_upload(packet, aprs_call, ssid):
     if datum: # valid backlog
         print
         print Fore.CYAN +  "Extracted valid backlog from {}-{}:".format(aprs_call, ssid)
-        print_datum(datum)
+        print_datum(datum, tf)
         print Fore.RESET
 
         # Habitat upload

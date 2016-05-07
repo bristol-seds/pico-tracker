@@ -6,7 +6,9 @@ else will be ignored.
 """
 
 import re
+import arrow
 from datetime import datetime
+from datetime import timedelta
 from telemetry_format import *
 from math import log, exp
 
@@ -30,17 +32,17 @@ def extract_time(line):
     if match == None:
         return None
     else:
-        # Get a datetime object
-        dt = datetime.strptime(match.group(1), '%d%H%M')
-        now = datetime.now()
+        # Get a arrow
+        arw = arrow.get(match.group(1), 'DDHHmm')
+        utcnow = arrow.utcnow()
 
-        if dt.day > now.day: # from last month
-            now = now - timedelta(months = 1)
+        # Set dt year/month from current utc
+        arw = arw.replace(year=utcnow.year, month=utcnow.month)
 
-        # fill in month and year
-        dt = dt.replace(year=now.year, month=now.month)
+        if arw.day > utcnow.day: # from last month
+            arw = arw.replace(months=-1)
 
-        return dt
+        return arw
 
 """
 Takes a parsed telemetry line and returns latitude, longitude and
