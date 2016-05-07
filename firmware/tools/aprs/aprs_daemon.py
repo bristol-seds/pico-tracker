@@ -114,9 +114,9 @@ print "debug level = 10"
 print "immortal = true"
 print
 
-# Get packets for all mike-zero / alpha-delta-six users. Reasonably frequent stream but not enough to overload
+# Get packets for m0sbu/ad6am. Reasonably frequent stream but not enough to overload
 AIS = aprslib.IS("M0SBU-1", port=14580)
-AIS.set_filter("b/M0*/AD6*")
+AIS.set_filter("b/M0SBU*/AD6AM*")
 
 AIS.connect()
 # by default `raw` is False, then each line is ran through aprslib.parse()
