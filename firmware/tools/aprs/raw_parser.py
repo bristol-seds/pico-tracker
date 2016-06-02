@@ -16,7 +16,7 @@ from ukhas_format import *
 from habitat_upload import *
 from telemetry_format import *
 from datetime import datetime
-
+from colorama import *
 
 # Get the name of the input file
 if len(sys.argv) >= 2:
@@ -47,14 +47,37 @@ with open(file_name, 'r') as data_file:
     data = sorted(data, key=lambda x: x['time'])
 
     # Print data
+    print
+    print "Found the following data points:"
     for datum in data:
         print_datum(datum, tf)
+
+    # Prompt for upload
+    print
+    print "Do you wish to upload this to habitat?"
+    response = raw_input("N will trigger a dummy run. (Y/N): ").lower() or "x"
+
+    # check response
+    if response == 'y':
+        dummy_run = False
+    elif response == 'n':
+        dummy_run = True
+    else:
+        print "Exiting..."
+        quit()
+
+    print
+    if dummy_run:
+        print "Compiled telemetry strings (dummy run):"
+    else:
+        print "Compiled telemetry strings for upload:"
 
     # Upload data to habitat
     for datum in data:
         ukhas_str = ukhas_format(datum, tf)
         try:
             print ukhas_str
-            print habitat_upload(datum['time'], ukhas_str)
+            if not dummy_run: # Not a dummy run, actually upload
+                print Fore.CYAN + habitat_upload(datum['time'], ukhas_str) + Fore.RESET
         except:
             None
