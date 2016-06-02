@@ -37,10 +37,17 @@ def extract_time(line):
         utcnow = arrow.utcnow()
 
         # Set dt year/month from current utc
-        arw = arw.replace(year=utcnow.year, month=utcnow.month)
-
+        # Need to calculate year/month manually because months have varying number of days
+        #
         if arw.day > utcnow.day: # from last month
-            arw = arw.replace(months=-1)
+            last_month = utcnow.month-1
+
+            if last_month == 0: # Last December
+                arw = arw.replace(year=utcnow.year-1, month=12)
+            else:
+                arw = arw.replace(year=utcnow.year, month=last_month)
+        else:                   # current month
+            arw = arw.replace(year=utcnow.year, month=utcnow.month)
 
         return arw
 
