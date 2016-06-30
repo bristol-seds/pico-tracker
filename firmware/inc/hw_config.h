@@ -121,7 +121,7 @@
 /**
  * XOSC
  */
-#define USE_XOSC
+//#define USE_XOSC /* Uncomment this if TCXO is connected to microcontroller. */
 #define XOSC_FREQUENCY		16369000
 #define XOSC_GCLK1_DIVIDE	4
 

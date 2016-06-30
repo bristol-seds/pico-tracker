@@ -52,7 +52,7 @@
 #include "spi_bitbang.h"
 #include "system/interrupt.h"
 
-#define CALLSIGN	"UBSEDS8"
+#define CALLSIGN	"CHANGE"
 
 void xosc_measure_callback(uint32_t result);
 void timepulse_callback(uint32_t sequence);

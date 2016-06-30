@@ -34,7 +34,7 @@
  *
  * Max. 6 characters
  */
-#define APRS_CALLSIGN	"M0SBU"
+#define APRS_CALLSIGN	"M0"
 #define APRS_SSID	11
 
 /**
