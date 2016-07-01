@@ -56,6 +56,7 @@ typedef struct tracker_datapoint {
 } tracker_datapoint;
 
 
+uint32_t get_epoch_from_time(struct tracker_time *t);
 void collect_data_async(void);
 struct tracker_datapoint* collect_data(void);
 

@@ -26,6 +26,7 @@
 
 #include "samd20.h"
 #include "data.h"
+#include "cron.h"
 #include "xosc.h"
 #include "hw_config.h"
 #include "analogue.h"
@@ -43,6 +44,34 @@ void xosc_measure_callback(uint32_t result)
   datapoint.xosc_error = result - XOSC_FREQUENCY;
 }
 
+/**
+ * Gets epoch from year/month/day/hour/minute/seconds time structure.
+ */
+uint32_t get_epoch_from_time(struct tracker_time *t)
+{
+  uint32_t days = 0;
+  int i;
+
+  /* collect years */
+  for (i = 1970; i < t->year; i++) {
+    days += (i % 4 == 0) ?
+      ((i % 100 == 0) ?
+       ((i % 400 == 0) ? 366        /* div 400, leap            */
+        : 365)                      /* div 100, not 400, common */
+       : 366)                       /* div 4, not 100, leap     */
+      : 365;                        /* Not div 4, common        */
+  }
+  /* collect months */
+  uint8_t t_month = t->month;
+  for (i = 1; i < t_month; i++) {
+    t->month = i;
+    days += days_in_month(t);
+  }
+  /* collect days */
+  days += t->day-1;
+
+  return (((((days*24)+t->hour)*60)+t->minute)*60)+t->second;
+}
 
 /**
  * Collect data asynchronously. Should be run a few seconds before the collect_data routine
@@ -87,6 +116,8 @@ struct tracker_datapoint* collect_data(void)
   datapoint.time.minute = data.minute;
   datapoint.time.second = data.second; /* seconds */
 
+  /* calculate epoch */
+  datapoint.time.epoch = get_epoch_from_time(&datapoint.time);
 
 #endif /* GPS_TYPE_OSP */
 

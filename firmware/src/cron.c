@@ -70,9 +70,9 @@ uint8_t days_in_month(struct tracker_time* t)
   switch (t->month) {
     case 1:  return 31;         /* Janua */
     case 2:
-      return (t->year % 4) ?
-        ((t->year % 100) ?
-         ((t->year % 400) ? 29  /* div 400, leap            */
+      return (t->year % 4 == 0) ?
+        ((t->year % 100 == 0) ?
+         ((t->year % 400 == 0) ? 29  /* div 400, leap            */
           : 28)                 /* div 100, not 400, common */
          : 29)                  /* div 4, not 100, leap     */
         : 28;                   /* Not div 4, common        */

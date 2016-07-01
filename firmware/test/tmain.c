@@ -54,6 +54,7 @@
 #include "pressure_temperature.h"
 #include "thermistor_equation.h"
 #include "gps_poll.h"
+#include "epoch_from_time.h"
 /* [new_tc] */
 
 
