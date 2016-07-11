@@ -73,7 +73,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   len = dollars;
 
   /* sprintf - full string (approx 90 chars) */
-  len += sprintf(telemetry_string + len,
+  len += sprintf(string + len,
 //               "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.1f,%.1f",
                  "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.2f,%.1f,%.1f",
                  CALLSIGN,      /* 2+6+2+1=11 */
@@ -89,13 +89,13 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 
   if (reduce_char_set) {
     /* Reduce character set */
-    contestiaize(telemetry_string + dollars);
+    contestiaize(string + dollars);
   }
 
   /* sprintf - checksum. don't include dollars */
-  len += sprintf(telemetry_string + len,
+  len += sprintf(string + len,
 		 "*%04X\r",
-		 crc_checksum(telemetry_string + dollars));
+		 crc_checksum(string + dollars));
 
   /* Length should be no more than 120 characters!! (24 seconds transmission time) */
   if (len <= 120) {
@@ -106,7 +106,7 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   len = dollars;
 
   /* sprintf - short format */
-  len += sprintf(telemetry_string + len,
+  len += sprintf(string + len,
                  "%s,%02u:%02u:%02u,%02.5f,%03.5f,%ld",
                  CALLSIGN,
                  dp->time.hour, dp->time.minute, dp->time.second,
@@ -114,13 +114,13 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
 
   if (reduce_char_set) {
     /* Reduce character set */
-    contestiaize(telemetry_string + dollars);
+    contestiaize(string + dollars);
   }
 
   /* sprintf - checksum. don't include dollars */
-  len += sprintf(telemetry_string + len,
+  len += sprintf(string + len,
 		 "*%04X\r",
-		 crc_checksum(telemetry_string + dollars));
+		 crc_checksum(string + dollars));
 
   return len;
 }
