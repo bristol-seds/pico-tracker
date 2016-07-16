@@ -99,8 +99,8 @@ void load_is_backlog_valid(void)
  */
 void erase_backlog_item(uint16_t index) {
 
-  uint32_t start_address = ADDRESS(index) & SECTOR_MASK;
-  uint32_t end_address = start_address + SECTOR_SIZE;
+  uint32_t start_address = ADDRESS(index) & ROW_MASK;
+  uint32_t end_address = start_address + ROW_SIZE;
   uint16_t start_index = (start_address-BACKLOG_ADDRESS) / BACKLOG_ITEM_SIZE;
   uint16_t end_index = ceil((float)(end_address-BACKLOG_ADDRESS) / BACKLOG_ITEM_SIZE);
   uint16_t i;

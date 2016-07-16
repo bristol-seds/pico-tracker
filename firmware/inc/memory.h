@@ -28,29 +28,25 @@
 /**
  * Memory layout:
  *
- * 256-byte pages
- * 4-kbyte sectors (erase) - 16 pages
- * 64-kbyte blocks - 16 sectors
+ * 64-byte pages
+ * 256-byte rows (erase) - 4 pages
  */
 
-#define TOTAL_PAGES	0x800
-#define TOTAL_SECTORS	0x80
-#define TOTAL_BLOCKS	0x8
+#define TOTAL_PAGES	0x100
+#define TOTAL_ROWS	0x40
 
-#define MEMORY_MASK	0x7FFFF
-#define PAGE_MASK	0x7FF00
-#define SECTOR_MASK	0x7F000
+#define PAGE_MASK	0x7FFC0
+#define ROW_MASK	0x7FF00
 
-#define MEMORY_SIZE	0x80000
-#define PAGE_SIZE	0x00100
-#define SECTOR_SIZE	0x01000
-#define BLOCK_SIZE	0x10000
+#define PAGE_SIZE	0x00040
+#define ROW_SIZE	0x00100
 
 /**
  * Pages assigned to backlog. Currently 256 records
  */
 #define BACKLOG_START_PAGE	0x00
 #define BACKLOG_END_PAGE	0xff
+
 
 void mem_chip_erase(void);
 void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
