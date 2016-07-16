@@ -120,6 +120,7 @@ float _si_temperature = 128.0;
  */
 int32_t _aprs_frequency = 0;
 enum si_rf_path _aprs_rf_path = SI_RF_PATH_BYPASS;
+uint32_t _ax25_deviation = AX25_DEVIATION;
 
 /**
  * Returns 1 if we're currently outputting.
@@ -202,6 +203,9 @@ void telemetry_aprs_set_frequency(int32_t frequency) {
 }
 void telemetry_aprs_set_rf_path(enum si_rf_path path) {
   _aprs_rf_path = path;
+}
+void telemetry_aprs_set_deviation(uint32_t deviation) {
+  _ax25_deviation = deviation;
 }
 
 /**
@@ -327,7 +331,7 @@ void telemetry_tick(void) {
           /* Frequency config. Recalculate each time */
           si_trx_get_frequency_configuration(&aprs_fconfig, _aprs_frequency);
           /* Radio on */
-          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &aprs_fconfig, AX25_DEVIATION, APRS_POWER,
+          si_trx_on(SI_MODEM_MOD_TYPE_2GFSK, &aprs_fconfig, _ax25_deviation, APRS_POWER,
                     SI_FILTER_APRS, _aprs_rf_path);
           radio_on = 1;
         } else {
