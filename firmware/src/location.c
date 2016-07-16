@@ -109,8 +109,8 @@ bool latlon_in_polygon(const int32_t* poly, uint32_t points, int32_t lat_hn, int
 bool latlon_in_telemetry(int32_t telemetry_outline, int32_t lat_hn, int32_t lon_hn)
 {
   return latlon_in_polygon(
-    telemetry_outlines[telemetry_outline],
-    telemetry_outline_lengths[telemetry_outline],
+    no_telem_outlines[telemetry_outline],
+    no_telem_outline_lengths[telemetry_outline],
     lat_hn, lon_hn);
 }
 /**
@@ -132,7 +132,7 @@ void location_telemetry_update(int32_t lat_hn, int32_t lon_hn)
   }
 
   /* Check all the telemetry outlines */
-  for (outline = 0; outline < sizeof(telemetry_outlines) / sizeof(int32_t*); outline++) {
+  for (outline = 0; outline < sizeof(no_telem_outlines) / sizeof(int32_t*); outline++) {
 
     if (latlon_in_telemetry(outline, lat_hn, lon_hn)) { /* If we're in this zone */
 
@@ -337,8 +337,8 @@ void location_aprs_update(int32_t lat_hn, int32_t lon_hn)
  */
 bool location_telemetry_active(void)
 {
-  /* Are we in a telemetry zone? */
-  return (current_telemetry_outline != -1);
+  /* Are we outside the no telemetry zones? */
+  return (current_telemetry_outline == -1);
 }
 
 

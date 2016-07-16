@@ -11,9 +11,6 @@ Portugal,0,40,-8
 Italy,0,43,12
 Romania,0,46,24
 Moldova,0,47.2,28.9
-Sweden,0,58,12
-Stockholm,0,59.3,18
-Malmo,0,55.6,13
 Mexico City,0,19.5,-99
 Yemen,0,15,44
 NK,0,39,126
@@ -26,6 +23,10 @@ Anchorage,144.39,61.2,-149.9
 Honolulu,144.39,21.3,-157.8
 
 # 144.8
+Oslo,144.8,59.9,10.74
+Sweden,144.8,58,12
+Stockholm,144.8,59.3,18
+Malmo,144.8,55.6,13
 Copenhagen,144.8,55.7,12.5
 Amsterdam,144.8,52.4,5.7
 Reykjavik,144.8,64.27,-21.57
