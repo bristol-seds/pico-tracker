@@ -168,8 +168,8 @@
 /**
  * Cycle Times
  */
-#define CYCLE_TIME_FAST		(60)
-#define CYCLE_TIME_SLOW		(120)
+#define CYCLE_TIME_FAST		(0)   /* shortest hibernate */
+#define CYCLE_TIME_SLOW		(100) /* once every two minutes */
 
 /**
  * Radio

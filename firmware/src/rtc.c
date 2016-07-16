@@ -66,6 +66,16 @@ void rtc_init(void)
  * =============================================================================
  */
 
+/* Seconds since APRS transmission */
+uint32_t since_aprs_s = 0;
+uint32_t get_since_aprs_s(void) {
+  return since_aprs_s;
+}
+void clear_since_aprs_s(void) {
+  since_aprs_s = 0;
+}
+
+
 #define HIBERNATE_TIME_MAX	(3600) /* Hibernate should always be set lower that this */
 volatile uint32_t hibernate_time_s = 0;
 void run_kick(void);
@@ -77,8 +87,12 @@ uint32_t tick = 0;
  */
 void rtc_hibernate_time(uint32_t time_s)
 {
+  /* set hibernate time */
   hibernate_time_s = time_s;
-  tick = 20; /* start at t+20 seconds */
+
+  /* clear ticks */
+  since_aprs_s += tick;
+  tick = 0;
 }
 /**
  * Interrupt for RTC, called at 1Hz
@@ -90,12 +104,15 @@ void RTC_Handler(void)
 
     /* Check sleep time  */
     if (tick >= hibernate_time_s) {
-      /* Reset */
-      tick = 0;                              /* zero tick */
-      hibernate_time_s = HIBERNATE_TIME_MAX; /* set hibernate to max */
+      /* clear ticks */
+      since_aprs_s += tick;
+      tick = 0;
+
+      /* set hibernate time to max */
+      hibernate_time_s = HIBERNATE_TIME_MAX;
 
       /* Do something */
-      run_kick();
+
     } else {
       /* Increment tick */
       tick++;

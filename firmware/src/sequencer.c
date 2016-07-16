@@ -34,6 +34,7 @@
 #include "location.h"
 #include "accumulator.h"
 #include "battery.h"
+#include "rtc.h"
 
 
 void rtty_telemetry(struct tracker_datapoint* dp);
@@ -55,10 +56,6 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
   location_prefix_update(dp->latitude, dp->longitude);
   kick_the_watchdog();
 
-  /* DEATHWISH */
-  /* CEASE TRANSMISSIONS AT THE END OF 2016 */
-  if (dp->time.year > 2016) { return; }
-
   /* Telemetry */
 #if RF_TX_ENABLE
 #if TELEMETRY_ENABLE
@@ -79,38 +76,46 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #endif  /* TELEMETRY_ENABLE */
 
 
+  /* CEASE APRS AT THE END OF 2016 */
+  if (dp->time.year > 2016) { return; }
+
   /* APRS */
 #if APRS_ENABLE
+  if (get_since_aprs_s() >= 60) { /* limit APRS frequency to once per minute */
+    clear_since_aprs_s();
 #if APRS_USE_GEOFENCE
-  if (location_aprs_should_tx()) { /* transmit only when we *should* */
+    if (location_aprs_should_tx()) { /* transmit only when we *should* */
 #endif
 
-    /* APRS */
-    aprs_telemetry(dp, n);
+      /* APRS */
+      aprs_telemetry(dp, n);
 
 #if APRS_USE_GEOFENCE
-  }
-#endif
-#endif  /* APRS_ENABLE */
-
-
-  /* ARISS */
-#if ARISS_ENABLE
-  if ((get_battery_use_state() == BATTERY_GOOD) &&        /* battery good, */
-      (get_battery_charge_state() == BATTERY_CHARGING) && /* receiving power and */
-      ((n % 4) == 0)) {                                   /* one-in-four times */
-#if ARISS_USE_GEOFENCE
-    if (location_aprs_could_tx()) { /* transmit anywhere it's not disallowed */
-#endif
-
-      /* ARISS */
-      ariss_telemetry(dp);
-
-#if ARISS_USE_GEOFENCE
     }
 #endif
-  }
+
+    /* CEASE ARISS AT THE END OF SEPTEMBER */
+    if (dp->time.month > 9) { return; }
+
+    /* ARISS */
+#if ARISS_ENABLE
+    if ((get_battery_use_state() == BATTERY_GOOD) &&        /* battery good, */
+        (get_battery_charge_state() == BATTERY_CHARGING) && /* receiving power and */
+        ((n % 3) == 0)) {                                   /* one-in-three times */
+#if ARISS_USE_GEOFENCE
+      if (location_aprs_could_tx()) { /* transmit anywhere it's not disallowed */
+#endif
+
+        /* ARISS */
+        ariss_telemetry(dp);
+
+#if ARISS_USE_GEOFENCE
+      }
+#endif
+    }
 #endif  /* ARISS_ENABLE */
+  }
+#endif  /* APRS_ENABLE */
 
 
 #endif  /* RF_TX_ENABLE */
