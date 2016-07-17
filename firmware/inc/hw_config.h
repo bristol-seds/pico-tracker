@@ -22,5 +22,6 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "hw_config/low-power-solar.h"
+#include "hw_config/main-aaa-uhf.h"
+//#include "hw_config/low-power-solar.h"
 //#include "hw_config/low-power-side.h"

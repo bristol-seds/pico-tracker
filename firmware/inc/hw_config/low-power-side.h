@@ -277,6 +277,11 @@
 #define ARISS_FREQUENCY		145825000
 
 /**
+ * Backlog
+ */
+#define BACKLOG_RECORD_BACKLOG	1
+
+/**
  * Prefix
  */
 #define GEOFENCE_USE_PREFIX	1
