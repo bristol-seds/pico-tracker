@@ -221,6 +221,7 @@ void aprs_telemetry(struct tracker_datapoint* dp, uint32_t n)
  */
 void ariss_telemetry(struct tracker_datapoint* dp)
 {
+#if ARISS_ENABLE
 //struct tracker_datapoint* backlog_dp_ptr;
 
   if (gps_is_locked() == GPS_NO_LOCK) return; /* Don't bother with no GPS */
@@ -253,6 +254,9 @@ void ariss_telemetry(struct tracker_datapoint* dp)
   while (telemetry_active()) {
     idle(IDLE_TELEMETRY_ACTIVE);
   }
+#else
+  (void)dp;
+#endif
 }
 /**
  * Pips telemetry
