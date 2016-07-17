@@ -138,6 +138,7 @@ void run_sequencer(uint32_t n, uint32_t cycle_time_s)
   /* Telemetry  */
   telemetry_sequence(dp, n);
 
+#if BACKLOG_RECORD_BACKLOG
   /* Backlog */
   if ((gps_is_locked() == GPS_LOCKED) && /* gps is locked. we can use this data */
       (cycle_time_s > 0)) {              /* and an actual cycle */
@@ -155,6 +156,7 @@ void run_sequencer(uint32_t n, uint32_t cycle_time_s)
       record_backlog(dp);
     }
   }
+#endif
 
   /* Battery */
   update_battery(dp);
