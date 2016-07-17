@@ -33,8 +33,10 @@ __verification__ void pressure_temperature_tc(void) {
    * Use the input parameters to run the test case. Populate the
    * results structure at the end
    */
+#ifdef USE_BAROMETER
   struct barometer* b = get_barometer();
 
   pressure_temperature_tc_results.pressure    = (float)b->pressure;
   pressure_temperature_tc_results.temperature = (float)b->temperature;
+#endif
 }
