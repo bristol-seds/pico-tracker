@@ -2179,6 +2179,7 @@ const uint32_t mike_outline_lengths[] = {
 
 
 const struct aprs_zone_t aprs_zones[] = {
+#ifdef APRS_USE_GEOFENCE
                                                   /* -------------------Alpha */
   { .outlines = alpha_outlines, .outline_count = 11, .outline_lengths = alpha_outline_lengths,
     .frequency = 144390000, .deviation = 5000, .name = "Alpha", .call = "AD" },
@@ -2212,4 +2213,5 @@ const struct aprs_zone_t aprs_zones[] = {
                                                   /* --------------------Mike */
   { .outlines = mike_outlines, .outline_count = 43, .outline_lengths = mike_outline_lengths,
     .frequency = 144800000, .deviation = 3000, .name = "Mike", .call = "M" },
+#endif
 };

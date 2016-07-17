@@ -438,11 +438,13 @@ const int32_t no_telemetry_outline_5[] = {
 };
 
 const int32_t* no_telem_outlines[] = {
+#ifdef GEOFENCE_USE_TELEMETRY
   no_telemetry_outline_1,
   no_telemetry_outline_2,
   no_telemetry_outline_3,
   no_telemetry_outline_4,
   no_telemetry_outline_5,
+#endif
 };
 const uint32_t no_telem_outline_lengths[] = {
   356,
@@ -451,5 +453,3 @@ const uint32_t no_telem_outline_lengths[] = {
   41,
   9,
 };
-
-

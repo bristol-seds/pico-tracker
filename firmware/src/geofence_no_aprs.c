@@ -1251,6 +1251,7 @@ const int32_t no_aprs_outline_27[] = {
 };
 
 const int32_t* no_aprs_outlines[] = {
+#ifdef APRS_USE_GEOFENCE
   no_aprs_outline_1,
   no_aprs_outline_2,
   no_aprs_outline_3,
@@ -1278,6 +1279,7 @@ const int32_t* no_aprs_outlines[] = {
   no_aprs_outline_25,
   no_aprs_outline_26,
   no_aprs_outline_27,
+#endif
 };
 const uint32_t no_aprs_outline_lengths[] = {
   12,
@@ -1308,5 +1310,3 @@ const uint32_t no_aprs_outline_lengths[] = {
   9,
   549,
 };
-
-
