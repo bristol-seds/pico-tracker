@@ -70,11 +70,13 @@ void gps_update_time(void);
 void gps_update_position(void);
 int gps_update_time_pending(void);
 int gps_update_position_pending(void);
-enum gps_error_t gps_get_error_state(void);
+enum gps_error gps_get_error_state(void);
 
 struct ubx_nav_posllh gps_get_nav_posllh();
 struct ubx_nav_sol gps_get_nav_sol();
 struct ubx_nav_timeutc gps_get_nav_timeutc();
+
+struct gps_data_t gps_get_data(void);
 
 void gps_set_powersave(bool powersave_on);
 void gps_set_power_state(bool gnss_running);

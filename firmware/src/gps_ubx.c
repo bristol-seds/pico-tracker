@@ -67,7 +67,12 @@ int32_t ubx_index = SFD_WAITING;
 uint16_t ubx_payload_length = 0;
 uint8_t ubx_irq_buffer[UBX_BUFFER_LEN];
 
-volatile enum gps_error_t gps_error_state;
+volatile enum gps_error gps_error_state;
+
+/**
+ * Flight State
+ */
+enum gps_flight_state gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
 
 /**
  * UBX Messages
@@ -264,7 +269,7 @@ void _ubx_send_message(ubx_message_t* message, uint8_t* payload, uint16_t length
 /**
  * Polls the GPS for packets
  */
-enum gps_error_t _ubx_poll(ubx_message_t* message) {
+enum gps_error _ubx_poll(ubx_message_t* message) {
   /* Send the message */
   _ubx_send_message(message, NULL, 0);
 
@@ -314,6 +319,34 @@ void gps_cfg_rst(void)
 
 
 /**
+ * =============================================================================
+ * Flight State  ================================================================
+ * =============================================================================
+ */
+
+/**
+ * Returns current flight state
+ */
+enum gps_flight_state gps_get_flight_state(void)
+{
+  return gps_flight_state;
+}
+
+/**
+ * Sets flight state
+ *
+ * altitude in mm
+ */
+void gps_set_flight_state(int32_t altitude)
+{
+  if (altitude > GPS_FLIGHT_STATE_THREASHOLD_M*1000) {
+    gps_flight_state = GPS_FLIGHT_STATE_FLOAT;
+  } else {
+    gps_flight_state = GPS_FLIGHT_STATE_LAUNCH;
+  }
+}
+
+/**
  * Sends messages to the GPS to update the time
  */
 void gps_update_time(void)
@@ -353,7 +386,7 @@ int gps_update_position_pending(void)
  * Gets the current error state of the GPS to check validity of last
  * request
  */
-enum gps_error_t gps_get_error_state(void)
+enum gps_error gps_get_error_state(void)
 {
   return gps_error_state;
 }
@@ -362,6 +395,8 @@ enum gps_error_t gps_get_error_state(void)
  */
 struct ubx_nav_posllh gps_get_nav_posllh()
 {
+  gps_set_flight_state(ubx_nav_posllh.payload.height);
+
   return ubx_nav_posllh;
 }
 struct ubx_nav_sol gps_get_nav_sol()
@@ -381,6 +416,31 @@ uint8_t gps_is_locked(void)
     (ubx_nav_sol.payload.gpsFix == 0x3) ||
     (ubx_nav_sol.payload.gpsFix == 0x4);
 }
+/**
+ * Returns an overall struct with all the bits of gps data
+ */
+struct gps_data_t gps_get_data(void)
+{
+  struct gps_data_t data;
+  struct ubx_nav_sol sol = gps_get_nav_sol();
+
+  data.satillite_count = sol.payload.numSV;
+
+  /* GPS Position */
+  if (gps_is_locked()) {
+    struct ubx_nav_posllh pos = gps_get_nav_posllh();
+
+    data.latitude = pos.payload.lat;
+    data.longitude = pos.payload.lon;
+    data.altitude = pos.payload.height;
+    data.is_locked = 1;
+  } else {
+    data.is_locked = 0;
+  }
+
+  return data;
+}
+
 
 /**
  * Verify that the uBlox 6 GPS receiver is set to the <1g airborne
@@ -589,7 +649,7 @@ void gps_init(void)
   /* Reset the GPS */
   gps_cfg_rst();
 
-  kick_ext_watchdog();
+  kick_the_watchdog();
 
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
