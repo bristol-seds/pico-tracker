@@ -162,7 +162,7 @@
  *
  * Disable this when there's no antenna connected
  */
-#define RF_TX_ENABLE		0
+#define RF_TX_ENABLE		1
 
 /**
  * LF Clock
@@ -181,8 +181,9 @@
 /**
  * Telemetry
  */
+#define TELEMETRY_ENABLE		1
 #define TELEMETRY_USE_GEOFENCE	0
-#define TELEMETRY_FREQUENCY		434602000
+#define TELEMETRY_FREQUENCY		434612500
 #define TELEMETRY_POWER			RF_POWER_8dBm
 
 /**
