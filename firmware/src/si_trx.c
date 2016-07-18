@@ -553,7 +553,7 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
 
   /* Poll for part number */
   uint16_t part = 0;
-  while (part != 0x4461) {
+  while (part != SI4xxx_RADIO_PN) {
     part = si_trx_get_part_info();
   }
 

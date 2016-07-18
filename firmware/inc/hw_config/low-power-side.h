@@ -195,6 +195,7 @@
 /**
  * Radio
  */
+#define SI4xxx_RADIO_PN		0x4461
 #define SI4xxx_SERCOM		(SercomSpi*)SERCOM3
 #define SI4xxx_SERCOM_MOSI_PIN	PIN_PA19
 #define SI4xxx_SERCOM_MOSI_PINMUX PINMUX_PA19D_SERCOM3_PAD3
