@@ -422,9 +422,11 @@ uint8_t gps_is_locked(void)
 struct gps_data_t gps_get_data(void)
 {
   struct gps_data_t data;
-  struct ubx_nav_sol sol = gps_get_nav_sol();
 
+  /* GPS Status */
+  struct ubx_nav_sol sol = gps_get_nav_sol();
   data.satillite_count = sol.payload.numSV;
+  data.time_to_first_fix = 0;
 
   /* GPS Position */
   if (gps_is_locked()) {
@@ -435,8 +437,20 @@ struct gps_data_t gps_get_data(void)
     data.altitude = pos.payload.height;
     data.is_locked = 1;
   } else {
+    data.latitude = 0;
+    data.longitude = 0;
+    data.altitude = 0;
     data.is_locked = 0;
   }
+
+  /* GPS Time */
+  struct ubx_nav_timeutc timeutc = gps_get_nav_timeutc();
+  data.year = timeutc.payload.year;
+  data.month = timeutc.payload.month;
+  data.day = timeutc.payload.day;
+  data.hour = timeutc.payload.hour;
+  data.minute = timeutc.payload.min;
+  data.second = timeutc.payload.sec;
 
   return data;
 }

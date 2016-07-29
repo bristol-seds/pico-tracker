@@ -154,20 +154,23 @@ struct tracker_datapoint* collect_data(void)
 
   } else {                      /* GPS position updated correctly */
 
-    /* GPS Status */
+    struct gps_data_t data = gps_get_data();
 
-    struct ubx_nav_sol sol = gps_get_nav_sol();
-    datapoint.satillite_count = sol.payload.numSV;
-    datapoint.time_to_first_fix = 0;
+    datapoint.latitude = data.latitude; /* hndeg */
+    datapoint.longitude = data.longitude; /* hdeg */
+    datapoint.altitude = data.altitude;   /* mm */
+    datapoint.satillite_count = data.satillite_count;
+    datapoint.time_to_first_fix = data.time_to_first_fix; /* seconds / counts */
 
-    /* GPS Position */
-    if (gps_is_locked()) {
-      struct ubx_nav_posllh pos = gps_get_nav_posllh();
+    datapoint.time.year = data.year;
+    datapoint.time.month = data.month;
+    datapoint.time.day = data.day;
+    datapoint.time.hour = data.hour;
+    datapoint.time.minute = data.minute;
+    datapoint.time.second = data.second; /* seconds */
 
-      datapoint.latitude = pos.payload.lat;
-      datapoint.longitude = pos.payload.lon;
-      datapoint.altitude = pos.payload.height;
-    }
+    /* calculate epoch */
+    datapoint.time.epoch = get_epoch_from_time(&datapoint.time);
 
     /* GPS Powersave */
     gps_set_powersave_auto();
