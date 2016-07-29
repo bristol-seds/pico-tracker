@@ -384,8 +384,9 @@ int main(void)
       }
 #endif
 
-
+#if !(MEASURE_XOSC)
       system_set_sleepmode(SYSTEM_SLEEPMODE_STANDBY); /* Lowest power */
+#endif
 
       /* Disable to save power */
       system_apb_clock_clear_mask(SYSTEM_CLOCK_APB_APBA,
