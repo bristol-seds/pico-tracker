@@ -92,7 +92,6 @@ void rtc_hibernate_time(uint32_t time_s)
 
   /* clear ticks */
   since_aprs_s += tick;
-  tick = 0;
 }
 /**
  * Interrupt for RTC, called at 1Hz
@@ -112,6 +111,7 @@ void RTC_Handler(void)
       hibernate_time_s = HIBERNATE_TIME_MAX;
 
       /* Do something */
+      run_kick();
 
     } else {
       /* Increment tick */
