@@ -79,7 +79,8 @@ uint32_t get_epoch_from_time(struct tracker_time *t)
 void collect_data_async(void)
 {
 #ifdef GPS_TYPE_UBX
-  /* Ask GPS for latest fix */
+  /* Ask GPS for latest time and fix */
+  gps_update_time();
   gps_update_position();
 #endif  /* GPS_TYPE_UBX */
 
@@ -145,7 +146,10 @@ struct tracker_datapoint* collect_data(void)
   /**
    * ---- GPS UBX ----
    */
-  if (gps_update_position_pending() || (gps_get_error_state() != GPS_NOERROR)) {
+  /* wait for GPS, if it takes forever the watchdog will save us */
+  while (gps_update_time_pending() || gps_update_position_pending());
+
+  if (gps_get_error_state() != GPS_NOERROR) {
     /* Error updating GPS position */
 
     /* TODO: Hit reset on the GPS? */
