@@ -92,6 +92,34 @@ void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length)
   memcpy(buffer, nvm_section + address, length);
 }
 /**
+ * Write single word
+ */
+void mem_write_word(uint32_t address, uint32_t word)
+{
+#ifdef FIX_ERRATA_REV_C_FLASH_10804
+  /* save CTRLB and disable cache */
+  uint32_t temp = NVMCTRL->CTRLB.reg;
+  NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_CACHEDIS;
+#endif
+
+  /* write address */
+  NVMCTRL->ADDR.reg = (uint32_t)(address) >> 1;
+  /* write data. length must be multiple of two */
+  *(uint32_t*)address = word;
+  /* unlock */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
+  /* write page */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_WP;
+  _mem_wait_for_done();
+  /* lock */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
+
+#ifdef FIX_ERRATA_REV_C_FLASH_10804
+  /* restore CTRLB */
+  NVMCTRL->CTRLB.reg = temp;
+#endif
+}
+/**
  * Write 64-byte page. Address should be page aligned
  */
 void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)

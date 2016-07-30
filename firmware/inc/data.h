@@ -53,6 +53,9 @@ typedef struct tracker_datapoint {
   float radio_die_temperature;  /* ºC */
   uint32_t xosc_error;          /* Hertz */
 
+  /* system */
+  uint8_t flash_status;
+
 } tracker_datapoint;
 
 

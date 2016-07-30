@@ -1,6 +1,6 @@
 /*
- * Provides functions for using the external flash memory
- * Copyright (C) 2015  Richard Meadows <richardeoin>
+ * Function related to the flash memory
+ * Copyright (C) 2016  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,39 +22,14 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef FLASH_H
+#define FLASH_H
 
-/**
- * Memory layout:
- *
- * 64-byte pages
- * 256-byte rows (erase) - 4 pages
- */
+enum flash_state {
+  FLASH_GOOD,                   /* checksum matches */
+  FLASH_BAD_CSUM,               /* mismatch */
+};
 
-#define TOTAL_PAGES	0x100
-#define TOTAL_ROWS	0x40
+enum flash_state check_flash_state(void);
 
-#define PAGE_MASK	0x7FFC0
-#define ROW_MASK	0x7FF00
-
-#define PAGE_SIZE	0x00040
-#define ROW_SIZE	0x00100
-
-/**
- * Pages assigned to backlog. Currently 256 records
- */
-#define BACKLOG_START_PAGE	0x00
-#define BACKLOG_END_PAGE	0xff
-
-
-void mem_chip_erase(void);
-void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
-void mem_write_word(uint32_t address, uint32_t word);
-void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length);
-void mem_erase_sector(uint32_t address);
-
-uint8_t mem_power_on();
-void mem_power_off();
-
-#endif
+#endif /* FLASH_H */
