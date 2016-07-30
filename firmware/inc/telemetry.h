@@ -41,7 +41,7 @@ enum telemetry_t {
 /**
  * Output String
  */
-#define TELEMETRY_STRING_MAX	0x200
+#define TELEMETRY_STRING_MAX	0x100
 char telemetry_string[TELEMETRY_STRING_MAX];
 
 int telemetry_active(void);
