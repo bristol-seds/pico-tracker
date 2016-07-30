@@ -670,6 +670,8 @@ void gps_init(void)
 
   kick_the_watchdog();
 
+  for (int i = 0; i < 100*1000; i++) { kick_the_watchdog(); }
+
   /* Set the platform model */
   gps_set_platform_model();
 
