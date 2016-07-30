@@ -55,6 +55,8 @@ enum battery_charge_state battery_charge_state;
  */
 void update_use_state(struct tracker_datapoint *dp)
 {
+  (void)dp;
+
 #ifdef RECHARGABLE_MIN_V
   if (dp->battery < RECHARGABLE_MIN_V) { /* voltage too low? */
     battery_use_state = BATTERY_VOLTAGE_TOO_LOW;
@@ -70,6 +72,8 @@ void update_use_state(struct tracker_datapoint *dp)
  */
 void update_charge_state(struct tracker_datapoint *dp)
 {
+  (void)dp;
+
 #if RECHARGABLE_BATTERY
   if (dp->solar > 4.0) { /* power coming in */
     /* excess / charging */
