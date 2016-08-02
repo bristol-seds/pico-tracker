@@ -28,8 +28,14 @@
 /**
  * 50 baud RTTY
  */
-#define RTTY_BITRATE		50
-#define RTTY_CHANNEL_SPACING	52 // Corresponds to 405.9Hz spacing
+//#define RTTY_BITRATE		50
+//#define RTTY_CHANNEL_SPACING	52 // Corresponds to 405.9Hz spacing
+
+/**
+ * 300 baud RTTY
+ */
+#define RTTY_BITRATE		300
+#define RTTY_CHANNEL_SPACING	109 // Corresponds to 850.8Hz spacing
 
 
 void rtty_start(uint8_t data);

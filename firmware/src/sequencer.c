@@ -71,6 +71,9 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
     /* Contestia */
     contestia_telemetry(dp);
 
+    /* 300 baud rtty */
+    rtty_telemetry(dp);
+
 #if TELEMETRY_USE_GEOFENCE
   }
 #endif
