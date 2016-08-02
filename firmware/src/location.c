@@ -57,7 +57,7 @@ int32_t current_telemetry_outline = -1;
  * Note that division by zero is avoided because the division is
  * protected by the "if" clause which surrounds it.
  */
-bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y)
+bool point_in_polygon(const int16_t* poly, uint16_t points, int32_t x, int32_t y)
 {
   uint32_t i, j = points-1;
   bool oddNodes = false;
@@ -82,10 +82,10 @@ bool point_in_polygon(const int32_t* poly, uint32_t points, int32_t x, int32_t y
  *
  * lat_hn, lon_hn in 100 nanodeg
  */
-bool latlon_in_polygon(const int32_t* poly, uint32_t points, int32_t lat_hn, int32_t lon_hn)
+bool latlon_in_polygon(const int16_t* poly, uint16_t points, int32_t lat_hn, int32_t lon_hn)
 {
-  int32_t x = lon_hn / 10; /* longitude : 100 nano -> µdegrees */
-  int32_t y = lat_hn / 10; /* latitude  : 100 nano -> µdegrees */
+  int32_t x = lon_hn / (1e6 / 18); /* longitude : 100 nano -> degrees/180 */
+  int32_t y = lat_hn / (1e6 / 36); /* latitude  : 100 nano -> degrees/360 */
 
   return point_in_polygon(poly, points, x, y);
 }
@@ -109,8 +109,8 @@ bool latlon_in_polygon(const int32_t* poly, uint32_t points, int32_t lat_hn, int
 bool latlon_in_telemetry(int32_t telemetry_outline, int32_t lat_hn, int32_t lon_hn)
 {
   return latlon_in_polygon(
-    no_telem_outlines[telemetry_outline],
-    no_telem_outline_lengths[telemetry_outline],
+    telemetry_outlines[telemetry_outline],
+    telemetry_outline_lengths[telemetry_outline],
     lat_hn, lon_hn);
 }
 /**
@@ -132,7 +132,9 @@ void location_telemetry_update(int32_t lat_hn, int32_t lon_hn)
   }
 
   /* Check all the telemetry outlines */
-  for (outline = 0; outline < sizeof(no_telem_outlines) / sizeof(int32_t*); outline++) {
+  for (outline = 0;
+       outline < sizeof(telemetry_outlines) / sizeof(int32_t*);
+       outline++) {
 
     if (latlon_in_telemetry(outline, lat_hn, lon_hn)) { /* If we're in this zone */
 

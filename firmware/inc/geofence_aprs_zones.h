@@ -15,9 +15,9 @@
  * struct representing all we need to know about a aprs zone
  */
 struct aprs_zone_t {
-  const int32_t** outlines;
-  const uint32_t outline_count;
-  const uint32_t* outline_lengths;
+  const int16_t** outlines;
+  const uint16_t outline_count;
+  const uint16_t* outline_lengths;
   int32_t frequency;
   int32_t deviation;
   char* name;
