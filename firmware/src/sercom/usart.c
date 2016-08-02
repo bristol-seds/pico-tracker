@@ -98,7 +98,7 @@ enum sercom_status_t usart_init(SercomUsart* const hw,
 
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Unused */
   (void)encoding_format_enable;
@@ -347,7 +347,7 @@ enum sercom_status_t usart_write_wait(SercomUsart* const hw,
 				  const uint16_t tx_data)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check if USART is ready for new data */
   if (!(hw->INTFLAG.reg & SERCOM_USART_INTFLAG_DRE)) {
@@ -394,7 +394,7 @@ enum sercom_status_t usart_read_wait(SercomUsart* const hw,
 				 uint16_t *const rx_data)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Error variable */
   uint8_t error_code;
@@ -480,7 +480,7 @@ enum sercom_status_t usart_write_buffer_wait(SercomUsart* const hw,
 					 uint16_t length)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Wait until synchronization is complete */
   USART_WAIT_FOR_SYNC(hw);
@@ -558,7 +558,7 @@ enum sercom_status_t usart_read_buffer_wait(SercomUsart* hw,
 					uint16_t length)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   uint16_t rx_pos = 0;
 

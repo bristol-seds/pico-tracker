@@ -164,7 +164,7 @@ static inline uint32_t port_group_get_input_level(const PortGroup *const port,
 						  const uint32_t mask)
 {
   /* Sanity check arguments */
-  assert(port);
+
 
   return (port->IN.reg & mask);
 }
@@ -184,7 +184,7 @@ static inline uint32_t port_group_get_output_level(const PortGroup *const port,
 						   const uint32_t mask)
 {
   /* Sanity check arguments */
-  assert(port);
+
 
   return (port->OUT.reg & mask);
 }
@@ -201,7 +201,7 @@ static inline void port_group_set_output_level(PortGroup *const port,
 					       const uint32_t level_mask)
 {
   /* Sanity check arguments */
-  assert(port);
+
 
   port->OUTSET.reg = (mask &  level_mask);
   port->OUTCLR.reg = (mask & ~level_mask);
@@ -217,7 +217,7 @@ static inline void port_group_toggle_output_level(PortGroup *const port,
 						  const uint32_t mask)
 {
   /* Sanity check arguments */
-  assert(port);
+
 
   port->OUTTGL.reg = mask;
 }

@@ -564,7 +564,7 @@ enum clock_status_t system_clock_source_enable(
       return CLOCK_STATUS_OK;
 
     default:
-      assert(false);
+      while(1);
       return CLOCK_STATUS_INVALID_ARG;
   }
 
@@ -608,7 +608,7 @@ enum clock_status_t system_clock_source_disable(
       /* Not possible to disable */
 
     default:
-      assert(false);
+      while(1);
       return CLOCK_STATUS_INVALID_ARG;
 
   }

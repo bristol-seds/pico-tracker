@@ -244,7 +244,7 @@ static inline void system_voltage_reference_enable(
       break;
 
     default:
-      assert(false);
+
       return;
   }
 }
@@ -267,7 +267,7 @@ static inline void system_voltage_reference_disable(
       break;
 
     default:
-      assert(false);
+
       return;
   }
 }

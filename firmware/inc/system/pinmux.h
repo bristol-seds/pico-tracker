@@ -41,7 +41,7 @@
 #ifndef PINMUX_H_INCLUDED
 #define PINMUX_H_INCLUDED
 
-#include <assert.h>
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include "samd20.h"
@@ -210,7 +210,6 @@ static inline PortGroup* system_pinmux_get_group_from_gpio_pin(
   if (port_index < PORT_INST_NUM) {
     return &(ports[port_index]->Group[group_index]);
   } else {
-    assert(false);
     return NULL;
   }
 }

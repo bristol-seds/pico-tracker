@@ -137,7 +137,7 @@ static inline void _adc_configure_ain_pin(uint32_t pin)
   if (pin <= ADC_EXTCHANNEL_MSB) {
     pin_map_result = pinmapping[pin >> ADC_INPUTCTRL_MUXPOS_Pos];
 
-    Assert(pin_map_result != PIN_INVALID_ADC_AIN);
+
 
     system_pinmux_pin_set_config(pin_map_result,
                                  1, // B
@@ -487,8 +487,8 @@ enum adc_status_code adc_init(Adc *hw,
 {
   /* Sanity check arguments */
 
-  Assert(hw);
-  Assert(config);
+
+
 
   /* Associate the software module instance with the hardware module */
   module_inst.hw = hw;
@@ -582,7 +582,7 @@ void adc_register_callback(
   enum adc_callback callback_type)
 {
   /* Sanity check arguments */
-  Assert(callback_func);
+
 
   /* Register callback function */
   module_inst.callback[callback_type] = callback_func;
@@ -632,8 +632,8 @@ enum adc_status_code adc_read_buffer_job(
   uint16_t *buffer,
   uint16_t samples)
 {
-  Assert(samples);
-  Assert(buffer);
+
+
 
   if(module_inst.remaining_conversions != 0 ||
      module_inst.job_status == ADC_STATUS_BUSY){

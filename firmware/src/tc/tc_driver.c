@@ -39,8 +39,6 @@
  *
  */
 
-#include <assert.h>
-
 #include "system/clock.h"
 #include "tc/tc_driver.h"
 #include "samd20.h"
@@ -73,7 +71,7 @@
  */
 void tc_enable(Tc* const hw)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -85,7 +83,7 @@ void tc_enable(Tc* const hw)
  */
 void tc_disable(Tc* const hw)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -98,7 +96,7 @@ void tc_disable(Tc* const hw)
  */
 void tc_start_counter(Tc* const hw)
 {
-  assert(hw);
+
 
   /* Make certain that there are no conflicting commands in the register */
   WAIT_FOR_SYNC(hw);
@@ -116,7 +114,7 @@ void tc_start_counter(Tc* const hw)
  */
 void tc_stop_counter(Tc* const hw)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -137,7 +135,7 @@ void tc_stop_counter(Tc* const hw)
  */
 uint32_t tc_get_status(Tc* const hw)
 {
-  assert(hw);
+
 
   uint32_t int_flags = hw->COUNT8.INTFLAG.reg;
   uint32_t status_flags = 0;
@@ -177,7 +175,7 @@ uint32_t tc_get_status(Tc* const hw)
 void tc_clear_status(Tc* const hw,
 		     const uint32_t status_flags)
 {
-  assert(hw);
+
 
   uint32_t int_flags = 0;
 
@@ -220,20 +218,20 @@ void tc_clear_status(Tc* const hw,
  */
 void tc_set_count_value(Tc* const hw, const uint32_t count)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
   /* Write to based on the TC counter_size */
   switch (hw->COUNT8.CTRLA.reg & TC_CTRLA_MODE_Msk) {
     case TC_COUNTER_SIZE_8BIT:
-      assert((count & ~0xFF) == 0);
+
 
       hw->COUNT8.COUNT.reg  = (uint8_t)count;
       return;
 
     case TC_COUNTER_SIZE_16BIT:
-      assert((count & ~0xFFFF) == 0);
+
 
       hw->COUNT16.COUNT.reg = (uint16_t)count;
       return;
@@ -243,7 +241,7 @@ void tc_set_count_value(Tc* const hw, const uint32_t count)
       return;
 
     default:
-      assert(TC_ERROR_INVALID_STATE);
+      while (1);
   }
 }
 
@@ -257,7 +255,7 @@ void tc_set_count_value(Tc* const hw, const uint32_t count)
  */
 uint32_t tc_get_count_value(Tc* const hw)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -273,7 +271,7 @@ uint32_t tc_get_count_value(Tc* const hw)
       return hw->COUNT32.COUNT.reg;
 
     default:
-      assert(TC_ERROR_INVALID_STATE);
+
       return 0;
   }
 }
@@ -289,7 +287,7 @@ uint32_t tc_get_count_value(Tc* const hw)
 uint32_t tc_get_capture_value(Tc* const hw,
 			      const enum tc_compare_capture_channel channel_index)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -311,11 +309,11 @@ uint32_t tc_get_capture_value(Tc* const hw,
       }
 
     default:
-      assert(TC_ERROR_INVALID_STATE);
+
       return 0;
   }
 
-  assert(TC_ERROR_INVALID_ARG);
+
   return 0;
 }
 
@@ -335,7 +333,7 @@ void tc_set_compare_value(Tc* const hw,
 			  const enum tc_compare_capture_channel channel_index,
 			  const uint32_t compare)
 {
-  assert(hw);
+
 
   WAIT_FOR_SYNC(hw);
 
@@ -360,12 +358,12 @@ void tc_set_compare_value(Tc* const hw,
       }
 
     default:
-      assert(TC_ERROR_INVALID_STATE);
+
       return;
   }
 
   /* Channel index was wrong */
-  assert(TC_ERROR_INVALID_ARG);
+
   return;
 }
 
@@ -384,7 +382,7 @@ static inline uint32_t tc_get_instance_number(Tc* const hw)
     }
   }
 
-  assert(TC_ERROR_INVALID_DEVICE);
+
   return 0;
 }
 /**
@@ -405,7 +403,7 @@ const Tc* tc_get_slave_instance(Tc* const hw) {
     }
   }
 
-  assert(TC_ERROR_NO_32BIT_SLAVE_EXISTS);
+
   return 0;
 }
 
@@ -428,7 +426,7 @@ const Tc* tc_get_slave_instance(Tc* const hw) {
 void tc_reset(Tc* const hw)
 {
   if (hw->COUNT8.STATUS.reg & TC_STATUS_SLAVE) {
-    assert(TC_ERROR_INVALID_DEVICE);
+
     return;
   }
 
@@ -474,12 +472,12 @@ void tc_set_top_value(Tc* const hw,
 
   switch (hw->COUNT8.CTRLA.reg & TC_CTRLA_MODE_Msk) {
     case TC_COUNTER_SIZE_8BIT:
-      assert((top_value & ~0xFF) == 0);
+
       hw->COUNT8.PER.reg    = (uint8_t)top_value;
       return;
 
     case TC_COUNTER_SIZE_16BIT:
-      assert((top_value & ~0xFFFF) == 0);
+
       hw->COUNT16.CC[0].reg = (uint16_t)top_value;
       return;
 
@@ -488,7 +486,7 @@ void tc_set_top_value(Tc* const hw,
       return;
 
     default:
-      assert(TC_ERROR_INVALID_STATE);
+      while(1);
   }
 
   return;
@@ -509,8 +507,8 @@ void tc_enable_events(Tc* const hw,
 		      struct tc_events *const events)
 {
   /* Sanity check arguments */
-  assert(hw);
-  assert(events);
+
+
 
   uint32_t event_mask = 0;
 
@@ -547,8 +545,8 @@ void tc_enable_events(Tc* const hw,
 void tc_disable_events(Tc* const hw,
 				     struct tc_events *const events)
 {
-  assert(hw);
-  assert(events);
+
+
 
   uint32_t event_mask = 0;
 
@@ -594,7 +592,7 @@ enum tc_status_t tc_init(Tc* const hw,
 			 bool* enable_capture_channels,
 			 uint32_t* compare_channel_values)
 {
-  assert(hw);
+
 
   const Tc* slave;
   uint16_t ctrla_tmp = 0;

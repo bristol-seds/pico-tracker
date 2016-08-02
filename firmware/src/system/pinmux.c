@@ -61,7 +61,7 @@ static void _system_pinmux_config(PortGroup *const port,
 				  const enum system_pinmux_pin_pull input_pull,
 				  bool powersave)
 {
-  assert(port);
+
 
   /* Track the configuration bits into a temporary variable before writing */
   uint32_t pin_cfg = 0;
@@ -181,7 +181,7 @@ void system_pinmux_group_set_config(PortGroup *const port,
 				    const enum system_pinmux_pin_pull input_pull,
 				    bool powersave)
 {
-  assert(port);
+
 
   for (int i = 0; i < 32; i++) {
     if (mask & (1UL << i)) {
@@ -203,7 +203,7 @@ void system_pinmux_group_set_input_sample_mode(PortGroup *const port,
 					       const uint32_t mask,
 					       const enum system_pinmux_pin_sample mode)
 {
-  assert(port);
+
 
   if (mode == SYSTEM_PINMUX_PIN_SAMPLE_ONDEMAND) {
     port->CTRL.reg |= mask;

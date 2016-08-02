@@ -132,7 +132,7 @@
  *
  */
 
-#include <assert.h>
+
 #include "samd20.h"
 #include "system/gclk.h"
 
@@ -508,7 +508,7 @@ static inline void system_main_clock_set_failure_detect(const bool enable)
 static inline void system_cpu_clock_set_divider(
   const enum system_main_clock_div divider)
 {
-  assert(((uint32_t)divider & PM_CPUSEL_CPUDIV_Msk) == divider);
+
   PM->CPUSEL.reg = (uint32_t)divider;
 }
 
@@ -552,7 +552,7 @@ static inline enum clock_status_t system_apb_clock_set_divider(
       PM->APBCSEL.reg = (uint32_t)divider;
       break;
     default:
-      assert(false);
+
       return CLOCK_STATUS_INVALID_ARG;
   }
 
@@ -581,7 +581,7 @@ static inline uint32_t system_apb_clock_get_hz(
       bus_divider = PM->APBCSEL.reg;
       break;
     default:
-      assert(false);
+
       return 0;
   }
 
@@ -652,7 +652,7 @@ static inline enum clock_status_t system_apb_clock_set_mask(
       break;
 
     default:
-      assert(false);
+
       return CLOCK_STATUS_INVALID_ARG;
 
   }
@@ -694,7 +694,7 @@ static inline enum clock_status_t system_apb_clock_clear_mask(
       break;
 
     default:
-      assert(false);
+
       return CLOCK_STATUS_INVALID_ARG;
   }
 
@@ -834,9 +834,6 @@ void system_clock_init(void);
  */
 static inline void system_flash_set_waitstates(const enum system_wait_states wait_states)
 {
-  assert(NVMCTRL_CTRLB_RWS((uint32_t)wait_states) ==
-	 ((uint32_t)wait_states << NVMCTRL_CTRLB_RWS_Pos));
-
   NVMCTRL->CTRLB.bit.RWS = wait_states;
 }
 

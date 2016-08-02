@@ -406,7 +406,7 @@ enum usart_transceiver_type {
 static inline void usart_enable(SercomUsart* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Wait until synchronization is complete */
   USART_WAIT_FOR_SYNC(hw);
@@ -423,7 +423,7 @@ static inline void usart_enable(SercomUsart* const hw)
 static inline void usart_disable(SercomUsart* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Wait until synchronization is complete */
   USART_WAIT_FOR_SYNC(hw);
@@ -440,7 +440,7 @@ static inline void usart_disable(SercomUsart* const hw)
 static inline void usart_reset(SercomUsart* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   usart_disable(hw);
 
@@ -461,7 +461,7 @@ static inline void usart_enable_transceiver(SercomUsart* const hw,
 					    enum usart_transceiver_type transceiver_type)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Wait until synchronization is complete */
   USART_WAIT_FOR_SYNC(hw);
@@ -489,7 +489,7 @@ static inline void usart_disable_transceiver(SercomUsart* const hw,
 					     enum usart_transceiver_type transceiver_type)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Wait until synchronization is complete */
   USART_WAIT_FOR_SYNC(hw);

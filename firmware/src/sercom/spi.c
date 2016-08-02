@@ -59,7 +59,7 @@
 void spi_reset(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Disable the module */
   spi_disable(hw);
@@ -86,7 +86,7 @@ enum sercom_status_t spi_set_baudrate(SercomSpi* const hw,
 				      uint32_t baudrate)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Value to write to BAUD register */
   uint16_t baud = 0;
@@ -130,7 +130,7 @@ enum sercom_status_t spi_set_baudrate(SercomSpi* const hw,
 static void _spi_clear_tx_complete_flag(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Clear interrupt flag */
   hw->INTFLAG.reg = SPI_INTERRUPT_FLAG_TX_COMPLETE;
@@ -177,7 +177,7 @@ enum sercom_status_t spi_init(SercomSpi *const hw,
 {
 
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check if module is enabled. */
   if (hw->CTRLA.reg & SERCOM_SPI_CTRLA_ENABLE) {
@@ -392,7 +392,7 @@ enum sercom_status_t spi_read_buffer_wait(SercomSpi* const hw,
 				      uint16_t dummy)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Sanity check arguments */
   if (length == 0) {
@@ -462,7 +462,7 @@ enum sercom_status_t spi_transceive_wait(SercomSpi* const hw,
 				     uint16_t *rx_data)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   uint16_t j;
   enum sercom_status_t retval = SERCOM_STATUS_OK;
@@ -535,7 +535,7 @@ enum sercom_status_t spi_select_slave(SercomSpi* const hw,
 				      const bool select)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check that the SPI module is operating in master mode */
   if (!SPI_MODE_MASTER(hw)) {
@@ -607,7 +607,7 @@ enum sercom_status_t spi_write_buffer_wait(SercomSpi* const hw,
 				       uint16_t length)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   if (length == 0) {
     return SERCOM_STATUS_INVALID_ARG;
@@ -679,7 +679,7 @@ enum sercom_status_t spi_transceive_buffer_wait(SercomSpi* const hw,
 					    uint16_t length)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Sanity check arguments */
   if (length == 0) {

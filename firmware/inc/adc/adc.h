@@ -960,7 +960,7 @@ enum adc_status_code adc_init(Adc *hw,
  */
 static inline void adc_get_config_defaults(struct adc_config *const config)
 {
-  Assert(config);
+
   config->clock_source                  = GCLK_GENERATOR_0;
   config->reference                     = ADC_REFERENCE_INT1V;
   config->clock_prescaler               = ADC_CLOCK_PRESCALER_DIV4;
@@ -1046,7 +1046,7 @@ static inline uint32_t adc_get_status(void)
 static inline void adc_clear_status(const uint32_t status_flags)
 {
   /* Sanity check arguments */
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1113,7 +1113,7 @@ static inline bool adc_is_syncing(void)
 static inline enum adc_status_code adc_enable(void)
 {
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1139,7 +1139,7 @@ static inline enum adc_status_code adc_enable(void)
  */
 static inline enum adc_status_code adc_disable(void)
 {
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1163,7 +1163,7 @@ static inline enum adc_status_code adc_reset(void)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1195,8 +1195,8 @@ static inline void adc_enable_events(struct adc_events *const events)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
-  Assert(events);
+
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1230,8 +1230,8 @@ static inline void adc_disable_events(struct adc_events *const events)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
-  Assert(events);
+
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1260,7 +1260,7 @@ static inline void adc_disable_events(struct adc_events *const events)
 static inline void adc_start_conversion(void)
 {
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1288,8 +1288,8 @@ static inline void adc_start_conversion(void)
 static inline enum adc_status_code adc_read(uint16_t *result)
 {
 
-  Assert(module_inst.hw);
-  Assert(result);
+
+
 
   if (!(adc_get_status() & ADC_STATUS_RESULT_READY)) {
     /* Result not ready */
@@ -1335,7 +1335,7 @@ static inline enum adc_status_code adc_read(uint16_t *result)
 static inline void adc_flush(void)
 {
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1362,7 +1362,7 @@ static inline void adc_set_window_mode(const enum adc_window_mode window_mode,
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1401,7 +1401,7 @@ static inline void adc_set_gain(const enum adc_gain_factor gain_factor)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1441,7 +1441,7 @@ static inline enum adc_status_code adc_set_pin_scan_mode(uint8_t inputs_to_scan,
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1500,7 +1500,7 @@ static inline void adc_set_positive_input(const enum adc_positive_input positive
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1528,7 +1528,7 @@ static inline void adc_set_negative_input(const enum adc_negative_input negative
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
 
@@ -1554,7 +1554,7 @@ static inline void adc_enable_interrupt(enum adc_interrupt_flag interrupt)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
   /* Enable interrupt */
@@ -1573,7 +1573,7 @@ static inline void adc_disable_interrupt(enum adc_interrupt_flag interrupt)
 {
   /* Sanity check arguments */
 
-  Assert(module_inst.hw);
+
 
   Adc *const adc_module = module_inst.hw;
   /* Enable interrupt */

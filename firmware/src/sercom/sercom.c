@@ -67,7 +67,7 @@ uint8_t _sercom_get_sercom_inst_index(Sercom *const sercom_instance)
   }
 
   /* Invalid data given. */
-  assert(false);
+  while (1);
   return 0;
 }
 
@@ -292,6 +292,6 @@ uint32_t _sercom_get_default_pad(Sercom* const sercom_module,
 #endif
   }
 
-  assert(false);
+  while(1);
   return 0;
 }

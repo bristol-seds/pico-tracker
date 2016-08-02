@@ -587,7 +587,7 @@ struct spi_slave_inst_config {
 static inline void spi_slave_inst_get_config_defaults(
   struct spi_slave_inst_config *const config)
 {
-  assert(config);
+
 
   config->ss_pin          = 10;
   config->address_enabled = false;
@@ -606,8 +606,8 @@ static inline void spi_slave_inst_get_config_defaults(
 static inline void spi_attach_slave(struct spi_slave_inst *const slave)
 //  struct spi_slave_inst_config *const config)
 {
-  assert(slave);
-//  Assert(config);
+
+//
 
 //  slave->ss_pin          = config->ss_pin;
 //  slave->address_enabled = config->address_enabled;
@@ -658,7 +658,7 @@ enum sercom_status_t spi_init_default(SercomSpi *const hw);
 static inline void spi_enable(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
 //  system_interrupt_enable(_sercom_get_interrupt_vector(module->hw));
 
@@ -676,7 +676,7 @@ static inline void spi_enable(SercomSpi* const hw)
 static inline void spi_disable(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   // system_interrupt_disable(_sercom_get_interrupt_vector(module->hw));
 
@@ -706,7 +706,7 @@ enum sercom_status_t spi_set_baudrate(SercomSpi* const hw,
 static inline bool spi_is_write_complete(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check interrupt flag */
   return (hw->INTFLAG.reg & SERCOM_SPI_INTFLAG_TXC);
@@ -724,7 +724,7 @@ static inline bool spi_is_write_complete(SercomSpi* const hw)
 static inline bool spi_is_ready_to_write(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check interrupt flag */
   return (hw->INTFLAG.reg & SERCOM_SPI_INTFLAG_DRE);
@@ -742,7 +742,7 @@ static inline bool spi_is_ready_to_write(SercomSpi* const hw)
 static inline bool spi_is_ready_to_read(SercomSpi* const hw)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check interrupt flag */
   return (hw->INTFLAG.reg & SERCOM_SPI_INTFLAG_RXC);
@@ -773,7 +773,7 @@ static inline enum sercom_status_t spi_write(SercomSpi* const hw,
 					 uint16_t tx_data)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check if the data register has been copied to the shift register */
   if (!spi_is_ready_to_write(hw)) {
@@ -812,7 +812,7 @@ static inline enum sercom_status_t spi_read(SercomSpi* const hw,
 					uint16_t *rx_data)
 {
   /* Sanity check arguments */
-  assert(hw);
+
 
   /* Check if data is ready to be read */
   if (!spi_is_ready_to_read(hw)) {

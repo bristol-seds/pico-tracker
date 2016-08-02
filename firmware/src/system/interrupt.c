@@ -41,7 +41,6 @@
 
 #include "system/interrupt.h"
 #include <stdbool.h>
-#include <assert.h>
 
 static volatile uint32_t cpu_irq_critical_section_counter;
 static volatile bool     cpu_irq_prev_interrupt_state;
@@ -64,7 +63,9 @@ void cpu_irq_leave_critical(void)
 {
   /* Check if the user is trying to leave a critical section when not
    * in a critical section */
-  assert(cpu_irq_critical_section_counter > 0);
+  if(cpu_irq_critical_section_counter == 0) {
+    while (1);
+  }
 
   cpu_irq_critical_section_counter--;
 
