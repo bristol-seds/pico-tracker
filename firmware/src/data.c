@@ -147,9 +147,10 @@ struct tracker_datapoint* collect_data(void)
    * ---- GPS UBX ----
    */
   /* wait for GPS, if it takes forever the watchdog will save us */
-  kick_the_watchdog();
-  while (gps_update_time_pending() || gps_update_position_pending());
-  kick_the_watchdog();
+  while (gps_update_time_pending() || gps_update_position_pending()) {
+    idle(IDLE_WAIT_FOR_GPS);
+  }
+
 
   if (gps_get_error_state() != GPS_NOERROR) {
     /* Error updating GPS position */

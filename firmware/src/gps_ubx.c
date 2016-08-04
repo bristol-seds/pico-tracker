@@ -109,9 +109,9 @@ volatile ubx_message_t* const ubx_messages[] = {
 /**
  * Platform specific handlers
  */
-#define _send_buffer(tx_data, length)			\
+#define _send_buffer(tx_data, length)                                   \
   do { usart_write_buffer_wait(GPS_SERCOM, tx_data, length); } while (0)
-#define _error_handler(error_type)			\
+#define _error_handler(error_type)                  \
   do { gps_error_state = error_type; } while (0)
 
 
@@ -177,13 +177,13 @@ void ubx_process_frame(uint8_t* frame)
     /** Otherwise it could be a message frame, search for a type */
     for (uint32_t i = 0; i < sizeof(ubx_messages)/sizeof(ubx_message_t*); i++) {
       if (message_id == ubx_messages[i]->id) { // Match!
-	/* Populate struct */
-	memcpy((void*)(ubx_messages[i]+1), frame + 4, payload_length);
+        /* Populate struct */
+        memcpy((void*)(ubx_messages[i]+1), frame + 4, payload_length);
 
-	/* Set the message state */
-	ubx_messages[i]->state = UBX_PACKET_UPDATED;
+        /* Set the message state */
+        ubx_messages[i]->state = UBX_PACKET_UPDATED;
 
-	return;
+        return;
       }
     }
   }
@@ -281,6 +281,16 @@ enum gps_error _ubx_poll(ubx_message_t* message) {
 }
 
 /**
+ * Implements a microsecond delay
+ */
+static inline void delay_us(uint32_t microseconds)
+{
+  volatile int32_t i = microseconds * 8;
+
+  while(i--);
+}
+
+/**
  * Disable NMEA messages on the uBlox
  */
 void gps_set_io_config(uint32_t baud_rate)
@@ -295,10 +305,10 @@ void gps_set_io_config(uint32_t baud_rate)
   ubx_cfg_prt.payload.flags = 0;
 
   _ubx_send_message((ubx_message_t*)&ubx_cfg_prt,
-		    (uint8_t*)&ubx_cfg_prt.payload,
-		    sizeof(ubx_cfg_prt.payload));
+                    (uint8_t*)&ubx_cfg_prt.payload,
+                    sizeof(ubx_cfg_prt.payload));
 
-  for (int i = 0; i < 1000*100; i++);
+  delay_us(1000*50);
 }
 
 /**
@@ -311,10 +321,10 @@ void gps_cfg_rst(void)
   ubx_cfg_rst.payload.reserved1 = 0;
 
   _ubx_send_message((ubx_message_t*)&ubx_cfg_rst,
-		    (uint8_t*)&ubx_cfg_rst.payload,
-		    sizeof(ubx_cfg_rst.payload));
+                    (uint8_t*)&ubx_cfg_rst.payload,
+                    sizeof(ubx_cfg_rst.payload));
 
-  for (int i = 0; i < 1000*100; i++);
+  delay_us(1000*50);
 }
 
 
@@ -369,7 +379,7 @@ void gps_update_position(void)
 int gps_update_time_pending(void)
 {
   return (ubx_nav_timeutc.state == UBX_PACKET_WAITING &&
-    gps_error_state == GPS_NOERROR);
+          gps_error_state == GPS_NOERROR);
 }
 /**
  * Indicates a pending position update from the GPS
@@ -377,7 +387,7 @@ int gps_update_time_pending(void)
 int gps_update_position_pending(void)
 {
   return (((ubx_nav_posllh.state == UBX_PACKET_WAITING) ||
-          (ubx_nav_sol.state == UBX_PACKET_WAITING)) &&
+           (ubx_nav_sol.state == UBX_PACKET_WAITING)) &&
           gps_error_state == GPS_NOERROR);
 
   //(ubx_nav_status.state == UBX_PACKET_WAITING);
@@ -471,8 +481,8 @@ void gps_set_platform_model(void)
     ubx_cfg_nav5.payload.dynModel = GPS_PLATFORM_MODEL;
     /* Send */
     _ubx_send_message((ubx_message_t*)&ubx_cfg_nav5,
-		      (uint8_t*)&ubx_cfg_nav5.payload,
-		      sizeof(ubx_cfg_nav5.payload));
+                      (uint8_t*)&ubx_cfg_nav5.payload,
+                      sizeof(ubx_cfg_nav5.payload));
   }
 }
 
@@ -498,8 +508,8 @@ void gps_set_timepulse_five(uint32_t frequency)
 
   /* Write the new settings */
   _ubx_send_message((ubx_message_t*)&ubx_cfg_tp5,
-		    (uint8_t*)&ubx_cfg_tp5.payload,
-		    sizeof(ubx_cfg_tp5.payload));
+                    (uint8_t*)&ubx_cfg_tp5.payload,
+                    sizeof(ubx_cfg_tp5.payload));
 }
 /**
  * Set which GNSS constellations to use
@@ -514,12 +524,12 @@ void gps_set_gnss(void)
       /* For each configuration block */
       for (uint8_t i = 0; i < ubx_cfg_gnss.payload.numConfigBlocks; i++) {
 
-	/* If it's the configuration for something other than GPS */
-	if (ubx_cfg_gnss.payload.block[i].gnssID != UBX_GNSS_GPS) {
+        /* If it's the configuration for something other than GPS */
+        if (ubx_cfg_gnss.payload.block[i].gnssID != UBX_GNSS_GPS) {
 
-	  /* Disable this GNSS system */
-	  ubx_cfg_gnss.payload.block[i].flags &= ~0x1;
-	}
+          /* Disable this GNSS system */
+          ubx_cfg_gnss.payload.block[i].flags &= ~0x1;
+        }
       }
       break;
     default:
@@ -528,8 +538,8 @@ void gps_set_gnss(void)
 
   /* Write the new settings */
   _ubx_send_message((ubx_message_t*)&ubx_cfg_gnss,
-		    (uint8_t*)&ubx_cfg_gnss.payload,
-		    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
+                    (uint8_t*)&ubx_cfg_gnss.payload,
+                    4 + (8 * ubx_cfg_gnss.payload.numConfigBlocks));
 }
 /**
  * Sets the powersave mode
@@ -540,8 +550,8 @@ void gps_set_powersave(bool powersave_on)
 
   /* Write the new settings */
   _ubx_send_message((ubx_message_t*)&ubx_cfg_rxm,
-		    (uint8_t*)&ubx_cfg_rxm.payload,
-		    sizeof(ubx_cfg_rxm.payload));
+                    (uint8_t*)&ubx_cfg_rxm.payload,
+                    sizeof(ubx_cfg_rxm.payload));
 }
 /**
  * Sets the PWR power state
@@ -553,8 +563,8 @@ void gps_set_power_state(bool gnss_running)
 
   /* Write the new settings */
   _ubx_send_message((ubx_message_t*)&ubx_cfg_pwr,
-		    (uint8_t*)&ubx_cfg_pwr.payload,
-		    sizeof(ubx_cfg_pwr.payload));
+                    (uint8_t*)&ubx_cfg_pwr.payload,
+                    sizeof(ubx_cfg_pwr.payload));
 }
 /**
  * Sets the powersave mode automatically based on if we're locked.
@@ -585,30 +595,30 @@ void gps_usart_init_enable(uint32_t baud_rate)
 {
   /* USART */
   usart_init(GPS_SERCOM,
-	     USART_DATAORDER_LSB, 		/** Bit order (MSB or LSB first) */
-	     USART_TRANSFER_ASYNCHRONOUSLY,	/** Asynchronous or synchronous mode */
-	     USART_PARITY_NONE,			/** USART parity */
-	     USART_STOPBITS_1,			/** Number of stop bits */
-	     USART_CHARACTER_SIZE_8BIT, 	/** USART character size */
-	     GPS_SERCOM_MUX,			/** USART pinout */
-	     false,	     /** Immediate buffer overflow notification */
-	     false,	     /** Enable IrDA encoding format */
-	     19,	     /** Minimum pulse length required for IrDA rx */
-	     false,	     /** Enable LIN Slave Support */
-	     false,	     /** Enable start of frame dection */
-	     false,	     /** Enable collision dection */
-	     baud_rate,      /** USART Baud rate */
-	     true,	     /** Enable receiver */
-	     true,	     /** Enable transmitter */
-	     false,	     /** Sample on the rising edge of XLCK */
-	     false,	     /** Use the external clock applied to the XCK pin. */
-	     0,		     /** External clock frequency in synchronous mode. */
-	     true,	     /** Run in standby */
-	     GPS_GCLK,			/** GCLK generator source */
-	     GPS_SERCOM_MOGI_PINMUX, 		/** PAD0 pinmux */
-	     GPS_SERCOM_MIGO_PINMUX,		/** PAD1 pinmux */
-	     PINMUX_UNUSED,			/** PAD2 pinmux */
-	     PINMUX_UNUSED);			/** PAD3 pinmux */
+             USART_DATAORDER_LSB, 		/** Bit order (MSB or LSB first) */
+             USART_TRANSFER_ASYNCHRONOUSLY,	/** Asynchronous or synchronous mode */
+             USART_PARITY_NONE,			/** USART parity */
+             USART_STOPBITS_1,			/** Number of stop bits */
+             USART_CHARACTER_SIZE_8BIT, 	/** USART character size */
+             GPS_SERCOM_MUX,			/** USART pinout */
+             false,	     /** Immediate buffer overflow notification */
+             false,	     /** Enable IrDA encoding format */
+             19,	     /** Minimum pulse length required for IrDA rx */
+             false,	     /** Enable LIN Slave Support */
+             false,	     /** Enable start of frame dection */
+             false,	     /** Enable collision dection */
+             baud_rate,      /** USART Baud rate */
+             true,	     /** Enable receiver */
+             true,	     /** Enable transmitter */
+             false,	     /** Sample on the rising edge of XLCK */
+             false,	     /** Use the external clock applied to the XCK pin. */
+             0,		     /** External clock frequency in synchronous mode. */
+             true,	     /** Run in standby */
+             GPS_GCLK,			/** GCLK generator source */
+             GPS_SERCOM_MOGI_PINMUX, 		/** PAD0 pinmux */
+             GPS_SERCOM_MIGO_PINMUX,		/** PAD1 pinmux */
+             PINMUX_UNUSED,			/** PAD2 pinmux */
+             PINMUX_UNUSED);			/** PAD3 pinmux */
 
   usart_enable(GPS_SERCOM);
 }
@@ -635,9 +645,9 @@ void gps_reset(void)
 {
 #ifdef GPS_RESET_PIN
   port_pin_set_config(GPS_RESET_PIN,
-		      PORT_PIN_DIR_OUTPUT,	/* Direction */
-		      PORT_PIN_PULL_NONE,	/* Pull */
-		      false);			/* Powersave */
+                      PORT_PIN_DIR_OUTPUT,	/* Direction */
+                      PORT_PIN_PULL_NONE,	/* Pull */
+                      false);			/* Powersave */
   port_pin_set_output_level(GPS_RESET_PIN, 0);	/* active low */
 #endif
 }
@@ -668,10 +678,6 @@ void gps_init(void)
   /* Incoming ubx messages are handled in an irq */
   usart_register_rx_callback(GPS_SERCOM, gps_rx_callback, GPS_SERCOM_INT_PRIO);
 
-  kick_the_watchdog();
-
-  for (int i = 0; i < 100*1000; i++) { kick_the_watchdog(); }
-
   /* Set the platform model */
   gps_set_platform_model();
 
@@ -696,30 +702,30 @@ void usart_loopback_test(void)
   uint16_t data;
 
   usart_init(GPS_SERCOM,
-	     USART_DATAORDER_LSB, 		/** Bit order (MSB or LSB first) */
-	     USART_TRANSFER_ASYNCHRONOUSLY,	/** Asynchronous or synchronous mode */
-	     USART_PARITY_NONE,			/** USART parity */
-	     USART_STOPBITS_1,			/** Number of stop bits */
-	     USART_CHARACTER_SIZE_8BIT, 	/** USART character size */
-	     USART_MUX_LOOPBACK,		/** USART pin out */
-	     false,	     /** Immediate buffer overflow notification */
-	     false,	     /** Enable IrDA encoding format */
-	     19,	     /** Minimum pulse length required for IrDA rx */
-	     false,	     /** Enable LIN Slave Support */
-	     false,	     /** Enable start of frame dection */
-	     false,	     /** Enable collision dection */
-	     GPS_BAUD_RATE,  /** USART Baud rate */
-	     true,	     /** Enable receiver */
-	     true,	     /** Enable transmitter */
-	     false,	     /** Sample on the rising edge of XLCK */
-	     false,	     /** Use the external clock applied to the XCK pin. */
-	     0,		     /** External clock frequency in synchronous mode. */
-	     false,	     /** Run in standby */
-	     GPS_GCLK,		/** GCLK generator source */
-	     GPS_SERCOM_MOGI_PINMUX, 	/** PAD0 pinmux */
-	     GPS_SERCOM_MIGO_PINMUX,	/** PAD1 pinmux */
-	     PINMUX_UNUSED,		/** PAD2 pinmux */
-	     PINMUX_UNUSED);		/** PAD3 pinmux */
+             USART_DATAORDER_LSB, 		/** Bit order (MSB or LSB first) */
+             USART_TRANSFER_ASYNCHRONOUSLY,	/** Asynchronous or synchronous mode */
+             USART_PARITY_NONE,			/** USART parity */
+             USART_STOPBITS_1,			/** Number of stop bits */
+             USART_CHARACTER_SIZE_8BIT, 	/** USART character size */
+             USART_MUX_LOOPBACK,		/** USART pin out */
+             false,	     /** Immediate buffer overflow notification */
+             false,	     /** Enable IrDA encoding format */
+             19,	     /** Minimum pulse length required for IrDA rx */
+             false,	     /** Enable LIN Slave Support */
+             false,	     /** Enable start of frame dection */
+             false,	     /** Enable collision dection */
+             GPS_BAUD_RATE,  /** USART Baud rate */
+             true,	     /** Enable receiver */
+             true,	     /** Enable transmitter */
+             false,	     /** Sample on the rising edge of XLCK */
+             false,	     /** Use the external clock applied to the XCK pin. */
+             0,		     /** External clock frequency in synchronous mode. */
+             false,	     /** Run in standby */
+             GPS_GCLK,		/** GCLK generator source */
+             GPS_SERCOM_MOGI_PINMUX, 	/** PAD0 pinmux */
+             GPS_SERCOM_MIGO_PINMUX,	/** PAD1 pinmux */
+             PINMUX_UNUSED,		/** PAD2 pinmux */
+             PINMUX_UNUSED);		/** PAD3 pinmux */
 
   usart_enable(GPS_SERCOM);
 
