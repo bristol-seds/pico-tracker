@@ -67,7 +67,7 @@ void rtc_init(void)
  */
 
 /* Seconds since APRS transmission */
-uint32_t since_aprs_s = 0;
+volatile uint32_t since_aprs_s = 0;
 uint32_t get_since_aprs_s(void) {
   return since_aprs_s;
 }
@@ -80,7 +80,15 @@ void clear_since_aprs_s(void) {
 volatile uint32_t hibernate_time_s = 0;
 void run_kick(void);
 
-uint32_t tick = 0;
+volatile uint32_t tick = 0;
+
+/**
+ * Getter for ticks
+ */
+uint32_t rtc_get_ticks(void)
+{
+  return tick;
+}
 
 /**
  * Set hibernate time. Must be called on every iteration of the timer

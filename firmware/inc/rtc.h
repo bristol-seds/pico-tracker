@@ -29,6 +29,8 @@
 uint32_t get_since_aprs_s(void);
 void clear_since_aprs_s(void);
 
+uint32_t rtc_get_ticks(void);
+
 /* Initialises RTC to provide 1Hz event and interrupt */
 void rtc_init(void);
 /* Sets the hibernate time */
