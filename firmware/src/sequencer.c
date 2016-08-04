@@ -80,8 +80,8 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 #endif  /* TELEMETRY_ENABLE */
 
 
-  /* CEASE APRS AT THE END OF 2016 */
-  if (dp->time.year > 2016) { return; }
+  /* CEASE APRS AT THE END OF 2018 */
+  if (dp->time.year > 2018) { return; }
 
   /* APRS */
 #if APRS_ENABLE

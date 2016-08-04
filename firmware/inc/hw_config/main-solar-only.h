@@ -129,7 +129,7 @@
 /**
  * Radio
  */
-#define SI4xxx_RADIO_PN		0x4467
+#define SI4xxx_RADIO_PN		0x4468
 #define SI4xxx_SERCOM		(SercomSpi*)SERCOM3
 #define SI4xxx_SERCOM_MOSI_PIN	PIN_PA19
 #define SI4xxx_SERCOM_MOSI_PINMUX PINMUX_PA19D_SERCOM3_PAD3
@@ -182,7 +182,7 @@
  * Telemetry
  */
 #define TELEMETRY_ENABLE		1
-#define TELEMETRY_USE_GEOFENCE	0
+#define TELEMETRY_USE_GEOFENCE	1
 #define TELEMETRY_FREQUENCY		434612500
 #define TELEMETRY_POWER			RF_POWER_8dBm
 
@@ -197,6 +197,11 @@
  * Backlog
  */
 #define BACKLOG_RECORD_BACKLOG	1
+
+/**
+ * Prefix
+ */
+#define GEOFENCE_USE_PREFIX	1
 
 /**
  * Watchdog Timer

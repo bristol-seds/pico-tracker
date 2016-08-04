@@ -28,7 +28,7 @@ PROJECT_NAME		:= pico
 
 # The exact chip being built for.
 #
-TARGET_CHIP		:= SAMD20E17
+TARGET_CHIP		:= SAMD20E18
 
 # Compiliation Flags
 #
