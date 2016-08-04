@@ -120,7 +120,12 @@ SYSTEM		+= test/tmain.c
 # Linker Scripts
 #
 #
+ifdef BOOTLOADER
+LINKERS		?= chip/$(shell echo $(TARGET_CHIP) | $(TR) A-Z a-z)_bootloader.ld
+else
 LINKERS		?= chip/$(shell echo $(TARGET_CHIP) | $(TR) A-Z a-z).ld chip/sections.ld
+endif
+LINKERS		+= chip/sections.ld
 
 # Our compilation target
 #
@@ -162,7 +167,7 @@ all: $(TARGET).elf etags
 # .d as a target, so that if they stop existing the corresponding
 # object file will be re-compiled.
 #
-$(OUTPUT_PATH)%.o: %.c
+$(OUTPUT_PATH)%.o: %.c Makefile config.mk
 	@$(ECHO)
 	@$(ECHO) 'Compiling $<...'
 	@$(MKDIR) $(OUTPUT_PATH)$(dir $<)

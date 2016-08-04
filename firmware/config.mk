@@ -30,6 +30,10 @@ PROJECT_NAME		:= pico
 #
 TARGET_CHIP		:= SAMD20E18
 
+# Build for bootloader?
+#
+#BOOTLOADER	:= true
+
 # Compiliation Flags
 #
 # Use this to set the debug level
