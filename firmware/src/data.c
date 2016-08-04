@@ -36,6 +36,7 @@
 #include "telemetry.h"
 #include "thermistor.h"
 #include "watchdog.h"
+#include "rtc.h"
 
 struct tracker_datapoint datapoint = {.time={0}};
 
@@ -147,8 +148,13 @@ struct tracker_datapoint* collect_data(void)
    * ---- GPS UBX ----
    */
   /* wait for GPS, if it takes forever the watchdog will save us */
+  uint32_t start_ticks = rtc_get_ticks();
   while (gps_update_time_pending() || gps_update_position_pending()) {
     idle(IDLE_WAIT_FOR_GPS);
+
+    if (rtc_get_ticks() > (start_ticks+5)) { /* 5 seconds later */
+      while(1);                              /* watchdog */
+    }
   }
 
 
