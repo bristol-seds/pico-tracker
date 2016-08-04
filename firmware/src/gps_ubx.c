@@ -283,11 +283,13 @@ enum gps_error _ubx_poll(ubx_message_t* message) {
 /**
  * Implements a microsecond delay
  */
-static inline void delay_us(uint32_t microseconds)
+void delay_us(uint32_t microseconds)
 {
   volatile int32_t i = microseconds * 8;
 
-  while(i--);
+  while(i--) {
+    __asm__("nop");
+  }
 }
 
 /**

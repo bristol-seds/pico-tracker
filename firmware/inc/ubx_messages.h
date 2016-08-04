@@ -41,7 +41,7 @@ enum ubx_packet_state {
 /** Generic UBX Message Type. Each message type extended is from this */
 typedef struct {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
 } ubx_message_t;
 
 /** UBX Class Types */
@@ -68,7 +68,7 @@ enum {
  */
 __PACKED__ struct ubx_cfg_ant {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint16_t flags;
     uint16_t pins;
@@ -79,7 +79,7 @@ __PACKED__ struct ubx_cfg_ant {
  */
 __PACKED__ struct ubx_cfg_gnss {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint8_t msgVer;
     uint8_t numTrkChHw;
@@ -99,7 +99,7 @@ __PACKED__ struct ubx_cfg_gnss {
  */
 __PACKED__ struct ubx_cfg_nav5 {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint16_t mask;
     uint8_t dynModel;
@@ -124,7 +124,7 @@ __PACKED__ struct ubx_cfg_nav5 {
  */
 __PACKED__ struct ubx_cfg_tp5 {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint8_t tpIdx;
     uint8_t res0;
@@ -144,7 +144,7 @@ __PACKED__ struct ubx_cfg_tp5 {
  */
 __PACKED__ struct ubx_cfg_prt {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint8_t portID;
     uint8_t res0;
@@ -162,7 +162,7 @@ __PACKED__ struct ubx_cfg_prt {
  */
 __PACKED__ struct ubx_cfg_pwr {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint8_t messageVersion;
     uint8_t res0;
@@ -175,7 +175,7 @@ __PACKED__ struct ubx_cfg_pwr {
  */
 __PACKED__ struct ubx_cfg_rst {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint16_t navBbrMask;
     uint8_t resetMode;
@@ -187,7 +187,7 @@ __PACKED__ struct ubx_cfg_rst {
  */
 __PACKED__ struct ubx_cfg_rxm {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint8_t reserved1;
     uint8_t lpMode;
@@ -260,7 +260,7 @@ enum {
  */
 __PACKED__ struct ubx_nav_posllh {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint32_t iTOW;
     int32_t lon;
@@ -276,7 +276,7 @@ __PACKED__ struct ubx_nav_posllh {
  */
 __PACKED__ struct ubx_nav_timeutc {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint32_t iTOW;
     uint32_t tAcc;
@@ -295,7 +295,7 @@ __PACKED__ struct ubx_nav_timeutc {
  */
 __PACKED__ struct ubx_nav_sol {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint32_t iTOW;
     int32_t fTOW;
@@ -321,7 +321,7 @@ __PACKED__ struct ubx_nav_sol {
  */
 __PACKED__ struct ubx_nav_status {
   ubx_message_id_t id;
-  enum ubx_packet_state state;
+  volatile enum ubx_packet_state state;
   struct {
     uint32_t iTOW;
     uint8_t gpsFix;
