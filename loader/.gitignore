@@ -1,0 +1,34 @@
+# Backup files
+*~
+#*#
+
+# gdbscript
+gdbscript
+gdbscript-custom
+
+# The output directory
+out/
+
+# Intermediate compilation files
+*.o
+
+# raw backlog data
+tools/aprs/rawdata/*rawdata.txt
+
+# aprs-is id
+aprs_id
+
+# Atmel Developement Kit
+xdk*
+
+# ETAGS file
+TAGS
+
+# CTypesgen
+test/ctypesgen
+
+# Compiled python
+*.pyc
+
+# Compile commands
+compile_commands.json
