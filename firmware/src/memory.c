@@ -37,7 +37,10 @@
 /**
  * Allocate a 16KB section of flash memory, aligned to an NVM row
  */
-const uint8_t nvm_section[MEM_SIZE] __attribute__ ((aligned (256))) = { 0xFF };
+const uint8_t nvm_section[MEM_SIZE]
+  __attribute__ ((aligned (256)))
+  __attribute__ ((section (".eeprom")))
+  = { 0xFF };
 
 /**
  * Poll the status register until the busy bit is cleared

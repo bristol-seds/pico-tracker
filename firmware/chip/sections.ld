@@ -115,6 +115,14 @@ SECTIONS
 		__fixed_end = .;
 	} > FLASH
 
+    /* EEPROM goes in its own section */
+    .eeprom :
+    {   
+		. = ALIGN(4);
+        *(.eeprom .eeprom*)   
+		. = ALIGN(4);
+    } > EEPROM   
+
 	/* .ARM.exidx is sorted, so has to go in its own output section.  */
 	PROVIDE_HIDDEN (__exidx_start = .);
 	.ARM.exidx :

@@ -24,6 +24,7 @@
 
 /* SAMD20J17 */
 MEMORY {
-       FLASH  (rx)  : ORIGIN = 0x00000000, LENGTH = 128K
+       FLASH  (rx)  : ORIGIN = 0x00000000, LENGTH = 112K
+       EEPROM (rx)  : ORIGIN = 0x0001C000, LENGTH = 16K
        RAM    (xrw) : ORIGIN = 0x20000000, LENGTH = 16K
 }
