@@ -87,7 +87,7 @@ struct calibration {
  * Implements a microsecond delay
  */
 void delay_us(uint16_t microseconds) {
-  int32_t i = microseconds * 16;
+  volatile int32_t i = microseconds * 16;
 
   while(i--);
 }
