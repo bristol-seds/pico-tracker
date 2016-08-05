@@ -39,8 +39,8 @@
 /**
  * How many bytes each memory record uses
  */
-#define BACKLOG_ITEM_SIZE	0x100   /* Currently one backlog per page */
-#define BACKLOGS_PER_SECTOR	16
+#define BACKLOG_ITEM_SIZE	0x40   /* Currently one backlog per page */
+#define BACKLOGS_PER_SECTOR	4
 /**
  * Address offset in memory
  */
