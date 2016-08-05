@@ -155,9 +155,9 @@ void update_checksums(const uint32_t* nvm, uint32_t* ram, int sectors)
   int i;
 
   for (i = 0; i < sectors; i++,
-         nvm += SECTOR_SIZE, ram += SECTOR_SIZE) {
+         nvm += 64, ram += 64) {
     mem_erase_sector((unsigned int*)nvm);
-    mem_write_sector((unsigned int*)nvm, (uint8_t*)ram);
+    mem_write_sector((unsigned int*)nvm, (unsigned int*)ram);
 
     kick_the_watchdog();
   }
@@ -182,7 +182,7 @@ uint32_t check_and_repair_memory(void)
 
   /* foreach sector */
   for (i = 0; i < D1_SECTORS; i++,
-         address1 += SECTOR_SIZE, address2 += SECTOR_SIZE) {
+         address1 += 64, address2 += 64) {
     /* calculate checksums */
     check1 = checksum_sector(address1);
     check2 = checksum_sector(address2);
@@ -196,7 +196,7 @@ uint32_t check_and_repair_memory(void)
                (check2 == d2_checksums_ram[i])) {
       /* restore d1 */
       mem_erase_sector(address1);
-      mem_write_sector(address1, (uint8_t*)address2);
+      mem_write_sector(address1, address2);
 
       /* update d1 checksum */
       d1_checksums_ram[i] = check2;
@@ -209,7 +209,7 @@ uint32_t check_and_repair_memory(void)
                (check2 != d2_checksums_ram[i])) {
       /* restore d2 */
       mem_erase_sector(address2);
-      mem_write_sector(address2, (uint8_t*)address1);
+      mem_write_sector(address2, address1);
 
       /* update d2 checksum */
       d2_checksums_ram[i] = check1;
@@ -222,7 +222,7 @@ uint32_t check_and_repair_memory(void)
       /* both bad, restore d2 and calculate both checksums */
       /* restore d2 */
       mem_erase_sector(address2);
-      mem_write_sector(address2, (uint8_t*)address1);
+      mem_write_sector(address2, address1);
 
       /* update both checksums */
       d1_checksums_ram[i] = check1;

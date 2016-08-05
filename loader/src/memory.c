@@ -86,10 +86,9 @@ void mem_write_word(unsigned int* address, uint32_t word)
 /**
  * Write 256-byte sector. Address must be sector aligned
  */
-void mem_write_sector(unsigned int* address, uint8_t* buffer)
+void mem_write_sector(unsigned int* address, unsigned int* buffer)
 {
   int i;
-  uint8_t tempbuf[0x40];
 
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* save CTRLB and disable cache */
@@ -103,9 +102,12 @@ void mem_write_sector(unsigned int* address, uint8_t* buffer)
   for (i = 0; i < 4; i++) {     /* write by page */
     /* write address */
     NVMCTRL->ADDR.reg = (uint32_t)(address) >> 1;
+
     /* write page. length must be multiple of two */
-    memcpy((void*)tempbuf, buffer, 0x40);
-    memcpy((void*)address, tempbuf, 0x40);
+    for (int j = 0; j < 0x10; j++) {
+      address[j] = buffer[j];
+    }
+
     /* unlock */
     NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
     /* write page */
@@ -115,8 +117,8 @@ void mem_write_sector(unsigned int* address, uint8_t* buffer)
     NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
 
     /* next page */
-    address += 0x40;
-    buffer  += 0x40;
+    address += 0x10;
+    buffer  += 0x10;
   }
 
 

@@ -32,7 +32,7 @@
 
 void mem_read_memory(unsigned int* address, uint8_t* buffer, uint32_t length);
 void mem_write_word(unsigned int* address, uint32_t word);
-void mem_write_sector(unsigned int* address, uint8_t* buffer);
+void mem_write_sector(unsigned int* address, unsigned int* buffer);
 void mem_erase_sector(unsigned int* address);
 
 
