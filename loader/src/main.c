@@ -33,6 +33,7 @@
 #include "analogue.h"
 #include "xosc.h"
 #include "loader.h"
+#include "flash.h"
 
 /**
  * MAIN
@@ -56,11 +57,11 @@ int main(void)
     }
 
     /* Check battery */
-  } while (get_battery() < 4.0);
+  } while (get_battery() < 3.0);
 
 
   /* Check and repair memory */
-
+  check_and_repair_memory();
 
   /* Transfer control to application */
   transfer_to_application();

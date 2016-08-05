@@ -25,36 +25,15 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
-/**
- * Memory layout:
- *
- * 64-byte pages
- * 256-byte rows (erase) - 4 pages
- */
-
-#define TOTAL_PAGES	0x100
-#define TOTAL_ROWS	0x40
-
-#define PAGE_MASK	0x7FFC0
-#define ROW_MASK	0x7FF00
 
 #define PAGE_SIZE	0x00040
-#define ROW_SIZE	0x00100
-
-/**
- * Pages assigned to backlog. Currently 256 records
- */
-#define BACKLOG_START_PAGE	0x00
-#define BACKLOG_END_PAGE	0xff
+#define SECTOR_SIZE	0x00100
 
 
-void mem_chip_erase(void);
-void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length);
-void mem_write_word(uint32_t address, uint32_t word);
-void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length);
-void mem_erase_sector(uint32_t address);
+void mem_read_memory(unsigned int* address, uint8_t* buffer, uint32_t length);
+void mem_write_word(unsigned int* address, uint32_t word);
+void mem_write_sector(unsigned int* address, uint8_t* buffer);
+void mem_erase_sector(unsigned int* address);
 
-uint8_t mem_power_on();
-void mem_power_off();
 
 #endif

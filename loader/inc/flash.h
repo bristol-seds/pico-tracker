@@ -25,11 +25,6 @@
 #ifndef FLASH_H
 #define FLASH_H
 
-enum flash_state {
-  FLASH_GOOD,                   /* checksum matches */
-  FLASH_BAD_CSUM,               /* mismatch */
-};
-
-enum flash_state check_flash_state(void);
+uint32_t check_and_repair_memory(void);
 
 #endif /* FLASH_H */

@@ -33,15 +33,6 @@
  */
 #define FIX_ERRATA_REV_C_FLASH_10804
 
-#define MEM_SIZE 16384          /* 16 KB */
-/**
- * Allocate a 16KB section of flash memory, aligned to an NVM row
- */
-const uint8_t nvm_section[MEM_SIZE] 
-  __attribute__ ((aligned (256)))
-  __attribute__ ((section (".eeprom")))
-  = { 0xFF };
-
 /**
  * Poll the status register until the busy bit is cleared
  */
@@ -58,46 +49,16 @@ void _mem_wait_for_done(void)
  */
 
 /**
- * Simple Commands
- */
-void mem_chip_erase(void)
-{
-#ifdef FIX_ERRATA_REV_C_FLASH_10804
-  /* save CTRLB and disable cache */
-  uint32_t temp = NVMCTRL->CTRLB.reg;
-  NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_CACHEDIS;
-#endif
-
-  /* erase each row */
-  for (int n = 0; n < TOTAL_ROWS; n++) {
-    /* write address */
-    NVMCTRL->ADDR.reg  = (uint32_t)(nvm_section + (n*ROW_SIZE)) >> 1;
-    /* unlock */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
-    /* erase */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_ER;
-    _mem_wait_for_done();
-    /* lock */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
-  }
-
-#ifdef FIX_ERRATA_REV_C_FLASH_10804
-  /* restore CTRLB */
-  NVMCTRL->CTRLB.reg = temp;
-#endif
-}
-
-/**
  * Read memory
  */
-void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length)
+void mem_read_memory(unsigned int* address, uint8_t* buffer, uint32_t length)
 {
-  memcpy(buffer, nvm_section + address, length);
+  memcpy(buffer, address, length);
 }
 /**
  * Write single word
  */
-void mem_write_word(uint32_t address, uint32_t word)
+void mem_write_word(unsigned int* address, uint32_t word)
 {
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* save CTRLB and disable cache */
@@ -123,21 +84,28 @@ void mem_write_word(uint32_t address, uint32_t word)
 #endif
 }
 /**
- * Write 64-byte page. Address should be page aligned
+ * Write 256-byte sector. Address must be sector aligned
  */
-void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
+void mem_write_sector(unsigned int* address, uint8_t* buffer)
 {
+  int i;
+  uint8_t tempbuf[0x40];
+
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* save CTRLB and disable cache */
   uint32_t temp = NVMCTRL->CTRLB.reg;
   NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_CACHEDIS;
 #endif
 
-  if ((address < MEM_SIZE) && (length <= PAGE_SIZE)) {
+  /* align address with sector */
+  address = (unsigned int*)((uint32_t)address & ~0xFF);
+
+  for (i = 0; i < 4; i++) {     /* write by page */
     /* write address */
-    NVMCTRL->ADDR.reg = (uint32_t)(nvm_section + address) >> 1;
-    /* write data. length must be multiple of two */
-    memcpy((void*)(nvm_section + address), buffer, length & ~0x1);
+    NVMCTRL->ADDR.reg = (uint32_t)(address) >> 1;
+    /* write page. length must be multiple of two */
+    memcpy((void*)tempbuf, buffer, 0x40);
+    memcpy((void*)address, tempbuf, 0x40);
     /* unlock */
     NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
     /* write page */
@@ -145,7 +113,12 @@ void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
     _mem_wait_for_done();
     /* lock */
     NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
+
+    /* next page */
+    address += 0x40;
+    buffer  += 0x40;
   }
+
 
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* restore CTRLB */
@@ -155,7 +128,7 @@ void mem_write_page(uint32_t address, uint8_t* buffer, uint16_t length)
 /**
  * Erase 256-byte sector.
  */
-void mem_erase_sector(uint32_t address)
+void mem_erase_sector(unsigned int* address)
 {
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* save CTRLB and disable cache */
@@ -163,18 +136,16 @@ void mem_erase_sector(uint32_t address)
   NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_CACHEDIS;
 #endif
 
-  if (address < MEM_SIZE) {
-    /* write address */
-    NVMCTRL->ADDR.reg  = (uint32_t)(nvm_section + address) >> 1;
-    /* unlock */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
-    _mem_wait_for_done();
-    /* erase row */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_ER;
-    _mem_wait_for_done();
-    /* lock */
-    NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
-  }
+  /* write address */
+  NVMCTRL->ADDR.reg  = (uint32_t)(address) >> 1;
+  /* unlock */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_UR;
+  _mem_wait_for_done();
+  /* erase row */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_ER;
+  _mem_wait_for_done();
+  /* lock */
+  NVMCTRL->CTRLA.reg = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_LR;
 
 #ifdef FIX_ERRATA_REV_C_FLASH_10804
   /* restore CTRLB */

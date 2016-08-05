@@ -23,16 +23,46 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "samd20.h"
 #include "memory.h"
 #include "flash.h"
+#include "watchdog.h"
 
-/**
- * we put our checksum at the last address in flash
- */
-volatile unsigned int* flash_checksum =
-  (unsigned int*)(FLASH_ADDR + FLASH_SIZE - 4);
+#define APPLICATION_BASE	(0x00004000) /* 16K */
+#define APPLICATION_LENGTH  (112*1024)   /* 112K */
+
+#define D1_START	(APPLICATION_BASE)
+#define D1_SECTORS  (APPLICATION_LENGTH/256)
+#define D2_START	(APPLICATION_BASE+APPLICATION_LENGTH)
+#define D2_SECTORS  (D1_SECTORS)
+
+/* Check these are multiples of 64 */
+#if (D1_SECTORS & 0x3F)
+#error D1_SECTORS _must_ be a mul 64, so checksums fill integer no. of sectors
+#endif
+#if (D2_SECTORS & 0x3F)
+#error D2_SECTORS _must_ be a mul 64, so checksums fill integer no. of sectors
+#endif
+
+#define D1_CHECKSUMS_SECTORS	(D1_SECTORS/64)
+#define D2_CHECKSUMS_SECTORS	(D2_SECTORS/64)
+
+/* ROM copy of checksums */
+const uint32_t d1_checksums_nvm[D1_SECTORS]
+  __attribute__ ((aligned (256)))
+  = { 0xFF };
+const uint32_t d2_checksums_nvm[D2_SECTORS]
+  __attribute__ ((aligned (256)))
+  = { 0xFF };
+
+/* RAM copy of checksums */
+uint32_t d1_checksums_ram[D1_SECTORS];
+uint32_t d2_checksums_ram[D2_SECTORS];
+
+/* crc32 calculation */
+uint32_t table[256] = { 0xFFFFFFFF };
 
 
 // ---------------------------- crc32cx --------------------------------
@@ -50,15 +80,15 @@ volatile unsigned int* flash_checksum =
    who got it from Linux Source base,
    www.gelato.unsw.edu.au/lxr/source/lib/crc32.c, lines 105-111. */
 
-unsigned int crc32cx(unsigned int *ptr, size_t length)
+uint32_t crc32cx(unsigned int *ptr, size_t length)
 {
   int j;
-  unsigned int byte, crc, mask;
-  unsigned int table[256];
+  uint32_t byte, crc, mask;
 
   length &= ~0x3;               /* must be mutiple of 4 */
 
   /* Set up the table */
+  if (table[0] == 0xFFFFFFFF) {
   for (byte = 0; byte <= 255; byte++) {
     crc = byte;
     for (j = 7; j >= 0; j--) {    // Do eight times.
@@ -66,6 +96,7 @@ unsigned int crc32cx(unsigned int *ptr, size_t length)
       crc = (crc >> 1) ^ (0xEDB88320 & mask);
     }
     table[byte] = crc;
+  }
   }
 
   /* Through with table setup, now calculate the CRC. */
@@ -83,34 +114,137 @@ unsigned int crc32cx(unsigned int *ptr, size_t length)
 }
 
 /**
- * 32 bit checksum for the whole memory space
+ * 32 bit checksum for the given sector
  */
-unsigned int checksum_memory(void)
+uint32_t checksum_sector(unsigned int* sector)
 {
   /* do crc  */
-  return crc32cx((unsigned int)FLASH_ADDR, /* start */
-                 FLASH_SIZE - 4);          /* length */
+  return crc32cx((unsigned int*)sector, /* start */
+                 SECTOR_SIZE);          /* length */
 }
 
+/* /\** */
+/*  * checks if memory checksum is good */
+/*  *\/ */
+/* enum flash_state check_flash_state(void) */
+/* { */
+/*   unsigned int calculated = checksum_memory(); */
+
+/*   if (*flash_checksum == 0xFFFFFFFF) { /\* not written *\/ */
+/*     /\* write it *\/ */
+/*     mem_write_word((uint32_t)flash_checksum, calculated); */
+
+/*     return FLASH_GOOD; */
+
+/*   } else {                      /\* written *\/ */
+/*     /\* check it *\/ */
+/*     if (calculated == *flash_checksum) { */
+/*       return FLASH_GOOD; */
+/*     } else { */
+/*       return FLASH_BAD_CSUM; */
+/*     } */
+/*   } */
+/* } */
+
+
 /**
- * checks if memory checksum is good
+ * updates checksum records in nvm
  */
-enum flash_state check_flash_state(void)
+void update_checksums(const uint32_t* nvm, uint32_t* ram, int sectors)
 {
-  unsigned int calculated = checksum_memory();
+  int i;
 
-  if (*flash_checksum == 0xFFFFFFFF) { /* not written */
-    /* write it */
-    mem_write_word((uint32_t)flash_checksum, calculated);
+  for (i = 0; i < sectors; i++,
+         nvm += SECTOR_SIZE, ram += SECTOR_SIZE) {
+    mem_erase_sector((unsigned int*)nvm);
+    mem_write_sector((unsigned int*)nvm, (uint8_t*)ram);
 
-    return FLASH_GOOD;
-
-  } else {                      /* written */
-    /* check it */
-    if (calculated == *flash_checksum) {
-      return FLASH_GOOD;
-    } else {
-      return FLASH_BAD_CSUM;
-    }
+    kick_the_watchdog();
   }
+}
+
+
+/**
+ * Checks and repairs application memory space
+ */
+uint32_t check_and_repair_memory(void)
+{
+  unsigned int* address1 = (unsigned int*)D1_START;
+  unsigned int* address2 = (unsigned int*)D2_START;
+  unsigned int check1, check2;
+  uint8_t update_d1_check = 0, update_d2_check = 0;
+  uint32_t errors_found = 0;
+  int i;
+
+  /* load checksums */
+  memcpy(d1_checksums_ram, d1_checksums_nvm, D1_SECTORS * sizeof(uint32_t));
+  memcpy(d2_checksums_ram, d2_checksums_nvm, D2_SECTORS * sizeof(uint32_t));
+
+  /* foreach sector */
+  for (i = 0; i < D1_SECTORS; i++,
+         address1 += SECTOR_SIZE, address2 += SECTOR_SIZE) {
+    /* calculate checksums */
+    check1 = checksum_sector(address1);
+    check2 = checksum_sector(address2);
+
+    if ((check1 == d1_checksums_ram[i]) &&
+        (check2 == d2_checksums_ram[i])) {
+      /* all good */
+      continue;
+
+    } else if ((check1 != d1_checksums_ram[i]) &&
+               (check2 == d2_checksums_ram[i])) {
+      /* restore d1 */
+      mem_erase_sector(address1);
+      mem_write_sector(address1, (uint8_t*)address2);
+
+      /* update d1 checksum */
+      d1_checksums_ram[i] = check2;
+
+      /* flag checksum for write */
+      update_d1_check = 1;
+      errors_found++;
+
+    } else if ((check1 == d1_checksums_ram[i]) &&
+               (check2 != d2_checksums_ram[i])) {
+      /* restore d2 */
+      mem_erase_sector(address2);
+      mem_write_sector(address2, (uint8_t*)address1);
+
+      /* update d2 checksum */
+      d2_checksums_ram[i] = check1;
+
+      /* flag checksum for write */
+      update_d2_check = 1;
+      errors_found++;
+
+    } else {
+      /* both bad, restore d2 and calculate both checksums */
+      /* restore d2 */
+      mem_erase_sector(address2);
+      mem_write_sector(address2, (uint8_t*)address1);
+
+      /* update both checksums */
+      d1_checksums_ram[i] = check1;
+      d2_checksums_ram[i] = check1;
+
+      /* flag checksums for write */
+      update_d1_check = 1;
+      update_d2_check = 1;
+      /* don't count these as errors, probably happen when
+         programming for first time */
+    }
+
+    kick_the_watchdog();
+  }
+
+  /* update checksums */
+  if (update_d1_check) { update_checksums(d1_checksums_nvm,
+                                          d1_checksums_ram,
+                                          D1_CHECKSUMS_SECTORS); }
+  if (update_d2_check) { update_checksums(d2_checksums_nvm,
+                                          d2_checksums_ram,
+                                          D2_CHECKSUMS_SECTORS); }
+
+  return errors_found;
 }
