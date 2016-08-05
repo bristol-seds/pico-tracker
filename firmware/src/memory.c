@@ -90,7 +90,7 @@ void mem_chip_erase(void)
  */
 void mem_read_memory(uint32_t address, uint8_t* buffer, uint32_t length)
 {
-  memcpy(buffer, nvm_section + address, length);
+  memcpy(buffer, (void*)nvm_section + address, length);
 }
 /**
  * Write single word
