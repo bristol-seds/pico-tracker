@@ -123,7 +123,7 @@ SYSTEM		+= test/tmain.c
 ifdef BOOTLOADER
 LINKERS		?= chip/$(shell echo $(TARGET_CHIP) | $(TR) A-Z a-z)_bootloader.ld
 else
-LINKERS		?= chip/$(shell echo $(TARGET_CHIP) | $(TR) A-Z a-z).ld chip/sections.ld
+LINKERS		?= chip/$(shell echo $(TARGET_CHIP) | $(TR) A-Z a-z).ld
 endif
 LINKERS		+= chip/sections.ld
 
