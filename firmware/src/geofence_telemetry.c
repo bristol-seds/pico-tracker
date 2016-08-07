@@ -438,7 +438,7 @@ const int16_t telemetry_outline_5[] = {
    9669,  4349,
 };
 
-const int16_t* telemetry_outlines[] = {
+const int16_t* const telemetry_outlines[] = {
 #if TELEMETRY_USE_GEOFENCE
   telemetry_outline_1,
   telemetry_outline_2,

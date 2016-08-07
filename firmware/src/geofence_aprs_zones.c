@@ -194,7 +194,7 @@ const int16_t alpha_outline_11[] = {
   -14635,  6849,
 };
 
-const int16_t* alpha_outlines[] = {
+const int16_t* const alpha_outlines[] = {
   alpha_outline_1,
   alpha_outline_2,
   alpha_outline_3,
@@ -505,7 +505,7 @@ const int16_t charlie_outline_23[] = {
   -12164, -8241,
 };
 
-const int16_t* charlie_outlines[] = {
+const int16_t* const charlie_outlines[] = {
   charlie_outline_1,
   charlie_outline_2,
   charlie_outline_3,
@@ -645,7 +645,7 @@ const int16_t bravo_outline_9[] = {
    32400, -18601,
 };
 
-const int16_t* bravo_outlines[] = {
+const int16_t* const bravo_outlines[] = {
   bravo_outline_1,
   bravo_outline_2,
   bravo_outline_3,
@@ -728,7 +728,7 @@ const int16_t echo_outline_2[] = {
    26131, -2909,
 };
 
-const int16_t* echo_outlines[] = {
+const int16_t* const echo_outlines[] = {
   echo_outline_1,
   echo_outline_2,
 };
@@ -806,7 +806,7 @@ const int16_t delta_outline_5[] = {
   -10470,  2648,
 };
 
-const int16_t* delta_outlines[] = {
+const int16_t* const delta_outlines[] = {
   delta_outline_1,
   delta_outline_2,
   delta_outline_3,
@@ -894,7 +894,7 @@ const int16_t golf_outline_1[] = {
   -10934,  1873,
 };
 
-const int16_t* golf_outlines[] = {
+const int16_t* const golf_outlines[] = {
   golf_outline_1,
 };
 const uint16_t golf_outline_lengths[] = {
@@ -923,7 +923,7 @@ const int16_t foxtrot_outline_2[] = {
    23557,  13288,
 };
 
-const int16_t* foxtrot_outlines[] = {
+const int16_t* const foxtrot_outlines[] = {
   foxtrot_outline_1,
   foxtrot_outline_2,
 };
@@ -1035,7 +1035,7 @@ const int16_t india_outline_3[] = {
    22645,  13539,
 };
 
-const int16_t* india_outlines[] = {
+const int16_t* const india_outlines[] = {
   india_outline_1,
   india_outline_2,
   india_outline_3,
@@ -1107,7 +1107,7 @@ const int16_t kilo_outline_1[] = {
   -12062, -8280,
 };
 
-const int16_t* kilo_outlines[] = {
+const int16_t* const kilo_outlines[] = {
   kilo_outline_1,
 };
 const uint16_t kilo_outline_lengths[] = {
@@ -1187,7 +1187,7 @@ const int16_t juliet_outline_5[] = {
    23371,  13511,
 };
 
-const int16_t* juliet_outlines[] = {
+const int16_t* const juliet_outlines[] = {
   juliet_outline_1,
   juliet_outline_2,
   juliet_outline_3,
@@ -2087,7 +2087,7 @@ const int16_t mike_outline_43[] = {
   -11374, -21391,
 };
 
-const int16_t* mike_outlines[] = {
+const int16_t* const mike_outlines[] = {
   mike_outline_1,
   mike_outline_2,
   mike_outline_3,

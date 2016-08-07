@@ -20,7 +20,7 @@ const int16_t pp4_outline_1[] = {
   -12543,  4417,
 };
 
-const int16_t* pp4_outlines[] = {
+const int16_t* const pp4_outlines[] = {
   pp4_outline_1,
 };
 const uint16_t pp4_outline_lengths[] = {
@@ -78,7 +78,7 @@ const int16_t pt6_outline_1[] = {
    12900,  13211,
 };
 
-const int16_t* pt6_outlines[] = {
+const int16_t* const pt6_outlines[] = {
   pt6_outline_1,
 };
 const uint16_t pt6_outline_lengths[] = {
@@ -115,7 +115,7 @@ const int16_t pd2_outline_2[] = {
    2284, -3268,
 };
 
-const int16_t* pd2_outlines[] = {
+const int16_t* const pd2_outlines[] = {
   pd2_outline_1,
   pd2_outline_2,
 };
@@ -135,7 +135,7 @@ const int16_t pvp2e_outline_1[] = {
   -11354,  6497,
 };
 
-const int16_t* pvp2e_outlines[] = {
+const int16_t* const pvp2e_outlines[] = {
   pvp2e_outline_1,
 };
 const uint16_t pvp2e_outline_lengths[] = {
@@ -157,7 +157,7 @@ const int16_t pza_outline_1[] = {
    3728,  14734,
 };
 
-const int16_t* pza_outlines[] = {
+const int16_t* const pza_outlines[] = {
   pza_outline_1,
 };
 const uint16_t pza_outline_lengths[] = {
@@ -175,7 +175,7 @@ const int16_t poh0_outline_1[] = {
    3694,  21437,
 };
 
-const int16_t* poh0_outlines[] = {
+const int16_t* const poh0_outlines[] = {
   poh0_outline_1,
 };
 const uint16_t poh0_outline_lengths[] = {
@@ -205,7 +205,7 @@ const int16_t pa6_outline_1[] = {
    9936,  8293,
 };
 
-const int16_t* pa6_outlines[] = {
+const int16_t* const pa6_outlines[] = {
   pa6_outline_1,
 };
 const uint16_t pa6_outline_lengths[] = {
@@ -229,7 +229,7 @@ const int16_t pek_outline_1[] = {
    8302,  13996,
 };
 
-const int16_t* pek_outlines[] = {
+const int16_t* const pek_outlines[] = {
   pek_outline_1,
 };
 const uint16_t pek_outline_lengths[] = {
@@ -248,7 +248,7 @@ const int16_t pv2_outline_1[] = {
   -11114,  6031,
 };
 
-const int16_t* pv2_outlines[] = {
+const int16_t* const pv2_outlines[] = {
   pv2_outline_1,
 };
 const uint16_t pv2_outline_lengths[] = {
@@ -261,7 +261,7 @@ const int16_t pvk_outline_1[] = {
    25616, -3546,
 };
 
-const int16_t* pvk_outlines[] = {
+const int16_t* const pvk_outlines[] = {
   pvk_outline_1,
 };
 const uint16_t pvk_outline_lengths[] = {
@@ -294,7 +294,7 @@ const int16_t poe_outline_1[] = {
    2529,  17497,
 };
 
-const int16_t* poe_outlines[] = {
+const int16_t* const poe_outlines[] = {
   poe_outline_1,
 };
 const uint16_t poe_outline_lengths[] = {
@@ -336,7 +336,7 @@ const int16_t paj_outline_2[] = {
    8276,  14128,
 };
 
-const int16_t* paj_outlines[] = {
+const int16_t* const paj_outlines[] = {
   paj_outline_1,
   paj_outline_2,
 };
@@ -359,7 +359,7 @@ const int16_t p9u_outline_1[] = {
    5349, -1604,
 };
 
-const int16_t* p9u_outlines[] = {
+const int16_t* const p9u_outlines[] = {
   p9u_outline_1,
 };
 const uint16_t p9u_outline_lengths[] = {
@@ -388,7 +388,7 @@ const int16_t pon_outline_1[] = {
     991,  17824,
 };
 
-const int16_t* pon_outlines[] = {
+const int16_t* const pon_outlines[] = {
   pon_outline_1,
 };
 const uint16_t pon_outline_lengths[] = {
@@ -417,7 +417,7 @@ const int16_t pty_outline_1[] = {
     323,  2167,
 };
 
-const int16_t* pty_outlines[] = {
+const int16_t* const pty_outlines[] = {
   pty_outline_1,
 };
 const uint16_t pty_outline_lengths[] = {
@@ -453,7 +453,7 @@ const int16_t pxt_outline_1[] = {
      29,  3985,
 };
 
-const int16_t* pxt_outlines[] = {
+const int16_t* const pxt_outlines[] = {
   pxt_outline_1,
 };
 const uint16_t pxt_outline_lengths[] = {
@@ -489,7 +489,7 @@ const int16_t ps2_outline_1[] = {
    16666,  7660,
 };
 
-const int16_t* ps2_outlines[] = {
+const int16_t* const ps2_outlines[] = {
   ps2_outline_1,
 };
 const uint16_t ps2_outline_lengths[] = {
@@ -521,7 +521,7 @@ const int16_t plz_outline_1[] = {
    4545,  14848,
 };
 
-const int16_t* plz_outlines[] = {
+const int16_t* const plz_outlines[] = {
   plz_outline_1,
 };
 const uint16_t plz_outline_lengths[] = {
@@ -537,7 +537,7 @@ const int16_t pa9_outline_1[] = {
    9104,  9197,
 };
 
-const int16_t* pa9_outlines[] = {
+const int16_t* const pa9_outlines[] = {
   pa9_outline_1,
 };
 const uint16_t pa9_outline_lengths[] = {
@@ -609,7 +609,7 @@ const int16_t pc6_outline_6[] = {
   -13259,  7447,
 };
 
-const int16_t* pc6_outlines[] = {
+const int16_t* const pc6_outlines[] = {
   pc6_outline_1,
   pc6_outline_2,
   pc6_outline_3,
@@ -649,7 +649,7 @@ const int16_t pe7_outline_2[] = {
    3322,  15208,
 };
 
-const int16_t* pe7_outlines[] = {
+const int16_t* const pe7_outlines[] = {
   pe7_outline_1,
   pe7_outline_2,
 };
@@ -673,7 +673,7 @@ const int16_t pfj_outline_2[] = {
   -11312,  6435,
 };
 
-const int16_t* pfj_outlines[] = {
+const int16_t* const pfj_outlines[] = {
   pfj_outline_1,
   pfj_outline_2,
 };
@@ -711,7 +711,7 @@ const int16_t pew_outline_1[] = {
    4733,  19850,
 };
 
-const int16_t* pew_outlines[] = {
+const int16_t* const pew_outlines[] = {
   pew_outline_1,
 };
 const uint16_t pew_outline_lengths[] = {
@@ -726,7 +726,7 @@ const int16_t pv3_outline_1[] = {
   -16001,  5721,
 };
 
-const int16_t* pv3_outlines[] = {
+const int16_t* const pv3_outlines[] = {
   pv3_outline_1,
 };
 const uint16_t pv3_outline_lengths[] = {
@@ -743,7 +743,7 @@ const int16_t pvp9_outline_1[] = {
   -11667,  11514,
 };
 
-const int16_t* pvp9_outlines[] = {
+const int16_t* const pvp9_outlines[] = {
   pvp9_outline_1,
 };
 const uint16_t pvp9_outline_lengths[] = {
@@ -757,7 +757,7 @@ const int16_t pcp_outline_1[] = {
   -11984, -3564,
 };
 
-const int16_t* pcp_outlines[] = {
+const int16_t* const pcp_outlines[] = {
   pcp_outline_1,
 };
 const uint16_t pcp_outline_lengths[] = {
@@ -845,7 +845,7 @@ const int16_t ppy_outline_1[] = {
   -9600,   842,
 };
 
-const int16_t* ppy_outlines[] = {
+const int16_t* const ppy_outlines[] = {
   ppy_outline_1,
 };
 const uint16_t ppy_outline_lengths[] = {
@@ -862,7 +862,7 @@ const int16_t p8p_outline_1[] = {
   -10714,  4616,
 };
 
-const int16_t* p8p_outlines[] = {
+const int16_t* const p8p_outlines[] = {
   p8p_outline_1,
 };
 const uint16_t p8p_outline_lengths[] = {
@@ -888,7 +888,7 @@ const int16_t pv8_outline_2[] = {
    20753,  1572,
 };
 
-const int16_t* pv8_outlines[] = {
+const int16_t* const pv8_outlines[] = {
   pv8_outline_1,
   pv8_outline_2,
 };
@@ -912,7 +912,7 @@ const int16_t pa5_outline_1[] = {
    16329,  10106,
 };
 
-const int16_t* pa5_outlines[] = {
+const int16_t* const pa5_outlines[] = {
   pa5_outline_1,
 };
 const uint16_t pa5_outline_lengths[] = {
@@ -959,7 +959,7 @@ const int16_t ptl_outline_1[] = {
    3565,  1832,
 };
 
-const int16_t* ptl_outlines[] = {
+const int16_t* const ptl_outlines[] = {
   ptl_outline_1,
 };
 const uint16_t ptl_outline_lengths[] = {
@@ -1337,7 +1337,7 @@ const int16_t pve_outline_21[] = {
   -10786,  15689,
 };
 
-const int16_t* pve_outlines[] = {
+const int16_t* const pve_outlines[] = {
   pve_outline_1,
   pve_outline_2,
   pve_outline_3,
@@ -1403,7 +1403,7 @@ const int16_t phb9_outline_1[] = {
    1617,  16513,
 };
 
-const int16_t* phb9_outlines[] = {
+const int16_t* const phb9_outlines[] = {
   phb9_outline_1,
 };
 const uint16_t phb9_outline_lengths[] = {
@@ -1617,7 +1617,7 @@ const int16_t pby_outline_1[] = {
    23532,  17287,
 };
 
-const int16_t* pby_outlines[] = {
+const int16_t* const pby_outlines[] = {
   pby_outline_1,
 };
 const uint16_t pby_outline_lengths[] = {
@@ -1655,7 +1655,7 @@ const int16_t ptu_outline_1[] = {
    -580,  3562,
 };
 
-const int16_t* ptu_outlines[] = {
+const int16_t* const ptu_outlines[] = {
   ptu_outline_1,
 };
 const uint16_t ptu_outline_lengths[] = {
@@ -1698,7 +1698,7 @@ const int16_t ptj_outline_1[] = {
    2891,   603,
 };
 
-const int16_t* ptj_outlines[] = {
+const int16_t* const ptj_outlines[] = {
   ptj_outline_1,
 };
 const uint16_t ptj_outline_lengths[] = {
@@ -1754,7 +1754,7 @@ const int16_t ptn_outline_1[] = {
    3926, -3409,
 };
 
-const int16_t* ptn_outlines[] = {
+const int16_t* const ptn_outlines[] = {
   ptn_outline_1,
 };
 const uint16_t ptn_outline_lengths[] = {
@@ -1832,7 +1832,7 @@ const int16_t p5j_outline_1[] = {
   -12497,  2205,
 };
 
-const int16_t* p5j_outlines[] = {
+const int16_t* const p5j_outlines[] = {
   p5j_outline_1,
 };
 const uint16_t p5j_outline_lengths[] = {
@@ -1873,7 +1873,7 @@ const int16_t pd4_outline_3[] = {
   -4389,  5248,
 };
 
-const int16_t* pd4_outlines[] = {
+const int16_t* const pd4_outlines[] = {
   pd4_outline_1,
   pd4_outline_2,
   pd4_outline_3,
@@ -1911,7 +1911,7 @@ const int16_t pte_outline_1[] = {
   -15150,  3881,
 };
 
-const int16_t* pte_outlines[] = {
+const int16_t* const pte_outlines[] = {
   pte_outline_1,
 };
 const uint16_t pte_outline_lengths[] = {
@@ -1950,7 +1950,7 @@ const int16_t pco_outline_1[] = {
   -13989,  7059,
 };
 
-const int16_t* pco_outlines[] = {
+const int16_t* const pco_outlines[] = {
   pco_outline_1,
 };
 const uint16_t pco_outline_lengths[] = {
@@ -1968,7 +1968,7 @@ const int16_t ppj2_outline_1[] = {
   -12385,  4250,
 };
 
-const int16_t* ppj2_outlines[] = {
+const int16_t* const ppj2_outlines[] = {
   ppj2_outline_1,
 };
 const uint16_t ppj2_outline_lengths[] = {
@@ -1992,7 +1992,7 @@ const int16_t pzf_outline_2[] = {
   -14635,  6849,
 };
 
-const int16_t* pzf_outlines[] = {
+const int16_t* const pzf_outlines[] = {
   pzf_outline_1,
   pzf_outline_2,
 };
@@ -2013,7 +2013,7 @@ const int16_t p5b_outline_1[] = {
    5942,  12343,
 };
 
-const int16_t* p5b_outlines[] = {
+const int16_t* const p5b_outlines[] = {
   p5b_outline_1,
 };
 const uint16_t p5b_outline_lengths[] = {
@@ -2039,7 +2039,7 @@ const int16_t pok_outline_1[] = {
    2176,  18109,
 };
 
-const int16_t* pok_outlines[] = {
+const int16_t* const pok_outlines[] = {
   pok_outline_1,
 };
 const uint16_t pok_outline_lengths[] = {
@@ -2093,7 +2093,7 @@ const int16_t pdl_outline_1[] = {
    2501,  19381,
 };
 
-const int16_t* pdl_outlines[] = {
+const int16_t* const pdl_outlines[] = {
   pdl_outline_1,
 };
 const uint16_t pdl_outline_lengths[] = {
@@ -2118,7 +2118,7 @@ const int16_t pj2_outline_1[] = {
    7552,  3939,
 };
 
-const int16_t* pj2_outlines[] = {
+const int16_t* const pj2_outlines[] = {
   pj2_outline_1,
 };
 const uint16_t pj2_outline_lengths[] = {
@@ -2136,7 +2136,7 @@ const int16_t pj7_outline_1[] = {
   -11058,  5404,
 };
 
-const int16_t* pj7_outlines[] = {
+const int16_t* const pj7_outlines[] = {
   pj7_outline_1,
 };
 const uint16_t pj7_outline_lengths[] = {
@@ -2178,7 +2178,7 @@ const int16_t poz_outline_3[] = {
    1792,  19754,
 };
 
-const int16_t* poz_outlines[] = {
+const int16_t* const poz_outlines[] = {
   poz_outline_1,
   poz_outline_2,
   poz_outline_3,
@@ -2207,7 +2207,7 @@ const int16_t phi_outline_1[] = {
   -12859,  6261,
 };
 
-const int16_t* phi_outlines[] = {
+const int16_t* const phi_outlines[] = {
   phi_outline_1,
 };
 const uint16_t phi_outline_lengths[] = {
@@ -2259,7 +2259,7 @@ const int16_t p7x_outline_1[] = {
    2071,  8753,
 };
 
-const int16_t* p7x_outlines[] = {
+const int16_t* const p7x_outlines[] = {
   p7x_outline_1,
 };
 const uint16_t p7x_outline_lengths[] = {
@@ -2318,7 +2318,7 @@ const int16_t phc_outline_3[] = {
   -16117,  -427,
 };
 
-const int16_t* phc_outlines[] = {
+const int16_t* const phc_outlines[] = {
   phc_outline_1,
   phc_outline_2,
   phc_outline_3,
@@ -2365,7 +2365,7 @@ const int16_t psu_outline_1[] = {
    4496,  7919,
 };
 
-const int16_t* psu_outlines[] = {
+const int16_t* const psu_outlines[] = {
   psu_outline_1,
 };
 const uint16_t psu_outline_lengths[] = {
@@ -2400,7 +2400,7 @@ const int16_t pe3_outline_1[] = {
    7685,  4459,
 };
 
-const int16_t* pe3_outlines[] = {
+const int16_t* const pe3_outlines[] = {
   pe3_outline_1,
 };
 const uint16_t pe3_outline_lengths[] = {
@@ -2505,7 +2505,7 @@ const int16_t pea_outline_7[] = {
   -3237,  9858,
 };
 
-const int16_t* pea_outlines[] = {
+const int16_t* const pea_outlines[] = {
   pea_outline_1,
   pea_outline_2,
   pea_outline_3,
@@ -2543,7 +2543,7 @@ const int16_t pes_outline_1[] = {
    4924,  20713,
 };
 
-const int16_t* pes_outlines[] = {
+const int16_t* const pes_outlines[] = {
   pes_outline_1,
 };
 const uint16_t pes_outline_lengths[] = {
@@ -2594,7 +2594,7 @@ const int16_t pet_outline_1[] = {
    7564,  1490,
 };
 
-const int16_t* pet_outlines[] = {
+const int16_t* const pet_outlines[] = {
   pet_outline_1,
 };
 const uint16_t pet_outline_lengths[] = {
@@ -2697,7 +2697,7 @@ const int16_t pf_outline_6[] = {
   -9743,   764,
 };
 
-const int16_t* pf_outlines[] = {
+const int16_t* const pf_outlines[] = {
   pf_outline_1,
   pf_outline_2,
   pf_outline_3,
@@ -2724,7 +2724,7 @@ const int16_t poy_outline_1[] = {
   -1202,  21935,
 };
 
-const int16_t* poy_outlines[] = {
+const int16_t* const poy_outlines[] = {
   poy_outline_1,
 };
 const uint16_t poy_outline_lengths[] = {
@@ -2762,7 +2762,7 @@ const int16_t pv6_outline_4[] = {
    29339,  1815,
 };
 
-const int16_t* pv6_outlines[] = {
+const int16_t* const pv6_outlines[] = {
   pv6_outline_1,
   pv6_outline_2,
   pv6_outline_3,
@@ -2805,7 +2805,7 @@ const int16_t ptr_outline_1[] = {
    1996, -1493,
 };
 
-const int16_t* ptr_outlines[] = {
+const int16_t* const ptr_outlines[] = {
   ptr_outline_1,
 };
 const uint16_t ptr_outline_lengths[] = {
@@ -2865,7 +2865,7 @@ const int16_t pm_outline_2[] = {
    -940,  17877,
 };
 
-const int16_t* pm_outlines[] = {
+const int16_t* const pm_outlines[] = {
   pm_outline_1,
   pm_outline_2,
 };
@@ -2896,7 +2896,7 @@ const int16_t p4l_outline_1[] = {
    8011,  15390,
 };
 
-const int16_t* p4l_outlines[] = {
+const int16_t* const p4l_outlines[] = {
   p4l_outline_1,
 };
 const uint16_t p4l_outline_lengths[] = {
@@ -2913,7 +2913,7 @@ const int16_t pmu_outline_1[] = {
    -458,  17665,
 };
 
-const int16_t* pmu_outlines[] = {
+const int16_t* const pmu_outlines[] = {
   pmu_outline_1,
 };
 const uint16_t pmu_outline_lengths[] = {
@@ -2949,7 +2949,7 @@ const int16_t p9g_outline_1[] = {
      42,  3407,
 };
 
-const int16_t* p9g_outlines[] = {
+const int16_t* const p9g_outlines[] = {
   p9g_outline_1,
 };
 const uint16_t p9g_outline_lengths[] = {
@@ -2999,7 +2999,7 @@ const int16_t p3x_outline_1[] = {
   -1849,  4397,
 };
 
-const int16_t* p3x_outlines[] = {
+const int16_t* const p3x_outlines[] = {
   p3x_outline_1,
 };
 const uint16_t p3x_outline_lengths[] = {
@@ -3026,7 +3026,7 @@ const int16_t pc5_outline_1[] = {
   -2701,  4966,
 };
 
-const int16_t* pc5_outlines[] = {
+const int16_t* const pc5_outlines[] = {
   pc5_outline_1,
 };
 const uint16_t pc5_outline_lengths[] = {
@@ -3053,7 +3053,7 @@ const int16_t pj5_outline_1[] = {
   -2933,  3895,
 };
 
-const int16_t* pj5_outlines[] = {
+const int16_t* const pj5_outlines[] = {
   pj5_outline_1,
 };
 const uint16_t pj5_outline_lengths[] = {
@@ -3082,7 +3082,7 @@ const int16_t p3c_outline_2[] = {
    1671,   332,
 };
 
-const int16_t* p3c_outlines[] = {
+const int16_t* const p3c_outlines[] = {
   p3c_outline_1,
   p3c_outline_2,
 };
@@ -3171,7 +3171,7 @@ const int16_t psv_outline_3[] = {
    4464,  12474,
 };
 
-const int16_t* psv_outlines[] = {
+const int16_t* const psv_outlines[] = {
   psv_outline_1,
   psv_outline_2,
   psv_outline_3,
@@ -3192,7 +3192,7 @@ const int16_t pj3_outline_1[] = {
   -11121,  4237,
 };
 
-const int16_t* pj3_outlines[] = {
+const int16_t* const pj3_outlines[] = {
   pj3_outline_1,
 };
 const uint16_t pj3_outline_lengths[] = {
@@ -3248,7 +3248,7 @@ const int16_t pox_outline_1[] = {
   -7903,  21367,
 };
 
-const int16_t* pox_outlines[] = {
+const int16_t* const pox_outlines[] = {
   pox_outline_1,
 };
 const uint16_t pox_outline_lengths[] = {
@@ -3280,7 +3280,7 @@ const int16_t ptd_outline_1[] = {
   -15926,  5716,
 };
 
-const int16_t* ptd_outlines[] = {
+const int16_t* const ptd_outlines[] = {
   ptd_outline_1,
 };
 const uint16_t ptd_outline_lengths[] = {
@@ -3297,7 +3297,7 @@ const int16_t pkg6_outline_1[] = {
    26046,  4686,
 };
 
-const int16_t* pkg6_outlines[] = {
+const int16_t* const pkg6_outlines[] = {
   pkg6_outline_1,
 };
 const uint16_t pkg6_outline_lengths[] = {
@@ -3336,7 +3336,7 @@ const int16_t p8r_outline_1[] = {
   -10207,   733,
 };
 
-const int16_t* p8r_outlines[] = {
+const int16_t* const p8r_outlines[] = {
   p8r_outline_1,
 };
 const uint16_t p8r_outline_lengths[] = {
@@ -3358,7 +3358,7 @@ const int16_t pvr2_outline_2[] = {
    20557,  7900,
 };
 
-const int16_t* pvr2_outlines[] = {
+const int16_t* const pvr2_outlines[] = {
   pvr2_outline_1,
   pvr2_outline_2,
 };
@@ -3402,7 +3402,7 @@ const int16_t phr_outline_1[] = {
   -15224,  5276,
 };
 
-const int16_t* phr_outlines[] = {
+const int16_t* const phr_outlines[] = {
   phr_outline_1,
 };
 const uint16_t phr_outline_lengths[] = {
@@ -3451,7 +3451,7 @@ const int16_t p9a_outline_2[] = {
    2587,  16254,
 };
 
-const int16_t* p9a_outlines[] = {
+const int16_t* const p9a_outlines[] = {
   p9a_outline_1,
   p9a_outline_2,
 };
@@ -3482,7 +3482,7 @@ const int16_t phh_outline_1[] = {
   -13311,  6409,
 };
 
-const int16_t* phh_outlines[] = {
+const int16_t* const phh_outlines[] = {
   phh_outline_1,
 };
 const uint16_t phh_outline_lengths[] = {
@@ -3506,7 +3506,7 @@ const int16_t pha_outline_1[] = {
    3861,  17479,
 };
 
-const int16_t* pha_outlines[] = {
+const int16_t* const pha_outlines[] = {
   pha_outline_1,
 };
 const uint16_t pha_outline_lengths[] = {
@@ -3995,7 +3995,7 @@ const int16_t pyb_outline_33[] = {
    22276, -3314,
 };
 
-const int16_t* pyb_outlines[] = {
+const int16_t* const pyb_outlines[] = {
   pyb_outline_1,
   pyb_outline_2,
   pyb_outline_3,
@@ -4076,7 +4076,7 @@ const int16_t pmd_outline_1[] = {
    -855,  19330,
 };
 
-const int16_t* pmd_outlines[] = {
+const int16_t* const pmd_outlines[] = {
   pmd_outline_1,
 };
 const uint16_t pmd_outline_lengths[] = {
@@ -4259,7 +4259,7 @@ const int16_t pvu_outline_8[] = {
    16889,  2345,
 };
 
-const int16_t* pvu_outlines[] = {
+const int16_t* const pvu_outlines[] = {
   pvu_outline_1,
   pvu_outline_2,
   pvu_outline_3,
@@ -4303,7 +4303,7 @@ const int16_t pei_outline_1[] = {
   -1753,  18396,
 };
 
-const int16_t* pei_outlines[] = {
+const int16_t* const pei_outlines[] = {
   pei_outline_1,
 };
 const uint16_t pei_outline_lengths[] = {
@@ -4382,7 +4382,7 @@ const int16_t pep_outline_1[] = {
    11025,  12912,
 };
 
-const int16_t* pep_outlines[] = {
+const int16_t* const pep_outlines[] = {
   pep_outline_1,
 };
 const uint16_t pep_outline_lengths[] = {
@@ -4420,7 +4420,7 @@ const int16_t pyi_outline_1[] = {
    8738,  10786,
 };
 
-const int16_t* pyi_outlines[] = {
+const int16_t* const pyi_outlines[] = {
   pyi_outline_1,
 };
 const uint16_t pyi_outline_lengths[] = {
@@ -4446,7 +4446,7 @@ const int16_t ptf_outline_1[] = {
   -3357,  22640,
 };
 
-const int16_t* ptf_outlines[] = {
+const int16_t* const ptf_outlines[] = {
   ptf_outline_1,
 };
 const uint16_t ptf_outline_lengths[] = {
@@ -4461,7 +4461,7 @@ const int16_t p4x_outline_1[] = {
    6325,  10851,
 };
 
-const int16_t* p4x_outlines[] = {
+const int16_t* const p4x_outlines[] = {
   p4x_outline_1,
 };
 const uint16_t p4x_outline_lengths[] = {
@@ -4559,7 +4559,7 @@ const int16_t pi_outline_4[] = {
    2161,  13124,
 };
 
-const int16_t* pi_outlines[] = {
+const int16_t* const pi_outlines[] = {
   pi_outline_1,
   pi_outline_2,
   pi_outline_3,
@@ -4584,7 +4584,7 @@ const int16_t p6y_outline_1[] = {
   -13897,  6289,
 };
 
-const int16_t* p6y_outlines[] = {
+const int16_t* const p6y_outlines[] = {
   p6y_outline_1,
 };
 const uint16_t p6y_outline_lengths[] = {
@@ -4599,7 +4599,7 @@ const int16_t pmj_outline_1[] = {
    -443,  17627,
 };
 
-const int16_t* pmj_outlines[] = {
+const int16_t* const pmj_outlines[] = {
   pmj_outline_1,
 };
 const uint16_t pmj_outline_lengths[] = {
@@ -4624,7 +4624,7 @@ const int16_t pjy_outline_1[] = {
    7017,  11690,
 };
 
-const int16_t* pjy_outlines[] = {
+const int16_t* const pjy_outlines[] = {
   pjy_outline_1,
 };
 const uint16_t pjy_outline_lengths[] = {
@@ -4761,7 +4761,7 @@ const int16_t pja_outline_8[] = {
    22289,  8644,
 };
 
-const int16_t* pja_outlines[] = {
+const int16_t* const pja_outlines[] = {
   pja_outline_1,
   pja_outline_2,
   pja_outline_3,
@@ -4882,7 +4882,7 @@ const int16_t pun_outline_1[] = {
    15342,  17862,
 };
 
-const int16_t* pun_outlines[] = {
+const int16_t* const pun_outlines[] = {
   pun_outline_1,
 };
 const uint16_t pun_outline_lengths[] = {
@@ -4918,7 +4918,7 @@ const int16_t p5y_outline_1[] = {
    7116, -1699,
 };
 
-const int16_t* p5y_outlines[] = {
+const int16_t* const p5y_outlines[] = {
   p5y_outline_1,
 };
 const uint16_t p5y_outline_lengths[] = {
@@ -4963,7 +4963,7 @@ const int16_t pex_outline_1[] = {
    13303,  14248,
 };
 
-const int16_t* pex_outlines[] = {
+const int16_t* const pex_outlines[] = {
   pex_outline_1,
 };
 const uint16_t pex_outline_lengths[] = {
@@ -4997,7 +4997,7 @@ const int16_t pxu_outline_1[] = {
    18643,  5189,
 };
 
-const int16_t* pxu_outlines[] = {
+const int16_t* const pxu_outlines[] = {
   pxu_outline_1,
 };
 const uint16_t pxu_outline_lengths[] = {
@@ -5100,7 +5100,7 @@ const int16_t pt3_outline_13[] = {
   -28060, -2112,
 };
 
-const int16_t* pt3_outlines[] = {
+const int16_t* const pt3_outlines[] = {
   pt3_outline_1,
   pt3_outline_2,
   pt3_outline_3,
@@ -5142,7 +5142,7 @@ const int16_t pv4_outline_1[] = {
   -11265,  6068,
 };
 
-const int16_t* pv4_outlines[] = {
+const int16_t* const pv4_outlines[] = {
   pv4_outline_1,
 };
 const uint16_t pv4_outline_lengths[] = {
@@ -5188,7 +5188,7 @@ const int16_t phl_outline_3[] = {
    22731,  11852,
 };
 
-const int16_t* phl_outlines[] = {
+const int16_t* const phl_outlines[] = {
   phl_outline_1,
   phl_outline_2,
   phl_outline_3,
@@ -5218,7 +5218,7 @@ const int16_t p9k_outline_1[] = {
    8738,  10786,
 };
 
-const int16_t* p9k_outlines[] = {
+const int16_t* const p9k_outlines[] = {
   p9k_outline_1,
 };
 const uint16_t p9k_outline_lengths[] = {
@@ -5238,7 +5238,7 @@ const int16_t pod_outline_1[] = {
    6374,  11907,
 };
 
-const int16_t* pod_outlines[] = {
+const int16_t* const pod_outlines[] = {
   pod_outline_1,
 };
 const uint16_t pod_outline_lengths[] = {
@@ -5266,7 +5266,7 @@ const int16_t p5l_outline_1[] = {
   -1760,  3071,
 };
 
-const int16_t* p5l_outlines[] = {
+const int16_t* const p5l_outlines[] = {
   p5l_outline_1,
 };
 const uint16_t p5l_outline_lengths[] = {
@@ -5283,7 +5283,7 @@ const int16_t pj6_outline_1[] = {
   -10967,  4855,
 };
 
-const int16_t* pj6_outlines[] = {
+const int16_t* const pj6_outlines[] = {
   pj6_outline_1,
 };
 const uint16_t pj6_outline_lengths[] = {
@@ -5307,7 +5307,7 @@ const int16_t p4s_outline_1[] = {
    14490,  2057,
 };
 
-const int16_t* p4s_outlines[] = {
+const int16_t* const p4s_outlines[] = {
   p4s_outline_1,
 };
 const uint16_t p4s_outline_lengths[] = {
@@ -5343,7 +5343,7 @@ const int16_t ply_outline_2[] = {
    3772,  19900,
 };
 
-const int16_t* ply_outlines[] = {
+const int16_t* const ply_outlines[] = {
   ply_outline_1,
   ply_outline_2,
 };
@@ -5362,7 +5362,7 @@ const int16_t plx_outline_1[] = {
    1125,  17817,
 };
 
-const int16_t* plx_outlines[] = {
+const int16_t* const plx_outlines[] = {
   plx_outline_1,
 };
 const uint16_t plx_outline_lengths[] = {
@@ -5394,7 +5394,7 @@ const int16_t pyl_outline_1[] = {
    4964,  20088,
 };
 
-const int16_t* pyl_outlines[] = {
+const int16_t* const pyl_outlines[] = {
   pyl_outline_1,
 };
 const uint16_t pyl_outline_lengths[] = {
@@ -5416,7 +5416,7 @@ const int16_t pfs_outline_2[] = {
   -11369,  6453,
 };
 
-const int16_t* pfs_outlines[] = {
+const int16_t* const pfs_outlines[] = {
   pfs_outline_1,
   pfs_outline_2,
 };
@@ -5478,7 +5478,7 @@ const int16_t pcn_outline_2[] = {
   -3068,  7622,
 };
 
-const int16_t* pcn_outlines[] = {
+const int16_t* const pcn_outlines[] = {
   pcn_outline_1,
   pcn_outline_2,
 };
@@ -5495,7 +5495,7 @@ const int16_t p3a_outline_1[] = {
    1337,  15643,
 };
 
-const int16_t* p3a_outlines[] = {
+const int16_t* const p3a_outlines[] = {
   p3a_outline_1,
 };
 const uint16_t p3a_outline_lengths[] = {
@@ -5519,7 +5519,7 @@ const int16_t p8q_outline_2[] = {
    13211,  1078,
 };
 
-const int16_t* p8q_outlines[] = {
+const int16_t* const p8q_outlines[] = {
   p8q_outline_1,
   p8q_outline_2,
 };
@@ -5635,7 +5635,7 @@ const int16_t pxe_outline_4[] = {
   -19975,  6651,
 };
 
-const int16_t* pxe_outlines[] = {
+const int16_t* const pxe_outlines[] = {
   pxe_outline_1,
   pxe_outline_2,
   pxe_outline_3,
@@ -5680,7 +5680,7 @@ const int16_t pv7_outline_4[] = {
    30531,  2003,
 };
 
-const int16_t* pv7_outlines[] = {
+const int16_t* const pv7_outlines[] = {
   pv7_outline_1,
   pv7_outline_2,
   pv7_outline_3,
@@ -5706,7 +5706,7 @@ const int16_t pz3_outline_1[] = {
    3774,  14706,
 };
 
-const int16_t* pz3_outlines[] = {
+const int16_t* const pz3_outlines[] = {
   pz3_outline_1,
 };
 const uint16_t pz3_outline_lengths[] = {
@@ -5765,7 +5765,7 @@ const int16_t ptz_outline_1[] = {
   -1680,  5589,
 };
 
-const int16_t* ptz_outlines[] = {
+const int16_t* const ptz_outlines[] = {
   ptz_outline_1,
 };
 const uint16_t ptz_outline_lengths[] = {
@@ -5782,7 +5782,7 @@ const int16_t p9h_outline_1[] = {
    2616,  12792,
 };
 
-const int16_t* p9h_outlines[] = {
+const int16_t* const p9h_outlines[] = {
   p9h_outline_1,
 };
 const uint16_t p9h_outline_lengths[] = {
@@ -5859,7 +5859,7 @@ const int16_t pxy_outline_1[] = {
    17719,  6111,
 };
 
-const int16_t* pxy_outlines[] = {
+const int16_t* const pxy_outlines[] = {
   pxy_outline_1,
 };
 const uint16_t pxy_outline_lengths[] = {
@@ -5887,7 +5887,7 @@ const int16_t p4o_outline_2[] = {
    3322,  15208,
 };
 
-const int16_t* p4o_outlines[] = {
+const int16_t* const p4o_outlines[] = {
   p4o_outline_1,
   p4o_outline_2,
 };
@@ -5951,7 +5951,7 @@ const int16_t pjt_outline_1[] = {
    21017,  17233,
 };
 
-const int16_t* pjt_outlines[] = {
+const int16_t* const pjt_outlines[] = {
   pjt_outline_1,
 };
 const uint16_t pjt_outline_lengths[] = {
@@ -5996,7 +5996,7 @@ const int16_t pkh0_outline_5[] = {
    26139,  4993,
 };
 
-const int16_t* pkh0_outlines[] = {
+const int16_t* const pkh0_outlines[] = {
   pkh0_outline_1,
   pkh0_outline_2,
   pkh0_outline_3,
@@ -6055,7 +6055,7 @@ const int16_t p5t_outline_2[] = {
   -3068,  7622,
 };
 
-const int16_t* p5t_outlines[] = {
+const int16_t* const p5t_outlines[] = {
   p5t_outline_1,
   p5t_outline_2,
 };
@@ -6074,7 +6074,7 @@ const int16_t pvp2m_outline_1[] = {
   -11188,  5917,
 };
 
-const int16_t* pvp2m_outlines[] = {
+const int16_t* const pvp2m_outlines[] = {
   pvp2m_outline_1,
 };
 const uint16_t pvp2m_outline_lengths[] = {
@@ -6090,7 +6090,7 @@ const int16_t p7q_outline_1[] = {
    6000, -3427,
 };
 
-const int16_t* p7q_outlines[] = {
+const int16_t* const p7q_outlines[] = {
   p7q_outline_1,
 };
 const uint16_t p7q_outline_lengths[] = {
@@ -6171,7 +6171,7 @@ const int16_t p9m2_outline_3[] = {
    18717,   508,
 };
 
-const int16_t* p9m2_outlines[] = {
+const int16_t* const p9m2_outlines[] = {
   p9m2_outline_1,
   p9m2_outline_2,
   p9m2_outline_3,
@@ -6223,7 +6223,7 @@ const int16_t p5u_outline_1[] = {
    2421,  5175,
 };
 
-const int16_t* p5u_outlines[] = {
+const int16_t* const p5u_outlines[] = {
   p5u_outline_1,
 };
 const uint16_t p5u_outline_lengths[] = {
@@ -6268,7 +6268,7 @@ const int16_t p5n_outline_1[] = {
    2449,  4934,
 };
 
-const int16_t* p5n_outlines[] = {
+const int16_t* const p5n_outlines[] = {
   p5n_outline_1,
 };
 const uint16_t p5n_outline_lengths[] = {
@@ -6301,7 +6301,7 @@ const int16_t pht_outline_1[] = {
   -15088,  4000,
 };
 
-const int16_t* pht_outlines[] = {
+const int16_t* const pht_outlines[] = {
   pht_outline_1,
 };
 const uint16_t pht_outline_lengths[] = {
@@ -6345,7 +6345,7 @@ const int16_t ppa_outline_3[] = {
   -12286,  4246,
 };
 
-const int16_t* ppa_outlines[] = {
+const int16_t* const ppa_outlines[] = {
   ppa_outline_1,
   ppa_outline_2,
   ppa_outline_3,
@@ -6459,7 +6459,7 @@ const int16_t pla_outline_7[] = {
    5075,  25289,
 };
 
-const int16_t* pla_outlines[] = {
+const int16_t* const pla_outlines[] = {
   pla_outline_1,
   pla_outline_2,
   pla_outline_3,
@@ -6495,7 +6495,7 @@ const int16_t p9n_outline_1[] = {
    15505,  10121,
 };
 
-const int16_t* p9n_outlines[] = {
+const int16_t* const p9n_outlines[] = {
   p9n_outline_1,
 };
 const uint16_t p9n_outline_lengths[] = {
@@ -6512,7 +6512,7 @@ const int16_t pc2_outline_1[] = {
    30049,  -282,
 };
 
-const int16_t* pc2_outlines[] = {
+const int16_t* const pc2_outlines[] = {
   pc2_outline_1,
 };
 const uint16_t pc2_outline_lengths[] = {
@@ -6536,7 +6536,7 @@ const int16_t pzl_outline_2[] = {
   -30814, -3454,
 };
 
-const int16_t* pzl_outlines[] = {
+const int16_t* const pzl_outlines[] = {
   pzl_outline_1,
   pzl_outline_2,
 };
@@ -6588,7 +6588,7 @@ const int16_t pa4_outline_2[] = {
    9577,  5913,
 };
 
-const int16_t* pa4_outlines[] = {
+const int16_t* const pa4_outlines[] = {
   pa4_outline_1,
   pa4_outline_2,
 };
@@ -6667,7 +6667,7 @@ const int16_t pap_outline_2[] = {
    13908,  12679,
 };
 
-const int16_t* pap_outlines[] = {
+const int16_t* const pap_outlines[] = {
   pap_outline_1,
   pap_outline_2,
 };
@@ -6712,7 +6712,7 @@ const int16_t php_outline_1[] = {
   -14904,  3453,
 };
 
-const int16_t* php_outlines[] = {
+const int16_t* const php_outlines[] = {
   php_outline_1,
 };
 const uint16_t php_outline_lengths[] = {
@@ -6760,7 +6760,7 @@ const int16_t p4t_outline_1[] = {
   -12715, -3537,
 };
 
-const int16_t* p4t_outlines[] = {
+const int16_t* const p4t_outlines[] = {
   p4t_outline_1,
 };
 const uint16_t p4t_outline_lengths[] = {
@@ -6864,7 +6864,7 @@ const int16_t pdu_outline_6[] = {
    21578,  1737,
 };
 
-const int16_t* pdu_outlines[] = {
+const int16_t* const pdu_outlines[] = {
   pdu_outline_1,
   pdu_outline_2,
   pdu_outline_3,
@@ -6898,7 +6898,7 @@ const int16_t pkc6_outline_2[] = {
    23607,  1004,
 };
 
-const int16_t* pkc6_outlines[] = {
+const int16_t* const pkc6_outlines[] = {
   pkc6_outline_1,
   pkc6_outline_2,
 };
@@ -7008,7 +7008,7 @@ const int16_t pp2_outline_6[] = {
    27516, -3406,
 };
 
-const int16_t* pp2_outlines[] = {
+const int16_t* const pp2_outlines[] = {
   pp2_outline_1,
   pp2_outline_2,
   pp2_outline_3,
@@ -7060,7 +7060,7 @@ const int16_t psp_outline_1[] = {
    3333,  17965,
 };
 
-const int16_t* psp_outlines[] = {
+const int16_t* const psp_outlines[] = {
   psp_outline_1,
 };
 const uint16_t psp_outline_lengths[] = {
@@ -7085,7 +7085,7 @@ const int16_t pkp3_outline_2[] = {
   -12219,  6413,
 };
 
-const int16_t* pkp3_outlines[] = {
+const int16_t* const pkp3_outlines[] = {
   pkp3_outline_1,
   pkp3_outline_2,
 };
@@ -7127,7 +7127,7 @@ const int16_t pp5_outline_1[] = {
    22573,  13473,
 };
 
-const int16_t* pp5_outlines[] = {
+const int16_t* const pp5_outlines[] = {
   pp5_outline_1,
 };
 const uint16_t pp5_outline_lengths[] = {
@@ -7198,7 +7198,7 @@ const int16_t pct7_outline_6[] = {
   -3031,  11654,
 };
 
-const int16_t* pct7_outlines[] = {
+const int16_t* const pct7_outlines[] = {
   pct7_outline_1,
   pct7_outline_2,
   pct7_outline_3,
@@ -7233,7 +7233,7 @@ const int16_t pfo_outline_2[] = {
   -25106, -3517,
 };
 
-const int16_t* pfo_outlines[] = {
+const int16_t* const pfo_outlines[] = {
   pfo_outline_1,
   pfo_outline_2,
 };
@@ -7262,7 +7262,7 @@ const int16_t pa7_outline_2[] = {
    9104,  9197,
 };
 
-const int16_t* pa7_outlines[] = {
+const int16_t* const pa7_outlines[] = {
   pa7_outline_1,
   pa7_outline_2,
 };
@@ -7301,7 +7301,7 @@ const int16_t pyo_outline_1[] = {
    5097,  16325,
 };
 
-const int16_t* pyo_outlines[] = {
+const int16_t* const pyo_outlines[] = {
   pyo_outline_1,
 };
 const uint16_t pyo_outline_lengths[] = {
@@ -7847,7 +7847,7 @@ const int16_t pra_outline_22[] = {
    26286,  15511,
 };
 
-const int16_t* pra_outlines[] = {
+const int16_t* const pra_outlines[] = {
   pra_outline_1,
   pra_outline_2,
   pra_outline_3,
@@ -7911,7 +7911,7 @@ const int16_t p9x_outline_1[] = {
    5301, -1010,
 };
 
-const int16_t* p9x_outlines[] = {
+const int16_t* const p9x_outlines[] = {
   p9x_outline_1,
 };
 const uint16_t p9x_outline_lengths[] = {
@@ -7942,7 +7942,7 @@ const int16_t ps0_outline_1[] = {
   -1563,  9956,
 };
 
-const int16_t* ps0_outlines[] = {
+const int16_t* const ps0_outlines[] = {
   ps0_outline_1,
 };
 const uint16_t ps0_outline_lengths[] = {
@@ -8009,7 +8009,7 @@ const int16_t phz_outline_2[] = {
    9104,  9197,
 };
 
-const int16_t* phz_outlines[] = {
+const int16_t* const phz_outlines[] = {
   phz_outline_1,
   phz_outline_2,
 };
@@ -8072,7 +8072,7 @@ const int16_t pst_outline_1[] = {
    4634,  7918,
 };
 
-const int16_t* pst_outlines[] = {
+const int16_t* const pst_outlines[] = {
   pst_outline_1,
 };
 const uint16_t pst_outline_lengths[] = {
@@ -8124,7 +8124,7 @@ const int16_t p6t_outline_1[] = {
    5401,  3700,
 };
 
-const int16_t* p6t_outlines[] = {
+const int16_t* const p6t_outlines[] = {
   p6t_outline_1,
 };
 const uint16_t p6t_outline_lengths[] = {
@@ -8163,7 +8163,7 @@ const int16_t p6w_outline_1[] = {
   -2355,  4548,
 };
 
-const int16_t* p6w_outlines[] = {
+const int16_t* const p6w_outlines[] = {
   p6w_outline_1,
 };
 const uint16_t p6w_outline_lengths[] = {
@@ -8186,7 +8186,7 @@ const int16_t p9v_outline_2[] = {
    18717,   508,
 };
 
-const int16_t* p9v_outlines[] = {
+const int16_t* const p9v_outlines[] = {
   p9v_outline_1,
   p9v_outline_2,
 };
@@ -8205,7 +8205,7 @@ const int16_t pzd7_outline_1[] = {
   -2592, -2956,
 };
 
-const int16_t* pzd7_outlines[] = {
+const int16_t* const pzd7_outlines[] = {
   pzd7_outline_1,
 };
 const uint16_t pzd7_outline_lengths[] = {
@@ -8262,7 +8262,7 @@ const int16_t ph4_outline_4[] = {
    29049, -3589,
 };
 
-const int16_t* ph4_outlines[] = {
+const int16_t* const ph4_outlines[] = {
   ph4_outline_1,
   ph4_outline_2,
   ph4_outline_3,
@@ -8293,7 +8293,7 @@ const int16_t p9l_outline_1[] = {
   -2210,  3575,
 };
 
-const int16_t* p9l_outlines[] = {
+const int16_t* const p9l_outlines[] = {
   p9l_outline_1,
 };
 const uint16_t p9l_outline_lengths[] = {
@@ -8318,7 +8318,7 @@ const int16_t phu_outline_2[] = {
   -15785,  4694,
 };
 
-const int16_t* phu_outlines[] = {
+const int16_t* const phu_outlines[] = {
   phu_outline_1,
   phu_outline_2,
 };
@@ -8353,7 +8353,7 @@ const int16_t p6o_outline_1[] = {
    7516,  -665,
 };
 
-const int16_t* p6o_outlines[] = {
+const int16_t* const p6o_outlines[] = {
   p6o_outline_1,
 };
 const uint16_t p6o_outline_lengths[] = {
@@ -8371,7 +8371,7 @@ const int16_t pfp_outline_1[] = {
   -10111,  16709,
 };
 
-const int16_t* pfp_outlines[] = {
+const int16_t* const pfp_outlines[] = {
   pfp_outline_1,
 };
 const uint16_t pfp_outline_lengths[] = {
@@ -8408,7 +8408,7 @@ const int16_t pyu_outline_1[] = {
    3476,  16163,
 };
 
-const int16_t* pyu_outlines[] = {
+const int16_t* const pyu_outlines[] = {
   pyu_outline_1,
 };
 const uint16_t pyu_outline_lengths[] = {
@@ -8432,7 +8432,7 @@ const int16_t ps9_outline_2[] = {
    1180,   -67,
 };
 
-const int16_t* ps9_outlines[] = {
+const int16_t* const ps9_outlines[] = {
   ps9_outline_1,
   ps9_outline_2,
 };
@@ -8462,7 +8462,7 @@ const int16_t ppz_outline_1[] = {
   -10077,   670,
 };
 
-const int16_t* ppz_outlines[] = {
+const int16_t* const ppz_outlines[] = {
   ppz_outline_1,
 };
 const uint16_t ppz_outline_lengths[] = {
@@ -8484,7 +8484,7 @@ const int16_t pom_outline_1[] = {
    3964,  17715,
 };
 
-const int16_t* pom_outlines[] = {
+const int16_t* const pom_outlines[] = {
   pom_outline_1,
 };
 const uint16_t pom_outline_lengths[] = {
@@ -8510,7 +8510,7 @@ const int16_t ps5_outline_2[] = {
    2481,  16426,
 };
 
-const int16_t* ps5_outlines[] = {
+const int16_t* const ps5_outlines[] = {
   ps5_outline_1,
   ps5_outline_2,
 };
@@ -8572,7 +8572,7 @@ const int16_t psm_outline_2[] = {
    3266,  20338,
 };
 
-const int16_t* psm_outlines[] = {
+const int16_t* const psm_outlines[] = {
   psm_outline_1,
   psm_outline_2,
 };
@@ -8601,7 +8601,7 @@ const int16_t ppj5_outline_3[] = {
   -11394,  6434,
 };
 
-const int16_t* ppj5_outlines[] = {
+const int16_t* const ppj5_outlines[] = {
   ppj5_outline_1,
   ppj5_outline_2,
   ppj5_outline_3,
@@ -8622,7 +8622,7 @@ const int16_t ps7_outline_1[] = {
    9998, -1807,
 };
 
-const int16_t* ps7_outlines[] = {
+const int16_t* const ps7_outlines[] = {
   ps7_outline_1,
 };
 const uint16_t ps7_outline_lengths[] = {
@@ -8651,7 +8651,7 @@ const int16_t pyk_outline_1[] = {
    7009,  12042,
 };
 
-const int16_t* pyk_outlines[] = {
+const int16_t* const pyk_outlines[] = {
   pyk_outline_1,
 };
 const uint16_t pyk_outline_lengths[] = {
@@ -8670,7 +8670,7 @@ const int16_t pvp5_outline_1[] = {
   -12900,  7740,
 };
 
-const int16_t* pvp5_outlines[] = {
+const int16_t* const pvp5_outlines[] = {
   pvp5_outline_1,
 };
 const uint16_t pvp5_outline_lengths[] = {
@@ -8714,7 +8714,7 @@ const int16_t ptt_outline_1[] = {
    2872,  2703,
 };
 
-const int16_t* ptt_outlines[] = {
+const int16_t* const ptt_outlines[] = {
   ptt_outline_1,
 };
 const uint16_t ptt_outline_lengths[] = {
@@ -8745,7 +8745,7 @@ const int16_t p5v_outline_2[] = {
     245,  2128,
 };
 
-const int16_t* p5v_outlines[] = {
+const int16_t* const p5v_outlines[] = {
   p5v_outline_1,
   p5v_outline_2,
 };
@@ -8818,7 +8818,7 @@ const int16_t phs_outline_1[] = {
    18342,  2312,
 };
 
-const int16_t* phs_outlines[] = {
+const int16_t* const phs_outlines[] = {
   phs_outline_1,
 };
 const uint16_t phs_outline_lengths[] = {
@@ -8863,7 +8863,7 @@ const int16_t pey_outline_1[] = {
    13160,  14170,
 };
 
-const int16_t* pey_outlines[] = {
+const int16_t* const pey_outlines[] = {
   pey_outline_1,
 };
 const uint16_t pey_outline_lengths[] = {
@@ -8923,7 +8923,7 @@ const int16_t pez_outline_2[] = {
    9515,  15002,
 };
 
-const int16_t* pez_outlines[] = {
+const int16_t* const pez_outlines[] = {
   pez_outline_1,
   pez_outline_2,
 };
@@ -8956,7 +8956,7 @@ const int16_t p4w_outline_2[] = {
    22371, -3394,
 };
 
-const int16_t* p4w_outlines[] = {
+const int16_t* const p4w_outlines[] = {
   p4w_outline_1,
   p4w_outline_2,
 };
@@ -8979,7 +8979,7 @@ const int16_t p9y_outline_1[] = {
   -11004,  3545,
 };
 
-const int16_t* p9y_outlines[] = {
+const int16_t* const p9y_outlines[] = {
   p9y_outline_1,
 };
 const uint16_t p9y_outline_lengths[] = {
@@ -9015,7 +9015,7 @@ const int16_t p3v_outline_1[] = {
    1713,  10883,
 };
 
-const int16_t* p3v_outlines[] = {
+const int16_t* const p3v_outlines[] = {
   p3v_outline_1,
 };
 const uint16_t p3v_outline_lengths[] = {
@@ -9086,7 +9086,7 @@ const int16_t pta_outline_2[] = {
    4945,  13104,
 };
 
-const int16_t* pta_outlines[] = {
+const int16_t* const pta_outlines[] = {
   pta_outline_1,
   pta_outline_2,
 };
@@ -9126,7 +9126,7 @@ const int16_t p5h_outline_1[] = {
    6178, -3503,
 };
 
-const int16_t* p5h_outlines[] = {
+const int16_t* const p5h_outlines[] = {
   p5h_outline_1,
 };
 const uint16_t p5h_outline_lengths[] = {
@@ -9157,7 +9157,7 @@ const int16_t p5x_outline_1[] = {
    5537,  -364,
 };
 
-const int16_t* p5x_outlines[] = {
+const int16_t* const p5x_outlines[] = {
   p5x_outline_1,
 };
 const uint16_t p5x_outline_lengths[] = {
@@ -9215,7 +9215,7 @@ const int16_t put_outline_1[] = {
    7051,  17948,
 };
 
-const int16_t* put_outlines[] = {
+const int16_t* const put_outlines[] = {
   put_outline_1,
 };
 const uint16_t put_outline_lengths[] = {
@@ -9276,7 +9276,7 @@ const int16_t puk_outline_1[] = {
    12990,  14823,
 };
 
-const int16_t* puk_outlines[] = {
+const int16_t* const puk_outlines[] = {
   puk_outline_1,
 };
 const uint16_t puk_outline_lengths[] = {
@@ -9293,7 +9293,7 @@ const int16_t pj8_outline_1[] = {
   -11042,  4484,
 };
 
-const int16_t* pj8_outlines[] = {
+const int16_t* const pj8_outlines[] = {
   pj8_outline_1,
 };
 const uint16_t pj8_outline_lengths[] = {
@@ -9374,7 +9374,7 @@ const int16_t pyv_outline_2[] = {
   -11748,  3833,
 };
 
-const int16_t* pyv_outlines[] = {
+const int16_t* const pyv_outlines[] = {
   pyv_outline_1,
   pyv_outline_2,
 };
@@ -9394,7 +9394,7 @@ const int16_t pvp2v_outline_1[] = {
   -11602,  6552,
 };
 
-const int16_t* pvp2v_outlines[] = {
+const int16_t* const pvp2v_outlines[] = {
   pvp2v_outline_1,
 };
 const uint16_t pvp2v_outline_lengths[] = {
@@ -9419,7 +9419,7 @@ const int16_t pkp2_outline_2[] = {
   -11680,  6284,
 };
 
-const int16_t* pkp2_outlines[] = {
+const int16_t* const pkp2_outlines[] = {
   pkp2_outline_1,
   pkp2_outline_2,
 };
@@ -9496,7 +9496,7 @@ const int16_t pxv_outline_2[] = {
    19186,  3040,
 };
 
-const int16_t* pxv_outlines[] = {
+const int16_t* const pxv_outlines[] = {
   pxv_outline_1,
   pxv_outline_2,
 };
@@ -9542,7 +9542,7 @@ const int16_t p7o_outline_2[] = {
    9669,  4349,
 };
 
-const int16_t* p7o_outlines[] = {
+const int16_t* const p7o_outlines[] = {
   p7o_outline_1,
   p7o_outline_2,
 };
@@ -9561,7 +9561,7 @@ const int16_t p9j_outline_1[] = {
    5112, -3321,
 };
 
-const int16_t* p9j_outlines[] = {
+const int16_t* const p9j_outlines[] = {
   p9j_outline_1,
 };
 const uint16_t p9j_outline_lengths[] = {

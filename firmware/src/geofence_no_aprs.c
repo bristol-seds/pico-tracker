@@ -1251,7 +1251,7 @@ const int16_t no_aprs_outline_27[] = {
    3705,  15090,
 };
 
-const int16_t* no_aprs_outlines[] = {
+const int16_t* const no_aprs_outlines[] = {
 #if APRS_USE_GEOFENCE
   no_aprs_outline_1,
   no_aprs_outline_2,
