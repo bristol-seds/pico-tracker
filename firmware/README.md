@@ -6,6 +6,12 @@ by whatever means possible, come hell or high water.
 (Actually, come low temperatures, long paths, geopolitical
 restrictions, low power etc.)
 
+## Callsigns
+
+You'll need to copy
+[inc/callsigns_template.h](inc/callsigns_template.h) to
+inc/callsigns.h and update it with your own callsigns.
+
 ## Technical Description ##
 
 The firmware is written in C and targeted at the highly configurable

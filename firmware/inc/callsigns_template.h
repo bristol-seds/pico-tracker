@@ -1,6 +1,6 @@
 /*
- * Outputs aprs uisng ax25
- * Copyright (C) 2015  Richard Meadows <richardeoin>
+ * Template for callsign configuration file
+ * Copyright (C) 2016  Richard Meadows <richardeoin>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,46 +22,40 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef APRS_H
-#define APRS_H
+#ifndef CALLSIGNS_H
+#define CALLSIGNS_H
 
-#include <string.h>
-#include "data.h"
-#include "callsigns.h"
+/* ------------------------------- Telemetry -------------------------------- */
+
+#define CALLSIGN	"YOUR_CALL"
+
+/* ---------------------------------- APRS ---------------------------------- */
 
 /**
- * Reference APRS Protocol Spec  http://www.aprs.org/doc/APRS101.PDF
+ * This should return a full licensed callsign you own.
+ *
+ * Maximum 6 characters
  */
+static inline char* aprs_callsign(char* call)
+{
+  return "QQQ";
+}
 
-#ifndef APRS_SSID
+/**
+ * SSID. Usually 11 for balloons
+ */
 #define APRS_SSID	11
-#endif
-
-#ifndef APRS_SYMBOL
-#define APRS_SYMBOL     "/O"    /* Balloon */
-#endif
-
 
 /**
- * Path type
+ * APRS Map Symbol.  See Appendix 2: APRS Symbol Tables
  */
-enum aprs_path {
-  APRS_PATH_DEFAULT,
-  APRS_PATH_WIDE2_1,
-  APRS_PATH_ARISS,
-};
+#define APRS_SYMBOL     "/O"    /* Balloon */
 
+/**
+ * APRS Comment Field
+ */
+#define APRS_COMMENT	""
 
+/* -------------------------------------------------------------------------- */
 
-void encode_backlog(char* str, tracker_datapoint* dp, char* prefix);
-
-void aprs_set_datapoint(tracker_datapoint* dp);
-void aprs_set_comment(char* comment);
-void aprs_set_backlog_comment(tracker_datapoint* log_dp, char* prefix);
-void aprs_set_callsign(char* call);
-void aprs_set_path(enum aprs_path path);
-
-uint8_t aprs_start(void);
-uint8_t aprs_tick(void);
-
-#endif /* APRS_H */
+#endif  /* CALLSIGNS_H */

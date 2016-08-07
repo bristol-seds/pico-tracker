@@ -11,6 +11,7 @@ out/
 
 # Intermediate compilation files
 *.o
+*.d
 
 # raw backlog data
 tools/aprs/rawdata/*rawdata.txt
@@ -32,3 +33,6 @@ tools/verification/ctypesgen
 
 # Compile commands
 compile_commands.json
+
+# Callsigns header
+inc/callsigns.h

@@ -47,9 +47,15 @@
 #include "rtc.h"
 #include "sequencer.h"
 #include "thermistor.h"
+#include "callsigns.h"
 
-#define CALLSIGN	"UBSEDS16"
+#ifndef CALLSIGN
+#define CALLSIGN	"QQQ"
+#endif
+
+#ifndef APRS_COMMENT
 #define APRS_COMMENT	""
+#endif
 
 /**
  * Formats a UKHAS telemetry string for the given datapoint
