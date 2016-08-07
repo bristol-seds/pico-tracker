@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.125" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -32,12 +32,12 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
@@ -51,7 +51,7 @@
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
@@ -2608,6 +2608,9 @@ Covered vias can be set in Masks (Limit).
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -2716,10 +2719,10 @@ Covered vias can be set in Masks (Limit).
 <element name="C20" library="microbuilder_v3" package="_0402" value="100nF" x="25.375" y="44.25"/>
 <element name="C8" library="microbuilder_v3" package="_0402" value="100pF" x="25.375" y="42.5"/>
 <element name="C9" library="microbuilder_v3" package="_0402" value="100pF" x="18.5" y="61.375"/>
-<element name="L6" library="microbuilder_v3" package="_0402@2" value="DNP" x="20.75" y="42.375"/>
-<element name="C5" library="microbuilder_v3" package="_0402" value="DNP" x="18.875" y="41.5" rot="R180"/>
-<element name="L7" library="microbuilder_v3" package="_0402@2" value="DNP" x="20.25" y="41" rot="R90"/>
-<element name="C6" library="microbuilder_v3" package="_0402" value="DNP" x="21.1875" y="41" rot="R90"/>
+<element name="L6" library="microbuilder_v3" package="_0402@2" value="56nH" x="20.75" y="42.375"/>
+<element name="C5" library="microbuilder_v3" package="_0402" value="5.1pF" x="18.875" y="41.5" rot="R180"/>
+<element name="L7" library="microbuilder_v3" package="_0402@2" value="56nH" x="20.25" y="41" rot="R90"/>
+<element name="C6" library="microbuilder_v3" package="_0402" value="2.7pF" x="21.1875" y="41" rot="R90"/>
 <element name="C28" library="microbuilder_v3" package="_0402" value="2.2µF" x="18.5" y="63.125"/>
 <element name="C21" library="microbuilder_v3" package="_0402" value="100nF" x="14.375" y="48.625" rot="R270"/>
 <element name="U7" library="TPS3125" package="SOT23-5" value="ADM6823WYRJZ" x="27.75" y="52" rot="R90"/>
@@ -2893,9 +2896,9 @@ Covered vias can be set in Masks (Limit).
 <element name="C34" library="microbuilder_v3" package="_0402" value="100nF" x="23.125" y="34.875" rot="R180"/>
 <element name="Q2" library="nxp" package="SOT23" value="NX2301P" x="28.25" y="43" rot="R90"/>
 <element name="R10" library="microbuilder_v3" package="_0402" value="100kΩ" x="28.75" y="45.125" rot="R180"/>
-<element name="R29" library="microbuilder_v3" package="_0402" value="100kΩ" x="24.875" y="46.375"/>
+<element name="R29" library="microbuilder_v3" package="_0402" value="10kΩ" x="24.875" y="46.375"/>
 <element name="Q5" library="PBSS4130" package="SOT1118" value="PBSS4130" x="24.875" y="48"/>
-<element name="R33" library="microbuilder_v3" package="_0402" value="100kΩ" x="24.875" y="49.625"/>
+<element name="R33" library="microbuilder_v3" package="_0402" value="10kΩ" x="24.875" y="49.625"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -3658,7 +3661,6 @@ Covered vias can be set in Masks (Limit).
 <wire x1="22.125" y1="38.383" x2="22.117" y2="38.375" width="0.4" layer="1"/>
 <wire x1="22.117" y1="38.375" x2="22.117" y2="38.427940625" width="0.4" layer="1"/>
 <wire x1="22.117" y1="38.427940625" x2="21.379" y2="36.939940625" width="0.4" layer="1" curve="-30"/>
-<wire x1="21.379" y1="36.939940625" x2="21.378996875" y2="36.939940625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FILTER2">
 <contactref element="L4" pad="1"/>

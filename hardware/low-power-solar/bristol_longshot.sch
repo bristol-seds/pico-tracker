@@ -9690,11 +9690,11 @@ Metric Code Size 5664</description>
 <part name="U$57" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C9" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100pF"/>
 <part name="U$3" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="L6" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="DNP"/>
-<part name="C5" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
+<part name="L6" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="56nH"/>
+<part name="C5" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="5.1pF"/>
 <part name="U$45" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="L7" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="DNP"/>
-<part name="C6" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="DNP"/>
+<part name="L7" library="microbuilder_v3" deviceset="INDUCTOR" device="_0402" value="56nH"/>
+<part name="C6" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="2.7pF"/>
 <part name="C28" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="2.2µF"/>
 <part name="U$18" library="microbuilder_v3" deviceset="GND" device=""/>
 <part name="C21" library="microbuilder_v3" deviceset="CAP_CERAMIC" device="_0402" value="100nF"/>
@@ -9914,10 +9914,10 @@ Metric Code Size 5664</description>
 <part name="Q2" library="nxp" deviceset="NX2301P" device=""/>
 <part name="R10" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
 <part name="U$65" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R29" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="R29" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 <part name="Q5" library="PBSS4130" deviceset="PBSS4130" device=""/>
 <part name="U$121" library="microbuilder_v3" deviceset="GND" device=""/>
-<part name="R33" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="100kΩ"/>
+<part name="R33" library="microbuilder_v3" deviceset="RESISTOR" device="_0402" value="10kΩ"/>
 </parts>
 <sheets>
 <sheet>
