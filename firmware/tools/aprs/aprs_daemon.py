@@ -116,7 +116,7 @@ print
 
 # Get packets for m0sbu/ad6am. Reasonably frequent stream but not enough to overload
 AIS = aprslib.IS("M0SBU-1", port=14580)
-AIS.set_filter("b/M0SBU*/AD6AM*")
+AIS.set_filter("b/M0SB*/AD6A*")
 
 AIS.connect()
 # by default `raw` is False, then each line is ran through aprslib.parse()
