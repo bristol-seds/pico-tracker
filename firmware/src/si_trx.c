@@ -145,7 +145,7 @@ void _si_trx_transfer(int tx_count, int rx_count, uint8_t *data)
    */
 
   do {
-    for (int i = 0; i < 200; i++); /* Approx. 20µS */
+    for (int i = 0; i < 200; i++) { __NOP(); } /* Approx. 20µS */
     _si_trx_cs_enable();
 
     /* Issue READ_CMD_BUFF */
@@ -547,7 +547,7 @@ void si_trx_reset(uint8_t modulation_type, struct si_frequency_configuration* fc
   /* We expect to already be shutdown  */
   _si_trx_sdn_enable();  /* active high shutdown = reset */
 
-  for (int i = 0; i < 15; i++); /* a few microseconds */
+  for (int i = 0; i < 15; i++) { __NOP(); } /* a few microseconds */
 
   _si_trx_sdn_disable();   /* booting. expected to take 15ms */
 

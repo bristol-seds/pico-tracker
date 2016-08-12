@@ -224,9 +224,9 @@ void WDT_Handler(void)
   /* Wait for the external watchdog to kill us */
   while (1) {
     led_on();
-    for (int i = 0; i < 25*1000; i++);
+    for (int i = 0; i < 25*1000; i++) { __NOP(); }
     led_off();
-    for (int i = 0; i < 25*1000; i++);
+    for (int i = 0; i < 25*1000; i++) { __NOP(); }
 
     /**
      * Whilst this is generally bad practice in this system we have an
