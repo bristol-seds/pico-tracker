@@ -115,7 +115,7 @@ INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/ test/tc/
 # Verification suite code
 #
 #
-SYSTEM		+= test/tmain.c
+#SYSTEM		+= test/tmain.c
 
 # Linker Scripts
 #

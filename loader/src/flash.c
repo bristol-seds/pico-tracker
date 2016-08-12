@@ -30,14 +30,6 @@
 #include "flash.h"
 #include "watchdog.h"
 
-#define APPLICATION_BASE	(0x00004000) /* 16K */
-#define APPLICATION_LENGTH  (112*1024)   /* 112K */
-
-#define D1_START	(APPLICATION_BASE)
-#define D1_SECTORS  (APPLICATION_LENGTH/256)
-#define D2_START	(APPLICATION_BASE+APPLICATION_LENGTH)
-#define D2_SECTORS  (D1_SECTORS)
-
 /* Check these are multiples of 64 */
 #if (D1_SECTORS & 0x3F)
 #error D1_SECTORS _must_ be a mul 64, so checksums fill integer no. of sectors
@@ -123,30 +115,6 @@ uint32_t checksum_sector(unsigned int* sector)
                  SECTOR_SIZE);          /* length */
 }
 
-/* /\** */
-/*  * checks if memory checksum is good */
-/*  *\/ */
-/* enum flash_state check_flash_state(void) */
-/* { */
-/*   unsigned int calculated = checksum_memory(); */
-
-/*   if (*flash_checksum == 0xFFFFFFFF) { /\* not written *\/ */
-/*     /\* write it *\/ */
-/*     mem_write_word((uint32_t)flash_checksum, calculated); */
-
-/*     return FLASH_GOOD; */
-
-/*   } else {                      /\* written *\/ */
-/*     /\* check it *\/ */
-/*     if (calculated == *flash_checksum) { */
-/*       return FLASH_GOOD; */
-/*     } else { */
-/*       return FLASH_BAD_CSUM; */
-/*     } */
-/*   } */
-/* } */
-
-
 /**
  * updates checksum records in nvm
  */
@@ -166,6 +134,8 @@ void update_checksums(const uint32_t* nvm, uint32_t* ram, int sectors)
 
 /**
  * Checks and repairs application memory space
+ *
+ * returns the number of errors successfully corrected
  */
 uint32_t check_and_repair_memory(void)
 {

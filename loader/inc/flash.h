@@ -25,6 +25,17 @@
 #ifndef FLASH_H
 #define FLASH_H
 
+#include "samd20.h"
+
+#define APPLICATION_BASE	(0x00004000) /* 16K */
+#define APPLICATION_LENGTH  (112*1024)   /* 112K */
+
+#define D1_START	(APPLICATION_BASE)
+#define D1_SECTORS  (APPLICATION_LENGTH/256)
+#define D2_START	(APPLICATION_BASE+APPLICATION_LENGTH)
+#define D2_SECTORS  (D1_SECTORS)
+
+
 uint32_t check_and_repair_memory(void);
 
 #endif /* FLASH_H */

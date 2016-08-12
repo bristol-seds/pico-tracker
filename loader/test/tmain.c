@@ -37,6 +37,7 @@
 /***************************** test cases *******************************/
 
 #include "times_two.h"
+#include "repair_test.h"
 /* [new_tc] */
 
 
