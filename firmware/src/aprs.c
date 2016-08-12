@@ -149,12 +149,12 @@ void encode_backlog(char* str, tracker_datapoint* dp, char* prefix)
 struct tracker_datapoint* _dp = NULL;
 char* _comment = NULL;
 char* _callsign = NULL;
-char* _path_str = NULL;
+const char* _path_str = NULL;
 uint8_t _path_id = 0;
 char backlog_comment[BACKLOG_COMMENT_LEN+100]; /* TEMP */
 
-char aprs_path_wide2[] = "WIDE2";
-char aprs_path_ariss[] = "ARISS";
+const char aprs_path_wide2[] = "WIDE2";
+const char aprs_path_ariss[] = "ARISS";
 
 void aprs_set_datapoint(tracker_datapoint* dp) {
   _dp = dp;
