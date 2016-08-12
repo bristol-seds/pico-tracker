@@ -162,13 +162,13 @@
  * Cold out
  */
 #define COLD_OUT_TEMPERATURE	(-70.0)
-#define COLD_OUT_SECONDS	(15*60) /* 15 minutes */
-#define COLD_OUT_COUNT_MAX	(16*4)  /* up to 16 hours*/
+#define COLD_OUT_SECONDS	(5*60) /* 5 minutes    */
+#define COLD_OUT_COUNT_MAX	(12)   /* up to 1 hour */
 
 /**
  * Cycle Times
  */
-#define CYCLE_TIME_FAST		(0)   /* shortest hibernate */
+#define CYCLE_TIME_FAST		(30)   /* shortest hibernate */
 #define CYCLE_TIME_SLOW		(100) /* once every two minutes */
 
 /**
@@ -226,8 +226,9 @@
 /**
  * Telemetry
  */
-#define TELEMETRY_USE_GEOFENCE	1
-#define TELEMETRY_FREQUENCY		434600000
+#define TELEMETRY_ENABLE		1
+#define TELEMETRY_USE_GEOFENCE	0
+#define TELEMETRY_FREQUENCY		434612500
 #define TELEMETRY_POWER			RF_POWER_8dBm
 
 /**
@@ -241,8 +242,8 @@
  * ARISS APRS
  * Geofence used is only "no aprs"
  */
-#define ARISS_ENABLE		0
-#define ARISS_USE_GEOFENCE	0
+#define ARISS_ENABLE		1
+#define ARISS_USE_GEOFENCE	1
 #define ARISS_FREQUENCY		145825000
 
 /**

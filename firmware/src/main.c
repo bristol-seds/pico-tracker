@@ -81,18 +81,18 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   /* sprintf - full string (approx 90 chars) */
   len += sprintf(string + len,
 //               "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.1f,%.1f",
-//               "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.2f,%.1f,%.1f",
-                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%.2f,%.1f,%ld,%d",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.2f,%.1f,%.1f,%d",
+//                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%.2f,%.1f,%ld,%d",
                  CALLSIGN,      /* 2+6+2+1=11 */
                  dp->time.hour, dp->time.minute, dp->time.second, /* 2+1+2+1+2+1=9 */
                  dp->time.year%100, dp->time.month, dp->time.day, /* 2+2+2+1=7 */
                  lat_fmt, lon_fmt, altitude, dp->satillite_count, /* 3+1+4+1 + 4+1+4+1 + 5+1 + 2+1 = 28 */
-//                 dp->time_to_first_fix, /* 2+1 = 3 */
+                 dp->time_to_first_fix, /* 2+1 = 3 */
                  dp->battery,           /* 1+1+2+1 = 5 */
-//                 dp->solar,             /* 1+1+2+1 = 5 */
-//                 dp->thermistor_temperature,  /* 3+1+1+1 = 6 */
+                 dp->solar,             /* 1+1+2+1 = 5 */
+                 dp->thermistor_temperature,  /* 3+1+1+1 = 6 */
                  dp->radio_die_temperature, /* 3+1+1+1 = 6 */
-                 dp->xosc_error,
+//                 dp->xosc_error,
                  dp->flash_status);
   /* sum = 80 (must be less than or equal to 114) */
 
@@ -211,13 +211,13 @@ void aprs_telemetry(struct tracker_datapoint* dp, uint32_t n)
   telemetry_aprs_set_frequency(location_aprs_frequency());
 
   /* Set rf path */
-//  if ((get_battery_use_state() == BATTERY_GOOD) &&           /* battery good,       */
-//      (get_battery_charge_state() != BATTERY_DISCHARGING) && /* plenty of power and */
-//      ((n % 4) == 0)) {                                      /* one-in-four times   */
-//    telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* try the amplified path */
-//  } else {
+  if ((get_battery_use_state() == BATTERY_GOOD) &&           /* battery good,       */
+      (get_battery_charge_state() != BATTERY_DISCHARGING) && /* plenty of power and */
+      ((n % 10) == 0)) {                                      /* one-in-ten times   */
+    telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* try the amplified path */
+  } else {
     telemetry_aprs_set_rf_path(SI_RF_PATH_BYPASS);
-//  }
+  }
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);
@@ -238,6 +238,8 @@ void ariss_telemetry(struct tracker_datapoint* dp)
 
   char* prefix = location_prefix();
   char* call = location_aprs_call();
+  char ariss_comment[10];
+  sprintf(ariss_comment, "%s via ARISS", prefix);
 
   /* Set location */
   aprs_set_datapoint(dp);
@@ -250,9 +252,9 @@ void ariss_telemetry(struct tracker_datapoint* dp)
 // NO BACKLOG VIA ARISS TO START WITH
 //  backlog_dp_ptr = get_backlog();
 //  if (backlog_dp_ptr != NULL) {     /* Backlog comment if we can */
-//    aprs_set_backlog_comment(backlog_dp_ptr, prefix);
+//    aprs_set_backlog_comment(backlog_dp_ptr, ariss_comment);
 //  } else {
-  aprs_set_comment(prefix);
+  aprs_set_comment(ariss_comment);
 
   /* Set frequency */
   telemetry_aprs_set_frequency(ARISS_FREQUENCY); /* TODO correct for doppler here */

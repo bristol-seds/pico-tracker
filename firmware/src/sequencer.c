@@ -97,14 +97,10 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
     }
 #endif
 
-    /* CEASE ARISS AT THE END OF SEPTEMBER */
-    if (dp->time.month > 9) { return; }
-
     /* ARISS */
 #if ARISS_ENABLE
     if ((get_battery_use_state() == BATTERY_GOOD) &&        /* battery good, */
-        (get_battery_charge_state() == BATTERY_CHARGING) && /* receiving power and */
-        ((n % 3) == 0)) {                                   /* one-in-three times */
+        ((n % 2) == 0)) {                                   /* one-in-two times */
 #if ARISS_USE_GEOFENCE
       if (location_aprs_could_tx()) { /* transmit anywhere it's not disallowed */
 #endif
