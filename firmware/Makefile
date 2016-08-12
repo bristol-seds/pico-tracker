@@ -173,7 +173,16 @@ $(OUTPUT_PATH)%.o: %.c Makefile config.mk
 	@$(ECHO)
 	@$(ECHO) 'Compiling $<...'
 	@$(MKDIR) $(OUTPUT_PATH)$(dir $<)
-	$(CC) -c -MMD -MP $(CPPFLAGS) $(CFLAGS) $(addprefix -I,$(INCLUDE_PATH)) -o $@ $<
+	$(CC) -c -MMD -MP -O1 $(CPPFLAGS) $(CFLAGS) $(addprefix -I,$(INCLUDE_PATH)) -o $@ $<
+#
+# Tests file doesn't get optimised
+#
+$(OUTPUT_PATH)test/tmain.o: test/tmain.c Makefile config.mk
+	@$(ECHO)
+	@$(ECHO) 'Compiling $<...'
+	@$(MKDIR) $(OUTPUT_PATH)$(dir $<)
+	$(CC) -c -MMD -MP -O0 $(CPPFLAGS) $(CFLAGS) $(addprefix -I,$(INCLUDE_PATH)) -o $@ $<
+
 
 # Attempt to include the dependancy makefiles for every object in this makefile.
 #
