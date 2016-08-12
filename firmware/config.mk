@@ -34,6 +34,10 @@ TARGET_CHIP		:= SAMD20E18
 #
 #BOOTLOADER	:= true
 
+# Build with tests?
+#
+TESTS	:= true
+
 # Compiliation Flags
 #
 # Use this to set the debug level

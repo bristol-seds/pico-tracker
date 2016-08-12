@@ -112,10 +112,12 @@ endif
 SYSTEM		?= chip/system_samd20.c chip/startup_samd20.c
 INCLUDE_PATH	+= chip/ chip/cmsis/ samd20/ samd20/component/ test/tc/
 
-# Verification suite code
+# Test suite enabled?
 #
 #
+ifdef TESTS
 SYSTEM		+= test/tmain.c
+endif
 
 # Linker Scripts
 #
