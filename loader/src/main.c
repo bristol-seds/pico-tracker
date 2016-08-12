@@ -44,24 +44,26 @@ int main(void)
   /* Init */
   init(INIT_NORMAL);
 
-  /* Stay in low power mode until power/temperature are high enough */
-  do {
-    led_off();
-    idle(IDLE_LOADER);
-    led_on();
+  /* /\* Stay in low power mode until power/temperature are high enough *\/ */
+  /* do { */
+  /*   led_off(); */
+  /*   idle(IDLE_LOADER); */
+  /*   led_on(); */
 
-    /* Read sensors */
-    start_adc_sequence();
-    while (is_adc_sequence_done() == 0) {
-      idle(IDLE_LOADER);
-    }
+  /*   /\* Read sensors *\/ */
+  /*   start_adc_sequence(); */
+  /*   while (is_adc_sequence_done() == 0) { */
+  /*     idle(IDLE_LOADER); */
+  /*   } */
 
-    /* Check battery */
-  } while (get_battery() < 3.0);
+  /*   /\* Check battery *\/ */
+  /* } while (get_battery() < 3.0); */
 
 
   /* Check and repair memory */
-  check_and_repair_memory();
+  uint32_t flash_status = check_and_repair_memory();
+  /* Write it to RAM for the application to use. Oh so hacky */
+  *(uint32_t*)0x20006000 = flash_status; /* SRAM+24k */
 
   /* Transfer control to application */
   transfer_to_application();

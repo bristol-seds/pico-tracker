@@ -104,7 +104,8 @@ void encode_telemetry(char* str, tracker_datapoint* dp)
   base91_encode(str+4, 2, ((dp->thermistor_temperature+273.2)*10)); /* Temp never > 526º! */
   base91_encode(str+6, 2, ((dp->radio_die_temperature+273.2)*10)); /* Temp never > 526º! */
 //base91_encode(str+6, 2, dp->satillite_count);        /* Small! */
-  base91_encode(str+8, 2, dp->time_to_first_fix);      /* Small! */
+  base91_encode(str+8, 2, dp->time_to_first_fix +
+                ((dp->flash_status & 0x7) * 1000)); /* < 8000 */
 }
 
 /**

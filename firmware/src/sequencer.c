@@ -35,7 +35,6 @@
 #include "accumulator.h"
 #include "battery.h"
 #include "rtc.h"
-#include "flash.h"
 
 
 void rtty_telemetry(struct tracker_datapoint* dp);
@@ -166,9 +165,7 @@ void run_sequencer(uint32_t n, uint32_t cycle_time_s)
 
   /* Battery */
   update_battery(dp);
-
-  /* Flash */
   if ((n % 100) == 1) {
-    dp->flash_status = check_flash_state();
+
   }
 }

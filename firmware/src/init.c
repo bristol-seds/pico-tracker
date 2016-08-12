@@ -76,6 +76,9 @@ void init(enum init_type init_t)
    */
   external_watchdog_safe();
 
+  /* Get flash state from loader. Oh so hacky */
+  loader_flash_state = *(uint32_t*)0x20006000; /* SRAM+24k */
+
   /**
    * OSC8M should be considered unstable due to the temperature range. Therefore
    * we need to switch to a stable low frequency clock right away.

@@ -34,6 +34,8 @@ enum init_type {
   INIT_TESTCASE = 0xCC,
 };
 
+uint32_t loader_flash_state;
+
 /**
  * Turns the status LED on
  */

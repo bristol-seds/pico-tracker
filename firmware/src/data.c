@@ -37,6 +37,7 @@
 #include "thermistor.h"
 #include "watchdog.h"
 #include "rtc.h"
+#include "init.h"
 
 struct tracker_datapoint datapoint = {.time={0}};
 
@@ -142,6 +143,11 @@ struct tracker_datapoint* collect_data(void)
   datapoint.main_pressure = b->pressure;
   datapoint.bmp180_temperature = (float)b->temperature;
 #endif
+
+  /**
+   * ---- Misc ----
+   */
+  datapoint.flash_status = loader_flash_state;
 
 #ifdef GPS_TYPE_UBX
   /**
