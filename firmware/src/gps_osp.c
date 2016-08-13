@@ -642,7 +642,7 @@ struct gps_data_t gps_get_data(void)
 
 /* Number of re-inits made without normal operation */
 uint32_t gd_reinit_count = 0;
-#define GD_REINIT_COUNT_MAX (0)     /* always go straight to the watchdog */
+#define GD_REINIT_COUNT_MAX (3)     /* 3 reinits before we give up and go to the watchdog */
 
 /* Number of times gps_get_data called */
 uint32_t gd_count = 0;
@@ -1164,9 +1164,10 @@ void gps_reinit(void)
   /* Disable usart */
   gps_usart_init_disable();
 
-  /* Wait for about 3 seconds, kicking the watchdog along the way. TODO: more robust method for this */
-  for (int j = 0; j < 10; j++) {
-    for (int i = 0; i < 300*1000; i++) { __NOP(); }
+  /* Wait for at least 5 seconds, kicking the watchdog along the way. TODO: more robust method for this */
+  /* Voltage on GPS power net drop to about 150mV after 5 seconds */
+  for (int j = 0; j < 20; j++) {
+    for (int i = 0; i < 500*1000; i++) { __NOP(); }
     kick_the_watchdog();
   }
 
