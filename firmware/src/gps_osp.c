@@ -1142,8 +1142,10 @@ void gps_init(void)
 
   /* ---- GPS Configuration ---- */
 
-  /* We need to wait for the GPS 32kHz clock to start (~300ms). TODO: more robust method for this */
-  for (int i = 0; i < 300*1000*16; i++) { __NOP(); }
+  /* We need to wait for the GPS 32kHz clock to start (~500ms). TODO: more robust method for this */
+  kick_the_watchdog();
+  for (int i = 0; i < 500*1000; i++) { __NOP(); }
+  kick_the_watchdog();
 
   /* Close any currently running session. Doesn't do anything unless debugging */
   //osp_reset_initialise();       /* hopefully don't need this now */
