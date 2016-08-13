@@ -1,6 +1,9 @@
 ## Updating telemetry ##
 
-  - Set callsign in `src/main.c`
+  - In `callsigns.h`
+    - Set telemetry callsign `src/main.c`
+    - Set APRS callsign and symbol
+    - Make sure `APRS_FLIGHT_PARAMS` is defined
 
   - Update ukhas format string. `format_telemetry_string` in `src/main.c`
   - Update aprs telemetry.`encode_telemetry` in `src/aprs.c`. This same format is re-used in backlog.
@@ -33,10 +36,6 @@
     testing. These define how many sleep cycles are permitted in that
     state before we stop kicking the watchdog. 0xFFFF seems like a
     good conservative value, but you may want to be more agressive.
-
-- In `aprs.h`
-  - Set callsign and symbol
-  - Make sure `APRS_FLIGHT_PARAMS` is defined
 
 - In `gps_osp.c`
   - Check reinit parameters for `gps_get_data_wrapped` are reasonable.
