@@ -27,7 +27,7 @@ class telemetry_format_ssid:
                     "EQNS.0,.001,0,0,.1,-273.2,0,.1,-273.2"]
 
         elif self.flight_nr in [15,17]:
-            return ["PARM.Battery,Solar,External Temperature,Internal Temperature,GPS TTFF",
+            return ["PARM.Battery,Bus,External Temperature,Internal Temperature,GPS TTFF",
                     "UNIT.Volts,Volts,Celsius,Celcius",
                     "EQNS.0,.001,0,0,.001,0,0,.1,-273.2,0,.1,-273.2"]
 
