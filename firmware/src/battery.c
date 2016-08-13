@@ -32,7 +32,7 @@
 /* This n cycle wait will only be reset after continuous discharging */
 /* Set TRICKLE_COUNT_MAX less than RESET_EXCESS_COUNT */
 uint16_t excess_count = 0;
-#define EXCESS_COUNT_MAX	(60)
+#define EXCESS_COUNT_MAX	(30)
 uint16_t reset_excess_count_count = 0;
 #define RESET_EXCESS_COUNT	(60)
 uint16_t trickle_count = 0x9999;
