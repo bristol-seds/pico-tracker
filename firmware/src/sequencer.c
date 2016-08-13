@@ -161,7 +161,4 @@ void run_sequencer(uint32_t n, uint32_t cycle_time_s)
 
   /* Battery */
   update_battery(dp);
-  if ((n % 100) == 1) {
-
-  }
 }
