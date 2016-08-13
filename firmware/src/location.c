@@ -393,6 +393,16 @@ char* location_aprs_call(void) {
   return blank_string;
 }
 
+/**
+ * Returns the deviation in the current zone
+ */
+int32_t location_aprs_deviation(void) {
+  if (current_aprs_zone >= 0) {
+    return ((float)aprs_zones[current_aprs_zone].deviation * (5.0/6.0));
+  }
+
+  return 2500;                  /* 2.5kHz default */
+}
 
 /**
  * Returns the current prefix

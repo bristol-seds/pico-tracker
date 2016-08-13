@@ -41,6 +41,7 @@ bool location_aprs_could_tx(void);
 bool location_aprs_should_tx(void);
 int32_t location_aprs_frequency(void);
 char* location_aprs_call(void);
+int32_t location_aprs_deviation(void);
 char* location_prefix(void);
 
 #endif /* LOCATION_H */

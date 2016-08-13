@@ -207,8 +207,9 @@ void aprs_telemetry(struct tracker_datapoint* dp, uint32_t n)
     aprs_set_comment(prefix);
   }
 
-  /* Set frequency */
+  /* Set frequency and deviation */
   telemetry_aprs_set_frequency(location_aprs_frequency());
+  telemetry_aprs_set_deviation(location_aprs_deviation());
 
   /* Set rf path */
   if ((get_battery_use_state() == BATTERY_GOOD) &&           /* battery good,       */
@@ -256,9 +257,10 @@ void ariss_telemetry(struct tracker_datapoint* dp)
 //  } else {
   aprs_set_comment(ariss_comment);
 
-  /* Set frequency */
+  /* Set frequency, rf path and deviation */
   telemetry_aprs_set_frequency(ARISS_FREQUENCY); /* TODO correct for doppler here */
   telemetry_aprs_set_rf_path(SI_RF_PATH_AMPLIFIER); /* Amplified output path */
+  telemetry_aprs_set_deviation(4160);               /* nearly 5kHz deviation */
 
   /* Transmit packet and wait */
   telemetry_start(TELEMETRY_APRS, 0xFFFF);
