@@ -84,7 +84,7 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 
   /* APRS */
 #if APRS_ENABLE
-  if (get_since_aprs_s() >= 60) { /* limit APRS frequency to once per minute */
+  if (get_since_aprs_s() >= 55) { /* limit APRS transmissions to about once per minute */
     clear_since_aprs_s();
 #if APRS_USE_GEOFENCE
     if (location_aprs_should_tx()) { /* transmit only when we *should* */
@@ -99,8 +99,9 @@ void telemetry_sequence(struct tracker_datapoint* dp, uint32_t n)
 
     /* ARISS */
 #if ARISS_ENABLE
-    if ((get_battery_use_state() == BATTERY_GOOD) &&        /* battery good, */
-        ((n % 2) == 0)) {                                   /* one-in-two times */
+    if ((get_battery_use_state() == BATTERY_GOOD) && /* battery good, */
+        (n > 5)  &&             /* have been running for some time, */
+        ((n % 2) == 0)) {       /* one-in-two times */
 #if ARISS_USE_GEOFENCE
       if (location_aprs_could_tx()) { /* transmit anywhere it's not disallowed */
 #endif

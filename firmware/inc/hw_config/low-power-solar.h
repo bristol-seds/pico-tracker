@@ -169,7 +169,7 @@
  * Cycle Times
  */
 #define CYCLE_TIME_FAST		(30)   /* shortest hibernate */
-#define CYCLE_TIME_SLOW		(100) /* once every two minutes */
+#define CYCLE_TIME_SLOW		(180)  /* once every three minutes */
 
 /**
  * Radio
@@ -227,7 +227,7 @@
  * Telemetry
  */
 #define TELEMETRY_ENABLE		1
-#define TELEMETRY_USE_GEOFENCE	0
+#define TELEMETRY_USE_GEOFENCE	1
 #define TELEMETRY_FREQUENCY		434612500
 #define TELEMETRY_POWER			RF_POWER_8dBm
 
