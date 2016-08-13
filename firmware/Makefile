@@ -231,6 +231,12 @@ $(TARGET).elf: $(OBJECTS) $(LINKERS) gdbscript Makefile config.mk
 gdbscript: Makefile config.mk
 	@$(ECHO) "# Load our .elf file into GDB" > gdbscript
 	@$(ECHO) "file $(TARGET).elf" >> gdbscript
+	@$(ECHO) "" >> gdbscript
+	@$(ECHO) "define loader" >> gdbscript
+	@$(ECHO) "        file ../loader/out/loader.elf" >> gdbscript
+	@$(ECHO) "        load" >> gdbscript
+	@$(ECHO) "        file out/pico.elf" >> gdbscript
+	@$(ECHO) "end" >> gdbscript
 ifdef BLACKMAGIC_PATH
 	@$(ECHO) "# Connect to a specified blackmagic" >> gdbscript
 	@$(ECHO) "target extended-remote $(BLACKMAGIC_PATH)" >> gdbscript
