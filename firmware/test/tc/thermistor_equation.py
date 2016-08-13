@@ -43,7 +43,9 @@ class thermistor_equation_tc:
         i = self.index
 
         # calculate expected ADC value for the current temperature
-        params.value = (self.series_resistor/(self.resistances[i]*self.thermistor_nominal + self.series_resistor)) * 1.85;
+        thermistor_resistance = (self.resistances[i] * self.thermistor_nominal)
+        params.value = (self.series_resistor/
+                        (thermistor_resistance + self.series_resistor))
 
         return params
 
