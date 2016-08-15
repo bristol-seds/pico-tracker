@@ -339,7 +339,7 @@ void run_kick(void)
 int main(void)
 {
   uint32_t n = 1;
-  float external_temperature;
+  float external_temperature, battery_v;
 
   /* Init */
   init(INIT_NORMAL);
@@ -380,10 +380,22 @@ int main(void)
 
           } else {
 #endif /* COLD_OUT_TEMPERATURE */
+#ifdef COLD_OUT_BATTERY_V
+          battery_v = get_battery();
+          if ((battery_v < COLD_OUT_BATTERY_V) && /* check battery v */
+              (cold_out_count++ < COLD_OUT_COUNT_MAX)) {       /* and max iterations */
+            in_cold_out = 1;    /* cold */
+
+          } else {
+#endif /* COLD_OUT_BATTERY_V */
+
             in_cold_out = 0;                  /* ready to go! */
             gps_init();                       /* init the gps! */
             run_sequencer(n++, cycle_time_s); /* run for the first time! */
 #ifdef COLD_OUT_TEMPERATURE
+          }
+#endif
+#ifdef COLD_OUT_BATTERY_V
           }
 #endif
         } else {
