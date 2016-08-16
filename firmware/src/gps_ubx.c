@@ -457,9 +457,17 @@ struct gps_data_t gps_get_data(void)
 
   /* GPS Time */
   struct ubx_nav_timeutc timeutc = gps_get_nav_timeutc();
-  data.year = timeutc.payload.year;
-  data.month = timeutc.payload.month + 1; /* apparently needed */
-  data.day = timeutc.payload.day;
+
+  if (gps_is_locked()) {
+    data.year = timeutc.payload.year;
+    data.month = timeutc.payload.month + 1; /* apparently needed */
+    data.day = timeutc.payload.day;
+  } else {
+    data.year = 0;
+    data.month = 0;
+    data.day = 0;
+  }
+
   data.hour = timeutc.payload.hour;
   data.minute = timeutc.payload.min;
   data.second = timeutc.payload.sec;
