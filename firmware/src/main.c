@@ -81,18 +81,18 @@ uint16_t format_telemetry_string(char* string, struct tracker_datapoint* dp,
   /* sprintf - full string (approx 90 chars) */
   len += sprintf(string + len,
 //               "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.1f,%.1f",
-                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.2f,%.1f,%.1f,%d",
-//                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%.2f,%.1f,%ld,%d",
+//                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%u,%.2f,%.2f,%.1f,%.1f,%d",
+                 "%s,%02u:%02u:%02u,%02u%02u%02u,%02.4f,%03.4f,%ld,%u,%.2f,%.1f,%.1f,%ld,%d",
                  CALLSIGN,      /* 2+6+2+1=11 */
                  dp->time.hour, dp->time.minute, dp->time.second, /* 2+1+2+1+2+1=9 */
                  dp->time.year%100, dp->time.month, dp->time.day, /* 2+2+2+1=7 */
                  lat_fmt, lon_fmt, altitude, dp->satillite_count, /* 3+1+4+1 + 4+1+4+1 + 5+1 + 2+1 = 28 */
-                 dp->time_to_first_fix, /* 2+1 = 3 */
+//                 dp->time_to_first_fix, /* 2+1 = 3 */
                  dp->battery,           /* 1+1+2+1 = 5 */
-                 dp->solar,             /* 1+1+2+1 = 5 */
+//                 dp->solar,             /* 1+1+2+1 = 5 */
                  dp->thermistor_temperature,  /* 3+1+1+1 = 6 */
                  dp->radio_die_temperature, /* 3+1+1+1 = 6 */
-//                 dp->xosc_error,
+                 dp->xosc_error,
                  dp->flash_status);
   /* sum = 80 (must be less than or equal to 114) */
 
