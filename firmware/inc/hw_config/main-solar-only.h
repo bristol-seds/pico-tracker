@@ -98,11 +98,11 @@
 /**
  * External Thermistor ADC
  */
-#define THERMISTOR_ADC		0
+#define THERMISTOR_ADC		1
 #define THERMISTOR_ADC_PIN	PIN_PA03
 #define THERMISTOR_ADC_PINMUX	PINMUX_PA03
 #define THERMISTOR_ADC_CHANNEL	ADC_POSITIVE_INPUT_PIN1
-#define THERMISTOR_ADC_CHANNEL_DIV 1
+#define THERMISTOR_ADC_CHANNEL_DIV 1.48
 #define THERMISTOR_ADC_REFERENCE ADC_REFERENCE_INTVCC0 /* internal 1/1.48 VCC reference */
 
 /**
@@ -121,10 +121,18 @@
 #define RECHARGABLE_BATTERY	0
 
 /**
+ * Cold out
+ */
+#define COLD_OUT_BATTERY_V	(2.2)
+#define COLD_OUT_SECONDS	(5*60) /* 5 minutes    */
+#define COLD_OUT_COUNT_MAX	(12)   /* up to 1 hour */
+
+
+/**
  * Cycle Times
  */
-#define CYCLE_TIME_FAST		(30)   /* always 30 seconds */
-#define CYCLE_TIME_SLOW		(30)
+#define CYCLE_TIME_FAST		(60)   /* always 60 seconds */
+#define CYCLE_TIME_SLOW		(60)
 
 /**
  * Radio

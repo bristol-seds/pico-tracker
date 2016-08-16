@@ -8,7 +8,7 @@ class telemetry_format_ssid:
         if ssid == '11':
             self.flight_nr = 15
         if ssid == '12':
-            self.flight_nr = 17
+            self.flight_nr = 18
         else:
             raise ValueError("Telemetry format does not know about this ssid!")
 
@@ -32,6 +32,11 @@ class telemetry_format_ssid:
                     "EQNS.0,.001,0,0,.001,0,0,.1,-273.2,0,.1,-273.2"]
 
         elif self.flight_nr in [18]:
+            return ["PARM.Battery,External Temperature,Internal Temperature,GPS Satellites",
+                    "UNIT.Volts,Celsius,Celcius",
+                    "EQNS.0,.001,0,0,.1,-273.2,0,.1,-273.2"]
+
+        elif self.flight_nr in [19]:
             return ["PARM.Battery,Internal Temperature,GPS Satellites,BTRFS Errors",
                     "UNIT.Volts,Celcius",
                     "EQNS.0,.001,0,0,.1,-273.2"]
@@ -50,6 +55,8 @@ class telemetry_format_ssid:
         elif self.flight_nr in [15,17]:
             return 10           # 5 analogue values
         elif self.flight_nr in [18]:
+            return 8            # 4 analogue values
+        elif self.flight_nr in [19]:
             return 8            # 4 analogue values
         else:
             raise ValueError("baseb91_encode_len does not know about this flight!")
@@ -74,7 +81,14 @@ class telemetry_format_ssid:
                 'temperature_i':	(values[3] / 10.0) - 273.2, # dK -> degC
                 'ttff':			(values[4])
             }
-        if self.flight_nr in [18]:
+        elif self.flight_nr in [18]:
+            self.datum = {
+                'battery':		(values[0] / 1000.0), # mV -> V
+                'temperature_e':	(values[1] / 10.0) - 273.2, # dK -> degC
+                'temperature_i':	(values[2] / 10.0) - 273.2, # dK -> degC
+                'satellites':		(values[3]),
+            }
+        elif self.flight_nr in [19]:
             self.datum = {
                 'battery':		(values[0] / 1000.0), # mV -> V
                 'temperature_i':	(values[1] / 10.0) - 273.2, # dK -> degC
@@ -102,6 +116,10 @@ class telemetry_format_ssid:
 
         elif self.flight_nr in [18]:
             return ("{satellites},{battery},"
+                    "{temperature_e},{temperature_i},-1,-1").format(**datum)
+
+        elif self.flight_nr in [19]:
+            return ("{satellites},{battery},"
                     "{temperature_i},{btrfs_errors}").format(**datum)
         else:
             raise ValueError("ukhas_format does not know about this flight!")
@@ -121,6 +139,10 @@ class telemetry_format_ssid:
                     "ttff {ttff}").format(**datum)
 
         elif self.flight_nr in [18]:
+            return ("{battery}V {temperature_e}C {temperature_i}C "
+                    "sats {satellites}").format(**datum)
+
+        elif self.flight_nr in [19]:
             return ("{battery}V {temperature_i}C "
                     "sats {satellites} btrfs {btrfs_errors}").format(**datum)
         else:
