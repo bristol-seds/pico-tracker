@@ -299,7 +299,7 @@ uint32_t cycle_time_s = 0;
  */
 void set_cycle_time(uint8_t cold_out)
 {
-#ifdef COLD_OUT_TEMPERATURE
+#if defined(COLD_OUT_TEMPERATURE) || defined(COLD_OUT_BATTERY_V)
   if (cold_out == 0) {                    /* Normal operations */
 #endif
     if (gps_is_locked() == GPS_NO_LOCK) { /* no lock  */
@@ -312,7 +312,7 @@ void set_cycle_time(uint8_t cold_out)
     } else {
       cycle_time_s = CYCLE_TIME_SLOW;
     }
-#ifdef COLD_OUT_TEMPERATURE
+#if defined(COLD_OUT_TEMPERATURE) || defined(COLD_OUT_BATTERY_V)
   } else {                      /* cold out */
     cycle_time_s = COLD_OUT_SECONDS;
   }
@@ -392,10 +392,7 @@ int main(void)
             in_cold_out = 0;                  /* ready to go! */
             gps_init();                       /* init the gps! */
             run_sequencer(n++, cycle_time_s); /* run for the first time! */
-#ifdef COLD_OUT_TEMPERATURE
-          }
-#endif
-#ifdef COLD_OUT_BATTERY_V
+#if defined(COLD_OUT_TEMPERATURE) || defined(COLD_OUT_BATTERY_V)
           }
 #endif
         } else {
