@@ -24,9 +24,9 @@ def base91_decode(enc_str):
 Takes a parsed telemetry line and returns a datetime
 Assumes data is from the last month, as per the current machine's time
 """
-def extract_time(line):
+def extract_time(line, length):
     # Capture a 6 digit string
-    p = re.compile(r'(\d{6})z\S{20}')
+    p = re.compile(r'(\d{6})z\S{'+str(length)+'}')
     match = p.match(line)
 
     if match == None:
@@ -55,9 +55,9 @@ def extract_time(line):
 Takes a parsed telemetry line and returns latitude, longitude and
 altitude. It decodes from base 91 along the way
 """
-def extract_lat_long_alt(line):
+def extract_lat_long_alt(line, telem_length):
     # Capture a 4 char encoded latitude
-    p = re.compile(r'\d{6}z(\S{4})(\S{4})(\S{2})\S{10}')
+    p = re.compile(r'\d{6}z(\S{4})(\S{4})(\S{2})\S{'+str(telem_length)+'}')
     match = p.match(line)
 
     if match == None:
@@ -76,9 +76,9 @@ def extract_lat_long_alt(line):
 Takes a telemetry line and returns telemetry readings
 It decodes from base91 along the way
 """
-def extract_telemetry(line, tf, length):
+def extract_telemetry(line, tf, telem_length):
     # Capture an encoded telemetry segment
-    p = re.compile(r'\d{6}z\S{10}(\S{'+str(length)+'})')
+    p = re.compile(r'\d{6}z\S{10}(\S{'+str(telem_length)+'})')
     match = p.match(line)
 
     if match == None:
@@ -87,7 +87,7 @@ def extract_telemetry(line, tf, length):
         tel = match.group(1)
 
         # Split into 2 char chunks
-        parts = [tel[i:i+2] for i in range(0, length, 2)]
+        parts = [tel[i:i+2] for i in range(0, telem_length, 2)]
 
         # Extract values from base 91
         values = [base91_decode(enc) for enc in tuple(parts)]
@@ -124,8 +124,8 @@ def extract_backlog_datum(frame, tf):
         telem = extract_telemetry(raw, tf, telem_len)
 
         data = {
-            'time': extract_time(raw),
-            'coords': extract_lat_long_alt(raw),
+            'time': extract_time(raw, 10+telem_len),
+            'coords': extract_lat_long_alt(raw, telem_len),
         }
         data.update(telem)
 
